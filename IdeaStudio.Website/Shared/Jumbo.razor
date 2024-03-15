@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="p-5 pt-3 text-center bg-body-tertiary rounded-3 mt-5 shadow border border-light-subtle"
+        style="--bs-bg-opacity: .66;--bs-border-opacity: .33;">
+        @if (ShowLogo)
+        {
+        <img id="logo-ideastudio-white" class="object-fit-fill my-3" src="images/logo-ideastudio-white.svg" alt="Logo IDEASTUD.IO" />
+        }
+        @ChildContent
+    </div>
+</div>
+
+@code{
+    [Parameter]
+	public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public bool ShowLogo { get; set; } = true;
+}

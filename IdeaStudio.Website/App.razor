@@ -4,9 +4,12 @@
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
     <NotFound>
-        <PageTitle>Not found</PageTitle>
+        <PageTitle>404</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
-            <p role="alert">Sorry, there's nothing at this address.</p>
+            <Jumbo>
+                <p class="col-lg-8 mx-auto my-3 fs-5 text-muted">Désolé, il n'y a aucun contenu à cette adresse.</p>
+                <p class="col-lg-8 mx-auto my-3 fs-5 text-muted">Vous pouvez vous rendre <a href="/">à la page d'accueil</a>.</p>
+            </Jumbo>
         </LayoutView>
     </NotFound>
 </Router>
