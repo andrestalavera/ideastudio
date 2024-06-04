@@ -1,12 +1,28 @@
 ﻿@page "/"
 <Jumbo>
-    <p class="col-lg-8 mx-auto my-3 fs-5">Le site <u>ideastud.io</u> est actuellement en maintenance. Veuillez revenir plus tard.</p>
-    <p class="col-lg-8 mx-auto my-3 fs-5">Je vous invite à me retrouver sur LinkedIn et Github.</p>
+    <p class="col-lg-8 mx-auto my-3 fs-5">
+        The <u>ideastud.io</u> is currently under maintenance.
+        Please check back later.
+    </p>
+    <p class="col-lg-8 mx-auto my-3 fs-5">
+        Feel free to connect with me on LinkedIn, Github, or schedule an appointment.
+    </p>
     <p class="col-lg-8 mx-auto my-3 fs-5">Andrés Talavera</p>
     <div class="d-inline-flex gap-2 mb-5 mt-3">
-        <a class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill text-nowrap"
-            href="https://linkedin.com/in/andres-talavera" target="_blank"><i class="fa-brands fa-linkedin me-2"></i>LinkedIn</a>
-        <a class="btn btn-outline-secondary btn-lg px-4 rounded-pill text-nowrap" href="https://github.com/andrestalavera"
-            target="_blank"><i class="fa-brands fa-github me-2"></i>Github</a>
+        <a class="d-inline-flex align-items-center btn btn-outline-primary btn-lg px-4 rounded-pill text-nowrap"
+            href="https://linkedin.com/in/andres-talavera" target="_blank">
+            <i class="fa-brands fa-linkedin me-2"></i>
+            LinkedIn
+        </a>
+        <a class="d-inline-flex align-items-center btn btn-outline-primary btn-lg px-4 rounded-pill text-nowrap" href=""
+            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;">
+            <i class="fa-regular fa-calendar me-2"></i>
+            Schedule time with me
+        </a>
+        <a class="d-inline-flex align-items-center btn btn-outline-secondary btn-lg px-4 rounded-pill text-nowrap"
+            href="https://github.com/andrestalavera" target="_blank">
+            <i class="fa-brands fa-github me-2"></i>
+            Github
+        </a>
     </div>
 </Jumbo>
