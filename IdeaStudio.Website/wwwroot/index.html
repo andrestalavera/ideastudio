@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-bs-theme="dark">
+<html lang="fr" data-bs-theme="light">
 
 <head>
     <meta charset="utf-8" />
@@ -13,16 +13,28 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-md sticky-top bg-body-tertiary bg-trianglify-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo-ideastudio-color.svg" alt="IdeaStud.io" height="30">
+            </a>
+        </div>
+    </nav>
     <div id="app" class="d-flex justify-content-center align-items-center">
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Chargement...</span>
+        <div class="spinner-border text-white" role="status">
+            <span class="visually-hidden">Loading...</span>
         </div>
     </div>
     <div id="blazor-error-ui">
         Unknown error.
         <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+        <a class="dismiss">
+            <i class="fa-regular fa-circle-xmark"></i>
+        </a>
     </div>
+    <footer class="d-flex align-items-end mt-3 p-1">
+        <a class="text-white" href="/privacy">Privacy</a>
+    </footer>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -31,6 +43,8 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/a34e72ff1c.js" crossorigin="anonymous"></script>
-    <script src="https://assets.calendly.com/assets/external/widget.js?hide_landing_page_details=1&hide_gdpr_banner=1" type="text/javascript" async></script>
+    <script src="https://assets.calendly.com/assets/external/widget.js?hide_landing_page_details=1&hide_gdpr_banner=1"
+        type="text/javascript" async></script>
 </body>
+
 </html>
