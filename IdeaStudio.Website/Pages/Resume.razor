@@ -7,12 +7,11 @@
 @inject HttpClient httpClient 
 <div class="container-fluid"> 
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-12 col-sm-12 col-md-3">
             <div id="resume-scrollsky" class="bg-white bg-trianglify-light text-dark p-3 rounded-3 shadow-lg border border-light-subtle sticky-top" style="top:70px">
                 <div class="d-flex flex-column" style="align-items:center">
                     <div class="d-flex p-2">
-                        <img src="images/AndresTalavera.jpg" class="img-fluid rounded-circle" alt="Andres Talavera"
-                        style="max-height:200px; max-width:200px">
+                        <img src="images/AndresTalavera.jpg" class="img-fluid rounded-circle" alt="Andres Talavera">
                     </div>
                     <h3>Andrés Talavera</h3>
                     <p>.NET software techlead and trainer</p>
@@ -31,7 +30,7 @@
                         </a>
                     </div>
                 </div>
-                <ul class="nav flex-column nav-pills menu-sidebar">
+                <ul class="nav flex-column nav-pills menu-sidebar d-none d-md-flex">
                     <li class="nav-item">
                         <a class="nav-link" href="resume#presentation">About me</a>
                     </li>
@@ -55,9 +54,8 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-10">
-            <section id="presentation"
-                class="d-flex flex-column text-light rounded-3 mt-5">
+        <div class="col-12 col-sm-12 col-md-9">
+            <section id="presentation" class="d-flex flex-column text-light rounded-3">
                 <SectionHeader>About me</SectionHeader>
                 @if (_profile != null)
                 {
@@ -66,8 +64,12 @@
                         @(new MarkupString(Markdown.ToHtml(paragraph))) 
                     }
                 }
+                else
+                {
+                    <LoadingComponent />
+                }
             </section>
-            <section id="experiences" class="">
+            <section id="experiences" class="experiences">
                 <SectionHeader>Experiences</SectionHeader>
                 @if (_profile != null)
                 {
@@ -75,11 +77,11 @@
                     <div class="main-timeline-2">
                         @foreach (var experience in _profile.Experiences)
                         {
-                            <div class="timeline-2 @(index % 2 == 0 ? "left" : "right")-2" id="@experience.Company.ToSeoUrl()">
+                            <section class="timeline-2 @(index % 2 == 0 ? "left" : "right")-2 experience" id="@experience.Company.ToSeoUrl()">
                                 <ExperienceComponent Title="@experience.Title" Company="@experience.Company" Mode="@experience.Mode"
                                 Interval="@experience.Interval" Location="@experience.Location"
                                 Description="@experience.Description" Responsibilities="experience.Responsibilities" Skills="@experience.Skills" />
-                            </div>
+                            </section>
                             index++;
                         }
                     </div>
