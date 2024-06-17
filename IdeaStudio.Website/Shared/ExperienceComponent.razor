@@ -1,0 +1,62 @@
+@using IdeaStudio.Website.Models
+@using Markdig
+<!--<div class="card bg-white bg-trianglify-light text-dark rounded-3 mt-5 shadow-lg border border-light-subtle"
+    style="--bs-bg-opacity: .9;--bs-border-opacity: .33;">-->
+<div class="card mb-3 p-1 bg-white bg-trianglify-light text-dark ">
+    <img src="@CompanyLogo" class="img-fluid align-self-center m-2" alt="@Company" style="max-height:150px; max-width:200px"
+        @onerror="CompanyLogoFail">
+    <div class="card-body p-4">
+        <h4 class="display-6">@Title</h4>
+        <h6 class="card-subtitle display-5">@Company</h6>
+        <p class="lead">@Description</p>
+        @if (Responsibilities is not null)
+        {
+            <CollapsableComponent Title="key responsabilities">
+                <ul class="list-group list-group-light list-group-small">
+                    @foreach (var responsibility in Responsibilities)
+                    {
+                        <li class="list-group-item">@responsibility</li>
+                    }
+                </ul>
+            </CollapsableComponent>
+        }
+        @if (Skills != null)
+        {
+            <CollapsableComponent Title="skills">
+                <ul class="list-inline">
+                    @foreach (var skill in Skills)
+                    {
+                        <li class="list-inline-item">
+                            <span class="badge bg-primary">@skill</span>
+                        </li>
+                    }
+                </ul>
+            </CollapsableComponent>
+        }
+        <p class="text-muted ">
+            <small class="text-muted fw-light">@Mode, @Interval, @Location</small>
+        </p>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string? Title { get; set; }
+
+    [Parameter] public string? Company { get; set; }
+
+    [Parameter] public string? Mode { get; set; }
+
+    [Parameter] public string? Interval { get; set; }
+
+    [Parameter] public string? Location { get; set; }
+
+    [Parameter] public string? Description { get; set; }
+
+    [Parameter] public IEnumerable<string>? Responsibilities { get; set; }
+
+    [Parameter] public IEnumerable<string>? Skills { get; set; }
+
+    private string? CompanyLogo { get; set; }
+    private void CompanyLogoFail() => CompanyLogo = "images/placeholder.png";
+    override protected void OnInitialized() => CompanyLogo = $"images/{Company?.ToSeoUrl()}.png";
+}

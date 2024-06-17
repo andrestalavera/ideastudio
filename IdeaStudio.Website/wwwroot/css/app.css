@@ -9,9 +9,8 @@ html {
 body {
     background-image: url('../images/trianglify-primary.svg');
     background-size: cover;
-    background-repeat: no-repeat;
-    background-position: fixed;
-    min-height: calc(100vh - 30px);
+    background-repeat: no-repeat; 
+    min-height: calc(100vh - 60px);
 }
 
 iframe {
@@ -20,10 +19,6 @@ iframe {
 
 #app {
     min-height: calc(100vh - 60px);
-}
-
-#logo-ideastudio-white {
-    max-height: 75px;
 }
 
 #blazor-error-ui {
