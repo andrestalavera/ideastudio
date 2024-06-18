@@ -4,22 +4,22 @@
         "I’m passionate about development and training, and I’ve consistently met customer needs by using the latest technologies.",
         "My experiences with start-ups, SMEs, and digital service companies (ESN / IT) have reinforced my technology choices, particularly those focused on the future.",
         "### Key Technologies",
+        "- Frameworks: .NET",
         "- Web: ASP.NET Core, Blazor",
         "- Mobile: MAUI, Xamarin, UWP",
         "- Cloud: Azure",
-        "- Design patterns: DDD, Clean Architecture, TDD, SOLID, 20 of gang, cloud, ...",
+        "- Design patterns: DDD, Clean Architecture, TDD, SOLID, 20 of gang, Cloud, ...",
         "- Languages: C#, JavaScript, TypeScript",
         "- Databases: SQL Server, Cosmos DB",
         "- Tools: Visual Studio, Visual Studio Code, Azure DevOps, GitHub",
         "- Methodologies: Agile, Scrum, Kanban",
-        "- frameworks: .NET",
         "### Industry Experience",
         "I’ve applied my skills in various sectors including finance, aviation, logistics, education, and accounting. I’m mobile across Europ for training purposes.",
         "### Recent projects",
         "At TRIGO, I enhanced logistics software systems using advanced .NET development, Vue, and Azure. At Active Assurances, I led a team to improve internal processes and develop new insurance software from scratch. These experiences honed my leadership skills and deepened my technical expertise.",
         "### Personal Attributes",
         "I’m curious, versatile, and quick to get excited about new ideas and projects. I value knowledge and have a knack for understanding and explaining complex concepts easily. I’m comfortable in positions where my analytical and design skills are highlighted. Although calmer than other extroverted types, I still require a minimum level of social interaction to maintain my energy.",
-        "Looking forward to connecting with you soon!"
+        "##### Looking forward to connecting with you soon!"
     ],
     "experiences": [
         {

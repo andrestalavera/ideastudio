@@ -73,11 +73,13 @@
   left: -14px;
 }
 
-.experiences, .experience {
+.experiences,
+.experience {
   scroll-margin-top: 70px;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 992px),
+print {
   .main-timeline-2::after {
     left: 10px;
     margin-left: 0;
@@ -112,5 +114,30 @@
 
   .right-2 {
     left: 0%;
+  }
+}
+
+@media print {
+  * {
+    outline: none;
+    box-shadow: none;
+    border: 0;
+  }
+
+  .card {
+    box-shadow: none;
+  }
+  .main-timeline-2::after
+  {
+    left: inherit;
+  }
+  .timeline-2::before {
+    border: none;
+    left: inherit;
+  }
+
+  .timeline-2 {
+    padding-left: 0;
+    padding-right: 0;
   }
 }

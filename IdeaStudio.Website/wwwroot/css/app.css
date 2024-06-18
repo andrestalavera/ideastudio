@@ -56,5 +56,6 @@ iframe {
 .bg-trianglify-light {
     background-image: url('../images/trianglify-light.svg');
     background-attachment: fixed;
+    background-position: auto auto;
     background-repeat: no-repeat; 
 }

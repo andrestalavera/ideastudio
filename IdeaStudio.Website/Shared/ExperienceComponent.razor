@@ -1,10 +1,8 @@
 @using IdeaStudio.Website.Models
 @using Markdig
-<!--<div class="card bg-white bg-trianglify-light text-dark rounded-3 mt-5 shadow-lg border border-light-subtle"
-    style="--bs-bg-opacity: .9;--bs-border-opacity: .33;">-->
 <div class="card mb-3 p-1 bg-white bg-trianglify-light text-dark ">
-    <img src="@CompanyLogo" class="img-fluid align-self-center m-2" alt="@Company" style="max-height:150px; max-width:200px"
-        @onerror="CompanyLogoFail">
+    <img src="@CompanyLogo" class="img-fluid align-self-center m-2" alt="@Company"
+        style="max-height:150px; max-width:200px" @onerror="CompanyLogoFail">
     <div class="card-body p-4">
         <h4 class="display-6">@Title</h4>
         <h6 class="card-subtitle display-5">@Company</h6>
