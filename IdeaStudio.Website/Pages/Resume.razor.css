@@ -118,26 +118,23 @@ print {
 }
 
 @media print {
-  * {
-    outline: none;
-    box-shadow: none;
-    border: 0;
-  }
-
+  #experiences *,
+  #experiences > *,
+  .experience *,
+  .experience > *,
   .card {
-    box-shadow: none;
-  }
-  .main-timeline-2::after
-  {
-    left: inherit;
-  }
-  .timeline-2::before {
-    border: none;
-    left: inherit;
+    border: inherit !important;
+    box-shadow: inherit !important;
+    left: inherit !important;
+    right: inherit !important;
+    margin: inherit !important;
+    outline: none !important;
+    padding: inherit !important;
+    background: inherit !important;
+    --mdb-card-box-shadow: inherit !important;
   }
 
-  .timeline-2 {
-    padding-left: 0;
-    padding-right: 0;
+  .text-white {
+    color: #000 !important;
   }
 }

@@ -1,6 +1,6 @@
 @using IdeaStudio.Website.Models
 @using Markdig
-<div class="card mb-3 p-1 bg-white bg-trianglify-light text-dark ">
+<div class="card mb-3 bg-white bg-trianglify-light text-dark ">
     <img src="@CompanyLogo" class="img-fluid align-self-center m-2" alt="@Company"
         style="max-height:150px; max-width:200px" @onerror="CompanyLogoFail">
     <div class="card-body p-4">
@@ -31,7 +31,7 @@
                 </ul>
             </CollapsableComponent>
         }
-        <p class="text-muted ">
+        <p class="text-muted">
             <small class="text-muted fw-light">@Mode, @Interval, @Location</small>
         </p>
     </div>
