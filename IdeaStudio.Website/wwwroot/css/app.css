@@ -8,9 +8,7 @@ html {
 
 body {
     background-image: url('../images/trianglify-primary.svg');
-    background-size: 200% 100%;
-    background-attachment: fixed;
-    background-repeat: no-repeat; 
+    background-size: cover; 
     min-height: calc(100vh - 60px);
 }
 
