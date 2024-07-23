@@ -22,4 +22,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IdeaStudio.Website\IdeaStudio.Website.csproj" />
+  </ItemGroup>
+
 </Project>
