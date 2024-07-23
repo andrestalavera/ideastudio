@@ -8,12 +8,6 @@
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisLevel>latest</AnalysisLevel>
 	</PropertyGroup>
-	<ItemGroup>
-		<None Remove="Shared\ExperienceComponent.razor.css" />
-	</ItemGroup>
-	<ItemGroup>
-		<Content Include="Shared\ExperienceComponent.razor.css" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="markdig" Version="0.37.0" />
