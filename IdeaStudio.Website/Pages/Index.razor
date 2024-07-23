@@ -1,35 +1,203 @@
 ﻿@page "/"
-<Jumbo ShowLogo="false">
-    <i class="fa-regular fa-message-code fa-5x"></i>
-    <h1 class="col-lg-8 mx-auto my-3 fs-5">
-        Andrés Talavera
-    </h1> 
-    <p class="col-lg-8 mx-auto my-3 fs-5">
-        Feel free to connect with me on LinkedIn, Github, or schedule an appointment.
-    </p>
-    <div class="d-flex flex-column flex-md-row flex-wrap justify-content-center gap-2 mb-3 mt-3">
-        <a class="d-inline-flex align-items-center btn btn-outline-primary btn-lg px-4 rounded-pill text-nowrap"
-            href="https://linkedin.com/in/andres-talavera" target="_blank">
-            <i class="fa-brands fa-linkedin me-2"></i>
-            LinkedIn
-        </a>
-        <a class="d-inline-flex align-items-center btn btn-outline-primary btn-lg px-4 rounded-pill text-nowrap" href=""
-            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;">
-            <i class="fa-regular fa-calendar me-2"></i>
-            Choose an appointment to call me
-        </a>
-        <a class="d-inline-flex align-items-center btn btn-outline-secondary btn-lg px-4 rounded-pill text-nowrap"
-            href="https://github.com/andrestalavera" target="_blank">
-            <i class="fa-brands fa-github me-2"></i>
-            Github
-        </a>
-        <a class="d-inline-flex align-items-center btn btn-outline-secondary btn-lg px-4 rounded-pill text-nowrap"
-            href="/andres-talavera-resume">
-            <i class="fa-solid fa-user me-2"></i>
-            View my resumé
-        </a>
+@page "/andres-talavera-resume"
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Shared
+@using Markdig
+@inject HttpClient httpClient
+
+<FluentCard class="container bg-acrylic my-1" >
+    <div class="class1-container">
+        <FluentCard Height="100%" style="padding: 0;">
+            <div class="class1-hero">
+                <div class="gradient">
+                    <div class="text-align-center p-1">
+                        <FluentPersona Image="images/AndresTalavera.jpg" ImageSize="175px"
+                                    style="margin-left:auto; margin-right:auto; margin-bottom:10px; border:1px solid white; box-shadow:0 0 20px white; border-radius:50%" />
+                    </div>
+                    <FluentLabel Typo="Typography.Header" Color="Color.Lightweight">Andrés Talavera</FluentLabel>
+                    <div class="card-icons">
+                        @if(_aboutMe is null) 
+                        {
+                            <LoadingComponent />
+                        }
+                        else { 
+                            @foreach (var paragraph in _aboutMe?.AboutMeSection.Introduction)
+                            {
+                                <FluentLabel Typo="Typography.Body" Color="Color.Lightweight">
+                                    @(new MarkupString(paragraph))
+                                </FluentLabel>
+                            }
+                        
+                            <FluentLabel Typo="Typography.Header" Color="Color.Lightweight">
+                                <i class="fa-duotone fa-solid fa-language"></i> Languages
+                            </FluentLabel>
+                            @foreach (var paragraph in _aboutMe?.AboutMeSection.Languages)
+                            {
+                                <FluentLabel Typo="Typography.Body" Color="Color.Lightweight">
+                                    <FluentPersona Name="@paragraph" Image="@($"images/flag-{paragraph.Split(' ')[0].ToSeoUrl()}.svg")" TextPosition="TextPosition.End" ImageSize="25px" />
+                                </FluentLabel>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </FluentCard>
+        <div class="class1-content">
+            @if (_aboutMe is null)
+            {
+                <LoadingComponent />
+            }
+            else
+            {
+                @if (!_aboutMe.AboutMeSection.KeyTechnologies.Any())
+                {
+                    <FluentLabel Typo="Typography.Subject">Nothing to show here.</FluentLabel>
+                }
+                @foreach (var keyTechnology in _aboutMe?.AboutMeSection.KeyTechnologies)
+                {
+                    <FluentCard class="card bg-acrylic" style="@($"background-image:url('images/bg-{keyTechnology.Title.ToSeoUrl()}.png');")">
+                        <FluentLabel Typo="Typography.Header">
+                            <img class="card-technology" src="@($"images/aboutme-{keyTechnology.Title.ToSeoUrl()}.svg")"/>
+                            @keyTechnology.Title
+                        </FluentLabel>
+                        @foreach (var technology in keyTechnology.Paragraphs1)
+                        {
+                            <FluentLabel Typo="Typography.Body">@(new MarkupString(technology))</FluentLabel>
+                        }
+                        <div style="display: flex; flex-wrap: wrap; flex-direction: row wrap; gap: 20px; justify-content: space-between;">
+                        @foreach (var technology in keyTechnology.Images)
+                        {
+                            <div style="display: flex; flex-direction: column; gap: 10px">
+                                <img class="card-technology-small" src="@($"images/aboutme-{technology.ToSeoUrl()}.svg")"
+                                        alt="@technology" />
+                                <FluentLabel Typo="Typography.Body">@technology</FluentLabel>
+                            </div>
+                        }
+                        </div>
+                        @foreach (var technology in keyTechnology.Paragraphs2)
+                        {
+                            <FluentLabel Typo="Typography.Body">@(new MarkupString(technology))</FluentLabel>
+                        }
+                    </FluentCard>
+                }
+            
+                <FluentCard class="card bg-acrylic">
+                    <FluentLabel Typo="Typography.Header">
+                        <img class="card-technology" src="@($"images/aboutme-recent-projects.svg")"/> Recent Projects
+                    </FluentLabel>
+                    @foreach (var paragraph in _aboutMe?.AboutMeSection.RecentProjects)
+                    {
+                        <FluentLabel Typo="Typography.Body">
+                            @(new MarkupString(paragraph))
+                        </FluentLabel>
+                    }
+                </FluentCard>
+                
+                <FluentCard class="card bg-acrylic">
+                    <FluentLabel Typo="Typography.Header">
+                        <img class="card-technology" src="@($"images/aboutme-personal-attributes.svg")"/> Personal Attributes
+                    </FluentLabel>
+                    @foreach (var paragraph in _aboutMe?.AboutMeSection.PersonalAttributes)
+                    {
+                        <FluentLabel Typo="Typography.Body">
+                            @(new MarkupString(paragraph))
+                        </FluentLabel>
+                    }
+                </FluentCard>
+            }
+        </div>
     </div>
-    <p class="col-lg-8 mx-auto my-3 fs-5 text-secondary">
-        <small>IdeaStud.io website is under maintenance. Please check back later.</small>
-    </p>
-</Jumbo>
+</FluentCard>
+
+<FluentCard class="container bg-acrylic p-0 my-1">
+    <FluentLabel Typo="Typography.HeroTitle" Color="Color.Accent">Experiences</FluentLabel>
+    <div class="timeline">
+        @if (_experiences is null)
+        {
+            <LoadingComponent />
+        }
+        else
+        {
+            @if (!_experiences.Items.Any())
+            {
+                <FluentLabel Typo="Typography.Subject">Nothing to show here.</FluentLabel>
+            }
+            foreach (var experience in _experiences.Items)
+            {
+                <div class="timeline-item">
+                    <FluentCard Class="timeline-item-card bg-acrylic p-0">
+                        <ExperienceComponent Title="@experience.Title" Company="@experience.Company" Mode="@experience.Mode"
+                                            Interval="@experience.Interval" Location="@experience.Location" Description="@experience.Description"
+                                            Responsibilities="experience.Responsibilities" Skills="@experience.Skills" />
+                    </FluentCard>
+                </div>
+            }
+        }
+    </div>
+</FluentCard>
+
+<FluentCard class="container bg-acrylic p-0 my-1">
+    <FluentLabel Typo="Typography.HeroTitle" Color="Color.Accent">I have conducted training courses for...</FluentLabel>
+    <div class="timeline">
+    @if (_trainingCenters is null)
+    {
+        <LoadingComponent />
+    }
+    else
+    {
+        @if (!_trainingCenters.Items.Any())
+        {
+            <FluentLabel Typo="Typography.Subject">Nothing to show here.</FluentLabel>
+        }
+    }
+    </div>
+</FluentCard>
+@code {
+    private AboutMe? _aboutMe;
+    private Experiences? _experiences;
+    private TrainingCenters? _trainingCenters;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetExperiences();
+        await GetAboutMe();
+        await GetTrainingCenters();
+    }
+
+    private async Task GetAboutMe()
+    {
+        try
+        {
+            _aboutMe = await httpClient.GetFromJsonAsync<AboutMe>("data/aboutme.json");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception thrown while we try to retrieve 'about me' section: {ex.Message} {ex.StackTrace}");
+        }
+    }
+
+    private async Task GetExperiences()
+    {
+        try
+        {
+            _experiences = await httpClient.GetFromJsonAsync<Experiences>("data/experiences.json");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception thrown while we try to retrieve 'experiences' section: {ex.Message} {ex.StackTrace}");
+        }
+    }
+
+    private async Task GetTrainingCenters()
+    {
+        try
+        {
+            _trainingCenters = await httpClient.GetFromJsonAsync<TrainingCenters>("data/trainingcenters.json");
+        }
+        catch (Exception ex)
+        {
+            _trainingCenters = new TrainingCenters([]);
+            Console.WriteLine($"Exception thrown while we try to retrieve 'training center' section: {ex.Message} {ex.StackTrace}");
+        }
+    }
+}

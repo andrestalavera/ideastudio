@@ -1,14 +1,29 @@
 ﻿@inherits LayoutComponentBase
-<nav class="navbar navbar-expand-md sticky-top bg-body-tertiary bg-trianglify-light d-print-none">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="images/logo-ideastudio-color.svg" alt="IdeaStud.io" height="30">
+<header class="text-align-center p-1">
+    <div class="container text-align-center">
+        <a href="/">
+            <img class="p-1" src="images/logo-ideastudio-white.svg" alt="IdeaStud.io" height="50">
         </a>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="andres-talavera-resume">Andres Talavera's resumé</a>
-            </li>
-        </ul>
     </div>
-</nav>
+    <div class="container"
+        style="display: flex; flex-direction:row; flex-wrap: nowrap; gap: 10px; justify-content:end; color:white!important;">
+        <a class="menu-item bg-acrylic" href="https://linkedin.com/in/andres-talavera" target="_blank">
+            <i class="fa-brands fa-linkedin fa-2x"></i>
+            <small>LinkedIn</small>
+        </a>
+        <a class="menu-item bg-acrylic" href="https://github.com/andrestalavera" target="_blank">
+            <i class="fa-brands fa-github fa-2x"></i>
+            <small>GitHub</small>
+        </a>
+        <a class="menu-item bg-acrylic" href="#"
+            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;">
+            <span class="fa-stack">
+                <i class="fa-sharp-duotone fa-solid fa-calendar-days fa-stack-2x"></i>
+                <i class="fa-sharp-duotone fa-solid fa-phone fa-stack-1x" style="color:lightgreen"></i>
+            </span>
+            <small>Meet me</small>
+        </a>
+    </div>
+</header>
+<div class="header-backdrop"></div>
 @Body

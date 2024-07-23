@@ -1,0 +1,23 @@
+{
+  "trainingCenters": [
+    {
+      "name": "IP-Formation",
+      "locations": [
+        "Paris, France"
+      ],
+      "courses": [
+        "Introduction à Microsoft Azure (AZ-900)"
+      ]
+    },
+    {
+      "name": "ORSYS",
+      "locations": [
+        "Paris, France"
+      ],
+      "courses": [
+        "Introduction to Microsoft Azure (AZ-900)",
+        "Azure DevOps Services (AZ-400)"
+      ]
+    }
+  ]
+}
