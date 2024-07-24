@@ -124,8 +124,8 @@
             }
             foreach (var experience in _experiences.Items)
             {
-                <div class="timeline-item">
-                    <FluentCard Class="timeline-item-card bg-acrylic p-0">
+                <div class="timeline-item container">
+                    <FluentCard Class="bg-acrylic p-0">
                         <ExperienceComponent Title="@experience.Title" Company="@experience.Company" Mode="@experience.Mode"
                                             Interval="@experience.Interval" Location="@experience.Location" Description="@experience.Description"
                                             Responsibilities="experience.Responsibilities" Skills="@experience.Skills" />
