@@ -14,11 +14,12 @@ namespace IdeaStudio.Website.Models;
 /// <param name="Responsibilities">Key responsibilities</param>
 /// <param name="Skills">Skills</param>
 public record Experience(
-    string Title, 
-    string Company, 
-    string Mode, 
-    string Interval, 
-    string Location, 
+    string Title,
+    string Company,
+    string Mode,
+    DateTime? StartDate,
+    DateTime? EndDate,
+    string Location,
     string Description,
     IEnumerable<string> Responsibilities,
     IEnumerable<string> Skills

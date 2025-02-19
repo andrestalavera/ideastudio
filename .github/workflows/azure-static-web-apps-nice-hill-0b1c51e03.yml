@@ -22,7 +22,13 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
+      - name: Install LibMan
+        run: dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+      - name: Check LibMan
+        run: libman --version
+    #   - name: LibMan install Bootstrap
+    #     run: libman install bootstrap --destination wwwroot/lib/bootstrap
       - name: Test
         run: dotnet test IdeaStudio.Website.Tests/IdeaStudio.Website.Tests.csproj
       - name: Build And Deploy
@@ -50,3 +56,4 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_HILL_0B1C51E03 }}
           action: "close"
+          app_location: "IdeaStudio.Website" # App source code path

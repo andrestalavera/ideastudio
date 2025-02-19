@@ -4,8 +4,8 @@
             "title": "Founder - freelance .NET developer, techlead and trainer",
             "company": "IdeaStudio",
             "mode": "Self-employed",
-            "interval": "May 2017 - Present · 7 yrs 2 mos",
-            "location": "Paris Area, France",
+			"startDate": "2015-07-01",
+            "location": "France",
             "description": "At IdeaStud.io, I develop innovative mobile and web applications for various industries using the latest Microsoft technologies, particularly cloud-based applications. I'm always ready to take on new challenges and stay updated with the evolving tech landscape. Besides application development, I also share my knowledge through training centers and blogs focusing on cloud computing and software architecture. This journey showcases my commitment to continuous learning, adaptability, and passion for sharing tech knowledge.",
             "skills": [
                 "Blazor",
@@ -47,7 +47,8 @@
             "title": ".NET Developer",
             "company": "TRIGO",
             "mode": "Freelance",
-            "interval": "Feb 2024 - Present · 5 mos",
+			"startDate": "2024-02-01",
+			"endDate": "2024-07-01",
             "location": "Lyon, Auvergne-Rhône-Alpes, France · Hybrid",
             "description": "TRIGO is a global leader in logistics, providing specialised logistics and production support. They are known for their professional support, systems, and flexibility that help exceed their customersʼ expectations. In this context, I was brought in to develop new features for an ASP.NET Framework (MVC4) and support migrations to .NET, Vue, Azure.",
             "responsibilities": [
@@ -84,8 +85,9 @@
             "title": "Techlead",
             "company": "Active Assurances",
             "mode": "Freelance",
-            "interval": "Aug 2023 - Feb 2024 · 7 mos",
-            "location": "Paris, Île-de-France, France · Hybrid",
+			"startDate": "2023-08-01",
+			"endDate": "2024-02-01",
+            "location": "Boulogne-Billancourt, Île-de-France, France · Hybrid",
             "description": "Active Assurances is a leading provider of automobile insurance products and services in France. They were looking to improve internal processes and redesign some projects performing .NET migrations, security updates or some automations. A new project was implemented from scratch, fully replacing the entire Information System.",
             "responsibilities": [
                 "Managed a team of up to 5 developers.",
@@ -137,7 +139,8 @@
             "title": ".NET Developer",
             "company": "The Adecco Group",
             "mode": "Freelance",
-            "interval": "Apr 2022 - Apr 2023 · 1 yr 1 mo",
+			"startDate": "2022-04-01",
+			"endDate": "2023-04-01",
             "location": "Lyon, Auvergne-Rhône-Alpes, France · Hybrid",
             "description": "The Adecco Group is a Swiss-French company based in Zurich, Switzerland. It is one of the world's largest Human Resources provider and temporary staffing firm. I worked on multiple projects at The Adecco Group. The main project was a worldwide data synchronisation system.",
             "responsibilities": [
@@ -180,7 +183,8 @@
             "title": ".NET Developer",
             "company": "Sage",
             "mode": "Freelance",
-            "interval": "Oct 2021 - Feb 2022 · 5 mos",
+			"startDate": "2021-10-01",
+			"endDate": "2022-02-01",
             "location": "Remote",
             "description": "Sage is a British multinational enterprise software company. They were redeveloping some internal libraries and their commercial products. I developed and improved new features.",
             "responsibilities": [
@@ -220,7 +224,8 @@
             "title": "Mobile Application Developer",
             "company": "Hager",
             "mode": "Freelance",
-            "interval": "Aug 2021 - Oct 2021 · 3 mos",
+			"startDate": "2021-08-01",
+			"endDate": "2021-10-01",
             "location": "Obernai, Grand Est, France · Hybrid",
             "description": "Hager is a leading supplier of solutions and services for electrical installations in residential, commercial, and industrial buildings. The task was to develop an application that uses an existing AI to find spare parts.",
             "responsibilities": [
@@ -255,8 +260,9 @@
             "title": ".NET Developer",
             "company": "ALTEVA",
             "mode": "Freelance",
-            "interval": "Apr 2021 - Jun 2021 · 3 mos",
-            "location": "Remote · Remote",
+			"startDate": "2021-04-01",
+			"endDate": "2021-06-01",
+            "location": "Remote",
             "description": "Alteva is a leading provider of software solutions for property management, with over 20 years of experience in the field. Their software, Mission One, is designed to cater to various stakeholders in property maintenance.",
             "responsibilities": [
                 "Conducted functional analysis to understand the requirements and specifications of the software.",
@@ -290,11 +296,12 @@
             ]
         },
         {
-            "title": ".NET and Azure Architect",
+            "title": ".NET and Azure Consultant",
             "company": "Faurecia",
             "mode": "Freelance",
-            "interval": "Sep 2020 - Apr 2021 · 8 mos",
-            "location": "France",
+			"startDate": "2020-09-01",
+			"endDate": "2021-04-01",
+            "location": "Audincourt, Bourgogne-Franche-Compté, France",
             "description": "Faurecia is a global leader in automotive technology. They are known for their innovative solutions that enhance the driving experience and contribute to sustainable mobility.",
             "responsibilities": [
                 "Conducted both technical and functional analysis to understand the requirements and specifications of the projects.",
@@ -333,12 +340,13 @@
             ]
         },
         {
-            "title": ".NET and Azure Architect",
-            "company": "CHARL'ANTOINE ALSACE",
+            "title": ".NET and Azure Consultant",
+            "company": "CHARL'ANTOINE",
             "mode": "Freelance",
-            "interval": "Jun 2020 - Sep 2020 · 4 mos",
-            "location": "France · Remote",
-            "description": "CharlʼAntoine Alsace is a company specializing in delivery services. They are known for their efficient and reliable delivery solutions.",
+			"startDate": "2020-06-01",
+			"endDate": "2020-09-01",
+            "location": "Strasbourg, France · Remote",
+            "description": "CharlʼAntoine is a company specializing in delivery services. They are known for their efficient and reliable delivery solutions.",
             "responsibilities": [
                 "Conducted analysis of existing developments to understand the structure and functionality of the current app.",
                 "Worked closely with the customer to analyze functional needs and translate them into technical requirements.",
@@ -384,7 +392,8 @@
             "title": "Business Analyst",
             "company": "Renault-Nissan-Mitsubishi",
             "mode": "Freelance",
-            "interval": "Feb 2020 - Apr 2020 · 3 mos",
+			"startDate": "2020-02-01",
+			"endDate": "2020-04-01",
             "location": "Issy-les-Moulineaux, Ile-de-France, France · Hybrid",
             "description": "Renault France, part of an alliance with Mitsubishi and Nissan, is a leading vehicle provider.",
             "responsibilities": [
@@ -409,8 +418,9 @@
             "title": ".NET and Azure Techlead",
             "company": "Cegid",
             "mode": "Freelance",
-            "interval": "Aug 2019 - Dec 2019 · 5 mos",
-            "location": "Paris Area, France · Hybrid",
+			"startDate": "2019-08-01",
+			"endDate": "2019-12-01",
+            "location": "Reuil-Malmaison, France · Hybrid",
             "description": "Cegid is a leading provider of cloud business management solutions for finance, human resources, CPAs, and the retail and entrepreneurial sectors.",
             "responsibilities": [
                 "Designed the architecture of the new box.",
@@ -453,8 +463,9 @@
             "title": ".NET and Azure Consultant",
             "company": "Corum",
             "mode": "Freelance",
-            "interval": "May 2019 - Aug 2019 · 4 mos",
-            "location": "Paris Area, France",
+			"startDate": "2019-05-01",
+			"endDate": "2019-08-01",
+            "location": "Paris, France · On-site",
             "description": "Corum is a French company that specializes in providing investment solutions, particularly in real estate.",
             "responsibilities": [
                 "Conducted functional analysis to understand the requirements and specifications of the software.",
@@ -488,8 +499,9 @@
             "title": ".NET Techlead",
             "company": "DAVIGOLD",
             "mode": "Freelance",
-            "interval": "Oct 2018 - May 2019 · 8 mos",
-            "location": "Paris Area, France · Hybrid",
+			"startDate": "2018-10-01",
+			"endDate": "2019-05-01",
+            "location": "Paris, France · Hybrid",
             "description": "DAVIGOLD is a next-generation Fintech company that optimizes private equity operations.",
             "responsibilities": [
                 "Conducted analysis of current developments and performed functional study to understand the requirements and specifications of the software.",
@@ -526,8 +538,9 @@
             "title": ".NET Developer (WPF)",
             "company": "FORTIA Financial Solutions",
             "mode": "Freelance",
-            "interval": "Oct 2017 - Dec 2017 · 3 mos",
-            "location": "Paris Area, France · On-site",
+			"startDate": "2017-10-01",
+			"endDate": "2017-12-01",
+            "location": "Paris, France · On-site",
             "description": "FORTIA is a financial technology company specialising in innovative solutions for the investment management industry. I contributed to the development of the Innova application, a comprehensive tool designed for data management, enterprise risk management, and business process management.",
             "responsibilities": [
                 "Conducted functional analysis to understand the business requirements.",
@@ -553,8 +566,9 @@
             "title": ".NET Developer",
             "company": "AFILIZA",
             "mode": "Freelance",
-            "interval": "Jun 2017 - Sep 2017 · 4 mos",
-            "location": "Paris Area, France",
+			"startDate": "2017-06-01",
+			"endDate": "2017-09-01",
+            "location": "Paris, France · Hybrid",
             "description": "AFILIZA is a digital agency focused on creating effective online presence for businesses. I was involved in the research and development of a web application for displaying promotion codes, enhancing the user experience and driving customer engagement.",
             "responsibilities": [
                 "Application development",
@@ -582,8 +596,9 @@
             "title": "Business Unit Manager + .NET developer",
             "company": "Digit-Prime",
             "mode": "Full-time",
-            "interval": "Nov 2016 - Apr 2017 · 6 mos",
-            "location": "Paris Area, France",
+			"startDate": "2016-11-01",
+			"endDate": "2017-04-01",
+            "location": "Paris Area, France · Remote",
             "description": "Digit-Prime is a technology company offering a range of services from training to application development. I led training sessions and developed applications, fostering a culture of continuous learning and improvement.",
             "responsibilities": [
                 "Web application development",
@@ -598,7 +613,8 @@
             "title": "Freelance .NET Software Developer and trainer",
             "company": "Andrés Talavera",
             "mode": "Freelance",
-            "interval": "Jul 2015 - Nov 2016 · 1 yr 5 mos",
+			"startDate": "2015-07-01",
+			"endDate": "2016-11-01",
             "location": "France"
         }
     ]

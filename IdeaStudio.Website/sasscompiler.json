@@ -1,0 +1,24 @@
+{
+	"Source": "wwwroot/lib/bootstrap/scss/",
+	"Target": "wwwroot/css",
+	"Arguments": "--style=compressed --no-source-map --update",
+	"GenerateScopedCss": true,
+	"ScopedCssFolders": [
+		"Views",
+		"Pages",
+		"Shared",
+		"Components"
+	],
+	"IncludePaths": [],
+	"Compilations": [
+		{
+			"Source": "wwwroot/lib/bootstrap/scss/bootstrap.scss",
+			"Target": "wwwroot/css/styles.min.css"
+		}
+	],
+	"Configurations": {
+		"Debug": {
+			"Arguments": "--style=expanded"
+		}
+	}
+}

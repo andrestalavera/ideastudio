@@ -1,5 +1,5 @@
 {
-  "trainingCenters": [
+  "items": [
     {
       "name": "IP-Formation",
       "locations": [
@@ -12,12 +12,24 @@
     {
       "name": "ORSYS",
       "locations": [
-        "Paris, France"
+        "Paris, France",
+		"Charleroi, Belgium"
       ],
       "courses": [
         "Introduction to Microsoft Azure (AZ-900)",
         "Azure DevOps Services (AZ-400)"
       ]
-    }
+    },
+	{
+	  "name": "LinkedIn Learning",
+	  "locations": [
+		"Online"
+	  ],
+	  "courses": [
+		"Introduction to Entity Framework Core",
+		"Introduction to ASP.NET Core",
+		"Introduction to Xamarin 4"
+	  ]
+	}
   ]
 }
