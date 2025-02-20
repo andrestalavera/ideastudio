@@ -19,16 +19,14 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22'
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 9.0.x
-      - name: Install LibMan
-        run: dotnet tool install -g Microsoft.Web.LibraryManager.Cli
-      - name: Check LibMan
-        run: libman --version
-    #   - name: LibMan install Bootstrap
-    #     run: libman install bootstrap --destination wwwroot/lib/bootstrap
       - name: Test
         run: dotnet test IdeaStudio.Website.Tests/IdeaStudio.Website.Tests.csproj
       - name: Build And Deploy
@@ -41,8 +39,10 @@ jobs:
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "IdeaStudio.Website" # App source code path
+          app_build_command: "dotnet build IdeaStudio.Website/IdeaStudio.Website.csproj" # The build command for your app
           api_location: "" # Api source code path - optional
           output_location: "wwwroot" # Built app content directory - optional
+          production_branch: "main"
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

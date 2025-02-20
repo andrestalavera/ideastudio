@@ -1,0 +1,82 @@
+@import "../lib/bootstrap/scss/mixins/banner";
+@include bsBanner("");
+
+// scss-docs-start import-stack
+// Configuration
+@import "../lib/bootstrap/scss/functions";
+@import "../lib/bootstrap/scss/variables";
+// override default variables
+$blue: #0071a8 !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #d63384 !default;
+$red: #dc3545 !default;
+$orange: #FF9933 !default;
+$yellow: #FFCC33 !default;
+$green: #00A462 !default;
+$teal: #008F92 !default;
+$cyan: #0dcaf0 !default;
+$border-radius: .5rem;
+$border-radius-sm: 1rem;
+$border-radius-lg: 1.5rem;
+$border-radius-xl: 2rem;
+$border-radius-xxl: 3rem;
+$border-radius-pill: 50rem;
+@import "../lib/bootstrap/scss/variables-dark";
+@import "../lib/bootstrap/scss/maps";
+@import "../lib/bootstrap/scss/mixins";
+@import "../lib/bootstrap/scss/utilities";
+
+// Layout & components
+@import "../lib/bootstrap/scss/root";
+@import "../lib/bootstrap/scss/reboot";
+@import "../lib/bootstrap/scss/type";
+@import "../lib/bootstrap/scss/images";
+@import "../lib/bootstrap/scss/containers";
+@import "../lib/bootstrap/scss/grid";
+// @import "../lib/bootstrap/scss/tables";
+@import "../lib/bootstrap/scss/forms";
+@import "../lib/bootstrap/scss/buttons";
+@import "../lib/bootstrap/scss/transitions";
+// @import "../lib/bootstrap/scss/dropdown";
+// @import "../lib/bootstrap/scss/button-group";
+@import "../lib/bootstrap/scss/nav";
+@import "../lib/bootstrap/scss/navbar";
+@import "../lib/bootstrap/scss/card";
+@import "../lib/bootstrap/scss/accordion";
+// @import "../lib/bootstrap/scss/breadcrumb";
+// @import "../lib/bootstrap/scss/pagination";
+@import "../lib/bootstrap/scss/badge";
+// @import "../lib/bootstrap/scss/alert";
+// @import "../lib/bootstrap/scss/progress";
+@import "../lib/bootstrap/scss/list-group";
+// @import "../lib/bootstrap/scss/close";
+// @import "../lib/bootstrap/scss/toasts";
+// @import "../lib/bootstrap/scss/modal";
+// @import "../lib/bootstrap/scss/tooltip";
+// @import "../lib/bootstrap/scss/popover";
+// @import "../lib/bootstrap/scss/carousel";
+@import "../lib/bootstrap/scss/spinners";
+// @import "../lib/bootstrap/scss/offcanvas";
+// @import "../lib/bootstrap/scss/placeholders";
+
+// Helpers
+@import "../lib/bootstrap/scss/helpers";
+
+// Utilities
+@import "../lib/bootstrap/scss/utilities/api";
+// scss-docs-end import-stack
+
+// scss-docs-start custom-styles
+iframe {
+	@extend .bg-transparent;
+}
+
+html,
+body {
+	min-height: 100vh;
+}
+
+#app {
+	min-height: calc(100vh - 56px);
+}

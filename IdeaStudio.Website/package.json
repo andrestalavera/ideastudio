@@ -4,9 +4,8 @@
 	"description": "IdeaStudio website",
 	"main": " ",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"scss": "sass wwwroot/lib/bootstrap/scss/bootstrap.scss:wwwroot/css/styles.min.css --style=expanded --update --watch --poll --color",
-		"lintscss": "stylelint '**/*.scss'"
+		"compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --update --color",
+		"watch-compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --update --watch --poll --color"
 	},
 	"repository": {
 		"type": "git",
