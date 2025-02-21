@@ -15,7 +15,7 @@ $info: #008F92;
 $warning: #FF9933;
 $danger: #dc3545;
 $light: lighten($primary, 90%);
-$dark: darken($primary, 20%);
+$dark: darken($primary, 10%);
 // import default variables
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/variables-dark";
@@ -63,6 +63,13 @@ $dark: darken($primary, 20%);
 @import "../../node_modules/bootstrap/scss/utilities/api";
 // scss-docs-end import-stack
 
+// custom mixins
+@mixin bg-acrylic($blur) {
+	-moz-backdrop-filter: blur($blur) !important;
+	-webkit-backdrop-filter: blur($blur) !important;
+	backdrop-filter: blur($blur) !important;
+}
+
 // scss-docs-start custom-styles
 iframe {
 	@extend .bg-transparent;
@@ -77,8 +84,18 @@ body {
 	min-height: calc(100vh - 56px);
 }
 
+@for $i from 1 through 10 {
+	.bg-acrylic-#{$i} {
+		@include bg-acrylic($i * 5px);
+	}
+}
+
 .card {
-	-moz-backdrop-filter: blur(10px) !important;
-	-webkit-backdrop-filter: blur(10px) !important;
-	backdrop-filter: blur(10px) !important;
+	@extend .bg-acrylic-4;
+	@extend .bg-opacity-75;
+	@extend .shadow-lg;
+}
+
+.vh-100 {
+	height: 100vh;
 }
