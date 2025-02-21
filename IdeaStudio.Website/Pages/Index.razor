@@ -5,199 +5,282 @@
 @using Markdig
 @inject HttpClient httpClient
 
-<FluentCard class="container bg-acrylic my-1" >
-    <div class="class1-container">
-        <FluentCard Height="100%" style="padding: 0;">
-            <div class="class1-hero">
-                <div class="gradient">
-                    <div class="text-align-center p-1">
-                        <FluentPersona Image="images/AndresTalavera.jpg" ImageSize="175px"
-                                    style="margin-left:auto; margin-right:auto; margin-bottom:10px; border:1px solid white; box-shadow:0 0 20px white; border-radius:50%" />
-                    </div>
-                    <FluentLabel Typo="Typography.Header" Color="Color.Lightweight">Andrés Talavera</FluentLabel>
-                    <div class="card-icons">
-                        @if(_aboutMe is null) 
-                        {
-                            <LoadingComponent />
-                        }
-                        else { 
-                            @foreach (var paragraph in _aboutMe?.AboutMeSection.Introduction)
-                            {
-                                <FluentLabel Typo="Typography.Body" Color="Color.Lightweight">
-                                    @(new MarkupString(paragraph))
-                                </FluentLabel>
-                            }
-                        
-                            <FluentLabel Typo="Typography.Header" Color="Color.Lightweight">
-                                <i class="fa-duotone fa-solid fa-language"></i> Languages
-                            </FluentLabel>
-                            @foreach (var paragraph in _aboutMe?.AboutMeSection.Languages)
-                            {
-                                <FluentLabel Typo="Typography.Body" Color="Color.Lightweight">
-                                    <FluentPersona Name="@paragraph" Image="@($"images/flag-{paragraph.Split(' ')[0].ToSeoUrl()}.svg")" TextPosition="TextPosition.End" ImageSize="25px" />
-                                </FluentLabel>
-                            }
-                        }
-                    </div>
-                </div>
-            </div>
-        </FluentCard>
-        <div class="class1-content">
-            @if (_aboutMe is null)
-            {
-                <LoadingComponent />
-            }
-            else
-            {
-                @if (!_aboutMe.AboutMeSection.KeyTechnologies.Any())
-                {
-                    <FluentLabel Typo="Typography.Subject">Nothing to show here.</FluentLabel>
-                }
-                @foreach (var keyTechnology in _aboutMe?.AboutMeSection.KeyTechnologies)
-                {
-                    <FluentCard class="card bg-acrylic" style="@($"background-image:url('images/bg-{keyTechnology.Title.ToSeoUrl()}.png');")">
-                        <FluentLabel Typo="Typography.Header">
-                            <img class="card-technology" src="@($"images/aboutme-{keyTechnology.Title.ToSeoUrl()}.svg")"/>
-                            @keyTechnology.Title
-                        </FluentLabel>
-                        @foreach (var technology in keyTechnology.Paragraphs1)
-                        {
-                            <FluentLabel Typo="Typography.Body">@(new MarkupString(technology))</FluentLabel>
-                        }
-                        <div style="display: flex; flex-wrap: wrap; flex-direction: row wrap; gap: 20px; justify-content: space-between;">
-                        @foreach (var technology in keyTechnology.Images)
-                        {
-                            <div style="display: flex; flex-direction: column; gap: 10px">
-                                <img class="card-technology-small" src="@($"images/aboutme-{technology.ToSeoUrl()}.svg")"
-                                        alt="@technology" />
-                                <FluentLabel Typo="Typography.Body">@technology</FluentLabel>
-                            </div>
-                        }
-                        </div>
-                        @foreach (var technology in keyTechnology.Paragraphs2)
-                        {
-                            <FluentLabel Typo="Typography.Body">@(new MarkupString(technology))</FluentLabel>
-                        }
-                    </FluentCard>
-                }
-            
-                <FluentCard class="card bg-acrylic">
-                    <FluentLabel Typo="Typography.Header">
-                        <img class="card-technology" src="@($"images/aboutme-recent-projects.svg")"/> Recent Projects
-                    </FluentLabel>
-                    @foreach (var paragraph in _aboutMe?.AboutMeSection.RecentProjects)
-                    {
-                        <FluentLabel Typo="Typography.Body">
-                            @(new MarkupString(paragraph))
-                        </FluentLabel>
-                    }
-                </FluentCard>
-                
-                <FluentCard class="card bg-acrylic">
-                    <FluentLabel Typo="Typography.Header">
-                        <img class="card-technology" src="@($"images/aboutme-personal-attributes.svg")"/> Personal Attributes
-                    </FluentLabel>
-                    @foreach (var paragraph in _aboutMe?.AboutMeSection.PersonalAttributes)
-                    {
-                        <FluentLabel Typo="Typography.Body">
-                            @(new MarkupString(paragraph))
-                        </FluentLabel>
-                    }
-                </FluentCard>
-            }
-        </div>
-    </div>
-</FluentCard>
+<div class="container my-5 pt-5" data-bs-theme="light">
+	<div class="row">
+		<div class="col">
+			<h1>Let's shape the future of your business together.</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-6 col-lg-4" data-bs-theme="dark" style="min-height: 1100px;">
+			<div class="card shadow bg-acrylic p-0 mb-5 mb-md-0 sticky-md-top" style="min-height: 1100px;">
+				<img src="../images/aboutme-keytechnologies.jpg" class="card-img-hero rounded"
+					style="min-height: 1100px;" alt="Hero" />
+				<div class="card-img-overlay gradient pb-5" style="min-height: 1100px;">
+					<img src="images/AndresTalavera.jpg" alt="Andrés Talavera"
+						class="img-fluid rounded-circle border border-white border-2 mb-4 mx-5" />
+					<h2 class="card-title">Andrés Talavera</h2>
+					@if (_aboutMe is null)
+					{
+						<PlaceholderComponent />
+					}
+					else
+					{
+						<p class="lead">
+							@(new MarkupString(_aboutMe.Introduction ?? string.Empty))
+						</p>
+						@if (_aboutMe.Languages is not null)
+						{
+							<h4>
+								<i class="fa-duotone fa-solid fa-language"></i> Languages
+							</h4>
+							<div class="list-group list-group-flush mt-2 mb-3">
+								@foreach (var paragraph in _aboutMe.Languages)
+								{
+									<div class="list-group-item bg-transparent">
+										<img class="rounded" title="@paragraph"
+											src="@($"images/flag-{paragraph.Split(' ')[0].ToSeoUrl()}.svg")" height="20px" />
+										@paragraph
+									</div>
+								}
+							</div>
+						}
+					}
+					<h4>
+						<i class="fa-duotone fa-solid fa-chart-network"></i> On the web!
+					</h4>
+					<div class="list-group list-group-flush mt-2 mb-3">
+						<a class="list-group-item list-group-item-action bg-transparent"
+							href="https://linkedin.com/in/andres-talavera" target="_blank">
+							<i class="fa-brands fa-linkedin fa-2x"></i>
+							LinkedIn
+						</a>
+						<a class="list-group-item list-group-item-action bg-transparent"
+							href="https://github.com/andrestalavera" target="_blank">
+							<i class="fa-brands fa-github fa-2x"></i>
+							GitHub
+						</a>
+						<a class="list-group-item list-group-item-action bg-transparent" href="#"
+							onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;">
+							<span class="fa-stack">
+								<i class="fa-sharp-duotone fa-solid fa-calendar-days fa-stack-2x"></i>
+								<i class="fa-sharp-duotone fa-solid fa-phone fa-stack-1x" style="color:lightgreen"></i>
+							</span>
+							Schedule a meeting
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-6 col-lg-8">
+			<div class="row">
+				<div class="col">
+					@if (_aboutMe is null || _aboutMe.Cards is null)
+					{
+						<PlaceholderComponent />
+					}
+					else
+					{
+						<div class="row row-cols-1 row-cols-lg-2 g-4">
+							@if (!_aboutMe.Cards.Any())
+							{
+								<p class="lead">Nothing to show here.</p>
+							}
+							@foreach (var card in _aboutMe.Cards)
+							{
+								<div class="col">
+									<div class="card bg-acrylic bg-light text-bg-light h-100 shadow"
+										style="--bs-bg-opacity: .9;">
+										@if (card.Banner is not null)
+										{
+											<img src="images/{@card.Banner}" class="card-img-top" alt="@card.Title" />
+										}
+										<div class="card-body">
+											<h4 class="card-title">
+												@card.Title
+											</h4>
+											@if (card.Paragraphs is not null)
+											{
+												@foreach (var technology in card.Paragraphs)
+												{
+													<p class="card-text">@(new MarkupString(technology))</p>
+												}
+											}
+											@if (card.Images is not null)
+											{
+												<p class="card-text text-center">
+													@foreach (var image in card.Images)
+													{
+														<img style="max-height: 50px;" class="m-1" src="@($"images/{image}")"
+															alt="@image" />
+													}
+												</p>
+											}
+											@if (card.Icons is not null)
+											{
+												<p class="card-text text-center">
+													@foreach (var icon in card.Icons)
+													{
+														<i class="@icon"></i>
+													}
+												</p>
+											}
+											@if (card.Link is not null)
+											{
+												<p class="card-text">
+													<a href="@card.Link" target="@(card.Link.StartsWith('#') ? "_self" : "_blank")"
+														class="btn btn-primary rounded-pill">More information</a>
+												</p>
+											}
+										</div>
+									</div>
+								</div>
+							}
+						</div>
+					}
+				</div>
+			</div>
 
-<FluentCard class="container bg-acrylic p-0 my-1">
-    <FluentLabel Typo="Typography.HeroTitle" Color="Color.Accent">Experiences</FluentLabel>
-    <div class="timeline">
-        @if (_experiences is null)
-        {
-            <LoadingComponent />
-        }
-        else
-        {
-            @if (!_experiences.Items.Any())
-            {
-                <FluentLabel Typo="Typography.Subject">Nothing to show here.</FluentLabel>
-            }
-            foreach (var experience in _experiences.Items)
-            {
-                <div class="timeline-item container">
-                    <FluentCard Class="bg-acrylic p-0">
-                        <ExperienceComponent Title="@experience.Title" Company="@experience.Company" Mode="@experience.Mode"
-                                            Interval="@experience.Interval" Location="@experience.Location" Description="@experience.Description"
-                                            Responsibilities="experience.Responsibilities" Skills="@experience.Skills" />
-                    </FluentCard>
-                </div>
-            }
-        }
-    </div>
-</FluentCard>
+			<div class="row">
+				<div class="col">
+					<div class="my-5" id="experiences">
+						<div class="row">
+							<div class="col">
+								<h2>Experiences</h2>
+							</div>
+						</div>
+						<div class="row row-cols-1 g-4">
+							@if (_experiences is null)
+							{
+								<PlaceholderComponent />
+							}
+							else
+							{
+								@if (!_experiences.Items.Any())
+								{
+									<p class="lead">Nothing to show here.</p>
+								}
+								foreach (var experience in _experiences.Items)
+								{
+									<div class="col">
+										<ExperienceComponent Title="@experience.Title" Company="@experience.Company"
+											Mode="@experience.Mode" StartDate="@experience.StartDate"
+											EndDate="@experience.EndDate" Location="@experience.Location"
+											Description="@experience.Description" Responsibilities="experience.Responsibilities"
+											Skills="@experience.Skills" />
+									</div>
+								}
+							}
+						</div>
+					</div>
 
-<FluentCard class="container bg-acrylic p-0 my-1">
-    <FluentLabel Typo="Typography.HeroTitle" Color="Color.Accent">I have conducted training courses for...</FluentLabel>
-    <div class="timeline">
-    @if (_trainingCenters is null)
-    {
-        <LoadingComponent />
-    }
-    else
-    {
-        @if (!_trainingCenters.Items.Any())
-        {
-            <FluentLabel Typo="Typography.Subject">Nothing to show here.</FluentLabel>
-        }
-    }
-    </div>
-</FluentCard>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="container my-5" id="trainingcenters">
+						<div class="row">
+							<div class="col">
+								<h2>I have conducted training courses for...</h2>
+							</div>
+						</div>
+						<div class="row  row-cols-1 row-cols-lg-2 g-4">
+							@if (_trainingCenters is null)
+							{
+								<PlaceholderComponent />
+							}
+							else
+							{
+								@if (!_trainingCenters.Items.Any())
+								{
+									<p class="lead">Nothing to show here.</p>
+								}
+								else
+								{
+									@foreach (var trainingCenter in _trainingCenters.Items)
+									{
+										<div class="col">
+											<div class="card h-100 bg-light bg-acrylic shadow" style="--bs-bg-opacity: .9;">
+												<div class="card-body">
+													<h4 class="card-title">
+														@trainingCenter.Name
+													</h4>
+													@if (trainingCenter.Courses is not null)
+													{
+														@foreach (var course in trainingCenter.Courses)
+														{
+															<p class="card-text">@course</p>
+														}
+													}
+												</div>
+												@if (trainingCenter.Locations is not null)
+												{
+													<div class="card-footer">
+														<span class="small">@string.Join(", ", trainingCenter.Locations)</span>
+													</div>
+												}
+											</div>
+										</div>
+									}
+								}
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 @code {
-    private AboutMe? _aboutMe;
-    private Experiences? _experiences;
-    private TrainingCenters? _trainingCenters;
+	private AboutMe? _aboutMe;
+	private Experiences? _experiences;
+	private TrainingCenters? _trainingCenters;
 
-    protected override async Task OnInitializedAsync()
-    {
-        await GetExperiences();
-        await GetAboutMe();
-        await GetTrainingCenters();
-    }
+	protected override async Task OnInitializedAsync()
+	{
+		await GetExperiences();
+		await GetAboutMe();
+		await GetTrainingCenters();
+	}
 
-    private async Task GetAboutMe()
-    {
-        try
-        {
-            _aboutMe = await httpClient.GetFromJsonAsync<AboutMe>("data/aboutme.json");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Exception thrown while we try to retrieve 'about me' section: {ex.Message} {ex.StackTrace}");
-        }
-    }
+	private async Task GetAboutMe()
+	{
+		_aboutMe = await httpClient.GetFromJsonAsync<AboutMe>("data/aboutme.json");
+		try
+		{
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Exception thrown while we try to retrieve 'about me' section: {ex.Message} {ex.StackTrace}");
+		}
+	}
 
-    private async Task GetExperiences()
-    {
-        try
-        {
-            _experiences = await httpClient.GetFromJsonAsync<Experiences>("data/experiences.json");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Exception thrown while we try to retrieve 'experiences' section: {ex.Message} {ex.StackTrace}");
-        }
-    }
+	private async Task GetExperiences()
+	{
+		try
+		{
+			_experiences = await httpClient.GetFromJsonAsync<Experiences>("data/experiences.json");
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Exception thrown while we try to retrieve 'experiences' section: {ex.Message} {ex.StackTrace}");
+		}
+	}
 
-    private async Task GetTrainingCenters()
-    {
-        try
-        {
-            _trainingCenters = await httpClient.GetFromJsonAsync<TrainingCenters>("data/trainingcenters.json");
-        }
-        catch (Exception ex)
-        {
-            _trainingCenters = new TrainingCenters([]);
-            Console.WriteLine($"Exception thrown while we try to retrieve 'training center' section: {ex.Message} {ex.StackTrace}");
-        }
-    }
+	private async Task GetTrainingCenters()
+	{
+		try
+		{
+			_trainingCenters = await httpClient.GetFromJsonAsync<TrainingCenters>("data/trainingcenters.json");
+		}
+		catch (Exception ex)
+		{
+			_trainingCenters = new TrainingCenters([]);
+			Console.WriteLine($"Exception thrown while we try to retrieve 'training center' section: {ex.Message} {ex.StackTrace}");
+		}
+	}
 }

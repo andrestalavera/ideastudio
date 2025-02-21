@@ -3,16 +3,18 @@
 /// <summary>
 /// Represents a generic card
 /// </summary>
-/// <param name="Icon"></param>
 /// <param name="Title"></param>
-/// <param name="Subtitle"></param>
-/// <param name="Paragraphs1"></param>
+/// <param name="Banner"></param>
+/// <param name="Paragraphs"></param>
 /// <param name="Images"></param>
-/// <param name="Paragraphs2"></param>
-public record Card(
-    string Icon,
-    string Title,
-    string Subtitle,
-    IEnumerable<string> Paragraphs1,
-    IEnumerable<string> Images,
-    IEnumerable<string> Paragraphs2);
+/// <param name="Icons"></param>
+/// <param name="Link"></param>
+public record Card
+{
+	public string? Title { get; init; }
+	public string? Banner { get; init; }
+	public IEnumerable<string>? Paragraphs { get; init; }
+	public IEnumerable<string>? Images { get; init; }
+	public IEnumerable<string>? Icons { get; init; }
+	public string? Link { get; init; }
+}

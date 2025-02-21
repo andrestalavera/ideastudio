@@ -13,14 +13,19 @@ namespace IdeaStudio.Website.Models;
 /// <param name="Description">Description of job</param>
 /// <param name="Responsibilities">Key responsibilities</param>
 /// <param name="Skills">Skills</param>
-public record Experience(
-    string Title, 
-    string Company, 
-    string Mode, 
-    string Interval, 
-    string Location, 
-    string Description,
-    IEnumerable<string> Responsibilities,
-    IEnumerable<string> Skills
-);
-public record Experiences(IEnumerable<Experience> Items);
+public record Experience
+{
+	public string? Title { get; init; }
+	public string? Company { get; init; }
+	public string? Mode { get; init; }
+	public DateTime? StartDate { get; init; }
+	public DateTime? EndDate { get; init; }
+	public string? Location { get; init; }
+	public IEnumerable<string?>? Description { get; init; }
+	public IEnumerable<string?>? Responsibilities { get; init; }
+	public IEnumerable<string?>? Skills { get; init; }
+}
+public record Experiences
+{
+	public IEnumerable<Experience>? Items { get; init; }
+}

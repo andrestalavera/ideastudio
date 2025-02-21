@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RazorLangVersion>latest</RazorLangVersion>
@@ -10,17 +10,31 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="markdig" Version="0.37.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.7" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.7" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		<!-- <PackageReference Include="AspNetCore.SassCompiler" Version="1.85.0" /> -->
+		<PackageReference Include="markdig" Version="0.40.0" />
+		<PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.22.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer"
+			Version="9.0.2" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
-		<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.9.2" />
-		<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Emoji" Version="4.6.0" />
-		<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.9.2" />
-		<PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.2" />
+		<PackageReference Include="System.Net.Http.Json" Version="9.0.2" />
 	</ItemGroup>
+
+	<!-- <ItemGroup>
+		<Watch Include="**\*.scss" />
+		<None Update="**\*.css" Watch="false" />
+	</ItemGroup> -->
+
+	<Target Name="NpmInstall" Inputs="package.json" Outputs="node_modules/.install-stamp">
+		<Exec Command="npm ci" Condition="'$(RestorePackagesWithLockFile)' == 'true'" />
+		<Exec Command="npm install" Condition="'$(RestorePackagesWithLockFile)' != 'true'" />
+		<Touch Files="node_modules/.install-stamp" AlwaysCreate="true" />
+	</Target>
+	<Target Name="NpmRunBuild" DependsOnTargets="NpmInstall" BeforeTargets="BeforeBuild">
+		<Exec Command="npm run compile-styles" />
+	</Target>
 </Project>

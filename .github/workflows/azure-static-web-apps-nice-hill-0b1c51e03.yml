@@ -19,10 +19,14 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22'
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       - name: Test
         run: dotnet test IdeaStudio.Website.Tests/IdeaStudio.Website.Tests.csproj
       - name: Build And Deploy
@@ -35,8 +39,10 @@ jobs:
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "IdeaStudio.Website" # App source code path
+          app_build_command: "dotnet build" # The build command for your app
           api_location: "" # Api source code path - optional
           output_location: "wwwroot" # Built app content directory - optional
+          production_branch: "main"
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
@@ -50,3 +56,4 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_HILL_0B1C51E03 }}
           action: "close"
+          app_location: "IdeaStudio.Website" # App source code path

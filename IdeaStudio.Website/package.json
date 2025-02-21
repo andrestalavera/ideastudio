@@ -1,0 +1,29 @@
+{
+	"name": "ideastudio.website",
+	"version": "1.0.0",
+	"description": "IdeaStudio website",
+	"main": " ",
+	"scripts": {
+		"compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --update --color",
+		"watch-compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --update --watch --poll --color"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/andrestalavera/ideastudio.git"
+	},
+	"author": "Andrés Talavera",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/andrestalavera/ideastudio/issues"
+	},
+	"homepage": "https://github.com/andrestalavera/ideastudio#readme",
+	"devDependencies": {
+		"sass": "^1.79.0",
+		"stylelint": "^16.14.1",
+		"stylelint-config-recommended-scss": "^14.1.0",
+		"stylelint-scss": "^6.11.0"
+	},
+	"dependencies": {
+		"bootstrap": "^5.3.3"
+	}
+}

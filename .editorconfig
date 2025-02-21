@@ -1,0 +1,15 @@
+root = true
+
+[*.{cs,cshtml,razor,sql,js,json,yml,yaml,csproj,html}]
+indent_style = tab
+indent_size = 4
+end_of_line = crlf
+charset = utf-8-bom
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{scss,css}]
+indent_style = tab
+insert_final_newline = false
+trim_trailing_whitespace = true
+end_of_line = lf
