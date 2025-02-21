@@ -4,11 +4,17 @@ Code for [ideastud.io](https://ideastud.io) website.
 
 ## Releases notes
 
-### v1.1
+### v2
 
-- Upgrade to .NET 8.0.8
-- Add contact form (Azure Function v4 isolated, using Graph API)
-- Fix GetTrainingCenters api
+- Upgrade to .NET 9
+- Use a custom bootstrap
+  - Generated locally or from GitHub Action
+- Fix 'get training centers'
+
+### Know issues
+
+- Create 'GitHub Issue's instead.
+- All variables are not overwritten
 
 ### v1
 
@@ -27,7 +33,19 @@ First version based on [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/) and [
 - Contact form through an Azure Function
 - Data from api instead of static JSON files
 
-## Other
+## Informations
+
+- `main` branch is the production branch and it's the only constant branch
+- A GitHub Action triggered when a pull request tries to merge into the `main` action
+- Deployment target kind: Azure Static Web App
+- Copitlot and SoundCloud are configured
+
+## Contribute
+
+- Use `feature/describe-your-feature-in-6-words`
+- Use latest C# 12 features
+- Use latest .NET features and types (code generators, `Span<T>`, ...)
+- Optimize your code
 
 ### FAQ
 
@@ -35,7 +53,6 @@ First version based on [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/) and [
 
 - Full-Stack Development with C#
 - Reusability (some code should be reused in further projects)
-- Open Source
 - WebAssembly providing near-native performance
 
 #### Why monobranch?

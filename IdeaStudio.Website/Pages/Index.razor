@@ -8,20 +8,21 @@
 <div class="container my-5 pt-5" data-bs-theme="light">
 	<div class="row">
 		<div class="col">
-			<h1>Build the future of your business with me.</h1>
+			<h1>Let's shape the future of your business together.</h1>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-12 col-md-6 col-lg-4" data-bs-theme="dark" style="min-height: 1100px;">
 			<div class="card shadow bg-acrylic p-0 mb-5 mb-md-0 sticky-md-top" style="min-height: 1100px;">
-				<img src="../images/aboutme-keytechnologies.jpg" class="card-img-hero rounded" style="min-height: 1100px;" alt="Hero" />
+				<img src="../images/aboutme-keytechnologies.jpg" class="card-img-hero rounded"
+					style="min-height: 1100px;" alt="Hero" />
 				<div class="card-img-overlay gradient pb-5" style="min-height: 1100px;">
 					<img src="images/AndresTalavera.jpg" alt="Andrés Talavera"
 						class="img-fluid rounded-circle border border-white border-2 mb-4 mx-5" />
 					<h2 class="card-title">Andrés Talavera</h2>
 					@if (_aboutMe is null)
 					{
-						<LoadingComponent />
+						<PlaceholderComponent />
 					}
 					else
 					{
@@ -76,7 +77,7 @@
 				<div class="col">
 					@if (_aboutMe is null || _aboutMe.Cards is null)
 					{
-						<LoadingComponent />
+						<PlaceholderComponent />
 					}
 					else
 					{
@@ -88,7 +89,8 @@
 							@foreach (var card in _aboutMe.Cards)
 							{
 								<div class="col">
-									<div class="card bg-acrylic bg-light text-bg-light h-100 shadow" style="--bs-bg-opacity: .9;">
+									<div class="card bg-acrylic bg-light text-bg-light h-100 shadow"
+										style="--bs-bg-opacity: .9;">
 										@if (card.Banner is not null)
 										{
 											<img src="images/{@card.Banner}" class="card-img-top" alt="@card.Title" />
@@ -150,7 +152,7 @@
 						<div class="row row-cols-1 g-4">
 							@if (_experiences is null)
 							{
-								<LoadingComponent />
+								<PlaceholderComponent />
 							}
 							else
 							{
@@ -183,10 +185,10 @@
 								<h2>I have conducted training courses for...</h2>
 							</div>
 						</div>
-						<div class="row row-cols-3 g-4">
+						<div class="row  row-cols-1 row-cols-lg-2 g-4">
 							@if (_trainingCenters is null)
 							{
-								<LoadingComponent />
+								<PlaceholderComponent />
 							}
 							else
 							{
@@ -212,6 +214,12 @@
 														}
 													}
 												</div>
+												@if (trainingCenter.Locations is not null)
+												{
+													<div class="card-footer">
+														<span class="small">@string.Join(", ", trainingCenter.Locations)</span>
+													</div>
+												}
 											</div>
 										</div>
 									}

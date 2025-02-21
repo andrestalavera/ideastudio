@@ -9,7 +9,16 @@
 			<span><img src="@CompanyLogo" alt="@Company" class="ms-5" style="max-height:40px; max-width:80px"
 					@onerror="CompanyLogoFail"></span>
 		</h5>
-		<p class="card-text">@Description</p>
+		@if (Description is not null)
+		{
+			@foreach (var paragraph in Description)
+			{
+				@if (!string.IsNullOrWhiteSpace(paragraph))
+				{
+					<p class="card-text">@(new MarkupString(paragraph))</p>
+				}
+			}
+		}
 		<div class="accordion accordion-flush bg-transparent" style="margin-left:-1rem; margin-right: -1rem;" id="@Id">
 			@if (Responsibilities is not null)
 			{
@@ -90,7 +99,7 @@
 
 	[Parameter] public string? Location { get; set; }
 
-	[Parameter] public string? Description { get; set; }
+	[Parameter] public IEnumerable<string?>? Description { get; set; }
 
 	[Parameter] public IEnumerable<string>? Responsibilities { get; set; }
 

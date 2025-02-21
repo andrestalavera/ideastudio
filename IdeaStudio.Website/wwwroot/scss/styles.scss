@@ -8,14 +8,14 @@ $border-radius-lg: 1.5rem;
 $border-radius-xl: 2rem;
 $border-radius-xxl: 3rem;
 $border-radius-pill: 50rem;
-$primary:       #0071a8;
-$secondary:     #424D58;
-$success:       #00A462;
-$info:          #008F92;
-$warning:       #FF9933;
-$danger:        #dc3545;
-$light:         lighten($primary, 90%);
-$dark:          darken($primary, 20%);
+$primary: #0071a8;
+$secondary: #424D58;
+$success: #00A462;
+$info: #008F92;
+$warning: #FF9933;
+$danger: #dc3545;
+$light: lighten($primary, 90%);
+$dark: darken($primary, 20%);
 // import default variables
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/variables-dark";
@@ -75,4 +75,10 @@ body {
 
 #app {
 	min-height: calc(100vh - 56px);
+}
+
+.card {
+	-moz-backdrop-filter: blur(10px) !important;
+	-webkit-backdrop-filter: blur(10px) !important;
+	backdrop-filter: blur(10px) !important;
 }
