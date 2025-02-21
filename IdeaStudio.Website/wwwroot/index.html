@@ -19,26 +19,21 @@
 	</script>
 	<link href="css/styles.min.css" rel="stylesheet" />
 	<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-	<link href="IdeaStudio.Website.styles.css" rel="stylesheet" />
 </head>
 
-<body style="min-height:100vh;">
-	<div id="app" style="min-height:calc(100vh - 56px);">
-		<div class="d-flex justify-content-center align-items-center" style="min-height:calc(100vh - 56px);">
+<body class="vh-100">
+	<img src="images/background.png" class="position-fixed top-0 start-0 w-100 h-100" alt="background" style="object-fit: cover; z-index: -2;"/>
+	<video autoplay muted loop class="position-fixed top-0 start-0 w-100 h-100" style="object-fit: cover; z-index: -1;">
+		<source src="images/background.mp4" type="video/mp4">
+	</video>
+
+	<div id="app">
+		<div class="d-flex justify-content-center align-items-center vh-100 w-100">
 			<div class="spinner-border" role="status">
 				<span class="visually-hidden">Loading...</span>
 			</div>
 		</div>
 	</div>
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col text-center">
-					<p class="text-muted"><a href="privacy">Privacy</a> &copy; 2021 IdeaStud.io</p>
-				</div>
-			</div>
-		</div>
-	</footer>
 	<script src="_framework/blazor.webassembly.js"></script>
 	<script src="https://kit.fontawesome.com/a34e72ff1c.js" crossorigin="anonymous"></script>
 	<script src="https://assets.calendly.com/assets/external/widget.js?hide_landing_page_details=1&hide_gdpr_banner=1"

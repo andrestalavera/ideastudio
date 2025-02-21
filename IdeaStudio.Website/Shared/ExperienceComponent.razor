@@ -2,7 +2,7 @@
 @using Markdig
 
 
-<div class="card bg-acrylic bg-light text-bg-light shadow" data-bs-theme="light" style="--bs-bg-opacity: .9;">
+<div class="card bg-light text-bg-light bg-opacity-75" data-bs-theme="light">
 	<div class="card-body">
 		<h5 class="card-title d-flex justify-content-between">
 			<span>@Title at @Company</span>
@@ -22,8 +22,8 @@
 		<div class="accordion accordion-flush bg-transparent" style="margin-left:-1rem; margin-right: -1rem;" id="@Id">
 			@if (Responsibilities is not null)
 			{
-				<div class="accordion-item bg-transparent" style="--bs-bg-opacity: 0;">
-					<h2 class="accordion-header bg-transparent" style="--bs-bg-opacity: 0;">
+				<div class="accordion-item bg-transparent bg-opacity-0">
+					<h2 class="accordion-header bg-transparent bg-opacity-0">
 						<button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse"
 							data-bs-target="#flush-@(Id)-keys" aria-expanded="false" aria-controls="flush-@(Id)-keys">
 							Key responsibilities
@@ -43,8 +43,8 @@
 			}
 			@if (Skills is not null)
 			{
-				<div class="accordion-item bg-transparent" style="--bs-bg-opacity: 0;">
-					<h2 class="accordion-header bg-transparent" style="--bs-bg-opacity: 0;">
+				<div class="accordion-item bg-transparent bg-opacity-0">
+					<h2 class="accordion-header bg-transparent bg-opacity-0">
 						<button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse"
 							data-bs-target="#flush-@(Id)-skills" aria-expanded="false" aria-controls="flush-@(Id)-skills">
 							Skills

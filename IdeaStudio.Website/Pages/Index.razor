@@ -1,4 +1,4 @@
-﻿@page "/"
+@page "/"
 @page "/andres-talavera-resume"
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Shared
@@ -7,72 +7,61 @@
 
 <div class="container my-5 pt-5" data-bs-theme="light">
 	<div class="row">
-		<div class="col">
-			<h1>Let's shape the future of your business together.</h1>
+		<div class="col" data-bs-theme="dark">
+			<div class="card bg-acrylic-5 bg-transparent my-5">
+				<img src="images/placeholder.png" style="opacity:0; height: 400px; width: 100%;" />
+				<div class="card-img-overlay pt-5">
+					<h1 class="display-1 p-5">
+						Let's shape the future of your business together.
+					</h1>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 col-md-6 col-lg-4" data-bs-theme="dark" style="min-height: 1100px;">
-			<div class="card shadow bg-acrylic p-0 mb-5 mb-md-0 sticky-md-top" style="min-height: 1100px;">
+		<div class="col-12 col-md-6 col-lg-4" data-bs-theme="dark" style="min-height: 900px;">
+			<div class="card p-0 mb-5 mb-md-0 sticky-md-top" style="min-height: 900px;">
 				<img src="../images/aboutme-keytechnologies.jpg" class="card-img-hero rounded"
-					style="min-height: 1100px;" alt="Hero" />
-				<div class="card-img-overlay gradient pb-5" style="min-height: 1100px;">
-					<img src="images/andres-talavera.png" alt="Andrés Talavera"
-						class="img-fluid rounded-circle border border-white border-2 mb-4 mx-5" />
-					<h2 class="card-title">Andrés Talavera</h2>
-					@if (_aboutMe is null)
-					{
-						<PlaceholderComponent />
-					}
-					else
-					{
-						<p class="lead">
-							@(new MarkupString(_aboutMe.Introduction ?? string.Empty))
-						</p>
-						@if (_aboutMe.Languages is not null)
+					style="min-height: 900px;" alt="Hero" />
+				<div class="card-img-overlay bg-dark bg-opacity-25 pb-5" style="min-height: 900px;">
+					<div class="text-center p-4">
+						<img src="images/andres-talavera.png" alt="Andrés Talavera"
+							class="img-fluid rounded-circle shadow-lg" />
+					</div>
+					<div class="bg-acrylic-5 bg-opacity-25 bg-dark border border-white-subtle border-1 rounded shadow-lg p-2">
+						<h2 class="card-title">Andrés Talavera</h2>
+						@if (_aboutMe is null)
 						{
-							<h4>
-								<i class="fa-duotone fa-solid fa-language"></i> Languages
-							</h4>
-							<div class="list-group list-group-flush mt-2 mb-3">
-								@foreach (var paragraph in _aboutMe.Languages)
-								{
-									<div class="list-group-item bg-transparent">
-										<img class="rounded" title="@paragraph"
-											src="@($"images/flag-{paragraph.Split(' ')[0].ToSeoUrl()}.svg")" height="20px" />
-										@paragraph
-									</div>
-								}
-							</div>
+							<PlaceholderComponent />
 						}
-					}
-					<h4>
-						<i class="fa-duotone fa-solid fa-chart-network"></i> On the web!
-					</h4>
-					<div class="list-group list-group-flush mt-2 mb-3">
-						<a class="list-group-item list-group-item-action bg-transparent"
-							href="https://linkedin.com/in/andres-talavera" target="_blank">
-							<i class="fa-brands fa-linkedin fa-2x"></i>
-							LinkedIn
-						</a>
-						<a class="list-group-item list-group-item-action bg-transparent"
-							href="https://github.com/andrestalavera" target="_blank">
-							<i class="fa-brands fa-github fa-2x"></i>
-							GitHub
-						</a>
-						<a class="list-group-item list-group-item-action bg-transparent" href="#"
-							onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;">
-							<span class="fa-stack">
-								<i class="fa-sharp-duotone fa-solid fa-calendar-days fa-stack-2x"></i>
-								<i class="fa-sharp-duotone fa-solid fa-phone fa-stack-1x" style="color:lightgreen"></i>
-							</span>
-							Schedule a meeting
-						</a>
+						else
+						{
+							<p class="lead">
+								@(new MarkupString(_aboutMe.Introduction ?? string.Empty))
+							</p>
+							@if (_aboutMe.Languages is not null)
+							{
+								<h4>
+									<i class="fa-duotone fa-solid fa-language"></i> Languages
+								</h4>
+								<div class="list-group list-group-flush mt-2 mb-3">
+									@foreach (var paragraph in _aboutMe.Languages)
+									{
+										<div class="list-group-item bg-transparent">
+											<img class="rounded" title="@paragraph"
+												src="@($"images/flag-{paragraph.Split(' ')[0].ToSeoUrl()}.svg")" height="20px" />
+											@paragraph
+										</div>
+									}
+								</div>
+							}
+						}
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-12 col-md-6 col-lg-8">
+		<div class="col-12 col-md-6 col-lg-8" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="80"
+			data-bs-smooth-scroll="true">
 			<div class="row">
 				<div class="col">
 					@if (_aboutMe is null || _aboutMe.Cards is null)
@@ -89,8 +78,7 @@
 							@foreach (var card in _aboutMe.Cards)
 							{
 								<div class="col">
-									<div class="card bg-acrylic bg-light text-bg-light h-100 shadow"
-										style="--bs-bg-opacity: .9;">
+									<div class="card bg-opacity-9 bg-light text-bg-light h-100">
 										@if (card.Banner is not null)
 										{
 											<img src="images/{@card.Banner}" class="card-img-top" alt="@card.Title" />
@@ -121,7 +109,7 @@
 												<p class="card-text text-center">
 													@foreach (var icon in card.Icons)
 													{
-														<i class="@icon"></i>
+														<i class="@icon fa-3x"></i>
 													}
 												</p>
 											}
@@ -201,7 +189,7 @@
 									@foreach (var trainingCenter in _trainingCenters.Items)
 									{
 										<div class="col">
-											<div class="card h-100 bg-light bg-acrylic shadow" style="--bs-bg-opacity: .9;">
+											<div class="card bg-light text-bg-light bg-acrylic-5 bg-opacity-75 h-100">
 												<div class="card-body">
 													<h4 class="card-title">
 														@trainingCenter.Name
