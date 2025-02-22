@@ -84,6 +84,14 @@ body {
 	min-height: calc(100vh - 56px);
 }
 
+nav {
+	@extend .navbar-dark;
+	@extend .bg-primary;
+	@extend .shadow-lg;
+	@extend .bg-opacity-25;
+	@extend .bg-acrylic-4;
+}
+
 @for $i from 1 through 10 {
 	.bg-acrylic-#{$i} {
 		@include bg-acrylic($i * 5px);
