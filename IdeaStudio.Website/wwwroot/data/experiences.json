@@ -49,6 +49,42 @@
 		},
 		{
 			"title": ".NET Developer",
+			"company": "medtech, ceesa",
+			"mode": "Freelance",
+			"startDate": "2024-09-01",
+			"location": "Bruxelles, Belgium - Paris, France · Hybrid",
+			"description": [
+				"Medtech and Ceesa are companies focused on healthcare technology solutions, providing data management and analytics services for laboratories.",
+				"I was involved in developing multiple portals for various entities to collect data from laboratories and publish statistics.",
+				"I conducted analysis, designed the architecture, implemented unit tests, developed new features, and integrated with Azure Entra for enhanced security."
+			],
+			"responsibilities": [
+				"Developed a new project from scratch, ensuring scalability and performance.",
+				"Maintained two existing projects, analyzing their structure and functionality.",
+				"Improved the clean architecture to ensure maintainability and scalability.",
+				"Added unit tests to ensure the reliability and stability of the software.",
+				"Implemented new features to enhance functionality and user experience.",
+				"Implemented strict security rules to protect sensitive data.",
+				"Integrated with Azure Entra for secure authentication and authorization."
+			],
+			"skills": [
+				"ASP.NET Core",
+				".NET 9",
+				"GitHub Actions",
+				"Continuous Integration and Continuous Delivery (CI/CD)",
+				"Blazor Server",
+				"Azure Web Apps",
+				"Bicep",
+				"Azure SQL",
+				"SQL-Server",
+				"Azure Functions",
+				"Azure Entra",
+				"Azure Managed Identities"
+			]
+		},
+
+		{
+			"title": ".NET Developer",
 			"company": "TRIGO",
 			"mode": "Freelance",
 			"startDate": "2024-02-01",

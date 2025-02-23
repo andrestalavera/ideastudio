@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col" data-bs-theme="dark">
 			<div class="card bg-transparent my-5">
-				<img src="images/placeholder.png" style="opacity:0; height: 400px; width: 100%;" />
+				<img src="images/placeholder.png" style="opacity:0; height: 450px; width: 100%;" />
 				<div class="card-img-overlay pt-5">
 					<h1 class="display-1 p-5">
 						Let's shape the future of your business together.
@@ -25,11 +25,11 @@
 					style="min-height: 1000px;" alt="Hero" />
 				<div class="card-img-overlay d-flex align-items-end" style="min-height: 1000px;">
 					<div class="d-flex flex-column w-100">
-						<div class="text-center p-3">
+						<div class="text-center p-3 pb-5">
 							<img src="images/andres-talavera.png" alt="Andrés Talavera"
-								class="img-fluid rounded-circle shadow-lg" style="min-height: 100px;" />
+								class="img-fluid rounded-circle shadow-lg" />
 						</div>
-						<div class="card bg-dark bg-opacity-25 border border-light-subtle border-1 rounded p-2">
+						<div class="rounded bg-dark bg-acrylic-1 bg-opacity-25 border border-white-subtle border-1 rounded p-2">
 							<h2 class="card-title">Andrés Talavera</h2>
 							@if (_aboutMe is null)
 							{
@@ -168,55 +168,53 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col">
-					<div class="container my-5" id="trainingcenters">
-						<div class="row">
-							<div class="col">
-								<h2>I have conducted training courses for...</h2>
-							</div>
+			<div class="row" id="trainingcenters">
+				<div class="col my-5">
+					<div class="row">
+						<div class="col">
+							<h2>I have conducted training courses for...</h2>
 						</div>
-						<div class="row  row-cols-1 row-cols-lg-2 g-4">
-							@if (_trainingCenters is null)
+					</div>
+					<div class="row  row-cols-1 row-cols-lg-2 g-4">
+						@if (_trainingCenters is null)
+						{
+							<PlaceholderComponent />
+						}
+						else
+						{
+							@if (!_trainingCenters.Items.Any())
 							{
-								<PlaceholderComponent />
+								<p class="lead">Nothing to show here.</p>
 							}
 							else
 							{
-								@if (!_trainingCenters.Items.Any())
+								@foreach (var trainingCenter in _trainingCenters.Items)
 								{
-									<p class="lead">Nothing to show here.</p>
-								}
-								else
-								{
-									@foreach (var trainingCenter in _trainingCenters.Items)
-									{
-										<div class="col">
-											<div class="card bg-light text-bg-light h-100">
-												<div class="card-body">
-													<h4 class="card-title">
-														@trainingCenter.Name
-													</h4>
-													@if (trainingCenter.Courses is not null)
-													{
-														@foreach (var course in trainingCenter.Courses)
-														{
-															<p class="card-text">@course</p>
-														}
-													}
-												</div>
-												@if (trainingCenter.Locations is not null)
+									<div class="col">
+										<div class="card bg-light text-bg-light h-100">
+											<div class="card-body">
+												<h4 class="card-title">
+													@trainingCenter.Name
+												</h4>
+												@if (trainingCenter.Courses is not null)
 												{
-													<div class="card-footer">
-														<span class="small">@string.Join(", ", trainingCenter.Locations)</span>
-													</div>
+													@foreach (var course in trainingCenter.Courses)
+													{
+														<p class="card-text">@course</p>
+													}
 												}
 											</div>
+											@if (trainingCenter.Locations is not null)
+											{
+												<div class="card-footer">
+													<span class="small">@string.Join(" - ", trainingCenter.Locations)</span>
+												</div>
+											}
 										</div>
-									}
+									</div>
 								}
 							}
-						</div>
+						}
 					</div>
 				</div>
 			</div>

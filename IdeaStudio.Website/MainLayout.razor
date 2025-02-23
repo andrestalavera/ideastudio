@@ -1,4 +1,20 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime JS
+@if (videoLoaded)
+{
+	<video id="backgroundVideo" poster="images/background.png" autoplay muted loop playsinline preload="auto"
+		class="position-fixed top-0 start-0 w-100 h-100" style="object-fit: cover; z-index: -1;">
+		<source src="@($"/images/background.mp4")" type="video/mp4">
+		<source src="@($"/images/background.webm")" type="video/webm">
+		<source src="@($"/images/background.ogv")" type="video/ogg">
+	</video>
+}
+else
+{
+	<img src="images/background.png" class="position-fixed top-0 start-0 w-100 h-100" alt="background"
+		style="object-fit: cover; z-index: -2;" />
+}
+
 <header>
 	<nav id="navbar" class="navbar fixed-top bg-acrylic-5 mb-5 px-1" data-bs-theme="dark">
 		<div class="container">
@@ -6,23 +22,22 @@
 				<img src="images/logo-ideastudio-white.svg" alt="IdeaStud.io" height="50" class="m-1" />
 			</a>
 			<div class="d-flex flex-row">
-				<div class="nav-item">
-					<a class="nav-link d-flex flex-column text-center m-1" href="https://linkedin.com/in/andres-talavera" target="_blank">
+				<div class="nav-item rounded card-dark bg-acrylic-1 mx-1 p-2">
+					<a class="nav-link d-flex flex-column text-center"
+						href="https://linkedin.com/in/andres-talavera" target="_blank">
 						<i class="fa-brands fa-linkedin fa-2x"></i>
-						<small>LinkedIn</small>
 					</a>
 				</div>
-				<div class="nav-item">
-					<a class="nav-link d-flex flex-column text-center m-1" href="https://github.com/andrestalavera" target="_blank">
+				<div class="nav-item rounded card-dark bg-acrylic-1 mx-1 p-2">
+					<a class="nav-link d-flex flex-column text-center" href="https://github.com/andrestalavera"
+						target="_blank">
 						<i class="fa-brands fa-github fa-2x"></i>
-						<small>GitHub</small>
 					</a>
 				</div>
-				<div class="nav-item">
-					<a class="nav-link d-flex flex-column text-center m-1" href="#"
+				<div class="nav-item rounded card-dark bg-acrylic-1 mx-1 p-2">
+					<a class="nav-link d-flex flex-column text-center" href="#"
 						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;">
-						<i class="fa-sharp-duotone fa-solid fa-phone fa-2x"></i>
-						<small>Meeting</small>
+						<i class="fa-sharp-duotone fa-solid fa-phone fa-2x mb-2"></i>
 					</a>
 				</div>
 			</div>
@@ -33,9 +48,24 @@
 <footer>
 	<div class="container">
 		<div class="row">
-			<div class="col text-center">
-				<p class="text-muted"><a href="privacy">Privacy</a> &copy; @DateTime.Now.Year IdeaStud.io</p>
+			<div class="col text-center py-5">
+				<p class="text-muted">
+					<a href="privacy">Privacy and legal mentions</a> &copy; @DateTime.Now.Year IdeaStud.io
+				</p>
 			</div>
 		</div>
 	</div>
 </footer>
+@code {
+	private bool videoLoaded = false;
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (true)
+		{
+			await Task.Delay(1500);
+			videoLoaded = true;
+			StateHasChanged();
+		}
+	}
+}
