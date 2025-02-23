@@ -27,7 +27,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "IdeaStudio.Website"
-          app_build_command: "dotnet publish -c Release -o published"
+          app_build_command: "dotnet workload install wasm-tools && dotnet publish -c Release -o published"
           output_location: "published/wwwroot"
           production_branch: "main"
 

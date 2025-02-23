@@ -5,6 +5,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisLevel>latest</AnalysisLevel>
+		<RunAOTCompilation>true</RunAOTCompilation>
+		<!-- <WasmStripILAfterAOT>true</WasmStripILAfterAOT> -->
 	</PropertyGroup>
 
 	<ItemGroup>
