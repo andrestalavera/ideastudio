@@ -6,7 +6,7 @@
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<RunAOTCompilation>true</RunAOTCompilation>
-		<WasmStripILAfterAOT>true</WasmStripILAfterAOT>
+		<!-- <WasmStripILAfterAOT>true</WasmStripILAfterAOT> -->
 	</PropertyGroup>
 
 	<ItemGroup>
