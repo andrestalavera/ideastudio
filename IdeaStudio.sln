@@ -7,10 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdeaStudio.Website", "IdeaS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdeaStudio.Website.Tests", "IdeaStudio.Website.Tests\IdeaStudio.Website.Tests.csproj", "{A61C0D3D-D710-462D-9E1A-BDC7C12518E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdeaStudio.Apis", "IdeaStudio.Apis\IdeaStudio.Apis.csproj", "{8724FC7C-0220-426B-9917-EFC22C9D80C3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdeaStudio.Apis.Tests", "IdeaStudio.Apis.Tests\IdeaStudio.Apis.Tests.csproj", "{5DA035CA-C8A4-46DE-967A-648B7477DD88}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
