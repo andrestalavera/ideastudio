@@ -1,22 +1,22 @@
 {
 	"items": [
 	  {
-		"name": "IP-Formation",
+		"name": "IP-Formation / IPSSI",
 		"locations": [
-		  "Paris (France)"
+		  "Paris, France"
 		],
 		"courses": [
-		  "Introduction à Microsoft Azure"
+		  "Microsoft Azure"
 		]
 	  },
 	  {
 		"name": "ORSYS",
 		"locations": [
-		  "Paris (France)",
-		  "Charleroi (Belgium)"
+		  "Paris, France",
+		  "Charleroi, Belgium"
 		],
 		"courses": [
-		  "Introduction to Microsoft Azure",
+		  "Microsoft Azure",
 		  "Azure DevOps Services"
 		]
 	  },
@@ -27,36 +27,26 @@
 		  "Gratz, Austria"
 		],
 		"courses": [
-		  "Introduction to Entity Framework Core",
-		  "Introduction to ASP.NET Core",
-		  "Introduction to Xamarin 4"
-		]
-	  },
-	  {
-		"name": "École IPSSI",
-		"locations": [
-		  "Paris (France)",
-		  "Lyon (France)"
-		],
-		"courses": [
-		  "Introduction à Microsoft Azure"
+		  "Entity Framework Core",
+		  "ASP.NET Core",
+		  "Xamarin 4"
 		]
 	  },
 	  {
 		"name": "NextFormation",
 		"locations": [
-		  "Paris (France)"
+		  "Paris, France"
 		],
 		"courses": [
-		  "Introduction à .NET",
-		  "Introduction au Web",
-		  "Introduction au développement mobile avec Xamarin"
+		  ".NET Framework",
+		  "HTML5, CSS3, JavaScript",
+		  "Xamarin"
 		]
 	  },
 	  {
 		"name": "Happly",
 		"locations": [
-		  "Strasbourg (France)"
+		  "Strasbourg, France"
 		],
 		"courses": [
 		  "Xamarin.Forms"
@@ -65,9 +55,9 @@
 	  {
 		"name": "Supinfo",
 		"locations": [
-		  "Paris (France)",
-		  "Troyes (France)",
-		  "Montpellier (France)"
+		  "Paris, France",
+		  "Troyes, France",
+		  "Montpellier, France"
 		],
 		"courses": [
 		  "ASP.NET",
