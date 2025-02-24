@@ -116,16 +116,15 @@
 		CompanyLogo = $"images/{Company?.ToSeoUrl()}.png";
 		Id = $"accordion-{Guid.NewGuid()}";
 
-		if (StartDate == null)
-			throw new NullReferenceException(nameof(StartDate));
-
-
-		Duration = $"{StartDate:MMMM yyyy} <i class='fa-solid fa-angle-right'></i> {(EndDate == null ? "Present" : $"{EndDate:MMMM yyyy}")}";
-
-		if (EndDate != null)
+		if (StartDate is not null)
 		{
-			TimeSpan duration = EndDate.Value - StartDate.Value;
-			Duration += duration.TotalDays < 366 ? $" ({duration.Days / 30} months)" : $" ({duration.TotalDays / 365.25:F1} years)";
+			Duration = $"{StartDate:MMMM yyyy} <i class='fa-solid fa-angle-right'></i> {(EndDate == null ? "Present" : $"{EndDate:MMMM yyyy}")}";
+
+			if (EndDate != null)
+			{
+				TimeSpan duration = EndDate.Value - StartDate.Value;
+				Duration += duration.TotalDays < 366 ? $" ({duration.Days / 30} months)" : $" ({duration.TotalDays / 365.25:F1} years)";
+			}
 		}
 	}
 }
