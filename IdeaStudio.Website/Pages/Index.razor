@@ -75,7 +75,7 @@
 					}
 					else
 					{
-						<div class="row row-cols-1 row-cols-lg-2 g-4">
+						<div class="row row-cols-1 row-cols-lg-2 g-4 virtualize-container">
 							@if (!_aboutMe.Cards.Any())
 							{
 							}
@@ -146,7 +146,7 @@
 								<h2>Experiences</h2>
 							</div>
 						</div>
-						<div class="row row-cols-1 g-4">
+						<div class="row row-cols-1 g-4 virtualize-container">
 							@if (_experiences is null || _experiences.Items is null)
 							{
 								<PlaceholderComponent />
@@ -182,7 +182,7 @@
 							<h2>I have conducted training courses for...</h2>
 						</div>
 					</div>
-					<div class="row  row-cols-1 row-cols-lg-2 g-4">
+					<div class="row row-cols-1 row-cols-lg-2 g-4 virtualize-container">
 						@if (_trainingCenters is null)
 						{
 							<PlaceholderComponent />

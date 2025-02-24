@@ -122,3 +122,7 @@ nav {
 .introduction-gradient {
 	animation: fadeOut 4s ease-out forwards;
 }
+
+.virtualize-container > div:first-child[style="height: 0px; flex-shrink: 0;"] {
+	display: none;
+}
