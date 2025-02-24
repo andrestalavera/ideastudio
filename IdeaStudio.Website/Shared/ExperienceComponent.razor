@@ -117,7 +117,7 @@
 		Id = $"accordion-{Guid.NewGuid()}";
 
 		if (StartDate == null)
-			throw new ArgumentNullException(nameof(StartDate));
+			throw new NullReferenceException(nameof(StartDate));
 
 
 		Duration = $"{StartDate:MMMM yyyy} <i class='fa-solid fa-angle-right'></i> {(EndDate == null ? "Present" : $"{EndDate:MMMM yyyy}")}";

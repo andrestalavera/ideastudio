@@ -76,9 +76,6 @@
 					else
 					{
 						<div class="row row-cols-1 row-cols-lg-2 g-4 virtualize-container">
-							@if (!_aboutMe.Cards.Any())
-							{
-							}
 							<Virtualize TItem="Card" Items="_aboutMe.Cards" Context="card">
 								<ItemContent>
 									<div class="col">
