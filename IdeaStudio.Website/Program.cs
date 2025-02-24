@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using IdeaStudio.Website;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -11,4 +11,7 @@ var app = builder.Build();
 
 await app.RunAsync();
 
-public partial class Program;
+public partial class Program
+{
+	protected Program() { }
+}
