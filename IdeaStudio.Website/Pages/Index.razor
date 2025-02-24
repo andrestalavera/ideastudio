@@ -3,6 +3,7 @@
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Shared
 @using Markdig
+@using Microsoft.AspNetCore.Components.Web.Virtualization
 @inject HttpClient httpClient
 
 <div class="container my-5 pt-5" data-bs-theme="light">
@@ -29,20 +30,21 @@
 							<img src="images/andres-talavera.png" alt="Andrés Talavera"
 								class="img-fluid rounded-circle shadow-lg" />
 						</div>
-						<div class="rounded bg-dark bg-acrylic-1 bg-opacity-25 border border-white-subtle border-1 rounded p-2">
-							<h2 class="card-title">Andrés Talavera</h2>
+						<div
+							class="rounded bg-dark bg-acrylic-1 bg-opacity-25 border border-white-subtle border-1 rounded">
+							<h2 class="card-title p-3">Andrés Talavera</h2>
 							@if (_aboutMe is null)
 							{
 								<PlaceholderComponent />
 							}
 							else
 							{
-								<p class="lead">
+								<p class="lead px-3">
 									@(new MarkupString(_aboutMe.Introduction ?? string.Empty))
 								</p>
 								@if (_aboutMe.Languages is not null)
 								{
-									<h4>
+									<h4 class="card-title px-3">
 										<i class="fa-duotone fa-solid fa-language"></i> Languages
 									</h4>
 									<div class="list-group list-group-flush mt-2 mb-3">
@@ -73,60 +75,64 @@
 					}
 					else
 					{
-						<div class="row row-cols-1 row-cols-lg-2 g-4">
+						<div class="row row-cols-1 row-cols-lg-2 g-4 virtualize-container">
 							@if (!_aboutMe.Cards.Any())
 							{
-								<p class="lead">Nothing to show here.</p>
 							}
-							@foreach (var card in _aboutMe.Cards)
-							{
-								<div class="col">
-									<div class="card bg-light text-bg-light h-100">
-										@if (card.Banner is not null)
-										{
-											<img src="images/{@card.Banner}" class="card-img-top" alt="@card.Title" />
-										}
-										<div class="card-body">
-											<h4 class="card-title">
-												@card.Title
-											</h4>
-											@if (card.Paragraphs is not null)
+							<Virtualize TItem="Card" Items="_aboutMe.Cards" Context="card">
+								<ItemContent>
+									<div class="col">
+										<div class="card bg-light text-bg-light h-100">
+											@if (card.Banner is not null)
 											{
-												@foreach (var technology in card.Paragraphs)
+												<img src="images/{@card.Banner}" class="card-img-top" alt="@card.Title" />
+											}
+											<div class="card-body">
+												<h4 class="card-title">
+													@card.Title
+												</h4>
+												@if (card.Paragraphs is not null)
 												{
-													<p class="card-text">@(new MarkupString(technology))</p>
+													@foreach (var technology in card.Paragraphs)
+													{
+														<p class="card-text">@(new MarkupString(technology))</p>
+													}
 												}
-											}
-											@if (card.Images is not null)
-											{
-												<p class="card-text text-center">
-													@foreach (var image in card.Images)
-													{
-														<img style="max-height: 50px;" class="m-1" src="@($"images/{image}")"
-															alt="@image" />
-													}
-												</p>
-											}
-											@if (card.Icons is not null)
-											{
-												<p class="card-text text-center">
-													@foreach (var icon in card.Icons)
-													{
-														<i class="@icon fa-3x"></i>
-													}
-												</p>
-											}
-											@if (card.Link is not null)
-											{
-												<p class="card-text">
-													<a href="@card.Link" target="@(card.Link.StartsWith('#') ? "_self" : "_blank")"
-														class="btn btn-primary rounded-pill">More information</a>
-												</p>
-											}
+												@if (card.Images is not null)
+												{
+													<p class="card-text text-center">
+														@foreach (var image in card.Images)
+														{
+															<img style="max-height: 50px;" class="m-1" src="@($"images/{image}")"
+																alt="@image" />
+														}
+													</p>
+												}
+												@if (card.Icons is not null)
+												{
+													<p class="card-text text-center">
+														@foreach (var icon in card.Icons)
+														{
+															<i class="@icon fa-3x"></i>
+														}
+													</p>
+												}
+												@if (card.Link is not null)
+												{
+													<p class="card-text">
+														<a href="@card.Link"
+															target="@(card.Link.StartsWith('#') ? "_self" : "_blank")"
+															class="btn btn-primary rounded-pill">More information</a>
+													</p>
+												}
+											</div>
 										</div>
 									</div>
-								</div>
-							}
+								</ItemContent>
+								<EmptyContent>
+									<p class="lead">Nothing to show here.</p>
+								</EmptyContent>
+							</Virtualize>
 						</div>
 					}
 				</div>
@@ -140,27 +146,28 @@
 								<h2>Experiences</h2>
 							</div>
 						</div>
-						<div class="row row-cols-1 g-4">
-							@if (_experiences is null)
+						<div class="row row-cols-1 g-4 virtualize-container">
+							@if (_experiences is null || _experiences.Items is null)
 							{
 								<PlaceholderComponent />
 							}
 							else
 							{
-								@if (!_experiences.Items.Any())
-								{
-									<p class="lead">Nothing to show here.</p>
-								}
-								foreach (var experience in _experiences.Items)
-								{
-									<div class="col">
-										<ExperienceComponent Title="@experience.Title" Company="@experience.Company"
-											Mode="@experience.Mode" StartDate="@experience.StartDate"
-											EndDate="@experience.EndDate" Location="@experience.Location"
-											Description="@experience.Description" Responsibilities="experience.Responsibilities"
-											Skills="@experience.Skills" />
-									</div>
-								}
+								<Virtualize TItem="Experience" Items="_experiences.Items" Context="experience">
+									<ItemContent>
+										<div class="col">
+											<ExperienceComponent Title="@experience.Title" Company="@experience.Company"
+												Mode="@experience.Mode" StartDate="@experience.StartDate"
+												EndDate="@experience.EndDate" Location="@experience.Location"
+												Description="@experience.Description"
+												Responsibilities="experience.Responsibilities"
+												Skills="@experience.Skills" />
+										</div>
+									</ItemContent>
+									<EmptyContent>
+										<p class="lead">Nothing to show here.</p>
+									</EmptyContent>
+								</Virtualize>
 							}
 						</div>
 					</div>
@@ -175,21 +182,15 @@
 							<h2>I have conducted training courses for...</h2>
 						</div>
 					</div>
-					<div class="row  row-cols-1 row-cols-lg-2 g-4">
+					<div class="row row-cols-1 row-cols-lg-2 g-4 virtualize-container">
 						@if (_trainingCenters is null)
 						{
 							<PlaceholderComponent />
 						}
 						else
 						{
-							@if (!_trainingCenters.Items.Any())
-							{
-								<p class="lead">Nothing to show here.</p>
-							}
-							else
-							{
-								@foreach (var trainingCenter in _trainingCenters.Items)
-								{
+							<Virtualize TItem="TrainingCenter" Items="_trainingCenters.Items" Context="trainingCenter">
+								<ItemContent>
 									<div class="col">
 										<div class="card bg-light text-bg-light h-100">
 											<div class="card-body">
@@ -212,8 +213,11 @@
 											}
 										</div>
 									</div>
-								}
-							}
+								</ItemContent>
+								<EmptyContent>
+									<p class="lead">Nothing to show here.</p>
+								</EmptyContent>
+							</Virtualize>
 						}
 					</div>
 				</div>
@@ -238,13 +242,13 @@
 
 	private async Task GetAboutMe()
 	{
-		_aboutMe = await httpClient.GetFromJsonAsync<AboutMe>("data/aboutme.json");
 		try
 		{
+			_aboutMe = await httpClient.GetFromJsonAsync<AboutMe>("data/aboutme.json");
 		}
-		catch (Exception ex)
+		catch
 		{
-			Console.WriteLine($"Exception thrown while we try to retrieve 'about me' section: {ex.Message} {ex.StackTrace}");
+			Console.WriteLine($"Something went wrong while we try to retrieve 'about me' section.");
 		}
 	}
 
@@ -254,9 +258,9 @@
 		{
 			_experiences = await httpClient.GetFromJsonAsync<Experiences>("data/experiences.json");
 		}
-		catch (Exception ex)
+		catch
 		{
-			Console.WriteLine($"Exception thrown while we try to retrieve 'experiences' section: {ex.Message} {ex.StackTrace}");
+			Console.WriteLine($"Something went wrong while we try to retrieve 'experiences' section.");
 		}
 	}
 
@@ -266,10 +270,10 @@
 		{
 			_trainingCenters = await httpClient.GetFromJsonAsync<TrainingCenters>("data/trainingcenters.json");
 		}
-		catch (Exception ex)
+		catch
 		{
 			_trainingCenters = new TrainingCenters([]);
-			Console.WriteLine($"Exception thrown while we try to retrieve 'training center' section: {ex.Message} {ex.StackTrace}");
+			Console.WriteLine($"Something went wrong while we try to retrieve 'training center' section.");
 		}
 	}
 }

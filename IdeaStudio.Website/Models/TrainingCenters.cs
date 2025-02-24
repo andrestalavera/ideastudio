@@ -1,3 +1,3 @@
 namespace IdeaStudio.Website.Models;
 
-public record TrainingCenters(IReadOnlyList<TrainingCenter> Items);
+public record TrainingCenters(ICollection<TrainingCenter> Items);
