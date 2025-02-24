@@ -11,6 +11,6 @@ namespace IdeaStudio.Website.Models;
 public record AboutMe
 {
 	public string? Introduction { get; init; }
-	public IReadOnlyList<Card>? Cards { get; init; }
-	public IReadOnlyList<string>? Languages { get; init; }
+	public ICollection<Card>? Cards { get; init; }
+	public ICollection<string>? Languages { get; init; }
 }

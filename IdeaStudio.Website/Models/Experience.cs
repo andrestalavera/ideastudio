@@ -27,5 +27,5 @@ public record Experience
 }
 public record Experiences
 {
-	public IEnumerable<Experience>? Items { get; init; }
+	public ICollection<Experience>? Items { get; init; }
 }
