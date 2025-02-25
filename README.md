@@ -6,15 +6,19 @@ Code for [ideastud.io](https://ideastud.io) website.
 
 ### v2
 
-- Upgrade to .NET 9
-- Use a custom bootstrap
+- ~~Upgrade to .NET 9~~ (Not yet supported by Azure Static Web Apps, downgrade to .NET 8)
+- Use a custom bootstrap instead of Fluent UI components (they are slow in v4, waiting for v5)
   - Generated locally or from GitHub Action
 - Fix 'get training centers'
 
-### Know issues
+### Next steps
 
 - Create 'GitHub Issue's instead.
-- All variables are not overwritten
+- All bootstrap variables are not overwritten to match with Fluent UI 2 Design
+- Create apis to retrieve content (and use full SWA features)
+- Add a contact form (and use full SWA features)
+- Localization (add french)
+- Export an anonymous PDF for recruiters
 
 ### v1
 
