@@ -1,4 +1,3 @@
-using FluentAssertions;
 using IdeaStudio.Website.Models;
 
 namespace IdeaStudio.Website.Tests;
@@ -16,6 +15,6 @@ public class ExtensionsTests
         var result = url.ToSeoUrl();
 
         // Assert
-        result.Should().Be(expected);
+		Assert.Equal(expected, result);
     }
 }
