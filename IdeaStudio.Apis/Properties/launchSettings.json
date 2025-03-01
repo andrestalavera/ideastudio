@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "IdeaStudio_Apis": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7255",
+      "launchBrowser": false
+    }
+  }
+}
