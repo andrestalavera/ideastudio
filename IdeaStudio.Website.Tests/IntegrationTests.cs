@@ -1,6 +1,3 @@
-using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
-
 namespace IdeaStudio.Website.Tests;
 
 public class IntegrationTests(WebApplicationFactory<Program> factory) : IClassFixture<WebApplicationFactory<Program>>
@@ -21,6 +18,6 @@ public class IntegrationTests(WebApplicationFactory<Program> factory) : IClassFi
 
         // Assert
         response.EnsureSuccessStatusCode();
-        response.Content.Headers.ContentType?.ToString().Should().Contain("text/html");
+        Assert.Contains("text/html", response.Content.Headers.ContentType?.ToString());
     }
 }

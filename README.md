@@ -7,6 +7,7 @@ Code for [ideastud.io](https://ideastud.io) website.
 ### v2
 
 - ~~Upgrade to .NET 9~~ (Not yet supported by Azure Static Web Apps, downgrade to .NET 8)
+- AOT compilation
 - Use a custom bootstrap instead of Fluent UI components (they are slow in v4, waiting for v5)
   - Generated locally or from GitHub Action
 - Fix 'get training centers'
