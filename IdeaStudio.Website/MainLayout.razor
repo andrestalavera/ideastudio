@@ -1,26 +1,24 @@
 ﻿@inherits LayoutComponentBase
 
 <header>
-	<nav id="navbar" class="navbar fixed-top bg-acrylic-5 mb-5 px-1" data-bs-theme="dark">
+	<nav id="navbar" class="navbar fixed-top bg-acrylic-5 mb-5" data-bs-theme="dark">
 		<div class="container">
 			<a class="navbar-brand" href="/#">
-				<img src="images/logo-ideastudio-white.svg" alt="IdeaStud.io" height="50" class="m-1" />
+				<img src="images/logo-ideastudio-white.svg" alt="IdeaStud.io" height="40" class="m-1" />
 			</a>
-			<div class="d-flex flex-row">
-				<div class="nav-item rounded card-dark bg-acrylic-1 mx-1 p-2">
-					<a class="nav-link d-flex flex-column text-center"
-						href="https://linkedin.com/in/andres-talavera" target="_blank">
+			<div class="d-flex flex-row pt-2">
+				<div class="nav-item mx-1">
+					<a class="nav-link" href="https://linkedin.com/in/andres-talavera" target="_blank">
 						<i class="fa-brands fa-linkedin fa-2x"></i>
 					</a>
 				</div>
-				<div class="nav-item rounded card-dark bg-acrylic-1 mx-1 p-2">
-					<a class="nav-link d-flex flex-column text-center" href="https://github.com/andrestalavera"
-						target="_blank">
+				<div class="nav-item mx-1">
+					<a class="nav-link" href="https://github.com/andrestalavera" target="_blank">
 						<i class="fa-brands fa-github fa-2x"></i>
 					</a>
 				</div>
-				<div class="nav-item rounded card-dark bg-acrylic-1 mx-1 p-2">
-					<a class="nav-link d-flex flex-column text-center" href="#"
+				<div class="nav-item mx-1">
+					<a class="nav-link" href="#"
 						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;">
 						<i class="fa-sharp-duotone fa-solid fa-phone fa-2x mb-2"></i>
 					</a>
@@ -33,10 +31,9 @@
 <footer>
 	<div class="container">
 		<div class="row">
-			<div class="col text-center py-5">
-				<p class="text-muted">
-					<a href="privacy">Privacy and legal mentions</a> &copy; @DateTime.Now.Year IdeaStud.io
-				</p>
+			<div class="card bg-acrylic-1 bg-transparent border-0 p-1 text-center text-muted">
+				<a href="privacy" class="color-light">Privacy and legal mentions</a> &copy; @DateTime.Now.Year
+				IdeaStud.io
 			</div>
 		</div>
 	</div>

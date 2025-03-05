@@ -6,7 +6,7 @@
 	<div class="card-body">
 		<h5 class="card-title d-flex justify-content-between">
 			<span>@Title at @Company</span>
-			<span><img src="@CompanyLogo" alt="@Company" class="ms-5" style="max-height:40px; max-width:80px"
+			<span><img src="@CompanyLogo" alt="@Company" class="ms-5" style="max-height:50px; max-width:80px"
 					@onerror="CompanyLogoFail"></span>
 		</h5>
 		@if (Description is not null)
@@ -19,14 +19,14 @@
 				}
 			}
 		}
-		<div class="accordion accordion-flush bg-transparent" style="margin-left:-1rem; margin-right: -1rem;" id="@Id">
+		<div class="accordion accordion-flush bg-transparent" style="margin-left:-2rem; margin-right: -2rem;" id="@Id">
 			@if (Responsibilities is not null)
 			{
 				<div class="accordion-item bg-transparent bg-opacity-0">
 					<h2 class="accordion-header bg-transparent bg-opacity-0">
 						<button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse"
 							data-bs-target="#flush-@(Id)-keys" aria-expanded="false" aria-controls="flush-@(Id)-keys">
-							Key responsibilities
+							<span class="ms-2">Key responsibilities</span>
 						</button>
 					</h2>
 					<div id="flush-@(Id)-keys" class="accordion-collapse collapse bg-transparent" data-bs-parent="#@Id">
@@ -34,7 +34,7 @@
 							<ul class="list-group list-group-flush bg-transparent">
 								@foreach (var responsibility in Responsibilities)
 								{
-									<li class="list-group-item bg-transparent">@responsibility</li>
+									<li class="list-group-item bg-transparent" style="margin-left:-1.4rem; margin-right: -1.4rem;">@responsibility</li>
 								}
 							</ul>
 						</div>
@@ -47,7 +47,7 @@
 					<h2 class="accordion-header bg-transparent bg-opacity-0">
 						<button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse"
 							data-bs-target="#flush-@(Id)-skills" aria-expanded="false" aria-controls="flush-@(Id)-skills">
-							Skills
+							<span class="ms-2">Skills</span>
 						</button>
 					</h2>
 					<div id="flush-@(Id)-skills" class="accordion-collapse collapse bg-transparent" data-bs-parent="#@Id">
@@ -119,12 +119,8 @@
 		if (StartDate is not null)
 		{
 			Duration = $"{StartDate:MMMM yyyy} <i class='fa-solid fa-angle-right'></i> {(EndDate == null ? "Present" : $"{EndDate:MMMM yyyy}")}";
-
-			if (EndDate != null)
-			{
-				TimeSpan duration = EndDate.Value - StartDate.Value;
-				Duration += duration.TotalDays < 366 ? $" ({duration.Days / 30} months)" : $" ({duration.TotalDays / 365.25:F1} years)";
-			}
+			TimeSpan duration = (EndDate.HasValue ? EndDate.Value : DateTime.Today) - StartDate.Value;
+			Duration += duration.TotalDays < 366 ? $" ({duration.Days / 30} months)" : $" ({duration.TotalDays / 365.25:F1} years)";
 		}
 	}
 }

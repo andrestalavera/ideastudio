@@ -6,13 +6,13 @@
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @inject HttpClient httpClient
 
-<div class="container my-5 pt-5" data-bs-theme="light">
+<div class="container mt-5 pt-5" data-bs-theme="light">
 	<div class="row">
-		<div class="col" data-bs-theme="dark">
-			<div class="card bg-transparent my-5">
+		<div class="col">
+			<div class="card bg-transparent my-4">
 				<img src="images/placeholder.png" style="opacity:0; height: 450px; width: 100%;" />
 				<div class="card-img-overlay pt-5">
-					<h1 class="display-1 p-5">
+					<h1 class="display-1 px-2 text-white">
 						Let's shape the future of your business together.
 					</h1>
 				</div>
@@ -20,41 +20,41 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 col-md-6 col-lg-4" data-bs-theme="dark" style="min-height: 1000px;">
-			<div class="card p-0 mb-5 mb-md-0 sticky-md-top" style="min-height: 1000px;">
-				<img src="../images/aboutme-keytechnologies.jpg" class="card-img-hero rounded"
-					style="min-height: 1000px;" alt="Hero" />
-				<div class="card-img-overlay d-flex align-items-end" style="min-height: 1000px;">
-					<div class="d-flex flex-column w-100">
-						<div class="text-center p-3 pb-5">
+		<div class="col-12 col-md-6 col-lg-5 h-100 sticky-md-top" data-bs-theme="dark">
+			<div class="card mb-5 mb-md-0 h-100 me-md-2">
+				<img src="../images/aboutme-background.jpg" class="rounded h-100"
+					alt="Hero" />
+				<div class="card-img-overlay d-flex h-100">
+					<div class="d-flex flex-column w-100 h-100">
+						<div class="text-center">
 							<img src="images/andres-talavera.png" alt="Andrés Talavera"
-								class="img-fluid rounded-circle shadow-lg" />
+								class="img-fluid rounded-circle shadow-lg my-3" />
 						</div>
 						<div
-							class="rounded bg-dark bg-acrylic-1 bg-opacity-25 border border-white-subtle border-1 rounded">
-							<h2 class="card-title p-3">Andrés Talavera</h2>
+							class="rounded bg-dark bg-acrylic-1 bg-opacity-25 border border-white-subtle border-1 rounded p-3">
+							<h2 class="card-title">Andrés Talavera</h2>
 							@if (_aboutMe is null)
 							{
 								<PlaceholderComponent />
 							}
 							else
 							{
-								<p class="lead px-3">
+								<p class="lead">
 									@(new MarkupString(_aboutMe.Introduction ?? string.Empty))
 								</p>
 								@if (_aboutMe.Languages is not null)
 								{
-									<h4 class="card-title px-3">
+									<h4 class="card-title">
 										<i class="fa-duotone fa-solid fa-language"></i> Languages
 									</h4>
-									<div class="list-group list-group-flush mt-2 mb-3">
+									<div class="d-flex flex-row flex-nowrap">
 										@foreach (var paragraph in _aboutMe.Languages)
 										{
-											<div class="list-group-item bg-transparent">
+											<div class="d-flex flex-column mx-1">
 												<img class="rounded" title="@paragraph"
 													src="@($"images/flag-{paragraph.Split(' ')[0].ToSeoUrl()}.svg")"
 													height="20px" />
-												@paragraph
+												<span class="small">@paragraph</span>
 											</div>
 										}
 									</div>
@@ -65,7 +65,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-12 col-md-6 col-lg-8" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="80"
+		<div class="col-12 col-md-6 col-lg-7" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="80"
 			data-bs-smooth-scroll="true">
 			<div class="row">
 				<div class="col">
@@ -135,89 +135,79 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col">
-					<div class="my-5" id="experiences">
-						<div class="row">
-							<div class="col">
-								<h2>Experiences</h2>
-							</div>
-						</div>
-						<div class="row row-cols-1 g-4 virtualize-container">
-							@if (_experiences is null || _experiences.Items is null)
-							{
-								<PlaceholderComponent />
-							}
-							else
-							{
-								<Virtualize TItem="Experience" Items="_experiences.Items" Context="experience">
-									<ItemContent>
-										<div class="col">
-											<ExperienceComponent Title="@experience.Title" Company="@experience.Company"
-												Mode="@experience.Mode" StartDate="@experience.StartDate"
-												EndDate="@experience.EndDate" Location="@experience.Location"
-												Description="@experience.Description"
-												Responsibilities="experience.Responsibilities"
-												Skills="@experience.Skills" />
-										</div>
-									</ItemContent>
-									<EmptyContent>
-										<p class="lead">Nothing to show here.</p>
-									</EmptyContent>
-								</Virtualize>
-							}
-						</div>
+			<div class="my-5" id="experiences">
+				<div class="row">
+					<div class="col">
+						<h2>Experiences</h2>
 					</div>
-
+				</div>
+				<div class="row row-cols-1 g-4 virtualize-container">
+					@if (_experiences is null || _experiences.Items is null)
+					{
+						<PlaceholderComponent />
+					}
+					else
+					{
+						<Virtualize TItem="Experience" Items="_experiences.Items" Context="experience">
+							<ItemContent>
+								<div class="col">
+									<ExperienceComponent Title="@experience.Title" Company="@experience.Company"
+										Mode="@experience.Mode" StartDate="@experience.StartDate"
+										EndDate="@experience.EndDate" Location="@experience.Location"
+										Description="@experience.Description" Responsibilities="experience.Responsibilities"
+										Skills="@experience.Skills" />
+								</div>
+							</ItemContent>
+							<EmptyContent>
+								<p class="lead">Nothing to show here.</p>
+							</EmptyContent>
+						</Virtualize>
+					}
 				</div>
 			</div>
 
 			<div class="row" id="trainingcenters">
-				<div class="col my-5">
-					<div class="row">
-						<div class="col">
-							<h2>I have conducted training courses for...</h2>
-						</div>
-					</div>
-					<div class="row row-cols-1 row-cols-lg-2 g-4 virtualize-container">
-						@if (_trainingCenters is null)
-						{
-							<PlaceholderComponent />
-						}
-						else
-						{
-							<Virtualize TItem="TrainingCenter" Items="_trainingCenters.Items" Context="trainingCenter">
-								<ItemContent>
-									<div class="col">
-										<div class="card bg-light text-bg-light h-100">
-											<div class="card-body">
-												<h4 class="card-title">
-													@trainingCenter.Name
-												</h4>
-												@if (trainingCenter.Courses is not null)
-												{
-													@foreach (var course in trainingCenter.Courses)
-													{
-														<p class="card-text">@course</p>
-													}
-												}
-											</div>
-											@if (trainingCenter.Locations is not null)
-											{
-												<div class="card-footer">
-													<span class="small">@string.Join(" - ", trainingCenter.Locations)</span>
-												</div>
-											}
-										</div>
-									</div>
-								</ItemContent>
-								<EmptyContent>
-									<p class="lead">Nothing to show here.</p>
-								</EmptyContent>
-							</Virtualize>
-						}
-					</div>
+				<div class="display-1">
+					<h2>I have conducted training courses for...</h2>
 				</div>
+			</div>
+			<div class="row row-cols-1 row-cols-lg-2 g-4 virtualize-container">
+				@if (_trainingCenters is null)
+				{
+					<PlaceholderComponent />
+				}
+				else
+				{
+					<Virtualize TItem="TrainingCenter" Items="_trainingCenters.Items" Context="trainingCenter">
+						<ItemContent>
+							<div class="col">
+								<div class="card bg-light text-bg-light h-100">
+									<div class="card-body">
+										<h4 class="card-title">
+											@trainingCenter.Name
+										</h4>
+										@if (trainingCenter.Courses is not null)
+										{
+											@foreach (var course in trainingCenter.Courses)
+											{
+												<p class="card-text">@course</p>
+											}
+										}
+									</div>
+									@if (trainingCenter.Locations is not null)
+									{
+										<div class="card-footer">
+											<span class="small">@string.Join(" - ", trainingCenter.Locations)</span>
+										</div>
+									}
+								</div>
+							</div>
+						</ItemContent>
+						<EmptyContent>
+							<p class="lead">Nothing to show here.</p>
+						</EmptyContent>
+					</Virtualize>
+				}
 			</div>
 		</div>
 	</div>
