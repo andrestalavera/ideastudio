@@ -2,11 +2,12 @@
 // Configuration
 @import "../../node_modules/bootstrap/scss/functions";
 // override default variables
-$border-radius: .5rem;
-$border-radius-sm: 1rem;
-$border-radius-lg: 1.5rem;
-$border-radius-xl: 2rem;
-$border-radius-xxl: 3rem;
+$spacer: 2rem;
+$border-radius: 1.5rem;
+$border-radius-sm: 2rem;
+$border-radius-lg: 2.5rem;
+$border-radius-xl: 3rem;
+$border-radius-xxl: 3.5rem;
 $border-radius-pill: 50rem;
 $primary: #0071a8;
 $secondary: #424D58;
@@ -16,6 +17,7 @@ $warning: #FF9933;
 $danger: #dc3545;
 $light: lighten($primary, 90%);
 $dark: darken($primary, 10%);
+$enable-gradients: true;
 // import default variables
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/variables-dark";
@@ -102,6 +104,10 @@ nav {
 	@extend .bg-acrylic-4;
 	@extend .bg-opacity-75;
 	@extend .shadow-lg;
+	@extend .border;
+	@extend .border-3;
+	@extend .border-light-subtle;
+	@extend .border-opacity-10;
 }
 
 @keyframes fadeOut {
