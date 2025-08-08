@@ -11,9 +11,6 @@
 		<BlazorWebAssemblyJiterpreter>false</BlazorWebAssemblyJiterpreter>
 		<InvariantGlobalization>true</InvariantGlobalization>
 		<BlazorWebAssemblyLoadBootResource>true</BlazorWebAssemblyLoadBootResource>
-		<PublishAot>true</PublishAot>
-		<PublishTrimmed>true</PublishTrimmed>
-		<TrimMode>Link</TrimMode>
 	</PropertyGroup>
 
 	<ItemGroup>
