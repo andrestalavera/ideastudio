@@ -1,51 +1,57 @@
+using System.Collections.Concurrent;
 using System.Net.Http.Json;
 
 namespace IdeaStudio.Website.Services;
 
 public class LazyLoadingService(HttpClient httpClient) : ILazyLoadingService
 {
-	private readonly HttpClient _httpClient = httpClient;
-	private readonly Dictionary<string, object> _cache = [];
-	private readonly SemaphoreSlim _semaphore = new(1, 1);
+	private readonly HttpClient httpClient = httpClient;
+	private readonly ConcurrentDictionary<string, object> cache = [];
+	private readonly SemaphoreSlim semaphore = new(1, 1);
 
-	public async Task<T?> LoadDataAsync<T>(string url, CancellationToken cancellationToken = default)
+	public async Task<TData?> LoadDataAsync<TData>(string url, CancellationToken cancellationToken = default)
 	{
-		await _semaphore.WaitAsync(cancellationToken);
+		await semaphore.WaitAsync(cancellationToken);
 		try
 		{
-			if (_cache.TryGetValue(url, out object? cachedData))
+			if (cache.TryGetValue(url, out object? cachedData))
 			{
-				return (T)cachedData;
+				if (cachedData is TData typedCachedData)
+				{
+					return typedCachedData;
+				}
 			}
 
-			T? data = await _httpClient.GetFromJsonAsync<T>(url, cancellationToken);
+			TData? data = await httpClient.GetFromJsonAsync<TData>(url, cancellationToken);
 			if (data != null)
 			{
-				_cache[url] = data;
+				cache[url] = data;
 			}
 			return data;
 		}
 		finally
 		{
-			_semaphore.Release();
+			semaphore.Release();
 		}
 	}
 
 	public async Task<string?> LoadImageAsync(string imageUrl, CancellationToken cancellationToken = default)
 	{
-		await _semaphore.WaitAsync(cancellationToken);
+		await semaphore.WaitAsync(cancellationToken);
 		try
 		{
-			if (_cache.TryGetValue(imageUrl, out object? cachedUrl))
+			if (cache.TryGetValue(imageUrl, out object? cachedUrl))
 			{
-				return (string)cachedUrl;
+				if (cachedUrl is string stringCachedUrl)
+				{
+					return stringCachedUrl;
+				}
 			}
 
-			// In a real scenario, you might want to preload the image or validate it exists
-			HttpResponseMessage response = await _httpClient.GetAsync(imageUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+			HttpResponseMessage response = await httpClient.GetAsync(imageUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
 			if (response.IsSuccessStatusCode)
 			{
-				_cache[imageUrl] = imageUrl;
+				cache[imageUrl] = imageUrl;
 				return imageUrl;
 			}
 			return null;
@@ -56,7 +62,7 @@ public class LazyLoadingService(HttpClient httpClient) : ILazyLoadingService
 		}
 		finally
 		{
-			_semaphore.Release();
+			semaphore.Release();
 		}
 	}
 }
