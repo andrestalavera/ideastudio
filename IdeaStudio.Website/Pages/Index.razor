@@ -6,224 +6,172 @@
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @inject HttpClient httpClient
 
-<div class="container my-5 pt-5" data-bs-theme="light">
+<div class="container mt-5 pt-5" data-bs-theme="dark">
 	<div class="row">
-		<div class="col" data-bs-theme="dark">
-			<div class="card bg-transparent my-5">
-				<img src="images/placeholder.png" style="opacity:0; height: 450px; width: 100%;" />
-				<div class="card-img-overlay pt-5">
-					<h1 class="display-1 p-5">
-						Let's shape the future of your business together.
-					</h1>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-12 col-md-6 col-lg-4" data-bs-theme="dark" style="min-height: 1000px;">
-			<div class="card p-0 mb-5 mb-md-0 sticky-md-top" style="min-height: 1000px;">
-				<img src="../images/aboutme-keytechnologies.jpg" class="card-img-hero rounded"
-					style="min-height: 1000px;" alt="Hero" />
-				<div class="card-img-overlay d-flex align-items-end" style="min-height: 1000px;">
-					<div class="d-flex flex-column w-100">
-						<div class="text-center p-3 pb-5">
-							<img src="images/andres-talavera.png" alt="Andrés Talavera"
-								class="img-fluid rounded-circle shadow-lg" />
+		<div class="col">
+			<div class="card bg-transparent rounded my-4"
+				style="background: url('images/aboutme-background.png'); background-size: cover; background-repeat: no-repeat;">
+				<div class="card-body pt-5 bg-acrylic-1 rounded">
+					<div class="row">
+						<h1 class="display-1 px-2">
+							Let's shape the future of your business together.
+						</h1>
+					</div>
+					<div class="row rounded bg-opacity-25 rounded p-3 mx-n2">
+						<div class="col-4 col-md-3 col-lg-2 text-center align-self-center">
+							<img src="images/andres-talavera.jpeg" alt="Andrés Talavera"
+								class="img-fluid rounded-circle shadow my-3" />
 						</div>
-						<div
-							class="rounded bg-dark bg-acrylic-1 bg-opacity-25 border border-white-subtle border-1 rounded">
-							<h2 class="card-title p-3">Andrés Talavera</h2>
+						<div class="col-8 col-md-9 col-lg-10 align-self-center">
+							<h2 class="card-title">Andrés Talavera</h2>
 							@if (_aboutMe is null)
 							{
 								<PlaceholderComponent />
 							}
 							else
 							{
-								<p class="lead px-3">
+								<p class="lead">
 									@(new MarkupString(_aboutMe.Introduction ?? string.Empty))
 								</p>
-								@if (_aboutMe.Languages is not null)
-								{
-									<h4 class="card-title px-3">
-										<i class="fa-duotone fa-solid fa-language"></i> Languages
-									</h4>
-									<div class="list-group list-group-flush mt-2 mb-3">
-										@foreach (var paragraph in _aboutMe.Languages)
-										{
-											<div class="list-group-item bg-transparent">
-												<img class="rounded" title="@paragraph"
-													src="@($"images/flag-{paragraph.Split(' ')[0].ToSeoUrl()}.svg")"
-													height="20px" />
-												@paragraph
-											</div>
-										}
-									</div>
-								}
 							}
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-12 col-md-6 col-lg-8" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="80"
-			data-bs-smooth-scroll="true">
-			<div class="row">
-				<div class="col">
-					@if (_aboutMe is null || _aboutMe.Cards is null)
-					{
-						<PlaceholderComponent />
-					}
-					else
-					{
-						<div class="row row-cols-1 row-cols-lg-2 g-4 virtualize-container">
-							<Virtualize TItem="Card" Items="_aboutMe.Cards" Context="card">
-								<ItemContent>
-									<div class="col">
-										<div class="card bg-light text-bg-light h-100">
-											@if (card.Banner is not null)
-											{
-												<img src="images/{@card.Banner}" class="card-img-top" alt="@card.Title" />
-											}
-											<div class="card-body">
-												<h4 class="card-title">
-													@card.Title
-												</h4>
-												@if (card.Paragraphs is not null)
-												{
-													@foreach (var technology in card.Paragraphs)
-													{
-														<p class="card-text">@(new MarkupString(technology))</p>
-													}
-												}
-												@if (card.Images is not null)
-												{
-													<p class="card-text text-center">
-														@foreach (var image in card.Images)
-														{
-															<img style="max-height: 50px;" class="m-1" src="@($"images/{image}")"
-																alt="@image" />
-														}
-													</p>
-												}
-												@if (card.Icons is not null)
-												{
-													<p class="card-text text-center">
-														@foreach (var icon in card.Icons)
-														{
-															<i class="@icon fa-3x"></i>
-														}
-													</p>
-												}
-												@if (card.Link is not null)
-												{
-													<p class="card-text">
-														<a href="@card.Link"
-															target="@(card.Link.StartsWith('#') ? "_self" : "_blank")"
-															class="btn btn-primary rounded-pill">More information</a>
-													</p>
-												}
-											</div>
-										</div>
-									</div>
-								</ItemContent>
-								<EmptyContent>
-									<p class="lead">Nothing to show here.</p>
-								</EmptyContent>
-							</Virtualize>
-						</div>
-					}
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col">
-					<div class="my-5" id="experiences">
-						<div class="row">
-							<div class="col">
-								<h2>Experiences</h2>
-							</div>
-						</div>
-						<div class="row row-cols-1 g-4 virtualize-container">
-							@if (_experiences is null || _experiences.Items is null)
-							{
-								<PlaceholderComponent />
-							}
-							else
-							{
-								<Virtualize TItem="Experience" Items="_experiences.Items" Context="experience">
-									<ItemContent>
-										<div class="col">
-											<ExperienceComponent Title="@experience.Title" Company="@experience.Company"
-												Mode="@experience.Mode" StartDate="@experience.StartDate"
-												EndDate="@experience.EndDate" Location="@experience.Location"
-												Description="@experience.Description"
-												Responsibilities="experience.Responsibilities"
-												Skills="@experience.Skills" />
-										</div>
-									</ItemContent>
-									<EmptyContent>
-										<p class="lead">Nothing to show here.</p>
-									</EmptyContent>
-								</Virtualize>
-							}
-						</div>
-					</div>
-
-				</div>
-			</div>
-
-			<div class="row" id="trainingcenters">
-				<div class="col my-5">
-					<div class="row">
-						<div class="col">
-							<h2>I have conducted training courses for...</h2>
-						</div>
-					</div>
-					<div class="row row-cols-1 row-cols-lg-2 g-4 virtualize-container">
-						@if (_trainingCenters is null)
-						{
-							<PlaceholderComponent />
-						}
-						else
-						{
-							<Virtualize TItem="TrainingCenter" Items="_trainingCenters.Items" Context="trainingCenter">
-								<ItemContent>
-									<div class="col">
-										<div class="card bg-light text-bg-light h-100">
-											<div class="card-body">
-												<h4 class="card-title">
-													@trainingCenter.Name
-												</h4>
-												@if (trainingCenter.Courses is not null)
-												{
-													@foreach (var course in trainingCenter.Courses)
-													{
-														<p class="card-text">@course</p>
-													}
-												}
-											</div>
-											@if (trainingCenter.Locations is not null)
-											{
-												<div class="card-footer">
-													<span class="small">@string.Join(" - ", trainingCenter.Locations)</span>
-												</div>
-											}
-										</div>
-									</div>
-								</ItemContent>
-								<EmptyContent>
-									<p class="lead">Nothing to show here.</p>
-								</EmptyContent>
-							</Virtualize>
-						}
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="row break-page">
+		<div class="col">
+			@if (_aboutMe is null || _aboutMe.Cards is null)
+			{
+				<PlaceholderComponent />
+			}
+			else
+			{
+				<div class="row row-cols-1 row-cols-lg-3 g-4 virtualize-container">
+					<Virtualize TItem="Card" Items="_aboutMe.Cards" Context="card">
+						<ItemContent>
+							<div class="col">
+								<div class="card bg-light text-bg-light h-100">
+									@if (card.Banner is not null)
+									{
+										<img src="images/{@card.Banner}" class="card-img-top" alt="@card.Title" />
+									}
+									<div class="card-body">
+										<h3 class="card-title">
+											@card.Title
+										</h3>
+										@if (card.Paragraphs is not null)
+										{
+											@foreach (var technology in card.Paragraphs)
+											{
+												<p class="card-text">@(new MarkupString(technology))</p>
+											}
+										}
+										@if (card.Images is not null)
+										{
+											<p class="card-text text-center">
+												@foreach (var image in card.Images)
+												{
+													<img class="img-fluid m-1" style="max-height: 40px;" src="@($"images/{image}")"
+														alt="@image" />
+												}
+											</p>
+										}
+										@if (card.Icons is not null)
+										{
+											<p class="card-text text-center">
+												@foreach (var icon in card.Icons)
+												{
+													<i class="@icon fa-3x"></i>
+												}
+											</p>
+										}
+									</div>
+								</div>
+							</div>
+						</ItemContent>
+						<EmptyContent>
+							<p class="lead">Nothing to show here.</p>
+						</EmptyContent>
+					</Virtualize>
+				</div>
+			}
+		</div>
+	</div>
+
+	<div class="row" id="experiences">
+		<div class="col">
+			<h2 class="display-2">Experiences</h2>
+		</div>
+	</div>
+	<div class="row row-cols-1 g-4 virtualize-container break-page">
+		@if (_experiences is null || _experiences.Items is null)
+		{
+			<PlaceholderComponent />
+		}
+		else
+		{
+			<Virtualize TItem="Experience" Items="_experiences.Items" Context="experience">
+				<ItemContent>
+					<div class="col">
+						<ExperienceComponent Title="@experience.Title" Company="@experience.Company" Mode="@experience.Mode"
+							StartDate="@experience.StartDate" EndDate="@experience.EndDate" Location="@experience.Location"
+							Description="@experience.Description" Responsibilities="experience.Responsibilities"
+							Skills="@experience.Skills" />
+					</div>
+				</ItemContent>
+				<EmptyContent>
+					<p class="lead">Nothing to show here.</p>
+				</EmptyContent>
+			</Virtualize>
+		}
+	</div>
+
+	<div class="row" id="trainingcenters">
+		<div class="col">
+			<h2 class="display-2">I have conducted training courses for...</h2>
+		</div>
+	</div>
+	<div class="row row-cols-2 row-cols-lg-3 g-4 virtualize-container">
+		@if (_trainingCenters is null)
+		{
+			<PlaceholderComponent />
+		}
+		else
+		{
+			<Virtualize TItem="TrainingCenter" Items="_trainingCenters.Items" Context="trainingCenter">
+				<ItemContent>
+					<div class="col">
+						<div class="card bg-light text-bg-light h-100">
+							<div class="card-body">
+								<h3 class="card-title">
+									@trainingCenter.Name
+								</h3>
+								@if (trainingCenter.Courses is not null)
+								{
+									@foreach (var course in trainingCenter.Courses)
+									{
+										<p class="card-text">@course</p>
+									}
+								}
+							</div>
+							@if (trainingCenter.Locations is not null)
+							{
+								<div class="card-footer">
+									<span class="small">@string.Join(" - ", trainingCenter.Locations)</span>
+								</div>
+							}
+						</div>
+					</div>
+				</ItemContent>
+				<EmptyContent>
+					<p class="lead">Nothing to show here.</p>
+				</EmptyContent>
+			</Virtualize>
+		}
+	</div>
 </div>
-
-
 
 @code {
 	private AboutMe? _aboutMe;

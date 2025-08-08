@@ -25,15 +25,19 @@
 			"link": "#trainingcenters"
 		},
 		{
-			"title": "Passion for Technology",
+			"title": "Polyglot",
 			"paragraphs": [
-				"Dedicated to staying current with the latest tech trends.",
-				"Committed to delivering innovative solutions that meet client needs."
+				"Fluent in French and Spanish.",
+				"Professional English."
 			],
-			"link": "#contact"
+			"images":[
+				"flag-spanish.svg",
+				"flag-french.svg",
+				"flag-english.svg"
+			]
 		},
 		{
-			"title": "Diverse Experience",
+			"title": "Diverse experiences",
 			"paragraphs": [
 				"Worked with startups, SMEs, and digital service companies.",
 				"Expertise in medical statistics, finance, aviation, logistics, education, and accounting sectors."
@@ -41,7 +45,7 @@
 			"link": "#experiences"
 		},
 		{
-			"title": "Recent Projects",
+			"title": "Recent projects",
 			"paragraphs": [
 				"Enhanced logistics software at TRIGO using .NET, Vue, and Azure.",
 				"Led team at Active Assurances to develop new insurance software."
@@ -49,16 +53,11 @@
 			"link": "#experiences"
 		},
 		{
-			"title": "Personal Attributes",
+			"title": "Personal attributes",
 			"paragraphs": [
 				"Curious and versatile, with a talent for explaining complex concepts.",
 				"Strong analytical and design skills, thriving in collaborative environments."
 			]
 		}
-	],
-	"languages": [
-		"French (Native)",
-		"Spanish (Native)",
-		"English (Professional)"
 	]
 }

@@ -4,65 +4,11 @@
 
 <div class="card bg-light text-bg-light" data-bs-theme="light">
 	<div class="card-body">
-		<h5 class="card-title d-flex justify-content-between">
+		<h3 class="d-flex justify-content-between align-self-center">
 			<span>@Title at @Company</span>
-			<span><img src="@CompanyLogo" alt="@Company" class="ms-5" style="max-height:40px; max-width:80px"
-					@onerror="CompanyLogoFail"></span>
-		</h5>
-		@if (Description is not null)
-		{
-			@foreach (var paragraph in Description)
-			{
-				@if (!string.IsNullOrWhiteSpace(paragraph))
-				{
-					<p class="card-text">@(new MarkupString(paragraph))</p>
-				}
-			}
-		}
-		<div class="accordion accordion-flush bg-transparent" style="margin-left:-1rem; margin-right: -1rem;" id="@Id">
-			@if (Responsibilities is not null)
-			{
-				<div class="accordion-item bg-transparent bg-opacity-0">
-					<h2 class="accordion-header bg-transparent bg-opacity-0">
-						<button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse"
-							data-bs-target="#flush-@(Id)-keys" aria-expanded="false" aria-controls="flush-@(Id)-keys">
-							Key responsibilities
-						</button>
-					</h2>
-					<div id="flush-@(Id)-keys" class="accordion-collapse collapse bg-transparent" data-bs-parent="#@Id">
-						<div class="accordion-body bg-transparent">
-							<ul class="list-group list-group-flush bg-transparent">
-								@foreach (var responsibility in Responsibilities)
-								{
-									<li class="list-group-item bg-transparent">@responsibility</li>
-								}
-							</ul>
-						</div>
-					</div>
-				</div>
-			}
-			@if (Skills is not null)
-			{
-				<div class="accordion-item bg-transparent bg-opacity-0">
-					<h2 class="accordion-header bg-transparent bg-opacity-0">
-						<button class="accordion-button collapsed bg-transparent" type="button" data-bs-toggle="collapse"
-							data-bs-target="#flush-@(Id)-skills" aria-expanded="false" aria-controls="flush-@(Id)-skills">
-							Skills
-						</button>
-					</h2>
-					<div id="flush-@(Id)-skills" class="accordion-collapse collapse bg-transparent" data-bs-parent="#@Id">
-						<div class="accordion-body bg-transparent">
-							<div class="d-flex flex-row flex-wrap bg-transparent">
-								@foreach (var skill in Skills)
-								{
-									<span class="badge rounded-pill text-bg-light bg-light m-1">@skill</span>
-								}
-							</div>
-						</div>
-					</div>
-				</div>
-			}
-		</div>
+			<img src="@CompanyLogo" alt="@Company logo" class="ms-5" style="max-height: 30px;"
+					@onerror="CompanyLogoFail">
+		</h3>
 
 		<p class="card-text">
 			<small class="text-muted">
@@ -80,6 +26,38 @@
 				}
 			</small>
 		</p>
+		@if (Description is not null)
+		{
+			@foreach (var paragraph in Description)
+			{
+				@if (!string.IsNullOrWhiteSpace(paragraph))
+				{
+					<p class="card-text">@(new MarkupString(paragraph))</p>
+				}
+			}
+		}
+		<div id="@Id">
+			@if (Responsibilities is not null)
+			{
+				<h4>Key responsibilities</h4>
+				@foreach (var responsibility in Responsibilities)
+				{
+					<p class="card-text">@responsibility</p>
+				}
+			}
+			@if (Skills is not null)
+			{
+				<h4 class="d-print-none">
+					Skills
+				</h4>
+				<div class="d-flex flex-row flex-wrap d-print-none m-n1">
+					@foreach (var skill in Skills)
+					{
+						<span class="badge rounded-pill text-bg-light bg-light m-1">@skill</span>
+					}
+				</div>
+			}
+		</div>
 
 	</div>
 </div>
@@ -119,12 +97,8 @@
 		if (StartDate is not null)
 		{
 			Duration = $"{StartDate:MMMM yyyy} <i class='fa-solid fa-angle-right'></i> {(EndDate == null ? "Present" : $"{EndDate:MMMM yyyy}")}";
-
-			if (EndDate != null)
-			{
-				TimeSpan duration = EndDate.Value - StartDate.Value;
-				Duration += duration.TotalDays < 366 ? $" ({duration.Days / 30} months)" : $" ({duration.TotalDays / 365.25:F1} years)";
-			}
+			TimeSpan duration = (EndDate.HasValue ? EndDate.Value : DateTime.Today) - StartDate.Value;
+			Duration += duration.TotalDays < 366 ? $" ({duration.Days / 30} months)" : $" ({duration.TotalDays / 365.25:F1} years)";
 		}
 	}
 }
