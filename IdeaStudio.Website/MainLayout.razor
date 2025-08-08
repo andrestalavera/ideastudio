@@ -1,40 +1,100 @@
 ﻿@inherits LayoutComponentBase
+<a class="skip-link visually-hidden-focusable" href="#main-content">
+	Skip to main content
+</a>
 
 <header>
-	<nav id="navbar" class="navbar fixed-top bg-acrylic-5 mb-5 d-print-none" data-bs-theme="dark">
+	<nav class="navbar navbar-expand-lg fixed-top" role="navigation" aria-label="Main navigation">
 		<div class="container">
-			<a class="navbar-brand" href="/#">
-				<img src="images/logo-ideastudio-white.svg" alt="IdeaStud.io" height="40" class="m-1" />
+			<a class="navbar-brand d-flex align-items-center" href="/" aria-label="IdeaStud.io - Home">
+				<img src="images/logo-ideastudio-white.svg" alt="IdeaStudio" width="100" height="40" class="me-2">
 			</a>
-			<div class="d-flex flex-row pt-2">
-				<div class="nav-item mx-1">
-					<a class="nav-link" href="https://linkedin.com/in/andres-talavera" target="_blank">
-						<i class="fa-brands fa-linkedin fa-2x"></i>
-					</a>
-				</div>
-				<div class="nav-item mx-1">
-					<a class="nav-link" href="https://github.com/andrestalavera" target="_blank">
-						<i class="fa-brands fa-github fa-2x"></i>
-					</a>
-				</div>
-				<div class="nav-item mx-1">
-					<a class="nav-link" href="#"
-						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;">
-						<i class="fa-sharp-duotone fa-solid fa-phone fa-2x mb-2"></i>
-					</a>
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="#about" aria-label="About section">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#services" aria-label="Services section">Services</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#experiences" aria-label="Experience section">Experience</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#training" aria-label="Training section">Training</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#contact" aria-label="Contact section">Contact</a>
+					</li>
+				</ul>
+				<div class="d-flex flex-row pt-2">
+					<div class="nav-item mx-1">
+						<a class="nav-link" href="https://linkedin.com/in/andres-talavera" target="_blank">
+							<i class="fa-brands fa-linkedin fa-2x"></i>
+						</a>
+					</div>
+					<div class="nav-item mx-1">
+						<a class="nav-link" href="https://github.com/andrestalavera" target="_blank">
+							<i class="fa-brands fa-github fa-2x"></i>
+						</a>
+					</div>
+					<div class="nav-item mx-1">
+						<a class="nav-link" href="#"
+							onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;">
+							<i class="fa-sharp-duotone fa-solid fa-phone fa-2x mb-2"></i>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</nav>
 </header>
 @Body
-<footer>
+<footer class="bg-dark text-light py-4 mt-5" role="contentinfo">
 	<div class="container">
 		<div class="row">
-			<div class="card bg-acrylic-1 bg-transparent border-0 p-1 text-center text-muted">
-				<a href="privacy" class="color-light">Privacy and legal mentions</a> &copy; @DateTime.Now.Year
-				IdeaStud.io
+			<div class="col-md-8">
+				<p class="mb-2">&copy; @DateTime.Now.Year IdeaStud.io - Andrés Talavera</p>
+				<p class="small text-muted mb-0">
+					.NET Developer & Azure Consultant based in Lyon, France
+				</p>
+			</div>
+			<div class="col-md-4 text-md-end">
+				<a href="/privacy" class="text-light text-decoration-none me-3">Privacy Policy</a>
+				<div class="social-links mt-2">
+					<a href="https://linkedin.com/in/andrestalavera" class="text-light me-3"
+						aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">
+						<i class="fab fa-linkedin" aria-hidden="true"></i>
+					</a>
+					<a href="https://github.com/andrestalavera" class="text-light me-3" aria-label="GitHub Profile"
+						target="_blank" rel="noopener noreferrer">
+						<i class="fab fa-github" aria-hidden="true"></i>
+					</a>
+					<a href="#"
+						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;"
+						class="text-light" aria-label="Phone number">
+						<i class="fas fa-phone" aria-hidden="true"></i>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </footer>
+<script>
+    // Remove loading screen when Blazor is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.classList.add('fade-out');
+                setTimeout(() => loadingScreen.remove(), 500);
+            }
+        }, 2000);
+    });
+</script>
