@@ -2,12 +2,12 @@
 // Configuration
 @import "../../node_modules/bootstrap/scss/functions";
 // override default variables
-$spacer: 2rem;
-$border-radius: 1.5rem;
-$border-radius-sm: 2rem;
-$border-radius-lg: 2.5rem;
-$border-radius-xl: 3rem;
-$border-radius-xxl: 3.5rem;
+$spacer: 24px;
+$border-radius: 12px;
+$border-radius-sm: 2px;
+$border-radius-lg: 4px;
+$border-radius-xl: 8px;
+$border-radius-xxl: 12px;
 $border-radius-pill: 50rem;
 $primary: #0071a8;
 $secondary: #424D58;
@@ -18,6 +18,8 @@ $danger: #dc3545;
 $light: lighten($primary, 90%);
 $dark: darken($primary, 10%);
 $enable-gradients: true;
+$enable-negative-margins: true;
+$enable-rounded: true;
 // import default variables
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/variables-dark";
@@ -32,30 +34,17 @@ $enable-gradients: true;
 @import "../../node_modules/bootstrap/scss/images";
 @import "../../node_modules/bootstrap/scss/containers";
 @import "../../node_modules/bootstrap/scss/grid";
-// @import "../../node_modules/bootstrap/scss/tables";
 @import "../../node_modules/bootstrap/scss/forms";
 @import "../../node_modules/bootstrap/scss/buttons";
 @import "../../node_modules/bootstrap/scss/transitions";
-// @import "../../node_modules/bootstrap/scss/dropdown";
-// @import "../../node_modules/bootstrap/scss/button-group";
 @import "../../node_modules/bootstrap/scss/nav";
 @import "../../node_modules/bootstrap/scss/navbar";
 @import "../../node_modules/bootstrap/scss/card";
 @import "../../node_modules/bootstrap/scss/accordion";
-// @import "../../node_modules/bootstrap/scss/breadcrumb";
-// @import "../../node_modules/bootstrap/scss/pagination";
 @import "../../node_modules/bootstrap/scss/badge";
-// @import "../../node_modules/bootstrap/scss/alert";
-// @import "../../node_modules/bootstrap/scss/progress";
 @import "../../node_modules/bootstrap/scss/list-group";
-// @import "../../node_modules/bootstrap/scss/close";
-// @import "../../node_modules/bootstrap/scss/toasts";
-// @import "../../node_modules/bootstrap/scss/modal";
-// @import "../../node_modules/bootstrap/scss/tooltip";
-// @import "../../node_modules/bootstrap/scss/popover";
-// @import "../../node_modules/bootstrap/scss/carousel";
+@import "../../node_modules/bootstrap/scss/carousel";
 @import "../../node_modules/bootstrap/scss/spinners";
-// @import "../../node_modules/bootstrap/scss/offcanvas";
 @import "../../node_modules/bootstrap/scss/placeholders";
 
 // Helpers
@@ -94,20 +83,16 @@ nav {
 	@extend .bg-acrylic-4;
 }
 
-@for $i from 1 through 10 {
+@for $i from 1 through 5 {
 	.bg-acrylic-#{$i} {
-		@include bg-acrylic($i * 5px);
+		@include bg-acrylic($i * 10px);
 	}
 }
 
 .card {
 	@extend .bg-acrylic-4;
 	@extend .bg-opacity-75;
-	@extend .shadow-lg;
-	@extend .border;
-	@extend .border-3;
-	@extend .border-light-subtle;
-	@extend .border-opacity-10;
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, .5) !important;
 }
 
 @keyframes fadeOut {
@@ -131,4 +116,25 @@ nav {
 
 .virtualize-container > div:first-child[style="height: 0px; flex-shrink: 0;"] {
 	display: none;
+}
+
+@media print {
+	.break-page {
+		page-break-after: always;
+	}
+
+	.card,
+	.shadow,
+	.shadow-lg,
+	.shadow-sm {
+		box-shadow: none !important;
+	}
+
+	.card,
+	.card-body,
+	.card-text {
+		border: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
 }
