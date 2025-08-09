@@ -3,7 +3,6 @@ using IdeaStudio.Website.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
-
 WebAssemblyHostBuilder builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
@@ -17,5 +16,5 @@ await app.RunAsync();
 
 public partial class Program
 {
-	protected Program() { }
+    protected Program() { }
 }

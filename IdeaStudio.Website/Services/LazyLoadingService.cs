@@ -7,11 +7,9 @@ public class LazyLoadingService(HttpClient httpClient) : ILazyLoadingService
 {
 	private readonly HttpClient httpClient = httpClient;
 	private readonly ConcurrentDictionary<string, object> cache = [];
-	private readonly SemaphoreSlim semaphore = new(1, 1);
 
 	public async Task<TData?> LoadDataAsync<TData>(string url, CancellationToken cancellationToken = default)
 	{
-		await semaphore.WaitAsync(cancellationToken);
 		try
 		{
 			if (cache.TryGetValue(url, out object? cachedData))
@@ -29,15 +27,16 @@ public class LazyLoadingService(HttpClient httpClient) : ILazyLoadingService
 			}
 			return data;
 		}
-		finally
+
+		catch (Exception ex)
 		{
-			semaphore.Release();
+			Console.WriteLine($"Error loading data from {url}: {ex.Message}");
+			return default;
 		}
 	}
 
 	public async Task<string?> LoadImageAsync(string imageUrl, CancellationToken cancellationToken = default)
 	{
-		await semaphore.WaitAsync(cancellationToken);
 		try
 		{
 			if (cache.TryGetValue(imageUrl, out object? cachedUrl))
@@ -56,13 +55,10 @@ public class LazyLoadingService(HttpClient httpClient) : ILazyLoadingService
 			}
 			return null;
 		}
-		catch
+		catch (Exception ex)
 		{
+			Console.WriteLine($"Error loading image from {imageUrl}: {ex.Message}");
 			return null;
-		}
-		finally
-		{
-			semaphore.Release();
 		}
 	}
 }

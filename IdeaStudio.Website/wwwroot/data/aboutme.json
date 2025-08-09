@@ -20,24 +20,20 @@
 				"Content creator for LinkedIn Learning, focusing on cutting-edge technologies."
 			],
 			"icons": [
-				"fa-brands fa-linkedin text-blue"
+				"fab fa-linkedin text-primary"
 			],
-			"link": "#trainingcenters"
+			"link": "#training"
 		},
 		{
-			"title": "Polyglot",
+			"title": "Passion for Technology",
 			"paragraphs": [
-				"Fluent in French and Spanish.",
-				"Professional English."
+				"Dedicated to staying current with the latest tech trends.",
+				"Committed to delivering innovative solutions that meet client needs."
 			],
-			"images":[
-				"flag-spanish.svg",
-				"flag-french.svg",
-				"flag-english.svg"
-			]
+			"link": "#contact"
 		},
 		{
-			"title": "Diverse experiences",
+			"title": "Diverse Experience",
 			"paragraphs": [
 				"Worked with startups, SMEs, and digital service companies.",
 				"Expertise in medical statistics, finance, aviation, logistics, education, and accounting sectors."
@@ -45,7 +41,7 @@
 			"link": "#experiences"
 		},
 		{
-			"title": "Recent projects",
+			"title": "Recent Projects",
 			"paragraphs": [
 				"Enhanced logistics software at TRIGO using .NET, Vue, and Azure.",
 				"Led team at Active Assurances to develop new insurance software."
@@ -53,11 +49,16 @@
 			"link": "#experiences"
 		},
 		{
-			"title": "Personal attributes",
+			"title": "Personal Attributes",
 			"paragraphs": [
 				"Curious and versatile, with a talent for explaining complex concepts.",
 				"Strong analytical and design skills, thriving in collaborative environments."
 			]
 		}
+	],
+	"languages": [
+		"French (Native)",
+		"Spanish (Native)",
+		"English (Professional)"
 	]
 }

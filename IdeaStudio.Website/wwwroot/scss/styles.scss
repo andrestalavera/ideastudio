@@ -1,26 +1,45 @@
-// scss-docs-start import-stack
 // Configuration
 @import "../../node_modules/bootstrap/scss/functions";
-// override default variables
-$spacer: 24px;
+
+// Fluent 2 Design Variables
+$spacer: 1.5rem;
 $border-radius: 12px;
-$border-radius-sm: 2px;
-$border-radius-lg: 4px;
-$border-radius-xl: 8px;
-$border-radius-xxl: 12px;
+$border-radius-sm: 8px;
+$border-radius-lg: 16px;
+$border-radius-xl: 24px;
+$border-radius-xxl: 32px;
 $border-radius-pill: 50rem;
+
+// Fluent 2 Color System
 $primary: #0071a8;
 $secondary: #424D58;
 $success: #00A462;
 $info: #008F92;
 $warning: #FF9933;
 $danger: #dc3545;
-$light: lighten($primary, 90%);
-$dark: darken($primary, 10%);
+$light: #f8f9fa;
+$dark: #212529;
+
+// Fluent 2 Typography
+$font-family-sans-serif: "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$line-height-base: 1.6;
+
+// Enable Bootstrap features
 $enable-gradients: true;
 $enable-negative-margins: true;
 $enable-rounded: true;
-// import default variables
+$enable-smooth-scroll: true;
+
+// Fluent 2 Shadows
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14), 0 0px 2px rgba(0, 0, 0, 0.12);
+$box-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+$box-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.14), 0 0px 2px rgba(0, 0, 0, 0.12);
+
+// Import Bootstrap
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/variables-dark";
 @import "../../node_modules/bootstrap/scss/maps";
@@ -40,101 +59,569 @@ $enable-rounded: true;
 @import "../../node_modules/bootstrap/scss/nav";
 @import "../../node_modules/bootstrap/scss/navbar";
 @import "../../node_modules/bootstrap/scss/card";
-@import "../../node_modules/bootstrap/scss/accordion";
 @import "../../node_modules/bootstrap/scss/badge";
 @import "../../node_modules/bootstrap/scss/list-group";
-@import "../../node_modules/bootstrap/scss/carousel";
 @import "../../node_modules/bootstrap/scss/spinners";
 @import "../../node_modules/bootstrap/scss/placeholders";
-
-// Helpers
 @import "../../node_modules/bootstrap/scss/helpers";
-
-// Utilities
 @import "../../node_modules/bootstrap/scss/utilities/api";
-// scss-docs-end import-stack
 
-// custom mixins
-@mixin bg-acrylic($blur) {
-	-moz-backdrop-filter: blur($blur) !important;
-	-webkit-backdrop-filter: blur($blur) !important;
-	backdrop-filter: blur($blur) !important;
+// Fluent 2 Acrylic Effects
+@mixin acrylic-backdrop($opacity: 0.7, $blur: 20px, $saturation: 1.8) {
+  backdrop-filter: blur($blur) saturate($saturation);
+  -webkit-backdrop-filter: blur($blur) saturate($saturation);
+  background: rgba(255, 255, 255, $opacity);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-// scss-docs-start custom-styles
-iframe {
-	@extend .bg-transparent;
+@mixin acrylic-dark($opacity: 0.3, $blur: 20px, $saturation: 1.8) {
+  backdrop-filter: blur($blur) saturate($saturation);
+  -webkit-backdrop-filter: blur($blur) saturate($saturation);
+  background: rgba(0, 0, 0, $opacity);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-html,
+// Fluent 2 Animation System
+@mixin fluent-ease($duration: 0.3s) {
+  transition: all $duration cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+@mixin fade-in-animation($delay: 0ms) {
+  opacity: .8 !important;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) $delay,
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) $delay;
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Base styles
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-	min-height: 100vh;
+  font-family: $font-family-sans-serif;
+  line-height: $line-height-base;
+  overflow-x: hidden;
+  background: #0a1929;
 }
 
-#app {
-	min-height: calc(100vh - 56px);
+// Loading overlay with animation
+.loading-overlay {
+  background: linear-gradient(135deg,
+    rgba(0, 113, 168, 0.9) 0%,
+    rgba(66, 77, 88, 0.9) 50%,
+    rgba(10, 25, 41, 0.95) 100%);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  z-index: 9999;
+  animation: fadeOutOverlay 5s ease-out forwards;
 }
 
-nav {
-	@extend .navbar-dark;
-	@extend .bg-primary;
-	@extend .shadow-lg;
-	@extend .bg-opacity-25;
-	@extend .bg-acrylic-4;
+@keyframes fadeOutOverlay {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+  }
 }
 
-@for $i from 1 through 5 {
-	.bg-acrylic-#{$i} {
-		@include bg-acrylic($i * 10px);
-	}
+// Skip link for accessibility
+.skip-link {
+  position: absolute;
+  top: -50px;
+  left: 10px;
+  z-index: 9999;
+  padding: 12px 24px;
+  @include acrylic-backdrop(0.9);
+  color: $primary;
+  text-decoration: none;
+  border-radius: $border-radius;
+  font-weight: $font-weight-semibold;
+  @include fluent-ease();
+
+  &:focus {
+    top: 10px;
+  }
 }
 
+// Background layers
+#background-layers {
+  .background-overlay {
+    background: linear-gradient(135deg,
+      rgba(0, 113, 168, 0.4) 0%,
+      rgba(66, 77, 88, 0.6) 50%,
+      rgba(10, 25, 41, 0.8) 100%);
+  }
+
+  video {
+    object-fit: cover;
+    transition: opacity 2s ease-in-out;
+
+    &[data-loaded="true"] {
+      opacity: 1 !important;
+    }
+  }
+
+  #hero-background img {
+    object-fit: cover;
+  }
+}
+
+// Acrylic Background Classes
+.bg-acrylic-nav {
+  @include acrylic-dark(0.8, 30px, 2.0);
+}
+
+.bg-acrylic-1 {
+  @include acrylic-backdrop(0.1, 10px);
+}
+
+.bg-acrylic-2 {
+  @include acrylic-backdrop(0.15, 15px);
+}
+
+.bg-acrylic-3 {
+  @include acrylic-backdrop(0.2, 20px);
+}
+
+.bg-acrylic-4 {
+  @include acrylic-backdrop(0.15, 25px, 1.8);
+}
+
+.bg-acrylic-5 {
+  @include acrylic-backdrop(0.2, 30px, 2.0);
+}
+
+.bg-acrylic-button {
+  @include acrylic-backdrop(0.1, 15px);
+  @include fluent-ease();
+
+  &:hover {
+    @include acrylic-backdrop(0.2, 15px);
+    transform: translateY(-2px);
+  }
+}
+
+.bg-acrylic-primary {
+  background: rgba($primary, 0.9) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  backdrop-filter: blur(20px) saturate(1.8);
+  border: 1px solid rgba($primary, 0.3);
+
+  &:hover {
+    background: rgba($primary, 1) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba($primary, 0.3);
+  }
+}
+
+.bg-acrylic-success {
+  background: rgba($success, 0.9) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  backdrop-filter: blur(20px) saturate(1.8);
+  border: 1px solid rgba($success, 0.3);
+
+  &:hover {
+    background: rgba($success, 1) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba($success, 0.3);
+  }
+}
+
+.bg-acrylic-badge {
+  @include acrylic-backdrop(0.2, 10px);
+}
+
+// Navigation
+.navbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  @include fluent-ease();
+
+  .navbar-brand {
+    font-weight: $font-weight-bold;
+    font-size: 1.25rem;
+
+    img {
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+    }
+  }
+
+  .navbar-toggler {
+    border: none;
+    @include acrylic-backdrop(0.2, 15px);
+    @include fluent-ease();
+
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+    }
+  }
+
+  .navbar-nav {
+    .nav-link {
+      position: relative;
+      font-weight: $font-weight-normal;
+      padding: 8px 16px !important;
+      margin: 0 4px;
+      @include fluent-ease();
+
+      &.active {
+        background: rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 1) !important;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.9);
+      }
+    }
+  }
+}
+
+// Hero section
+.hero-section {
+  min-height: 100vh;
+  position: relative;
+
+  .hero-card {
+    max-width: 900px;
+    @include fluent-ease(0.4s);
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .hero-title {
+    font-weight: $font-weight-light;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+    @media (max-width: 768px) {
+      font-size: 2.5rem !important;
+    }
+  }
+
+  .profile-image-container {
+    .profile-image {
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      @include fluent-ease();
+
+      &:hover {
+        transform: scale(1.05);
+        border-color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+}
+
+// Cards
 .card {
-	@extend .bg-acrylic-4;
-	@extend .bg-opacity-75;
-	box-shadow: 5px 5px 20px rgba(0, 0, 0, .5) !important;
+  border: none;
+  @include fluent-ease(0.4s);
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  }
+
+  .card-body {
+    padding: 2rem;
+  }
+
+  .card-title {
+    color: $primary;
+    font-weight: $font-weight-bold;
+    margin-bottom: 1rem;
+  }
+
+  .card-text {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+  }
 }
 
-@keyframes fadeOut {
-
-	0% {
-		background-color: rgba(0, 0, 0, 1);
-	}
-
-	99% {
-		background-color: rgba(0, 0, 0, 0);
-	}
-
-	100% {
-		display: none;
-	}
+// Service cards
+.service-card {
+  &:hover {
+    .tech-icon-container,
+    .icon-container {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
 }
 
-.introduction-gradient {
-	animation: fadeOut 4s ease-out forwards;
+// Training cards
+.training-card {
+  &:hover {
+    .badge {
+      transform: translateY(-2px);
+    }
+  }
 }
 
+// Contact card
+.contact-card {
+  &:hover {
+    .btn {
+      transform: translateY(-3px);
+    }
+  }
+}
+
+// Placeholder cards
+.placeholder-card {
+  .placeholder {
+    background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.1) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+// Experience cards
+.experience-card {
+  .logo-wrapper {
+    @include fluent-ease();
+
+    &:hover {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.25) !important;
+    }
+  }
+
+  .company-logo,
+  .company-logo-sm {
+    object-fit: contain;
+    filter: brightness(1.1) contrast(1.1);
+  }
+
+  .info-badge {
+    @include fluent-ease();
+    font-size: 0.875rem;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25) !important;
+    }
+  }
+
+  .responsibility-item,
+  .responsibility-item-mobile {
+    @include fluent-ease();
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2) !important;
+      transform: translateX(8px);
+    }
+  }
+
+  .skill-badge,
+  .skill-badge-sm {
+    @include fluent-ease();
+    font-size: 0.8rem;
+
+    &:hover {
+      background: rgba($primary, 0.8) !important;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Tech icons
+.tech-icon-container {
+  @include fluent-ease();
+
+  &:hover {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(255, 255, 255, 0.25) !important;
+  }
+}
+
+.tech-icon {
+  filter: brightness(1.2);
+}
+
+// Icon containers
+.icon-container {
+  @include fluent-ease();
+
+  &:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.25) !important;
+  }
+}
+
+// Badges
+.badge {
+  font-size: 0.8rem;
+  font-weight: $font-weight-normal;
+  padding: 0.5em 1em;
+  @include fluent-ease();
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Buttons
+.btn {
+  font-weight: $font-weight-semibold;
+  padding: 12px 24px;
+  border-width: 2px;
+  @include fluent-ease();
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &.btn-primary {
+    box-shadow: 0 4px 14px rgba($primary, 0.3);
+
+    &:hover {
+      box-shadow: 0 8px 25px rgba($primary, 0.4);
+    }
+  }
+
+  &.btn-outline-primary {
+    &:hover {
+      box-shadow: 0 4px 14px rgba($primary, 0.3);
+    }
+  }
+
+  &.btn-success {
+    box-shadow: 0 4px 14px rgba($success, 0.3);
+
+    &:hover {
+      box-shadow: 0 8px 25px rgba($success, 0.4);
+    }
+  }
+}
+
+// Animation classes
+.fade-in-up {
+  @include fade-in-animation();
+}
+
+// Sections
+section {
+  scroll-margin-top: 80px;
+}
+
+// Responsive improvements
+@media (max-width: 576px) {
+  .card .card-body {
+    padding: 1.5rem;
+  }
+
+  .hero-card .card-body {
+    padding: 2rem !important;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    background: rgba(0, 0, 0, 0.8);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    margin-top: 1rem;
+    border-radius: $border-radius;
+    padding: 1rem;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .card {
+    border: 2px solid #fff !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+  }
+
+  .badge {
+    border: 1px solid #fff !important;
+  }
+}
+
+// Focus indicators
+*:focus {
+  outline: 3px solid rgba($primary, 0.8);
+  outline-offset: 2px;
+}
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-in-up {
+    opacity: 1;
+    transform: none;
+  }
+
+  .loading-overlay {
+    animation: none;
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+  }
+}
+
+// Loading animation for virtualized content
 .virtualize-container > div:first-child[style="height: 0px; flex-shrink: 0;"] {
-	display: none;
+  display: none;
 }
 
-@media print {
-	.break-page {
-		page-break-after: always;
-	}
+// Utility classes
+.object-fit-cover {
+  object-fit: cover;
+}
 
-	.card,
-	.shadow,
-	.shadow-lg,
-	.shadow-sm {
-		box-shadow: none !important;
-	}
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
 
-	.card,
-	.card-body,
-	.card-text {
-		border: 0 !important;
-		margin: 0 !important;
-		padding: 0 !important;
-	}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }

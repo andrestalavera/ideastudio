@@ -1,100 +1,132 @@
 ﻿@inherits LayoutComponentBase
-<a class="skip-link visually-hidden-focusable" href="#main-content">
-	Skip to main content
-</a>
+@inject IJSRuntime JSRuntime
 
-<header>
-	<nav class="navbar navbar-expand-lg fixed-top" role="navigation" aria-label="Main navigation">
-		<div class="container">
-			<a class="navbar-brand d-flex align-items-center" href="/" aria-label="IdeaStud.io - Home">
-				<img src="images/logo-ideastudio-white.svg" alt="IdeaStudio" width="100" height="40" class="me-2">
-			</a>
+<!-- Loading overlay with animation -->
+<div id="loading-overlay" class="loading-overlay position-fixed top-0 start-0 w-100 h-100">
+    <div class="loading-content d-flex justify-content-center align-items-center h-100">
+        <div class="card bg-acrylic-4 border-0 shadow-lg">
+            <div class="card-body text-center p-5">
+                <div class="spinner-border text-primary mb-3" role="status" aria-label="Loading application">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <h1 class="h4 mb-2 text-light">IdeaStud.io</h1>
+                <p class="text-light opacity-75 mb-0">Loading amazing content...</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+<!-- Background layers -->
+<div id="background-layers" class="position-fixed top-0 start-0 w-100 h-100" style="z-index: -2;">
+    <!-- Video background -->
+    <div id="video-background" class="position-absolute top-0 start-0 w-100 h-100">
+        <img src="images/video-background.jpg"
+             alt="Background placeholder"
+             class="w-100 h-100 object-fit-cover"
+             style="">
+        <video autoplay muted loop class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+               style="opacity: 0; filter: brightness(0.66);"
+               poster="images/video-background.jpg"
+               preload="metadata">
+            <source src="images/background.webm" type="video/webm">
+            <source src="images/background.mp4" type="video/mp4">
+        </video>
+    </div>
 
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="#about" aria-label="About section">About</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#services" aria-label="Services section">Services</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#experiences" aria-label="Experience section">Experience</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#training" aria-label="Training section">Training</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#contact" aria-label="Contact section">Contact</a>
-					</li>
-				</ul>
-				<div class="d-flex flex-row pt-2">
-					<div class="nav-item mx-1">
-						<a class="nav-link" href="https://linkedin.com/in/andres-talavera" target="_blank">
-							<i class="fa-brands fa-linkedin fa-2x"></i>
-						</a>
-					</div>
-					<div class="nav-item mx-1">
-						<a class="nav-link" href="https://github.com/andrestalavera" target="_blank">
-							<i class="fa-brands fa-github fa-2x"></i>
-						</a>
-					</div>
-					<div class="nav-item mx-1">
-						<a class="nav-link" href="#"
-							onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;">
-							<i class="fa-sharp-duotone fa-solid fa-phone fa-2x mb-2"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
-</header>
-@Body
-<footer class="bg-dark text-light py-4 mt-5" role="contentinfo">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8">
-				<p class="mb-2">&copy; @DateTime.Now.Year IdeaStud.io - Andrés Talavera</p>
-				<p class="small text-muted mb-0">
-					.NET Developer & Azure Consultant based in Lyon, France
-				</p>
-			</div>
-			<div class="col-md-4 text-md-end">
-				<a href="/privacy" class="text-light text-decoration-none me-3">Privacy Policy</a>
-				<div class="social-links mt-2">
-					<a href="https://linkedin.com/in/andrestalavera" class="text-light me-3"
-						aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">
-						<i class="fab fa-linkedin" aria-hidden="true"></i>
-					</a>
-					<a href="https://github.com/andrestalavera" class="text-light me-3" aria-label="GitHub Profile"
-						target="_blank" rel="noopener noreferrer">
-						<i class="fab fa-github" aria-hidden="true"></i>
-					</a>
-					<a href="#"
-						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;"
-						class="text-light" aria-label="Phone number">
-						<i class="fas fa-phone" aria-hidden="true"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
-<script>
-    // Remove loading screen when Blazor is ready
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-            const loadingScreen = document.getElementById('loading-screen');
-            if (loadingScreen) {
-                loadingScreen.classList.add('fade-out');
-                setTimeout(() => loadingScreen.remove(), 500);
-            }
-        }, 2000);
-    });
-</script>
+    <!-- Hero background image -->
+    @*  *@
+
+    <!-- Gradient overlay -->
+    <div class="background-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+</div>
+
+<div class="d-flex flex-column min-vh-100">
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link visually-hidden-focusable position-absolute top-0 start-0 z-3 btn btn-primary">
+        Skip to main content
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-acrylic-nav" data-bs-spy="scroll" data-bs-target="#navbar-nav" data-bs-offset="70">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="/" aria-label="IdeaStudio - Home">
+                <img src="images/logo-ideastudio-white.svg" alt="IdeaStudio" class="d-inline-block align-text-top me-2" height="30" width="30" loading="eager">
+                IdeaStudio
+            </a>
+
+            <button class="navbar-toggler border-0 bg-acrylic-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav"
+                    aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar-nav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link rounded-pill mx-1" href="#about" data-section="about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link rounded-pill mx-1" href="#experiences" data-section="experiences">Experiences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link rounded-pill mx-1" href="#training" data-section="training">Training</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link rounded-pill mx-1" href="#contact" data-section="contact">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- Contact buttons -->
+                <div class="d-flex gap-2">
+                    <a href="https://www.linkedin.com/in/andrestalavera/" class="btn btn-outline-light btn-sm bg-acrylic-button rounded-pill"
+                       target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin me-1" aria-hidden="true"></i>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/andrestalavera" class="btn btn-outline-light btn-sm bg-acrylic-button rounded-pill"
+                       target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                        <i class="fab fa-github me-1" aria-hidden="true"></i>
+                        GitHub
+                    </a>
+                    <button class="btn btn-primary btn-sm bg-acrylic-primary rounded-pill"
+                            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/30min'});return false;"
+                            aria-label="Schedule a meeting">
+                        <i class="fas fa-video me-1" aria-hidden="true"></i>
+                        Meet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main id="main-content" class="flex-grow-1" role="main">
+        @Body
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-4 text-center text-light">
+        <div class="container">
+            <div class="card bg-acrylic-4 border-0 text-light">
+                <div class="card-body py-3">
+                    <p class="mb-0">&copy; @DateTime.Now.Year IdeaStud.io - Andrés Talavera. All rights reserved.</p>
+                    <small class="text-light opacity-75">
+                        <a href="/privacy" class="text-light text-decoration-none">Privacy Policy</a> |
+                        <a href="/legal" class="text-light text-decoration-none">Legal Mentions</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("initializeScrollSpy");
+            await JSRuntime.InvokeVoidAsync("initializeFadeInAnimations");
+            await JSRuntime.InvokeVoidAsync("initializeLoadingAnimation");
+        }
+    }
+}

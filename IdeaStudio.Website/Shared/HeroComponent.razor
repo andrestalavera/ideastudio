@@ -1,0 +1,71 @@
+@using IdeaStudio.Website.Models
+@using Markdig
+
+<section
+	class="hero-section d-flex align-items-center justify-content-center min-vh-100 text-center text-white position-relative">
+
+	<div class="container position-relative z-2">
+		<div class="row justify-content-center">
+			<div class="col-12">
+				<div class="card bg-acrylic-5 border-0 shadow-lg mx-auto hero-card fade-in-up" id="hero">
+					<div class="card-body p-5">
+
+						<div id="hero-background" class="position-absolute top-0 start-0 w-100 h-100">
+							<img src="images/aboutme-background.png" alt="Hero background"
+								class="w-100 h-100 object-fit-cover rounded" style="opacity: 1; mix-blend-mode: overlay;">
+						</div>
+						<h1 class="display-1 fw-light mb-5 text-white hero-title">
+							Let's shape the future of your business together.
+						</h1>
+
+						<!-- Profile Section -->
+						<div class="row align-items-center">
+							<div class="col-md-4 text-center mb-4 mb-md-0">
+								<div class="profile-image-container position-relative">
+									<img src="@ProfileImage" alt="Andrés Talavera - .NET Developer and Azure Consultant"
+										class="profile-image img-fluid rounded-circle shadow-lg" width="200"
+										height="200" loading="eager" onerror="this.src='images/andres-talavera.jpeg'">
+								</div>
+							</div>
+							<div class="col-md-8 text-md-start">
+								<h2 class="h2 mb-3 fw-bold text-white hero-title">Andrés Talavera</h2>
+								@if (!string.IsNullOrEmpty(Introduction))
+								{
+									<p class="lead mb-4 text-white hero-title">@((MarkupString)Introduction)</p>
+								}
+								else
+								{
+									<p class="lead mb-4 text-white hero-title">Experienced .NET developer, author, and trainer
+										specializing in Azure and web technologies. Active in developer communities since
+										being a Microsoft Student Partner.</p>
+								}
+
+								@if (Languages?.Any() == true)
+								{
+									<div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+										@foreach (var language in Languages)
+										{
+											<span class="badge bg-acrylic-badge text-light rounded-pill px-3 py-2">
+												<i class="fas fa-globe me-2" aria-hidden="true"></i>
+												@language
+											</span>
+										}
+									</div>
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+@code {
+	[Parameter] public string? Introduction { get; set; }
+	[Parameter] public IEnumerable<string>? Languages { get; set; }
+	[Parameter] public string ProfileImage { get; set; } = "images/andres-talavera.jpeg";
+}
