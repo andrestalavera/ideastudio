@@ -1,242 +1,248 @@
 @using IdeaStudio.Website.Models
 @using Markdig
+@inject IJSRuntime JSRuntime
 
-<article class="experience-card">
-    <div class="card h-100 bg-acrylic-4 border-0 shadow-lg">
-        <div class="card-body p-4">
-            <!-- Large screens layout -->
-            <div class="row d-none d-lg-flex">
-                <div class="col-lg-4 text-center text-lg-start">
-                    <div class="experience-meta sticky-lg-top" style="top: 120px;">
-                        <div class="company-logo-container mb-3 text-center">
-                            <div class="logo-wrapper bg-acrylic-3 rounded-4 p-3 d-inline-block">
-                                <img src="@CompanyLogo"
-                                     alt="@Company logo"
-                                     class="company-logo img-fluid rounded-3"
-                                     width="80"
-                                     height="80"
-                                     loading="lazy"
-                                     onerror="this.src='images/placeholder.png'">
-                            </div>
-                        </div>
-                        <h3 class="h4 mb-2 text-primary fw-bold">@Title</h3>
-                        <h4 class="h5 text-light mb-3">@Company</h4>
-                        <div class="experience-info small">
-                            @if (Mode != null)
-                            {
-                                <div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
-                                    <div class="info-badge bg-acrylic-2 rounded-pill px-3 py-2">
-                                        <i class="fas fa-briefcase me-2 text-primary" aria-hidden="true"></i>
-                                        <span class="text-light">@Mode</span>
-                                    </div>
-                                </div>
-                            }
-                            @if (Duration != null)
-                            {
-                                <div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
-                                    <div class="info-badge bg-acrylic-2 rounded-pill px-3 py-2">
-                                        <i class="fas fa-calendar me-2 text-primary" aria-hidden="true"></i>
-                                        <span class="text-light">@((MarkupString)Duration)</span>
-                                    </div>
-                                </div>
-                            }
-                            @if (Location != null)
-                            {
-                                <div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
-                                    <div class="info-badge bg-acrylic-2 rounded-pill px-3 py-2">
-                                        <i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
-                                        <span class="text-light">@Location</span>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="experience-content">
-                        @if (Description != null)
-                        {
-                            <div class="mb-4">
-                                @foreach (var paragraph in Description.Where(d => !string.IsNullOrWhiteSpace(d)))
-                                {
-                                    <p class="mb-3 text-light">@((MarkupString)paragraph)</p>
-                                }
-                            </div>
-                        }
+<article id="@Id" class="fade-in-up mb-4" data-bs-delay="@(Index * 50)" style="transition-delay: @(Index * 50)ms;"
+	data-bs-theme="light">
+	<div class="card h-100 border-0 shadow-lg">
+		<div class="card-body p-4">
+			<!-- Large screens layout -->
+			<div class="row d-none d-lg-flex">
+				<div class="col-lg-4 text-center text-lg-start">
+					<div class="sticky-lg-top" style="top: 120px;">
+						<div class="mb-3 text-center">
+							<div class="p-3">
+								<img src="@CompanyLogo" alt="@Company logo" class="img-fluid" loading="lazy" height="80"
+									onerror="this.src='images/placeholder.png'">
+							</div>
+						</div>
+						<h3 class="h4 mb-2 fw-bold">@Title</h3>
+						<h4 class="h5  mb-3">@Company</h4>
+						<div class="small">
+							@if (Mode != null)
+							{
+								<div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
+									<span class="badge text-bg-light rounded-pill px-3 py-2">
+										<i class="fas fa-briefcase me-2" aria-hidden="true"></i>
+										@Mode
+									</span>
+								</div>
+							}
+							@if (Duration != null)
+							{
+								<div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
+									<span class="badge text-bg-light rounded-pill px-3 py-2">
+										<i class="fas fa-calendar me-2" aria-hidden="true"></i>
+										@((MarkupString)Duration)
+									</span>
+								</div>
+							}
+							@if (Location != null)
+							{
+								<div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
+									<span class="badge text-bg-light text-bg-light rounded-pill px-3 py-2">
+										<i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>
+										@Location
+									</span>
+								</div>
+							}
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<div class="experience-content">
+						@if (Description != null)
+						{
+							<div class="mb-4">
+								@foreach (var paragraph in Description.Where(d => !string.IsNullOrWhiteSpace(d)))
+								{
+									<p class="mb-3 ">@((MarkupString)paragraph)</p>
+								}
+							</div>
+						}
 
-                        @if (Responsibilities != null)
-                        {
-                            <div class="mb-4">
-                                <h5 class="h6 mb-3 text-primary fw-bold">Key Responsibilities</h5>
-                                <div class="responsibility-grid">
-                                    @foreach (var (responsibility, index) in Responsibilities.Select((r, i) => (r, i)))
-                                    {
-                                        <div class="responsibility-item bg-acrylic-2 rounded-3 p-3 mb-2">
-                                            <div class="d-flex align-items-start">
-                                                <div class="responsibility-icon bg-acrylic-3 rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 24px; height: 24px;">
-                                                    <i class="fas fa-check text-primary small" aria-hidden="true"></i>
-                                                </div>
-                                                <span class="text-light small">@responsibility</span>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        }
+						@if (Responsibilities != null)
+						{
+							<div class="mb-4">
+								<h5 class="h6 mb-3 fw-bold">Key Responsibilities</h5>
+								<div class="responsibility-grid">
+									@foreach (var (responsibility, index) in Responsibilities.Select((r, i) => (r, i)))
+									{
+										<div class="responsibility-item  rounded-3 p-3 mb-2 shadow">
+											<div class="d-flex align-items-start">
+												<div class="responsibility-icon bg-acrylic-3 rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+													style="width: 24px; height: 24px;">
+													<i class="fas fa-check small" aria-hidden="true"></i>
+												</div>
+												<span class=" small">@responsibility</span>
+											</div>
+										</div>
+									}
+								</div>
+							</div>
+						}
 
-                        @if (Skills != null)
-                        {
-                            <div class="mb-3">
-                                <h5 class="h6 mb-3 text-primary fw-bold">Technologies & Skills</h5>
-                                <div class="skills-container">
-                                    @foreach (var skill in Skills)
-                                    {
-                                        <span class="skill-badge bg-acrylic-badge text-light rounded-pill px-3 py-2 me-2 mb-2 d-inline-flex align-items-center">
-                                            <i class="fas fa-code me-2 text-primary small" aria-hidden="true"></i>
-                                            @skill
-                                        </span>
-                                    }
-                                    @if (Skills.Count() > 15)
-                                    {
-                                        <span class="skill-badge bg-acrylic-3 text-light rounded-pill px-3 py-2 me-2 mb-2 d-inline-flex align-items-center opacity-75">
-                                            +@(Skills.Count() - 15) more
-                                        </span>
-                                    }
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
+						@if (Skills != null)
+						{
+							<div class="mb-3">
+								<h5 class="h6 mb-3 fw-bold">Technologies & Skills</h5>
+								<div class="skills-container">
+									@foreach (var skill in Skills)
+									{
+										<span
+											class="badge text-bg-light shadow rounded-pill px-3 py-2 me-2 mb-2 d-inline-flex align-items-center">
+											<i class="fas fa-code me-2 small" aria-hidden="true"></i>
+											@skill
+										</span>
+									}
+									@if (Skills.Count() > 15)
+									{
+										<span
+											class="badge text-bg-light shadow rounded-pill px-3 py-2 me-2 mb-2 d-inline-flex align-items-center opacity-75">
+											+@(Skills.Count() - 15) more
+										</span>
+									}
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
 
-            <!-- Small screens layout -->
-            <div class="d-block d-lg-none">
-                <div class="d-flex align-items-center mb-4">
-                    <div class="logo-wrapper bg-acrylic-3 rounded-3 p-2 me-3 flex-shrink-0">
-                        <img src="@CompanyLogo"
-                             alt="@Company logo"
-                             class="company-logo-sm rounded-2"
-                             width="50"
-                             height="50"
-                             loading="lazy"
-                             onerror="this.src='images/placeholder.png'">
-                    </div>
-                    <div class="flex-grow-1">
-                        <h3 class="h5 mb-1 text-primary fw-bold">@Title</h3>
-                        <h4 class="h6 text-light mb-0">@Company</h4>
-                    </div>
-                </div>
+			<!-- Small screens layout -->
+			<div class="d-block d-lg-none">
+				<div class="d-flex align-items-center mb-4">
+					<div class="logo-wrapper p-2 me-3 flex-shrink-0">
+						<img src="@CompanyLogo" alt="@Company logo" width="100" loading="lazy"
+							onerror="this.src='images/placeholder.png'">
+					</div>
+					<div class="flex-grow-1">
+						<h3 class="h5 mb-1 text-primary fw-bold">@Title</h3>
+						<h4 class="h6  mb-0">@Company</h4>
+					</div>
+				</div>
 
-                <div class="experience-info-mobile mb-4">
-                    @if (Mode != null)
-                    {
-                        <div class="info-badge bg-acrylic-2 rounded-pill px-3 py-2 d-inline-flex align-items-center me-2 mb-2">
-                            <i class="fas fa-briefcase me-2 text-primary" aria-hidden="true"></i>
-                            <span class="text-light small">@Mode</span>
-                        </div>
-                    }
-                    @if (Duration != null)
-                    {
-                        <div class="info-badge bg-acrylic-2 rounded-pill px-3 py-2 d-inline-flex align-items-center me-2 mb-2">
-                            <i class="fas fa-calendar me-2 text-primary" aria-hidden="true"></i>
-                            <span class="text-light small">@((MarkupString)Duration)</span>
-                        </div>
-                    }
-                    @if (Location != null)
-                    {
-                        <div class="info-badge bg-acrylic-2 rounded-pill px-3 py-2 d-inline-flex align-items-center me-2 mb-2">
-                            <i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
-                            <span class="text-light small">@Location</span>
-                        </div>
-                    }
-                </div>
+				<div class="experience-info-mobile mb-4">
+					@if (Mode != null)
+					{
+						<div class="badge  rounded-pill px-3 py-2 d-inline-flex align-items-center me-2 mb-2">
+							<i class="fas fa-briefcase me-2 text-primary" aria-hidden="true"></i>
+							<span class=" small">@Mode</span>
+						</div>
+					}
+					@if (Duration != null)
+					{
+						<div class="badge  rounded-pill px-3 py-2 d-inline-flex align-items-center me-2 mb-2">
+							<i class="fas fa-calendar me-2 text-primary" aria-hidden="true"></i>
+							<span class=" small">@((MarkupString)Duration)</span>
+						</div>
+					}
+					@if (Location != null)
+					{
+						<div class="badge  rounded-pill px-3 py-2 d-inline-flex align-items-center me-2 mb-2">
+							<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
+							<span class=" small">@Location</span>
+						</div>
+					}
+				</div>
 
-                @if (Description != null)
-                {
-                    <div class="mb-4">
-                        @foreach (var paragraph in Description.Where(d => !string.IsNullOrWhiteSpace(d)))
-                        {
-                            <p class="mb-2 text-light small">@((MarkupString)paragraph)</p>
-                        }
-                    </div>
-                }
+				@if (Description != null)
+				{
+					<div class="mb-4">
+						@foreach (var paragraph in Description.Where(d => !string.IsNullOrWhiteSpace(d)))
+						{
+							<p class="mb-2  small">@((MarkupString)paragraph)</p>
+						}
+					</div>
+				}
 
-                @if (Responsibilities != null)
-                {
-                    <div class="mb-4">
-                        <h5 class="h6 mb-2 text-primary fw-bold">Key Responsibilities</h5>
-                        @foreach (var responsibility in Responsibilities)
-                        {
-                            <div class="responsibility-item-mobile bg-acrylic-2 rounded-3 p-2 mb-2">
-                                <div class="d-flex align-items-start">
-                                    <i class="fas fa-check text-primary me-2 mt-1 small" aria-hidden="true"></i>
-                                    <span class="text-light small">@responsibility</span>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                }
+				@if (Responsibilities != null)
+				{
+					<div class="mb-4">
+						<h5 class="h6 mb-2 text-primary fw-bold">Key Responsibilities</h5>
+						@foreach (var responsibility in Responsibilities)
+						{
+							<div class="responsibility-item-mobile  rounded-3 p-2 mb-2 shadow">
+								<div class="d-flex align-items-start">
+									<i class="fas fa-check text-primary me-2 mt-1 small" aria-hidden="true"></i>
+									<span class=" small">@responsibility</span>
+								</div>
+							</div>
+						}
+					</div>
+				}
 
-                @if (Skills != null)
-                {
-                    <div class="mb-3">
-                        <h5 class="h6 mb-2 text-primary fw-bold">Technologies</h5>
-                        <div class="skills-container-mobile">
-                            @foreach (var skill in Skills)
-                            {
-                                <span class="skill-badge-sm bg-acrylic-badge text-light rounded-pill px-2 py-1 me-1 mb-1 d-inline-block">
-                                    @skill
-                                </span>
-                            }
-                            @if (Skills.Count() > 8)
-                            {
-                                <span class="skill-badge-sm bg-acrylic-3 text-light rounded-pill px-2 py-1 me-1 mb-1 d-inline-block opacity-75">
-                                    +@(Skills.Count() - 8)
-                                </span>
-                            }
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
+				@if (Skills != null)
+				{
+					<div class="mb-3 d-none d-flex-md">
+						<h5 class="h6 mb-2 text-primary fw-bold">Technologies</h5>
+						<div class="skills-container-mobile">
+							@foreach (var skill in Skills)
+							{
+								<span class="badge bg-acrylic-1   rounded-pill px-2 py-1 me-1 mb-1 d-inline-block">
+									@skill
+								</span>
+							}
+							@if (Skills.Count() > 8)
+							{
+								<span
+									class="badge bg-acrylic-1 bg-acrylic-3  rounded-pill px-2 py-1 me-1 mb-1 d-inline-block opacity-75">
+									+@(Skills.Count() - 8)
+								</span>
+							}
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
 </article>
 
 @code {
-    private string? Duration { get; set; }
-    private string? CompanyLogo { get; set; }
+	private string? Duration { get; set; }
+	private string? CompanyLogo { get; set; }
 
-    [Parameter] public string? Title { get; set; }
-    [Parameter] public string? Company { get; set; }
-    [Parameter] public string? Mode { get; set; }
-    [Parameter] public DateTime? StartDate { get; set; }
-    [Parameter] public DateTime? EndDate { get; set; }
-    [Parameter] public string? Location { get; set; }
-    [Parameter] public IEnumerable<string>? Description { get; set; }
-    [Parameter] public IEnumerable<string>? Responsibilities { get; set; }
-    [Parameter] public IEnumerable<string>? Skills { get; set; }
+	[Parameter] public string? Title { get; set; }
+	[Parameter] public string? Id { get; set; }
+	[Parameter] public string? Company { get; set; }
+	[Parameter] public string? Mode { get; set; }
+	[Parameter] public DateTime? StartDate { get; set; }
+	[Parameter] public DateTime? EndDate { get; set; }
+	[Parameter] public string? Location { get; set; }
+	[Parameter] public int Index { get; set; } = 1;
+	[Parameter] public IEnumerable<string>? Description { get; set; }
+	[Parameter] public IEnumerable<string>? Responsibilities { get; set; }
+	[Parameter] public IEnumerable<string>? Skills { get; set; }
 
-    protected override void OnInitialized()
-    {
-        CompanyLogo = $"images/{Company?.ToSeoUrl()}.png";
+	protected override void OnInitialized()
+	{
+		CompanyLogo = $"images/{Company?.ToSeoUrl()}.png";
 
-        if (StartDate.HasValue)
-        {
-            Duration = $"{StartDate:MMMM yyyy} - {(EndDate?.ToString("MMMM yyyy") ?? "Present")}";
+		if (StartDate.HasValue)
+		{
+			Duration = $"{StartDate:MMMM yyyy} - {(EndDate?.ToString("MMMM yyyy") ?? "Present")}";
 
-            var endDate = EndDate ?? DateTime.Today;
-            var duration = endDate - StartDate.Value;
+			DateTime endDate = EndDate ?? DateTime.Today;
+			TimeSpan duration = endDate - StartDate.Value;
 
-            if (duration.TotalDays < 366)
-            {
-                var months = Math.Max(1, (int)(duration.TotalDays / 30));
-                Duration += $" ({months} month{(months == 1 ? "" : "s")})";
-            }
-            else
-            {
-                var years = duration.TotalDays / 365.25;
-                Duration += $" ({years:F1} year{(years < 2 ? "" : "s")})";
-            }
-        }
-    }
+			if (duration.TotalDays < 366)
+			{
+				int months = Math.Max(1, (int)(duration.TotalDays / 30));
+				Duration += $" ({months} month{(months == 1 ? "" : "s")})";
+			}
+			else
+			{
+				double years = duration.TotalDays / 365.25;
+				Duration += $" ({years:F0} year{(years < 2 ? "" : "s")})";
+			}
+		}
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await JSRuntime.InvokeVoidAsync("initializeFadeInAnimations");
+		}
+	}
 }

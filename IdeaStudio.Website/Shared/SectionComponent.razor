@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="col-12">
+		<h2 id="@id" class="text-center mb-5 fade-in-up display-4 text-light text-shadow-1">@Title</h2>
+	</div>
+</div>
+@code {
+	[Parameter]
+	public string Title { get; set; }
+
+	private string id => Title?.ToLowerInvariant().Replace(" ", "-");
+}

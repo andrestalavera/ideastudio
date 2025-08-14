@@ -8,63 +8,55 @@
 @inject ILazyLoadingService LazyLoadingService
 @inject IJSRuntime JSRuntime
 
-<!-- Hero Section with Profile -->
 <HeroComponent Introduction="@aboutMe?.Introduction" Languages="@aboutMe?.Languages" />
 
-<!-- Service Cards Section -->
 <ServiceCardsComponent Cards="@aboutMe?.Cards" />
 
-<!-- Experience Section -->
-<section id="experiences" class="py-5 bg-light bg-opacity-10">
+<section id="experiences" class="py-5">
 	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="text-center mb-5 fade-in-up text-white display-4 fw-light">Professional Experience</h2>
-			</div>
-		</div>
+		<SectionComponent Title="Professional experiences" />
 
 		@if (experiences?.Items != null && experiences.Items.Any())
 		{
-			<div class="experience-timeline">
+			<div class="row g-4">
 				@foreach (var (experience, index) in experiences.Items.Select((e, i) => (e, i)))
 				{
-					<Virtualize Items="experiences.Items" Context="experience">
-						<div class="experience-item fade-in-up mb-4" data-bs-delay="@(index * 200)"
-							style="transition-delay: @(index * 200)ms;">
-							<ExperienceComponent Title="@experience.Title" Company="@experience.Company" Mode="@experience.Mode"
-								StartDate="@experience.StartDate" EndDate="@experience.EndDate" Location="@experience.Location"
-								Description="@experience.Description" Responsibilities="@experience.Responsibilities"
-							Skills="@experience.Skills" />
+					<div class="col-12">
+						<ExperienceComponent Id="@experience.Id" Title="@experience.Title" Index="@index" Company="@experience.Company"
+							Mode="@experience.Mode" StartDate="@experience.StartDate" EndDate="@experience.EndDate"
+							Location="@experience.Location" Description="@experience.Description"
+							Responsibilities="@experience.Responsibilities" Skills="@experience.Skills" />
 					</div>
-					</Virtualize>
 				}
+				@* <Virtualize Items="experiences.Items" Context="experience">
+				<ItemContent>
+					<ExperienceComponent Id="@experience.Id" Title="@experience.Title" Company="@experience.Company" Mode="@experience.Mode"
+						StartDate="@experience.StartDate" EndDate="@experience.EndDate" Location="@experience.Location"
+						Description="@experience.Description" Responsibilities="@experience.Responsibilities"
+						Skills="@experience.Skills" />
+				</ItemContent>
+				<EmptyContent>
+					<p class="text-center">No experience details available.</p>
+				</EmptyContent>
+				<Placeholder>
+					<LoadingComponent />
+					<PlaceholderComponent />
+				</Placeholder>
+			</Virtualize>
+				}*@
 			</div>
 		}
 		else
 		{
-			<div class="text-center">
-				<div class="card bg-acrylic-4 border-0 mx-auto" style="max-width: 300px;">
-					<div class="card-body text-center p-4">
-						<div class="spinner-border text-primary mb-3" role="status" aria-label="Loading experiences">
-							<span class="visually-hidden">Loading...</span>
-						</div>
-						<p class="text-light mb-0">Loading experiences...</p>
-					</div>
-				</div>
-			</div>
+			<LoadingComponent />
+			<PlaceholderComponent />
 		}
 	</div>
 </section>
 
-<!-- Training Section -->
 <section id="training" class="py-5">
 	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="text-center mb-5 fade-in-up text-white display-4 fw-light">I have conducted training courses
-					for...</h2>
-			</div>
-		</div>
+		<SectionComponent Title="I have conducted training courses for..." />
 
 		@if (trainingCenters?.Items != null && trainingCenters.Items.Any())
 		{
@@ -72,19 +64,19 @@
 				@foreach (var (trainingCenter, index) in trainingCenters.Items.Select((t, i) => (t, i)))
 				{
 					<div class="col-lg-6">
-						<article class="card h-100 bg-acrylic-4 border-0 shadow-lg fade-in-up training-card"
-							data-bs-delay="@(index * 150)" style="transition-delay: @(index * 150)ms;">
+						<article class="card h-100 fade-in-up" data-bs-delay="@(index * 50)"
+							style="transition-delay: @(index * 50)ms;">
 							<div class="card-body p-4">
 								<h3 class="card-title h4 mb-3 text-primary fw-bold">@trainingCenter.Name</h3>
 
 								@if (trainingCenter.Courses != null)
 								{
 									<div class="mb-3">
-										<h4 class="h6 mb-2 text-light opacity-75">Courses</h4>
+										<h4 class="h6 mb-2  opacity-75">Courses</h4>
 										<div class="d-flex flex-wrap gap-2">
 											@foreach (var course in trainingCenter.Courses)
 											{
-												<span class="badge bg-acrylic-badge text-primary rounded-pill px-3 py-2">
+												<span class="badge bg-acrylic-2 text-primary rounded-pill px-3 py-2">
 													<i class="fas fa-graduation-cap me-2" aria-hidden="true"></i>
 													@course
 												</span>
@@ -95,7 +87,7 @@
 
 								@if (trainingCenter.Locations != null)
 								{
-									<div class="small text-light opacity-75">
+									<div class="small  opacity-75">
 										<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
 										@string.Join(" - ", trainingCenter.Locations)
 									</div>
@@ -112,14 +104,9 @@
 				@for (int i = 0; i < 6; i++)
 				{
 					<div class="col-lg-6">
-						<div class="card h-100 bg-acrylic-4 border-0 placeholder-card">
+						<div class="card h-100">
 							<div class="card-body p-4">
-								<div class="placeholder-glow">
-									<span class="placeholder col-6 rounded-pill mb-3 bg-primary"></span>
-									<span class="placeholder col-4 rounded-pill mb-2 bg-secondary"></span>
-									<span class="placeholder col-8 rounded-pill mb-2 bg-secondary"></span>
-									<span class="placeholder col-5 rounded-pill bg-secondary"></span>
-								</div>
+								<PlaceholderComponent />
 							</div>
 						</div>
 					</div>
@@ -133,24 +120,24 @@
 <section id="contact" class="py-5">
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-lg-8 text-center fade-in-up">
-				<div class="card bg-acrylic-5 border-0 shadow-lg contact-card">
+			<div class="col-lg-8 text-center fade-in-up" id="let-s-connect">
+				<div class="card bg-acrylic-2 border-0 shadow-lg contact-card">
 					<div class="card-body p-5">
-						<h2 class="mb-4 text-white display-5 fw-light">Let's Connect</h2>
-						<p class="lead mb-4 text-light opacity-90">Ready to discuss your next project? Let's build
+						<h2 class="mb-4 display-5 fw-light">Let's Connect</h2>
+						<p class="lead mb-4 opacity-90">Ready to discuss your next project? Let's build
 							something amazing together.</p>
 						<div class="d-flex justify-content-center gap-3 flex-wrap">
 							<a href="https://www.linkedin.com/in/andrestalavera/"
-								class="btn btn-primary rounded-pill bg-acrylic-primary px-4 py-2" target="_blank"
+								class="btn btn-primary rounded-pill bg-acrylic-1 px-4 py-2" target="_blank"
 								rel="noopener noreferrer">
 								<i class="fab fa-linkedin me-2" aria-hidden="true"></i>Connect on LinkedIn
 							</a>
 							<a href="https://github.com/andrestalavera"
-								class="btn btn-outline-light rounded-pill bg-acrylic-button px-4 py-2" target="_blank"
+								class="btn btn-secondary rounded-pill bg-acrylic-2 px-4 py-2" target="_blank"
 								rel="noopener noreferrer">
 								<i class="fab fa-github me-2" aria-hidden="true"></i>View GitHub
 							</a>
-							<button class="btn btn-success rounded-pill bg-acrylic-success px-4 py-2"
+							<button class="btn btn-success rounded-pill bg-acrylic-2 bg-success px-4 py-2"
 								onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/30min'});return false;">
 								<i class="fas fa-video me-2" aria-hidden="true"></i>Schedule Meeting
 							</button>

@@ -1,31 +1,28 @@
 ﻿@inherits LayoutComponentBase
 @inject IJSRuntime JSRuntime
 
-<!-- Loading overlay with animation -->
-<div id="loading-overlay" class="loading-overlay position-fixed top-0 start-0 w-100 h-100">
+<div id="loading-overlay" class="loading-overlay position-fixed top-0 start-0 w-100 h-100" data-bs-theme="dark">
     <div class="loading-content d-flex justify-content-center align-items-center h-100">
-        <div class="card bg-acrylic-4 border-0 shadow-lg">
+        <div class="card bg-opacity-50">
             <div class="card-body text-center p-5">
-                <div class="spinner-border text-primary mb-3" role="status" aria-label="Loading application">
+                <div class="spinner-border mb-3" role="status" aria-label="Loading application">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-                <h1 class="h4 mb-2 text-light">IdeaStud.io</h1>
-                <p class="text-light opacity-75 mb-0">Loading amazing content...</p>
+                <h1 class="h4 mb-2">IdeaStud.io</h1>
+                <p>Loading amazing content...</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Background layers -->
 <div id="background-layers" class="position-fixed top-0 start-0 w-100 h-100" style="z-index: -2;">
-    <!-- Video background -->
     <div id="video-background" class="position-absolute top-0 start-0 w-100 h-100">
         <img src="images/video-background.jpg"
              alt="Background placeholder"
              class="w-100 h-100 object-fit-cover"
              style="">
         <video autoplay muted loop class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
-               style="opacity: 0; filter: brightness(0.66);"
+               style="opacity: 0"
                poster="images/video-background.jpg"
                preload="metadata">
             <source src="images/background.webm" type="video/webm">
@@ -33,28 +30,21 @@
         </video>
     </div>
 
-    <!-- Hero background image -->
-    @*  *@
-
-    <!-- Gradient overlay -->
     <div class="background-overlay position-absolute top-0 start-0 w-100 h-100"></div>
 </div>
 
 <div class="d-flex flex-column min-vh-100">
-    <!-- Skip to content link for accessibility -->
     <a href="#main-content" class="skip-link visually-hidden-focusable position-absolute top-0 start-0 z-3 btn btn-primary">
         Skip to main content
     </a>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-acrylic-nav" data-bs-spy="scroll" data-bs-target="#navbar-nav" data-bs-offset="70">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" data-bs-spy="scroll" data-bs-target="#navbar-nav" data-bs-offset="70">
         <div class="container">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="/" aria-label="IdeaStudio - Home">
-                <img src="images/logo-ideastudio-white.svg" alt="IdeaStudio" class="d-inline-block align-text-top me-2" height="30" width="30" loading="eager">
-                IdeaStudio
+                <img src="images/logo-ideastudio-white.svg" alt="IdeaStudio" class="d-inline-block align-text-top me-2" height="40" width="100" loading="eager">
             </a>
 
-            <button class="navbar-toggler border-0 bg-acrylic-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav"
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav"
                     aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -75,19 +65,18 @@
                     </li>
                 </ul>
 
-                <!-- Contact buttons -->
                 <div class="d-flex gap-2">
-                    <a href="https://www.linkedin.com/in/andrestalavera/" class="btn btn-outline-light btn-sm bg-acrylic-button rounded-pill"
+                    <a href="https://www.linkedin.com/in/andrestalavera/" class="btn btn-outline-light btn-sm bg-acrylic-2 rounded-pill"
                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
                         <i class="fab fa-linkedin me-1" aria-hidden="true"></i>
                         LinkedIn
                     </a>
-                    <a href="https://github.com/andrestalavera" class="btn btn-outline-light btn-sm bg-acrylic-button rounded-pill"
+                    <a href="https://github.com/andrestalavera" class="btn btn-outline-light btn-sm bg-acrylic-2 rounded-pill"
                        target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
                         <i class="fab fa-github me-1" aria-hidden="true"></i>
                         GitHub
                     </a>
-                    <button class="btn btn-primary btn-sm bg-acrylic-primary rounded-pill"
+                    <button class="btn btn-primary btn-sm bg-acrylic-1 rounded-pill"
                             onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/30min'});return false;"
                             aria-label="Schedule a meeting">
                         <i class="fas fa-video me-1" aria-hidden="true"></i>
@@ -98,20 +87,18 @@
         </div>
     </nav>
 
-    <!-- Main content -->
     <main id="main-content" class="flex-grow-1" role="main">
         @Body
     </main>
 
-    <!-- Footer -->
-    <footer class="mt-auto py-4 text-center text-light">
+    <footer class="mt-auto py-4 text-center">
         <div class="container">
-            <div class="card bg-acrylic-4 border-0 text-light">
+            <div class="card bg-acrylic-2 border-0">
                 <div class="card-body py-3">
-                    <p class="mb-0">&copy; @DateTime.Now.Year IdeaStud.io - Andrés Talavera. All rights reserved.</p>
-                    <small class="text-light opacity-75">
-                        <a href="/privacy" class="text-light text-decoration-none">Privacy Policy</a> |
-                        <a href="/legal" class="text-light text-decoration-none">Legal Mentions</a>
+                    <p class="mb-0">@DateTime.Now.Year IdeaStud.io - Andrés Talavera. All rights reserved.</p>
+                    <small class="opacity-75">
+                        <a href="/privacy" class="text-decoration-none">Privacy Policy</a> |
+                        <a href="/legal" class="text-decoration-none">Legal Mentions</a>
                     </small>
                 </div>
             </div>

@@ -162,13 +162,16 @@
             };
 
             const observer = new IntersectionObserver((entries) => {
+				console.log(`*** Observer entries:`);
+				entries.forEach(entry => {
+					console.log(`*** id: #${entry.target.id} / classes: ${entry.target.classList}`);
+				});
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-						console.log(`Entry: ${entry}`);
-						// entry.target.classList.add('fade-in-up');
-						// entry.target.classList.remove('fade-out');
-						console.log(`${entry.target.id} is intersecting`);
+						entry.target.classList.add('fade-in-up');
+						entry.target.classList.remove('fade-out');
                         const delay = entry.target.getAttribute('data-bs-delay') || 0;
+						console.log(`${entry.target.id} is intersecting with delay ${delay}ms`);
                         setTimeout(() => {
                             entry.target.classList.add('animate');
                         }, delay);

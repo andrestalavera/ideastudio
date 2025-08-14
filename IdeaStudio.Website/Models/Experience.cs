@@ -15,6 +15,7 @@ namespace IdeaStudio.Website.Models;
 /// <param name="Skills">Skills</param>
 public record Experience
 {
+	public string? Id => Title?.Replace(" ", "-").Replace(".", "").Replace(":", "-").Replace(",", "-").ToLowerInvariant();
 	public string? Title { get; init; }
 	public string? Company { get; init; }
 	public string? Mode { get; init; }

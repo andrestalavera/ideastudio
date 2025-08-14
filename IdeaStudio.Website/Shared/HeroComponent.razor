@@ -1,24 +1,18 @@
 @using IdeaStudio.Website.Models
 @using Markdig
 
-<section
-	class="hero-section d-flex align-items-center justify-content-center min-vh-100 text-center text-white position-relative">
-
-	<div class="container position-relative z-2">
+<section class="hero-section d-flex align-items-center justify-content-center min-vh-100"
+	data-bs-theme="dark">
+	<div class="container z-2">
 		<div class="row justify-content-center">
 			<div class="col-12">
-				<div class="card bg-acrylic-5 border-0 shadow-lg mx-auto hero-card fade-in-up" id="hero">
-					<div class="card-body p-5">
+				<div class="card bg-dark bg-opacity-25 shadow-lg mx-auto hero-card fade-in-up animate text-shadow-1" id="hero">
 
-						<div id="hero-background" class="position-absolute top-0 start-0 w-100 h-100">
-							<img src="images/aboutme-background.png" alt="Hero background"
-								class="w-100 h-100 object-fit-cover rounded" style="opacity: 1; mix-blend-mode: overlay;">
-						</div>
-						<h1 class="display-1 fw-light mb-5 text-white hero-title">
+					<div class="card-body p-5 z-3">
+						<h1 class="display-1 fw-light mb-5 text-center">
 							Let's shape the future of your business together.
 						</h1>
 
-						<!-- Profile Section -->
 						<div class="row align-items-center">
 							<div class="col-md-4 text-center mb-4 mb-md-0">
 								<div class="profile-image-container position-relative">
@@ -28,33 +22,43 @@
 								</div>
 							</div>
 							<div class="col-md-8 text-md-start">
-								<h2 class="h2 mb-3 fw-bold text-white hero-title">Andrés Talavera</h2>
-								@if (!string.IsNullOrEmpty(Introduction))
-								{
-									<p class="lead mb-4 text-white hero-title">@((MarkupString)Introduction)</p>
-								}
-								else
-								{
-									<p class="lead mb-4 text-white hero-title">Experienced .NET developer, author, and trainer
-										specializing in Azure and web technologies. Active in developer communities since
-										being a Microsoft Student Partner.</p>
-								}
-
+								<h2 class="h2 mb-3 fw-bold">Andrés Talavera</h2>
+								<p class="lead mb-4">
+									@if (!string.IsNullOrEmpty(Introduction))
+									{
+										@((MarkupString)Introduction)
+									}
+									else
+									{
+										<PlaceholderComponent />
+									}
+								</p>
 								@if (Languages?.Any() == true)
 								{
 									<div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
-										@foreach (var language in Languages)
+										@foreach (string language in Languages)
 										{
-											<span class="badge bg-acrylic-badge text-light rounded-pill px-3 py-2">
+											<span class="badge text-bg-primary bg-opacity-25 rounded-pill">
 												<i class="fas fa-globe me-2" aria-hidden="true"></i>
 												@language
 											</span>
 										}
 									</div>
 								}
+								else
+								{
+									<PlaceholderComponent />
+								}
 							</div>
 						</div>
 					</div>
+
+					<div id="hero-background" class="position-absolute top-0 start-0 w-100 h-100 z-1">
+						<img src="images/aboutme-background.png" alt="Hero background"
+							class="w-100 h-100 object-fit-cover rounded"
+							style="opacity: .5; mix-blend-mode: overlay; z-index: -100;">
+					</div>
+
 				</div>
 			</div>
 		</div>
