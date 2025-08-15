@@ -2,7 +2,7 @@
 @using Markdig
 @inject IJSRuntime JSRuntime
 
-<article id="@Id" class="fade-in-up mb-4" data-bs-delay="@(Index * 50)" style="transition-delay: @(Index * 50)ms;"
+<article id="@Id" class="fade-in-up mb-4" data-bs-delay="@(Index * 100)" style="transition-delay: @(Index * 100)ms;"
 	data-bs-theme="light">
 	<div class="card h-100 border-0 shadow-lg">
 		<div class="card-body p-4">
@@ -22,7 +22,7 @@
 							@if (Mode != null)
 							{
 								<div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
-									<span class="badge text-bg-light rounded-pill px-3 py-2">
+									<span class="badge text-bg-light bg-opacity-25">
 										<i class="fas fa-briefcase me-2" aria-hidden="true"></i>
 										@Mode
 									</span>
@@ -31,7 +31,7 @@
 							@if (Duration != null)
 							{
 								<div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
-									<span class="badge text-bg-light rounded-pill px-3 py-2">
+									<span class="badge text-bg-light bg-opacity-25">
 										<i class="fas fa-calendar me-2" aria-hidden="true"></i>
 										@((MarkupString)Duration)
 									</span>
@@ -40,7 +40,7 @@
 							@if (Location != null)
 							{
 								<div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
-									<span class="badge text-bg-light text-bg-light rounded-pill px-3 py-2">
+									<span class="badge text-bg-light bg-opacity-25">
 										<i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>
 										@Location
 									</span>
@@ -68,9 +68,9 @@
 								<div class="responsibility-grid">
 									@foreach (var (responsibility, index) in Responsibilities.Select((r, i) => (r, i)))
 									{
-										<div class="responsibility-item  rounded-3 p-3 mb-2 shadow">
+										<div class="bg-light bg-opacity-25 bg-acrylic-2 shadow">
 											<div class="d-flex align-items-start">
-												<div class="responsibility-icon bg-acrylic-3 rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+												<div class="bg-acrylic-3 rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0"
 													style="width: 24px; height: 24px;">
 													<i class="fas fa-check small" aria-hidden="true"></i>
 												</div>
@@ -90,7 +90,7 @@
 									@foreach (var skill in Skills)
 									{
 										<span
-											class="badge text-bg-light shadow rounded-pill px-3 py-2 me-2 mb-2 d-inline-flex align-items-center">
+											class="badge text-bg-light bg-opacity-25 me-2 mb-2 d-inline-flex align-items-center">
 											<i class="fas fa-code me-2 small" aria-hidden="true"></i>
 											@skill
 										</span>
@@ -98,7 +98,7 @@
 									@if (Skills.Count() > 15)
 									{
 										<span
-											class="badge text-bg-light shadow rounded-pill px-3 py-2 me-2 mb-2 d-inline-flex align-items-center opacity-75">
+											class="badge text-bg-light bg-opacity-25 me-2 mb-2 d-inline-flex align-items-center opacity-75">
 											+@(Skills.Count() - 15) more
 										</span>
 									}
@@ -125,21 +125,21 @@
 				<div class="experience-info-mobile mb-4">
 					@if (Mode != null)
 					{
-						<div class="badge  rounded-pill px-3 py-2 d-inline-flex align-items-center me-2 mb-2">
+						<div class="badge text-bg-light bg-opacity-25 d-inline-flex align-items-center me-2 mb-2">
 							<i class="fas fa-briefcase me-2 text-primary" aria-hidden="true"></i>
 							<span class=" small">@Mode</span>
 						</div>
 					}
 					@if (Duration != null)
 					{
-						<div class="badge  rounded-pill px-3 py-2 d-inline-flex align-items-center me-2 mb-2">
+						<div class="badge text-bg-light bg-opacity-25 d-inline-flex align-items-center me-2 mb-2">
 							<i class="fas fa-calendar me-2 text-primary" aria-hidden="true"></i>
 							<span class=" small">@((MarkupString)Duration)</span>
 						</div>
 					}
 					@if (Location != null)
 					{
-						<div class="badge  rounded-pill px-3 py-2 d-inline-flex align-items-center me-2 mb-2">
+						<div class="badge text-bg-light bg-opacity-25 d-inline-flex align-items-center me-2 mb-2">
 							<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
 							<span class=" small">@Location</span>
 						</div>
