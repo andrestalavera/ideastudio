@@ -2,7 +2,7 @@
 @using Markdig
 @inject IJSRuntime JSRuntime
 
-<article id="@Id" class="fade-in-up mb-4" data-bs-delay="@(Index * 100)" style="transition-delay: @(Index * 100)ms;"
+<article id="@Id" class="fade-in-up mb-4" data-bs-delay="@(Index * 100)" style="transition-delay: @(Index * 25)ms;"
 	data-bs-theme="light">
 	<div class="card h-100 border-0 shadow-lg">
 		<div class="card-body p-4">
@@ -65,16 +65,16 @@
 						{
 							<div class="mb-4">
 								<h5 class="h6 mb-3 fw-bold">Key Responsibilities</h5>
-								<div class="responsibility-grid">
+								<div class="vstack">
 									@foreach (var (responsibility, index) in Responsibilities.Select((r, i) => (r, i)))
 									{
-										<div class="bg-light bg-opacity-25 bg-acrylic-2 shadow">
+										<div class="">
 											<div class="d-flex align-items-start">
-												<div class="bg-acrylic-3 rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0"
-													style="width: 24px; height: 24px;">
+												<div class="d-flex align-items-center justify-content-center me-1 flex-shrink-0"
+													style="width: 24px; height: 24px; margin-top:3px;">
 													<i class="fas fa-check small" aria-hidden="true"></i>
 												</div>
-												<span class=" small">@responsibility</span>
+												<span>@responsibility</span>
 											</div>
 										</div>
 									}
