@@ -72,7 +72,7 @@
 											<div class="d-flex align-items-start">
 												<div class="d-flex align-items-center justify-content-center me-1 flex-shrink-0"
 													style="width: 24px; height: 24px; margin-top:3px;">
-													<i class="fas fa-check small" aria-hidden="true"></i>
+													<i class="fa-regular fa-check small" aria-hidden="true"></i>
 												</div>
 												<span>@responsibility</span>
 											</div>
@@ -87,19 +87,19 @@
 							<div class="mb-3">
 								<h5 class="h6 mb-3 fw-bold">Technologies & Skills</h5>
 								<div class="skills-container">
-									@foreach (var skill in Skills)
+									@foreach (string skill in Skills)
 									{
 										<span
 											class="badge text-bg-light bg-opacity-25 me-2 mb-2 d-inline-flex align-items-center">
-											<i class="fas fa-code me-2 small" aria-hidden="true"></i>
+											<i class="fa-regular @GetSkillBadge(skill) me-2 small" aria-hidden="true"></i>
 											@skill
 										</span>
 									}
-									@if (Skills.Count() > 15)
+									@if (Skills.Count() > 10)
 									{
 										<span
 											class="badge text-bg-light bg-opacity-25 me-2 mb-2 d-inline-flex align-items-center opacity-75">
-											+@(Skills.Count() - 15) more
+											+@(Skills.Count() - 10) more
 										</span>
 									}
 								</div>
@@ -244,5 +244,72 @@
 		{
 			await JSRuntime.InvokeVoidAsync("initializeFadeInAnimations");
 		}
+	}
+
+	private string GetSkillBadge(string skill)
+	{
+		if (string.IsNullOrWhiteSpace(skill))
+		{
+			return "fa-code";
+		}
+
+		skill = skill.Trim().ToLowerInvariant();
+
+
+		if (skill.Contains("javascript") || skill.Contains("typescript") || skill.Contains("angular") || skill.Contains("react")
+		|| skill.Contains("vue"))
+		{
+			return "fa-globe-pointer";
+		}
+		else if (skill.Contains("sql") || skill.Contains("db") || skill.Contains("data") || skill.Contains("graphql") ||
+		skill.Contains("entity framework"))
+		{
+			return "fa-database";
+		}
+		else if (skill.Contains("docker") || skill.Contains("kubernetes"))
+		{
+			return "fa-cubes";
+		}
+		else if (skill.Contains("xamarin") || skill.Contains("mobile"))
+		{
+			return "fa-mobile-notch";
+		}
+		else if (skill.Contains("key vault"))
+		{
+			return "fa-lock";
+		}
+		else if (skill.Contains("service bus") || skill.Contains("ci/cd"))
+		{
+			return "fa-arrow-progress";
+		}
+		else if (skill.Contains("finops"))
+		{
+			return "fa-chart-pie-simple-circle-dollar";
+		}
+		else if (skill.Contains("storage"))
+		{
+			return "fa-hard-drive";
+		}
+		else if (skill.Contains("architecture") || skill.Contains("ddd"))
+		{
+			return "fa-sitemap";
+		}
+		else if (skill.Contains("git") || skill.Contains("devops"))
+		{
+			return "fa-code-branch";
+		}
+		else if (skill.Contains("monitor"))
+		{
+			return "fa-monitor-waveform";
+		}
+		else if (skill.Contains("web") || skill.Contains("blazor") || skill.Contains("asp.net"))
+		{
+			return "fa-globe-pointer";
+		}
+		else if (skill.Contains("azure") || skill.Contains("cloud"))
+		{
+			return "fa-cloud";
+		}
+		return "fa-code";
 	}
 }

@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use 'sass:math';
 @import "../../node_modules/bootstrap/scss/functions";
 
 // Fluent 2 Design Variables
@@ -66,7 +67,7 @@ $enable-smooth-scroll: true;
 }
 
 @mixin fade-in-animation($delay: 0.5s) {
-	opacity: .1 !important;
+	opacity: .5 !important;
 	transform: translateY(50px) scale(0.95) !important;
 	transition: all $delay cubic-bezier(0.16, 1, 0.3, 1) $delay,
 		transform $delay cubic-bezier(0.16, 1, 0.3, 1) $delay;
@@ -92,14 +93,28 @@ body {
 	background: $dark;
 }
 
+// Skip link for accessibility
+.skip-link {
+	position: absolute;
+	top: -50px;
+	left: 10px;
+	z-index: 9999;
+	padding: 12px 24px;
+	color: $primary;
+	text-decoration: none;
+	border-radius: $border-radius;
+	font-weight: $font-weight-semibold;
+	@include fluent-ease();
+
+	&:focus {
+		top: 10px;
+	}
+}
+
 .loading-overlay {
-	background: linear-gradient(165deg,
-			$primary 0%,
-			$dark 45%,
-			$secondary 50%,
-			$dark 55%,
-			$primary 100%);
-	@extend .bg-acrylic-1;
+	background-image: url(images/video-background.png);
+	background-clip: cover;
+	background-size: cover;
 	animation: fadeOutOverlay 5s ease-out forwards;
 	z-index: 9999;
 }
@@ -124,33 +139,8 @@ body {
 	}
 }
 
-// Skip link for accessibility
-.skip-link {
-	position: absolute;
-	top: -50px;
-	left: 10px;
-	z-index: 9999;
-	padding: 12px 24px;
-	color: $primary;
-	text-decoration: none;
-	border-radius: $border-radius;
-	font-weight: $font-weight-semibold;
-	@include fluent-ease();
-
-	&:focus {
-		top: 10px;
-	}
-}
-
 // Background layers
 #background-layers {
-	.background-overlay {
-		background: linear-gradient(135deg,
-				rgba($light, 0.4) 0%,
-				rgba($primary, 0.6) 50%,
-				rgba($dark, 0.8) 100%);
-	}
-
 	video {
 		object-fit: cover;
 		transition: opacity 2s ease-in-out;
@@ -176,7 +166,7 @@ body {
 	}
 
 	.text-shadow-#{$i} {
-		text-shadow: 0 4px*($i/2) 8px*($i/2) rgba($dark, 0.5);
+		text-shadow: 0 4px*(math.div($i, 2)) 8px*(math.div($i, 2)) rgba($dark, 0.5);
 	}
 }
 
