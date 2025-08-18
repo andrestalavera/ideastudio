@@ -67,8 +67,8 @@ $enable-smooth-scroll: true;
 }
 
 @mixin fade-in-animation($delay: 0.5s) {
-	opacity: .5 !important;
-	transform: translateY(50px) scale(0.95) !important;
+	opacity: .7 !important;
+	transform: translateY(50px) scale(0.9) !important;
 	transition: all $delay cubic-bezier(0.16, 1, 0.3, 1) $delay,
 		transform $delay cubic-bezier(0.16, 1, 0.3, 1) $delay;
 	-webkit-backdrop-filter: blur(15px) !important;
@@ -76,8 +76,10 @@ $enable-smooth-scroll: true;
 	filter: blur(5px) !important;
 
 	&.animate {
-		opacity: .75 !important;
+		opacity: .9 !important;
 		transform: translateY(0px) scale(1) !important;
+		-webkit-backdrop-filter: blur(10px) !important;
+		backdrop-filter: blur(10px) !important;
 		filter: blur(0) !important;
 	}
 }
@@ -161,8 +163,8 @@ body {
 
 @for $i from 1 through 3 {
 	.bg-acrylic-#{$i} {
-		-webkit-backdrop-filter: blur(15px * $i) !important; //saturate($saturation);
-		backdrop-filter: blur(15px * $i) !important; //saturate($saturation);
+		-webkit-backdrop-filter: blur(25px * $i) saturate(1.1) !important;
+		backdrop-filter: blur(25px * $i) saturate(1.1) !important;
 	}
 
 	.text-shadow-#{$i} {

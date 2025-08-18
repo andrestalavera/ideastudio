@@ -252,64 +252,6 @@
 		{
 			return "fa-code";
 		}
-
-		skill = skill.Trim().ToLowerInvariant();
-
-
-		if (skill.Contains("javascript") || skill.Contains("typescript") || skill.Contains("angular") || skill.Contains("react")
-		|| skill.Contains("vue"))
-		{
-			return "fa-globe-pointer";
-		}
-		else if (skill.Contains("sql") || skill.Contains("db") || skill.Contains("data") || skill.Contains("graphql") ||
-		skill.Contains("entity framework"))
-		{
-			return "fa-database";
-		}
-		else if (skill.Contains("docker") || skill.Contains("kubernetes"))
-		{
-			return "fa-cubes";
-		}
-		else if (skill.Contains("xamarin") || skill.Contains("mobile"))
-		{
-			return "fa-mobile-notch";
-		}
-		else if (skill.Contains("key vault"))
-		{
-			return "fa-lock";
-		}
-		else if (skill.Contains("service bus") || skill.Contains("ci/cd"))
-		{
-			return "fa-arrow-progress";
-		}
-		else if (skill.Contains("finops"))
-		{
-			return "fa-chart-pie-simple-circle-dollar";
-		}
-		else if (skill.Contains("storage"))
-		{
-			return "fa-hard-drive";
-		}
-		else if (skill.Contains("architecture") || skill.Contains("ddd"))
-		{
-			return "fa-sitemap";
-		}
-		else if (skill.Contains("git") || skill.Contains("devops"))
-		{
-			return "fa-code-branch";
-		}
-		else if (skill.Contains("monitor"))
-		{
-			return "fa-monitor-waveform";
-		}
-		else if (skill.Contains("web") || skill.Contains("blazor") || skill.Contains("asp.net"))
-		{
-			return "fa-globe-pointer";
-		}
-		else if (skill.Contains("azure") || skill.Contains("cloud"))
-		{
-			return "fa-cloud";
-		}
-		return "fa-code";
+		return SkillBadgeOptimized.GetSkillBadge(skill);
 	}
 }
