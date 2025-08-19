@@ -142,17 +142,13 @@
 					}
 					@if (Locations != null)
 					{
-						<div class="badge text-bg-light bg-opacity-25 d-inline-flex align-items-center me-2 mb-2">
-							<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
-							<span class=" small">@Locations</span>
-						</div>
-					}
-					@if (Locations != null)
-					{
-						<div class="badge text-bg-light bg-opacity-25 d-inline-flex align-items-center me-2 mb-2">
-							<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
-							<span class=" small">@Locations</span>
-						</div>
+						@foreach (string location in Locations)
+						{
+							<div class="badge text-bg-light bg-opacity-25 d-inline-flex align-items-center me-2 mb-2">
+								<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
+								<span class=" small">@location</span>
+							</div>
+						}
 					}
 				</div>
 
