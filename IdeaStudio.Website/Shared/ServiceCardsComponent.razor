@@ -8,7 +8,7 @@
                 @foreach (var (card, index) in Cards.Select((c, i) => (c, i)))
                 {
                     <div class="col-lg-6">
-                        <article class="card h-100 fade-in-up"
+                        <article class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 h-100 fade-in-up"
                                  data-bs-delay="@(index * 25)"
                                  style="transition-delay: @(index * 25)ms;">
                             @if (card.Banner != null)
@@ -56,16 +56,7 @@
                 @for (int i = 0; i < 6; i++)
                 {
                     <div class="col-lg-6">
-                        <div class="card h-100 bg-acrylic-2 border-0 placeholder-card">
-                            <div class="card-body p-4">
-                                <div class="placeholder-glow">
-                                    <span class="placeholder col-6 rounded-pill mb-3 bg-primary"></span>
-                                    <span class="placeholder col-4 rounded-pill mb-2 bg-secondary"></span>
-                                    <span class="placeholder col-8 rounded-pill mb-2 bg-secondary"></span>
-                                    <span class="placeholder col-5 rounded-pill bg-secondary"></span>
-                                </div>
-                            </div>
-                        </div>
+                        <PlaceholderComponent />
                     </div>
                 }
             </div>
