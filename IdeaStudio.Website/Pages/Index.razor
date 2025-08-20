@@ -22,10 +22,11 @@
 				@foreach (var (experience, index) in experiences.Items.Select((e, i) => (e, i)))
 				{
 					<div class="col-12">
-						<ExperienceComponent Id="@experience.Id" Title="@experience.Title" Index="@index" Company="@experience.Company"
-							Mode="@experience.Mode" StartDate="@experience.StartDate" EndDate="@experience.EndDate"
-							Locations="@experience.Locations" Description="@experience.Description"
-							Responsibilities="@experience.Responsibilities" Skills="@experience.Skills" />
+						<ExperienceComponent Id="@experience.Id" Title="@experience.Title" Index="@index"
+							Company="@experience.Company" Mode="@experience.Mode" StartDate="@experience.StartDate"
+							EndDate="@experience.EndDate" Locations="@experience.Locations"
+							Description="@experience.Description" Responsibilities="@experience.Responsibilities"
+							Skills="@experience.Skills" />
 					</div>
 				}
 			</div>
@@ -48,8 +49,8 @@
 				@foreach (var (trainingCenter, index) in trainingCenters.Items.Select((t, i) => (t, i)))
 				{
 					<div class="col-12 col-lg-6 col-xxl-4">
-						<article class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 h-100 fade-in-up" data-bs-delay="@(index * 50)"
-							style="transition-delay: @(index * 50)ms;">
+						<article class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 h-100 fade-in-up"
+							data-bs-delay="@(index * 50)" style="transition-delay: @(index * 50)ms;">
 							<div class="card-body p-4">
 								<h3 class="card-title h4 mb-3 text-primary fw-bold">@trainingCenter.Name</h3>
 
@@ -174,11 +175,12 @@
 
 	private RenderFragment<(string Title, string? Icon)> Badge => (skill) =>
 	{
-		return @<span class="badge text-bg-light text-primary bg-light bg-opacity-50 me-2 mb-2 d-inline-flex align-items-center">
-			@if (!string.IsNullOrEmpty(skill.Icon))
-			{
+		return @<span
+			class="badge text-bg-light text-primary bg-light bg-opacity-50 me-2 mb-2 d-inline-flex align-items-center">
+		@if (!string.IsNullOrEmpty(skill.Icon))
+		{
 				<i class="fa-duotone fa-light @skill.Icon me-1" aria-hidden="true"></i>
-			}
+		}
 			<span>@skill.Title</span>
 		</span>;
 	};

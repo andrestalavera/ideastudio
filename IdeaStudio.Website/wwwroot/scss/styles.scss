@@ -78,6 +78,20 @@ $enable-smooth-scroll: true;
 		transform: translateY(0px) scale(1) !important;
 		filter: blur(0) !important;
 	}
+
+	@media print {
+		opacity: 1 !important;
+		transform: none !important;
+		transition: none !important;
+		filter: none !important;
+
+		&.animate {
+			opacity: 1 !important;
+			transform: none !important;
+			transition: none !important;
+			filter: none !important;
+		}
+	}
 }
 
 html {
@@ -369,10 +383,52 @@ section {
 	.card-text {
 		border: none !important;
 		margin: 0 !important;
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
 		padding: 0 !important;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
 		width: 100% !important;
 		background: transparent !important;
 		color: $dark !important;
+	}
+
+	.container {
+		max-width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+
+		@media (min-width: 576px) {
+			max-width: 100% !important;
+		}
+
+		@media (min-width: 768px) {
+			max-width: 100% !important;
+		}
+
+		@media (min-width: 992px) {
+			max-width: 100% !important;
+		}
+
+		@media (min-width: 1200px) {
+			max-width: 100% !important;
+		}
+	}
+
+	[class*="col"],
+	[class*="col-"],
+	[class*="col-sm-"],
+	[class*="col-md-"],
+	[class*="col-lg-"],
+	[class*="col-xl-"],
+	[class*="col-xxl-"] {
+		width: 100% !important;
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
 	}
 
 	.shadow,
@@ -384,51 +440,7 @@ section {
 		text-shadow: none !important;
 	}
 
-	// $js : xs,
-	// sm,
-	// md,
-	// lg,
-	// xl;
-
 	@for $i from 1 through 5 {
-
-		// .p-#{$i},
-		// .py-#{$i},
-		// .px-#{$i} {
-		// 	padding: 0.2rem !important;
-		// 	padding-left: 0.2rem !important;
-		// 	padding-bottom: 0.2rem !important;
-		// 	padding-right: 0.2rem !important;
-		// 	padding-top: 0.2rem !important;
-		// }
-
-		// .m-#{$i},
-		// .my-#{$i},
-		// .mx-#{$i} {
-		// 	margin: 0.2rem !important;
-		// 	margin-left: 0.2rem !important;
-		// 	margin-bottom: 0.2rem !important;
-		// 	margin-right: 0.2rem !important;
-		// 	margin-top: 0.2rem !important;
-		// }
-
-		// @each $j in $js {
-		// 	.p-#{$j}-#{$i} {
-		// 		padding: 0.2rem !important;
-		// 		padding-left: 0.2rem !important;
-		// 		padding-bottom: 0.2rem !important;
-		// 		padding-right: 0.2rem !important;
-		// 		padding-top: 0.2rem !important;
-		// 	}
-
-		// 	.m-#{$j}-#{$i} {
-		// 		margin: 0.2rem !important;
-		// 		margin-left: 0.2rem !important;
-		// 		margin-bottom: 0.2rem !important;
-		// 		margin-right: 0.2rem !important;
-		// 		margin-top: 0.2rem !important;
-		// 	}
-		// }
 
 		.text-shadow-#{$i} {
 			text-shadow: none !important;
