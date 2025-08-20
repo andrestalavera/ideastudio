@@ -71,15 +71,11 @@ $enable-smooth-scroll: true;
 	transform: translateY(50px) scale(0.9) !important;
 	transition: all $delay cubic-bezier(0.16, 1, 0.3, 1) $delay,
 		transform $delay cubic-bezier(0.16, 1, 0.3, 1) $delay;
-	-webkit-backdrop-filter: blur(15px) !important;
-	backdrop-filter: blur(15px) !important;
 	filter: blur(5px) !important;
 
 	&.animate {
 		opacity: .9 !important;
 		transform: translateY(0px) scale(1) !important;
-		-webkit-backdrop-filter: blur(10px) !important;
-		backdrop-filter: blur(10px) !important;
 		filter: blur(0) !important;
 	}
 }
@@ -144,7 +140,6 @@ body {
 // Background layers
 #background-layers {
 	video {
-		object-fit: cover;
 		transition: opacity 2s ease-in-out;
 
 		&[data-loaded="true"] {
@@ -163,16 +158,15 @@ body {
 
 @for $i from 1 through 3 {
 	.bg-acrylic-#{$i} {
-		-webkit-backdrop-filter: blur(25px * $i) saturate(1.1) !important;
-		backdrop-filter: blur(25px * $i) saturate(1.1) !important;
+		-webkit-backdrop-filter: blur(25px * $i) !important;
+		backdrop-filter: blur(25px * $i) !important;
 	}
 
 	.text-shadow-#{$i} {
-		text-shadow: 0 4px*(math.div($i, 2)) 8px*(math.div($i, 2)) rgba($dark, 0.5);
+		text-shadow: 1px*$i 1.5px*$i 3px*$i $primary !important;
 	}
 }
 
-// Navigation
 .navbar {
 	@include fluent-ease();
 	@extend .bg-acrylic-1;
@@ -212,9 +206,7 @@ body {
 	}
 }
 
-// Hero section
 .hero-section {
-
 	.hero-card {
 		max-width: 900px;
 		@include fluent-ease();
@@ -233,13 +225,16 @@ body {
 				@extend .border-opacity-50;
 				transform: scale(1.05);
 			}
+
+			@media print {
+				max-width: 150px;
+				max-height: 150px;
+			}
 		}
 	}
 }
 
-// Cards
 .card {
-	@extend .bg-light;
 	@extend .border;
 	@extend .border-light;
 	@extend .border-2;
@@ -278,27 +273,6 @@ body {
 	}
 }
 
-.badge {
-	@extend .px-2;
-	@extend .py-1;
-}
-
-.btn {
-	font-weight: $font-weight-semibold;
-	@extend .px-3;
-	@extend .py-2;
-	@extend .border-2;
-}
-
-
-.navbar {
-	@extend .border;
-	@extend .border-light;
-	@extend .border-opacity-50;
-	@extend .bg-acrylic-2;
-	@extend .shadow-lg;
-}
-
 @keyframes shimmer {
 	0% {
 		background-position: -200% 0;
@@ -309,17 +283,14 @@ body {
 	}
 }
 
-// Animation classes
 .fade-in-up {
 	@include fade-in-animation();
 }
 
-// Sections
 section {
 	scroll-margin-top: 80px;
 }
 
-// Responsive improvements
 @media (max-width: 576px) {
 	.card .card-body {
 		padding: 1.5rem;
@@ -346,11 +317,10 @@ section {
 	}
 }
 
-// High contrast mode
 @media (prefers-contrast: high) {
 	.card {
 		border: 2px solid #fff !important;
-		background: rgba(0, 0, 0, 0.9) !important;
+		background: rgb(0, 0, 0) !important;
 	}
 
 	.badge {
@@ -358,13 +328,11 @@ section {
 	}
 }
 
-// Focus indicators
 *:focus {
 	outline: 3px solid rgba($primary, 0.8);
 	outline-offset: 2px;
 }
 
-// Reduced motion preferences
 @media (prefers-reduced-motion: reduce) {
 
 	*,
@@ -389,17 +357,90 @@ section {
 	}
 }
 
-// Loading animation for virtualized content
-.virtualize-container > div:first-child[style="height: 0px; flex-shrink: 0;"] {
-	display: none;
+@media print {
+
+	.container,
+	.row,
+	.col,
+	.border,
+	.card,
+	.card-body,
+	.card-title,
+	.card-text {
+		border: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		width: 100% !important;
+		background: transparent !important;
+		color: $dark !important;
+	}
+
+	.shadow,
+	.shadow-lg,
+	.text-shadow-1,
+	.text-shadow-2,
+	.text-shadow-3 {
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+
+	// $js : xs,
+	// sm,
+	// md,
+	// lg,
+	// xl;
+
+	@for $i from 1 through 5 {
+
+		// .p-#{$i},
+		// .py-#{$i},
+		// .px-#{$i} {
+		// 	padding: 0.2rem !important;
+		// 	padding-left: 0.2rem !important;
+		// 	padding-bottom: 0.2rem !important;
+		// 	padding-right: 0.2rem !important;
+		// 	padding-top: 0.2rem !important;
+		// }
+
+		// .m-#{$i},
+		// .my-#{$i},
+		// .mx-#{$i} {
+		// 	margin: 0.2rem !important;
+		// 	margin-left: 0.2rem !important;
+		// 	margin-bottom: 0.2rem !important;
+		// 	margin-right: 0.2rem !important;
+		// 	margin-top: 0.2rem !important;
+		// }
+
+		// @each $j in $js {
+		// 	.p-#{$j}-#{$i} {
+		// 		padding: 0.2rem !important;
+		// 		padding-left: 0.2rem !important;
+		// 		padding-bottom: 0.2rem !important;
+		// 		padding-right: 0.2rem !important;
+		// 		padding-top: 0.2rem !important;
+		// 	}
+
+		// 	.m-#{$j}-#{$i} {
+		// 		margin: 0.2rem !important;
+		// 		margin-left: 0.2rem !important;
+		// 		margin-bottom: 0.2rem !important;
+		// 		margin-right: 0.2rem !important;
+		// 		margin-top: 0.2rem !important;
+		// 	}
+		// }
+
+		.text-shadow-#{$i} {
+			text-shadow: none !important;
+		}
+	}
+
+	.pagebreak {
+		clear: both;
+		page-break-after: always;
+	}
 }
 
-// Utility classes
-.object-fit-cover {
-	object-fit: cover;
-}
-
-// Custom scrollbar
 ::-webkit-scrollbar {
 	width: 8px;
 }

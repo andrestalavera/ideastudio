@@ -28,22 +28,6 @@
 							Responsibilities="@experience.Responsibilities" Skills="@experience.Skills" />
 					</div>
 				}
-				@* <Virtualize Items="experiences.Items" Context="experience">
-				<ItemContent>
-					<ExperienceComponent Id="@experience.Id" Title="@experience.Title" Company="@experience.Company" Mode="@experience.Mode"
-						StartDate="@experience.StartDate" EndDate="@experience.EndDate" Location="@experience.Location"
-						Description="@experience.Description" Responsibilities="@experience.Responsibilities"
-						Skills="@experience.Skills" />
-				</ItemContent>
-				<EmptyContent>
-					<p class="text-center">No experience details available.</p>
-				</EmptyContent>
-				<Placeholder>
-					<LoadingComponent />
-					<PlaceholderComponent />
-				</Placeholder>
-			</Virtualize>
-				}*@
 			</div>
 		}
 		else
@@ -54,7 +38,7 @@
 	</div>
 </section>
 
-<section id="training" class="py-5">
+<section id="training" class="py-5 d-print-none">
 	<div class="container">
 		<SectionComponent Title="I have conducted training courses for..." />
 
@@ -63,20 +47,19 @@
 			<div class="row g-4">
 				@foreach (var (trainingCenter, index) in trainingCenters.Items.Select((t, i) => (t, i)))
 				{
-					<div class="col-lg-6">
-						<article class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 h-100 fade-in-up" data-bs-delay="@(index * 25)"
-							style="transition-delay: @(index * 25)ms;">
+					<div class="col-12 col-lg-6 col-xxl-4">
+						<article class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 h-100 fade-in-up" data-bs-delay="@(index * 50)"
+							style="transition-delay: @(index * 50)ms;">
 							<div class="card-body p-4">
 								<h3 class="card-title h4 mb-3 text-primary fw-bold">@trainingCenter.Name</h3>
 
 								@if (trainingCenter.Courses != null)
 								{
 									<div class="mb-3">
-										<h4 class="h6 mb-2  opacity-75">Courses</h4>
 										<div class="d-flex flex-wrap gap-2">
 											@foreach (var course in trainingCenter.Courses)
 											{
-												<span class="badge bg-acrylic-2 text-primary rounded-pill px-3 py-2">
+												<span class="badge bg-acrylic-2 text-primary rounded-pill px-3 py-2 mb-1 me-1">
 													<i class="fas fa-graduation-cap me-2" aria-hidden="true"></i>
 													@course
 												</span>
@@ -87,10 +70,13 @@
 
 								@if (trainingCenter.Locations != null)
 								{
-									<div class="small  opacity-75">
-										<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
-										@string.Join(" - ", trainingCenter.Locations)
-									</div>
+									@foreach (string location in trainingCenter.Locations)
+									{
+										<span class="badge bg-acrylic-2 text-primary rounded-pill px-3 py-2 mb-1 me-1">
+											<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
+											@location
+										</span>
+									}
 								}
 							</div>
 						</article>
@@ -104,11 +90,7 @@
 				@for (int i = 0; i < 6; i++)
 				{
 					<div class="col-lg-6">
-						<div class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 h-100">
-							<div class="card-body p-4">
-								<PlaceholderComponent />
-							</div>
-						</div>
+						<PlaceholderComponent />
 					</div>
 				}
 			</div>
@@ -116,7 +98,6 @@
 	</div>
 </section>
 
-<!-- Contact Section -->
 <section id="contact" class="py-5">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -190,4 +171,15 @@
 			await JSRuntime.InvokeVoidAsync("initializeFadeInAnimations");
 		}
 	}
+
+	private RenderFragment<(string Title, string? Icon)> Badge => (skill) =>
+	{
+		return @<span class="badge text-bg-light text-primary bg-light bg-opacity-50 me-2 mb-2 d-inline-flex align-items-center">
+			@if (!string.IsNullOrEmpty(skill.Icon))
+			{
+				<i class="fa-duotone fa-light @skill.Icon me-1" aria-hidden="true"></i>
+			}
+			<span>@skill.Title</span>
+		</span>;
+	};
 }

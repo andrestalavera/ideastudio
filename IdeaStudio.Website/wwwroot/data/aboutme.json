@@ -4,8 +4,10 @@
 		{
 			"title": "Your .NET Consultant",
 			"paragraphs": [
-				"Expert in .NET and Azure, providing tailored solutions for businesses.",
-				"Specializing in ASP.NET Core, MAUI, and cloud architecture."
+				"Expert .NET and Azure consultant delivering tailored business solutions.",
+				"Specializing in ASP.NET Core, MAUI, and modern cloud architecture on Azure.",
+				"Microsoft developer with proven enterprise project success.",
+				"Serving startups, SMEs, and digital service companies across multiple industries."
 			],
 			"images": [
 				"dotnet.svg",
@@ -16,8 +18,10 @@
 		{
 			"title": "Your Trainer",
 			"paragraphs": [
-				"Experienced .NET and Azure trainer for developers and companies.",
-				"Content creator for LinkedIn Learning, focusing on cutting-edge technologies."
+				"Experienced .NET and Azure trainer for developers and companies. ",
+				"LinkedIn Learning content creator focusing on Microsoft technologies.",
+				"Proven track record training teams in France, Belgium, and Luxembourg.",
+				"Expert in .NET 9, Blazor Server, and Azure cloud solutions."
 			],
 			"icons": [
 				"fab fa-linkedin text-primary"
@@ -25,34 +29,42 @@
 			"link": "#training"
 		},
 		{
-			"title": "Passion for Technology",
+			"title": "Passionnated",
 			"paragraphs": [
-				"Dedicated to staying current with the latest tech trends.",
-				"Committed to delivering innovative solutions that meet client needs."
+				"Dedicated Microsoft technology expert staying current with latest trends.",
+				"Committed to delivering innovative .NET solutions meeting client needs.",
+				"Active developer community participant since Microsoft Student Partner days.",
+				"Passionate about mobile development, web technologies, and cloud architecture."
 			],
 			"link": "#contact"
 		},
 		{
-			"title": "Diverse Experience",
+			"title": "Diverse experiences",
 			"paragraphs": [
-				"Worked with startups, SMEs, and digital service companies.",
-				"Expertise in medical statistics, finance, aviation, logistics, education, and accounting sectors."
+				"Successfully delivered projects across medical, finance, aviation, and logistics sectors.",
+				"Expertise spanning healthcare statistics, insurance software, and education platforms.",
+				"Proven experience with multiple companies.",
+				"Mobile developer specializing in MAUI, Xamarin, and cross-platform solutions."
 			],
 			"link": "#experiences"
 		},
 		{
-			"title": "Recent Projects",
+			"title": "Recent projects",
 			"paragraphs": [
-				"Enhanced logistics software at TRIGO using .NET, Vue, and Azure.",
-				"Led team at Active Assurances to develop new insurance software."
+				"Improved healthcare data portals for Medtech and CEESA using .NET 9.",
+				"Enhanced TRIGO logistics software using advanced .NET development and Vue.js.",
+				"Led Active Assurances team developing comprehensive insurance management system.",
+				"Specialized in Azure migration, CI/CD implementation, and clean architecture design."
 			],
 			"link": "#experiences"
 		},
 		{
-			"title": "Personal Attributes",
+			"title": "Personal attributes",
 			"paragraphs": [
-				"Curious and versatile, with a talent for explaining complex concepts.",
-				"Strong analytical and design skills, thriving in collaborative environments."
+				"Curious and versatile developer with strong analytical design skills.",
+				"Talented at explaining complex technical concepts to diverse audiences.",
+				"Collaborative team leader thriving in dynamic development environments.",
+				"Trilingual consultant comfortable working across French, Spanish, and English markets."
 			]
 		}
 	],

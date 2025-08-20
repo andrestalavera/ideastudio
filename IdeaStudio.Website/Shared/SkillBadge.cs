@@ -1,9 +1,11 @@
 using System.Collections.Frozen;
 using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 
 namespace IdeaStudio.Website.Shared;
 
-public static class SkillBadgeOptimized
+public static class SkillBadge
 {
 	private static readonly FrozenDictionary<string, string> SkillToBadgeMap =
 		CreateSkillMappings().ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
@@ -91,19 +93,17 @@ public static class SkillBadgeOptimized
 	};
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetSkillBadge(string skill)
+	public static string GetSkillIcon(string skill)
 	{
 		if (string.IsNullOrWhiteSpace(skill))
 			return "fa-code";
 
 		ReadOnlySpan<char> skillSpan = skill.AsSpan().Trim();
 
-		// Recherche exacte avec AlternateLookup (.NET 9)
 		FrozenDictionary<string, string>.AlternateLookup<ReadOnlySpan<char>> lookup = SkillToBadgeMap.GetAlternateLookup<ReadOnlySpan<char>>();
 		if (lookup.TryGetValue(skillSpan, out string? exactMatch))
 			return exactMatch;
 
-		// Recherche partielle optimisée
 		string normalizedSkill = skill.Trim().ToLowerInvariant();
 		foreach ((string? key, string? badge) in SkillToBadgeMap)
 		{
@@ -113,4 +113,19 @@ public static class SkillBadgeOptimized
 
 		return "fa-code";
 	}
+
+	public static RenderFragment GetBadge(string Title, string? Icon) => builder =>
+	{
+		builder.OpenElement(0, "span");
+		builder.AddAttribute(1, "class", "badge text-bg-light text-primary bg-light bg-opacity-50 me-2 mb-2 d-inline-flex align-items-center");
+		if (!string.IsNullOrEmpty(Icon))
+		{
+			builder.OpenElement(2, "i");
+			builder.AddAttribute(3, "class", $"fa-duotone fa-light {Icon} me-1");
+			builder.AddAttribute(4, "aria-hidden", "true");
+			builder.CloseElement();
+		}
+		builder.AddContent(5, Title);
+		builder.CloseElement();
+	};
 }

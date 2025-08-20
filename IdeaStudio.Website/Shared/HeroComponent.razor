@@ -6,12 +6,12 @@
 	<div class="container z-2">
 		<div class="row justify-content-center">
 			<div class="col-12">
-				<div class="card bg-dark bg-opacity-25 text-white shadow-lg mx-auto hero-card fade-in-up text-shadow-1 mt-5" id="hero">
+				<div class="card bg-primary bg-opacity-25 text-white shadow-lg mx-auto hero-card fade-in-up text-shadow-1 mt-5" id="hero">
 					<div class="card-body p-5 z-3">
 						<h1 class="display-1 fw-light mb-5 text-center text-white">
 							Let's shape the future of your business together.
 						</h1>
-						<div class="row align-items-center">
+						<div class="row align-items-center pt-5">
 							<div class="col-md-4 text-center mb-4 mb-md-0">
 								<div class="profile-image-container position-relative">
 									<img src="@ProfileImage" alt="Andrés Talavera - .NET Developer and Azure Consultant"
@@ -20,8 +20,8 @@
 								</div>
 							</div>
 							<div class="col-md-8 text-md-start">
-								<h2 class="h2 mb-3 fw-bold text-uppercase text-white">Andrés Talavera</h2>
-								<p class="lead mb-4 fw-semibold text-white">
+								<h2 class="h2 mb-3 fw-bold text-uppercase text-white text-shadow-1">Andrés Talavera</h2>
+								<p class="lead mb-4 text-white text-shadow-1">
 									@if (!string.IsNullOrEmpty(Introduction))
 									{
 										@((MarkupString)Introduction)
@@ -51,7 +51,7 @@
 						</div>
 					</div>
 
-					<div id="hero-background" class="position-absolute top-0 start-0 w-100 h-100 z-1">
+					<div id="hero-background" class="position-absolute top-0 start-0 w-100 h-100 z-1 d-print-none">
 						<img src="images/aboutme-background.png" alt="Hero background"
 							class="w-100 h-100 object-fit-cover rounded"
 							style="mix-blend-mode: overlay; z-index: -100;">

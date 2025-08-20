@@ -1,11 +1,10 @@
 ﻿@inherits LayoutComponentBase
 @inject IJSRuntime JSRuntime
 
-<div id="loading-overlay" class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-acrylic-1"
+<div id="loading-overlay" class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-acrylic-1 d-print-none"
 	data-bs-theme="dark">
-	@* <img src="images/video-background.png" alt="Background placeholder" class="w-100 h-100 object-fit-cover z-1"> *@
 	<div class="loading-content d-flex justify-content-center align-items-center h-100 z-3">
-		<div class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1">
+		<div class="card bg-light text-bg-light text-primary bg-opacity-75 bg-acrylic-1">
 			<div class="card-body text-center p-5">
 				<div class="spinner-border mb-3" role="status" aria-label="Loading application">
 					<span class="visually-hidden">Loading...</span>
@@ -17,7 +16,7 @@
 	</div>
 </div>
 
-<div id="background-layers" class="position-fixed top-0 start-0 w-100 h-100" style="z-index: -5;">
+<div id="background-layers" class="position-fixed top-0 start-0 w-100 h-100 d-print-none" style="z-index: -5;">
 	<div id="video-background" class="position-absolute top-0 start-0 w-100 h-100">
 		<video autoplay muted loop playsinline class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
 			style="opacity: 0" poster="images/video-background.png" preload="metadata">
@@ -35,7 +34,7 @@
 		Skip to main content
 	</a>
 
-	<nav class="navbar navbar-expand-lg navbar-dark sticky-top" data-bs-spy="scroll" data-bs-target="#navbar-nav"
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-25 sticky-top border-0 border-bottom border-opacity-25 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar-nav"
 		data-bs-offset="70">
 		<div class="container">
 			<a class="navbar-brand fw-bold d-flex align-items-center" href="/" aria-label="IdeaStudio - Home">
@@ -70,31 +69,31 @@
 						class="btn btn-light btn-sm bg-acrylic-2 rounded-pill" target="_blank" rel="noopener noreferrer"
 						aria-label="LinkedIn Profile">
 						<i class="fab fa-linkedin me-1" aria-hidden="true"></i>
-						LinkedIn
+						<span class="d-none d-xl-inline">LinkedIn</span>
 					</a>
 					<a href="https://github.com/andrestalavera" class="btn btn-light btn-sm bg-acrylic-2 rounded-pill"
 						target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
 						<i class="fab fa-github me-1" aria-hidden="true"></i>
-						GitHub
+						<span class="d-none d-xl-inline">GitHub</span>
 					</a>
 					<button class="btn btn-primary btn-sm bg-acrylic-1 rounded-pill"
 						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/30min'});return false;"
 						aria-label="Schedule a meeting">
 						<i class="fas fa-video me-1" aria-hidden="true"></i>
-						Meet
+						<span class="d-none d-xl-inline">Meet</span>
 					</button>
 				</div>
 			</div>
 		</div>
 	</nav>
 
-	<main id="main-content" class="flex-grow-1" role="main">
+	<main id="main-content" class="flex-grow-1 text-primary" role="main">
 		@Body
 	</main>
 
-	<footer class="mt-auto py-4 text-center">
+	<footer class="mt-auto py-4 text-center d-print-none">
 		<div class="container">
-			<div class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 border-0">
+			<div class="card bg-light text-bg-light text-primary bg-opacity-75 bg-acrylic-1 border-0">
 				<div class="card-body py-3">
 					<p class="mb-0">@DateTime.Now.Year IdeaStud.io - Andrés Talavera. All rights reserved.</p>
 					<small class="opacity-75">

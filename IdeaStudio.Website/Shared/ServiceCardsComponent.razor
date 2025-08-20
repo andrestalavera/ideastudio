@@ -7,43 +7,45 @@
             <div class="row g-4">
                 @foreach (var (card, index) in Cards.Select((c, i) => (c, i)))
                 {
-                    <div class="col-lg-6">
+                    <div class="col-12 col-lg-6 col-xxl-4">
                         <article class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 h-100 fade-in-up"
-                                 data-bs-delay="@(index * 25)"
-                                 style="transition-delay: @(index * 25)ms;">
+                                 data-bs-delay="@(index * 50)"
+                                 style="transition-delay: @(index * 50)ms;">
                             @if (card.Banner != null)
                             {
                                 <img src="@card.Banner" class="card-img-top rounded-top" alt="@card.Title banner" loading="lazy">
                             }
-                            <div class="card-body d-flex flex-column p-4">
-                                <h3 class="card-title h4 mb-3 fw-bold">@card.Title</h3>
+                            <div class="card-body d-flex flex-column">
+								<h6 class="card-title display-6 text-primary fw-normal">@card.Title</h6>
+								<div class="card-text">
                                 @if (card.Paragraphs != null)
                                 {
                                     @foreach (string paragraph in card.Paragraphs)
                                     {
-                                        <p class="card-text mb-2 ">@((MarkupString)paragraph)</p>
+                                        <p class="text-primary">@((MarkupString)paragraph)</p>
                                     }
                                 }
 
                                 @if (card.Images != null)
                                 {
-                                    <div class="d-flex gap-3 my-3 justify-content-center">
+                                    <div class="d-flex d-print-none gap-3 my-3 justify-content-center">
                                         @foreach (string image in card.Images)
                                         {
-                                            <img src="images/@image" alt="@card.Title technology" class="tech-icon p-2" width="64" height="64" loading="lazy">
+                                            <img src="images/@image" alt="@card.Title technology" class="p-1" width="70" height="70" loading="lazy">
                                         }
                                     </div>
                                 }
 
                                 @if (card.Icons != null)
                                 {
-                                    <div class="d-flex gap-3 my-3 justify-content-center">
+                                    <div class="d-flex d-print-none gap-3 my-3 justify-content-center">
                                         @foreach (string icon in card.Icons)
                                         {
-											<i class="@icon fs-4" aria-hidden="true"></i>
+											<i class="@icon fa-4x" aria-hidden="true"></i>
                                         }
                                     </div>
                                 }
+								</div>
                             </div>
                         </article>
                     </div>

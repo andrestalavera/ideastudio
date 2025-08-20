@@ -2,11 +2,10 @@
 @using Markdig
 @inject IJSRuntime JSRuntime
 
-<article id="@Id" class="fade-in-up mb-4" data-bs-delay="@(Index * 25)" style="transition-delay: @(Index * 25)ms;"
+<article id="@Id" class="fade-in-up pagebreak mb-4" data-bs-delay="@(Index * 50)" style="transition-delay: @(Index * 50)ms;"
 	data-bs-theme="light">
 	<div class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 shadow-lg h-100">
 		<div class="card-body p-4">
-			<!-- Large screens layout -->
 			<div class="row d-none d-lg-flex">
 				<div class="col-lg-4 text-center text-lg-start">
 					<div class="sticky-lg-top" style="top: 120px;">
@@ -16,38 +15,31 @@
 									onerror="this.src='images/placeholder.png'">
 							</div>
 						</div>
-						<h3 class="h4 mb-2 fw-bold">@Title</h3>
-						<h4 class="h5  mb-3">@Company</h4>
-						<div class="small">
+						<div class="display-6 text-primary">@Title</div>
+						<p class="lead text-primary">@Company</p>
+						<div>
 							@if (Mode != null)
 							{
-								<div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
-									<span class="badge text-bg-light bg-opacity-25">
-										<i class="fas fa-briefcase me-2" aria-hidden="true"></i>
-										@Mode
-									</span>
+								<div class="d-flex align-items-center justify-content-center justify-content-lg-start">
+									@Badge((Mode, "fas fa-briefcase"))
 								</div>
 							}
 							@if (Duration != null)
 							{
-								<div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
-									<span class="badge text-bg-light bg-opacity-25">
-										<i class="fas fa-calendar me-2" aria-hidden="true"></i>
-										@((MarkupString)Duration)
-									</span>
+								<div class="d-flex align-items-center justify-content-center justify-content-lg-start">
+									@Badge((Duration, "fas fa-calendar"))
 								</div>
 							}
 							@if (Locations != null)
 							{
+								<div class="d-flex flex-row flex-wrap">
 								@foreach (string location in Locations)
 								{
-									<div class="mb-2 d-flex align-items-center justify-content-center justify-content-lg-start">
-										<span class="badge text-bg-light bg-opacity-25">
-											<i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>
-											@location
-										</span>
+									<div class="d-flex align-items-center justify-content-center justify-content-lg-start me-1">
+										@Badge((location, "fas fa-map-marker-alt"))
 									</div>
 								}
+								</div>
 							}
 						</div>
 					</div>
@@ -59,7 +51,7 @@
 							<div class="mb-4">
 								@foreach (var paragraph in Description.Where(d => !string.IsNullOrWhiteSpace(d)))
 								{
-									<p class="mb-3 ">@((MarkupString)paragraph)</p>
+									<p class="text-primary mb-3">@((MarkupString)paragraph)</p>
 								}
 							</div>
 						}
@@ -67,15 +59,15 @@
 						@if (Responsibilities != null)
 						{
 							<div class="mb-4">
-								<h5 class="h6 mb-3 fw-bold">Key Responsibilities</h5>
+								<h5 class="h5 text-primary mb-3 fw-bold">Key Responsibilities</h5>
 								<div class="vstack">
 									@foreach (var (responsibility, index) in Responsibilities.Select((r, i) => (r, i)))
 									{
-										<div class="">
+										<div class="text-primary">
 											<div class="d-flex align-items-start">
 												<div class="d-flex align-items-center justify-content-center me-1 flex-shrink-0"
 													style="width: 24px; height: 24px; margin-top:3px;">
-													<i class="fa-regular fa-check small" aria-hidden="true"></i>
+													<i class="fa-regular fa-check" aria-hidden="true"></i>
 												</div>
 												<span>@responsibility</span>
 											</div>
@@ -88,22 +80,15 @@
 						@if (Skills != null)
 						{
 							<div class="mb-3">
-								<h5 class="h6 mb-3 fw-bold">Technologies & Skills</h5>
+								<h5 class="h5 text-primary mb-3 fw-bold">Technologies & Skills</h5>
 								<div class="skills-container">
-									@foreach (string skill in Skills)
+									@foreach (string skill in Skills.Take(15))
 									{
-										<span
-											class="badge text-bg-light bg-opacity-25 me-2 mb-2 d-inline-flex align-items-center">
-											<i class="fa-regular @GetSkillBadge(skill) me-2 small" aria-hidden="true"></i>
-											@skill
-										</span>
+										@Badge((skill, SkillBadge.GetSkillIcon(skill)))
 									}
-									@if (Skills.Count() > 10)
+									@if (Skills.Count() > 15)
 									{
-										<span
-											class="badge text-bg-light bg-opacity-25 me-2 mb-2 d-inline-flex align-items-center opacity-75">
-											+@(Skills.Count() - 10) more
-										</span>
+										@Badge(($"+{(Skills.Count() - 15)} more", "fa fa-ellipsis-h text-primary"))
 									}
 								</div>
 							</div>
@@ -112,7 +97,6 @@
 				</div>
 			</div>
 
-			<!-- Small screens layout -->
 			<div class="d-block d-lg-none">
 				<div class="d-flex align-items-center mb-4">
 					<div class="logo-wrapper p-2 me-3 flex-shrink-0">
@@ -121,35 +105,28 @@
 					</div>
 					<div class="flex-grow-1">
 						<h3 class="h5 mb-1 text-primary fw-bold">@Title</h3>
-						<h4 class="h6  mb-0">@Company</h4>
+						<h4 class="h6 text-primary mb-0">@Company</h4>
 					</div>
 				</div>
 
-				<div class="experience-info-mobile mb-4">
+				<div class="mb-4">
 					@if (Mode != null)
 					{
-						<div class="badge text-bg-light bg-opacity-25 d-inline-flex align-items-center me-2 mb-2">
-							<i class="fas fa-briefcase me-2 text-primary" aria-hidden="true"></i>
-							<span class=" small">@Mode</span>
-						</div>
+						@Badge((Mode, "fas fa-briefcase"))
 					}
 					@if (Duration != null)
 					{
-						<div class="badge text-bg-light bg-opacity-25 d-inline-flex align-items-center me-2 mb-2">
-							<i class="fas fa-calendar me-2 text-primary" aria-hidden="true"></i>
-							<span class=" small">@((MarkupString)Duration)</span>
-						</div>
+						@Badge((Duration, "fas fa-calendar"))
 					}
-					@if (Locations != null)
-					{
-						@foreach (string location in Locations)
+					<div class="d-flex flex-row flex-wrap">
+						@if (Locations != null)
 						{
-							<div class="badge text-bg-light bg-opacity-25 d-inline-flex align-items-center me-2 mb-2">
-								<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
-								<span class=" small">@location</span>
-							</div>
+							@foreach (string location in Locations)
+							{
+								@Badge((location, "fas fa-map-marker-alt"))
+							}
 						}
-					}
+					</div>
 				</div>
 
 				@if (Description != null)
@@ -157,7 +134,7 @@
 					<div class="mb-4">
 						@foreach (var paragraph in Description.Where(d => !string.IsNullOrWhiteSpace(d)))
 						{
-							<p class="mb-2  small">@((MarkupString)paragraph)</p>
+							<p class="text-primary mb-2">@((MarkupString)paragraph)</p>
 						}
 					</div>
 				}
@@ -168,10 +145,10 @@
 						<h5 class="h6 mb-2 text-primary fw-bold">Key Responsibilities</h5>
 						@foreach (var responsibility in Responsibilities)
 						{
-							<div class="responsibility-item-mobile  rounded-3 p-2 mb-2 shadow">
+							<div class="responsibility-item-mobile text-primary rounded-3 p-2 mb-2 shadow">
 								<div class="d-flex align-items-start">
-									<i class="fas fa-check text-primary me-2 mt-1 small" aria-hidden="true"></i>
-									<span class=" small">@responsibility</span>
+									<i class="fas fa-check text-primary me-2 mt-1" aria-hidden="true"></i>
+									<span>@responsibility</span>
 								</div>
 							</div>
 						}
@@ -183,18 +160,13 @@
 					<div class="mb-3 d-none d-flex-md">
 						<h5 class="h6 mb-2 text-primary fw-bold">Technologies</h5>
 						<div class="skills-container-mobile">
-							@foreach (var skill in Skills)
+							@foreach (var skill in Skills.Take(8))
 							{
-								<span class="badge bg-acrylic-1   rounded-pill px-2 py-1 me-1 mb-1 d-inline-block">
-									@skill
-								</span>
+								@Badge((skill, SkillBadge.GetSkillIcon(skill)))
 							}
 							@if (Skills.Count() > 8)
 							{
-								<span
-									class="badge bg-acrylic-1 bg-acrylic-3  rounded-pill px-2 py-1 me-1 mb-1 d-inline-block opacity-75">
-									+@(Skills.Count() - 8)
-								</span>
+								@Badge(($"+{(Skills.Count() - 8)} more", "fa fa-ellipsis-h"))
 							}
 						</div>
 					</div>
@@ -252,6 +224,14 @@
 		}
 	}
 
-	private string GetSkillBadge(string skill) => SkillBadgeOptimized.GetSkillBadge(skill);
-
+	private RenderFragment<(string Title, string? Icon)> Badge => (skill) =>
+	{
+		return @<span class="badge text-bg-light text-primary bg-light bg-opacity-50 me-2 mb-2 d-inline-flex align-items-center">
+			@if (!string.IsNullOrEmpty(skill.Icon))
+			{
+				<i class="fa-duotone fa-light @skill.Icon me-1" aria-hidden="true"></i>
+			}
+			<span>@skill.Title</span>
+		</span>;
+	};
 }
