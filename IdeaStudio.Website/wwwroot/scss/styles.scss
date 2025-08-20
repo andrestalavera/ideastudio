@@ -125,7 +125,6 @@ body {
 
 .loading-overlay {
 	background-image: url(images/video-background.png);
-	background-clip: cover;
 	background-size: cover;
 	animation: fadeOutOverlay 5s ease-out forwards;
 	z-index: 9999;
@@ -177,7 +176,7 @@ body {
 	}
 
 	.text-shadow-#{$i} {
-		text-shadow: 1px*$i 1.5px*$i 3px*$i $primary !important;
+		text-shadow: 1px * $i 1.5px * $i 3px * $i $primary !important;
 	}
 }
 

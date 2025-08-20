@@ -115,10 +115,8 @@
 
 <body class="vh-100">
 	<div id="app">
-		<!-- This will be replaced by Blazor -->
 		<div id="loading-overlay" class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-acrylic-1"
 			data-bs-theme="dark">
-			<!-- <img src="images/video-background.png" alt="Background placeholder" class="w-100 h-100 object-fit-cover z-1"> -->
 			<div class="loading-content d-flex justify-content-center align-items-center h-100 z-3">
 				<div class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 bg-opacity-50">
 					<div class="card-body text-center p-5">
@@ -141,11 +139,8 @@
 		integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK"
 		crossorigin="anonymous"></script>
 
-	<!-- Custom JavaScript for animations and scroll spy -->
 	<script>
-		// Initialize loading animation
 		window.initializeLoadingAnimation = () => {
-			// Load video after page loads
 			setTimeout(() => {
 				const video = document.querySelector('#video-background video');
 				if (video) {
@@ -154,19 +149,14 @@
 						video.setAttribute('data-loaded', 'true');
 					});
 
-					// Force load video sources
 					video.load();
 				}
 			}, 2000);
 		};
 
-		// Initialize scroll spy and animations
 		window.initializeScrollSpy = () => {
-			// Update active nav links based on scroll position
 			const sections = document.querySelectorAll('section[id]');
-			console.log(sections);
 			const navLinks = document.querySelectorAll('.nav-link[data-section]');
-			console.log(navLinks);
 
 			function updateActiveNavLink() {
 				let current = '';
@@ -192,7 +182,6 @@
 			updateActiveNavLink();
 		};
 
-		// Initialize fade in animations
 		window.initializeFadeInAnimations = () => {
 			const observerOptions = {
 				threshold: 0.1,
@@ -216,7 +205,6 @@
 			});
 		};
 
-		// Smooth scrolling for anchor links
 		document.addEventListener('click', function (e) {
 			if (e.target.matches('a[href^="#"]')) {
 				e.preventDefault();
@@ -231,11 +219,8 @@
 			}
 		});
 
-		// Initialize everything when DOM is ready
 		document.addEventListener('DOMContentLoaded', function () {
-			// Add Bootstrap classes if needed
 			if (typeof bootstrap !== 'undefined') {
-				// Initialize Bootstrap components
 				const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
 				tooltipTriggerList.map(function (tooltipTriggerEl) {
 					return new bootstrap.Tooltip(tooltipTriggerEl);

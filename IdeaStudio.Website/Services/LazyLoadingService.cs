@@ -5,7 +5,6 @@ namespace IdeaStudio.Website.Services;
 
 public class LazyLoadingService(HttpClient httpClient) : ILazyLoadingService
 {
-	private readonly HttpClient httpClient = httpClient;
 	private readonly ConcurrentDictionary<string, object> cache = [];
 
 	public async Task<TData?> LoadDataAsync<TData>(string url, CancellationToken cancellationToken = default)
