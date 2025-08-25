@@ -13,9 +13,9 @@ namespace IdeaStudio.Website.Models;
 /// <param name="Description">Description of job</param>
 /// <param name="Responsibilities">Key responsibilities</param>
 /// <param name="Skills">Skills</param>
-public record Experience
+public partial record Experience
 {
-	public string? Id => Title?.Replace(" ", "-").Replace(".", "").Replace(":", "-").Replace(",", "-").ToLowerInvariant();
+	public string CompanyAndTitle => $"{Company}-{Title}";
 	public string? Title { get; init; }
 	public string? Company { get; init; }
 	public string? Mode { get; init; }
@@ -26,6 +26,7 @@ public record Experience
 	public IEnumerable<string?>? Responsibilities { get; init; }
 	public IEnumerable<string?>? Skills { get; init; }
 }
+
 public record Experiences
 {
 	public ICollection<Experience>? Items { get; init; }

@@ -9,6 +9,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<ILazyLoadingService, LazyLoadingService>();
+builder.Services.AddScoped<IAnimationService, AnimationService>();
+builder.Services.AddScoped<ISeoService, SeoService>();
 
 WebAssemblyHost app = builder.Build();
 

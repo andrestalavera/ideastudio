@@ -19,12 +19,12 @@
 			"title": "Your Trainer",
 			"paragraphs": [
 				"Experienced .NET and Azure trainer for developers and companies. ",
-				"LinkedIn Learning content creator focusing on Microsoft technologies.",
+				"LinkedIn Learning paragraphs creator focusing on Microsoft technologies.",
 				"Proven track record training teams in France, Belgium, and Luxembourg.",
 				"Expert in .NET 9, Blazor Server, and Azure cloud solutions."
 			],
 			"icons": [
-				"fab fa-linkedin text-primary"
+				"fab fa-linkedin linkedin-logo"
 			],
 			"link": "#training"
 		},

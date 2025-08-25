@@ -1,12 +1,13 @@
 @using IdeaStudio.Website.Models
 @using Markdig
+@inherits AnimatedComponentBase
 
 <section class="hero-section py-5 d-flex align-items-center justify-content-center min-vh-100" data-bs-theme="dark">
 	<div class="container z-2">
 		<div class="row justify-content-center">
 			<div class="col-12">
-				<div class="card bg-primary bg-opacity-25 text-white shadow-lg mx-auto hero-card fade-in-up text-shadow-1 mt-5"
-					id="hero">
+				<div @ref="ElementRef" class="card bg-primary bg-opacity-25 shadow-lg mx-auto hero-card fade-in-up text-shadow-1 mt-5"
+					id="hero" data-bs-delay="5000">
 					<div class="card-body p-5 z-3">
 						<h1 class="display-1 fw-light mb-5 text-center text-white">
 							Let's shape the future of your business together.

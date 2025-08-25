@@ -12,9 +12,7 @@
 public record Card
 {
 	public string? Title { get; init; }
-	public string? Banner { get; init; }
 	public IEnumerable<string>? Paragraphs { get; init; }
 	public IEnumerable<string>? Images { get; init; }
 	public IEnumerable<string>? Icons { get; init; }
-	public string? Link { get; init; }
 }

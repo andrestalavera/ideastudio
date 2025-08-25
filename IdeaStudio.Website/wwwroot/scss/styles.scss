@@ -68,13 +68,13 @@ $enable-smooth-scroll: true;
 
 @mixin fade-in-animation($delay: 0.5s) {
 	opacity: .7 !important;
-	transform: translateY(50px) scale(0.9) !important;
+	transform: translateY(50px) scale(0.95) !important;
 	transition: all $delay cubic-bezier(0.16, 1, 0.3, 1) $delay,
 		transform $delay cubic-bezier(0.16, 1, 0.3, 1) $delay;
 	filter: blur(5px) !important;
 
 	&.animate {
-		opacity: .9 !important;
+		opacity: .975 !important;
 		transform: translateY(0px) scale(1) !important;
 		filter: blur(0) !important;
 	}
@@ -121,6 +121,10 @@ body {
 	&:focus {
 		top: 10px;
 	}
+}
+
+.linkedin-logo {
+	color: rgb(44, 100, 188) !important;
 }
 
 .loading-overlay {

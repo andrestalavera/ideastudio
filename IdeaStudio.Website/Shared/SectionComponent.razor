@@ -1,6 +1,8 @@
+@inherits AnimatedComponentBase
+
 <div class="row d-print-none">
 	<div class="col-12">
-		<h1 id="@id" class="text-center mb-5 fade-in-up display-1 text-white text-shadow-2">@Title</h1>
+		<h1 @ref="ElementRef" id="@id" class="text-center mb-5 fade-in-up display-1 text-white text-shadow-2">@Title</h1>
 	</div>
 </div>
 @code {

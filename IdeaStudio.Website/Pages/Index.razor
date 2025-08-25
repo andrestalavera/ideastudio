@@ -1,45 +1,129 @@
 @page "/"
 @page "/andres-talavera-resume"
 @using IdeaStudio.Website.Models
-@using IdeaStudio.Website.Shared
 @using IdeaStudio.Website.Services
+@using IdeaStudio.Website.Shared
 @using Markdig
 @using Microsoft.AspNetCore.Components.Web.Virtualization
+@using System.Text.Json
 @inject ILazyLoadingService LazyLoadingService
+@inject IAnimationService AnimationService
 @inject IJSRuntime JSRuntime
+@inject ILoggerFactory LoggerFactory
+@inject NavigationManager NavigationManager
 
 <HeroComponent Introduction="@aboutMe?.Introduction" Languages="@aboutMe?.Languages" />
 
-<ServiceCardsComponent Cards="@aboutMe?.Cards" />
-
-<section id="experiences" class="py-5">
+<section id="about" class="py-5">
 	<div class="container">
-		<SectionComponent Title="Professional experiences" />
-
-		@if (experiences?.Items != null && experiences.Items.Any())
+		@if (aboutMe is not null && aboutMe.Cards is not null)
 		{
 			<div class="row g-4">
-				@foreach (var (experience, index) in experiences.Items.Select((e, i) => (e, i)))
+				@foreach (var (card, index) in aboutMe.Cards.Select((c, i) => (c, i)))
 				{
-					<div class="col-12">
-						<ExperienceComponent Id="@experience.Id" Title="@experience.Title" Index="@index"
-							Company="@experience.Company" Mode="@experience.Mode" StartDate="@experience.StartDate"
-							EndDate="@experience.EndDate" Locations="@experience.Locations"
-							Description="@experience.Description" Responsibilities="@experience.Responsibilities"
-							Skills="@experience.Skills" />
-					</div>
+					<CardComponent Title="@card.Title" Index="@index">
+						<Content>
+							@if (card.Paragraphs is not null)
+							{
+								@foreach (var paragraph in card.Paragraphs)
+								{
+									<p class="lead text-primary">@((MarkupString)Markdown.ToHtml(paragraph))</p>
+								}
+							}
+							else
+							{
+								<PlaceholderComponent />
+							}
+							@if (card.Icons is not null)
+							{
+								<div class="d-flex flex-wrap gap-2">
+									@foreach (var icon in card.Icons)
+									{
+										<i class="fas @icon me-2 fa-3x" aria-hidden="true"></i>
+									}
+								</div>
+							}
+							@if (card.Images is not null)
+							{
+								<div class="d-flex flex-wrap gap-2">
+									@foreach (var image in card.Images)
+									{
+										<img src="images/@image" alt="Card image" class="img-fluid"
+											style="max-width: 60px; max-height: 60px;" />
+									}
+								</div>
+							}
+						</Content>
+					</CardComponent>
 				}
 			</div>
 		}
 		else
 		{
-			<LoadingComponent />
 			<PlaceholderComponent />
 		}
 	</div>
 </section>
 
-<section id="training" class="py-5 d-print-none">
+<section id="experiences" class="py-5">
+    <div class="container">
+        <SectionComponent Title="Professional experiences" />
+
+        @if (experiences?.Items != null && experiences.Items.Any())
+        {
+            <div class="row g-4">
+                @foreach (var (experience, index) in experiences.Items.Take(experiencesToShow).Select((e, i) => (e, i)))
+                {
+                    <div class="col-12">
+                        <ExperienceComponent
+                            Id="@($"experience-{index}")"
+                            Title="@experience.Title"
+                            Index="@index"
+                            Company="@experience.Company"
+                            Mode="@experience.Mode"
+                            StartDate="@experience.StartDate"
+                            EndDate="@experience.EndDate"
+                            Locations="@experience.Locations"
+                            Description="@experience.Description"
+                            Responsibilities="@experience.Responsibilities"
+                            Skills="@experience.Skills" />
+                    </div>
+                }
+            </div>
+
+            @if (experiences.Items.Count() > 3)
+            {
+                <div class="row">
+                    <div class="col-12 text-center mt-4">
+                        <button class="btn btn-light bg-opacity-50 bg-acrylic-2 @(isToggling ? "disabled" : "")"
+                                @onclick="ToggleShowAllExperiences"
+                                disabled="@isToggling">
+                            @if (isToggling)
+                            {
+                                <LoadingComponent />
+                            }
+
+                            @if (showAllExperiences)
+                            {
+                                <span>Show less (@(experiences.Items.Count() - 3) hidden)</span>
+                            }
+                            else
+                            {
+                                <span>Show @(experiences.Items.Count() - 3) more experiences</span>
+                            }
+                        </button>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <PlaceholderComponent />
+        }
+    </div>
+</section>
+
+<section id="trainings" class="py-5 d-print-none">
 	<div class="container">
 		<SectionComponent Title="I have conducted training courses for..." />
 
@@ -48,40 +132,35 @@
 			<div class="row g-4">
 				@foreach (var (trainingCenter, index) in trainingCenters.Items.Select((t, i) => (t, i)))
 				{
-					<div class="col-12 col-lg-6 col-xxl-4">
-						<article class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 h-100 fade-in-up"
-							data-bs-delay="@(index * 50)" style="transition-delay: @(index * 50)ms;">
-							<div class="card-body p-4">
-								<h3 class="card-title h4 mb-3 text-primary fw-bold">@trainingCenter.Name</h3>
-
-								@if (trainingCenter.Courses != null)
-								{
-									<div class="mb-3">
-										<div class="d-flex flex-wrap gap-2">
-											@foreach (var course in trainingCenter.Courses)
-											{
-												<span class="badge bg-acrylic-2 text-primary rounded-pill px-3 py-2 mb-1 me-1">
-													<i class="fas fa-graduation-cap me-2" aria-hidden="true"></i>
-													@course
-												</span>
-											}
-										</div>
+					<CardComponent Title="@trainingCenter.Name">
+						<Content>
+							@if (trainingCenter.Courses != null)
+							{
+								<div class="mb-3">
+									<div class="d-flex flex-wrap gap-2">
+										@foreach (var course in trainingCenter.Courses)
+										{
+											<span class="badge bg-acrylic-2 text-primary rounded-pill px-3 py-2 mb-1 me-1">
+												<i class="fas fa-graduation-cap me-2" aria-hidden="true"></i>
+												@course
+											</span>
+										}
 									</div>
-								}
+								</div>
+							}
 
-								@if (trainingCenter.Locations != null)
+							@if (trainingCenter.Locations != null)
+							{
+								@foreach (string location in trainingCenter.Locations)
 								{
-									@foreach (string location in trainingCenter.Locations)
-									{
-										<span class="badge bg-acrylic-2 text-primary rounded-pill px-3 py-2 mb-1 me-1">
-											<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
-											@location
-										</span>
-									}
+									<span class="badge bg-acrylic-2 text-primary rounded-pill px-3 py-2 mb-1 me-1">
+										<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
+										@location
+									</span>
 								}
-							</div>
-						</article>
-					</div>
+							}
+						</Content>
+					</CardComponent>
 				}
 			</div>
 		}
@@ -101,33 +180,7 @@
 
 <section id="contact" class="py-5">
 	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-8 text-center fade-in-up" id="let-s-connect">
-				<div class="card bg-light text-bg-light bg-opacity-75 bg-acrylic-1 contact-card">
-					<div class="card-body p-5">
-						<h2 class="mb-4 display-5 fw-light">Let's Connect</h2>
-						<p class="lead mb-4 opacity-90">Ready to discuss your next project? Let's build
-							something amazing together.</p>
-						<div class="d-flex justify-content-center gap-3 flex-wrap">
-							<a href="https://www.linkedin.com/in/andrestalavera/"
-								class="btn btn-primary rounded-pill bg-acrylic-1 px-4 py-2" target="_blank"
-								rel="noopener noreferrer">
-								<i class="fab fa-linkedin me-2" aria-hidden="true"></i>Connect on LinkedIn
-							</a>
-							<a href="https://github.com/andrestalavera"
-								class="btn btn-secondary rounded-pill bg-acrylic-2 px-4 py-2" target="_blank"
-								rel="noopener noreferrer">
-								<i class="fab fa-github me-2" aria-hidden="true"></i>View GitHub
-							</a>
-							<button class="btn btn-success rounded-pill bg-acrylic-2 bg-success px-4 py-2"
-								onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/30min'});return false;">
-								<i class="fas fa-video me-2" aria-hidden="true"></i>Schedule Meeting
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<ContactComponent />
 	</div>
 </section>
 
@@ -135,48 +188,105 @@
 	private AboutMe? aboutMe;
 	private Experiences? experiences;
 	private TrainingCenters? trainingCenters;
+	private bool showAllExperiences = false;
+	private int experiencesToShow = 3;
+	private bool isToggling = false;
 
 	protected override async Task OnInitializedAsync()
 	{
-		try
-		{
-			// Load data concurrently
-			var aboutMeTask = LazyLoadingService.LoadDataAsync<AboutMe>("data/aboutme.json");
-			var experiencesTask = LazyLoadingService.LoadDataAsync<Experiences>("data/experiences.json");
-			var trainingCentersTask = LazyLoadingService.LoadDataAsync<TrainingCenters>("data/trainingcenters.json");
+		await AnimationService.InitializeAnimationsAsync();
 
-			// Wait for all tasks to complete
-			await Task.WhenAll(aboutMeTask, experiencesTask, trainingCentersTask);
+		Task<AboutMe?> aboutMeTask = LazyLoadingService.LoadDataAsync<AboutMe>("data/aboutme.json");
+		Task<Experiences?> experiencesTask = LazyLoadingService.LoadDataAsync<Experiences>("data/experiences.json");
+		Task<TrainingCenters?> trainingCentersTask =
+		LazyLoadingService.LoadDataAsync<TrainingCenters>("data/trainingcenters.json");
 
-			aboutMe = await aboutMeTask;
-			experiences = await experiencesTask;
-			trainingCenters = await trainingCentersTask;
+		await Task.WhenAll(aboutMeTask, experiencesTask, trainingCentersTask);
 
-			// Initialize JavaScript functions for animations and scroll spy
-			await JSRuntime.InvokeVoidAsync("initializeFadeInAnimations");
-			await JSRuntime.InvokeVoidAsync("initializeScrollSpy");
-
-			// Trigger re-render
-			StateHasChanged();
-		}
-		catch (Exception ex)
-		{
-			Console.WriteLine($"Error loading data: {ex.Message}");
-		}
+		aboutMe = await aboutMeTask;
+		experiences = await experiencesTask;
+		trainingCenters = await trainingCentersTask;
 	}
 
 	protected override async Task OnAfterRenderAsync(bool firstRender)
 	{
 		if (firstRender)
 		{
-			await JSRuntime.InvokeVoidAsync("initializeFadeInAnimations");
+			await JSRuntime.InvokeVoidAsync("initializeScrollSpy");
+			StateHasChanged();
 		}
+	}
+
+	private async Task ToggleShowAllExperiences()
+	{
+		if (isToggling || experiences?.Items == null) return;
+
+		isToggling = true;
+
+		if (showAllExperiences)
+		{
+			// Collapsing: gradually hide experiences and scroll to 3rd item
+			await CollapseExperiences();
+		}
+		else
+		{
+			// Expanding: gradually show more experiences
+			await ExpandExperiences();
+		}
+
+		showAllExperiences = !showAllExperiences;
+		isToggling = false;
+	}
+
+	private async Task ExpandExperiences()
+	{
+		var totalExperiences = experiences!.Items!.Count();
+
+		for (int i = experiencesToShow + 1; i <= totalExperiences; i++)
+		{
+			experiencesToShow = i;
+			StateHasChanged();
+			await Task.Delay(1000); // Non-blocking delay
+
+			// Re-trigger animations for new items
+			await JSRuntime.InvokeVoidAsync("observeNewExperience", $"experience-{i-1}");
+		}
+	}
+
+	private async Task CollapseExperiences()
+	{
+		// First scroll to the 3rd experience
+		var thirdExperienceId = GetExperienceId(2); // 0-based index for 3rd item
+		if (!string.IsNullOrEmpty(thirdExperienceId))
+		{
+			await JSRuntime.InvokeVoidAsync("scrollToElement", thirdExperienceId);
+			await Task.Delay(300); // Allow scroll animation to complete
+		}
+
+		// Then gradually hide experiences
+		var totalExperiences = experiences!.Items!.Count();
+
+		for (int i = totalExperiences; i > 3; i--)
+		{
+			await JSRuntime.InvokeVoidAsync("fadeOutExperience", $"experience-{i-1}");
+			await Task.Delay(500);
+			experiencesToShow = i - 1;
+			StateHasChanged();
+		}
+	}
+
+	private string? GetExperienceId(int index)
+	{
+		if (experiences?.Items == null || index >= experiences.Items.Count())
+			return null;
+
+		var experience = experiences.Items.ElementAt(index);
+		return $"experience-{index}"; // or use your SEO service to generate ID
 	}
 
 	private RenderFragment<(string Title, string? Icon)> Badge => (skill) =>
 	{
-		return @<span
-			class="badge text-bg-light text-primary bg-light bg-opacity-50 me-2 mb-2 d-inline-flex align-items-center">
+		return @<span class="badge text-bg-light text-primary bg-light bg-opacity-50 me-2 mb-2 d-inline-flex align-items-center">
 		@if (!string.IsNullOrEmpty(skill.Icon))
 		{
 				<i class="fa-duotone fa-light @skill.Icon me-1" aria-hidden="true"></i>
