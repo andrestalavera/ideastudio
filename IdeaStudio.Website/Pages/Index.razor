@@ -95,7 +95,7 @@
             {
                 <div class="row">
                     <div class="col-12 text-center mt-4">
-                        <button class="btn btn-light bg-opacity-50 bg-acrylic-2 @(isToggling ? "disabled" : "")"
+                        <button class="btn btn-light bg-opacity-50 bg-acrylic @(isToggling ? "disabled" : "")"
                                 @onclick="ToggleShowAllExperiences"
                                 disabled="@isToggling">
                             @if (isToggling)
@@ -140,7 +140,7 @@
 									<div class="d-flex flex-wrap gap-2">
 										@foreach (var course in trainingCenter.Courses)
 										{
-											<span class="badge bg-acrylic-2 text-primary rounded-pill px-3 py-2 mb-1 me-1">
+											<span class="badge bg-acrylic text-primary rounded-pill px-3 py-2 mb-1 me-1">
 												<i class="fas fa-graduation-cap me-2" aria-hidden="true"></i>
 												@course
 											</span>
@@ -153,7 +153,7 @@
 							{
 								@foreach (string location in trainingCenter.Locations)
 								{
-									<span class="badge bg-acrylic-2 text-primary rounded-pill px-3 py-2 mb-1 me-1">
+									<span class="badge bg-acrylic text-primary rounded-pill px-3 py-2 mb-1 me-1">
 										<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
 										@location
 									</span>

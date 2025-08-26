@@ -1,10 +1,10 @@
 ﻿@inherits LayoutComponentBase
 @inject IJSRuntime JSRuntime
 
-<div id="loading-overlay" class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-acrylic-1 d-print-none"
+<div id="loading-overlay" class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-acrylic d-print-none"
 	data-bs-theme="dark">
 	<div class="loading-content d-flex justify-content-center align-items-center h-100 z-3">
-		<div class="card bg-light text-bg-light text-primary bg-opacity-75 bg-acrylic-1">
+		<div class="card bg-light text-bg-light text-primary bg-opacity-75 bg-acrylic">
 			<div class="card-body text-center p-5">
 				<div class="spinner-border mb-3" role="status" aria-label="Loading application">
 					<span class="visually-hidden">Loading...</span>
@@ -25,7 +25,7 @@
 		</video>
 	</div>
 
-	<div class="background-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+	<div class="background-overlay bg-primary bg-opacity-25 position-absolute top-0 start-0 w-100 h-100"></div>
 </div>
 
 <div class="d-flex flex-column min-vh-100">
@@ -34,7 +34,7 @@
 		Skip to main content
 	</a>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-25 sticky-top border-0 border-bottom border-opacity-25 d-print-none"
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-acrylic bg-opacity-25 sticky-top border-0 border-bottom border-opacity-25 d-print-none"
 		data-bs-spy="scroll" data-bs-target="#navbar-nav" data-bs-offset="70">
 		<div class="container">
 			<a class="navbar-brand fw-bold d-flex align-items-center" href="/" aria-label="IdeaStudio - Home">
@@ -66,17 +66,17 @@
 
 				<div class="d-flex gap-2">
 					<a href="https://www.linkedin.com/in/andrestalavera/"
-						class="btn btn-light btn-sm bg-acrylic-2 rounded-pill" target="_blank" rel="noopener noreferrer"
+						class="btn btn-light btn-sm bg-acrylic rounded-pill" target="_blank" rel="noopener noreferrer"
 						aria-label="LinkedIn Profile">
 						<i class="fab fa-linkedin me-1" aria-hidden="true"></i>
 						<span class="d-none d-xl-inline">LinkedIn</span>
 					</a>
-					<a href="https://github.com/andrestalavera" class="btn btn-light btn-sm bg-acrylic-2 rounded-pill"
+					<a href="https://github.com/andrestalavera" class="btn btn-light btn-sm bg-acrylic rounded-pill"
 						target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
 						<i class="fab fa-github me-1" aria-hidden="true"></i>
 						<span class="d-none d-xl-inline">GitHub</span>
 					</a>
-					<button class="btn btn-primary btn-sm bg-acrylic-1 rounded-pill"
+					<button class="btn btn-primary btn-sm bg-acrylic rounded-pill"
 						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/30min'});return false;"
 						aria-label="Schedule a meeting">
 						<i class="fas fa-video me-1" aria-hidden="true"></i>
@@ -93,7 +93,7 @@
 
 	<footer class="mt-auto py-4 text-center d-print-none">
 		<div class="container">
-			<div class="card bg-light text-bg-light text-primary bg-opacity-75 bg-acrylic-1 border-0">
+			<div class="card bg-light text-bg-light text-primary bg-opacity-75 bg-acrylic border-0">
 				<div class="card-body py-3">
 					<p class="mb-0">@DateTime.Now.Year IdeaStud.io - Andrés Talavera. All rights reserved.</p>
 					<small class="opacity-75">

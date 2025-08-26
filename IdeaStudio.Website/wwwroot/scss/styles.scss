@@ -177,27 +177,26 @@ body {
 	}
 }
 
-@for $i from 1 through 3 {
-	.bg-acrylic-#{$i} {
-		-webkit-backdrop-filter: blur(25px * $i) !important;
-		backdrop-filter: blur(25px * $i) !important;
-	}
+.bg-acrylic {
+	-webkit-backdrop-filter: blur(50px) !important;
+	backdrop-filter: blur(50px) !important;
+}
 
+@for $i from 1 through 3 {
 	.text-shadow-#{$i} {
-		text-shadow: 1px * $i 1.5px * $i 3px * $i $primary !important;
+		text-shadow: 1px * $i 2px * $i 4px * $i $primary !important;
 	}
 }
 
 .navbar {
 	@include fluent-ease();
-	@extend .bg-acrylic-1;
 
 	.navbar-brand img {
 		filter: drop-shadow(0 0 8px rgba($light, 0.5));
 	}
 
 	.navbar-toggler {
-		@extend .bg-acrylic-2;
+		@extend .bg-acrylic;
 
 		&:focus {
 			@extend .shadow-lg;
@@ -260,7 +259,7 @@ body {
 	@extend .border-light;
 	@extend .border-2;
 	@extend .border-opacity-50;
-	@extend .bg-acrylic-1;
+	@extend .bg-acrylic;
 	@extend .shadow-lg;
 	@extend .p-2;
 	@include fluent-ease();
@@ -282,7 +281,7 @@ body {
 .btn,
 .badge {
 	@include fluent-ease();
-	@extend .bg-acrylic-2;
+	@extend .bg-acrylic;
 	@extend .border-opacity-50;
 	@extend .shadow;
 	@extend .rounded-pill;
@@ -330,8 +329,6 @@ section {
 @media (max-width: 768px) {
 	.navbar-nav {
 		background: rgba(0, 0, 0, 0.8);
-		-webkit-backdrop-filter: blur(20px);
-		backdrop-filter: blur(20px);
 		margin-top: 1rem;
 		border-radius: $border-radius;
 		padding: 1rem;

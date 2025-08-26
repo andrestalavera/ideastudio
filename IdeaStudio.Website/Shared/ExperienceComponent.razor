@@ -3,7 +3,7 @@
 @using Markdig
 @inherits AnimatedComponentBase
 
-<article @ref="ElementRef" id="@Id" class="bg-acrylic-1 rounded fade-in-up pagebreak mb-4" data-bs-theme="light">
+<article @ref="ElementRef" id="@Id" class="bg-acrylic rounded fade-in-up pagebreak mb-4" data-bs-theme="light">
     <div class="card bg-light text-bg-light bg-opacity-75 shadow-lg h-100">
         <div class="card-body p-4">
             <div class="row d-none d-lg-flex">
@@ -219,7 +219,7 @@
     private RenderFragment<(string Title, string? Icon)> Badge => (skill) =>
     {
         return @<span
-            class="badge text-bg-light text-primary bg-light bg-opacity-50 me-2 mb-2 d-inline-flex align-items-center">
+            class="badge text-bg-light text-primary bg-white bg-opacity-25 me-2 mb-2 d-inline-flex align-items-center">
         @if (!string.IsNullOrEmpty(skill.Icon))
         {
                 <i class="fa-duotone fa-light @skill.Icon me-1" aria-hidden="true"></i>
