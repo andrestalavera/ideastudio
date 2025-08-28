@@ -78,7 +78,7 @@
 
                         @if (Skills != null)
                         {
-                            <div class="mb-3">
+                            <div class="mb-3 d-print-none">
                                 <h5 class="h5 text-primary mb-3 fw-bold">Technologies & Skills</h5>
                                 <div class="skills-container">
                                     @foreach (string skill in Skills.Take(15))
@@ -219,7 +219,8 @@
     private RenderFragment<(string Title, string? Icon)> Badge => (skill) =>
     {
         return @<span
-            class="badge text-bg-light text-primary bg-white bg-opacity-25 me-2 mb-2 d-inline-flex align-items-center">
+            class="badge text-bg-light text-primary bg-white bg-opacity-25
+			 me-2 mb-2 d-inline-flex align-items-center">
         @if (!string.IsNullOrEmpty(skill.Icon))
         {
                 <i class="fa-duotone fa-light @skill.Icon me-1" aria-hidden="true"></i>

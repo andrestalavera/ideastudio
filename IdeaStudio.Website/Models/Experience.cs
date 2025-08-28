@@ -16,6 +16,7 @@ namespace IdeaStudio.Website.Models;
 public partial record Experience
 {
 	public string CompanyAndTitle => $"{Company}-{Title}";
+	public string? Id { get; init; }
 	public string? Title { get; init; }
 	public string? Company { get; init; }
 	public string? Mode { get; init; }

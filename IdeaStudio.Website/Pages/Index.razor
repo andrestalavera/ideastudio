@@ -8,6 +8,7 @@
 @using System.Text.Json
 @inject ILazyLoadingService LazyLoadingService
 @inject IAnimationService AnimationService
+@inject ISeoService SeoService
 @inject IJSRuntime JSRuntime
 @inject ILoggerFactory LoggerFactory
 @inject NavigationManager NavigationManager
@@ -72,9 +73,9 @@
         @if (experiences?.Items != null && experiences.Items.Any())
         {
             <div class="row g-4">
-                @foreach (var (experience, index) in experiences.Items.Take(experiencesToShow).Select((e, i) => (e, i)))
+                @foreach (var (experience, index) in experiences.Items.Select((e, i) => (e, i)))
                 {
-                    <div class="col-12">
+                    <div class="col-12 @GetExperienceDisplayClass(index)" id="@($"experience-wrapper-{index}")">
                         <ExperienceComponent
                             Id="@($"experience-{index}")"
                             Title="@experience.Title"
@@ -91,25 +92,27 @@
                 }
             </div>
 
-            @if (experiences.Items.Count() > 3)
+            @if (GetHiddenExperiencesCount() > 0)
             {
                 <div class="row">
                     <div class="col-12 text-center mt-4">
-                        <button class="btn btn-light bg-opacity-50 bg-acrylic @(isToggling ? "disabled" : "")"
-                                @onclick="ToggleShowAllExperiences"
+                        <button class="btn btn-light bg-opacity-50 bg-acrylic-2 @(isToggling ? "disabled" : "")"
+                                @onclick="ToggleExperiencesVisibility"
                                 disabled="@isToggling">
                             @if (isToggling)
                             {
-                                <LoadingComponent />
+                                <div class="spinner-border spinner-border-sm me-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <span>Updating...</span>
                             }
-
-                            @if (showAllExperiences)
+                            else if (showAllExperiences)
                             {
-                                <span>Show less (@(experiences.Items.Count() - 3) hidden)</span>
+                                <span>Show only 3 latest experiences</span>
                             }
                             else
                             {
-                                <span>Show @(experiences.Items.Count() - 3) more experiences</span>
+                                <span>Show @GetHiddenExperiencesCount() more experiences</span>
                             }
                         </button>
                     </div>
@@ -189,8 +192,8 @@
 	private Experiences? experiences;
 	private TrainingCenters? trainingCenters;
 	private bool showAllExperiences = false;
-	private int experiencesToShow = 3;
 	private bool isToggling = false;
+	private const int DefaultExperiencesToShow = 3;
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -217,7 +220,7 @@
 		}
 	}
 
-	private async Task ToggleShowAllExperiences()
+	private async Task ToggleExperiencesVisibility()
 	{
 		if (isToggling || experiences?.Items == null) return;
 
@@ -226,54 +229,71 @@
 		if (showAllExperiences)
 		{
 			// Collapsing: gradually hide experiences and scroll to 3rd item
-			await CollapseExperiences();
+			await HideExtraExperiences();
 		}
 		else
 		{
 			// Expanding: gradually show more experiences
-			await ExpandExperiences();
+			await ShowAllExperiences();
 		}
 
 		showAllExperiences = !showAllExperiences;
 		isToggling = false;
 	}
 
-	private async Task ExpandExperiences()
+	private async Task ShowAllExperiences()
 	{
-		var totalExperiences = experiences!.Items!.Count();
+		var experienceItems = experiences!.Items!;
 
-		for (int i = experiencesToShow + 1; i <= totalExperiences; i++)
-		{
-			experiencesToShow = i;
-			StateHasChanged();
-			await Task.Delay(1000); // Non-blocking delay
+        for (int i = DefaultExperiencesToShow; i < experienceItems.Count(); i++)
+        {
+            var experienceId = SeoService.GenerateId($"experience-{i}");
+            await JSRuntime.InvokeVoidAsync("toggleExperienceVisibility", experienceId, true);
 
-			// Re-trigger animations for new items
-			await JSRuntime.InvokeVoidAsync("observeNewExperience", $"experience-{i-1}");
-		}
+            // Small delay for smooth animation
+            await Task.Delay(100);
+        }
 	}
 
-	private async Task CollapseExperiences()
+	private async Task HideExtraExperiences()
 	{
-		// First scroll to the 3rd experience
-		var thirdExperienceId = GetExperienceId(2); // 0-based index for 3rd item
-		if (!string.IsNullOrEmpty(thirdExperienceId))
-		{
-			await JSRuntime.InvokeVoidAsync("scrollToElement", thirdExperienceId);
-			await Task.Delay(300); // Allow scroll animation to complete
-		}
+		var experienceItems = experiences!.Items!;
 
-		// Then gradually hide experiences
-		var totalExperiences = experiences!.Items!.Count();
+        // First scroll to the 3rd experience (latest to show)
+        if (experienceItems.Count() >= DefaultExperiencesToShow)
+        {
+            var thirdExperienceId = SeoService.GenerateId($"experience-{DefaultExperiencesToShow - 1}");
+            await JSRuntime.InvokeVoidAsync("scrollToElement", thirdExperienceId);
+            await Task.Delay(300); // Wait for scroll animation
+        }
 
-		for (int i = totalExperiences; i > 3; i--)
-		{
-			await JSRuntime.InvokeVoidAsync("fadeOutExperience", $"experience-{i-1}");
-			await Task.Delay(500);
-			experiencesToShow = i - 1;
-			StateHasChanged();
-		}
+        // Then hide extra experiences
+        for (int i = DefaultExperiencesToShow; i < experienceItems.Count(); i++)
+        {
+            var experienceId = SeoService.GenerateId($"experience-{i}");
+            await JSRuntime.InvokeVoidAsync("toggleExperienceVisibility", experienceId, false);
+
+            await Task.Delay(50);
+        }
 	}
+
+    private string GetExperienceDisplayClass(int index)
+    {
+        // Show first 3 experiences by default, hide others
+        if (index < DefaultExperiencesToShow)
+        {
+            return "d-flex d-print-flex"; // Always visible
+        }
+        else
+        {
+            return "d-none d-print-flex"; // Hidden by default, visible when printed
+        }
+    }
+
+    private int GetHiddenExperiencesCount()
+    {
+        return Math.Max(0, (experiences?.Items?.Count() ?? 0) - DefaultExperiencesToShow);
+    }
 
 	private string? GetExperienceId(int index)
 	{
