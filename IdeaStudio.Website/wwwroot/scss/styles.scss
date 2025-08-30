@@ -130,7 +130,7 @@ body {
 }
 
 .loading-overlay {
-	background-image: url(images/video-background.png);
+	background-image: url(../images/video-background.png);
 	background-size: cover;
 	animation: fadeOutOverlay 5s ease-out forwards;
 	z-index: 9999;

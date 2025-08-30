@@ -154,6 +154,7 @@
 			}, 2000);
 		};
 
+		// Application initialization
 		window.initializeScrollSpy = () => {
 			const sections = document.querySelectorAll('section[id]');
 			const navLinks = document.querySelectorAll('.nav-link[data-section]');
@@ -182,67 +183,19 @@
 			updateActiveNavLink();
 		};
 
-		window.initializeFadeInAnimations = () => {
-			const observerOptions = {
-				threshold: 0.1,
-				rootMargin: '0px 0px -5px 0px'
-			};
-
-			const observer = new IntersectionObserver((entries) => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting) {
-						const delay = entry.target.getAttribute('data-bs-delay') || 0;
-						setTimeout(() => {
-							entry.target.classList.add('animate');
-						}, delay);
-						observer.unobserve(entry.target);
-					}
-				});
-			}, observerOptions);
-
-			document.querySelectorAll('.fade-in-up').forEach(el => {
-				observer.observe(el);
-			});
-		};
-
-		document.addEventListener('click', function (e) {
-			if (e.target.matches('a[href^="#"]')) {
-				e.preventDefault();
-				const targetId = e.target.getAttribute('href').substring(1);
-				const targetElement = document.getElementById(targetId);
-				if (targetElement) {
-					targetElement.scrollIntoView({
-						behavior: 'smooth',
-						block: 'start'
-					});
-				}
-			}
-		});
-
-		document.addEventListener('DOMContentLoaded', function () {
-			if (typeof bootstrap !== 'undefined') {
-				const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-				tooltipTriggerList.map(function (tooltipTriggerEl) {
-					return new bootstrap.Tooltip(tooltipTriggerEl);
-				});
-			}
-		});
-
-		window.toggleExperienceVisibility = function (experienceId, show) {
-			const wrapper = document.getElementById(`experience-wrapper-${experienceId.split('-').pop()}`);
+		// Experience visibility functions
+		window.toggleExperienceVisibility = function (index, show) {
+			const wrapper = document.getElementById(`experience-wrapper-${index}`);
 			if (wrapper) {
 				if (show) {
-					// Show experience
 					wrapper.classList.remove('d-none');
 					wrapper.classList.add('d-flex');
 
-					// Trigger animation if element has fade-in class
 					const experience = wrapper.querySelector('.fade-in-up');
 					if (experience && !experience.classList.contains('animate')) {
 						setTimeout(() => experience.classList.add('animate'), 50);
 					}
 				} else {
-					// Hide experience
 					wrapper.classList.remove('d-flex');
 					wrapper.classList.add('d-none');
 				}
@@ -259,6 +212,31 @@
 				});
 			}
 		};
+
+		// Smooth scrolling for anchor links
+		document.addEventListener('click', function (e) {
+			if (e.target.matches('a[href^="#"]')) {
+				e.preventDefault();
+				const targetId = e.target.getAttribute('href').substring(1);
+				const targetElement = document.getElementById(targetId);
+				if (targetElement) {
+					targetElement.scrollIntoView({
+						behavior: 'smooth',
+						block: 'start'
+					});
+				}
+			}
+		});
+
+		// Bootstrap tooltips initialization
+		document.addEventListener('DOMContentLoaded', function () {
+			if (typeof bootstrap !== 'undefined') {
+				const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+				tooltipTriggerList.map(function (tooltipTriggerEl) {
+					return new bootstrap.Tooltip(tooltipTriggerEl);
+				});
+			}
+		});
 	</script>
 
 </body>

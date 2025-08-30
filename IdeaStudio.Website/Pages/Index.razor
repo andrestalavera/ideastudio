@@ -67,63 +67,55 @@
 </section>
 
 <section id="experiences" class="py-5">
-    <div class="container">
-        <SectionComponent Title="Professional experiences" />
+	<div class="container">
+		<SectionComponent Title="Professional experiences" />
 
-        @if (experiences?.Items != null && experiences.Items.Any())
-        {
-            <div class="row g-4">
-                @foreach (var (experience, index) in experiences.Items.Select((e, i) => (e, i)))
-                {
-                    <div class="col-12 @GetExperienceDisplayClass(index)" id="@($"experience-wrapper-{index}")">
-                        <ExperienceComponent
-                            Id="@($"experience-{index}")"
-                            Title="@experience.Title"
-                            Index="@index"
-                            Company="@experience.Company"
-                            Mode="@experience.Mode"
-                            StartDate="@experience.StartDate"
-                            EndDate="@experience.EndDate"
-                            Locations="@experience.Locations"
-                            Description="@experience.Description"
-                            Responsibilities="@experience.Responsibilities"
-                            Skills="@experience.Skills" />
-                    </div>
-                }
-            </div>
+		@if (experiences?.Items != null && experiences.Items.Any())
+		{
+			<div class="row g-4">
+				@foreach (var (experience, index) in experiences.Items.Select((e, i) => (e, i)))
+				{
+					<div class="col-12 @GetExperienceDisplayClass(index)" id="@($"experience-wrapper-{index}")">
+						<ExperienceComponent Id="@($"experience-{index}")" Title="@experience.Title" Index="@index"
+							Company="@experience.Company" Mode="@experience.Mode" StartDate="@experience.StartDate"
+							EndDate="@experience.EndDate" Locations="@experience.Locations"
+							Description="@experience.Description" Responsibilities="@experience.Responsibilities"
+							Skills="@experience.Skills" />
+					</div>
+				}
+			</div>
 
-            @if (GetHiddenExperiencesCount() > 0)
-            {
-                <div class="row">
-                    <div class="col-12 text-center mt-4">
-                        <button class="btn btn-light bg-opacity-50 bg-acrylic-2 @(isToggling ? "disabled" : "")"
-                                @onclick="ToggleExperiencesVisibility"
-                                disabled="@isToggling">
-                            @if (isToggling)
-                            {
-                                <div class="spinner-border spinner-border-sm me-2" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                <span>Updating...</span>
-                            }
-                            else if (showAllExperiences)
-                            {
-                                <span>Show only 3 latest experiences</span>
-                            }
-                            else
-                            {
-                                <span>Show @GetHiddenExperiencesCount() more experiences</span>
-                            }
-                        </button>
-                    </div>
-                </div>
-            }
-        }
-        else
-        {
-            <PlaceholderComponent />
-        }
-    </div>
+			@if (GetHiddenExperiencesCount() > 0)
+			{
+				<div class="row">
+					<div class="col-12 text-center mt-4">
+						<button class="btn btn-light bg-opacity-50 bg-acrylic-2 @(isToggling ? "disabled" : "")"
+							@onclick="ToggleExperiencesVisibility" disabled="@isToggling">
+							@if (isToggling)
+							{
+								<div class="spinner-border spinner-border-sm me-2" role="status">
+									<span class="visually-hidden">Loading...</span>
+								</div>
+								<span>Updating...</span>
+							}
+							else if (showAllExperiences)
+							{
+								<span>Show only 3 latest experiences</span>
+							}
+							else
+							{
+								<span>Show @GetHiddenExperiencesCount() more experiences</span>
+							}
+						</button>
+					</div>
+				</div>
+			}
+		}
+		else
+		{
+			<PlaceholderComponent />
+		}
+	</div>
 </section>
 
 <section id="trainings" class="py-5 d-print-none">
@@ -207,8 +199,8 @@
 		await Task.WhenAll(aboutMeTask, experiencesTask, trainingCentersTask);
 
 		aboutMe = await aboutMeTask;
-		experiences = await experiencesTask;
-		trainingCenters = await trainingCentersTask;
+		experiences = (await experiencesTask).WithGeneratedIds(SeoService);
+		trainingCenters = (await trainingCentersTask).WithGeneratedIds(SeoService);
 	}
 
 	protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -222,18 +214,19 @@
 
 	private async Task ToggleExperiencesVisibility()
 	{
-		if (isToggling || experiences?.Items == null) return;
+		if (isToggling || experiences?.Items == null)
+			return;
 
 		isToggling = true;
 
 		if (showAllExperiences)
 		{
-			// Collapsing: gradually hide experiences and scroll to 3rd item
+			// Hide additional experiences and scroll to 3rd item
 			await HideExtraExperiences();
 		}
 		else
 		{
-			// Expanding: gradually show more experiences
+			// Show all experiences
 			await ShowAllExperiences();
 		}
 
@@ -245,73 +238,53 @@
 	{
 		var experienceItems = experiences!.Items!;
 
-        for (int i = DefaultExperiencesToShow; i < experienceItems.Count(); i++)
-        {
-            var experienceId = SeoService.GenerateId($"experience-{i}");
-            await JSRuntime.InvokeVoidAsync("toggleExperienceVisibility", experienceId, true);
+		for (int i = DefaultExperiencesToShow; i < experienceItems.Count(); i++)
+		{
+			var experienceId = SeoService.GenerateId($"experience-{i}");
+			await JSRuntime.InvokeVoidAsync("toggleExperienceVisibility", experienceId, true);
 
-            // Small delay for smooth animation
-            await Task.Delay(100);
-        }
+			// Small delay for smooth animation
+			await Task.Delay(100);
+		}
 	}
 
 	private async Task HideExtraExperiences()
 	{
 		var experienceItems = experiences!.Items!;
 
-        // First scroll to the 3rd experience (latest to show)
-        if (experienceItems.Count() >= DefaultExperiencesToShow)
-        {
-            var thirdExperienceId = SeoService.GenerateId($"experience-{DefaultExperiencesToShow - 1}");
-            await JSRuntime.InvokeVoidAsync("scrollToElement", thirdExperienceId);
-            await Task.Delay(300); // Wait for scroll animation
-        }
-
-        // Then hide extra experiences
-        for (int i = DefaultExperiencesToShow; i < experienceItems.Count(); i++)
-        {
-            var experienceId = SeoService.GenerateId($"experience-{i}");
-            await JSRuntime.InvokeVoidAsync("toggleExperienceVisibility", experienceId, false);
-
-            await Task.Delay(50);
-        }
-	}
-
-    private string GetExperienceDisplayClass(int index)
-    {
-        // Show first 3 experiences by default, hide others
-        if (index < DefaultExperiencesToShow)
-        {
-            return "d-flex d-print-flex"; // Always visible
-        }
-        else
-        {
-            return "d-none d-print-flex"; // Hidden by default, visible when printed
-        }
-    }
-
-    private int GetHiddenExperiencesCount()
-    {
-        return Math.Max(0, (experiences?.Items?.Count() ?? 0) - DefaultExperiencesToShow);
-    }
-
-	private string? GetExperienceId(int index)
-	{
-		if (experiences?.Items == null || index >= experiences.Items.Count())
-			return null;
-
-		var experience = experiences.Items.ElementAt(index);
-		return $"experience-{index}"; // or use your SEO service to generate ID
-	}
-
-	private RenderFragment<(string Title, string? Icon)> Badge => (skill) =>
-	{
-		return @<span class="badge text-bg-light text-primary bg-light bg-opacity-50 me-2 mb-2 d-inline-flex align-items-center">
-		@if (!string.IsNullOrEmpty(skill.Icon))
+		// First scroll to the 3rd experience (latest to show)
+		if (experienceItems.Count() >= DefaultExperiencesToShow)
 		{
-				<i class="fa-duotone fa-light @skill.Icon me-1" aria-hidden="true"></i>
+			var thirdExperienceId = SeoService.GenerateId($"experience-{DefaultExperiencesToShow - 1}");
+			await JSRuntime.InvokeVoidAsync("scrollToElement", thirdExperienceId);
+			await Task.Delay(300); // Wait for scroll animation
 		}
-			<span>@skill.Title</span>
-		</span>;
-	};
+
+		// Then hide extra experiences
+		for (int i = DefaultExperiencesToShow; i < experienceItems.Count(); i++)
+		{
+			var experienceId = SeoService.GenerateId($"experience-{i}");
+			await JSRuntime.InvokeVoidAsync("toggleExperienceVisibility", experienceId, false);
+
+			await Task.Delay(50);
+		}
+	}
+
+	private string GetExperienceDisplayClass(int index)
+	{
+		// Show first 3 experiences by default, hide others
+		if (index < DefaultExperiencesToShow)
+		{
+			return "d-flex"; // Always visible
+		}
+		else
+		{
+			return "d-none"; // Hidden by default
+		}
+	}
+
+	private int GetHiddenExperiencesCount()
+	{
+		return Math.Max(0, (experiences?.Items?.Count() ?? 0) - DefaultExperiencesToShow);
+	}
 }
