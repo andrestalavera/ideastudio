@@ -69,7 +69,7 @@
 			<div class="row g-4">
 				@foreach (var (experience, index) in resume.Experiences.Select((e, i) => (e, i)))
 				{
-					<div class="col-12 @ExperienceClasses(index)">
+					<div class="col-12 @DisplayClasses(index, DEFAULT_EXPERIENCES_TO_SHOW)">
 						<ExperienceComponent Experience="@experience" />
 					</div>
 				}
@@ -180,11 +180,11 @@
 		StateHasChanged();
 	}
 
-	private string ExperienceClasses(int index)
+	private string DisplayClasses(int index, int toShow)
 	{
 		string baseClasses = "d-print-flex";
 
-		if (index < DEFAULT_EXPERIENCES_TO_SHOW)
+		if (index < toShow)
 		{
 			return $"{baseClasses} d-flex";
 		}
