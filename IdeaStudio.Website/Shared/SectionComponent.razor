@@ -1,4 +1,6 @@
+@using IdeaStudio.Website.Services
 @inherits AnimatedComponentBase
+@inject ISeoService SeoService
 
 <div class="row d-print-none">
 	<div class="col-12">
@@ -9,5 +11,5 @@
 	[Parameter]
 	public string? Title { get; set; }
 
-	private string id => Title?.ToLowerInvariant().Replace(" ", "-") ?? Guid.NewGuid().ToString("N");
+	private string id => SeoService.GenerateId(Title);
 }

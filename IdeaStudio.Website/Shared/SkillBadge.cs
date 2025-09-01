@@ -98,10 +98,7 @@ public static class SkillBadge
 		if (string.IsNullOrWhiteSpace(skill))
 			return "fa-code";
 
-		ReadOnlySpan<char> skillSpan = skill.AsSpan().Trim();
-
-		FrozenDictionary<string, string>.AlternateLookup<ReadOnlySpan<char>> lookup = SkillToBadgeMap.GetAlternateLookup<ReadOnlySpan<char>>();
-		if (lookup.TryGetValue(skillSpan, out string? exactMatch))
+		if (SkillToBadgeMap.GetAlternateLookup<ReadOnlySpan<char>>().TryGetValue(skill.AsSpan().Trim(), out string? exactMatch))
 			return exactMatch;
 
 		string normalizedSkill = skill.Trim().ToLowerInvariant();

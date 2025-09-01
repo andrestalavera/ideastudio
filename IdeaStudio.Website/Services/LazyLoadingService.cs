@@ -1,10 +1,13 @@
+using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace IdeaStudio.Website.Services;
 
-public class LazyLoadingService(HttpClient httpClient) : ILazyLoadingService
+public class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFactory) : ILazyLoadingService
 {
+	private readonly ILogger<LazyLoadingService> logger = loggerFactory.CreateLogger<LazyLoadingService>();
 	private readonly ConcurrentDictionary<string, object> cache = [];
 
 	public async Task<TData?> LoadDataAsync<TData>(string url, CancellationToken cancellationToken = default)
@@ -26,12 +29,25 @@ public class LazyLoadingService(HttpClient httpClient) : ILazyLoadingService
 			}
 			return data;
 		}
-
-		catch (Exception ex)
+		catch (HttpRequestException ex)
 		{
-			Console.WriteLine($"Error loading data from {url}: {ex.Message}");
+			logger.LogCritical("HTTP error loading data from {url}: {message}", url, ex.Message);
+		}
+		catch (TaskCanceledException ex)
+		{
+			logger.LogCritical("Request canceled loading data from {url}: {message}", url, ex.Message);
 			return default;
 		}
+		catch (JsonException ex)
+		{
+			logger.LogCritical("JSON error loading data from {url}: {message}", url, ex.Message);
+			return default;
+		}
+		catch (Exception ex)
+		{
+			logger.LogCritical("Unknown error loading data from {url}: {message}", url, ex.Message);
+		}
+		return default;
 	}
 
 	public async Task<string?> LoadImageAsync(string imageUrl, CancellationToken cancellationToken = default)
@@ -56,7 +72,7 @@ public class LazyLoadingService(HttpClient httpClient) : ILazyLoadingService
 		}
 		catch (Exception ex)
 		{
-			Console.WriteLine($"Error loading image from {imageUrl}: {ex.Message}");
+			logger.LogCritical($"Error loading image from {imageUrl}: {ex.Message}");
 			return null;
 		}
 	}

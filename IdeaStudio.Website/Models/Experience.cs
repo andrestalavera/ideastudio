@@ -26,5 +26,22 @@ public partial record Experience
 	public IEnumerable<string?>? Description { get; init; }
 	public IEnumerable<string?>? Responsibilities { get; init; }
 	public IEnumerable<string?>? Skills { get; init; }
-	public string? Duration => $"{StartDate:MMMM yyyy} - {(EndDate == DateTime.Today ? "Present" : EndDate.ToString("MMMM yyyy"))} ({((EndDate - StartDate).TotalDays < 365 ? $"{Math.Max(1, (int)(EndDate - StartDate).TotalDays / 30)} month{(Math.Max(1, (int)(EndDate - StartDate).TotalDays / 30) == 1 ? "" : "s")})" : $"{(int)(EndDate - StartDate).TotalDays / 365.25:F1} years")})";
-}
+	public string? Duration => GetDurationString();
+	private string GetDurationString()
+	{
+		string start = StartDate.ToString("MMMM yyyy");
+		string end = EndDate == DateTime.Today ? "Present" : EndDate.ToString("MMMM yyyy");
+		var totalDays = (EndDate - StartDate).TotalDays;
+		string duration;
+		if (totalDays < 365)
+		{
+			int months = Math.Max(1, (int)(totalDays / 30));
+			duration = $"{months} month{(months == 1 ? "" : "s")}";
+		}
+		else
+		{
+			int years = (int)(totalDays / 365.25);
+			duration = $"{years:F1} years";
+		}
+		return $"{start} - {end} ({duration})";
+	}}

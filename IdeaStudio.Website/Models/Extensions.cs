@@ -14,12 +14,12 @@ public static partial class Extensions
 		   .Replace("#", "sharp")
 		   .Replace("--", "-");
 
-	public static Experience? WithGeneratedIds(this Experience experience, ISeoService seoService) => experience with
+	public static Experience? WithGeneratedIds(this Experience experience, ISeoService seoService) => experience! with
 	{
 		Id = seoService.GenerateId(experience.CompanyAndTitle)
 	};
 
-	public static TrainingCenter? WithGeneratedIds(this TrainingCenter? trainingCenter, ISeoService seoService) => trainingCenter with
+	public static TrainingCenter? WithGeneratedIds(this TrainingCenter trainingCenter, ISeoService seoService) => trainingCenter! with
 	{
 		Id = seoService.GenerateId(trainingCenter.Name)
 	};
