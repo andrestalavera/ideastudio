@@ -4,34 +4,34 @@
 @using Markdig
 @inherits AnimatedComponentBase
 @inject ISeoService SeoService
-<div class="col-12 col-lg-6 col-xxl-4">
-	<article @ref="ElementRef" id="@SeoService.GenerateSlug(Title)"
-			class="card bg-light text-bg-light bg-opacity-75 bg-acrylic h-100 fade-in-up"
-				data-bs-delay="@(Index * 50)">
-		@if (Banner != null)
+
+<article @ref="ElementRef" id="@SeoService.GenerateSlug(Title)"
+		class="card bg-white text-bg-light bg-opacity-75 bg-acrylic h-100 fade-in-up"
+			data-bs-delay="@(Index * 50)">
+	@if (Banner is not null)
+	{
+		<img src="@Banner" class="card-img-top rounded-top" alt="@Title banner" loading="lazy">
+	}
+	<div class="card-body d-flex flex-column @BodyStyle">
+		@if (Title is not null)
 		{
-			<img src="@Banner" class="card-img-top rounded-top" alt="@Title banner" loading="lazy">
+			<h6 class="card-title display-6 text-primary fw-normal">@Title</h6>
 		}
-		<div class="card-body d-flex flex-column @BodyStyle">
-			@if (Title != null)
+		<div class="card-text">
+			@if (Content is not null)
 			{
-				<h6 class="card-title display-6 text-primary fw-normal">@Title</h6>
+				@Content
 			}
-			<div class="card-text">
-				@if (Content != null)
-				{
-					@Content
-				}
-			</div>
 		</div>
-		@if (Footer != null)
-		{
-			<div class="card-footer">
-				@Footer
-			</div>
-		}
-	</article>
-</div>
+	</div>
+	@if (Footer is not null)
+	{
+		<div class="card-footer">
+			@Footer
+		</div>
+	}
+</article>
+
 @code {
     [Parameter] public string? Banner { get; set; }
     [Parameter] public string? Title { get; set; }

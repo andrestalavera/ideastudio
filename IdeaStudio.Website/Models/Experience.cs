@@ -20,15 +20,11 @@ public partial record Experience
 	public string? Title { get; init; }
 	public string? Company { get; init; }
 	public string? Mode { get; init; }
-	public DateTime? StartDate { get; init; }
-	public DateTime? EndDate { get; init; }
+	public required DateTime StartDate { get; init; }
+	public DateTime EndDate { get; init; } = DateTime.Today;
 	public IEnumerable<string?>? Locations { get; init; }
 	public IEnumerable<string?>? Description { get; init; }
 	public IEnumerable<string?>? Responsibilities { get; init; }
 	public IEnumerable<string?>? Skills { get; init; }
-}
-
-public record Experiences
-{
-	public ICollection<Experience>? Items { get; init; }
+	public string? Duration => $"{StartDate:MMMM yyyy} - {(EndDate == DateTime.Today ? "Present" : EndDate.ToString("MMMM yyyy"))} ({((EndDate - StartDate).TotalDays < 365 ? $"{Math.Max(1, (int)(EndDate - StartDate).TotalDays / 30)} month{(Math.Max(1, (int)(EndDate - StartDate).TotalDays / 30) == 1 ? "" : "s")})" : $"{(int)(EndDate - StartDate).TotalDays / 365.25:F1} years")})";
 }

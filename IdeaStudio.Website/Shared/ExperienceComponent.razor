@@ -3,41 +3,41 @@
 @using Markdig
 @inherits AnimatedComponentBase
 
-<article @ref="ElementRef" id="@Id" class="bg-acrylic rounded fade-in-up pagebreak mb-4" data-bs-theme="light">
-    <div class="card bg-light text-bg-light bg-opacity-75 shadow-lg h-100">
+<article @ref="ElementRef" id="@Experience.Id" class="bg-acrylic rounded fade-in-up pagebreak mb-4" data-bs-theme="light">
+    <div class="card bg-white text-bg-light bg-opacity-75 shadow-lg h-100">
         <div class="card-body p-4">
             <div class="row d-none d-lg-flex">
                 <div class="col-lg-4 text-center text-lg-start">
                     <div class="sticky-lg-top" style="top: 120px;">
                         <div class="mb-3 text-center">
                             <div class="p-3">
-                                <img src="@CompanyLogo" alt="@Company logo" class="img-fluid" loading="lazy" height="80"
+                                <img src="@CompanyLogo" alt="@Experience.Company logo" class="img-fluid" loading="lazy" height="80"
                                     onerror="this.src='images/placeholder.png'">
                             </div>
                         </div>
-                        <div class="display-6 text-primary">@Title</div>
-                        <p class="lead text-primary">@Company</p>
+                        <div class="display-6 text-primary">@Experience.Title</div>
+                        <p class="lead text-primary">@Experience.Company</p>
                         <div>
-                            @if (Mode != null)
+                            @if (Experience.Mode is not null)
                             {
                                 <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
-                                    @Badge((Mode, "fas fa-briefcase"))
+                                    @Badge((Experience.Mode, "fas fa-briefcase"))
                                 </div>
                             }
-                            @if (Duration != null)
+                            @if (Experience.Duration is not null)
                             {
                                 <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
-                                    @Badge((Duration, "fas fa-calendar"))
+                                    @Badge((Experience.Duration, "fas fa-calendar"))
                                 </div>
                             }
-                            @if (Locations != null)
+                            @if (Experience.Locations is not null)
                             {
                                 <div class="d-flex flex-row flex-wrap">
-                                    @foreach (string location in Locations)
+                                    @foreach (string? location in Experience.Locations)
                                     {
                                         <div
                                             class="d-flex align-items-center justify-content-center justify-content-lg-start me-1">
-                                            @Badge((location, "fas fa-map-marker-alt"))
+                                            @Badge((location!, "fas fa-map-marker-alt"))
                                         </div>
                                     }
                                 </div>
@@ -47,47 +47,47 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="experience-content">
-                        @if (Description != null)
+                        @if (Experience.Description is not null)
                         {
                             <div class="mb-4">
-                                @foreach (var paragraph in Description.Where(d => !string.IsNullOrWhiteSpace(d)))
+                                @foreach (string? paragraph in Experience.Description.Where(d => !string.IsNullOrWhiteSpace(d)))
                                 {
-                                    <p class="text-primary mb-3">@((MarkupString)paragraph)</p>
+                                    <p class="text-primary mb-3">@((MarkupString)paragraph!)</p>
                                 }
                             </div>
                         }
 
-                        @if (Responsibilities != null)
+                        @if (Experience.Responsibilities is not null)
                         {
                             <div class="mb-4">
                                 <h5 class="h5 text-primary mb-3 fw-bold">Key Responsibilities</h5>
                                 <div class="vstack">
-                                    @foreach (var (responsibility, index) in Responsibilities.Select((r, i) => (r, i)))
+                                    @foreach (var (responsibility, index) in Experience.Responsibilities.Select((r, i) => (r, i)))
                                     {
                                         <div class="d-flex align-items-start text-primary p-1">
                                             <div
-                                                class="d-flex align-items-center justify-content-center me-1 mt-1 flex-shrink-0">
+                                                class="d-flex d-print-none align-items-center justify-content-center me-1 mt-1 flex-shrink-0">
                                                 <i class="fa-regular fa-check small" aria-hidden="true"></i>
                                             </div>
-                                            <span>@responsibility</span>
+                                            <span><span class="d-print-flex d-none">- </span>@responsibility</span>
                                         </div>
                                     }
                                 </div>
                             </div>
                         }
 
-                        @if (Skills != null)
+                        @if (Experience.Skills is not null)
                         {
                             <div class="mb-3 d-print-none">
                                 <h5 class="h5 text-primary mb-3 fw-bold">Technologies & Skills</h5>
                                 <div class="skills-container">
-                                    @foreach (string skill in Skills.Take(15))
+                                    @foreach (string? skill in Experience.Skills.Take(15))
                                     {
-                                        @Badge((skill, SkillBadge.GetSkillIcon(skill)))
+                                        @Badge((skill!, SkillBadge.GetSkillIcon(skill!)))
                                     }
-                                    @if (Skills.Count() > 15)
+                                    @if (Experience.Skills.Count() > 15)
                                     {
-                                        @Badge(($"+{(Skills.Count() - 15)} more", "fa fa-ellipsis-h text-primary"))
+                                        @Badge(($"+{(Experience.Skills.Count() - 15)} more", "fa fa-ellipsis-h text-primary"))
                                     }
                                 </div>
                             </div>
@@ -99,50 +99,50 @@
             <div class="d-block d-lg-none">
                 <div class="d-flex align-items-center mb-4">
                     <div class="logo-wrapper p-2 me-3 flex-shrink-0">
-                        <img src="@CompanyLogo" alt="@Company logo" width="100" loading="lazy"
+                        <img src="@CompanyLogo" alt="@Experience.Company logo" width="100" loading="lazy"
                             onerror="this.src='images/placeholder.png'">
                     </div>
                     <div class="flex-grow-1">
-                        <h3 class="h5 mb-1 text-primary fw-bold">@Title</h3>
-                        <h4 class="h6 text-primary mb-0">@Company</h4>
+                        <h3 class="h5 mb-1 text-primary fw-bold">@Experience.Title</h3>
+                        <h4 class="h6 text-primary mb-0">@Experience.Company</h4>
                     </div>
                 </div>
 
                 <div class="mb-4">
-                    @if (Mode != null)
+                    @if (Experience.Mode is not null)
                     {
-                        @Badge((Mode, "fas fa-briefcase"))
+                        @Badge((Experience.Mode, "fas fa-briefcase"))
                     }
-                    @if (Duration != null)
+                    @if (Experience.Duration is not null)
                     {
-                        @Badge((Duration, "fas fa-calendar"))
+                        @Badge((Experience.Duration, "fas fa-calendar"))
                     }
                     <div class="d-flex flex-row flex-wrap">
-                        @if (Locations != null)
+                        @if (Experience.Locations is not null)
                         {
-                            @foreach (string location in Locations)
+                            @foreach (string? location in Experience.Locations)
                             {
-                                @Badge((location, "fas fa-map-marker-alt"))
+                                @Badge((location!, "fas fa-map-marker-alt"))
                             }
                         }
                     </div>
                 </div>
 
-                @if (Description != null)
+                @if (Experience.Description is not null)
                 {
                     <div class="mb-4">
-                        @foreach (var paragraph in Description.Where(d => !string.IsNullOrWhiteSpace(d)))
+                        @foreach (var paragraph in Experience.Description.Where(d => !string.IsNullOrWhiteSpace(d)))
                         {
-                            <p class="text-primary mb-2">@((MarkupString)paragraph)</p>
+                            <p class="text-primary mb-2">@((MarkupString)paragraph!)</p>
                         }
                     </div>
                 }
 
-                @if (Responsibilities != null)
+                @if (Experience.Responsibilities is not null)
                 {
                     <div class="mb-4">
                         <h5 class="h6 mb-2 text-primary fw-bold">Key Responsibilities</h5>
-                        @foreach (var responsibility in Responsibilities)
+                        @foreach (string? responsibility in Experience.Responsibilities)
                         {
                             <div class="text-primary p-1">
                                 <div class="d-flex align-items-start">
@@ -154,18 +154,18 @@
                     </div>
                 }
 
-                @if (Skills != null)
+                @if (Experience.Skills is not null)
                 {
                     <div class="mb-3 d-none d-flex-md">
                         <h5 class="h6 mb-2 text-primary fw-bold">Technologies</h5>
                         <div class="skills-container-mobile">
-                            @foreach (var skill in Skills.Take(8))
+                            @foreach (string? skill in Experience.Skills.Take(8))
                             {
-                                @Badge((skill, SkillBadge.GetSkillIcon(skill)))
+                                @Badge((skill!, SkillBadge.GetSkillIcon(skill!)))
                             }
-                            @if (Skills.Count() > 8)
+                            @if (Experience.Skills.Count() > 8)
                             {
-                                @Badge(($"+{(Skills.Count() - 8)} more", "fa fa-ellipsis-h"))
+                                @Badge(($"+{(Experience.Skills.Count() - 8)} more", "fa fa-ellipsis-h"))
                             }
                         </div>
                     </div>
@@ -179,44 +179,14 @@
 @code {
     private string? Duration { get; set; }
     private string? CompanyLogo { get; set; }
-
-    [Parameter] public string? Title { get; set; }
-    [Parameter] public string? Id { get; set; }
-    [Parameter] public string? Company { get; set; }
-    [Parameter] public string? Mode { get; set; }
-    [Parameter] public DateTime? StartDate { get; set; }
-    [Parameter] public DateTime? EndDate { get; set; }
-    [Parameter] public IEnumerable<string>? Locations { get; set; }
-    [Parameter] public int Index { get; set; } = 1;
-    [Parameter] public IEnumerable<string>? Description { get; set; }
-    [Parameter] public IEnumerable<string>? Responsibilities { get; set; }
-    [Parameter] public IEnumerable<string>? Skills { get; set; }
+	[Parameter] public required Experience Experience { get; set; }
 
     protected override void OnInitialized()
     {
-        CompanyLogo = $"images/{Company?.ToSeoUrl()}.png";
-
-        if (StartDate.HasValue)
-        {
-            Duration = $"{StartDate:MMMM yyyy} - {(EndDate?.ToString("MMMM yyyy") ?? "Present")}";
-
-            DateTime endDate = EndDate ?? DateTime.Today;
-            TimeSpan duration = endDate - StartDate.Value;
-
-            if (duration.TotalDays < 366)
-            {
-                int months = Math.Max(1, (int)(duration.TotalDays / 30));
-                Duration += $" ({months} month{(months == 1 ? "" : "s")})";
-            }
-            else
-            {
-                int years = (int)(duration.TotalDays / 365.25);
-                Duration += $" ({years} year{(years < 2 ? "" : "s")})";
-            }
-        }
+        CompanyLogo = $"images/{Experience.Company?.ToSeoUrl()}.png";
     }
 
-    private RenderFragment<(string Title, string? Icon)> Badge => (skill) =>
+    private RenderFragment<(string Title, string Icon)> Badge => (skill) =>
     {
         return @<span
             class="badge text-bg-light text-primary bg-white bg-opacity-25

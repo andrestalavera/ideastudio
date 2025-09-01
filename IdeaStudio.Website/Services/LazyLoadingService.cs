@@ -20,7 +20,7 @@ public class LazyLoadingService(HttpClient httpClient) : ILazyLoadingService
 			}
 
 			TData? data = await httpClient.GetFromJsonAsync<TData>(url, cancellationToken);
-			if (data != null)
+			if (data is not null)
 			{
 				cache[url] = data;
 			}

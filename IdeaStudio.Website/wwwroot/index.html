@@ -113,10 +113,24 @@
 	<script src="https://assets.calendly.com/assets/external/widget.js" defer></script>
 </head>
 
-<body class="vh-100">
-	<div id="app">
-		<div id="loading-overlay" class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-acrylic"
-			data-bs-theme="dark">
+<body class="vh-100" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70" data-bs-theme="light">
+	<div id="video-background-container" class="position-fixed top-0 start-0 w-100 h-100 overflow-hidden z-0">
+        <video id="video-background"
+            class="w-100 h-100 object-fit-cover"
+            autoplay
+            muted
+            loop
+            style="min-width: 100%; min-height: 100%;">
+            <source src="images/background.mp4" type="video/mp4">
+            <source src="images/background.webm" type="video/webm">
+            <img src="images/video-background.png" class="w-100 h-100 object-fit-cover" alt="Background">
+        </video>
+    </div>
+
+    <div id="overlay" class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 z-1"></div>
+
+	<div id="app" class="z-2">
+		<div id="loading-overlay" class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-primary bg-opacity-50 bg-acrylic">
 			<div class="loading-content d-flex justify-content-center align-items-center h-100 z-3">
 				<div class="card bg-light text-bg-light bg-opacity-75 bg-acrylic bg-opacity-50">
 					<div class="card-body text-center p-5">
@@ -124,7 +138,7 @@
 							<span class="visually-hidden">Loading...</span>
 						</div>
 						<h1 class="h4 mb-2">IdeaStud.io</h1>
-						<p>Loading amazing content...</p>
+						<p>Loading amazing content from index.html...</p>
 					</div>
 				</div>
 			</div>
@@ -152,6 +166,14 @@
 					video.load();
 				}
 			}, 2000);
+		};
+
+		// Set data-loaded attribute on elements
+		window.setDataLoaded = function (elementId) {
+			const element = document.getElementById(elementId);
+			if (element) {
+				element.setAttribute('data-loaded', 'true');
+			}
 		};
 
 		// Application initialization

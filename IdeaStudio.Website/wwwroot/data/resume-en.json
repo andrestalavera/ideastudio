@@ -1,11 +1,95 @@
 {
-	"items": [
+	"personalInformation": {
+		"name": "Andrés Talavera",
+		"title": "Expert .NET Developer & Azure Consultant",
+		"introduction": "Experienced .NET developer and Azure consultant with 10+ years of expertise in building modern web applications and cloud solutions.",
+		"languages": {
+			"EN": "English",
+			"FR": "Français",
+			"ES": "Español"
+		}
+	},
+	"aboutSections": [
+		{
+			"title": "Your .NET Consultant",
+			"paragraphs": [
+				"Expert .NET and Azure consultant delivering tailored business solutions.",
+				"Specializing in ASP.NET Core, MAUI, and modern cloud architecture on Azure.",
+				"Microsoft developer with proven enterprise project success.",
+				"Serving startups, SMEs, and digital service companies across multiple industries."
+			],
+			"images": [
+				"dotnet.svg",
+				"csharp.svg",
+				"azure.svg"
+			]
+		},
+		{
+			"title": "Your Trainer",
+			"paragraphs": [
+				"Experienced .NET and Azure trainer for developers and companies. ",
+				"LinkedIn Learning paragraphs creator focusing on Microsoft technologies.",
+				"Proven track record training teams in France, Belgium, and Luxembourg.",
+				"Expert in .NET 9, Blazor Server, and Azure cloud solutions."
+			],
+			"icons": [
+				"fab fa-linkedin linkedin-logo"
+			],
+			"link": "#training"
+		},
+		{
+			"title": "Passionnated",
+			"paragraphs": [
+				"Dedicated Microsoft technology expert staying current with latest trends.",
+				"Committed to delivering innovative .NET solutions meeting client needs.",
+				"Active developer community participant since Microsoft Student Partner days.",
+				"Passionate about mobile development, web technologies, and cloud architecture."
+			],
+			"link": "#contact"
+		},
+		{
+			"title": "Diverse experiences",
+			"paragraphs": [
+				"Successfully delivered projects across medical, finance, aviation, and logistics sectors.",
+				"Expertise spanning healthcare statistics, insurance software, and education platforms.",
+				"Proven experience with multiple companies.",
+				"Mobile developer specializing in MAUI, Xamarin, and cross-platform solutions."
+			],
+			"link": "#experiences"
+		},
+		{
+			"title": "Recent projects",
+			"paragraphs": [
+				"Improved healthcare data portals for Medtech and CEESA using .NET 9.",
+				"Enhanced TRIGO logistics software using advanced .NET development and Vue.js.",
+				"Led Active Assurances team developing comprehensive insurance management system.",
+				"Specialized in Azure migration, CI/CD implementation, and clean architecture design."
+			],
+			"link": "#experiences"
+		},
+		{
+			"title": "Personal attributes",
+			"paragraphs": [
+				"Curious and versatile developer with strong analytical design skills.",
+				"Talented at explaining complex technical concepts to diverse audiences.",
+				"Collaborative team leader thriving in dynamic development environments.",
+				"Trilingual consultant comfortable working across French, Spanish, and English markets."
+			]
+		}
+	],
+	"experiences": [
 		{
 			"title": "Founder - freelance .NET developer, techlead and trainer",
 			"company": "IdeaStudio",
 			"mode": "Self-employed",
 			"startDate": "2015-07-01",
-			"locations": ["France", "Luxembourg", "Belgium", "Remote"],
+			"locations": [
+				"France",
+				"Luxembourg",
+				"Belgium",
+				"Austria",
+				"Remote"
+			],
 			"description": [
 				"At IdeaStud.io, I develop innovative mobile and web applications for various industries using the latest Microsoft technologies, particularly cloud-based applications.",
 				"I'm always ready to take on new challenges and stay updated with the evolving tech landscape. Besides application development, I also share my knowledge through training centers and blogs focusing on cloud computing and software architecture.",
@@ -94,7 +178,7 @@
 			"startDate": "2024-02-01",
 			"endDate": "2024-07-01",
 			"locations": [
-				"Lyon, Auvergne-Rhône-Alpes, France",
+				"Lyon, France",
 				"Remote"
 			],
 			"description": [
@@ -139,7 +223,7 @@
 			"startDate": "2023-08-01",
 			"endDate": "2024-02-01",
 			"locations": [
-				"Boulogne-Billancourt, Île-de-France, France",
+				"Boulogne-Billancourt, France",
 				"Remote"
 			],
 			"description": [
@@ -200,7 +284,7 @@
 			"startDate": "2022-04-01",
 			"endDate": "2023-04-01",
 			"locations": [
-				"Lyon, Auvergne-Rhône-Alpes, France",
+				"Lyon, France",
 				"Remote"
 			],
 			"description": [
@@ -298,7 +382,7 @@
 			"startDate": "2021-08-01",
 			"endDate": "2021-10-01",
 			"locations": [
-				"Obernai, Grand Est, France",
+				"Obernai, France",
 				"Remote"
 			],
 			"description": [
@@ -386,7 +470,7 @@
 			"startDate": "2020-09-01",
 			"endDate": "2021-04-01",
 			"locations": [
-				"Audincourt, Bourgogne-Franche-Compté, France",
+				"Audincourt, France",
 				"Remote"
 			],
 			"description": [
@@ -437,7 +521,7 @@
 			"startDate": "2020-06-01",
 			"endDate": "2020-09-01",
 			"locations": [
-				"Strasbourg, Grand-Est, France",
+				"Strasbourg, France",
 				"Remote"
 			],
 			"description": [
@@ -493,7 +577,7 @@
 			"startDate": "2020-02-01",
 			"endDate": "2020-04-01",
 			"locations": [
-				"Issy-les-Moulineaux, Ile-de-France, France",
+				"Issy-les-Moulineaux, France",
 				"Remote"
 			],
 			"description": [
@@ -578,7 +662,7 @@
 			"startDate": "2019-05-01",
 			"endDate": "2019-08-01",
 			"locations": [
-				"Paris, Ile-de-France, France"
+				"Paris, France"
 			],
 			"description": [
 				"Corum is a French company that specializes in providing investment solutions, particularly in real estate.",
@@ -620,7 +704,7 @@
 			"startDate": "2018-10-01",
 			"endDate": "2019-05-01",
 			"locations": [
-				"Paris, Ile-de-France, France",
+				"Paris, France",
 				"Remote"
 			],
 			"description": [
@@ -666,7 +750,7 @@
 			"startDate": "2017-10-01",
 			"endDate": "2017-12-01",
 			"locations": [
-				"Paris, Ile-de-France, France"
+				"Paris, France"
 			],
 			"description": [
 				"FORTIA is a financial technology company specializing in innovative solutions for the investment management industry.",
@@ -700,7 +784,7 @@
 			"startDate": "2017-06-01",
 			"endDate": "2017-09-01",
 			"locations": [
-				"Paris, Ile-de-France, France",
+				"Paris, France",
 				"Remote"
 			],
 			"description": [
@@ -737,7 +821,7 @@
 			"startDate": "2016-11-01",
 			"endDate": "2017-04-01",
 			"locations": [
-				"Paris Area, Ile-de-France, France",
+				"Paris Area, France",
 				"Remote"
 			],
 			"description": [
@@ -767,6 +851,72 @@
 				"Andrés Talavera is my personal brand, where I offer freelance .NET development and training services.",
 				"I provided my first training sessions on .NET, C#, and Azure at institutions like Supinfo and NextFormation.",
 				"I focused on delivering high-quality training, sharing my knowledge, and helping developers enhance their skills."
+			]
+		}
+	],
+	"trainingCenters": [
+		{
+			"name": "IP-Formation / IPSSI",
+			"locations": [
+				"Paris, France"
+			],
+			"courses": [
+				"Microsoft Azure"
+			]
+		},
+		{
+			"name": "ORSYS",
+			"locations": [
+				"Paris, France",
+				"Charleroi, Belgium"
+			],
+			"courses": [
+				"Microsoft Azure",
+				"Azure DevOps Services"
+			]
+		},
+		{
+			"name": "LinkedIn Learning",
+			"locations": [
+				"Remote",
+				"Gratz, Austria"
+			],
+			"courses": [
+				"Entity Framework Core",
+				"ASP.NET Core",
+				"Xamarin 4"
+			]
+		},
+		{
+			"name": "NextFormation",
+			"locations": [
+				"Paris, France"
+			],
+			"courses": [
+				".NET Framework",
+				"HTML5, CSS3, JavaScript",
+				"Xamarin"
+			]
+		},
+		{
+			"name": "Happly",
+			"locations": [
+				"Strasbourg, France"
+			],
+			"courses": [
+				"Xamarin.Forms"
+			]
+		},
+		{
+			"name": "Supinfo",
+			"locations": [
+				"Paris, France",
+				"Troyes, France",
+				"Montpellier, France"
+			],
+			"courses": [
+				"ASP.NET",
+				"Xamarin"
 			]
 		}
 	]

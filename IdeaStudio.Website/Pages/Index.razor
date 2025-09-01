@@ -4,58 +4,52 @@
 @using IdeaStudio.Website.Services
 @using IdeaStudio.Website.Shared
 @using Markdig
-@using Microsoft.AspNetCore.Components.Web.Virtualization
 @using System.Text.Json
-@inject ILazyLoadingService LazyLoadingService
 @inject IAnimationService AnimationService
-@inject ISeoService SeoService
 @inject IJSRuntime JSRuntime
-@inject ILoggerFactory LoggerFactory
-@inject NavigationManager NavigationManager
+@inject ILazyLoadingService LazyLoadingService
+@inject ISeoService SeoService
 
-<HeroComponent Introduction="@aboutMe?.Introduction" Languages="@aboutMe?.Languages" />
+<HeroComponent PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
 
-<section id="about" class="py-5">
+<section id="about" class="py-5 pagebreak" data-bs-spy="scroll" data-bs-target="#navbar">
 	<div class="container">
-		@if (aboutMe is not null && aboutMe.Cards is not null)
+		@if (resume?.AboutSections is not null)
 		{
 			<div class="row g-4">
-				@foreach (var (card, index) in aboutMe.Cards.Select((c, i) => (c, i)))
+				@foreach (var (section, index) in resume.AboutSections.Select((s, i) => (s, i)))
 				{
-					<CardComponent Title="@card.Title" Index="@index">
-						<Content>
-							@if (card.Paragraphs is not null)
-							{
-								@foreach (var paragraph in card.Paragraphs)
+					<div class="col-12 col-lg-6 col-xxl-4">
+						<CardComponent Title="@(section.Title)" Index="@index">
+							<Content>
+								@if (section.Paragraphs is not null)
 								{
-									<p class="lead text-primary">@((MarkupString)Markdown.ToHtml(paragraph))</p>
+									@foreach (string paragraph in section.Paragraphs)
+									{
+										<p class="text-primary">@((MarkupString)Markdown.ToHtml(paragraph))</p>
+									}
 								}
-							}
-							else
-							{
-								<PlaceholderComponent />
-							}
-							@if (card.Icons is not null)
-							{
-								<div class="d-flex flex-wrap gap-2">
-									@foreach (var icon in card.Icons)
-									{
-										<i class="fas @icon me-2 fa-3x" aria-hidden="true"></i>
-									}
-								</div>
-							}
-							@if (card.Images is not null)
-							{
-								<div class="d-flex flex-wrap gap-2">
-									@foreach (var image in card.Images)
-									{
-										<img src="images/@image" alt="Card image" class="img-fluid"
-											style="max-width: 60px; max-height: 60px;" />
-									}
-								</div>
-							}
-						</Content>
-					</CardComponent>
+								@if (section.Icons is not null)
+								{
+									<div class="d-flex d-print-none justify-content-center gap-3 my-3">
+										@foreach (string icon in section.Icons)
+										{
+											<i class="@icon fa-4x" aria-hidden="true"></i>
+										}
+									</div>
+								}
+								@if (section.Images is not null)
+								{
+									<div class="d-flex d-print-none justify-content-center gap-3 my-3">
+										@foreach (string image in section.Images)
+										{
+											<img src="images/@image" alt="@image" class="p-1" width="70" height="70" loading="lazy">
+										}
+									</div>
+								}
+							</Content>
+						</CardComponent>
+					</div>
 				}
 			</div>
 		}
@@ -66,45 +60,33 @@
 	</div>
 </section>
 
-<section id="experiences" class="py-5">
+<section id="experiences" class="py-5 pagebreak" data-bs-spy="scroll" data-bs-target="#navbar">
 	<div class="container">
 		<SectionComponent Title="Professional experiences" />
 
-		@if (experiences?.Items != null && experiences.Items.Any())
+		@if (resume?.Experiences is not null)
 		{
 			<div class="row g-4">
-				@foreach (var (experience, index) in experiences.Items.Select((e, i) => (e, i)))
+				@foreach (var (experience, index) in resume.Experiences.Select((e, i) => (e, i)))
 				{
-					<div class="col-12 @GetExperienceDisplayClass(index)" id="@($"experience-wrapper-{index}")">
-						<ExperienceComponent Id="@($"experience-{index}")" Title="@experience.Title" Index="@index"
-							Company="@experience.Company" Mode="@experience.Mode" StartDate="@experience.StartDate"
-							EndDate="@experience.EndDate" Locations="@experience.Locations"
-							Description="@experience.Description" Responsibilities="@experience.Responsibilities"
-							Skills="@experience.Skills" />
+					<div class="col-12 @ExperienceClasses(index)">
+						<ExperienceComponent Experience="@experience" />
 					</div>
 				}
 			</div>
 
-			@if (GetHiddenExperiencesCount() > 0)
+			@if (HasHiddenExperiences)
 			{
 				<div class="row">
 					<div class="col-12 text-center mt-4">
-						<button class="btn btn-light bg-opacity-50 bg-acrylic-2 @(isToggling ? "disabled" : "")"
-							@onclick="ToggleExperiencesVisibility" disabled="@isToggling">
-							@if (isToggling)
-							{
-								<div class="spinner-border spinner-border-sm me-2" role="status">
-									<span class="visually-hidden">Loading...</span>
-								</div>
-								<span>Updating...</span>
-							}
-							else if (showAllExperiences)
+						<button class="btn btn-light bg-opacity-50 bg-acrylic-2" @onclick="ToggleExperiences">
+							@if (showAllExperiences)
 							{
 								<span>Show only 3 latest experiences</span>
 							}
 							else
 							{
-								<span>Show @GetHiddenExperiencesCount() more experiences</span>
+								<span>Show @HiddenExperiencesCount more experiences</span>
 							}
 						</button>
 					</div>
@@ -118,173 +100,93 @@
 	</div>
 </section>
 
-<section id="trainings" class="py-5 d-print-none">
+<section id="trainings" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
 	<div class="container">
 		<SectionComponent Title="I have conducted training courses for..." />
 
-		@if (trainingCenters?.Items != null && trainingCenters.Items.Any())
+		@if (resume?.TrainingCenters is not null)
 		{
 			<div class="row g-4">
-				@foreach (var (trainingCenter, index) in trainingCenters.Items.Select((t, i) => (t, i)))
+				@foreach (var (center, index) in resume.TrainingCenters.Select((t, i) => (t, i)))
 				{
-					<CardComponent Title="@trainingCenter.Name">
-						<Content>
-							@if (trainingCenter.Courses != null)
-							{
-								<div class="mb-3">
-									<div class="d-flex flex-wrap gap-2">
-										@foreach (var course in trainingCenter.Courses)
+					<div class="col-12 col-lg-6 col-xxl-4">
+						<CardComponent Title="@center.Name" Index="@index">
+							<Content>
+								@if (center.Courses is not null)
+								{
+									@foreach (var course in center.Courses)
+									{
+										<span class="badge bg-acrylic text-primary rounded-pill px-3 py-2 mb-2 me-2">
+											<i class="fas fa-graduation-cap me-2"></i>@course
+										</span>
+									}
+								}
+								@if (center.Locations is not null)
+								{
+									<div class="mt-2">
+										@foreach (var location in center.Locations)
 										{
-											<span class="badge bg-acrylic text-primary rounded-pill px-3 py-2 mb-1 me-1">
-												<i class="fas fa-graduation-cap me-2" aria-hidden="true"></i>
-												@course
+											<span class="badge bg-acrylic text-primary rounded-pill px-3 py-2 mb-2 me-2">
+												<i class="fas fa-map-marker-alt me-2"></i>@location
 											</span>
 										}
 									</div>
-								</div>
-							}
-
-							@if (trainingCenter.Locations != null)
-							{
-								@foreach (string location in trainingCenter.Locations)
-								{
-									<span class="badge bg-acrylic text-primary rounded-pill px-3 py-2 mb-1 me-1">
-										<i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
-										@location
-									</span>
 								}
-							}
-						</Content>
-					</CardComponent>
-				}
-			</div>
-		}
-		else
-		{
-			<div class="row g-4">
-				@for (int i = 0; i < 6; i++)
-				{
-					<div class="col-lg-6">
-						<PlaceholderComponent />
+							</Content>
+						</CardComponent>
 					</div>
 				}
 			</div>
 		}
+		else
+		{
+			<PlaceholderComponent />
+		}
 	</div>
 </section>
 
-<section id="contact" class="py-5">
-	<div class="container">
-		<ContactComponent />
-	</div>
+<section id="contact" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
+	<ContactComponent />
 </section>
 
 @code {
-	private AboutMe? aboutMe;
-	private Experiences? experiences;
-	private TrainingCenters? trainingCenters;
+	private Resume? resume;
 	private bool showAllExperiences = false;
-	private bool isToggling = false;
-	private const int DefaultExperiencesToShow = 3;
+	private const int DEFAULT_EXPERIENCES_TO_SHOW = 3;
+
+	private int HiddenExperiencesCount => Math.Max(0, (resume?.Experiences?.Count() ?? 0) - DEFAULT_EXPERIENCES_TO_SHOW);
+	private bool HasHiddenExperiences => HiddenExperiencesCount > 0;
 
 	protected override async Task OnInitializedAsync()
 	{
 		await AnimationService.InitializeAnimationsAsync();
-
-		Task<AboutMe?> aboutMeTask = LazyLoadingService.LoadDataAsync<AboutMe>("data/aboutme.json");
-		Task<Experiences?> experiencesTask = LazyLoadingService.LoadDataAsync<Experiences>("data/experiences.json");
-		Task<TrainingCenters?> trainingCentersTask =
-		LazyLoadingService.LoadDataAsync<TrainingCenters>("data/trainingcenters.json");
-
-		await Task.WhenAll(aboutMeTask, experiencesTask, trainingCentersTask);
-
-		aboutMe = await aboutMeTask;
-		experiences = (await experiencesTask).WithGeneratedIds(SeoService);
-		trainingCenters = (await trainingCentersTask).WithGeneratedIds(SeoService);
+		await LoadResumeAsync();
 	}
 
-	protected override async Task OnAfterRenderAsync(bool firstRender)
+	private async Task LoadResumeAsync()
 	{
-		if (firstRender)
-		{
-			await JSRuntime.InvokeVoidAsync("initializeScrollSpy");
-			StateHasChanged();
-		}
+		string languageCode = "en";
+		resume = await LazyLoadingService.LoadDataAsync<Resume>($"data/resume-{languageCode}.json");
+		StateHasChanged();
 	}
 
-	private async Task ToggleExperiencesVisibility()
+	private void ToggleExperiences()
 	{
-		if (isToggling || experiences?.Items == null)
-			return;
-
-		isToggling = true;
-
-		if (showAllExperiences)
-		{
-			// Hide additional experiences and scroll to 3rd item
-			await HideExtraExperiences();
-		}
-		else
-		{
-			// Show all experiences
-			await ShowAllExperiences();
-		}
-
 		showAllExperiences = !showAllExperiences;
-		isToggling = false;
+		StateHasChanged();
 	}
 
-	private async Task ShowAllExperiences()
+	private string ExperienceClasses(int index)
 	{
-		var experienceItems = experiences!.Items!;
+		string baseClasses = "d-print-flex";
 
-		for (int i = DefaultExperiencesToShow; i < experienceItems.Count(); i++)
+		if (index < DEFAULT_EXPERIENCES_TO_SHOW)
 		{
-			var experienceId = SeoService.GenerateId($"experience-{i}");
-			await JSRuntime.InvokeVoidAsync("toggleExperienceVisibility", experienceId, true);
-
-			// Small delay for smooth animation
-			await Task.Delay(100);
-		}
-	}
-
-	private async Task HideExtraExperiences()
-	{
-		var experienceItems = experiences!.Items!;
-
-		// First scroll to the 3rd experience (latest to show)
-		if (experienceItems.Count() >= DefaultExperiencesToShow)
-		{
-			var thirdExperienceId = SeoService.GenerateId($"experience-{DefaultExperiencesToShow - 1}");
-			await JSRuntime.InvokeVoidAsync("scrollToElement", thirdExperienceId);
-			await Task.Delay(300); // Wait for scroll animation
+			return $"{baseClasses} d-flex";
 		}
 
-		// Then hide extra experiences
-		for (int i = DefaultExperiencesToShow; i < experienceItems.Count(); i++)
-		{
-			var experienceId = SeoService.GenerateId($"experience-{i}");
-			await JSRuntime.InvokeVoidAsync("toggleExperienceVisibility", experienceId, false);
-
-			await Task.Delay(50);
-		}
-	}
-
-	private string GetExperienceDisplayClass(int index)
-	{
-		// Show first 3 experiences by default, hide others
-		if (index < DefaultExperiencesToShow)
-		{
-			return "d-flex"; // Always visible
-		}
-		else
-		{
-			return "d-none"; // Hidden by default
-		}
-	}
-
-	private int GetHiddenExperiencesCount()
-	{
-		return Math.Max(0, (experiences?.Items?.Count() ?? 0) - DefaultExperiencesToShow);
+		return showAllExperiences
+		? $"{baseClasses} d-flex"
+		: $"{baseClasses} d-none";
 	}
 }

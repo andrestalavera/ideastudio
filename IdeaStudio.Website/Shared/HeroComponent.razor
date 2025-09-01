@@ -3,56 +3,67 @@
 @inherits AnimatedComponentBase
 
 <section class="hero-section py-5 d-flex align-items-center justify-content-center min-vh-100" data-bs-theme="dark">
-	<div class="container z-2">
+	<div class="container z-1">
 		<div class="row justify-content-center">
 			<div class="col-12">
-				<div @ref="ElementRef" class="card bg-primary bg-opacity-25 shadow-lg mx-auto hero-card fade-in-up text-shadow-1 mt-5"
+				<div @ref="ElementRef"
+					class="card bg-primary bg-opacity-50 bg-acrylic shadow-lg mx-auto hero-card fade-in-up text-shadow-1 mt-5"
 					id="hero" data-bs-delay="5000">
-					<div class="card-body p-5 z-3">
+					<div class="card-body p-5 z-2">
 						<h1 class="display-1 fw-light mb-5 text-center text-white">
 							Let's shape the future of your business together.
 						</h1>
 						<div class="row align-items-center pt-5">
-							<div class="col-md-4 text-center mb-4 mb-md-0">
-								<div class="profile-image-container position-relative">
-									<img src="@ProfileImage" alt="Andrés Talavera - .NET Developer and Azure Consultant"
-										class="profile-image img-fluid rounded-circle shadow-lg" width="200"
-										height="200" loading="eager" onerror="this.src='images/andres-talavera.jpeg'">
+							@if (ProfileImage is not null)
+							{
+								<div class="col-md-4 text-center mb-4 mb-md-0">
+									<div class="profile-image-container position-relative">
+										<img src="@ProfileImage" alt="Andrés Talavera - .NET Developer and Azure Consultant"
+											class="profile-image img-fluid rounded-circle shadow-lg" width="200"
+											height="200" loading="eager" onerror="this.src='images/placeholder.png'">
+									</div>
 								</div>
-							</div>
-							<div class="col-md-8 text-md-start">
-								<h2 class="h2 mb-3 fw-bold text-uppercase text-white text-shadow-1">Andrés Talavera</h2>
-								<p class="lead mb-4 text-white text-shadow-1">
-									@if (!string.IsNullOrEmpty(Introduction))
+							}
+							@if (PersonalInformation is not null)
+							{
+								<div class="col-md-8 text-md-start">
+									<h2 class="h2 mb-3 fw-bold text-uppercase text-white text-shadow-1">Andrés Talavera</h2>
+									<p class="lead mb-4 text-white text-shadow-1">
+										@if (!string.IsNullOrEmpty(PersonalInformation.Introduction))
+										{
+											@((MarkupString)PersonalInformation.Introduction)
+										}
+										else
+										{
+											<PlaceholderComponent />
+										}
+									</p>
+									@if (PersonalInformation.Languages?.Values.Any() == true)
 									{
-										@((MarkupString)Introduction)
+										<div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+											@foreach (var language in PersonalInformation.Languages)
+											{
+												<span class="badge text-bg-primary bg-opacity-25 rounded-pill">
+													<i class="fas fa-globe me-2" aria-hidden="true"></i>
+													@language.Value
+												</span>
+											}
+										</div>
 									}
 									else
 									{
 										<PlaceholderComponent />
 									}
-								</p>
-								@if (Languages?.Any() == true)
-								{
-									<div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
-										@foreach (string language in Languages)
-										{
-											<span class="badge text-bg-primary bg-opacity-25 rounded-pill">
-												<i class="fas fa-globe me-2" aria-hidden="true"></i>
-												@language
-											</span>
-										}
-									</div>
-								}
-								else
-								{
-									<PlaceholderComponent />
-								}
-							</div>
+								</div>
+							}
+							else
+							{
+								<PlaceholderComponent />
+							}
 						</div>
 					</div>
 
-					<div id="hero-background" class="position-absolute top-0 start-0 w-100 h-100 z-1 d-print-none">
+					<div id="hero-background" class="position-absolute top-0 start-0 w-100 h-100 z-0 d-print-none">
 						<img src="images/aboutme-background.png" alt="Hero background"
 							class="w-100 h-100 object-fit-cover rounded"
 							style="mix-blend-mode: overlay; z-index: -100;">
@@ -68,7 +79,6 @@
 
 
 @code {
-	[Parameter] public string? Introduction { get; set; }
-	[Parameter] public IEnumerable<string>? Languages { get; set; }
-	[Parameter] public string ProfileImage { get; set; } = "images/andres-talavera.jpeg";
+	[Parameter] public PersonalInformation? PersonalInformation { get; set; }
+	[Parameter] public string? ProfileImage { get; set; }
 }

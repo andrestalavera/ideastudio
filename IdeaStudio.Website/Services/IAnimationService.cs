@@ -31,7 +31,7 @@ namespace IdeaStudio.Website.Services
 
         public async Task ObserveElementAsync(ElementReference element)
         {
-            if (module == null)
+            if (module is null)
             {
                 await InitializeAnimationsAsync();
             }
@@ -41,7 +41,7 @@ namespace IdeaStudio.Website.Services
 
         public async ValueTask DisposeAsync()
         {
-            if (module != null)
+            if (module is not null)
             {
                 await module.InvokeVoidAsync("dispose");
                 await module.DisposeAsync();
