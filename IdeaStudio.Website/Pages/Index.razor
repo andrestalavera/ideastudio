@@ -11,8 +11,8 @@
 @inject ISeoService SeoService
 
 <HeroComponent PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
-
-<section id="about" class="py-5 pagebreak" data-bs-spy="scroll" data-bs-target="#navbar">
+<div class="pagebreak"></div>
+<section id="about" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
 	<div class="container">
 		@if (resume?.AboutSections is not null)
 		{
@@ -77,9 +77,9 @@
 
 			@if (HasHiddenExperiences)
 			{
-				<div class="row">
+				<div class="row d-print-none">
 					<div class="col-12 text-center mt-4">
-						<button class="btn btn-light bg-opacity-50 bg-acrylic-2" @onclick="ToggleExperiences">
+						<button class="btn btn-light" @onclick="ToggleExperiences">
 							@if (showAllExperiences)
 							{
 								<span>Show only 3 latest experiences</span>
@@ -114,20 +114,24 @@
 							<Content>
 								@if (center.Courses is not null)
 								{
-									@foreach (var course in center.Courses)
+									<div class="vstack">
+									<p>Courses</p>
+									@foreach (string course in center.Courses)
 									{
-										<span class="badge bg-acrylic text-primary rounded-pill px-3 py-2 mb-2 me-2">
-											<i class="fas fa-graduation-cap me-2"></i>@course
-										</span>
+										<div class="d-flex align-items-center text-primary">
+											<i class="fas fa-graduation-cap me-2 small"></i>@course
+										</div>
 									}
+									</div>
 								}
 								@if (center.Locations is not null)
 								{
 									<div class="mt-2">
-										@foreach (var location in center.Locations)
+									<p>Locations</p>
+										@foreach (string location in center.Locations)
 										{
-											<span class="badge bg-acrylic text-primary rounded-pill px-3 py-2 mb-2 me-2">
-												<i class="fas fa-map-marker-alt me-2"></i>@location
+											<span class="badge text-bg-light mt-2 me-2">
+												<i class="fas fa-map-marker-alt me-2 small"></i>@location
 											</span>
 										}
 									</div>
@@ -145,7 +149,7 @@
 	</div>
 </section>
 
-<section id="contact" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
+<section id="contact" class="py-5" data-bs-spy="scroll" data-bs-target="#navbar">
 	<ContactComponent />
 </section>
 

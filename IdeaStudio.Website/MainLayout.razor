@@ -2,9 +2,9 @@
 @inject IJSRuntime JSRuntime
 
 <div id="loading-overlay-mainlayout"
-	class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-primary bg-opacity-50 bg-acrylic">
+	class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-light bg-opacity-50 bg-acrylic">
 	<div class="loading-content d-flex justify-content-center align-items-center h-100 z-3">
-		<div class="card bg-light text-bg-light bg-opacity-75 bg-acrylic bg-opacity-50">
+		<div class="card bg-light text-bg-light bg-opacity-75 bg-opacity-50">
 			<div class="card-body text-center p-5">
 				<div class="spinner-border mb-3" role="status" aria-label="Loading application">
 					<span class="visually-hidden">Loading...</span>
@@ -81,18 +81,17 @@
 
 	<footer class="mt-auto py-5 text-center d-print-none z-3">
 		<div class="container">
-			<FooterComponent />
+
+			<div class="text-white fade-in-up animate py-3 border-top border-light border-opacity-50">
+				<div class="opacity-75">
+					<p class="">@DateTime.Now.Year IdeaStud.io - Andrés Talavera. All rights reserved.</p>
+					<small class="text-light">
+						<a href="/privacy" class="text-decoration-none text-light">Privacy Policy</a> |
+						<a href="/legal" class="text-decoration-none text-light">Legal Mentions</a>
+					</small>
+				</div>
+			</div>
+
 		</div>
 	</footer>
 </div>
-
-@code {
-	protected override async Task OnAfterRenderAsync(bool firstRender)
-	{
-		if (firstRender)
-		{
-			//await JSRuntime.InvokeVoidAsync("initializeScrollSpy");
-			Console.WriteLine("*** initializeScrollSpy");
-		}
-	}
-}

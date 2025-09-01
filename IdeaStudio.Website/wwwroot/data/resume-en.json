@@ -7,7 +7,12 @@
 			"EN": "English",
 			"FR": "Français",
 			"ES": "Español"
-		}
+		},
+		"email": "andres.talavera@ideastud.io",
+		"github": "andrestalavera",
+		"linkedin": "andres-talavera",
+		"website": "ideastud.io",
+		"twitter": "imcresus_"
 	},
 	"aboutSections": [
 		{
@@ -192,12 +197,8 @@
 				"Developed several key features on the WebApp, enhancing its functionality and user experience.",
 				"Performed analysis of the mobile app to understand its structure and functionality.",
 				"Developed Vue3 components, contributing to the modernisation of the application.",
-				"Shared knowledge and expertise with team members, fostering a collaborative and learning-oriented environment.",
-				"Assisted in the migration of applications to Azure, leveraging Azure WebApp and Azure Functions for efficient and scalable solutions.",
 				"Collaborated with the team to troubleshoot and resolve technical issues.",
-				"Participated in code reviews to maintain high-quality code.",
-				"Worked closely with stakeholders to understand their needs and translate them into technical requirements.",
-				"Stayed up-to-date with the latest industry trends and technologies, and applied this knowledge to my work."
+				"Participated in code reviews to maintain high-quality code."
 			],
 			"skills": [
 				"Azure DevOps",
@@ -539,8 +540,7 @@
 				"Developed an administration console for managing the app and monitoring its performance.",
 				"Ensured the app is secure and data is protected.",
 				"Optimized the performance of the app for a smooth user experience.",
-				"Provided training and support to the team on the new technologies and best practices used in the app.",
-				"Bonus: Proficient in Polly.NET, a .NET resilience and transient-fault-handling library, and Simmy, a chaos engineering and fault injection library for .NET."
+				"Provided training and support to the team on the new technologies and best practices used in the app."
 			],
 			"skills": [
 				"Blazor",
@@ -758,14 +758,7 @@
 				"I conducted functional analysis, engaged in research and development, performed reverse engineering, designed the architecture, developed the WPF application, their User Components and contributed to DevOps processes."
 			],
 			"responsibilities": [
-				"Conducted functional analysis to understand the business requirements.",
-				"Engaged in research and development activities, focusing on fleet management and map components.",
-				"Performed reverse engineering of an existing application to understand its architecture and functionality.",
-				"Designed the architecture of the web application, ensuring scalability and performance.",
-				"Developed the MVC web application, APIs, and JavaScript (Bing Maps, Ajax) to meet the project requirements.",
-				"Contributed to and participated in the establishment of DevOps processes using Visual Studio Team Services/Azure DevOps.",
-				"Conducted Proof of Concepts (PoCs) on Bing Maps, Azure Maps, storage options, etc., to explore the best solutions for the project.",
-				"Coached developers to enhance their skills, fostering a culture of continuous learning and improvement within the team."
+				"Conducted functional analysis to understand the business requirements."
 			],
 			"skills": [
 				".NET",

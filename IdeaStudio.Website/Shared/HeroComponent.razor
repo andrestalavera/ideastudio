@@ -5,9 +5,8 @@
 <section class="hero-section py-5 d-flex align-items-center justify-content-center min-vh-100" data-bs-theme="dark">
 	<div class="container z-1">
 		<div class="row justify-content-center">
-			<div class="col-12">
-				<div @ref="ElementRef"
-					class="card bg-primary bg-opacity-50 bg-acrylic shadow-lg mx-auto hero-card fade-in-up text-shadow-1 mt-5"
+			<div class="col-10 mx-auto">
+				<div @ref="ElementRef" class="card bg-primary shadow-lg mx-auto hero-card fade-in-up text-shadow-1 mt-5"
 					id="hero" data-bs-delay="5000">
 					<div class="card-body p-5 z-2">
 						<h1 class="display-1 fw-light mb-5 text-center text-white">
@@ -43,7 +42,7 @@
 										<div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
 											@foreach (var language in PersonalInformation.Languages)
 											{
-												<span class="badge text-bg-primary bg-opacity-25 rounded-pill">
+												<span class="badge text-bg-primary">
 													<i class="fas fa-globe me-2" aria-hidden="true"></i>
 													@language.Value
 												</span>
@@ -54,6 +53,35 @@
 									{
 										<PlaceholderComponent />
 									}
+
+									<div class="d-none d-print-flex">
+										<div class="vstack g-1 lead">
+										@if (!string.IsNullOrWhiteSpace(PersonalInformation.Email))
+										{
+											<div>
+												<i class="fas fa-envelope me-2 text-black" aria-hidden="true"></i>
+												<a href="mailto:@PersonalInformation.Email"
+													target="_blank">@PersonalInformation.Email</a>
+											</div>
+										}
+										@if (!string.IsNullOrWhiteSpace(PersonalInformation.LinkedIn))
+										{
+											<div>
+												<i class="fab fa-linkedin me-2 linkedin-logo" aria-hidden="true"></i>
+												<a href="https://linkedin.com/in/@PersonalInformation.LinkedIn"
+													target="_blank">linkedin.com/in/@PersonalInformation.LinkedIn</a>
+											</div>
+										}
+										@if (!string.IsNullOrWhiteSpace(PersonalInformation.GitHub))
+										{
+											<div>
+												<i class="fab fa-github me-2 text-black" aria-hidden="true"></i>
+												<a href="https://github.com/@PersonalInformation.GitHub"
+													target="_blank">github.com/@PersonalInformation.GitHub</a>
+											</div>
+										}
+										</div>
+									</div>
 								</div>
 							}
 							else
@@ -62,11 +90,9 @@
 							}
 						</div>
 					</div>
-
 					<div id="hero-background" class="position-absolute top-0 start-0 w-100 h-100 z-0 d-print-none">
 						<img src="images/aboutme-background.png" alt="Hero background"
-							class="w-100 h-100 object-fit-cover rounded"
-							style="mix-blend-mode: overlay; z-index: -100;">
+							class="w-100 h-100 object-fit-cover rounded">
 					</div>
 
 				</div>

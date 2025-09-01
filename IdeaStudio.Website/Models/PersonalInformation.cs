@@ -16,4 +16,8 @@ public record PersonalInformation
 	public IDictionary<string, string>? Languages { get; set; }
 	public string? Email { get; set; }
 	public string? Phone { get; set; }
+	public string? GitHub { get; set; }
+	public string? LinkedIn { get; set; }
+	public string? Website { get; set; }
+	public string? Twitter { get; set; }
 }
