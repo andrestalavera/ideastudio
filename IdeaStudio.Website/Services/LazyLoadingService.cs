@@ -31,21 +31,21 @@ public class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFact
 		}
 		catch (HttpRequestException ex)
 		{
-			logger.LogCritical("HTTP error loading data from {url}: {message}", url, ex.Message);
+			logger.LogCritical("HTTP error loading data from {Url}: {Message}", url, ex.Message);
 		}
 		catch (TaskCanceledException ex)
 		{
-			logger.LogCritical("Request canceled loading data from {url}: {message}", url, ex.Message);
+			logger.LogCritical("Request canceled loading data from {Url}: {Message}", url, ex.Message);
 			return default;
 		}
 		catch (JsonException ex)
 		{
-			logger.LogCritical("JSON error loading data from {url}: {message}", url, ex.Message);
+			logger.LogCritical("JSON error loading data from {Url}: {Message}", url, ex.Message);
 			return default;
 		}
 		catch (Exception ex)
 		{
-			logger.LogCritical("Unknown error loading data from {url}: {message}", url, ex.Message);
+			logger.LogCritical("Unknown error loading data from {Url}: {Message}", url, ex.Message);
 		}
 		return default;
 	}
@@ -70,9 +70,19 @@ public class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFact
 			}
 			return null;
 		}
+		catch (HttpRequestException ex)
+        {
+            logger.LogError(ex, "HTTP request failed for image URL: {ImageUrl}", imageUrl);
+            return null;
+        }
+        catch (TaskCanceledException ex)
+        {
+            logger.LogWarning(ex, "HTTP request was canceled for image URL: {ImageUrl}", imageUrl);
+            return null;
+        }
 		catch (Exception ex)
 		{
-			logger.LogCritical($"Error loading image from {imageUrl}: {ex.Message}");
+			logger.LogCritical("Error loading image from {ImageUrl}: {Message}", imageUrl, ex.Message);
 			return null;
 		}
 	}

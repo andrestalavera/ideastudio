@@ -10,86 +10,105 @@ public static class SkillBadge
 	private static readonly FrozenDictionary<string, string> SkillToBadgeMap =
 		CreateSkillMappings().ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
 
+	private const string FaGlobePointer = "fa-globe-pointer";
+	private const string FaDatabase = "fa-database";
+	private const string FaCubes = "fa-cubes";
+	private const string FaMobileNotch = "fa-mobile-notch";
+	private const string FaLock = "fa-lock";
+	private const string FaUsers = "fa-users";
+	private const string FaBolt = "fa-bolt";
+	private const string FaPlug = "fa-plug";
+	private const string FaArrowProgress = "fa-arrow-progress";
+	private const string FaChartPieSimpleCircleDollar = "fa-chart-pie-simple-circle-dollar";
+	private const string FaHardDrive = "fa-hard-drive";
+	private const string FaSitemap = "fa-sitemap";
+	private const string FaFlask = "fa-flask";
+	private const string FaCodeBranch = "fa-code-branch";
+	private const string FaMonitorWaveform = "fa-monitor-waveform";
+	private const string FaCloud = "fa-cloud";
+
 	private static Dictionary<string, string> CreateSkillMappings() => new()
 	{
 		// Technologies web & front-end
-		["javascript"] = "fa-globe-pointer",
-		["typescript"] = "fa-globe-pointer",
-		["angular"] = "fa-globe-pointer",
-		["react"] = "fa-globe-pointer",
-		["vue"] = "fa-globe-pointer",
-		["web"] = "fa-globe-pointer",
-		["blazor"] = "fa-globe-pointer",
-		["swagger"] = "fa-globe-pointer",
-		["asp.net"] = "fa-globe-pointer",
+		["javascript"] = FaGlobePointer,
+		["typescript"] = FaGlobePointer,
+		["angular"] = FaGlobePointer,
+		["react"] = FaGlobePointer,
+		["vue"] = FaGlobePointer,
+		["web"] = FaGlobePointer,
+		["blazor"] = FaGlobePointer,
+		["swagger"] = FaGlobePointer,
+		["asp.net"] = FaGlobePointer,
 
 		// Base de données
-		["sql"] = "fa-database",
-		["db"] = "fa-database",
-		["data"] = "fa-database",
-		["graphql"] = "fa-database",
-		["entity framework"] = "fa-database",
+		["sql"] = FaDatabase,
+		["db"] = FaDatabase,
+		["data"] = FaDatabase,
+		["graphql"] = FaDatabase,
+		["entity framework"] = FaDatabase,
 
 		// Conteneurs
-		["docker"] = "fa-cubes",
-		["kubernetes"] = "fa-cubes",
+		["docker"] = FaCubes,
+		["kubernetes"] = FaCubes,
 
 		// Mobile
-		["xamarin"] = "fa-mobile-notch",
-		["mobile"] = "fa-mobile-notch",
+		["xamarin"] = FaMobileNotch,
+		["mobile"] = FaMobileNotch,
 
 		// Sécurité
-		["key vault"] = "fa-lock",
-		["security"] = "fa-lock",
-		["authentication"] = "fa-lock",
-		["authorization"] = "fa-lock",
+		["key vault"] = FaLock,
+		["security"] = FaLock,
+		["authentication"] = FaLock,
+		["authorization"] = FaLock,
 
 		// Identity
-		["active directory"] = "fa-users",
-		["aad"] = "fa-users",
-		["entra"] = "fa-users",
-		["managed identities"] = "fa-users",
+		["active directory"] = FaUsers,
+		["aad"] = FaUsers,
+		["entra"] = FaUsers,
+		["managed identities"] = FaUsers,
 
 		// Serverless
-		["azure functions"] = "fa-bolt",
-		["serverless"] = "fa-bolt",
-		["lambda"] = "fa-bolt",
+		["azure functions"] = FaBolt,
+		["serverless"] = FaBolt,
+		["lambda"] = FaBolt,
 
 		// API
-		["api"] = "fa-plug",
-		["rest"] = "fa-plug",
+		["api"] = FaPlug,
+		["rest"] = FaPlug,
 
 		// DevOps
-		["service bus"] = "fa-arrow-progress",
-		["ci/cd"] = "fa-arrow-progress",
-		["bicep"] = "fa-arrow-progress",
-		["logic apps"] = "fa-arrow-progress",
-		["power apps"] = "fa-arrow-progress",
-
-		// Finance
-		["finops"] = "fa-chart-pie-simple-circle-dollar",
-
-		// Infrastructure
-		["storage"] = "fa-hard-drive",
-		["architecture"] = "fa-sitemap",
-		["microservices"] = "fa-sitemap",
-		["onion"] = "fa-sitemap",
-		["hexagonal"] = "fa-sitemap",
-
-		// Tests
-		["test"] = "fa-flask",
-		["ddd"] = "fa-flask",
-
-		// Version control
-		["git"] = "fa-code-branch",
-		["devops"] = "fa-code-branch",
+		["service bus"] = FaArrowProgress,
+		["ci/cd"] = FaArrowProgress,
+		["bicep"] = FaArrowProgress,
+		["logic apps"] = FaArrowProgress,
+		["power apps"] = FaArrowProgress,
 
 		// Monitoring
-		["monitor"] = "fa-monitor-waveform",
+		["monitor"] = FaMonitorWaveform,
+		["ops"] = FaMonitorWaveform,
+
+		// Finance
+		["finops"] = FaChartPieSimpleCircleDollar,
+		["banking"] = FaChartPieSimpleCircleDollar,
+
+		// Infrastructure
+		["storage"] = FaHardDrive,
+		["architecture"] = FaSitemap,
+		["microservices"] = FaSitemap,
+		["onion"] = FaSitemap,
+		["hexagonal"] = FaSitemap,
+
+		// Tests
+		["test"] = FaFlask,
+		["ddd"] = FaFlask,
+
+		// Version control
+		["git"] = FaCodeBranch,
+		["devops"] = FaCodeBranch,
 
 		// Cloud
-		["azure"] = "fa-cloud",
-		["cloud"] = "fa-cloud"
+		["azure"] = FaCloud,
+		["cloud"] = FaCloud
 	};
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
