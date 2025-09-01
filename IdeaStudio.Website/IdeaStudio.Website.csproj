@@ -20,7 +20,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer"
 			Version="9.0.8" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.8" />
-		<PackageReference Include="System.Net.Http.Json" Version="8.0.1" />
+		<PackageReference Include="System.Net.Http.Json" Version="9.0.8" />
 	</ItemGroup>
 
 	<Target Name="NpmInstall" Inputs="package.json" Outputs="node_modules/.install-stamp">
