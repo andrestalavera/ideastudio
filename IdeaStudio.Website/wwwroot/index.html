@@ -26,7 +26,7 @@
 		content=".NET developer, Azure consultant, Blazor expert, ASP.NET Core, cloud architecture, software trainer, Lyon France, technical consultant, full-stack developer" />
 	<meta name="author" content="Andrés Talavera" />
 	<meta name="robots" content="index, follow" />
-	<meta name="theme-color" content="#0071a8" />
+	<meta name="theme-color" content="var(--bs-primary)" />
 
 	<!-- Open Graph Meta Tags -->
 	<meta property="og:title" content="Andrés Talavera - Expert .NET Developer & Azure Consultant" />
@@ -34,20 +34,16 @@
 		content="Experienced .NET developer and Azure consultant helping businesses build modern web applications and cloud solutions. 10+ years of expertise." />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://ideastud.io" />
-	<meta property="og:image" content="https://ideastud.io/images/og-image.jpg" />
-	<meta property="og:image:width" content="1200" />
-	<meta property="og:image:height" content="630" />
 	<meta property="og:site_name" content="IdeaStud.io" />
 	<meta property="og:locale" content="en_US" />
 
 	<!-- Twitter Card Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@andrestalavera" />
-	<meta name="twitter:creator" content="@andrestalavera" />
+	<meta name="twitter:site" content="@imcresus_" />
+	<meta name="twitter:creator" content="@imcresus_" />
 	<meta name="twitter:title" content="Andrés Talavera - Expert .NET Developer & Azure Consultant" />
 	<meta name="twitter:description"
 		content="Experienced .NET developer and Azure consultant helping businesses build modern web applications and cloud solutions." />
-	<meta name="twitter:image" content="https://ideastud.io/images/twitter-card.jpg" />
 
 	<!-- Preconnect to external domains -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,12 +59,6 @@
 
 	<!-- Stylesheets -->
 	<link href="css/styles.min.css" rel="stylesheet" />
-
-	<!-- Favicons -->
-	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-	<link rel="manifest" href="site.webmanifest" />
 
 	<!-- Canonical URL -->
 	<link rel="canonical" href="https://ideastud.io" />
@@ -148,114 +138,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
 		integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK"
 		crossorigin="anonymous"></script>
-
-	<script>
-		window.initializeLoadingAnimation = () => {
-			setTimeout(() => {
-				const video = document.querySelector('#video-background video');
-				if (video) {
-					video.addEventListener('canplay', () => {
-						video.style.opacity = '1';
-						video.setAttribute('data-loaded', 'true');
-					});
-
-					video.load();
-				}
-			}, 2000);
-		};
-
-		// Set data-loaded attribute on elements
-		window.setDataLoaded = function (elementId) {
-			const element = document.getElementById(elementId);
-			if (element) {
-				element.setAttribute('data-loaded', 'true');
-			}
-		};
-
-		// Application initialization
-		window.initializeScrollSpy = () => {
-			const sections = document.querySelectorAll('section[id]');
-			const navLinks = document.querySelectorAll('.nav-link[data-section]');
-
-			function updateActiveNavLink() {
-				let current = '';
-				const scrollY = window.scrollY;
-
-				sections.forEach(section => {
-					const sectionTop = section.offsetTop - 100;
-					const sectionHeight = section.offsetHeight;
-					if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-						current = section.getAttribute('id');
-					}
-				});
-
-				navLinks.forEach(link => {
-					link.classList.remove('active');
-					if (link.getAttribute('data-section') === current) {
-						link.classList.add('active');
-					}
-				});
-			}
-
-			window.addEventListener('scroll', updateActiveNavLink);
-			updateActiveNavLink();
-		};
-
-		// Experience visibility functions
-		window.toggleExperienceVisibility = function (index, show) {
-			const wrapper = document.getElementById(`experience-wrapper-${index}`);
-			if (wrapper) {
-				if (show) {
-					wrapper.classList.remove('d-none');
-					wrapper.classList.add('d-flex');
-
-					const experience = wrapper.querySelector('.fade-in-up');
-					if (experience && !experience.classList.contains('animate')) {
-						setTimeout(() => experience.classList.add('animate'), 50);
-					}
-				} else {
-					wrapper.classList.remove('d-flex');
-					wrapper.classList.add('d-none');
-				}
-			}
-		};
-
-		window.scrollToElement = function (elementId) {
-			const element = document.getElementById(elementId);
-			if (element) {
-				element.scrollIntoView({
-					behavior: 'smooth',
-					block: 'start',
-					inline: 'nearest'
-				});
-			}
-		};
-
-		// Smooth scrolling for anchor links
-		document.addEventListener('click', function (e) {
-			if (e.target.matches('a[href^="#"]')) {
-				e.preventDefault();
-				const targetId = e.target.getAttribute('href').substring(1);
-				const targetElement = document.getElementById(targetId);
-				if (targetElement) {
-					targetElement.scrollIntoView({
-						behavior: 'smooth',
-						block: 'start'
-					});
-				}
-			}
-		});
-
-		// Bootstrap tooltips initialization
-		document.addEventListener('DOMContentLoaded', function () {
-			if (typeof bootstrap !== 'undefined') {
-				const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-				tooltipTriggerList.map(function (tooltipTriggerEl) {
-					return new bootstrap.Tooltip(tooltipTriggerEl);
-				});
-			}
-		});
-	</script>
 
 </body>
 
