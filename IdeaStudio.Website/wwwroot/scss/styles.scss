@@ -2,7 +2,7 @@
 @import "../../node_modules/bootstrap/scss/functions";
 
 // bootstrap variable overrides
-$spacer: 1.5rem;
+$spacer: 2rem;
 $border-radius: 12px;
 $border-radius-sm: 8px;
 $border-radius-lg: 16px;
@@ -121,7 +121,7 @@ body { font-family: $font-family-sans-serif; line-height: $line-height-base; ove
 
 // cards
 .card {
-  @extend .border; @extend .border-light; @extend .border-2; @extend .border-opacity-50; @extend .bg-acrylic; @extend .shadow-lg; @extend .p-2;
+  @extend .border; @extend .border-light; @extend .border-2; @extend .border-opacity-50; @extend .bg-acrylic; @extend .shadow-lg; @extend .p-1; @extend .rounded;
   @include fluent-ease();
   .card-body { @extend .p-4; }
   .card-title { font-weight: $font-weight-bold; @extend .mb-2; }
@@ -164,7 +164,7 @@ section { scroll-margin-top: 80px; }
   @for $i from 1 through 5 { .text-shadow-#{$i} { text-shadow: none !important; } }
   .pagebreak { clear: both; -webkit-page-break-after: always; -moz-page-break-after: always; page-break-after: always; }
   .text-white, .text-light, .badge { color: $dark !important; }
-  .badge{ padding: .4rem !important; margin: .3rem !important; background-color: transparent !important; border: 2px solid rgba(0, 76, 141, .25) !important; color: rgb(0, 76, 141) !important; }
+  .badge{ padding: .4rem !important; margin: .3rem !important; background-color: transparent !important; border: 1.5px solid rgba(0, 76, 141, .25) !important; color: rgb(0, 76, 141) !important; }
   .text-bg-primary { background-color: transparent !important; }
   img, i { margin-right: 1rem !important; }
   * { --bs-border-opacity: 1 !important; --bs-bg-opacity: 1 !important; }
