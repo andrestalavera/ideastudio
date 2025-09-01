@@ -537,7 +537,6 @@
 				"Developed tests following the Test-Driven Development (TDD) approach to ensure the reliability and stability of the app.",
 				"Developed APIs to facilitate communication between the app and the backend systems.",
 				"Developed the mobile app, enhancing its functionality and user experience.",
-				"Developed an administration console for managing the app and monitoring its performance.",
 				"Ensured the app is secure and data is protected.",
 				"Optimized the performance of the app for a smooth user experience.",
 				"Provided training and support to the team on the new technologies and best practices used in the app."
@@ -781,9 +780,7 @@
 				"Remote"
 			],
 			"description": [
-				"AFILIZA is a digital agency focused on creating effective online presence for businesses.",
-				"I was involved in the research and development of a web application for displaying promotion codes, enhancing the user experience and driving customer engagement.",
-				"I developed the first version of the logistics application for Charl'Antoine, developed an e-commerce site for SIEHR (lecoinsiehr.com), and developed several websites for real estate agencies."
+				"AFILIZA is a digital agency focused on creating effective online presence for businesses."
 			],
 			"responsibilities": [
 				"Application development",
@@ -843,7 +840,9 @@
 			"description": [
 				"Andrés Talavera is my personal brand, where I offer freelance .NET development and training services.",
 				"I provided my first training sessions on .NET, C#, and Azure at institutions like Supinfo and NextFormation.",
-				"I focused on delivering high-quality training, sharing my knowledge, and helping developers enhance their skills."
+				"I focused on delivering high-quality training, sharing my knowledge, and helping developers enhance their skills.",
+				"I was involved in the research and development of a web application for displaying promotion codes, enhancing the user experience and driving customer engagement.",
+				"I developed the first version of the logistics application for Charl'Antoine, developed an e-commerce site for SIEHR (lecoinsiehr.com), and developed several websites for real estate agencies."
 			]
 		}
 	],
