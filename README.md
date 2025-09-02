@@ -1,177 +1,302 @@
 # IdeaStudio Website
 
-Code for https://ideastud.io. Blazor WebAssembly site inspired by Microsoft Fluent 2, implemented with Bootstrap 5.3.
+Blazor WebAssembly site for https://ideastud.io. The UI echoes Microsoft Fluent 2 while running on Bootstrap 5.3, with a focus on performance, clean components, and a top-notch print/PDF experience.
 
-## Design
+- Client-only Blazor WebAssembly (.NET 9)
+- Bootstrap 5.3 + SCSS pipeline
+- Localized JSON content per language
+- Optimized print styles and lazy loading
+- Azure Static Web Apps deployment
 
-- Inspired by Microsoft Fluent 2 Design
-- Implemented with Bootstrap `5.3`
-- Key Bootstrap variables overridden to align with Fluent 2
-- Print stylesheet for high-quality PDF export
+## Features
+
+- Fluent 2-inspired design via tuned Bootstrap 5 variables
+- High-quality print/PDF export
+- Lazy loading of non-critical content/assets
+- Lightweight services (SEO, lazy loading, animations)
+- JSON content per language (English ready; more languages planned)
+- CI-friendly structure with tests
 
 ## Tech stack
 
-- .NET `9` + ASP.NET Core Blazor WebAssembly
-- Bootstrap `5.3`
-- SCSS (compiled to `wwwroot/css`)
-- JSON content per language in `wwwroot/data`
+- .NET 9 + ASP.NET Core Blazor WebAssembly
+- Bootstrap 5.3
+- SCSS (compiled to wwwroot/css)
+- Markdig for Markdown rendering
+- Azure Static Web Apps for hosting
+
+## Repository structure
+
+- /
+  - /IdeaStudio.Website
+    - /Components _Shared components_
+    - /Models _Records to modelize JSON data into C#_
+    - /Pages _Application pages_
+    - /Properties _Project properties - for Visual Studio_
+    - /Services _Implemented services - SEO, Lazy loading, ..._
+    - /Shared _Shared components_
+    - /wwwroot
+      - /css _Generated CSS files_
+      - /data _JSON files to deserve data_
+      - /images _Media items for website (images, videos, ...)_
+      - /js _Javascript home made scripts_
+      - /scss _SCSS files to generate styles_
+  - /IdeaStudio.Website.Tests _Unit tests project_
 
 ## Getting started
 
-Prerequisites:
+Prerequisites (macOS):
 
-- .NET SDK `9.x`
+- .NET SDK 9.x
+  - Install via Homebrew: `brew install --cask dotnet-sdk`
+  - Or download from Microsoft: https://dotnet.microsoft.com/download
+- Node.js (optional, for Sass): `brew install node`
+  - Sass compiler: `npm i -D sass`
+- VS Code (recommended)
+  - Extensions: C# Dev Kit, EditorConfig, .NET Test Explorer, optional “Live Sass Compiler”
+
+Clone and restore:
+
+- `git clone https://github.com/andrestalavera/ideastudio.git`
+- `cd ideastudio/IdeaStudio.Website`
+- `dotnet restore`
 
 Run locally:
 
-- `cd IdeaStudio.Website`
-- `dotnet restore`
 - `dotnet watch run`
-- Open the served URL from the console output.
+- Open the served URL shown in the console.
 
 Build (Release):
 
 - `dotnet publish -c Release`
-- Published assets under `IdeaStudio.Website/bin/Release/net9.0/publish/wwwroot`
+- Output: `IdeaStudio.Website/bin/Release/net9.0/publish/wwwroot`
 
-Optional (SCSS):
+SCSS workflow (optional):
 
-- Edit `wwwroot/scss/styles.scss` and recompile using your preferred Sass workflow or VS Code extension.
+- Source: `wwwroot/scss/styles.scss`
+- One-off compile: `npx sass wwwroot/scss/styles.scss wwwroot/css/styles.min.css --style=compressed --no-source-map`
+- Watch mode: `npx sass --watch wwwroot/scss:wwwroot/css --style=compressed`
 
-## Project layout
+Optional workloads/tools:
 
-- `IdeaStudio.Website/` Blazor WASM project
-- `wwwroot/data/` localized content (`resume-en.json`, 1 JSON per language)
-- `wwwroot/css/` generated CSS (`styles.min.css`, `print.min.css`)
-- `wwwroot/js/` site JS (`animations.js`)
-- `Services/` light services (lazy loading, SEO)
-- `Shared/` reusable UI components
-- `Pages/` routed pages
+- AOT toolchain (not used for SWA; optional local testing): `dotnet workload install wasm-tools`
+- Code formatter: `dotnet tool install -g dotnet-format`
+
+## Tests
+
+- Run all tests: `dotnet test`
+- With coverage (Coverlet): `dotnet test /p:CollectCoverage=true`
+- What’s covered:
+  - Unit tests (e.g., extensions and model helpers)
+  - Light integration tests hosting the WASM static output to validate core routes/assets
+
+## Git workflow
+
+- Single branch: `main` is production
+- Use short-lived feature branches for changes:
+  - Branch: `feature/<5-words-description>`
+  - Keep PRs small and focused
+- PRs to main:
+  - CI runs build and tests
+  - Link related GitHub Issues
+  - Update README/docs when structure or behavior changes
+- Releases:
+  - Tag commits for notable releases (e.g., v3.0)
+  - Changelog tracked in README “Release history”
+
+## Deployment (Azure Static Web Apps)
+
+This project targets Azure Static Web Apps (SWA). SWA serves the Blazor WASM app as static assets.
+
+### [`azure-static-web-apps-nice-hill-0b1c51e03.yml` workflow](.github/workflows/azure-static-web-apps-nice-hill-0b1c51e03.yml)
+
+- Triggered on push/PR to main
+- Publishes to net9.0/publish/wwwroot
+- Deploys to SWA with the token
+
+## Print/PDF export
+
+- Use the browser print dialog or trigger a print command in JS: `window.print()`.
+- The print version is optimized via CSS:
+  - Core style tokens live in `styles.min.css` (generated from `styles.scss`)
+  - Dedicated overrides are in `print.min.css` (print media)
+- Example trigger:
+  ```html
+  <button onclick="window.print()">Save as PDF</button>
+  ```
+
+## Lazy loading and FrozenDictionary
+
+Lazy loading defers non-critical content to keep the initial payload small and speed up First Contentful Paint.
+
+- Service: `ILazyLoadingService` + `LazyLoadingService` coordinates deferred loads
+- Placeholders: `PlaceholderComponent.razor` shows skeletons/spinners
+- Images/components: Render only when in viewport or after a small delay
+- Data lookups: Use `FrozenDictionary` for fast, immutable lookups
+
+Example (why FrozenDictionary):
+- `FrozenDictionary<TKey,TValue>` precomputes hashing and layout for fast reads and low allocations
+- Ideal for static maps (e.g., skill-to-icon, route maps, display names)
+- Thread-safe and allocation-friendly for hot paths
+
+Sample usage:
+```csharp
+// Static, read-only maps are built once at startup and optimized for lookups.
+using System.Collections.Frozen;
+
+public static class SkillCatalog
+{
+    private static readonly FrozenDictionary<string, string> SkillToBadge =
+        new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["csharp"] = "images/csharp.svg",
+            ["dotnet"] = "images/dotnet.svg",
+            ["azure"]  = "images/azure.svg"
+        }.ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
+
+    public static bool TryGetBadge(string skill, out string path) =>
+        SkillToBadge.TryGetValue(skill, out path);
+}
+```
+
+In components:
+```razor
+@code {
+    string? badge;
+    protected override void OnInitialized()
+    {
+        if (SkillCatalog.TryGetBadge("dotnet", out var path))
+            badge = path; // Use in <img src="...">
+    }
+}
+```
+
+Result:
+- Zero lock contention, near-ideal dictionary lookups
+- Great fit for data that never changes at runtime
 
 ## Release history
 
 ### v3.0
 
-Highlights:
-
 - Printing version OK (PDF export)
-- Updated to .NET `9`
+- Updated to .NET 9
 - Added lazy loading
 - Reorganized models
-- One JSON per language (ready; English available)
-- Various optimizations
-- Improved design, UI, and UX (animations, delays, styles, etc.)
-- Bootstrap variables tuned to match Microsoft Fluent 2
-
-Next steps (planned after v3 → v4):
-
-- Add French and a localization system
-- Improve texts for SEO
-- Contact form with CAPTCHA
-- Create APIs (use SWA features)
-- Add unit tests
+- One JSON per language (English ready)
+- Tuned Bootstrap variables for Fluent 2
 
 ### v2
 
-Highlights:
-
-- Switched from Fluent UI components to custom Bootstrap (performance)
+- Switched from Fluent UI components to Bootstrap
 - Fixed “get training centers”
-- Note: .NET 9 was initially blocked by Azure Static Web Apps, so v2 used .NET 8 (later upgraded in v3)
-
-Next steps (planned after v2, partially delivered in v3):
-
-- Migrate to .NET 9 once supported by SWA
-- Printing/PDF improvements
-- Lazy loading and model reorganization
-- Prepare localization (1 JSON per language)
-- Contact form, APIs, and unit tests
+- .NET 8 initially (later upgraded in v3)
 
 ### v1
 
-Highlights:
-
-- Upgraded to .NET `8`
-- Based on Microsoft Fluent 2 Design System
-- Used Fluent UI Blazor
-- Known issue: `GetTrainingCenters` API didn’t work
-
-Next steps (planned after v1, partially delivered in v2/v3):
-
-- Fix `GetTrainingCenters` API
-- Improve performance (evaluate Bootstrap vs. Fluent UI)
-- Prepare AOT compilation
-- Improve design and print experience
-- Add tests
+- Based on Microsoft Fluent 2
+- Fluent UI Blazor
+- Known: GetTrainingCenters API issue
 
 ### v0
 
-Highlights:
-
-- First version with Bootstrap `5.3` and ASP.NET Blazor (.NET `7`)
+- Initial Bootstrap 5.3 + Blazor (.NET 7)
 
 ## Information
 
 - Branching: `main` is production (single-branch workflow)
-- GitHub Issues: up to date and used for tracking
-- Deployment target: Azure Static Web Apps
-- CI: GitHub Action runs on PRs to `main`
-- Integrations: Copilot and SoundCloud configured
+- GitHub Issues: used for tracking
+- Deployment: Azure Static Web Apps
+- CI: GitHub Actions on PRs to `main`
+- Integrations: Copilot and SoundCloud
 
 ## Contribute
 
 - Branch naming: `feature/describe-your-feature-in-6-words`
 - Coding guidelines:
-  - Use modern C#/.NET (C# with .NET `9`)
-  - Prefer spans, source generators, and performance-minded patterns
-  - Enable and respect nullable reference types
-  - Keep components small and reusable
-  - Follow Bootstrap 5 and Fluent 2 alignment already in variables
+  - Modern C# (.NET 9), nullable enabled
+  - Prefer spans/alloc-free paths and source generators when reasonable
+  - Keep components small and composable
+  - Bootstrap 5 aligned to Fluent 2 variables
 - Before committing:
   - `dotnet restore`
   - `dotnet build -c Release`
-  - `dotnet format` (if available)
+  - `dotnet format` (if installed)
 - Pull requests:
   - Target `main`
-  - Link related Issues
-  - Include tests when adding features (unit tests coming in v4)
-  - Update docs/README when behavior or structure changes
+  - Link Issues
+  - Include/update tests for features
+  - Update README/docs when needed
 
 ## FAQ
 
 ### Why Blazor?
 
-- Full-stack development with C#
-- Reusable code across projects
-- WebAssembly for near-native performance
+- C# end-to-end
+- Shared code with other internal C# projects
+- WebAssembly for near-native performance in the browser
 
-### Why a single branch?
+### Why not AOT?
 
-- Simplicity. CI validates via integration and unit tests on PRs to `main`.
-
-### How do I run it locally?
-
-- `cd IdeaStudio.Website && dotnet watch run`
+Azure Static Web Apps’ standard build environment (Oryx) doesn’t support the full WebAssembly AOT toolchain for .NET 9. Prebuilding the app with AOT and pushing static files can work in other hosts, but for SWA this project ships IL (no AOT). Outcome: smaller CI complexity and reliable deployments.
 
 ### How do I export to PDF?
 
-- Use the browser’s print dialog and “Save as PDF”. The `print.min.css` styles are optimized for export.
+Open the browser print dialog or call `window.print()`. Print-specific styles are applied automatically. Core tokens are in `styles.min.css` (from `styles.scss`), and print overrides are in `print.min.css`.
 
 ### How is lazy loading implemented?
 
-- Via a small service and placeholder components to defer non-critical content and assets until needed.
+Non-critical content is wrapped in placeholders and rendered once visible. Static lookups rely on `FrozenDictionary` to minimize runtime cost. This keeps first render fast while ensuring subsequent interactions are snappy.
 
-### How do I add a new language?
+### Where are data and images stored?
 
-- Add a new file under `wwwroot/data/` (e.g., `resume-fr.json`)
-- Mirror the structure of `resume-en.json`
-- Wire up the language selection in the app (localization system planned in v4)
-
-### Where are images and data stored?
-
+- JSON content: `wwwroot/data/`
 - Images: `wwwroot/images/`
-- Localized content: `wwwroot/data/`
+- Videos: `wwwroot/images/`
 
 ### What about SEO?
 
-- Ongoing improvements planned in v4 (content quality, metadata, performance budgets).
+- Titles/metadata are handled by a small SEO service. Ongoing improvements target content quality, metadata, and performance budgets.
+
+### Architecture type?
+
+Client-only SPA (Blazor WebAssembly). No server rendering. Assets are static and CDN-friendly.
+
+### Why Bootstrap instead of Fluent UI components?
+
+Smaller runtime, fewer dependencies, and tighter control over critical CSS. We emulate Fluent 2 through variable overrides.
+
+### Performance choices?
+
+Lazy loading, minimized CSS/JS, `FrozenDictionary` for static lookups, minimal allocations in components, and deferring non-critical animations.
+
+### State management?
+
+Local component state with parameters/cascading values where needed; no heavy global state library.
+
+### Internationalization?
+
+Content per language in JSON. A full localization system (v4) will add switching, formatting, and pluralization.
+
+### Testing strategy?
+
+Unit tests for models/helpers; light integration tests validating static site boot and asset availability. Coverage supported via Coverlet.
+
+### Security posture?
+
+Pure static hosting on SWA minimizes attack surface. No secrets in client code; CSP and headers can be enforced at the edge if required.
+
+###  Build/release
+
+GitHub Actions build on PRs and main; SWA upload with prebuilt artifacts to avoid Oryx limitations and ensure .NET 9 compatibility.
+
+## Troubleshooting
+
+- dotnet not found (macOS):
+  - Reinstall SDK via Homebrew or Microsoft installer. Ensure `/usr/local/share/dotnet` is on PATH.
+- Build fails for SCSS:
+  - Install Sass locally: `npm i -D sass` and run `npx sass ...`
+- SWA deploy fails (Oryx):
+  - Ensure `skip_app_build: true` and deploy the published `wwwroot`.
+- Blank page after deploy:
+  - Confirm the workflow points to `IdeaStudio.Website/bin/Release/net9.0/publish
