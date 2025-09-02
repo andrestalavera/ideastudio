@@ -1,6 +1,6 @@
 # IdeaStudio Website
 
-Blazor WebAssembly site for https://ideastud.io. The UI echoes Microsoft Fluent 2 while running on Bootstrap 5.3, with a focus on performance, clean components, and a top-notch print/PDF experience.
+Blazor WebAssembly site for https://ideastud.io.
 
 - Client-only Blazor WebAssembly (.NET 9)
 - Bootstrap 5.3 + SCSS pipeline
@@ -19,41 +19,42 @@ Blazor WebAssembly site for https://ideastud.io. The UI echoes Microsoft Fluent 
 
 ## Tech stack
 
-- .NET 9 + ASP.NET Core Blazor WebAssembly
+- .NET 9
+- ASP.NET Core Blazor WebAssembly
+- Azure Functions v4
 - Bootstrap 5.3
-- SCSS (compiled to wwwroot/css)
-- Markdig for Markdown rendering
+- SCSS compilation
+- GitHub Actions for CI/CD
 - Azure Static Web Apps for hosting
 
 ## Repository structure
 
-- /
-  - /IdeaStudio.Website
-    - /Components _Shared components_
-    - /Models _Records to modelize JSON data into C#_
-    - /Pages _Application pages_
-    - /Properties _Project properties - for Visual Studio_
-    - /Services _Implemented services - SEO, Lazy loading, ..._
-    - /Shared _Shared components_
-    - /wwwroot
-      - /css _Generated CSS files_
-      - /data _JSON files to deserve data_
-      - /images _Media items for website (images, videos, ...)_
-      - /js _Javascript home made scripts_
-      - /scss _SCSS files to generate styles_
-  - /IdeaStudio.Website.Tests _Unit tests project_
+- /IdeaStudio.Website
+  - /Components _Shared components_
+  - /Models _Records to modelize JSON data into C#_
+  - /Pages _Application pages_
+  - /Properties _Project properties - for Visual Studio_
+  - /Services _Implemented services - SEO, Lazy loading, ..._
+  - /Shared _Shared components_
+  - /wwwroot
+    - /css _Generated CSS files_
+    - /data _JSON files to deserve data_
+    - /images _Media items for website (images, videos, ...)_
+    - /js _Javascript home made scripts_
+    - /scss _SCSS files to generate styles_
+- /IdeaStudio.Website.Tests _Unit tests project_
 
 ## Getting started
 
-Prerequisites (macOS):
+Prerequisites:
 
 - .NET SDK 9.x
-  - Install via Homebrew: `brew install --cask dotnet-sdk`
-  - Or download from Microsoft: https://dotnet.microsoft.com/download
+  - macOS: Prefer installation via Homebrew with command `brew install --cask dotnet-sdk`
+  - Others: Download and follow instructions from [Microsoft](https://dotnet.microsoft.com/download):
 - Node.js (optional, for Sass): `brew install node`
-  - Sass compiler: `npm i -D sass`
+  - Sass compiler: `npm i -D sass` (in `IdeaStudio.Website` folder)
 - VS Code (recommended)
-  - Extensions: C# Dev Kit, EditorConfig, .NET Test Explorer, optional “Live Sass Compiler”
+  - Extensions: "C# Dev Kit", "EditorConfig", ".NET Test Explorer", optional “Live Sass Compiler”
 
 Clone and restore:
 
@@ -63,8 +64,10 @@ Clone and restore:
 
 Run locally:
 
-- `dotnet watch run`
+- `dotnet watch run` to run with hotreload and restart features.
 - Open the served URL shown in the console.
+
+> Use `dotnet run` to run only.
 
 Build (Release):
 
@@ -116,14 +119,8 @@ This project targets Azure Static Web Apps (SWA). SWA serves the Blazor WASM app
 
 ## Print/PDF export
 
-- Use the browser print dialog or trigger a print command in JS: `window.print()`.
-- The print version is optimized via CSS:
-  - Core style tokens live in `styles.min.css` (generated from `styles.scss`)
-  - Dedicated overrides are in `print.min.css` (print media)
-- Example trigger:
-  ```html
-  <button onclick="window.print()">Save as PDF</button>
-  ```
+- Use the browser print dialog
+- The print version is optimized via CSS (in `styles.min.css` (generated from `styles.scss`))
 
 ## Lazy loading and FrozenDictionary
 
@@ -133,74 +130,38 @@ Lazy loading defers non-critical content to keep the initial payload small and s
 - Placeholders: `PlaceholderComponent.razor` shows skeletons/spinners
 - Images/components: Render only when in viewport or after a small delay
 - Data lookups: Use `FrozenDictionary` for fast, immutable lookups
-
-Example (why FrozenDictionary):
-- `FrozenDictionary<TKey,TValue>` precomputes hashing and layout for fast reads and low allocations
-- Ideal for static maps (e.g., skill-to-icon, route maps, display names)
-- Thread-safe and allocation-friendly for hot paths
-
-Sample usage:
-```csharp
-// Static, read-only maps are built once at startup and optimized for lookups.
-using System.Collections.Frozen;
-
-public static class SkillCatalog
-{
-    private static readonly FrozenDictionary<string, string> SkillToBadge =
-        new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-        {
-            ["csharp"] = "images/csharp.svg",
-            ["dotnet"] = "images/dotnet.svg",
-            ["azure"]  = "images/azure.svg"
-        }.ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
-
-    public static bool TryGetBadge(string skill, out string path) =>
-        SkillToBadge.TryGetValue(skill, out path);
-}
-```
-
-In components:
-```razor
-@code {
-    string? badge;
-    protected override void OnInitialized()
-    {
-        if (SkillCatalog.TryGetBadge("dotnet", out var path))
-            badge = path; // Use in <img src="...">
-    }
-}
-```
-
-Result:
 - Zero lock contention, near-ideal dictionary lookups
 - Great fit for data that never changes at runtime
 
 ## Release history
 
-### v3.0
+> Consult [Issues](https://github.com/andrestalavera/ideastudio/issues) page for next steps.
 
-- Printing version OK (PDF export)
+### v0
+
+- Initial version with Bootstrap 5.3 + Blazor (.NET 7)
+- Data
+
+### v1
+
+- Based on Microsoft Fluent 2
+- Fluent UI components for Blazor library (abandon of Bootstrap)
+
+### v2
+
+- Switched from Fluent UI components to Bootstrap
+- Fixes
+- .NET 8 with AOT (removed)
+- Basic Fluent 2 Design implementation for Boostrap
+
+### v3
+
+- Printing version OK (Chromium and Firefox)
 - Updated to .NET 9
 - Added lazy loading
 - Reorganized models
 - One JSON per language (English ready)
 - Tuned Bootstrap variables for Fluent 2
-
-### v2
-
-- Switched from Fluent UI components to Bootstrap
-- Fixed “get training centers”
-- .NET 8 initially (later upgraded in v3)
-
-### v1
-
-- Based on Microsoft Fluent 2
-- Fluent UI Blazor
-- Known: GetTrainingCenters API issue
-
-### v0
-
-- Initial Bootstrap 5.3 + Blazor (.NET 7)
 
 ## Information
 
@@ -226,7 +187,7 @@ Result:
   - Target `main`
   - Link Issues
   - Include/update tests for features
-  - Update README/docs when needed
+  - Update README when needed
 
 ## FAQ
 
