@@ -247,7 +247,7 @@ Unit tests for models/helpers; light integration tests validating static site bo
 
 Pure static hosting on SWA minimizes attack surface. No secrets in client code; CSP and headers can be enforced at the edge if required.
 
-###  Build/release
+### Build/release
 
 GitHub Actions build on PRs and main; SWA upload with prebuilt artifacts to avoid Oryx limitations and ensure .NET 9 compatibility.
 
