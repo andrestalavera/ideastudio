@@ -41,7 +41,7 @@ public partial record Experience
 		else
 		{
 			int years = (int)(totalDays / 365.25);
-			duration = $"{years:F1} years";
+			duration = $"{years} years";
 		}
 		return $"{start} - {end} ({duration})";
 	}}
