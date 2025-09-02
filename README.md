@@ -46,7 +46,7 @@ Blazor WebAssembly site for https://ideastud.io.
 
 ## Getting started
 
-Prerequisites:
+Prerequisites (macOS):
 
 - .NET SDK 9.x
   - macOS: Prefer installation via Homebrew with command `brew install --cask dotnet-sdk`
@@ -92,6 +92,7 @@ Optional workloads/tools:
 - What’s covered:
   - Unit tests (e.g., extensions and model helpers)
   - Light integration tests hosting the WASM static output to validate core routes/assets
+
 
 ## Git workflow
 
