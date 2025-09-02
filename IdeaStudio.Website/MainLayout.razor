@@ -1,40 +1,97 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
 
-<header>
-	<nav id="navbar" class="navbar fixed-top bg-acrylic-5 mb-5 d-print-none" data-bs-theme="dark">
+<div id="loading-overlay-mainlayout"
+	class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-light bg-opacity-50 bg-acrylic">
+	<div class="loading-content d-flex justify-content-center align-items-center h-100 z-3">
+		<div class="card bg-light text-bg-light bg-opacity-75 bg-opacity-50">
+			<div class="card-body text-center p-5">
+				<div class="spinner-border mb-3" role="status" aria-label="Loading application">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+				<h1 class="h4 mb-2">IdeaStud.io</h1>
+				<p>Loading amazing content...</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="main-content-container" class="d-flex flex-column min-vh-100">
+	<a href="#main-content"
+		class="skip-link visually-hidden-focusable position-absolute top-0 start-0 z-3 btn btn-primary">
+		Skip to main content
+	</a>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-acrylic bg-opacity-25 sticky-top border-0 border-bottom border-opacity-25 d-print-none"
+		data-bs-spy="scroll" data-bs-target="#navbar-nav" data-bs-offset="70" style="z-index: 4 !important;">
 		<div class="container">
-			<a class="navbar-brand" href="/#">
-				<img src="images/logo-ideastudio-white.svg" alt="IdeaStud.io" height="40" class="m-1" />
+			<a class="navbar-brand fw-bold d-flex align-items-center" href="/" aria-label="IdeaStudio - Home">
+				<img src="images/logo-ideastudio-white.svg" alt="IdeaStudio" class="d-inline-block align-text-top me-2"
+					height="40" width="100" loading="eager">
 			</a>
-			<div class="d-flex flex-row pt-2">
-				<div class="nav-item mx-1">
-					<a class="nav-link" href="https://linkedin.com/in/andres-talavera" target="_blank">
-						<i class="fa-brands fa-linkedin fa-2x"></i>
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav"
+				aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbar-nav">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item">
+						<a class="nav-link rounded-pill mx-1" href="#about" data-section="about">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link rounded-pill mx-1" href="#experiences"
+							data-section="experiences">Experiences</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link rounded-pill mx-1" href="#trainings" data-section="training">Training</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link rounded-pill mx-1" href="#contact" data-section="contact">Contact</a>
+					</li>
+				</ul>
+
+				<div class="d-flex gap-2">
+					<a href="https://www.linkedin.com/in/andrestalavera/"
+						class="btn btn-light btn-sm bg-acrylic rounded-pill" target="_blank" rel="noopener noreferrer"
+						aria-label="LinkedIn Profile">
+						<i class="fab fa-linkedin me-1" aria-hidden="true"></i>
+						<span class="d-none d-xl-inline">LinkedIn</span>
 					</a>
-				</div>
-				<div class="nav-item mx-1">
-					<a class="nav-link" href="https://github.com/andrestalavera" target="_blank">
-						<i class="fa-brands fa-github fa-2x"></i>
+					<a href="https://github.com/andrestalavera" class="btn btn-light btn-sm bg-acrylic rounded-pill"
+						target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+						<i class="fab fa-github me-1" aria-hidden="true"></i>
+						<span class="d-none d-xl-inline">GitHub</span>
 					</a>
-				</div>
-				<div class="nav-item mx-1">
-					<a class="nav-link" href="#"
-						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/meeting'});return false;">
-						<i class="fa-sharp-duotone fa-solid fa-phone fa-2x mb-2"></i>
-					</a>
+					<button class="btn btn-primary btn-sm bg-acrylic rounded-pill"
+						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/30min'});return false;"
+						aria-label="Schedule a meeting">
+						<i class="fas fa-video me-1" aria-hidden="true"></i>
+						<span class="d-none d-xl-inline">Meet</span>
+					</button>
 				</div>
 			</div>
 		</div>
 	</nav>
-</header>
-@Body
-<footer>
-	<div class="container">
-		<div class="row">
-			<div class="card bg-acrylic-1 bg-transparent border-0 p-1 text-center text-muted">
-				<a href="privacy" class="color-light">Privacy and legal mentions</a> &copy; @DateTime.Now.Year
-				IdeaStud.io
+
+	<main id="main-content" class="flex-grow-1 text-primary z-3" role="main">
+		@Body
+	</main>
+
+	<footer class="mt-auto py-5 text-center d-print-none z-3">
+		<div class="container">
+
+			<div class="text-white fade-in-up animate py-3 border-top border-light border-opacity-50">
+				<div class="opacity-75">
+					<p class="">@DateTime.Now.Year IdeaStud.io - Andrés Talavera. All rights reserved.</p>
+					<small class="text-light">
+						<a href="/privacy" class="text-decoration-none text-light">Privacy Policy</a> |
+						<a href="/legal" class="text-decoration-none text-light">Legal Mentions</a>
+					</small>
+				</div>
 			</div>
+
 		</div>
-	</div>
-</footer>
+	</footer>
+</div>

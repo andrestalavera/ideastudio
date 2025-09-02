@@ -1,65 +1,177 @@
-# IdeaStudio website
+# IdeaStudio Website
 
-Code for [ideastud.io](https://ideastud.io) website.
+Code for https://ideastud.io. Blazor WebAssembly site inspired by Microsoft Fluent 2, implemented with Bootstrap 5.3.
 
-## Releases notes
+## Design
+
+- Inspired by Microsoft Fluent 2 Design
+- Implemented with Bootstrap `5.3`
+- Key Bootstrap variables overridden to align with Fluent 2
+- Print stylesheet for high-quality PDF export
+
+## Tech stack
+
+- .NET `9` + ASP.NET Core Blazor WebAssembly
+- Bootstrap `5.3`
+- SCSS (compiled to `wwwroot/css`)
+- JSON content per language in `wwwroot/data`
+
+## Getting started
+
+Prerequisites:
+
+- .NET SDK `9.x`
+
+Run locally:
+
+- `cd IdeaStudio.Website`
+- `dotnet restore`
+- `dotnet watch run`
+- Open the served URL from the console output.
+
+Build (Release):
+
+- `dotnet publish -c Release`
+- Published assets under `IdeaStudio.Website/bin/Release/net9.0/publish/wwwroot`
+
+Optional (SCSS):
+
+- Edit `wwwroot/scss/styles.scss` and recompile using your preferred Sass workflow or VS Code extension.
+
+## Project layout
+
+- `IdeaStudio.Website/` Blazor WASM project
+- `wwwroot/data/` localized content (`resume-en.json`, 1 JSON per language)
+- `wwwroot/css/` generated CSS (`styles.min.css`, `print.min.css`)
+- `wwwroot/js/` site JS (`animations.js`)
+- `Services/` light services (lazy loading, SEO)
+- `Shared/` reusable UI components
+- `Pages/` routed pages
+
+## Release history
+
+### v3.0
+
+Highlights:
+
+- Printing version OK (PDF export)
+- Updated to .NET `9`
+- Added lazy loading
+- Reorganized models
+- One JSON per language (ready; English available)
+- Various optimizations
+- Improved design, UI, and UX (animations, delays, styles, etc.)
+- Bootstrap variables tuned to match Microsoft Fluent 2
+
+Next steps (planned after v3 → v4):
+
+- Add French and a localization system
+- Improve texts for SEO
+- Contact form with CAPTCHA
+- Create APIs (use SWA features)
+- Add unit tests
 
 ### v2
 
-- ~~Upgrade to .NET 9~~ (Not yet supported by Azure Static Web Apps, downgrade to .NET 8)
-- AOT compilation
-- Use a custom bootstrap instead of Fluent UI components (they are slow in v4, waiting for v5)
-  - Generated locally or from GitHub Action
-- Fix 'get training centers'
+Highlights:
 
-### Next steps
+- Switched from Fluent UI components to custom Bootstrap (performance)
+- Fixed “get training centers”
+- Note: .NET 9 was initially blocked by Azure Static Web Apps, so v2 used .NET 8 (later upgraded in v3)
 
-- Create 'GitHub Issue's instead.
-- All bootstrap variables are not overwritten to match with Fluent UI 2 Design
-- Create apis to retrieve content (and use full SWA features)
-- Add a contact form (and use full SWA features)
-- Localization (add french)
-- Export an anonymous PDF for recruiters
+Next steps (planned after v2, partially delivered in v3):
+
+- Migrate to .NET 9 once supported by SWA
+- Printing/PDF improvements
+- Lazy loading and model reorganization
+- Prepare localization (1 JSON per language)
+- Contact form, APIs, and unit tests
 
 ### v1
 
-Upgrade to .NET 8 and now based on [Microsoft Fluent 2 Design System](https://fluent2.microsoft.design/), and use [FluentUI Blazor](https://github.com/microsoft/fluentui-blazor).
+Highlights:
 
-#### Known issues
+- Upgraded to .NET `8`
+- Based on Microsoft Fluent 2 Design System
+- Used Fluent UI Blazor
+- Known issue: `GetTrainingCenters` API didn’t work
 
-- GetTrainingCenters api doesn't work
+Next steps (planned after v1, partially delivered in v2/v3):
+
+- Fix `GetTrainingCenters` API
+- Improve performance (evaluate Bootstrap vs. Fluent UI)
+- Prepare AOT compilation
+- Improve design and print experience
+- Add tests
 
 ### v0
 
-First version based on [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/) and [ASP.NET Blazor .NET 7](https://learn.microsoft.com/aspnet/core).
+Highlights:
 
-### Next steps
+- First version with Bootstrap `5.3` and ASP.NET Blazor (.NET `7`)
 
-- Contact form through an Azure Function
-- Data from api instead of static JSON files
+## Information
 
-## Informations
-
-- `main` branch is the production branch and it's the only constant branch
-- A GitHub Action triggered when a pull request tries to merge into the `main` action
-- Deployment target kind: Azure Static Web App
-- Copitlot and SoundCloud are configured
+- Branching: `main` is production (single-branch workflow)
+- GitHub Issues: up to date and used for tracking
+- Deployment target: Azure Static Web Apps
+- CI: GitHub Action runs on PRs to `main`
+- Integrations: Copilot and SoundCloud configured
 
 ## Contribute
 
-- Use `feature/describe-your-feature-in-6-words`
-- Use latest C# 12 features
-- Use latest .NET features and types (code generators, `Span<T>`, ...)
-- Optimize your code
+- Branch naming: `feature/describe-your-feature-in-6-words`
+- Coding guidelines:
+  - Use modern C#/.NET (C# with .NET `9`)
+  - Prefer spans, source generators, and performance-minded patterns
+  - Enable and respect nullable reference types
+  - Keep components small and reusable
+  - Follow Bootstrap 5 and Fluent 2 alignment already in variables
+- Before committing:
+  - `dotnet restore`
+  - `dotnet build -c Release`
+  - `dotnet format` (if available)
+- Pull requests:
+  - Target `main`
+  - Link related Issues
+  - Include tests when adding features (unit tests coming in v4)
+  - Update docs/README when behavior or structure changes
 
-### FAQ
+## FAQ
 
-#### Why Blazor?
+### Why Blazor?
 
-- Full-Stack Development with C#
-- Reusability (some code should be reused in further projects)
-- WebAssembly providing near-native performance
+- Full-stack development with C#
+- Reusable code across projects
+- WebAssembly for near-native performance
 
-#### Why monobranch?
+### Why a single branch?
 
-Simplicity first. Deployment should run some integration and unit tests to ensure non-regression.
+- Simplicity. CI validates via integration and unit tests on PRs to `main`.
+
+### How do I run it locally?
+
+- `cd IdeaStudio.Website && dotnet watch run`
+
+### How do I export to PDF?
+
+- Use the browser’s print dialog and “Save as PDF”. The `print.min.css` styles are optimized for export.
+
+### How is lazy loading implemented?
+
+- Via a small service and placeholder components to defer non-critical content and assets until needed.
+
+### How do I add a new language?
+
+- Add a new file under `wwwroot/data/` (e.g., `resume-fr.json`)
+- Mirror the structure of `resume-en.json`
+- Wire up the language selection in the app (localization system planned in v4)
+
+### Where are images and data stored?
+
+- Images: `wwwroot/images/`
+- Localized content: `wwwroot/data/`
+
+### What about SEO?
+
+- Ongoing improvements planned in v4 (content quality, metadata, performance budgets).

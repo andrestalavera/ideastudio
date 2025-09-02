@@ -13,19 +13,35 @@ namespace IdeaStudio.Website.Models;
 /// <param name="Description">Description of job</param>
 /// <param name="Responsibilities">Key responsibilities</param>
 /// <param name="Skills">Skills</param>
-public record Experience
+public partial record Experience
 {
+	public string CompanyAndTitle => $"{Company}-{Title}";
+	public string? Id { get; init; }
 	public string? Title { get; init; }
 	public string? Company { get; init; }
 	public string? Mode { get; init; }
-	public DateTime? StartDate { get; init; }
-	public DateTime? EndDate { get; init; }
-	public string? Location { get; init; }
+	public required DateTime StartDate { get; init; }
+	public DateTime EndDate { get; init; } = DateTime.Today;
+	public IEnumerable<string?>? Locations { get; init; }
 	public IEnumerable<string?>? Description { get; init; }
 	public IEnumerable<string?>? Responsibilities { get; init; }
 	public IEnumerable<string?>? Skills { get; init; }
-}
-public record Experiences
-{
-	public ICollection<Experience>? Items { get; init; }
-}
+	public string? Duration => GetDurationString();
+	private string GetDurationString()
+	{
+		string start = StartDate.ToString("MMMM yyyy");
+		string end = EndDate == DateTime.Today ? "Present" : EndDate.ToString("MMMM yyyy");
+		var totalDays = (EndDate - StartDate).TotalDays;
+		string duration;
+		if (totalDays < 365)
+		{
+			int months = Math.Max(1, (int)(totalDays / 30));
+			duration = $"{months} month{(months == 1 ? "" : "s")}";
+		}
+		else
+		{
+			int years = (int)(totalDays / 365.25);
+			duration = $"{years} years";
+		}
+		return $"{start} - {end} ({duration})";
+	}}

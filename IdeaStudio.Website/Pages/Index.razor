@@ -1,224 +1,196 @@
 @page "/"
 @page "/andres-talavera-resume"
 @using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
 @using IdeaStudio.Website.Shared
 @using Markdig
-@using Microsoft.AspNetCore.Components.Web.Virtualization
-@inject HttpClient httpClient
+@using System.Text.Json
+@inject IAnimationService AnimationService
+@inject IJSRuntime JSRuntime
+@inject ILazyLoadingService LazyLoadingService
+@inject ISeoService SeoService
 
-<div class="container mt-5 pt-5" data-bs-theme="dark">
-	<div class="row">
-		<div class="col">
-			<div class="card bg-transparent rounded my-4"
-				style="background: url('images/aboutme-background.png'); background-size: cover; background-repeat: no-repeat;">
-				<div class="card-body pt-5 bg-acrylic-1 rounded">
-					<div class="row">
-						<h1 class="display-1 px-2">
-							Let's shape the future of your business together.
-						</h1>
+<HeroComponent PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
+<div class="pagebreak"></div>
+<section id="about" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
+	<div class="container">
+		@if (resume?.AboutSections is not null)
+		{
+			<div class="row g-4">
+				@foreach (var (section, index) in resume.AboutSections.Select((s, i) => (s, i)))
+				{
+					<div class="col-12 col-lg-6 col-xxl-4">
+						<CardComponent Title="@(section.Title)" Index="@index">
+							<Content>
+								@if (section.Paragraphs is not null)
+								{
+									@foreach (string paragraph in section.Paragraphs)
+									{
+										<p class="text-primary">@((MarkupString)Markdown.ToHtml(paragraph))</p>
+									}
+								}
+								@if (section.Icons is not null)
+								{
+									<div class="d-flex d-print-none justify-content-center gap-3 my-3">
+										@foreach (string icon in section.Icons)
+										{
+											<i class="@icon fa-4x" aria-hidden="true"></i>
+										}
+									</div>
+								}
+								@if (section.Images is not null)
+								{
+									<div class="d-flex d-print-none justify-content-center gap-3 my-3">
+										@foreach (string image in section.Images)
+										{
+											<img src="images/@image" alt="@image" class="p-1" width="70" height="70" loading="lazy">
+										}
+									</div>
+								}
+							</Content>
+						</CardComponent>
 					</div>
-					<div class="row rounded bg-opacity-25 rounded p-3 mx-n2">
-						<div class="col-4 col-md-3 col-lg-2 text-center align-self-center">
-							<img src="images/andres-talavera.jpeg" alt="Andrés Talavera"
-								class="img-fluid rounded-circle shadow my-3" />
-						</div>
-						<div class="col-8 col-md-9 col-lg-10 align-self-center">
-							<h2 class="card-title">Andrés Talavera</h2>
-							@if (_aboutMe is null)
+				}
+			</div>
+		}
+		else
+		{
+			<PlaceholderComponent />
+		}
+	</div>
+</section>
+
+<section id="experiences" class="py-5 pagebreak" data-bs-spy="scroll" data-bs-target="#navbar">
+	<div class="container">
+		<SectionComponent Title="Professional experiences" />
+
+		@if (resume?.Experiences is not null)
+		{
+			<div class="row g-4">
+				@foreach (var (experience, index) in resume.Experiences.Select((e, i) => (e, i)))
+				{
+					<div class="col-12 @DisplayClasses(index, DEFAULT_EXPERIENCES_TO_SHOW)">
+						<ExperienceComponent Experience="@experience" />
+					</div>
+				}
+			</div>
+
+			@if (HasHiddenExperiences)
+			{
+				<div class="row d-print-none">
+					<div class="col-12 text-center mt-4">
+						<button class="btn btn-light" @onclick="ToggleExperiences">
+							@if (showAllExperiences)
 							{
-								<PlaceholderComponent />
+								<span>Show only 3 latest experiences</span>
 							}
 							else
 							{
-								<p class="lead">
-									@(new MarkupString(_aboutMe.Introduction ?? string.Empty))
-								</p>
+								<span>Show @HiddenExperiencesCount more experiences</span>
 							}
-						</div>
+						</button>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row break-page">
-		<div class="col">
-			@if (_aboutMe is null || _aboutMe.Cards is null)
-			{
-				<PlaceholderComponent />
 			}
-			else
-			{
-				<div class="row row-cols-1 row-cols-lg-3 g-4 virtualize-container">
-					<Virtualize TItem="Card" Items="_aboutMe.Cards" Context="card">
-						<ItemContent>
-							<div class="col">
-								<div class="card bg-light text-bg-light h-100">
-									@if (card.Banner is not null)
+		}
+		else
+		{
+			<PlaceholderComponent />
+		}
+	</div>
+</section>
+
+<section id="trainings" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
+	<div class="container">
+		<SectionComponent Title="I have conducted training courses for..." />
+
+		@if (resume?.TrainingCenters is not null)
+		{
+			<div class="row g-4">
+				@foreach (var (center, index) in resume.TrainingCenters.Select((t, i) => (t, i)))
+				{
+					<div class="col-12 col-lg-6 col-xxl-4">
+						<CardComponent Title="@center.Name" Index="@index">
+							<Content>
+								@if (center.Courses is not null)
+								{
+									<div class="vstack">
+									<p>Courses</p>
+									@foreach (string course in center.Courses)
 									{
-										<img src="images/{@card.Banner}" class="card-img-top" alt="@card.Title" />
+										<div class="d-flex align-items-center text-primary">
+											<i class="fas fa-graduation-cap me-2 small"></i>@course
+										</div>
 									}
-									<div class="card-body">
-										<h3 class="card-title">
-											@card.Title
-										</h3>
-										@if (card.Paragraphs is not null)
+									</div>
+								}
+								@if (center.Locations is not null)
+								{
+									<div class="mt-2">
+									<p>Locations</p>
+										@foreach (string location in center.Locations)
 										{
-											@foreach (var technology in card.Paragraphs)
-											{
-												<p class="card-text">@(new MarkupString(technology))</p>
-											}
-										}
-										@if (card.Images is not null)
-										{
-											<p class="card-text text-center">
-												@foreach (var image in card.Images)
-												{
-													<img class="img-fluid m-1" style="max-height: 40px;" src="@($"images/{image}")"
-														alt="@image" />
-												}
-											</p>
-										}
-										@if (card.Icons is not null)
-										{
-											<p class="card-text text-center">
-												@foreach (var icon in card.Icons)
-												{
-													<i class="@icon fa-3x"></i>
-												}
-											</p>
+											<span class="badge text-bg-light mt-2 me-2">
+												<i class="fas fa-map-marker-alt me-2 small"></i>@location
+											</span>
 										}
 									</div>
-								</div>
-							</div>
-						</ItemContent>
-						<EmptyContent>
-							<p class="lead">Nothing to show here.</p>
-						</EmptyContent>
-					</Virtualize>
-				</div>
-			}
-		</div>
-	</div>
-
-	<div class="row" id="experiences">
-		<div class="col">
-			<h2 class="display-2">Experiences</h2>
-		</div>
-	</div>
-	<div class="row row-cols-1 g-4 virtualize-container break-page">
-		@if (_experiences is null || _experiences.Items is null)
-		{
-			<PlaceholderComponent />
-		}
-		else
-		{
-			<Virtualize TItem="Experience" Items="_experiences.Items" Context="experience">
-				<ItemContent>
-					<div class="col">
-						<ExperienceComponent Title="@experience.Title" Company="@experience.Company" Mode="@experience.Mode"
-							StartDate="@experience.StartDate" EndDate="@experience.EndDate" Location="@experience.Location"
-							Description="@experience.Description" Responsibilities="experience.Responsibilities"
-							Skills="@experience.Skills" />
-					</div>
-				</ItemContent>
-				<EmptyContent>
-					<p class="lead">Nothing to show here.</p>
-				</EmptyContent>
-			</Virtualize>
-		}
-	</div>
-
-	<div class="row" id="trainingcenters">
-		<div class="col">
-			<h2 class="display-2">I have conducted training courses for...</h2>
-		</div>
-	</div>
-	<div class="row row-cols-2 row-cols-lg-3 g-4 virtualize-container">
-		@if (_trainingCenters is null)
-		{
-			<PlaceholderComponent />
-		}
-		else
-		{
-			<Virtualize TItem="TrainingCenter" Items="_trainingCenters.Items" Context="trainingCenter">
-				<ItemContent>
-					<div class="col">
-						<div class="card bg-light text-bg-light h-100">
-							<div class="card-body">
-								<h3 class="card-title">
-									@trainingCenter.Name
-								</h3>
-								@if (trainingCenter.Courses is not null)
-								{
-									@foreach (var course in trainingCenter.Courses)
-									{
-										<p class="card-text">@course</p>
-									}
 								}
-							</div>
-							@if (trainingCenter.Locations is not null)
-							{
-								<div class="card-footer">
-									<span class="small">@string.Join(" - ", trainingCenter.Locations)</span>
-								</div>
-							}
-						</div>
+							</Content>
+						</CardComponent>
 					</div>
-				</ItemContent>
-				<EmptyContent>
-					<p class="lead">Nothing to show here.</p>
-				</EmptyContent>
-			</Virtualize>
+				}
+			</div>
+		}
+		else
+		{
+			<PlaceholderComponent />
 		}
 	</div>
-</div>
+</section>
+
+<section id="contact" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
+	<ContactComponent />
+</section>
 
 @code {
-	private AboutMe? _aboutMe;
-	private Experiences? _experiences;
-	private TrainingCenters? _trainingCenters;
+	private Resume? resume;
+	private bool showAllExperiences = false;
+	private const int DEFAULT_EXPERIENCES_TO_SHOW = 3;
+
+	private int HiddenExperiencesCount => Math.Max(0, (resume?.Experiences?.Count() ?? 0) - DEFAULT_EXPERIENCES_TO_SHOW);
+	private bool HasHiddenExperiences => HiddenExperiencesCount > 0;
 
 	protected override async Task OnInitializedAsync()
 	{
-		await GetExperiences();
-		await GetAboutMe();
-		await GetTrainingCenters();
+		await AnimationService.InitializeAnimationsAsync();
+		await LoadResumeAsync();
 	}
 
-	private async Task GetAboutMe()
+	private async Task LoadResumeAsync()
 	{
-		try
-		{
-			_aboutMe = await httpClient.GetFromJsonAsync<AboutMe>("data/aboutme.json");
-		}
-		catch
-		{
-			Console.WriteLine($"Something went wrong while we try to retrieve 'about me' section.");
-		}
+		string languageCode = "en";
+		resume = await LazyLoadingService.LoadDataAsync<Resume>($"data/resume-{languageCode}.json");
+		StateHasChanged();
 	}
 
-	private async Task GetExperiences()
+	private void ToggleExperiences()
 	{
-		try
-		{
-			_experiences = await httpClient.GetFromJsonAsync<Experiences>("data/experiences.json");
-		}
-		catch
-		{
-			Console.WriteLine($"Something went wrong while we try to retrieve 'experiences' section.");
-		}
+		showAllExperiences = !showAllExperiences;
+		StateHasChanged();
 	}
 
-	private async Task GetTrainingCenters()
+	private string DisplayClasses(int index, int toShow)
 	{
-		try
+		string baseClasses = "d-print-flex";
+
+		if (index < toShow)
 		{
-			_trainingCenters = await httpClient.GetFromJsonAsync<TrainingCenters>("data/trainingcenters.json");
+			return $"{baseClasses} d-flex";
 		}
-		catch
-		{
-			_trainingCenters = new TrainingCenters([]);
-			Console.WriteLine($"Something went wrong while we try to retrieve 'training center' section.");
-		}
+
+		return showAllExperiences
+		? $"{baseClasses} d-flex"
+		: $"{baseClasses} d-none";
 	}
 }

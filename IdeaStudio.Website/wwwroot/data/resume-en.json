@@ -1,11 +1,100 @@
 {
-	"items": [
+	"personalInformation": {
+		"name": "Andrés Talavera",
+		"title": "Expert .NET Developer & Azure Consultant",
+		"introduction": "Experienced .NET developer and Azure consultant with 10+ years of expertise in building modern web applications and cloud solutions.",
+		"languages": {
+			"EN": "English",
+			"FR": "Français",
+			"ES": "Español"
+		},
+		"email": "andres.talavera@ideastud.io",
+		"github": "andrestalavera",
+		"linkedin": "andres-talavera",
+		"website": "ideastud.io",
+		"twitter": "imcresus_"
+	},
+	"aboutSections": [
+		{
+			"title": "Your .NET Consultant",
+			"paragraphs": [
+				"Expert .NET and Azure consultant delivering tailored business solutions.",
+				"Specializing in ASP.NET Core, MAUI, and modern cloud architecture on Azure.",
+				"Microsoft developer with proven enterprise project success.",
+				"Serving startups, SMEs, and digital service companies across multiple industries."
+			],
+			"images": [
+				"dotnet.svg",
+				"csharp.svg",
+				"azure.svg"
+			]
+		},
+		{
+			"title": "Your Trainer",
+			"paragraphs": [
+				"Experienced .NET and Azure trainer for developers and companies. ",
+				"LinkedIn Learning paragraphs creator focusing on Microsoft technologies.",
+				"Proven track record training teams in France, Belgium, and Luxembourg.",
+				"Expert in .NET 9, Blazor Server, and Azure cloud solutions."
+			],
+			"icons": [
+				"fab fa-linkedin linkedin-logo"
+			],
+			"link": "#training"
+		},
+		{
+			"title": "Passionnated",
+			"paragraphs": [
+				"Dedicated Microsoft technology expert staying current with latest trends.",
+				"Committed to delivering innovative .NET solutions meeting client needs.",
+				"Active developer community participant since Microsoft Student Partner days.",
+				"Passionate about mobile development, web technologies, and cloud architecture."
+			],
+			"link": "#contact"
+		},
+		{
+			"title": "Diverse experiences",
+			"paragraphs": [
+				"Successfully delivered projects across medical, finance, aviation, and logistics sectors.",
+				"Expertise spanning healthcare statistics, insurance software, and education platforms.",
+				"Proven experience with multiple companies.",
+				"Mobile developer specializing in MAUI, Xamarin, and cross-platform solutions."
+			],
+			"link": "#experiences"
+		},
+		{
+			"title": "Recent projects",
+			"paragraphs": [
+				"Improved healthcare data portals for Medtech and CEESA using .NET 9.",
+				"Enhanced TRIGO logistics software using advanced .NET development and Vue.js.",
+				"Led Active Assurances team developing comprehensive insurance management system.",
+				"Specialized in Azure migration, CI/CD implementation, and clean architecture design."
+			],
+			"link": "#experiences"
+		},
+		{
+			"title": "Personal attributes",
+			"paragraphs": [
+				"Curious and versatile developer with strong analytical design skills.",
+				"Talented at explaining complex technical concepts to diverse audiences.",
+				"Collaborative team leader thriving in dynamic development environments.",
+				"Trilingual consultant comfortable working across French, Spanish, and English markets."
+			]
+		}
+	],
+	"experiences": [
 		{
 			"title": "Founder - freelance .NET developer, techlead and trainer",
 			"company": "IdeaStudio",
 			"mode": "Self-employed",
 			"startDate": "2015-07-01",
-			"location": "France",
+			"locations": [
+				"France",
+				"Luxembourg",
+				"Belgium",
+				"Austria",
+				"Remote"
+			],
 			"description": [
 				"At IdeaStud.io, I develop innovative mobile and web applications for various industries using the latest Microsoft technologies, particularly cloud-based applications.",
 				"I'm always ready to take on new challenges and stay updated with the evolving tech landscape. Besides application development, I also share my knowledge through training centers and blogs focusing on cloud computing and software architecture.",
@@ -52,7 +141,12 @@
 			"company": "Medtech CEESA",
 			"mode": "Freelance",
 			"startDate": "2024-09-01",
-			"location": "Bruxelles, Belgium - Paris, France · Hybrid",
+			"endDate": "2025-05-01",
+			"locations": [
+				"Bruxelles, Belgium",
+				"Paris, France",
+				"Remote"
+			],
 			"description": [
 				"Medtech and Ceesa are companies focused on healthcare technology solutions, providing data management and analytics services for laboratories.",
 				"I was involved in developing multiple portals for various entities to collect data from laboratories and publish statistics.",
@@ -82,14 +176,16 @@
 				"Azure Managed Identities"
 			]
 		},
-
 		{
 			"title": ".NET Developer",
 			"company": "TRIGO",
 			"mode": "Freelance",
 			"startDate": "2024-02-01",
 			"endDate": "2024-07-01",
-			"location": "Lyon, Auvergne-Rhône-Alpes, France · Hybrid",
+			"locations": [
+				"Lyon, France",
+				"Remote"
+			],
 			"description": [
 				"TRIGO is a global leader in logistics, providing specialized logistics and production support. They are known for their professional support, systems, and flexibility that help exceed their customers' expectations.",
 				"I was brought in to develop new features for an ASP.NET Framework (MVC4) application and support migrations to .NET, Vue, and Azure.",
@@ -101,12 +197,8 @@
 				"Developed several key features on the WebApp, enhancing its functionality and user experience.",
 				"Performed analysis of the mobile app to understand its structure and functionality.",
 				"Developed Vue3 components, contributing to the modernisation of the application.",
-				"Shared knowledge and expertise with team members, fostering a collaborative and learning-oriented environment.",
-				"Assisted in the migration of applications to Azure, leveraging Azure WebApp and Azure Functions for efficient and scalable solutions.",
 				"Collaborated with the team to troubleshoot and resolve technical issues.",
-				"Participated in code reviews to maintain high-quality code.",
-				"Worked closely with stakeholders to understand their needs and translate them into technical requirements.",
-				"Stayed up-to-date with the latest industry trends and technologies, and applied this knowledge to my work."
+				"Participated in code reviews to maintain high-quality code."
 			],
 			"skills": [
 				"Azure DevOps",
@@ -131,7 +223,10 @@
 			"mode": "Freelance",
 			"startDate": "2023-08-01",
 			"endDate": "2024-02-01",
-			"location": "Boulogne-Billancourt, Île-de-France, France · Hybrid",
+			"locations": [
+				"Boulogne-Billancourt, France",
+				"Remote"
+			],
 			"description": [
 				"Active Assurances is a leading provider of automobile insurance products and services in France. They were looking to improve internal processes and redesign some projects performing .NET migrations, security updates, or some automations.",
 				"A new project was implemented from scratch, fully replacing the entire Information System. I led a team of up to 5 developers to achieve this.",
@@ -189,7 +284,10 @@
 			"mode": "Freelance",
 			"startDate": "2022-04-01",
 			"endDate": "2023-04-01",
-			"location": "Lyon, Auvergne-Rhône-Alpes, France · Hybrid",
+			"locations": [
+				"Lyon, France",
+				"Remote"
+			],
 			"description": [
 				"The Adecco Group is a Swiss-French company based in Zurich, Switzerland. It is one of the world's largest Human Resources provider and temporary staffing firm.",
 				"I worked on multiple projects at The Adecco Group. The main project was a worldwide data synchronization system.",
@@ -237,7 +335,9 @@
 			"mode": "Freelance",
 			"startDate": "2021-10-01",
 			"endDate": "2022-02-01",
-			"location": "Remote",
+			"locations": [
+				"Remote"
+			],
 			"description": [
 				"Sage is a British multinational enterprise software company. They were redeveloping some internal libraries and their commercial products.",
 				"I was involved in developing and improving new features for their software solutions.",
@@ -282,7 +382,10 @@
 			"mode": "Freelance",
 			"startDate": "2021-08-01",
 			"endDate": "2021-10-01",
-			"location": "Obernai, Grand Est, France · Hybrid",
+			"locations": [
+				"Obernai, France",
+				"Remote"
+			],
 			"description": [
 				"Hager is a leading supplier of solutions and services for electrical installations in residential, commercial, and industrial buildings.",
 				"The task was to develop an application that uses an existing AI to find spare parts.",
@@ -322,7 +425,9 @@
 			"mode": "Freelance",
 			"startDate": "2021-04-01",
 			"endDate": "2021-06-01",
-			"location": "Remote",
+			"locations": [
+				"Remote"
+			],
 			"description": [
 				"Alteva is a leading provider of software solutions for property management, with over 20 years of experience in the field. Their software, Mission One, is designed to cater to various stakeholders in property maintenance.",
 				"I was involved in developing and improving new features for their software solutions.",
@@ -365,7 +470,10 @@
 			"mode": "Freelance",
 			"startDate": "2020-09-01",
 			"endDate": "2021-04-01",
-			"location": "Audincourt, Bourgogne-Franche-Compté, France",
+			"locations": [
+				"Audincourt, France",
+				"Remote"
+			],
 			"description": [
 				"Faurecia is a global leader in automotive technology. They are known for their innovative solutions that enhance the driving experience and contribute to sustainable mobility.",
 				"I was involved in developing and improving new features for their software solutions.",
@@ -413,7 +521,10 @@
 			"mode": "Freelance",
 			"startDate": "2020-06-01",
 			"endDate": "2020-09-01",
-			"location": "Strasbourg, France · Remote",
+			"locations": [
+				"Strasbourg, France",
+				"Remote"
+			],
 			"description": [
 				"Charl'Antoine is a company specializing in delivery services. They are known for their efficient and reliable delivery solutions.",
 				"I developed a logistics application for Charl'Antoine, Segmuller, and Ikea Grand Est, integrating GDPR compliance and enhancing security.",
@@ -426,11 +537,9 @@
 				"Developed tests following the Test-Driven Development (TDD) approach to ensure the reliability and stability of the app.",
 				"Developed APIs to facilitate communication between the app and the backend systems.",
 				"Developed the mobile app, enhancing its functionality and user experience.",
-				"Developed an administration console for managing the app and monitoring its performance.",
 				"Ensured the app is secure and data is protected.",
 				"Optimized the performance of the app for a smooth user experience.",
-				"Provided training and support to the team on the new technologies and best practices used in the app.",
-				"Bonus: Proficient in Polly.NET, a .NET resilience and transient-fault-handling library, and Simmy, a chaos engineering and fault injection library for .NET."
+				"Provided training and support to the team on the new technologies and best practices used in the app."
 			],
 			"skills": [
 				"Blazor",
@@ -466,7 +575,10 @@
 			"mode": "Freelance",
 			"startDate": "2020-02-01",
 			"endDate": "2020-04-01",
-			"location": "Issy-les-Moulineaux, Ile-de-France, France · Hybrid",
+			"locations": [
+				"Issy-les-Moulineaux, France",
+				"Remote"
+			],
 			"description": [
 				"Renault France, part of an alliance with Mitsubishi and Nissan, is a leading vehicle provider.",
 				"I conducted analysis of existing developments and worked closely with the final customer to analyze functional needs.",
@@ -496,7 +608,10 @@
 			"mode": "Freelance",
 			"startDate": "2019-08-01",
 			"endDate": "2019-12-01",
-			"location": "Reuil-Malmaison, France · Hybrid",
+			"locations": [
+				"Reuil-Malmaison, France",
+				"Remote"
+			],
 			"description": [
 				"Cegid is a leading provider of cloud business management solutions for finance, human resources, CPAs, and the retail and entrepreneurial sectors.",
 				"I was involved in designing the architecture of a new box, conducting PoCs, and performing functional analysis.",
@@ -545,7 +660,9 @@
 			"mode": "Freelance",
 			"startDate": "2019-05-01",
 			"endDate": "2019-08-01",
-			"location": "Paris, France · On-site",
+			"locations": [
+				"Paris, France"
+			],
 			"description": [
 				"Corum is a French company that specializes in providing investment solutions, particularly in real estate.",
 				"I was involved in developing and improving new features for their software solutions.",
@@ -585,7 +702,10 @@
 			"mode": "Freelance",
 			"startDate": "2018-10-01",
 			"endDate": "2019-05-01",
-			"location": "Paris, France · Hybrid",
+			"locations": [
+				"Paris, France",
+				"Remote"
+			],
 			"description": [
 				"DAVIGOLD is a next-generation Fintech company that optimizes private equity operations.",
 				"I was involved in developing and improving new features for their software solutions.",
@@ -628,21 +748,16 @@
 			"mode": "Freelance",
 			"startDate": "2017-10-01",
 			"endDate": "2017-12-01",
-			"location": "Paris, France · On-site",
+			"locations": [
+				"Paris, France"
+			],
 			"description": [
 				"FORTIA is a financial technology company specializing in innovative solutions for the investment management industry.",
 				"I contributed to the development of the Innova application, a comprehensive tool designed for data management, enterprise risk management, and business process management.",
 				"I conducted functional analysis, engaged in research and development, performed reverse engineering, designed the architecture, developed the WPF application, their User Components and contributed to DevOps processes."
 			],
 			"responsibilities": [
-				"Conducted functional analysis to understand the business requirements.",
-				"Engaged in research and development activities, focusing on fleet management and map components.",
-				"Performed reverse engineering of an existing application to understand its architecture and functionality.",
-				"Designed the architecture of the web application, ensuring scalability and performance.",
-				"Developed the MVC web application, APIs, and JavaScript (Bing Maps, Ajax) to meet the project requirements.",
-				"Contributed to and participated in the establishment of DevOps processes using Visual Studio Team Services/Azure DevOps.",
-				"Conducted Proof of Concepts (PoCs) on Bing Maps, Azure Maps, storage options, etc., to explore the best solutions for the project.",
-				"Coached developers to enhance their skills, fostering a culture of continuous learning and improvement within the team."
+				"Conducted functional analysis to understand the business requirements."
 			],
 			"skills": [
 				".NET",
@@ -660,11 +775,12 @@
 			"mode": "Freelance",
 			"startDate": "2017-06-01",
 			"endDate": "2017-09-01",
-			"location": "Paris, France · Hybrid",
+			"locations": [
+				"Paris, France",
+				"Remote"
+			],
 			"description": [
-				"AFILIZA is a digital agency focused on creating effective online presence for businesses.",
-				"I was involved in the research and development of a web application for displaying promotion codes, enhancing the user experience and driving customer engagement.",
-				"I developed the first version of the logistics application for Charl'Antoine, developed an e-commerce site for SIEHR (lecoinsiehr.com), and developed several websites for real estate agencies."
+				"AFILIZA is a digital agency focused on creating effective online presence for businesses."
 			],
 			"responsibilities": [
 				"Application development",
@@ -694,7 +810,10 @@
 			"mode": "Full-time",
 			"startDate": "2016-11-01",
 			"endDate": "2017-04-01",
-			"location": "Paris Area, France · Remote",
+			"locations": [
+				"Paris Area, France",
+				"Remote"
+			],
 			"description": [
 				"Digit-Prime is a technology company offering a range of services from training to application development.",
 				"I was responsible for finding office space, seeking clients, and signing a contract with CORA. I also developed a gamification application for CORA's forklift operators.",
@@ -715,11 +834,81 @@
 			"mode": "Freelance",
 			"startDate": "2015-07-01",
 			"endDate": "2016-11-01",
-			"location": "France",
+			"locations": [
+				"France"
+			],
 			"description": [
 				"Andrés Talavera is my personal brand, where I offer freelance .NET development and training services.",
 				"I provided my first training sessions on .NET, C#, and Azure at institutions like Supinfo and NextFormation.",
-				"I focused on delivering high-quality training, sharing my knowledge, and helping developers enhance their skills."
+				"I focused on delivering high-quality training, sharing my knowledge, and helping developers enhance their skills.",
+				"I was involved in the research and development of a web application for displaying promotion codes, enhancing the user experience and driving customer engagement.",
+				"I developed the first version of the logistics application for Charl'Antoine, developed an e-commerce site for SIEHR (lecoinsiehr.com), and developed several websites for real estate agencies."
+			]
+		}
+	],
+	"trainingCenters": [
+		{
+			"name": "IP-Formation / IPSSI",
+			"locations": [
+				"Paris, France"
+			],
+			"courses": [
+				"Microsoft Azure"
+			]
+		},
+		{
+			"name": "ORSYS",
+			"locations": [
+				"Paris, France",
+				"Charleroi, Belgium"
+			],
+			"courses": [
+				"Microsoft Azure",
+				"Azure DevOps Services"
+			]
+		},
+		{
+			"name": "LinkedIn Learning",
+			"locations": [
+				"Remote",
+				"Gratz, Austria"
+			],
+			"courses": [
+				"Entity Framework Core",
+				"ASP.NET Core",
+				"Xamarin 4"
+			]
+		},
+		{
+			"name": "NextFormation",
+			"locations": [
+				"Paris, France"
+			],
+			"courses": [
+				".NET Framework",
+				"HTML5, CSS3, JavaScript",
+				"Xamarin"
+			]
+		},
+		{
+			"name": "Happly",
+			"locations": [
+				"Strasbourg, France"
+			],
+			"courses": [
+				"Xamarin.Forms"
+			]
+		},
+		{
+			"name": "Supinfo",
+			"locations": [
+				"Paris, France",
+				"Troyes, France",
+				"Montpellier, France"
+			],
+			"courses": [
+				"ASP.NET",
+				"Xamarin"
 			]
 		}
 	]
