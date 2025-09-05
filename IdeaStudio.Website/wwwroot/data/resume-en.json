@@ -2,6 +2,7 @@
 	"personalInformation": {
 		"name": "Andrés Talavera",
 		"title": "Expert .NET Developer & Azure Consultant",
+		"hero": "Let's shape the future of your business together.",
 		"introduction": "Experienced .NET developer and Azure consultant with 10+ years of expertise in building modern web applications and cloud solutions.",
 		"languages": {
 			"EN": "English",
@@ -150,7 +151,7 @@
 			"description": [
 				"Medtech and Ceesa are companies focused on healthcare technology solutions, providing data management and analytics services for laboratories.",
 				"I was involved in developing multiple portals for various entities to collect data from laboratories and publish statistics.",
-				"I conducted analysis, designed the architecture, implemented unit tests, developed new features, and integrated with Azure Entra for enhanced security."
+				"I conducted analysis, designed the architecture, implemented unit tests, developed new features, and integrated with Microsoft Entra ID for enhanced security."
 			],
 			"responsibilities": [
 				"Developed a new project from scratch, ensuring scalability and performance.",
@@ -159,7 +160,7 @@
 				"Added unit tests to ensure the reliability and stability of the software.",
 				"Implemented new features to enhance functionality and user experience.",
 				"Implemented strict security rules to protect sensitive data.",
-				"Integrated with Azure Entra for secure authentication and authorization."
+				"Integrated with Microsoft Entra ID for secure authentication and authorization."
 			],
 			"skills": [
 				"ASP.NET Core",
@@ -172,7 +173,7 @@
 				"Azure SQL",
 				"SQL-Server",
 				"Azure Functions",
-				"Azure Entra",
+				"Microsoft Entra ID",
 				"Azure Managed Identities"
 			]
 		},
