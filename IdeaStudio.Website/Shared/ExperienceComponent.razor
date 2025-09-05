@@ -84,7 +84,7 @@
 							<div class="mb-3">
 								<h5 class="h5 text-primary mb-3 fw-bold">Technologies & Skills</h5>
 								<div class="skills-container">
-									@foreach (string? skill in Experience.Skills.Take(150))
+									@foreach (string? skill in Experience.Skills)
 									{
 										@Badge((skill!, SkillBadge.GetSkillIcon(skill!)))
 									}
