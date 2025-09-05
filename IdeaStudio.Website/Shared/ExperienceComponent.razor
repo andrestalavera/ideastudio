@@ -81,16 +81,12 @@
 
 						@if (Experience.Skills is not null)
 						{
-							<div class="mb-3 d-print-none">
+							<div class="mb-3">
 								<h5 class="h5 text-primary mb-3 fw-bold">Technologies & Skills</h5>
 								<div class="skills-container">
-									@foreach (string? skill in Experience.Skills.Take(15))
+									@foreach (string? skill in Experience.Skills.Take(150))
 									{
 										@Badge((skill!, SkillBadge.GetSkillIcon(skill!)))
-									}
-									@if (Experience.Skills.Count() > 15)
-									{
-										@Badge(($"+{(Experience.Skills.Count() - 15)} more", "fa fa-ellipsis-h text-primary"))
 									}
 								</div>
 							</div>
