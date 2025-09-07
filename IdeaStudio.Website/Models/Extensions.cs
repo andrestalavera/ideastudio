@@ -9,10 +9,13 @@ public static partial class Extensions
 		   .Replace("'", "-")
 		   .Replace("é", "e")
 		   .Replace("è", "e")
+		   .Replace("à", "a")
 		   .Replace(" ", "-")
+		   .Replace("/", "-")
 		   .Replace(".", "dot")
 		   .Replace("#", "sharp")
-		   .Replace("--", "-");
+		   .Replace("--", "-")
+		   .Replace("--", "-", StringComparison.OrdinalIgnoreCase);
 
 	public static Experience? WithGeneratedIds(this Experience experience, ISeoService seoService) => experience! with
 	{

@@ -4,21 +4,16 @@ namespace IdeaStudio.Website.Services;
 
 public interface ILocalizationService
 {
-	Task<string> GetStringAsync(string key);
+	string GetString(string key);
 	Task LoadCultureAsync(string culture);
 }
 
-public class LocalizationService : ILocalizationService
+public class LocalizationService(HttpClient httpClient) : ILocalizationService
 {
-	private readonly HttpClient _httpClient;
-	private Dictionary<string, string> _localizedStrings = new();
+	private readonly HttpClient _httpClient = httpClient;
+	private Dictionary<string, string> _localizedStrings = [];
 
-	public LocalizationService(HttpClient httpClient)
-	{
-		_httpClient = httpClient;
-	}
-
-	public async Task<string> GetStringAsync(string key)
+	public string GetString(string key)
 	{
 		if (_localizedStrings.TryGetValue(key, out var value))
 			return value;
@@ -34,13 +29,13 @@ public class LocalizationService : ILocalizationService
 			if (response.IsSuccessStatusCode)
 			{
 				var json = await response.Content.ReadAsStringAsync();
-				_localizedStrings = JsonSerializer.Deserialize<Dictionary<string, string>>(json) ?? new();
+				_localizedStrings = JsonSerializer.Deserialize<Dictionary<string, string>>(json) ?? [];
 			}
 		}
 		catch
 		{
 			// Fallback to empty dictionary if loading fails
-			_localizedStrings = new Dictionary<string, string>();
+			_localizedStrings = [];
 		}
 	}
 }

@@ -17,5 +17,13 @@
   "LoadingApplication": "Chargement de l'application",
   "ChangeLanguage": "Changer de langue",
   "English": "English",
-  "French": "Français"
+  "French": "Français",
+  "ProfessionalExperiences": "Expériences professionnelles",
+  "TrainingCourses": "J'ai dispensé des formations pour...",
+  "ShowMoreExperiences": "Afficher {0} expériences supplémentaires",
+  "ShowLatestExperiences": "Afficher seulement les 3 dernières expériences",
+  "LetsConnect": "Connectons-nous !",
+  "ReadyToDiscuss": "Prêt à discuter de votre prochain projet ? Construisons quelque chose d'incroyable ensemble.",
+  "ConnectOnLinkedIn": "Se connecter sur LinkedIn",
+  "ViewGitHubProfile": "Voir GitHub"
 }

@@ -75,6 +75,7 @@
 						<i class="fas fa-video me-1" aria-hidden="true"></i>
 						<span class="d-none d-xl-inline">@_meetText</span>
 					</button>
+					<CultureSelector />
 				</div>
 			</div>
 		</div>
@@ -134,22 +135,22 @@
 	{
 		await LocalizationService.LoadCultureAsync(CultureService.CurrentCulture.Name);
 
-		_aboutText = await LocalizationService.GetStringAsync("About");
-		_experiencesText = await LocalizationService.GetStringAsync("Experiences");
-		_trainingText = await LocalizationService.GetStringAsync("Training");
-		_contactText = await LocalizationService.GetStringAsync("Contact");
-		_linkedInText = await LocalizationService.GetStringAsync("LinkedIn");
-		_gitHubText = await LocalizationService.GetStringAsync("GitHub");
-		_meetText = await LocalizationService.GetStringAsync("Meet");
-		_scheduleMeetingText = await LocalizationService.GetStringAsync("ScheduleMeeting");
-		_allRightsReservedText = await LocalizationService.GetStringAsync("AllRightsReserved");
-		_privacyPolicyText = await LocalizationService.GetStringAsync("PrivacyPolicy");
-		_legalMentionsText = await LocalizationService.GetStringAsync("LegalMentions");
-		_skipToMainContentText = await LocalizationService.GetStringAsync("SkipToMainContent");
-		_toggleNavigationText = await LocalizationService.GetStringAsync("ToggleNavigation");
-		_loadingAmazingContentText = await LocalizationService.GetStringAsync("LoadingAmazingContent");
-		_loadingText = await LocalizationService.GetStringAsync("Loading");
-		_loadingApplicationText = await LocalizationService.GetStringAsync("LoadingApplication");
+		_aboutText = LocalizationService.GetString("About");
+		_experiencesText = LocalizationService.GetString("Experiences");
+		_trainingText = LocalizationService.GetString("Training");
+		_contactText = LocalizationService.GetString("Contact");
+		_linkedInText = LocalizationService.GetString("LinkedIn");
+		_gitHubText = LocalizationService.GetString("GitHub");
+		_meetText = LocalizationService.GetString("Meet");
+		_scheduleMeetingText = LocalizationService.GetString("ScheduleMeeting");
+		_allRightsReservedText = LocalizationService.GetString("AllRightsReserved");
+		_privacyPolicyText = LocalizationService.GetString("PrivacyPolicy");
+		_legalMentionsText = LocalizationService.GetString("LegalMentions");
+		_skipToMainContentText = LocalizationService.GetString("SkipToMainContent");
+		_toggleNavigationText = LocalizationService.GetString("ToggleNavigation");
+		_loadingAmazingContentText = LocalizationService.GetString("LoadingAmazingContent");
+		_loadingText = LocalizationService.GetString("Loading");
+		_loadingApplicationText = LocalizationService.GetString("LoadingApplication");
 
 		StateHasChanged();
 	}

@@ -9,6 +9,9 @@
 @inject IJSRuntime JSRuntime
 @inject ILazyLoadingService LazyLoadingService
 @inject ISeoService SeoService
+@inject ICultureService CultureService
+@inject ILocalizationService LocalizationService
+@implements IDisposable
 
 <HeroComponent PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
 <div class="pagebreak"></div>
@@ -61,8 +64,8 @@
 </section>
 
 <section id="experiences" class="py-5 pagebreak" data-bs-spy="scroll" data-bs-target="#navbar">
-	<div class="container">
-		<SectionComponent Title="Professional experiences" />
+    <div class="container">
+        <SectionComponent Title="@_professionalExperiencesText" />
 
 		@if (resume?.Experiences is not null)
 		{
@@ -82,11 +85,11 @@
 						<button class="btn btn-light" @onclick="ToggleExperiences">
 							@if (showAllExperiences)
 							{
-								<span>Show only 3 latest experiences</span>
+								<span>@_showLatestExperiencesText</span>
 							}
 							else
 							{
-								<span>Show @HiddenExperiencesCount more experiences</span>
+								<span>@HiddenExperiencesCount more experiences</span>
 							}
 						</button>
 					</div>
@@ -101,8 +104,8 @@
 </section>
 
 <section id="trainings" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
-	<div class="container">
-		<SectionComponent Title="I have conducted training courses for..." />
+    <div class="container">
+        <SectionComponent Title="@_trainingCoursesText" />
 
 		@if (resume?.TrainingCenters is not null)
 		{
@@ -115,19 +118,19 @@
 								@if (center.Courses is not null)
 								{
 									<div class="vstack">
-									<p>Courses</p>
-									@foreach (string course in center.Courses)
-									{
-										<div class="d-flex align-items-center text-primary">
-											<i class="fas fa-graduation-cap me-2 small"></i>@course
-										</div>
-									}
+										<p>Courses</p>
+										@foreach (string course in center.Courses)
+										{
+											<div class="d-flex align-items-center text-primary">
+												<i class="fas fa-graduation-cap me-2 small"></i>@course
+											</div>
+										}
 									</div>
 								}
 								@if (center.Locations is not null)
 								{
 									<div class="mt-2">
-									<p>Locations</p>
+										<p>Locations</p>
 										@foreach (string location in center.Locations)
 										{
 											<span class="badge text-bg-light mt-2 me-2">
@@ -161,18 +164,50 @@
 	private int HiddenExperiencesCount => Math.Max(0, (resume?.Experiences?.Count() ?? 0) - DEFAULT_EXPERIENCES_TO_SHOW);
 	private bool HasHiddenExperiences => HiddenExperiencesCount > 0;
 
+	// Add these fields for localized section titles
+	private string _professionalExperiencesText = "Professional experiences";
+	private string _trainingCoursesText = "I have conducted training courses for...";
+	private string _showMoreExperiencesText = "Show more experiences";
+	private string _showLatestExperiencesText = "Show only 3 latest experiences";
+
 	protected override async Task OnInitializedAsync()
 	{
+		CultureService.CultureChanged += OnCultureChanged;
+		await LoadLocalizedStringsAsync();
 		await AnimationService.InitializeAnimationsAsync();
 		await LoadResumeAsync();
 	}
 
+	private async Task LoadLocalizedStringsAsync()
+	{
+		await LocalizationService.LoadCultureAsync(CultureService.CurrentCulture.Name);
+
+		_professionalExperiencesText = LocalizationService.GetString("ProfessionalExperiences");
+		_trainingCoursesText = LocalizationService.GetString("TrainingCourses");
+		_showMoreExperiencesText = LocalizationService.GetString("ShowMoreExperiences");
+		_showLatestExperiencesText = LocalizationService.GetString("ShowLatestExperiences");
+
+		StateHasChanged();
+	}
+
 	private async Task LoadResumeAsync()
 	{
-		string languageCode = "en";
+		string languageCode = GetLanguageCode(CultureService.CurrentCulture.Name);
 		resume = await LazyLoadingService.LoadDataAsync<Resume>($"data/resume-{languageCode}.json");
 		StateHasChanged();
 	}
+
+	private async void OnCultureChanged()
+	{
+		await LoadLocalizedStringsAsync();
+		await LoadResumeAsync();
+	}
+
+	private static string GetLanguageCode(string cultureName) => cultureName switch
+	{
+		"fr" or "fr-FR" => "fr",
+		_ => "en"
+	};
 
 	private void ToggleExperiences()
 	{
@@ -192,5 +227,10 @@
 		return showAllExperiences
 		? $"{baseClasses} d-flex"
 		: $"{baseClasses} d-none";
+	}
+
+	public void Dispose()
+	{
+		CultureService.CultureChanged -= OnCultureChanged;
 	}
 }

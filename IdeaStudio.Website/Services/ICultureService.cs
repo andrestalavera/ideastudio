@@ -12,24 +12,18 @@ public interface ICultureService
 	event Action? CultureChanged;
 }
 
-public class CultureService : ICultureService
+public class CultureService(IJSRuntime jsRuntime) : ICultureService
 {
-    private readonly IJSRuntime _jsRuntime;
-    private CultureInfo _currentCulture;
+    private readonly IJSRuntime _jsRuntime = jsRuntime;
+    private CultureInfo _currentCulture = new("en");
 
-    public CultureService(IJSRuntime jsRuntime)
-    {
-        _jsRuntime = jsRuntime;
-        _currentCulture = new CultureInfo("en");
-    }
+	public CultureInfo CurrentCulture => _currentCulture;
 
-    public CultureInfo CurrentCulture => _currentCulture;
-
-    public List<CultureInfo> SupportedCultures => new()
-    {
-        new CultureInfo("en"),
+    public List<CultureInfo> SupportedCultures =>
+	[
+		new CultureInfo("en"),
         new CultureInfo("fr")
-    };
+    ];
 
     public event Action? CultureChanged;
 
