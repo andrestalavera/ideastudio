@@ -1,16 +1,21 @@
 ﻿@inherits LayoutComponentBase
 @inject IJSRuntime JSRuntime
+@using IdeaStudio.Website.Services
+@using IdeaStudio.Website.Components
+@inject ICultureService CultureService
+@inject ILocalizationService LocalizationService
+@implements IDisposable
 
 <div id="loading-overlay-mainlayout"
 	class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-light bg-opacity-50 bg-acrylic">
 	<div class="loading-content d-flex justify-content-center align-items-center h-100 z-3">
 		<div class="card bg-light text-bg-light bg-opacity-75 bg-opacity-50">
 			<div class="card-body text-center p-5">
-				<div class="spinner-border mb-3" role="status" aria-label="Loading application">
-					<span class="visually-hidden">Loading...</span>
+				<div class="spinner-border mb-3" role="status" aria-label="@_loadingApplicationText">
+					<span class="visually-hidden">@_loadingText</span>
 				</div>
 				<h1 class="h4 mb-2">IdeaStud.io</h1>
-				<p>Loading amazing content...</p>
+				<p>@_loadingAmazingContentText</p>
 			</div>
 		</div>
 	</div>
@@ -19,7 +24,7 @@
 <div id="main-content-container" class="d-flex flex-column min-vh-100">
 	<a href="#main-content"
 		class="skip-link visually-hidden-focusable position-absolute top-0 start-0 z-3 btn btn-primary">
-		Skip to main content
+		@_skipToMainContentText
 	</a>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-acrylic bg-opacity-25 sticky-top border-0 border-bottom border-opacity-25 d-print-none"
@@ -31,44 +36,44 @@
 			</a>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav"
-				aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+				aria-controls="navbar-nav" aria-expanded="false" aria-label="@_toggleNavigationText">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbar-nav">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item">
-						<a class="nav-link rounded-pill mx-1" href="#about" data-section="about">About</a>
+						<a class="nav-link rounded-pill mx-1" href="#about" data-section="about">@_aboutText</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link rounded-pill mx-1" href="#experiences"
-							data-section="experiences">Experiences</a>
+							data-section="experiences">@_experiencesText</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link rounded-pill mx-1" href="#trainings" data-section="training">Training</a>
+						<a class="nav-link rounded-pill mx-1" href="#trainings" data-section="training">@_trainingText</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link rounded-pill mx-1" href="#contact" data-section="contact">Contact</a>
+						<a class="nav-link rounded-pill mx-1" href="#contact" data-section="contact">@_contactText</a>
 					</li>
 				</ul>
 
 				<div class="d-flex gap-2">
 					<a href="https://www.linkedin.com/in/andrestalavera/"
 						class="btn btn-light btn-sm bg-acrylic rounded-pill" target="_blank" rel="noopener noreferrer"
-						aria-label="LinkedIn Profile">
+						aria-label="@_linkedInText Profile">
 						<i class="fab fa-linkedin me-1" aria-hidden="true"></i>
-						<span class="d-none d-xl-inline">LinkedIn</span>
+						<span class="d-none d-xl-inline">@_linkedInText</span>
 					</a>
 					<a href="https://github.com/andrestalavera" class="btn btn-light btn-sm bg-acrylic rounded-pill"
-						target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+						target="_blank" rel="noopener noreferrer" aria-label="@_gitHubText Profile">
 						<i class="fab fa-github me-1" aria-hidden="true"></i>
-						<span class="d-none d-xl-inline">GitHub</span>
+						<span class="d-none d-xl-inline">@_gitHubText</span>
 					</a>
 					<button class="btn btn-primary btn-sm bg-acrylic rounded-pill"
 						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/30min'});return false;"
-						aria-label="Schedule a meeting">
+						aria-label="@_scheduleMeetingText">
 						<i class="fas fa-video me-1" aria-hidden="true"></i>
-						<span class="d-none d-xl-inline">Meet</span>
+						<span class="d-none d-xl-inline">@_meetText</span>
 					</button>
 				</div>
 			</div>
@@ -81,17 +86,81 @@
 
 	<footer class="mt-auto py-5 text-center d-print-none z-3">
 		<div class="container">
-
 			<div class="text-white fade-in-up animate py-3 border-top border-light border-opacity-50">
 				<div class="opacity-75">
-					<p class="">@DateTime.Now.Year IdeaStud.io - Andrés Talavera. All rights reserved.</p>
-					<small class="text-light">
-						<a href="/privacy" class="text-decoration-none text-light">Privacy Policy</a> |
-						<a href="/legal" class="text-decoration-none text-light">Legal Mentions</a>
-					</small>
+					<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+						<div class="flex-grow-1 text-start">
+							<p class="mb-0">@DateTime.Now.Year IdeaStud.io - Andrés Talavera. @_allRightsReservedText</p>
+							<small class="text-light">
+								<a href="/privacy" class="text-decoration-none text-light">@_privacyPolicyText</a> |
+								<a href="/legal" class="text-decoration-none text-light">@_legalMentionsText</a>
+							</small>
+						</div>
+						<div>
+							<CultureSelector />
+						</div>
+					</div>
 				</div>
 			</div>
-
 		</div>
 	</footer>
 </div>
+
+@code {
+	private string _aboutText = "About";
+	private string _experiencesText = "Experiences";
+	private string _trainingText = "Training";
+	private string _contactText = "Contact";
+	private string _linkedInText = "LinkedIn";
+	private string _gitHubText = "GitHub";
+	private string _meetText = "Meet";
+	private string _scheduleMeetingText = "Schedule a meeting";
+	private string _allRightsReservedText = "All rights reserved";
+	private string _privacyPolicyText = "Privacy Policy";
+	private string _legalMentionsText = "Legal Mentions";
+	private string _skipToMainContentText = "Skip to main content";
+	private string _toggleNavigationText = "Toggle navigation";
+	private string _loadingAmazingContentText = "Loading amazing content...";
+	private string _loadingText = "Loading...";
+	private string _loadingApplicationText = "Loading application";
+
+	protected override async Task OnInitializedAsync()
+	{
+		CultureService.CultureChanged += OnCultureChanged;
+		await LoadLocalizedStringsAsync();
+	}
+
+	private async Task LoadLocalizedStringsAsync()
+	{
+		await LocalizationService.LoadCultureAsync(CultureService.CurrentCulture.Name);
+
+		_aboutText = await LocalizationService.GetStringAsync("About");
+		_experiencesText = await LocalizationService.GetStringAsync("Experiences");
+		_trainingText = await LocalizationService.GetStringAsync("Training");
+		_contactText = await LocalizationService.GetStringAsync("Contact");
+		_linkedInText = await LocalizationService.GetStringAsync("LinkedIn");
+		_gitHubText = await LocalizationService.GetStringAsync("GitHub");
+		_meetText = await LocalizationService.GetStringAsync("Meet");
+		_scheduleMeetingText = await LocalizationService.GetStringAsync("ScheduleMeeting");
+		_allRightsReservedText = await LocalizationService.GetStringAsync("AllRightsReserved");
+		_privacyPolicyText = await LocalizationService.GetStringAsync("PrivacyPolicy");
+		_legalMentionsText = await LocalizationService.GetStringAsync("LegalMentions");
+		_skipToMainContentText = await LocalizationService.GetStringAsync("SkipToMainContent");
+		_toggleNavigationText = await LocalizationService.GetStringAsync("ToggleNavigation");
+		_loadingAmazingContentText = await LocalizationService.GetStringAsync("LoadingAmazingContent");
+		_loadingText = await LocalizationService.GetStringAsync("Loading");
+		_loadingApplicationText = await LocalizationService.GetStringAsync("LoadingApplication");
+
+		StateHasChanged();
+	}
+
+	private async void OnCultureChanged()
+	{
+		await LoadLocalizedStringsAsync();
+	}
+
+	public void Dispose()
+	{
+		CultureService.CultureChanged -= OnCultureChanged;
+	}
+}

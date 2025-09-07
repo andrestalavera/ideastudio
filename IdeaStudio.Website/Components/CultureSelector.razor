@@ -1,0 +1,88 @@
+@using IdeaStudio.Website.Services
+@inject ICultureService CultureService
+@inject ILocalizationService LocalizationService
+@implements IDisposable
+
+<div class="dropdown">
+    <button class="btn btn-light btn-sm bg-acrylic rounded-pill dropdown-toggle"
+            type="button"
+            id="cultureDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            aria-label="@_changeLanguageText">
+        <i class="fas fa-globe me-1" aria-hidden="true"></i>
+        <span class="d-none d-xl-inline">@GetCurrentCultureDisplayName()</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cultureDropdown">
+        @foreach (var culture in CultureService.SupportedCultures)
+        {
+            <li>
+                <button class="dropdown-item @(IsCurrentCulture(culture) ? "active" : "")"
+                        type="button"
+                        @onclick="() => ChangeCultureAsync(culture.Name)">
+                    <i class="fas fa-check me-2 @(IsCurrentCulture(culture) ? "" : "invisible")" aria-hidden="true"></i>
+                    @GetCultureDisplayName(culture)
+                </button>
+            </li>
+        }
+    </ul>
+</div>
+
+@code {
+    private string _changeLanguageText = "Change Language";
+    private string _englishText = "English";
+    private string _frenchText = "Français";
+
+    protected override async Task OnInitializedAsync()
+    {
+        CultureService.CultureChanged += OnCultureChanged;
+        await LoadLocalizedStringsAsync();
+    }
+
+    private async Task LoadLocalizedStringsAsync()
+    {
+        await LocalizationService.LoadCultureAsync(CultureService.CurrentCulture.Name);
+        _changeLanguageText = await LocalizationService.GetStringAsync("ChangeLanguage");
+        _englishText = await LocalizationService.GetStringAsync("English");
+        _frenchText = await LocalizationService.GetStringAsync("French");
+        StateHasChanged();
+    }
+
+    private async void OnCultureChanged()
+    {
+        await LoadLocalizedStringsAsync();
+    }
+
+    private async Task ChangeCultureAsync(string culture)
+    {
+        await CultureService.SetCultureAsync(culture);
+    }
+
+    private bool IsCurrentCulture(System.Globalization.CultureInfo culture)
+    {
+        return CultureService.CurrentCulture.Name.Equals(culture.Name, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private string GetCurrentCultureDisplayName()
+    {
+        return CultureService.CurrentCulture.Name.ToLower() switch
+        {
+            "fr" => _frenchText,
+            _ => _englishText
+        };
+    }
+
+    private string GetCultureDisplayName(System.Globalization.CultureInfo culture)
+    {
+        return culture.Name.ToLower() switch
+        {
+            "fr" => _frenchText,
+            _ => _englishText
+        };
+    }
+
+    public void Dispose()
+    {
+        CultureService.CultureChanged -= OnCultureChanged;
+    }
+}
