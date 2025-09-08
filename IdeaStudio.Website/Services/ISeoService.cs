@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace IdeaStudio.Website.Services;
 
-public partial interface ISeoService
+public interface ISeoService
 {
 	string GenerateSlug(string? input);
 }

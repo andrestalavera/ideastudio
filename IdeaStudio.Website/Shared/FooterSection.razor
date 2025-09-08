@@ -6,11 +6,11 @@
 				<div class="opacity-75">
 					<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
 						<div class="flex-grow-1 text-start">
-							<p class="mb-0">@DateTime.Now.Year IdeaStud.io - Andrés Talavera. @_allRightsReservedText
+							<p class="mb-0">@DateTime.Now.Year IdeaStud.io - Andrés Talavera. @allRightsReservedText
 							</p>
 							<small class="text-light">
-								<a href="/privacy" class="text-decoration-none text-light">@_privacyPolicyText</a> |
-								<a href="/legal" class="text-decoration-none text-light">@_legalMentionsText</a>
+								<a href="/privacy" class="text-decoration-none text-light">@privacyPolicyText</a> |
+								<a href="/legal" class="text-decoration-none text-light">@legalMentionsText</a>
 							</small>
 						</div>
 						<div>
@@ -23,14 +23,14 @@
 	</footer>
 
 	@code {
-		private string _allRightsReservedText = "All rights reserved.";
-		private string _privacyPolicyText = "Privacy Policy";
-		private string _legalMentionsText = "Legal Mentions";
+		private string allRightsReservedText = "All rights reserved.";
+		private string privacyPolicyText = "Privacy Policy";
+		private string legalMentionsText = "Legal Mentions";
 
 		protected override void LoadTexts()
 		{
-			_allRightsReservedText = LocalizationService.GetString("AllRightsReserved");
-			_privacyPolicyText = LocalizationService.GetString("PrivacyPolicy");
-			_legalMentionsText = LocalizationService.GetString("LegalMentions");
+			allRightsReservedText = LocalizationService.GetString("AllRightsReserved");
+			privacyPolicyText = LocalizationService.GetString("PrivacyPolicy");
+			legalMentionsText = LocalizationService.GetString("LegalMentions");
 		}
 	}

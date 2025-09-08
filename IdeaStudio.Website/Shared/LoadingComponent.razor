@@ -5,25 +5,23 @@
 	<div class="loading-content d-flex justify-content-center align-items-center h-100 z-3">
 		<div class="card bg-light text-bg-light bg-opacity-75 bg-opacity-50">
 			<div class="card-body text-center p-5">
-				<div class="spinner-border mb-3" role="status" aria-label="@_loadingApplicationText">
-					<span class="visually-hidden">@_loadingText</span>
+				<div class="spinner-border mb-3" role="status" aria-label="@loadingText">
+					<span class="visually-hidden">@loadingText</span>
 				</div>
 				<h1 class="h4 mb-2">IdeaStud.io</h1>
-				<p>@_loadingAmazingContentText</p>
+				<p>@loadingAmazingContentText</p>
 			</div>
 		</div>
 	</div>
 </div>
 
 @code{
-	private string _loadingText = "Loading...";
-	private string _loadingApplicationText = "Loading Application";
-	private string _loadingAmazingContentText = "Loading amazing experience...";
+	private string loadingText = "Loading...";
+	private string loadingAmazingContentText = "Loading amazing experience...";
 
 	protected override void LoadTexts()
 	{
-		_loadingText = LocalizationService.GetString("Loading");
-		_loadingApplicationText = LocalizationService.GetString("LoadingApplication");
-		_loadingAmazingContentText = LocalizationService.GetString("LoadingAmazingContent");
+		loadingText = LocalizationService.GetString("Loading");
+		loadingAmazingContentText = LocalizationService.GetString("LoadingAmazingContent");
 	}
 }

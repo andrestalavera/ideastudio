@@ -7,9 +7,9 @@
 	<div @ref="ElementRef" class="col-lg-8 fade-in-up">
 		<div class="card bg-white text-bg-light bg-opacity-75 contact-card">
 			<div class="card-body p-5">
-				<h2 class="mb-4 display-5 fw-light text-primary text-center ">@_letsConnectText</h2>
+				<h2 class="mb-4 display-5 fw-light text-primary text-center ">@letsConnectText</h2>
 				<p class="lead mb-4 opacity-90 text-primary text-center ">
-					@_readyToDiscussText
+					@readyToDiscussText
 				</p>
 				<div class="d-flex justify-content-center gap-3 flex-wrap text-center">
 					<SocialNetworksComponent Size="lg" ShowText="true" />
@@ -20,12 +20,12 @@
 </div>
 
 @code{
-    private string _letsConnectText = "Let's Connect";
-    private string _readyToDiscussText = "Ready to discuss your next project? Let's build something amazing together.";
+    private string letsConnectText = "Let's Connect";
+    private string readyToDiscussText = "Ready to discuss your next project? Let's build something amazing together.";
 
     protected override void LoadTexts()
     {
-        _letsConnectText = LocalizationService.GetString("LetsConnect");
-        _readyToDiscussText = LocalizationService.GetString("ReadyToDiscuss");
+        letsConnectText = LocalizationService.GetString("LetsConnect");
+        readyToDiscussText = LocalizationService.GetString("ReadyToDiscuss");
     }
 }

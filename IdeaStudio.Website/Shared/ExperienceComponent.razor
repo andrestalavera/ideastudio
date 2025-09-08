@@ -186,7 +186,7 @@
 
 	protected override void OnInitialized()
 	{
-		Experience = Experience.WithGeneratedId(SeoService);
+		Experience = Experience.WithGeneratedId(SeoService)!;
 	}
 
 	private RenderFragment<(string Title, string Icon)> Badge => (skill) =>
