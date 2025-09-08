@@ -11,6 +11,7 @@ public interface ILocalizationService
 public class LocalizationService(HttpClient httpClient) : ILocalizationService
 {
 	private readonly HttpClient _httpClient = httpClient;
+	private readonly Dictionary<string, Dictionary<string, string>> _cultureCache = [];
 	private Dictionary<string, string> _localizedStrings = [];
 
 	public string GetString(string key)
@@ -18,18 +19,29 @@ public class LocalizationService(HttpClient httpClient) : ILocalizationService
 		if (_localizedStrings.TryGetValue(key, out var value))
 			return value;
 
-		return key; // Fallback to key if not found
+		return key;
 	}
 
 	public async Task LoadCultureAsync(string culture)
 	{
+		// Check cache first
+		if (_cultureCache.TryGetValue(culture, out var cachedStrings))
+		{
+			_localizedStrings = cachedStrings;
+			return;
+		}
+
 		try
 		{
 			var response = await _httpClient.GetAsync($"i18n/{culture}.json");
 			if (response.IsSuccessStatusCode)
 			{
 				var json = await response.Content.ReadAsStringAsync();
-				_localizedStrings = JsonSerializer.Deserialize<Dictionary<string, string>>(json) ?? [];
+				var strings = JsonSerializer.Deserialize<Dictionary<string, string>>(json) ?? [];
+
+				// Cache the loaded strings
+				_cultureCache[culture] = strings;
+				_localizedStrings = strings;
 			}
 		}
 		catch

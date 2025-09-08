@@ -1,10 +1,7 @@
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Services
-@inject ICultureService CultureService
-@inject ILocalizationService LocalizationService
 @inherits AnimatedComponentBase
-@implements IDisposable
 
 <div class="row justify-content-center">
 	<div @ref="ElementRef" class="col-lg-8 fade-in-up">
@@ -15,20 +12,7 @@
 					@_readyToDiscussText
 				</p>
 				<div class="d-flex justify-content-center gap-3 flex-wrap text-center">
-					<a href="https://www.linkedin.com/in/andrestalavera/"
-						class="btn btn-primary rounded-pill bg-acrylic px-4 py-2" target="_blank"
-						rel="noopener noreferrer">
-						<i class="fab fa-linkedin me-2" aria-hidden="true"></i>@_connectOnLinkedInText
-					</a>
-					<a href="https://github.com/andrestalavera"
-						class="btn btn-secondary rounded-pill bg-acrylic px-4 py-2" target="_blank"
-						rel="noopener noreferrer">
-						<i class="fab fa-github me-2" aria-hidden="true"></i>@_viewGitHubProfileText
-					</a>
-					<button class="btn btn-success rounded-pill bg-acrylic bg-success px-4 py-2"
-						onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/30min'});return false;">
-						<i class="fas fa-video me-2" aria-hidden="true"></i>@_scheduleMeetingText
-					</button>
+					<SocialNetworksComponent Size="lg" ShowText="true" />
 				</div>
 			</div>
 		</div>
@@ -38,34 +22,16 @@
 @code{
     private string _letsConnectText = "Let's Connect";
     private string _readyToDiscussText = "Ready to discuss your next project? Let's build something amazing together.";
-    private string _connectOnLinkedInText = "Connect on LinkedIn";
-    private string _viewGitHubProfileText = "View GitHub";
-    private string _scheduleMeetingText = "Schedule a meeting";
 
-    protected override Task OnInitializedAsync()
+    protected override async Task LoadLocalizedStringsAsync()
     {
-		CultureService.CultureChanged += OnCultureChanged;
-		return LoadLocalizedStringsAsync();
+        await base.LoadLocalizedStringsAsync();
+        LoadTexts();
     }
 
-	private async Task LoadLocalizedStringsAsync()
-	{
-		await LocalizationService.LoadCultureAsync(CultureService.CurrentCulture.Name);
-		_letsConnectText = LocalizationService.GetString("LetsConnect");
-		_readyToDiscussText = LocalizationService.GetString("ReadyToDiscuss");
-		_connectOnLinkedInText = LocalizationService.GetString("ConnectOnLinkedIn");
-		_viewGitHubProfileText = LocalizationService.GetString("ViewGitHubProfile");
-		_scheduleMeetingText = LocalizationService.GetString("ScheduleMeeting");
-		StateHasChanged();
-	}
-
-	private async void OnCultureChanged()
-	{
-		await LoadLocalizedStringsAsync();
-	}
-
-	public void Dispose()
-	{
-		CultureService.CultureChanged -= OnCultureChanged;
-	}
+    private void LoadTexts()
+    {
+        _letsConnectText = LocalizationService.GetString("LetsConnect");
+        _readyToDiscussText = LocalizationService.GetString("ReadyToDiscuss");
+    }
 }

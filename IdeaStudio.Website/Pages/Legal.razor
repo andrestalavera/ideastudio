@@ -1,16 +1,52 @@
 ﻿@page "/legal"
+@inherits LocalizedComponent
+@layout MainLayout
 
 <div class="container mt-5">
-	<div class="row mt-5">
-		<div class="col mt-5 pt-5">
-			<div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
-				<div class="card-body">
-				<div class="display-4">Legal mentions</div>
-					<p>Last updated: August 19th, 2025.</p>
-					<p>Developer: Andrés Talavera</p>
-					<p>Host: Microsoft Azure</p>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="row mt-5">
+        <div class="col mt-5 pt-5">
+            <div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
+                <div class="card-body">
+                    <div class="display-4">@_legalMentionsTitle</div>
+                    <p>@_lastUpdatedText</p>
+                    <p>@_developerText</p>
+                    <p>@_hostText</p>
+                    <p>@_videoAttributesText</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@code {
+    [CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
+
+    private string _legalMentionsTitle = "Legal Mentions";
+    private string _lastUpdatedText = "Last updated";
+    private string _developerText = "Developer";
+    private string _hostText = "Host";
+	private string _videoAttributesText = "The background video is sourced from Pixabay and is under the Content License (https://pixabay.com/service/license-summary/). Source: https://pixabay.com/videos/news-technology-information-88425/";
+
+    private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        LoadTexts();
+
+        // Update navbar content when language changes
+        if (MainLayoutInstance is not null)
+        {
+            MainLayoutInstance.SetNavbarContent(EmptyNavbarContent);
+        }
+    }
+
+    private void LoadTexts()
+    {
+        _legalMentionsTitle = LocalizationService.GetString("LegalMentions");
+        _lastUpdatedText = LocalizationService.GetString("LegalMentions.LastUpdated");
+        _developerText = LocalizationService.GetString("LegalMentions.Developer");
+        _hostText = LocalizationService.GetString("LegalMentions.Host");
+		_videoAttributesText = LocalizationService.GetString("LegalMentions.VideoAttributes");
+    }
+}

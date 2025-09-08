@@ -25,5 +25,18 @@
   "LetsConnect": "Let's Connect",
   "ReadyToDiscuss": "Ready to discuss your next project? Let's build something amazing together.",
   "ConnectOnLinkedIn": "Connect on LinkedIn",
-  "ViewGitHubProfile": "View GitHub"
+  "ViewGitHubProfile": "View GitHub",
+  "LegalMentions.LastUpdated": "Last updated: September 8th, 2025",
+  "LegalMentions.Developer": "Developer: Andres Talavera",
+  "LegalMentions.Host": "Host: Azure Static Web Apps",
+  "LegalMentions.VideoAttributes": "The background video is sourced from Pixabay and is licensed under Content (https://pixabay.com/fr/service/license-summary/). Origin: https://pixabay.com/videos/news-technology-information-88425/",
+  "PrivacyPolicy.LastUpdated": "Last updated: September 8th, 2025",
+  "PrivacyPolicy.Introduction": "This Privacy Policy explains how we collect, use, and protect your personal information.",
+  "PrivacyPolicy.InformationCollection": "We collect information that you provide directly to us, such as your name and email address when you contact us. The website uses Calendly for scheduling meetings, and their privacy policy can be found at https://calendly.com/privacy.",
+  "PrivacyPolicy.UseOfInformation": "We use the information we collect to respond to your inquiries and provide you with the services you request.",
+  "PrivacyPolicy.InformationSharing": "We do not share your personal information with third parties except as necessary to provide our services or comply with legal obligations.",
+  "PrivacyPolicy.DataSecurity": "We implement reasonable security measures to protect your personal information.",
+  "PrivacyPolicy.YourChoices": "You can choose not to provide certain information, but this may limit your ability to use some features of our website.",
+  "PrivacyPolicy.ChangesToThisPolicy": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.",
+  "PrivacyPolicy.ContactUs": "If you have any questions about this Privacy Policy, please contact us at contact@ideastud.io."
 }

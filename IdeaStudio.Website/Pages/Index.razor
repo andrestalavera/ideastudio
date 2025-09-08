@@ -3,18 +3,25 @@
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
 @using IdeaStudio.Website.Shared
+@using IdeaStudio.Website.Components
 @using Markdig
 @using System.Text.Json
 @inject IAnimationService AnimationService
-@inject IJSRuntime JSRuntime
 @inject ILazyLoadingService LazyLoadingService
-@inject ISeoService SeoService
-@inject ICultureService CultureService
-@inject ILocalizationService LocalizationService
-@implements IDisposable
+
+@inherits LocalizedComponent
+@layout MainLayout
+
+@{
+	if (MainLayoutInstance is not null)
+	{
+		MainLayoutInstance.NavbarContent = NavbarNavigationContent;
+	}
+}
 
 <HeroComponent PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
 <div class="pagebreak"></div>
+
 <section id="about" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
 	<div class="container">
 		@if (resume?.AboutSections is not null)
@@ -157,80 +164,92 @@
 </section>
 
 @code {
-	private Resume? resume;
-	private bool showAllExperiences = false;
-	private const int DEFAULT_EXPERIENCES_TO_SHOW = 3;
+    [CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
 
-	private int HiddenExperiencesCount => Math.Max(0, (resume?.Experiences?.Count() ?? 0) - DEFAULT_EXPERIENCES_TO_SHOW);
-	private bool HasHiddenExperiences => HiddenExperiencesCount > 0;
+    private Resume? resume;
+    private bool showAllExperiences = false;
+    private const int DEFAULT_EXPERIENCES_TO_SHOW = 3;
+    private int HiddenExperiencesCount => Math.Max(0, (resume?.Experiences?.Count() ?? 0) - DEFAULT_EXPERIENCES_TO_SHOW);
+    private bool HasHiddenExperiences => HiddenExperiencesCount > 0;
+    private string _professionalExperiencesText = "Professional experiences";
+    private string _trainingCoursesText = "I have conducted training courses for...";
+    private string _showMoreExperiencesText = "Show more experiences";
+    private string _showLatestExperiencesText = "Show only 3 latest experiences";
+    private string _aboutText = "About";
+    private string _experiencesText = "Experiences";
+    private string _trainingText = "Training";
+    private string _contactText = "Contact";
 
-	// Add these fields for localized section titles
-	private string _professionalExperiencesText = "Professional experiences";
-	private string _trainingCoursesText = "I have conducted training courses for...";
-	private string _showMoreExperiencesText = "Show more experiences";
-	private string _showLatestExperiencesText = "Show only 3 latest experiences";
 
-	protected override async Task OnInitializedAsync()
-	{
-		CultureService.CultureChanged += OnCultureChanged;
-		await LoadLocalizedStringsAsync();
-		await AnimationService.InitializeAnimationsAsync();
-		await LoadResumeAsync();
-	}
+	private RenderFragment NavbarNavigationContent =>
+    @<ul class="navbar-nav me-auto">
+        <li class="nav-item">
+            <a class="nav-link rounded-pill mx-1" href="#about" data-section="about">@_aboutText</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link rounded-pill mx-1" href="#experiences" data-section="experiences">@_experiencesText</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link rounded-pill mx-1" href="#trainings" data-section="training">@_trainingText</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link rounded-pill mx-1" href="#contact" data-section="contact">@_contactText</a>
+        </li>
+    </ul>;
 
-	private async Task LoadLocalizedStringsAsync()
-	{
-		await LocalizationService.LoadCultureAsync(CultureService.CurrentCulture.Name);
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await AnimationService.InitializeAnimationsAsync();
+        await LoadResumeAsync();
+    }
 
-		_professionalExperiencesText = LocalizationService.GetString("ProfessionalExperiences");
-		_trainingCoursesText = LocalizationService.GetString("TrainingCourses");
-		_showMoreExperiencesText = LocalizationService.GetString("ShowMoreExperiences");
-		_showLatestExperiencesText = LocalizationService.GetString("ShowLatestExperiences");
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        LoadTexts();
+        await LoadResumeAsync();
 
-		StateHasChanged();
-	}
+        if (MainLayoutInstance is not null)
+        {
+            MainLayoutInstance.SetNavbarContent(NavbarNavigationContent);
+        }
+    }
 
-	private async Task LoadResumeAsync()
-	{
-		string languageCode = GetLanguageCode(CultureService.CurrentCulture.Name);
-		resume = await LazyLoadingService.LoadDataAsync<Resume>($"data/resume-{languageCode}.json");
-		StateHasChanged();
-	}
+    private void LoadTexts()
+    {
+        _professionalExperiencesText = LocalizationService.GetString("ProfessionalExperiences");
+        _trainingCoursesText = LocalizationService.GetString("TrainingCourses");
+        _showMoreExperiencesText = LocalizationService.GetString("ShowMoreExperiences");
+        _showLatestExperiencesText = LocalizationService.GetString("ShowLatestExperiences");
+        _aboutText = LocalizationService.GetString("About");
+        _experiencesText = LocalizationService.GetString("Experiences");
+        _trainingText = LocalizationService.GetString("Training");
+        _contactText = LocalizationService.GetString("Contact");
+    }
 
-	private async void OnCultureChanged()
-	{
-		await LoadLocalizedStringsAsync();
-		await LoadResumeAsync();
-	}
+    private async Task LoadResumeAsync()
+    {
+        string languageCode = GetLanguageCode(CultureService.CurrentCulture.Name);
+        resume = await LazyLoadingService.LoadDataAsync<Resume>($"data/resume-{languageCode}.json");
+        StateHasChanged();
+    }
 
-	private static string GetLanguageCode(string cultureName) => cultureName switch
-	{
-		"fr" or "fr-FR" => "fr",
-		_ => "en"
-	};
+    private static string GetLanguageCode(string cultureName) => cultureName switch
+    {
+        "fr" or "fr-FR" => "fr",
+        _ => "en"
+    };
 
-	private void ToggleExperiences()
-	{
-		showAllExperiences = !showAllExperiences;
-		StateHasChanged();
-	}
+    private void ToggleExperiences()
+    {
+        showAllExperiences = !showAllExperiences;
+        StateHasChanged();
+    }
 
-	private string DisplayClasses(int index, int toShow)
-	{
-		string baseClasses = "d-print-flex";
-
-		if (index < toShow)
-		{
-			return $"{baseClasses} d-flex";
-		}
-
-		return showAllExperiences
-		? $"{baseClasses} d-flex"
-		: $"{baseClasses} d-none";
-	}
-
-	public void Dispose()
-	{
-		CultureService.CultureChanged -= OnCultureChanged;
-	}
+    private string DisplayClasses(int index, int toShow)
+    {
+        string baseClasses = "d-print-flex";
+        return index < toShow ? $"{baseClasses} d-flex" : showAllExperiences ? $"{baseClasses} d-flex" : $"{baseClasses} d-none";
+    }
 }

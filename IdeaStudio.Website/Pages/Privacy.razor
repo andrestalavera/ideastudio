@@ -1,28 +1,68 @@
 ﻿@page "/privacy"
+@inherits LocalizedComponent
+@layout MainLayout
 
 <div class="container mt-5">
 	<div class="row mt-5">
 		<div class="col mt-5 pt-5">
 			<div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
 				<div class="card-body">
-				<div class="display-4">Privacy Policy</div>
-					<p>Last updated: 19 February, 2025.</p>
-					<p>Your privacy is important to me. It is my policy to respect your privacy regarding any information we may
-						collect from you across my website.</p>
-					<div class="display-5">Information we collect</div>
-					<p>We don't store any personal data on my side. IdeaStudio website uses Calendly for scheduling appointments. Please
-						refer to <a href="https://calendly.com/legal/privacy-notice" target="_blank">Calendly's privacy policy</a> for more information on how they handle your data.</p>
-					<div class="display-5">Third-party libraries</div>
-					<p>IdeaStudio website uses Bootstrap for styling. Bootstrap is an open-source toolkit for developing with HTML, CSS,
-						and JS. We do not collect or store any data through Bootstrap.</p>
-					<p>The background video on our website is a modified version of a video obtained from <a href="https://pixabay.com/videos/news-technology-information-88425/" target="_blank">https://pixabay.com/videos/news-technology-information-88425/</a>. We have made modifications to this video for use on our site.</p>
-					<div class="display-5">Changes to our privacy policy</div>
-					<p>We may update our privacy policy from time to time. We encourage you to review this privacy policy frequently
-						for any changes.</p>
-					<div class="display-5">Contact us</div>
-					<p>If you have any questions about the privacy policy, please contact us.</p>
+					<div class="display-4">@_title</div>
+					<p>@_lastUpdate</p>
+					<p>@_introduction</p>
+					<p>@_informationCollection</p>
+					<p>@_useOfInformation</p>
+					<p>@_informationSharing</p>
+					<p>@_dataSecurity</p>
+					<p>@_yourChoices</p>
+					<p>@_changesToThisPolicy</p>
+					<p>@_contactUs</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+@code {
+	[CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
+
+	private string _title = "Host";
+	private string _lastUpdate = "Last updated";
+	private string _introduction = "Introduction";
+	private string _informationCollection = "Information Collection";
+	private string _useOfInformation = "Use of Information";
+	private string _informationSharing = "Information Sharing";
+	private string _dataSecurity = "Data Security";
+	private string _yourChoices = "Your Choices";
+	private string _changesToThisPolicy = "Changes to This Policy";
+	private string _contactUs = "Contact Us";
+
+	private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
+
+	protected override async Task LoadLocalizedStringsAsync()
+	{
+		await base.LoadLocalizedStringsAsync();
+		LoadTexts();
+
+		// Update navbar content when language changes
+		if (MainLayoutInstance is not null)
+		{
+			MainLayoutInstance.SetNavbarContent(EmptyNavbarContent);
+		}
+	}
+
+	private void LoadTexts()
+	{
+		_title = LocalizationService.GetString("PrivacyPolicy");
+		_lastUpdate = LocalizationService.GetString("PrivacyPolicy.LastUpdated");
+		_introduction = LocalizationService.GetString("PrivacyPolicy.Introduction");
+		_informationCollection = LocalizationService.GetString("PrivacyPolicy.InformationCollection");
+		_useOfInformation = LocalizationService.GetString("PrivacyPolicy.UseOfInformation");
+		_informationSharing = LocalizationService.GetString("PrivacyPolicy.InformationSharing");
+		_dataSecurity = LocalizationService.GetString("PrivacyPolicy.DataSecurity");
+		_yourChoices = LocalizationService.GetString("PrivacyPolicy.YourChoices");
+		_changesToThisPolicy = LocalizationService.GetString("PrivacyPolicy.ChangesToThisPolicy");
+		_contactUs = LocalizationService.GetString("PrivacyPolicy.ContactUs");
+	}
+}

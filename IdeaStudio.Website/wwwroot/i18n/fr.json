@@ -25,5 +25,18 @@
   "LetsConnect": "Connectons-nous !",
   "ReadyToDiscuss": "Prêt à discuter de votre prochain projet ? Construisons quelque chose d'incroyable ensemble.",
   "ConnectOnLinkedIn": "Se connecter sur LinkedIn",
-  "ViewGitHubProfile": "Voir GitHub"
+  "ViewGitHubProfile": "Voir GitHub",
+  "LegalMentions.LastUpdated": "Dernière mise à jour : 8 septembre 2025",
+  "LegalMentions.Developer": "Développeur : Andrés Talavera",
+  "LegalMentions.Host": "Hébergeur : Azure Static Web Apps",
+  "LegalMentions.VideoAttributes": "La vidéo de fond est extraite de Pixabay et est sous licence Content (https://pixabay.com/fr/service/license-summary/). Origine : https://pixabay.com/videos/news-technology-information-88425/",
+  "PrivacyPolicy.LastUpdated": "Dernière mise à jour : 8 septembre 2025",
+  "PrivacyPolicy.Introduction": "Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations personnelles.",
+  "PrivacyPolicy.InformationCollection": "Nous collectons des informations que vous nous fournissez directement, telles que votre nom et votre adresse e-mail lorsque vous nous contactez. Le site Web utilise Calendly pour planifier des réunions, et leur politique de confidentialité peut être consultée à l'adresse https://calendly.com/privacy.",
+  "PrivacyPolicy.UseOfInformation": "Nous utilisons les informations que nous collectons pour répondre à vos demandes et vous fournir les services que vous demandez.",
+  "PrivacyPolicy.InformationSharing": "Nous ne partageons pas vos informations personnelles avec des tiers, sauf si cela est nécessaire pour fournir nos services ou respecter des obligations légales.",
+  "PrivacyPolicy.DataSecurity": "Nous mettons en œuvre des mesures de sécurité raisonnables pour protéger vos informations personnelles.",
+  "PrivacyPolicy.YourChoices": "Vous pouvez choisir de ne pas fournir certaines informations, mais cela peut limiter votre capacité à utiliser certaines fonctionnalités de notre site Web.",
+  "PrivacyPolicy.ChangesToThisPolicy": "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Nous vous informerons de tout changement en publiant la nouvelle politique sur cette page.",
+  "PrivacyPolicy.ContactUs": "Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter à contact@ideastud.io."
 }

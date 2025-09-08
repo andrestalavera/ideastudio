@@ -1,7 +1,5 @@
 @using IdeaStudio.Website.Services
-@inject ICultureService CultureService
-@inject ILocalizationService LocalizationService
-@implements IDisposable
+@inherits LocalizedComponent
 
 <div class="dropdown">
 	<button class="btn btn-light btn-sm bg-acrylic rounded-pill dropdown-toggle" type="button" id="cultureDropdown"
@@ -9,14 +7,14 @@
 		<i class="fas fa-globe me-1" aria-hidden="true"></i>
 		<span class="d-none d-xl-inline">@GetCurrentCultureDisplayName()</span>
 	</button>
-	<ul class="dropdown-menu" aria-labelledby="cultureDropdown">
+	<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cultureDropdown">
 		@foreach (var culture in CultureService.SupportedCultures)
 		{
 			<li>
-				<a class="dropdown-item @(IsCurrentCulture(culture) ? "active" : "")"
+				<button class="dropdown-item @(IsCurrentCulture(culture) ? "active" : "")" type="button"
 					@onclick="() => ChangeCultureAsync(culture.Name)">
 					@GetCultureDisplayName(culture)
-				</a>
+				</button>
 			</li>
 		}
 	</ul>
@@ -27,30 +25,22 @@
 	private string _englishText = "English";
 	private string _frenchText = "Français";
 
-	protected override async Task OnInitializedAsync()
+	protected override async Task LoadLocalizedStringsAsync()
 	{
-		CultureService.CultureChanged += OnCultureChanged;
-		await LoadLocalizedStringsAsync();
+		await base.LoadLocalizedStringsAsync();
+		LoadTexts();
 	}
 
-	private async Task LoadLocalizedStringsAsync()
+	private void LoadTexts()
 	{
-		await LocalizationService.LoadCultureAsync(CultureService.CurrentCulture.Name);
 		_changeLanguageText = LocalizationService.GetString("ChangeLanguage");
 		_englishText = LocalizationService.GetString("English");
 		_frenchText = LocalizationService.GetString("French");
-		StateHasChanged();
-	}
-
-	private async void OnCultureChanged()
-	{
-		await LoadLocalizedStringsAsync();
 	}
 
 	private async Task ChangeCultureAsync(string culture)
 	{
 		await CultureService.SetCultureAsync(culture);
-		StateHasChanged();
 	}
 
 	private bool IsCurrentCulture(System.Globalization.CultureInfo culture)
@@ -69,7 +59,4 @@
 		"fr" => _frenchText,
 		_ => _englishText
 	};
-
-	public void Dispose() => CultureService.CultureChanged -= OnCultureChanged;
-
 }
