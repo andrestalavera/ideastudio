@@ -16,7 +16,7 @@
        target="_blank"
        rel="noopener noreferrer"
        aria-label="@gitHubText Profile">
-        <i class="fab fa-github ms-1 d-none d-md-inline" aria-hidden="true"></i>
+        <i class="fab fa-github" aria-hidden="true"></i>
         <span class="@GetTextClasses() ms-1 d-none d-md-inline">@gitHubText</span>
     </a>
 
@@ -38,13 +38,7 @@
     private string meetText = "Meet";
     private string scheduleMeetingText = "Schedule a meeting";
 
-    protected override async Task LoadLocalizedStringsAsync()
-    {
-        await base.LoadLocalizedStringsAsync();
-        LoadTexts();
-    }
-
-    private void LoadTexts()
+    protected override void LoadTexts()
     {
         linkedInText = LocalizationService.GetString("LinkedIn");
         gitHubText = LocalizationService.GetString("GitHub");
