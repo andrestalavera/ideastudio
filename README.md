@@ -128,7 +128,7 @@ This project targets Azure Static Web Apps (SWA). SWA serves the Blazor WASM app
 Lazy loading defers non-critical content to keep the initial payload small and speed up First Contentful Paint.
 
 - Service: `ILazyLoadingService` + `LazyLoadingService` coordinates deferred loads
-- Placeholders: `PlaceholderComponent.razor` shows skeletons/spinners
+- Placeholders: `Placeholder.razor` shows skeletons/spinners
 - Images/components: Render only when in viewport or after a small delay
 - Data lookups: Use `FrozenDictionary` for fast, immutable lookups
 - Zero lock contention, near-ideal dictionary lookups

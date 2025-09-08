@@ -1,7 +1,7 @@
 using System.Collections.Frozen;
 using System.Runtime.CompilerServices;
 
-namespace IdeaStudio.Website.Shared;
+namespace IdeaStudio.Website.Components;
 
 public static class SkillBadge
 {

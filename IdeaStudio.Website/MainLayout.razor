@@ -1,14 +1,13 @@
 ﻿@inherits LayoutComponentBase
 @using IdeaStudio.Website.Services
 @using IdeaStudio.Website.Components
-@using IdeaStudio.Website.Shared
 @inject ICultureService CultureService
 @inject ILocalizationService LocalizationService
 @* @inject NavigationManager Navigation *@
 @implements IDisposable
 
 <CascadingValue Value="this">
-	<LoadingComponent />
+	<Loading />
 
 	<div id="main-content-container" class="d-flex flex-column min-vh-100">
 		<a href="#main-content"

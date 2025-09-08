@@ -2,7 +2,6 @@
 @page "/andres-talavera-resume"
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
-@using IdeaStudio.Website.Shared
 @using IdeaStudio.Website.Components
 @using Markdig
 @using System.Text.Json
@@ -13,7 +12,7 @@
 @inherits LocalizedComponent
 @layout MainLayout
 
-<HeroComponent PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
+<HeroSection PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
 <div class="pagebreak"></div>
 
 <section id="about" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
@@ -31,14 +30,14 @@
 		}
 		else
 		{
-			<PlaceholderComponent />
+			<Placeholder />
 		}
 	</div>
 </section>
 
 <section id="experiences" class="py-5 pagebreak" data-bs-spy="scroll" data-bs-target="#navbar">
     <div class="container">
-        <SectionComponent Title="@professionalExperiencesText" />
+        <Heading Title="@professionalExperiencesText" />
 
 		@if (resume?.Experiences is not null)
 		{
@@ -46,7 +45,7 @@
 				@foreach (var (experience, index) in resume.Experiences.Select((e, i) => (e, i)))
 				{
 					<div class="col-12 @DisplayClasses(index, DEFAULT_EXPERIENCES_TO_SHOW)">
-						<ExperienceComponent Experience="@experience.WithGeneratedId(SeoService)" />
+						<ExperienceCard Experience="@experience.WithGeneratedId(SeoService)" />
 					</div>
 				}
 			</div>
@@ -71,14 +70,14 @@
 		}
 		else
 		{
-			<PlaceholderComponent />
+			<Placeholder />
 		}
 	</div>
 </section>
 
 <section id="trainings" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
     <div class="container">
-        <SectionComponent Title="@trainingCoursesText" />
+        <Heading Title="@trainingCoursesText" />
 
 		@if (resume?.TrainingCenters is not null)
 		{
@@ -93,13 +92,13 @@
 		}
 		else
 		{
-			<PlaceholderComponent />
+			<Placeholder />
 		}
 	</div>
 </section>
 
 <section id="contact" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
-	<ContactComponent />
+	<ContactSection />
 </section>
 
 @code {

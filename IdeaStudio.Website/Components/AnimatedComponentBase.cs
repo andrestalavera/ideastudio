@@ -8,14 +8,14 @@ namespace IdeaStudio.Website.Components
         [Inject] protected IAnimationService AnimationService { get; set; } = default!;
 
         protected ElementReference ElementRef;
-        private bool _observed = false;
+        private bool observed = false;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (firstRender && !_observed)
+            if (firstRender && !observed)
             {
                 await AnimationService.ObserveElementAsync(ElementRef);
-                _observed = true;
+                observed = true;
             }
         }
 
