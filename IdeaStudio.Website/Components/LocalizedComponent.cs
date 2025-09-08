@@ -34,7 +34,7 @@ public abstract class LocalizedComponent : ComponentBase, IDisposable
 		GC.SuppressFinalize(this);
 	}
 
-	protected virtual void Dispose(bool disposing)
+	protected void Dispose(bool disposing)
 	{
 		if (!disposed)
 		{
