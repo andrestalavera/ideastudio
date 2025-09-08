@@ -5,6 +5,7 @@ namespace IdeaStudio.Website.Components;
 
 public abstract class LocalizedComponent : ComponentBase, IDisposable
 {
+	private bool disposed = false;
 	[Inject] protected ICultureService CultureService { get; set; } = default!;
 	[Inject] protected ILocalizationService LocalizationService { get; set; } = default!;
 
@@ -28,7 +29,16 @@ public abstract class LocalizedComponent : ComponentBase, IDisposable
 
 	public virtual void Dispose()
 	{
-		CultureService.CultureChanged -= OnCultureChanged;
+		Dispose(true);
+		disposed = true;
 		GC.SuppressFinalize(this);
+	}
+
+	protected virtual void Dispose(bool disposing)
+	{
+		if (!disposed)
+		{
+			CultureService.CultureChanged -= OnCultureChanged;
+		}
 	}
 }
