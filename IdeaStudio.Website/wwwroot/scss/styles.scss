@@ -66,16 +66,16 @@ $enable-smooth-scroll: true;
 
 @mixin fade-in-animation($delay: .5s) {
     opacity: .7 !important;
-    transform: translateY(50px) scale(.99) !important;
+    transform: translateY(50px) scale(.975) !important;
     transition: all $delay cubic-bezier(0.4, 0.0, 0.2, 1.5) $delay, transform $delay cubic-bezier(0.4, 0.0, 0.2, 1.5) $delay;
     -webkit-filter: blur(10px) !important;
     filter: blur(10px) !important;
 
     &.animate {
         opacity: .975 !important;
-        transform: none !important;
-        -webkit-filter: none !important;
-        filter: none !important;
+        transform: scale(1) !important;
+        -webkit-filter: blur(0) !important;
+        filter: blur(0) !important;
     }
 
     @media print {
