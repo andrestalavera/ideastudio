@@ -18,15 +18,9 @@
 @code{
 	private string _loadingText = "Loading...";
 	private string _loadingApplicationText = "Loading Application";
-	private string _loadingAmazingContentText = "Loading amazing content...";
+	private string _loadingAmazingContentText = "Loading amazing experience...";
 
-	protected override async Task LoadLocalizedStringsAsync()
-	{
-		await base.LoadLocalizedStringsAsync();
-		LoadTexts();
-	}
-
-	private void LoadTexts()
+	protected override void LoadTexts()
 	{
 		_loadingText = LocalizationService.GetString("Loading");
 		_loadingApplicationText = LocalizationService.GetString("LoadingApplication");

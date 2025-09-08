@@ -43,7 +43,6 @@
 	protected override async Task LoadLocalizedStringsAsync()
 	{
 		await base.LoadLocalizedStringsAsync();
-		LoadTexts();
 
 		// Update navbar content when language changes
 		if (MainLayoutInstance is not null)
@@ -52,7 +51,7 @@
 		}
 	}
 
-	private void LoadTexts()
+	protected override void LoadTexts()
 	{
 		_title = LocalizationService.GetString("PrivacyPolicy");
 		_lastUpdate = LocalizationService.GetString("PrivacyPolicy.LastUpdated");

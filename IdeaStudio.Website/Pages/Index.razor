@@ -8,6 +8,7 @@
 @using System.Text.Json
 @inject IAnimationService AnimationService
 @inject ILazyLoadingService LazyLoadingService
+@inject ISeoService SeoService
 
 @inherits LocalizedComponent
 @layout MainLayout
@@ -80,7 +81,7 @@
 				@foreach (var (experience, index) in resume.Experiences.Select((e, i) => (e, i)))
 				{
 					<div class="col-12 @DisplayClasses(index, DEFAULT_EXPERIENCES_TO_SHOW)">
-						<ExperienceComponent Experience="@experience" />
+						<ExperienceComponent Experience="@experience.WithGeneratedId(SeoService)" />
 					</div>
 				}
 			</div>
@@ -201,22 +202,25 @@
     {
         await base.OnInitializedAsync();
         await AnimationService.InitializeAnimationsAsync();
-        await LoadResumeAsync();
     }
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			MainLayoutInstance?.SetNavbarContent(NavbarNavigationContent);
+		}
+	}
 
     protected override async Task LoadLocalizedStringsAsync()
     {
         await base.LoadLocalizedStringsAsync();
-        LoadTexts();
         await LoadResumeAsync();
-
-        if (MainLayoutInstance is not null)
-        {
-            MainLayoutInstance.SetNavbarContent(NavbarNavigationContent);
-        }
+		MainLayoutInstance?.SetNavbarContent(NavbarNavigationContent);
+		StateHasChanged();
     }
 
-    private void LoadTexts()
+    protected override void LoadTexts()
     {
         _professionalExperiencesText = LocalizationService.GetString("ProfessionalExperiences");
         _trainingCoursesText = LocalizationService.GetString("TrainingCourses");

@@ -23,13 +23,7 @@
     private string _letsConnectText = "Let's Connect";
     private string _readyToDiscussText = "Ready to discuss your next project? Let's build something amazing together.";
 
-    protected override async Task LoadLocalizedStringsAsync()
-    {
-        await base.LoadLocalizedStringsAsync();
-        LoadTexts();
-    }
-
-    private void LoadTexts()
+    protected override void LoadTexts()
     {
         _letsConnectText = LocalizationService.GetString("LetsConnect");
         _readyToDiscussText = LocalizationService.GetString("ReadyToDiscuss");

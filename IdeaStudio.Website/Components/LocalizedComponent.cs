@@ -17,13 +17,14 @@ public abstract class LocalizedComponent : ComponentBase, IDisposable
 	protected virtual async Task LoadLocalizedStringsAsync()
 	{
 		await LocalizationService.LoadCultureAsync(CultureService.CurrentCulture.Name);
+		LoadTexts();
 		StateHasChanged();
 	}
 
+	protected virtual void LoadTexts() { }
+
 	private async void OnCultureChanged()
-	{
-		await LoadLocalizedStringsAsync();
-	}
+		=> await LoadLocalizedStringsAsync();
 
 	public virtual void Dispose()
 	{

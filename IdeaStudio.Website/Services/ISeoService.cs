@@ -1,48 +1,43 @@
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace IdeaStudio.Website.Services;
 
-public interface ISeoService
+public partial interface ISeoService
 {
-    string GenerateSlug(string? input);
-    string GenerateId(string? input);
+	string GenerateSlug(string? input);
 }
 
 public partial class SeoService : ISeoService
 {
-    [GeneratedRegex(@"[ .:,'""/()&éèàâäçêëîïôöûüÿ\-_]+")]
-    private static partial Regex SlugifyPattern();
+	[GeneratedRegex(@"\p{Mn}", RegexOptions.CultureInvariant)]
+	protected static partial Regex DiacriticsRegex();
 
-    [GeneratedRegex(@"[^\w\-]")]
-    private static partial Regex IdCleanupPattern();
+	[GeneratedRegex(@"[ .:,'""/()\&\-_@]+", RegexOptions.CultureInvariant)]
+	protected static partial Regex SpecialCharactersRegex();
 
-    public string GenerateSlug(string? input)
-    {
-        if (string.IsNullOrWhiteSpace(input))
-            return string.Empty;
+	[GeneratedRegex(@"-+", RegexOptions.CultureInvariant)]
+	protected static partial Regex ConsecutiveHyphensRegex();
 
-        // Convert to lowercase and replace special characters with hyphens
-        string slug = SlugifyPattern()
-            .Replace(input.ToLowerInvariant().Trim(), "-");
+	public string GenerateSlug(string? input)
+	{
+		if (string.IsNullOrWhiteSpace(input)) return string.Empty;
 
-        // Remove multiple consecutive hyphens and trim
-        slug = Regex.Replace(slug, @"-+", "-").Trim('-');
+		string lower = input.ToLowerInvariant();
+		string normalized = lower.Normalize(NormalizationForm.FormD);
+		string withoutDiacritics = DiacriticsRegex().Replace(normalized, string.Empty);
 
-        return slug;
-    }
+		string withSpecialHandled = withoutDiacritics
+			.Replace(".", "dot")
+			.Replace("#", "sharp");
 
-    public string GenerateId(string? input)
-    {
-        if (string.IsNullOrWhiteSpace(input))
-            return string.Empty;
+		string withoutSpecialCharacters = SpecialCharactersRegex().Replace(withSpecialHandled.Trim(), "-");
+		string slug = ConsecutiveHyphensRegex().Replace(withoutSpecialCharacters, "-").Trim('-');
 
-        // Generate slug first, then clean it up for HTML IDs
-        string slug = GenerateSlug(input);
-        
-        // Ensure it starts with a letter (HTML ID requirement)
-        if (!string.IsNullOrEmpty(slug) && char.IsDigit(slug[0]))
-            slug = "id-" + slug;
-
-        return IdCleanupPattern().Replace(slug, "");
-    }
+		if (!string.IsNullOrEmpty(slug) && char.IsDigit(slug[0]))
+		{
+			slug = "id-" + slug;
+		}
+		return slug;
+	}
 }

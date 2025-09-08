@@ -27,13 +27,7 @@
 		private string _privacyPolicyText = "Privacy Policy";
 		private string _legalMentionsText = "Legal Mentions";
 
-		protected override async Task LoadLocalizedStringsAsync()
-		{
-			await base.LoadLocalizedStringsAsync();
-			LoadTexts();
-		}
-
-		private void LoadTexts()
+		protected override void LoadTexts()
 		{
 			_allRightsReservedText = LocalizationService.GetString("AllRightsReserved");
 			_privacyPolicyText = LocalizationService.GetString("PrivacyPolicy");

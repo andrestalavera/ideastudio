@@ -11,5 +11,5 @@
 	[Parameter]
 	public string? Title { get; set; }
 
-	private string id => SeoService.GenerateId(Title);
+	private string id => SeoService.GenerateSlug(Title);
 }
