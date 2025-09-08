@@ -27,18 +27,25 @@ public abstract class LocalizedComponent : ComponentBase, IDisposable
 	private async void OnCultureChanged()
 		=> await LoadLocalizedStringsAsync();
 
-	public virtual void Dispose()
+	public void Dispose()
 	{
 		Dispose(true);
-		disposed = true;
 		GC.SuppressFinalize(this);
 	}
 
-	protected void Dispose(bool disposing)
+	protected virtual void Dispose(bool disposing)
 	{
 		if (!disposed)
 		{
-			CultureService.CultureChanged -= OnCultureChanged;
+			if (disposing)
+			{
+				// Dispose managed resources here.
+				CultureService.CultureChanged -= OnCultureChanged;
+			}
+			// Dispose unmanaged resources here, if any.
+
+			// Mark as disposed.
+			disposed = true;
 		}
 	}
 }
