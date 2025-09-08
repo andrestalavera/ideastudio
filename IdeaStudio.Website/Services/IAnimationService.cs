@@ -1,51 +1,50 @@
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace IdeaStudio.Website.Services
+namespace IdeaStudio.Website.Services;
+
+public interface IAnimationService
 {
-    public interface IAnimationService
+    Task InitializeAnimationsAsync();
+    Task ObserveElementAsync(ElementReference element);
+    ValueTask DisposeAsync();
+}
+
+public class AnimationService(IJSRuntime jsRuntime) : IAnimationService, IAsyncDisposable
+{
+    private readonly IJSRuntime jsRuntime = jsRuntime;
+    private IJSObjectReference? module;
+    private bool initialized = false;
+
+    public async Task InitializeAnimationsAsync()
     {
-        Task InitializeAnimationsAsync();
-        Task ObserveElementAsync(ElementReference element);
-        ValueTask DisposeAsync();
+        if (initialized)
+        {
+            return;
+        }
+
+        module = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/animations.js");
+
+        await module.InvokeVoidAsync("initialize");
+        initialized = true;
     }
 
-    public class AnimationService(IJSRuntime jsRuntime) : IAnimationService, IAsyncDisposable
+    public async Task ObserveElementAsync(ElementReference element)
     {
-        private readonly IJSRuntime jsRuntime = jsRuntime;
-        private IJSObjectReference? module;
-        private bool initialized = false;
-
-		public async Task InitializeAnimationsAsync()
+        if (module is null)
         {
-            if (initialized) {
-				return;
-			}
-
-            module = await jsRuntime.InvokeAsync<IJSObjectReference>(
-                "import", "./js/animations.js");
-
-            await module.InvokeVoidAsync("initialize");
-            initialized = true;
+            await InitializeAnimationsAsync();
         }
 
-        public async Task ObserveElementAsync(ElementReference element)
-        {
-            if (module is null)
-            {
-                await InitializeAnimationsAsync();
-            }
+        await module!.InvokeVoidAsync("observeElement", element);
+    }
 
-            await module!.InvokeVoidAsync("observeElement", element);
-        }
-
-        public async ValueTask DisposeAsync()
+    public async ValueTask DisposeAsync()
+    {
+        if (module is not null)
         {
-            if (module is not null)
-            {
-                await module.InvokeVoidAsync("dispose");
-                await module.DisposeAsync();
-            }
+            await module.InvokeVoidAsync("dispose");
+            await module.DisposeAsync();
         }
     }
 }

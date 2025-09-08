@@ -4,64 +4,60 @@
 @layout MainLayout
 
 <div class="container">
-	<div class="row">
-		<div class="col-12 col-md-8 col-lg-6 my-5 py-5">
-			<div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
-				<div class="card-body">
-					<div class="display-4">@((MarkupString)Markdown.ToHtml(titleText))</div>
-					<p>@((MarkupString)Markdown.ToHtml(lastUpdateText))</p>
-					<p>@((MarkupString)Markdown.ToHtml(introductionText))</p>
-					<p>@((MarkupString)Markdown.ToHtml(informationCollectionText))</p>
-					<p>@((MarkupString)Markdown.ToHtml(useOfInformationText))</p>
-					<p>@((MarkupString)Markdown.ToHtml(informationSharingText))</p>
-					<p>@((MarkupString)Markdown.ToHtml(dataSecurityText))</p>
-					<p>@((MarkupString)Markdown.ToHtml(yourChoicesText))</p>
-					<p>@((MarkupString)Markdown.ToHtml(changesToThisPolicyText))</p>
-					<p>@((MarkupString)Markdown.ToHtml(contactUsText))</p>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 my-5 py-5">
+            <div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
+                <div class="card-body">
+                <div class="display-4">@((MarkupString)Markdown.ToHtml(titleText))</div>
+                <p>@((MarkupString)Markdown.ToHtml(lastUpdateText))</p>
+                <p>@((MarkupString)Markdown.ToHtml(introductionText))</p>
+                <p>@((MarkupString)Markdown.ToHtml(informationCollectionText))</p>
+                <p>@((MarkupString)Markdown.ToHtml(useOfInformationText))</p>
+                <p>@((MarkupString)Markdown.ToHtml(informationSharingText))</p>
+                <p>@((MarkupString)Markdown.ToHtml(dataSecurityText))</p>
+                <p>@((MarkupString)Markdown.ToHtml(yourChoicesText))</p>
+                <p>@((MarkupString)Markdown.ToHtml(changesToThisPolicyText))</p>
+                <p>@((MarkupString)Markdown.ToHtml(contactUsText))</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-
 @code {
-	[CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
+    [CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
 
-	private string titleText = "Privacy Policy";
-	private string lastUpdateText = "Last updated: September 8th, 2025";
-	private string introductionText = "This Privacy Policy explains how we collect, use, and protect your personal information.";
-	private string informationCollectionText = "We collect information that you provide directly to us, such as your name and email address when you contact us. The website uses Calendly for scheduling meetings, and their privacy policy can be found at [Calendly Privacy Policy](https://calendly.com/privacy).";
-	private string useOfInformationText = "We use the information we collect to respond to your inquiries and provide you with the services you request.";
-	private string informationSharingText = "We do not share your personal information with third parties except as necessary to provide our services or comply with legal obligations.";
-	private string dataSecurityText = "We implement reasonable security measures to protect your personal information.";
-	private string yourChoicesText = "You can choose not to provide certain information, but this may limit your ability to use some features of our website.";
-	private string changesToThisPolicyText = "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.";
-	private string contactUsText = "If you have any questions about this Privacy Policy, please contact us at contact@ideastud.io.";
-	private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
+    private string titleText = "Privacy Policy";
+    private string lastUpdateText = "Last updated: September 8th, 2025";
+    private string introductionText = "This Privacy Policy explains how we collect, use, and protect your personal information.";
+    private string informationCollectionText = "We collect information that you provide directly to us, such as your name and email address when you contact us. The website uses Calendly for scheduling meetings, and their privacy policy can be found at [Calendly Privacy Policy](https://calendly.com/privacy).";
+    private string useOfInformationText = "We use the information we collect to respond to your inquiries and provide you with the services you request.";
+    private string informationSharingText = "We do not share your personal information with third parties except as necessary to provide our services or comply with legal obligations.";
+    private string dataSecurityText = "We implement reasonable security measures to protect your personal information.";
+    private string yourChoicesText = "You can choose not to provide certain information, but this may limit your ability to use some features of our website.";
+    private string changesToThisPolicyText = "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.";
+    private string contactUsText = "If you have any questions about this Privacy Policy, please contact us at contact@ideastud.io.";
+    private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
 
-	protected override async Task LoadLocalizedStringsAsync()
-	{
-		await base.LoadLocalizedStringsAsync();
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
 
-		// Update navbar content when language changes
-		if (MainLayoutInstance is not null)
-		{
-			MainLayoutInstance.SetNavbarContent(EmptyNavbarContent);
-		}
-	}
+        // Update navbar content when language changes
+        MainLayoutInstance?.SetNavbarContent(EmptyNavbarContent);
+    }
 
-	protected override void LoadTexts()
-	{
-		titleText = LocalizationService.GetString("PrivacyPolicy");
-		lastUpdateText = LocalizationService.GetString("PrivacyPolicy.LastUpdated");
-		introductionText = LocalizationService.GetString("PrivacyPolicy.Introduction");
-		informationCollectionText = LocalizationService.GetString("PrivacyPolicy.InformationCollection");
-		useOfInformationText = LocalizationService.GetString("PrivacyPolicy.UseOfInformation");
-		informationSharingText = LocalizationService.GetString("PrivacyPolicy.InformationSharing");
-		dataSecurityText = LocalizationService.GetString("PrivacyPolicy.DataSecurity");
-		yourChoicesText = LocalizationService.GetString("PrivacyPolicy.YourChoices");
-		changesToThisPolicyText = LocalizationService.GetString("PrivacyPolicy.ChangesToThisPolicy");
-		contactUsText = LocalizationService.GetString("PrivacyPolicy.ContactUs");
-	}
+    protected override void LoadTexts()
+    {
+        titleText = LocalizationService.GetString("PrivacyPolicy");
+        lastUpdateText = LocalizationService.GetString("PrivacyPolicy.LastUpdated");
+        introductionText = LocalizationService.GetString("PrivacyPolicy.Introduction");
+        informationCollectionText = LocalizationService.GetString("PrivacyPolicy.InformationCollection");
+        useOfInformationText = LocalizationService.GetString("PrivacyPolicy.UseOfInformation");
+        informationSharingText = LocalizationService.GetString("PrivacyPolicy.InformationSharing");
+        dataSecurityText = LocalizationService.GetString("PrivacyPolicy.DataSecurity");
+        yourChoicesText = LocalizationService.GetString("PrivacyPolicy.YourChoices");
+        changesToThisPolicyText = LocalizationService.GetString("PrivacyPolicy.ChangesToThisPolicy");
+        contactUsText = LocalizationService.GetString("PrivacyPolicy.ContactUs");
+    }
 }

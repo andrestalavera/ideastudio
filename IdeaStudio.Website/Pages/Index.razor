@@ -1,4 +1,4 @@
-@page "/"
+﻿@page "/"
 @page "/andres-talavera-resume"
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
@@ -7,98 +7,99 @@
 @using System.Text.Json
 @inject IAnimationService AnimationService
 @inject ILazyLoadingService LazyLoadingService
-@inject ISeoService SeoService
+@inject ISlugService SlugService
 
 @inherits LocalizedComponent
 @layout MainLayout
 
 <HeroSection PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
+
 <div class="pagebreak"></div>
 
 <section id="about" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
-	<div class="container">
-		@if (resume?.AboutSections is not null)
-		{
-			<div class="row g-4">
-				@foreach (var (section, index) in resume.AboutSections.Select((s, i) => (s, i)))
-				{
-					<div class="col-12 col-lg-6 col-xxl-4">
-						<AboutCard AboutSection="@(section)" Index="@index" />
-					</div>
-				}
-			</div>
-		}
-		else
-		{
-			<Placeholder />
-		}
-	</div>
+    <div class="container">
+    @if (resume?.AboutSections is not null)
+    {
+        <div class="row g-4">
+        @foreach (var (section, index) in resume.AboutSections.Select((s, i) => (s, i)))
+        {
+            <div class="col-12 col-lg-6 col-xxl-4">
+                <AboutCard AboutSection="@(section)" Index="@index" />
+            </div>
+        }
+        </div>
+    }
+    else
+    {
+        <Placeholder />
+    }
+    </div>
 </section>
 
 <section id="experiences" class="py-5 pagebreak" data-bs-spy="scroll" data-bs-target="#navbar">
     <div class="container">
         <Heading Title="@professionalExperiencesText" />
 
-		@if (resume?.Experiences is not null)
-		{
-			<div class="row g-4">
-				@foreach (var (experience, index) in resume.Experiences.Select((e, i) => (e, i)))
-				{
-					<div class="col-12 @DisplayClasses(index, DEFAULT_EXPERIENCES_TO_SHOW)">
-						<ExperienceCard Experience="@experience.WithGeneratedId(SeoService)" />
-					</div>
-				}
-			</div>
+        @if (resume?.Experiences is not null)
+        {
+            <div class="row g-4">
+            @foreach (var (experience, index) in resume.Experiences.Select((e, i) => (e, i)))
+            {
+                <div class="col-12 d-print-flex @DisplayClasses(index, DEFAULT_EXPERIENCES_TO_SHOW)">
+                    <ExperienceCard Experience="@experience.WithGeneratedId(SlugService)" />
+                </div>
+            }
+            </div>
 
-			@if (hasHiddenExperiences)
-			{
-				<div class="row d-print-none">
-					<div class="col-12 text-center mt-4">
-						<button class="btn btn-light" @onclick="ToggleExperiences">
-							@if (showAllExperiences)
-							{
-								<span>@showLatestExperiencesText</span>
-							}
-							else
-							{
-								<span>@string.Format(showMoreExperiencesText, hiddenExperiencesCount)</span>
-							}
-						</button>
-					</div>
-				</div>
-			}
-		}
-		else
-		{
-			<Placeholder />
-		}
-	</div>
+        @if (hasHiddenExperiences)
+        {
+            <div class="row d-print-none">
+                <div class="col-12 text-center mt-4">
+                    <button class="btn btn-light" @onclick="ToggleExperiences">
+                    @if (showAllExperiences)
+                    {
+                        <span>@showLatestExperiencesText</span>
+                    }
+                    else
+                    {
+                        <span>@string.Format(showMoreExperiencesText, hiddenExperiencesCount)</span>
+                    }
+                    </button>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <Placeholder />
+    }
+    </div>
 </section>
 
 <section id="trainings" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
     <div class="container">
         <Heading Title="@trainingCoursesText" />
 
-		@if (resume?.TrainingCenters is not null)
-		{
-			<div class="row g-4">
-				@foreach (var (center, index) in resume.TrainingCenters.Select((t, i) => (t, i)))
-				{
-					<div class="col-12 col-lg-6 col-xxl-4">
-						<TrainingCard TrainingCenter="@center.WithGeneratedId(SeoService)" Index="@index" />
-					</div>
-				}
-			</div>
-		}
-		else
-		{
-			<Placeholder />
-		}
-	</div>
+        @if (resume?.TrainingCenters is not null)
+        {
+            <div class="row g-4">
+                @foreach (var (center, index) in resume.TrainingCenters.Select((t, i) => (t, i)))
+                {
+                    <div class="col-12 col-lg-6 col-xxl-4">
+                        <TrainingCard TrainingCenter="@center.WithGeneratedId(SlugService)" Index="@index" />
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <Placeholder />
+        }
+    </div>
 </section>
 
 <section id="contact" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
-	<ContactSection />
+    <ContactSection />
 </section>
 
 @code {
@@ -119,21 +120,21 @@
     private string contactText = "Contact";
 
 
-	private RenderFragment NavbarNavigationContent =>
-    @<ul class="navbar-nav me-auto">
-        <li class="nav-item">
-            <a class="nav-link rounded-pill mx-1" href="#about" data-section="about">@aboutText</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link rounded-pill mx-1" href="#experiences" data-section="experiences">@experiencesText</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link rounded-pill mx-1" href="#trainings" data-section="training">@trainingText</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link rounded-pill mx-1" href="#contact" data-section="contact">@contactText</a>
-        </li>
-    </ul>;
+    private RenderFragment NavbarNavigationContent => @<ul class="navbar-nav me-auto">
+    <li class="nav-item">
+        <a class="nav-link rounded-pill mx-1" href="#about" data-section="about">@aboutText</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link rounded-pill mx-1" href="#experiences" data-section="experiences">@experiencesText</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link rounded-pill mx-1" href="#trainings" data-section="training">@trainingText</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link rounded-pill mx-1" href="#contact" data-section="contact">@contactText</a>
+    </li>
+</ul>
+    ;
 
     protected override async Task OnInitializedAsync()
     {
@@ -141,20 +142,20 @@
         await AnimationService.InitializeAnimationsAsync();
     }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		if (firstRender)
-		{
-			MainLayoutInstance?.SetNavbarContent(NavbarNavigationContent);
-		}
-	}
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            MainLayoutInstance?.SetNavbarContent(NavbarNavigationContent);
+        }
+    }
 
     protected override async Task LoadLocalizedStringsAsync()
     {
         await base.LoadLocalizedStringsAsync();
         await LoadResumeAsync();
-		MainLayoutInstance?.SetNavbarContent(NavbarNavigationContent);
-		StateHasChanged();
+        MainLayoutInstance?.SetNavbarContent(NavbarNavigationContent);
+        StateHasChanged();
     }
 
     protected override void LoadTexts()
@@ -189,8 +190,5 @@
     }
 
     private string DisplayClasses(int index, int toShow)
-    {
-        string baseClasses = "d-print-flex";
-        return index < toShow ? $"{baseClasses} d-flex" : showAllExperiences ? $"{baseClasses} d-flex" : $"{baseClasses} d-none";
-    }
+    => index < toShow ? $"d-flex" : showAllExperiences ? $"d-flex" : $"d-none";
 }

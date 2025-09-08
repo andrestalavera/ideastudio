@@ -1,916 +1,916 @@
-{
-	"personalInformation": {
-		"name": "Andrés Talavera",
-		"title": "Expert .NET Developer & Azure Consultant",
-		"hero": "Let's shape the future of your business together.",
-		"introduction": "Experienced .NET developer and Azure consultant with 10+ years of expertise in building modern web applications and cloud solutions.",
-		"languages": {
-			"EN": "English",
-			"FR": "Français",
-			"ES": "Español"
-		},
-		"email": "andres.talavera@ideastud.io",
-		"github": "andrestalavera",
-		"linkedin": "andres-talavera",
-		"website": "ideastud.io",
-		"twitter": "imcresus_"
-	},
-	"aboutSections": [
-		{
-			"title": "Your .NET Consultant",
-			"paragraphs": [
-				"Expert .NET and Azure consultant delivering tailored business solutions.",
-				"Specializing in ASP.NET Core, MAUI, and modern cloud architecture on Azure.",
-				"Microsoft developer with proven enterprise project success.",
-				"Serving startups, SMEs, and digital service companies across multiple industries."
-			],
-			"images": [
-				"dotnet.svg",
-				"csharp.svg",
-				"azure.svg"
-			]
-		},
-		{
-			"title": "Your Trainer",
-			"paragraphs": [
-				"Experienced .NET and Azure trainer for developers and companies. ",
-				"LinkedIn Learning paragraphs creator focusing on Microsoft technologies.",
-				"Proven track record training teams in France, Belgium, and Luxembourg.",
-				"Expert in .NET 9, Blazor Server, and Azure cloud solutions."
-			],
-			"icons": [
-				"fab fa-linkedin linkedin-logo"
-			],
-			"link": "#training"
-		},
-		{
-			"title": "Passionnated",
-			"paragraphs": [
-				"Dedicated Microsoft technology expert staying current with latest trends.",
-				"Committed to delivering innovative .NET solutions meeting client needs.",
-				"Active developer community participant since Microsoft Student Partner days.",
-				"Passionate about mobile development, web technologies, and cloud architecture."
-			],
-			"link": "#contact"
-		},
-		{
-			"title": "Diverse experiences",
-			"paragraphs": [
-				"Successfully delivered projects across medical, finance, aviation, and logistics sectors.",
-				"Expertise spanning healthcare statistics, insurance software, and education platforms.",
-				"Proven experience with multiple companies.",
-				"Mobile developer specializing in MAUI, Xamarin, and cross-platform solutions."
-			],
-			"link": "#experiences"
-		},
-		{
-			"title": "Recent projects",
-			"paragraphs": [
-				"Improved healthcare data portals for Medtech and CEESA using .NET 9.",
-				"Enhanced TRIGO logistics software using advanced .NET development and Vue.js.",
-				"Led Active Assurances team developing comprehensive insurance management system.",
-				"Specialized in Azure migration, CI/CD implementation, and clean architecture design."
-			],
-			"link": "#experiences"
-		},
-		{
-			"title": "Personal attributes",
-			"paragraphs": [
-				"Curious and versatile developer with strong analytical design skills.",
-				"Talented at explaining complex technical concepts to diverse audiences.",
-				"Collaborative team leader thriving in dynamic development environments.",
-				"Trilingual consultant comfortable working across French, Spanish, and English markets."
-			]
-		}
-	],
-	"experiences": [
-		{
-			"title": "Founder - freelance .NET developer, techlead and trainer",
-			"company": "IdeaStudio",
-			"mode": "Self-employed",
-			"startDate": "2015-07-01",
-			"locations": [
-				"France",
-				"Luxembourg",
-				"Belgium",
-				"Austria",
-				"Remote"
-			],
-			"description": [
-				"At IdeaStud.io, I develop innovative mobile and web applications for various industries using the latest Microsoft technologies, particularly cloud-based applications.",
-				"I'm always ready to take on new challenges and stay updated with the evolving tech landscape. Besides application development, I also share my knowledge through training centers and blogs focusing on cloud computing and software architecture.",
-				"This journey showcases my commitment to continuous learning, adaptability, and passion for sharing tech knowledge."
-			],
-			"skills": [
-				"Blazor",
-				"Azure DevOps",
-				"Microsoft Power Apps",
-				"Domain-Driven Design (DDD)",
-				"GitHub",
-				"Mobile Applications",
-				".NET",
-				"React.js",
-				"Angular",
-				"Cloud Computing",
-				"Web Development",
-				"ASP.NET Core",
-				"Azure Key Vault",
-				"Microsoft Azure",
-				"Azure Monitor",
-				"Azure Storage",
-				"Xamarin",
-				"FinOps",
-				"Azure Static Web Apps",
-				"ASP.NET",
-				".NET Core",
-				"C#",
-				"Continuous Integration and Continuous Delivery (CI/CD)",
-				"Architecture",
-				"Swagger",
-				"Azure Cosmos DB",
-				"Azure Data Factory",
-				"API Development",
-				"GraphQL",
-				"Azure Service Bus",
-				"Azure Functions",
-				"Azure Automation",
-				"SQL"
-			]
-		},
-		{
-			"title": ".NET Developer",
-			"company": "Medtech/CEESA",
-			"mode": "Freelance",
-			"startDate": "2024-09-01",
-			"endDate": "2025-05-01",
-			"locations": [
-				"Bruxelles, Belgium",
-				"Paris, France",
-				"Remote"
-			],
-			"description": [
-				"Medtech and Ceesa are companies focused on healthcare technology solutions, providing data management and analytics services for laboratories.",
-				"I was involved in developing multiple portals for various entities to collect data from laboratories and publish statistics.",
-				"I conducted analysis, designed the architecture, implemented unit tests, developed new features, and integrated with Microsoft Entra ID for enhanced security."
-			],
-			"responsibilities": [
-				"Developed a new project from scratch, ensuring scalability and performance.",
-				"Maintained two existing projects, analyzing their structure and functionality.",
-				"Improved the clean architecture to ensure maintainability and scalability.",
-				"Added unit tests to ensure the reliability and stability of the software.",
-				"Implemented new features to enhance functionality and user experience.",
-				"Implemented strict security rules to protect sensitive data.",
-				"Integrated with Microsoft Entra ID for secure authentication and authorization."
-			],
-			"skills": [
-				"ASP.NET Core",
-				".NET 9",
-				"GitHub Actions",
-				"Continuous Integration and Continuous Delivery (CI/CD)",
-				"Blazor Server",
-				"Azure Web Apps",
-				"Bicep",
-				"Azure SQL",
-				"SQL-Server",
-				"Azure Functions",
-				"Microsoft Entra ID",
-				"Azure Managed Identities"
-			]
-		},
-		{
-			"title": ".NET Developer",
-			"company": "TRIGO",
-			"mode": "Freelance",
-			"startDate": "2024-02-01",
-			"endDate": "2024-07-01",
-			"locations": [
-				"Lyon, France",
-				"Remote"
-			],
-			"description": [
-				"TRIGO is a global leader in logistics, providing specialized logistics and production support. They are known for their professional support, systems, and flexibility that help exceed their customers' expectations.",
-				"I was brought in to develop new features for an ASP.NET Framework (MVC4) application and support migrations to .NET, Vue, and Azure.",
-				"I conducted comprehensive analysis, implemented unit tests, developed key features, and shared knowledge with team members. I also assisted in the migration of applications to Azure, leveraging Azure WebApp and Azure Functions for efficient and scalable solutions."
-			],
-			"responsibilities": [
-				"Conducted a comprehensive analysis of existing projects to understand their structure and functionality.",
-				"Implemented unit tests to ensure the reliability and stability of the software.",
-				"Developed several key features on the WebApp, enhancing its functionality and user experience.",
-				"Performed analysis of the mobile app to understand its structure and functionality.",
-				"Developed Vue3 components, contributing to the modernisation of the application.",
-				"Collaborated with the team to troubleshoot and resolve technical issues.",
-				"Participated in code reviews to maintain high-quality code."
-			],
-			"skills": [
-				"Azure DevOps",
-				"Mobile Applications",
-				".NET",
-				".NET Framework",
-				"ASP.NET Core",
-				"Microsoft Azure",
-				"Azure Storage",
-				"Test-Driven Development",
-				"Vue.js",
-				"ASP.NET",
-				"C#",
-				"Azure Service Bus",
-				"Azure Functions",
-				"Azure SQL"
-			]
-		},
-		{
-			"title": "Techlead",
-			"company": "Active Assurances",
-			"mode": "Freelance",
-			"startDate": "2023-08-01",
-			"endDate": "2024-02-01",
-			"locations": [
-				"Boulogne-Billancourt, France",
-				"Remote"
-			],
-			"description": [
-				"Active Assurances is a leading provider of automobile insurance products and services in France. They were looking to improve internal processes and redesign some projects performing .NET migrations, security updates, or some automations.",
-				"A new project was implemented from scratch, fully replacing the entire Information System. I led a team of up to 5 developers to achieve this.",
-				"I managed the team, conducted analysis, improved delivery processes, implemented unit tests, enhanced CI/CD pipelines, developed key features, trained developers, handled Azure subscription migration, improved application security, and implemented a database migration system."
-			],
-			"responsibilities": [
-				"Managed a team of up to 5 developers.",
-				"Conducted analysis of existing projects to identify areas for improvement.",
-				"Improved the delivery process and organised git repositories.",
-				"Implemented unit tests to ensure the reliability and stability of the software.",
-				"Enhanced CI/CD pipelines for better efficiency.",
-				"Developed several key features for the new system.",
-				"Trained developers on new technologies and best practices.",
-				"Handled Azure subscription migration and FinOps.",
-				"Improved application security and upgraded certain projects to .NET 8.",
-				"Implemented a database migration system to replicate data across different environments."
-			],
-			"skills": [
-				"Blazor",
-				"Azure DevOps",
-				"Entity Framework Core",
-				"Microsoft Power Apps",
-				"Azure Logic Apps",
-				"Domain-Driven Design (DDD)",
-				".NET",
-				"React.js",
-				"Angular",
-				"Cloud Computing",
-				"Web Development",
-				"ASP.NET Core",
-				"Azure Key Vault",
-				"Techlead",
-				"Microsoft Azure",
-				"Azure Monitor",
-				"Azure Storage",
-				"FinOps",
-				"Azure Static Web Apps",
-				"ASP.NET",
-				".NET Core",
-				"C#",
-				"Continuous Integration and Continuous Delivery (CI/CD)",
-				"Architecture",
-				"Swagger",
-				"API Development",
-				"Azure Service Bus",
-				"Clean Architecture",
-				"Azure Functions",
-				"Azure Automation",
-				"SQL"
-			]
-		},
-		{
-			"title": ".NET Developer",
-			"company": "The Adecco Group",
-			"mode": "Freelance",
-			"startDate": "2022-04-01",
-			"endDate": "2023-04-01",
-			"locations": [
-				"Lyon, France",
-				"Remote"
-			],
-			"description": [
-				"The Adecco Group is a Swiss-French company based in Zurich, Switzerland. It is one of the world's largest Human Resources provider and temporary staffing firm.",
-				"I worked on multiple projects at The Adecco Group. The main project was a worldwide data synchronization system.",
-				"I conducted functional analysis, developed applications and services, handled migrations from .NET Core 3 to .NET 6, managed deployment, and conducted research and development on Azure Managed Identities, Azure RBAC, etc."
-			],
-			"responsibilities": [
-				"Conducted functional analysis and analysis of existing developments.",
-				"Developed applications and services for multiple internal products.",
-				"Handled migrations from .net core3 to .net6 and performed refactoring.",
-				"Managed deployment and provided support.",
-				"Conducted research and development on Azure Managed Identities, Azure RBAC, etc."
-			],
-			"skills": [
-				"Blazor",
-				"Azure DevOps",
-				"Azure Logic Apps",
-				"Domain-Driven Design (DDD)",
-				".NET",
-				"Cloud Computing",
-				"Web Development",
-				"ASP.NET Core",
-				"Azure API Management",
-				"Azure Key Vault",
-				"Microsoft Azure",
-				"Azure Monitor",
-				"Azure Storage",
-				"Test-Driven Development",
-				"ASP.NET",
-				".NET Core",
-				"C#",
-				"Continuous Integration and Continuous Delivery (CI/CD)",
-				"Architecture",
-				"Swagger",
-				"Azure Cosmos DB",
-				"API Development",
-				"Azure Service Bus",
-				"Azure Functions",
-				"Microservices",
-				"SQL"
-			]
-		},
-		{
-			"title": ".NET Developer",
-			"company": "Sage",
-			"mode": "Freelance",
-			"startDate": "2021-10-01",
-			"endDate": "2022-02-01",
-			"locations": [
-				"Remote"
-			],
-			"description": [
-				"Sage is a British multinational enterprise software company. They were redeveloping some internal libraries and their commercial products.",
-				"I was involved in developing and improving new features for their software solutions.",
-				"I conducted functional analysis, developed APIs and micro-services, developed unit tests, and contributed to the development of a project from scratch, implementing onion architecture and unit tests."
-			],
-			"responsibilities": [
-				"Conducted functional analysis and analysis of existing developments and architectures (onion/hexagonal).",
-				"Developed APIs and micro-services.",
-				"Developed unit tests and conducted research and development.",
-				"Contributed to the development of a project from scratch (implementation of onion architecture, unit tests, etc.)."
-			],
-			"skills": [
-				"Domain-Driven Design (DDD)",
-				"GitHub",
-				".NET",
-				"Cloud Computing",
-				"Web Development",
-				"ASP.NET Core",
-				"Azure Key Vault",
-				"Microsoft Azure",
-				"Azure Monitor",
-				"Azure Storage",
-				"Test-Driven Development",
-				"ASP.NET",
-				".NET Core",
-				"C#",
-				"Continuous Integration and Continuous Delivery (CI/CD)",
-				"Architecture",
-				"Swagger",
-				"Azure Cosmos DB",
-				"API Development",
-				"GraphQL",
-				"Azure Service Bus",
-				"Clean Architecture",
-				"Azure Functions",
-				"Microservices"
-			]
-		},
-		{
-			"title": "Mobile Application Developer",
-			"company": "Hager",
-			"mode": "Freelance",
-			"startDate": "2021-08-01",
-			"endDate": "2021-10-01",
-			"locations": [
-				"Obernai, France",
-				"Remote"
-			],
-			"description": [
-				"Hager is a leading supplier of solutions and services for electrical installations in residential, commercial, and industrial buildings.",
-				"The task was to develop an application that uses an existing AI to find spare parts.",
-				"I performed functional analysis, connected Xamarin.Forms to ONNX files to integrate developed AI, connected to several Azure services, and prepared packages and pipelines for deployment."
-			],
-			"responsibilities": [
-				"Performed functional analysis ",
-				"Connected Xamarin.Forms to ONNX files to integrate developed IA",
-				"Connected to several Azure services.",
-				"Prepared packages and pipelines for deployment"
-			],
-			"skills": [
-				"UWP",
-				"Azure DevOps",
-				"Mobile Applications",
-				".NET",
-				"Cloud Computing",
-				"Azure Key Vault",
-				"Techlead",
-				"Microsoft Azure",
-				"Azure Monitor",
-				"Azure Storage",
-				"Xamarin",
-				"FinOps",
-				".NET Core",
-				"C#",
-				"Architecture",
-				"Swagger",
-				"API Development",
-				"Clean Architecture",
-				"Azure Functions"
-			]
-		},
-		{
-			"title": ".NET Developer",
-			"company": "ALTEVA",
-			"mode": "Freelance",
-			"startDate": "2021-04-01",
-			"endDate": "2021-06-01",
-			"locations": [
-				"Remote"
-			],
-			"description": [
-				"Alteva is a leading provider of software solutions for property management, with over 20 years of experience in the field. Their software, Mission One, is designed to cater to various stakeholders in property maintenance.",
-				"I was involved in developing and improving new features for their software solutions.",
-				"I conducted functional analysis, engaged in research and development, realized several Proof of Concepts (PoCs), provided training to teams, contributed to CD/CI pipelines, and developed unit tests."
-			],
-			"responsibilities": [
-				"Conducted functional analysis to understand the requirements and specifications of the software.",
-				"Engaged in research and development to explore new technologies and methodologies.",
-				"Realised several Proof of Concepts (PoCs) to validate the feasibility of solutions.",
-				"Provided training to teams, enhancing their .NET skills and knowledge.",
-				"Made contributions to the Continuous Deployment/Continuous Integration (CD/CI) pipelines, improving the efficiency of the development process.",
-				"Developed unit tests to ensure the reliability and stability of the software."
-			],
-			"skills": [
-				"Blazor",
-				"Redux",
-				"Domain-Driven Design (DDD)",
-				".NET",
-				"React.js",
-				"Cloud Computing",
-				"Web Development",
-				"ASP.NET Core",
-				"Azure Key Vault",
-				"Microsoft Azure",
-				"Azure Monitor",
-				"Azure Storage",
-				"Test-Driven Development",
-				"ASP.NET",
-				".NET Core",
-				"C#",
-				"Swagger",
-				"API Development",
-				"Azure Functions",
-				"Microservices"
-			]
-		},
-		{
-			"title": ".NET and Azure Consultant",
-			"company": "Faurecia",
-			"mode": "Freelance",
-			"startDate": "2020-09-01",
-			"endDate": "2021-04-01",
-			"locations": [
-				"Audincourt, France",
-				"Remote"
-			],
-			"description": [
-				"Faurecia is a global leader in automotive technology. They are known for their innovative solutions that enhance the driving experience and contribute to sustainable mobility.",
-				"I was involved in developing and improving new features for their software solutions.",
-				"I conducted both technical and functional analysis, analyzed existing developments, worked on architectures, engaged in research and development, handled code migration, developed APIs and .NET applications, created NuGet packages, developed Azure Functions, and set up Azure Data Factory and Azure EventHubs."
-			],
-			"responsibilities": [
-				"Conducted both technical and functional analysis to understand the requirements and specifications of the projects.",
-				"Analyzed existing developments to identify areas for improvement and potential issues.",
-				"Worked on architectures (NLayered and Onion) to ensure the software is well-structured and maintainable.",
-				"Engaged in research and development to explore new technologies and methodologies.",
-				"Handled migration of code to ensure smooth transition and minimal disruption.",
-				"Developed APIs and .NET applications to meet the needs of the projects.",
-				"Created NuGet packages for efficient management and distribution of .NET packages.",
-				"Developed Azure Functions with an orchestrator to manage the execution of functions.",
-				"Set up Azure Data Factory and Azure EventHubs for data integration and real-time analytics."
-			],
-			"skills": [
-				"Azure DevOps",
-				"Azure Logic Apps",
-				".NET",
-				"Cloud Computing",
-				"Azure Key Vault",
-				"Microsoft Azure",
-				"Azure Monitor",
-				"FinOps",
-				"ASP.NET",
-				".NET Core",
-				"Azure Kubernetes Service (AKS)",
-				"C#",
-				"Continuous Integration and Continuous Delivery (CI/CD)",
-				"Architecture",
-				"Swagger",
-				"Azure Cosmos DB",
-				"Azure Data Factory",
-				"Azure Event Hubs",
-				"Azure Service Bus",
-				"Azure Functions",
-				"Azure Automation",
-				"MongoDB"
-			]
-		},
-		{
-			"title": ".NET and Azure Consultant",
-			"company": "CHARL'ANTOINE",
-			"mode": "Freelance",
-			"startDate": "2020-06-01",
-			"endDate": "2020-09-01",
-			"locations": [
-				"Strasbourg, France",
-				"Remote"
-			],
-			"description": [
-				"Charl'Antoine is a company specializing in delivery services. They are known for their efficient and reliable delivery solutions.",
-				"I developed a logistics application for Charl'Antoine, Segmuller, and Ikea Grand Est, integrating GDPR compliance and enhancing security.",
-				"I conducted analysis, designed the architecture, developed tests, APIs, the mobile app, and an administration console. I also provided training and support to the team on the new technologies and best practices used in the app."
-			],
-			"responsibilities": [
-				"Conducted analysis of existing developments to understand the structure and functionality of the current app.",
-				"Worked closely with the customer to analyze functional needs and translate them into technical requirements.",
-				"Designed the architecture of the new app, ensuring it is scalable and maintainable.",
-				"Developed tests following the Test-Driven Development (TDD) approach to ensure the reliability and stability of the app.",
-				"Developed APIs to facilitate communication between the app and the backend systems.",
-				"Developed the mobile app, enhancing its functionality and user experience.",
-				"Ensured the app is secure and data is protected.",
-				"Optimized the performance of the app for a smooth user experience.",
-				"Provided training and support to the team on the new technologies and best practices used in the app."
-			],
-			"skills": [
-				"Blazor",
-				"UWP",
-				"Azure DevOps",
-				"Microsoft Power Apps",
-				"Azure Logic Apps",
-				"Mobile Applications",
-				".NET",
-				"Cloud Computing",
-				"Web Development",
-				"ASP.NET Core",
-				"Azure Key Vault",
-				"Microsoft Azure",
-				"Azure Monitor",
-				"Azure Storage",
-				"Test-Driven Development",
-				"ASP.NET",
-				".NET Core",
-				"C#",
-				"Continuous Integration and Continuous Delivery (CI/CD)",
-				"Architecture",
-				"Swagger",
-				"API Development",
-				"GraphQL",
-				"Azure Functions",
-				"Azure Automation"
-			]
-		},
-		{
-			"title": "Business Analyst",
-			"company": "Renault-Nissan-Mitsubishi",
-			"mode": "Freelance",
-			"startDate": "2020-02-01",
-			"endDate": "2020-04-01",
-			"locations": [
-				"Issy-les-Moulineaux, France",
-				"Remote"
-			],
-			"description": [
-				"Renault France, part of an alliance with Mitsubishi and Nissan, is a leading vehicle provider.",
-				"I conducted analysis of existing developments and worked closely with the final customer to analyze functional needs.",
-				"I held meetings with development teams and customers, wrote functional specifications in Azure DevOps, validated these with the final customer, configured Azure DevOps, reviewed code of off-shore teams, and documented differences in code and APIs specifications."
-			],
-			"responsibilities": [
-				"I conducted analysis of existing developments and worked closely with the final customer to analyze functional needs. ",
-				"I also held meetings with development teams and customers (Renault, Mitsubishi, Nissan, etc.), wrote functional specifications in Azure DevOps.",
-				"Validated these with the final customer.",
-				"I configured Azure DevOps, reviewed code of off-shore teams, and documented differences in code and APIs specifications."
-			],
-			"skills": [
-				"Azure DevOps",
-				".NET",
-				"Cloud Computing",
-				"Techlead",
-				"Microsoft Azure",
-				"ASP.NET",
-				"C#",
-				"Azure Service Bus",
-				"SQL"
-			]
-		},
-		{
-			"title": ".NET and Azure Techlead",
-			"company": "Cegid",
-			"mode": "Freelance",
-			"startDate": "2019-08-01",
-			"endDate": "2019-12-01",
-			"locations": [
-				"Reuil-Malmaison, France",
-				"Remote"
-			],
-			"description": [
-				"Cegid is a leading provider of cloud business management solutions for finance, human resources, CPAs, and the retail and entrepreneurial sectors.",
-				"I was involved in designing the architecture of a new box, conducting PoCs, and performing functional analysis.",
-				"I worked on refactoring, implemented Azure services, coached about best practices, and participated in the development of three projects: Box, CDA, and Stream."
-			],
-			"responsibilities": [
-				"Designed the architecture of the new box.",
-				"Conducted PoCs about different solutions to store data, durable functions, orchestrator, centralised configuration, etc.",
-				"Performed functional analysis and analysed existing developments.",
-				"Worked on refactoring & clean code.",
-				"Implemented Azure services (Functions, Centralized configuration, App Service, etc.).",
-				"Coached about best practices: micro-services, serverless, .NET Core, design patterns (development and cloud).",
-				"Participated in the development of 3 projects: Box, CDA, Stream."
-			],
-			"skills": [
-				"Azure DevOps",
-				"Azure Logic Apps",
-				"Domain-Driven Design (DDD)",
-				".NET",
-				"Cloud Computing",
-				"Web Development",
-				"ASP.NET Core",
-				"Azure Key Vault",
-				"Techlead",
-				"Microsoft Azure",
-				"Azure Monitor",
-				"Azure Storage",
-				"ASP.NET",
-				".NET Core",
-				"C#",
-				"Continuous Integration and Continuous Delivery (CI/CD)",
-				"Swagger",
-				"Azure Cosmos DB",
-				"API Development",
-				"Azure Service Bus",
-				"Clean Architecture",
-				"Azure Functions",
-				"Microservices",
-				"SQL",
-				"Behavior-Driven Development (BDD)"
-			]
-		},
-		{
-			"title": ".NET and Azure Consultant",
-			"company": "Corum",
-			"mode": "Freelance",
-			"startDate": "2019-05-01",
-			"endDate": "2019-08-01",
-			"locations": [
-				"Paris, France"
-			],
-			"description": [
-				"Corum is a French company that specializes in providing investment solutions, particularly in real estate.",
-				"I was involved in developing and improving new features for their software solutions.",
-				"I conducted functional analysis, engaged in research and development, realized several Proof of Concepts (PoCs), provided training to teams, contributed to CD/CI pipelines, and developed unit tests."
-			],
-			"responsibilities": [
-				"Conducted functional analysis to understand the requirements and specifications of the software.",
-				"Engaged in research and development to explore new technologies and methodologies.",
-				"Realized several Proof of Concepts (PoCs) to validate the feasibility of solutions.",
-				"Provided training to teams, enhancing their .NET skills and knowledge.",
-				"Made contributions to the Continuous Deployment/Continuous Integration (CD/CI) pipelines, improving the efficiency of the development process.",
-				"Developed unit tests to ensure the reliability and stability of the software."
-			],
-			"skills": [
-				"Azure DevOps",
-				"Microsoft Power Apps",
-				".NET",
-				"React.js",
-				"Cloud Computing",
-				"Web Development",
-				"ASP.NET Core",
-				"Azure API Management",
-				"Microsoft Azure",
-				"Test-Driven Development",
-				"ASP.NET",
-				".NET Core",
-				"C#",
-				"Continuous Integration and Continuous Delivery (CI/CD)",
-				"API Development",
-				"Microservices",
-				"Microsoft Dynamics"
-			]
-		},
-		{
-			"title": ".NET Techlead",
-			"company": "DAVIGOLD",
-			"mode": "Freelance",
-			"startDate": "2018-10-01",
-			"endDate": "2019-05-01",
-			"locations": [
-				"Paris, France",
-				"Remote"
-			],
-			"description": [
-				"DAVIGOLD is a next-generation Fintech company that optimizes private equity operations.",
-				"I was involved in developing and improving new features for their software solutions.",
-				"I conducted analysis, developed Web APIs with Swagger and Open API, developed unit and integration tests, handled both on-premise and cloud deployment, managed the project, and coordinated with different providers."
-			],
-			"responsibilities": [
-				"Conducted analysis of current developments and performed functional study to understand the requirements and specifications of the software.",
-				"Developed Web APIs with Swagger and Open API.",
-				"Developed unit tests and integration tests using NUnit to ensure the reliability and stability of the software.",
-				"Handled both on-premise and cloud deployment of the application.",
-				"Managed the project, ensuring it is delivered on time and within budget.",
-				"Managed different providers, coordinating and communicating effectively to ensure smooth operations."
-			],
-			"skills": [
-				"Azure DevOps",
-				".NET",
-				"Cloud Computing",
-				"Web Development",
-				"ASP.NET Core",
-				"Azure Key Vault",
-				"Techlead",
-				"Microsoft Azure",
-				"Azure Monitor",
-				"Azure Storage",
-				"Test-Driven Development",
-				"ASP.NET",
-				".NET Core",
-				"C#",
-				"Continuous Integration and Continuous Delivery (CI/CD)",
-				"Swagger",
-				"API Development",
-				"Azure Functions",
-				"Microservices",
-				"SQL"
-			]
-		},
-		{
-			"title": ".NET Developer (WPF)",
-			"company": "FORTIA Financial Solutions",
-			"mode": "Freelance",
-			"startDate": "2017-10-01",
-			"endDate": "2017-12-01",
-			"locations": [
-				"Paris, France"
-			],
-			"description": [
-				"FORTIA is a financial technology company specializing in innovative solutions for the investment management industry.",
-				"I contributed to the development of the Innova application, a comprehensive tool designed for data management, enterprise risk management, and business process management.",
-				"I conducted functional analysis, engaged in research and development, performed reverse engineering, designed the architecture, developed the WPF application, their User Components and contributed to DevOps processes."
-			],
-			"responsibilities": [
-				"Conducted functional analysis to understand the business requirements."
-			],
-			"skills": [
-				".NET",
-				".NET Framework",
-				"Cloud Computing",
-				"Test-Driven Development",
-				"ASP.NET",
-				"C#",
-				"WPF"
-			]
-		},
-		{
-			"title": ".NET Developer",
-			"company": "AFILIZA",
-			"mode": "Freelance",
-			"startDate": "2017-06-01",
-			"endDate": "2017-09-01",
-			"locations": [
-				"Paris, France",
-				"Remote"
-			],
-			"description": [
-				"AFILIZA is a digital agency focused on creating effective online presence for businesses."
-			],
-			"responsibilities": [
-				"Application development",
-				"Data management",
-				"Research and development",
-				"User experience enhancement"
-			],
-			"skills": [
-				"Azure DevOps",
-				".NET",
-				"Cloud Computing",
-				"Web Development",
-				"ASP.NET Core",
-				"Azure Key Vault",
-				"Microsoft Azure",
-				"Azure Monitor",
-				"Test-Driven Development",
-				"ASP.NET",
-				".NET Core",
-				"C#",
-				"API Development"
-			]
-		},
-		{
-			"title": "Business Unit Manager + .NET developer",
-			"company": "Digit-Prime",
-			"mode": "Full-time",
-			"startDate": "2016-11-01",
-			"endDate": "2017-04-01",
-			"locations": [
-				"Paris Area, France",
-				"Remote"
-			],
-			"description": [
-				"Digit-Prime is a technology company offering a range of services from training to application development.",
-				"I was responsible for finding office space, seeking clients, and signing a contract with CORA. I also developed a gamification application for CORA's forklift operators.",
-				"I participated in the development of two applications for clients in Belfort and Strasbourg, and attempted to recruit collaborators."
-			],
-			"responsibilities": [
-				"Web application development",
-				"Research and development",
-				"User experience enhancement"
-			],
-			"skills": [
-				"Cloud Computing"
-			]
-		},
-		{
-			"title": "Freelance .NET Software Developer and trainer",
-			"company": "Andrés Talavera",
-			"mode": "Freelance",
-			"startDate": "2015-07-01",
-			"endDate": "2016-11-01",
-			"locations": [
-				"France"
-			],
-			"description": [
-				"Andrés Talavera is my personal brand, where I offer freelance .NET development and training services.",
-				"I provided my first training sessions on .NET, C#, and Azure at institutions like Supinfo and NextFormation.",
-				"I focused on delivering high-quality training, sharing my knowledge, and helping developers enhance their skills.",
-				"I was involved in the research and development of a web application for displaying promotion codes, enhancing the user experience and driving customer engagement.",
-				"I developed the first version of the logistics application for Charl'Antoine, developed an e-commerce site for SIEHR (lecoinsiehr.com), and developed several websites for real estate agencies."
-			]
-		}
-	],
-	"trainingCenters": [
-		{
-			"name": "IP-Formation / IPSSI",
-			"locations": [
-				"Paris, France"
-			],
-			"courses": [
-				"Microsoft Azure"
-			]
-		},
-		{
-			"name": "ORSYS",
-			"locations": [
-				"Paris, France",
-				"Charleroi, Belgium"
-			],
-			"courses": [
-				"Microsoft Azure",
-				"Azure DevOps Services"
-			]
-		},
-		{
-			"name": "LinkedIn Learning",
-			"locations": [
-				"Remote",
-				"Gratz, Austria"
-			],
-			"courses": [
-				"Entity Framework Core",
-				"ASP.NET Core",
-				"Xamarin 4"
-			]
-		},
-		{
-			"name": "NextFormation",
-			"locations": [
-				"Paris, France"
-			],
-			"courses": [
-				".NET Framework",
-				"HTML5, CSS3, JavaScript",
-				"Xamarin"
-			]
-		},
-		{
-			"name": "Happly",
-			"locations": [
-				"Strasbourg, France"
-			],
-			"courses": [
-				"Xamarin.Forms"
-			]
-		},
-		{
-			"name": "Supinfo",
-			"locations": [
-				"Paris, France",
-				"Troyes, France",
-				"Montpellier, France"
-			],
-			"courses": [
-				"ASP.NET",
-				"Xamarin"
-			]
-		}
-	]
+﻿{
+  "personalInformation": {
+    "name": "Andrés Talavera",
+    "title": "Expert .NET Developer & Azure Consultant",
+    "hero": "Let's shape the future of your business together.",
+    "introduction": "Experienced .NET developer and Azure consultant with 10+ years of expertise in building modern web applications and cloud solutions.",
+    "languages": {
+      "EN": "English",
+      "FR": "Français",
+      "ES": "Español"
+    },
+    "email": "andres.talavera@ideastud.io",
+    "github": "andrestalavera",
+    "linkedin": "andres-talavera",
+    "website": "ideastud.io",
+    "twitter": "imcresus_"
+  },
+  "aboutSections": [
+    {
+      "title": "Your .NET Consultant",
+      "paragraphs": [
+        "Expert .NET and Azure consultant delivering tailored business solutions.",
+        "Specializing in ASP.NET Core, MAUI, and modern cloud architecture on Azure.",
+        "Microsoft developer with proven enterprise project success.",
+        "Serving startups, SMEs, and digital service companies across multiple industries."
+      ],
+      "images": [
+        "dotnet.svg",
+        "csharp.svg",
+        "azure.svg"
+      ]
+    },
+    {
+      "title": "Your Trainer",
+      "paragraphs": [
+        "Experienced .NET and Azure trainer for developers and companies. ",
+        "LinkedIn Learning paragraphs creator focusing on Microsoft technologies.",
+        "Proven track record training teams in France, Belgium, and Luxembourg.",
+        "Expert in .NET 9, Blazor Server, and Azure cloud solutions."
+      ],
+      "icons": [
+        "fab fa-linkedin linkedin-logo"
+      ],
+      "link": "#training"
+    },
+    {
+      "title": "Passionnated",
+      "paragraphs": [
+        "Dedicated Microsoft technology expert staying current with latest trends.",
+        "Committed to delivering innovative .NET solutions meeting client needs.",
+        "Active developer community participant since Microsoft Student Partner days.",
+        "Passionate about mobile development, web technologies, and cloud architecture."
+      ],
+      "link": "#contact"
+    },
+    {
+      "title": "Diverse experiences",
+      "paragraphs": [
+        "Successfully delivered projects across medical, finance, aviation, and logistics sectors.",
+        "Expertise spanning healthcare statistics, insurance software, and education platforms.",
+        "Proven experience with multiple companies.",
+        "Mobile developer specializing in MAUI, Xamarin, and cross-platform solutions."
+      ],
+      "link": "#experiences"
+    },
+    {
+      "title": "Recent projects",
+      "paragraphs": [
+        "Improved healthcare data portals for Medtech and CEESA using .NET 9.",
+        "Enhanced TRIGO logistics software using advanced .NET development and Vue.js.",
+        "Led Active Assurances team developing comprehensive insurance management system.",
+        "Specialized in Azure migration, CI/CD implementation, and clean architecture design."
+      ],
+      "link": "#experiences"
+    },
+    {
+      "title": "Personal attributes",
+      "paragraphs": [
+        "Curious and versatile developer with strong analytical design skills.",
+        "Talented at explaining complex technical concepts to diverse audiences.",
+        "Collaborative team leader thriving in dynamic development environments.",
+        "Trilingual consultant comfortable working across French, Spanish, and English markets."
+      ]
+    }
+  ],
+  "experiences": [
+    {
+      "title": "Founder - freelance .NET developer, techlead and trainer",
+      "company": "IdeaStudio",
+      "mode": "Self-employed",
+      "startDate": "2015-07-01",
+      "locations": [
+        "France",
+        "Luxembourg",
+        "Belgium",
+        "Austria",
+        "Remote"
+      ],
+      "description": [
+        "At IdeaStud.io, I develop innovative mobile and web applications for various industries using the latest Microsoft technologies, particularly cloud-based applications.",
+        "I'm always ready to take on new challenges and stay updated with the evolving tech landscape. Besides application development, I also share my knowledge through training centers and blogs focusing on cloud computing and software architecture.",
+        "This journey showcases my commitment to continuous learning, adaptability, and passion for sharing tech knowledge."
+      ],
+      "skills": [
+        "Blazor",
+        "Azure DevOps",
+        "Microsoft Power Apps",
+        "Domain-Driven Design (DDD)",
+        "GitHub",
+        "Mobile Applications",
+        ".NET",
+        "React.js",
+        "Angular",
+        "Cloud Computing",
+        "Web Development",
+        "ASP.NET Core",
+        "Azure Key Vault",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Azure Storage",
+        "Xamarin",
+        "FinOps",
+        "Azure Static Web Apps",
+        "ASP.NET",
+        ".NET Core",
+        "C#",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "Architecture",
+        "Swagger",
+        "Azure Cosmos DB",
+        "Azure Data Factory",
+        "API Development",
+        "GraphQL",
+        "Azure Service Bus",
+        "Azure Functions",
+        "Azure Automation",
+        "SQL"
+      ]
+    },
+    {
+      "title": ".NET Developer",
+      "company": "Medtech/CEESA",
+      "mode": "Freelance",
+      "startDate": "2024-09-01",
+      "endDate": "2025-05-01",
+      "locations": [
+        "Bruxelles, Belgium",
+        "Paris, France",
+        "Remote"
+      ],
+      "description": [
+        "Medtech and Ceesa are companies focused on healthcare technology solutions, providing data management and analytics services for laboratories.",
+        "I was involved in developing multiple portals for various entities to collect data from laboratories and publish statistics.",
+        "I conducted analysis, designed the architecture, implemented unit tests, developed new features, and integrated with Microsoft Entra ID for enhanced security."
+      ],
+      "responsibilities": [
+        "Developed a new project from scratch, ensuring scalability and performance.",
+        "Maintained two existing projects, analyzing their structure and functionality.",
+        "Improved the clean architecture to ensure maintainability and scalability.",
+        "Added unit tests to ensure the reliability and stability of the software.",
+        "Implemented new features to enhance functionality and user experience.",
+        "Implemented strict security rules to protect sensitive data.",
+        "Integrated with Microsoft Entra ID for secure authentication and authorization."
+      ],
+      "skills": [
+        "ASP.NET Core",
+        ".NET 9",
+        "GitHub Actions",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "Blazor Server",
+        "Azure Web Apps",
+        "Bicep",
+        "Azure SQL",
+        "SQL-Server",
+        "Azure Functions",
+        "Microsoft Entra ID",
+        "Azure Managed Identities"
+      ]
+    },
+    {
+      "title": ".NET Developer",
+      "company": "TRIGO",
+      "mode": "Freelance",
+      "startDate": "2024-02-01",
+      "endDate": "2024-07-01",
+      "locations": [
+        "Lyon, France",
+        "Remote"
+      ],
+      "description": [
+        "TRIGO is a global leader in logistics, providing specialized logistics and production support. They are known for their professional support, systems, and flexibility that help exceed their customers' expectations.",
+        "I was brought in to develop new features for an ASP.NET Framework (MVC4) application and support migrations to .NET, Vue, and Azure.",
+        "I conducted comprehensive analysis, implemented unit tests, developed key features, and shared knowledge with team members. I also assisted in the migration of applications to Azure, leveraging Azure WebApp and Azure Functions for efficient and scalable solutions."
+      ],
+      "responsibilities": [
+        "Conducted a comprehensive analysis of existing projects to understand their structure and functionality.",
+        "Implemented unit tests to ensure the reliability and stability of the software.",
+        "Developed several key features on the WebApp, enhancing its functionality and user experience.",
+        "Performed analysis of the mobile app to understand its structure and functionality.",
+        "Developed Vue3 components, contributing to the modernisation of the application.",
+        "Collaborated with the team to troubleshoot and resolve technical issues.",
+        "Participated in code reviews to maintain high-quality code."
+      ],
+      "skills": [
+        "Azure DevOps",
+        "Mobile Applications",
+        ".NET",
+        ".NET Framework",
+        "ASP.NET Core",
+        "Microsoft Azure",
+        "Azure Storage",
+        "Test-Driven Development",
+        "Vue.js",
+        "ASP.NET",
+        "C#",
+        "Azure Service Bus",
+        "Azure Functions",
+        "Azure SQL"
+      ]
+    },
+    {
+      "title": "Techlead",
+      "company": "Active Assurances",
+      "mode": "Freelance",
+      "startDate": "2023-08-01",
+      "endDate": "2024-02-01",
+      "locations": [
+        "Boulogne-Billancourt, France",
+        "Remote"
+      ],
+      "description": [
+        "Active Assurances is a leading provider of automobile insurance products and services in France. They were looking to improve internal processes and redesign some projects performing .NET migrations, security updates, or some automations.",
+        "A new project was implemented from scratch, fully replacing the entire Information System. I led a team of up to 5 developers to achieve this.",
+        "I managed the team, conducted analysis, improved delivery processes, implemented unit tests, enhanced CI/CD pipelines, developed key features, trained developers, handled Azure subscription migration, improved application security, and implemented a database migration system."
+      ],
+      "responsibilities": [
+        "Managed a team of up to 5 developers.",
+        "Conducted analysis of existing projects to identify areas for improvement.",
+        "Improved the delivery process and organised git repositories.",
+        "Implemented unit tests to ensure the reliability and stability of the software.",
+        "Enhanced CI/CD pipelines for better efficiency.",
+        "Developed several key features for the new system.",
+        "Trained developers on new technologies and best practices.",
+        "Handled Azure subscription migration and FinOps.",
+        "Improved application security and upgraded certain projects to .NET 8.",
+        "Implemented a database migration system to replicate data across different environments."
+      ],
+      "skills": [
+        "Blazor",
+        "Azure DevOps",
+        "Entity Framework Core",
+        "Microsoft Power Apps",
+        "Azure Logic Apps",
+        "Domain-Driven Design (DDD)",
+        ".NET",
+        "React.js",
+        "Angular",
+        "Cloud Computing",
+        "Web Development",
+        "ASP.NET Core",
+        "Azure Key Vault",
+        "Techlead",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Azure Storage",
+        "FinOps",
+        "Azure Static Web Apps",
+        "ASP.NET",
+        ".NET Core",
+        "C#",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "Architecture",
+        "Swagger",
+        "API Development",
+        "Azure Service Bus",
+        "Clean Architecture",
+        "Azure Functions",
+        "Azure Automation",
+        "SQL"
+      ]
+    },
+    {
+      "title": ".NET Developer",
+      "company": "The Adecco Group",
+      "mode": "Freelance",
+      "startDate": "2022-04-01",
+      "endDate": "2023-04-01",
+      "locations": [
+        "Lyon, France",
+        "Remote"
+      ],
+      "description": [
+        "The Adecco Group is a Swiss-French company based in Zurich, Switzerland. It is one of the world's largest Human Resources provider and temporary staffing firm.",
+        "I worked on multiple projects at The Adecco Group. The main project was a worldwide data synchronization system.",
+        "I conducted functional analysis, developed applications and services, handled migrations from .NET Core 3 to .NET 6, managed deployment, and conducted research and development on Azure Managed Identities, Azure RBAC, etc."
+      ],
+      "responsibilities": [
+        "Conducted functional analysis and analysis of existing developments.",
+        "Developed applications and services for multiple internal products.",
+        "Handled migrations from .net core3 to .net6 and performed refactoring.",
+        "Managed deployment and provided support.",
+        "Conducted research and development on Azure Managed Identities, Azure RBAC, etc."
+      ],
+      "skills": [
+        "Blazor",
+        "Azure DevOps",
+        "Azure Logic Apps",
+        "Domain-Driven Design (DDD)",
+        ".NET",
+        "Cloud Computing",
+        "Web Development",
+        "ASP.NET Core",
+        "Azure API Management",
+        "Azure Key Vault",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Azure Storage",
+        "Test-Driven Development",
+        "ASP.NET",
+        ".NET Core",
+        "C#",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "Architecture",
+        "Swagger",
+        "Azure Cosmos DB",
+        "API Development",
+        "Azure Service Bus",
+        "Azure Functions",
+        "Microservices",
+        "SQL"
+      ]
+    },
+    {
+      "title": ".NET Developer",
+      "company": "Sage",
+      "mode": "Freelance",
+      "startDate": "2021-10-01",
+      "endDate": "2022-02-01",
+      "locations": [
+        "Remote"
+      ],
+      "description": [
+        "Sage is a British multinational enterprise software company. They were redeveloping some internal libraries and their commercial products.",
+        "I was involved in developing and improving new features for their software solutions.",
+        "I conducted functional analysis, developed APIs and micro-services, developed unit tests, and contributed to the development of a project from scratch, implementing onion architecture and unit tests."
+      ],
+      "responsibilities": [
+        "Conducted functional analysis and analysis of existing developments and architectures (onion/hexagonal).",
+        "Developed APIs and micro-services.",
+        "Developed unit tests and conducted research and development.",
+        "Contributed to the development of a project from scratch (implementation of onion architecture, unit tests, etc.)."
+      ],
+      "skills": [
+        "Domain-Driven Design (DDD)",
+        "GitHub",
+        ".NET",
+        "Cloud Computing",
+        "Web Development",
+        "ASP.NET Core",
+        "Azure Key Vault",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Azure Storage",
+        "Test-Driven Development",
+        "ASP.NET",
+        ".NET Core",
+        "C#",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "Architecture",
+        "Swagger",
+        "Azure Cosmos DB",
+        "API Development",
+        "GraphQL",
+        "Azure Service Bus",
+        "Clean Architecture",
+        "Azure Functions",
+        "Microservices"
+      ]
+    },
+    {
+      "title": "Mobile Application Developer",
+      "company": "Hager",
+      "mode": "Freelance",
+      "startDate": "2021-08-01",
+      "endDate": "2021-10-01",
+      "locations": [
+        "Obernai, France",
+        "Remote"
+      ],
+      "description": [
+        "Hager is a leading supplier of solutions and services for electrical installations in residential, commercial, and industrial buildings.",
+        "The task was to develop an application that uses an existing AI to find spare parts.",
+        "I performed functional analysis, connected Xamarin.Forms to ONNX files to integrate developed AI, connected to several Azure services, and prepared packages and pipelines for deployment."
+      ],
+      "responsibilities": [
+        "Performed functional analysis ",
+        "Connected Xamarin.Forms to ONNX files to integrate developed IA",
+        "Connected to several Azure services.",
+        "Prepared packages and pipelines for deployment"
+      ],
+      "skills": [
+        "UWP",
+        "Azure DevOps",
+        "Mobile Applications",
+        ".NET",
+        "Cloud Computing",
+        "Azure Key Vault",
+        "Techlead",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Azure Storage",
+        "Xamarin",
+        "FinOps",
+        ".NET Core",
+        "C#",
+        "Architecture",
+        "Swagger",
+        "API Development",
+        "Clean Architecture",
+        "Azure Functions"
+      ]
+    },
+    {
+      "title": ".NET Developer",
+      "company": "ALTEVA",
+      "mode": "Freelance",
+      "startDate": "2021-04-01",
+      "endDate": "2021-06-01",
+      "locations": [
+        "Remote"
+      ],
+      "description": [
+        "Alteva is a leading provider of software solutions for property management, with over 20 years of experience in the field. Their software, Mission One, is designed to cater to various stakeholders in property maintenance.",
+        "I was involved in developing and improving new features for their software solutions.",
+        "I conducted functional analysis, engaged in research and development, realized several Proof of Concepts (PoCs), provided training to teams, contributed to CD/CI pipelines, and developed unit tests."
+      ],
+      "responsibilities": [
+        "Conducted functional analysis to understand the requirements and specifications of the software.",
+        "Engaged in research and development to explore new technologies and methodologies.",
+        "Realised several Proof of Concepts (PoCs) to validate the feasibility of solutions.",
+        "Provided training to teams, enhancing their .NET skills and knowledge.",
+        "Made contributions to the Continuous Deployment/Continuous Integration (CD/CI) pipelines, improving the efficiency of the development process.",
+        "Developed unit tests to ensure the reliability and stability of the software."
+      ],
+      "skills": [
+        "Blazor",
+        "Redux",
+        "Domain-Driven Design (DDD)",
+        ".NET",
+        "React.js",
+        "Cloud Computing",
+        "Web Development",
+        "ASP.NET Core",
+        "Azure Key Vault",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Azure Storage",
+        "Test-Driven Development",
+        "ASP.NET",
+        ".NET Core",
+        "C#",
+        "Swagger",
+        "API Development",
+        "Azure Functions",
+        "Microservices"
+      ]
+    },
+    {
+      "title": ".NET and Azure Consultant",
+      "company": "Faurecia",
+      "mode": "Freelance",
+      "startDate": "2020-09-01",
+      "endDate": "2021-04-01",
+      "locations": [
+        "Audincourt, France",
+        "Remote"
+      ],
+      "description": [
+        "Faurecia is a global leader in automotive technology. They are known for their innovative solutions that enhance the driving experience and contribute to sustainable mobility.",
+        "I was involved in developing and improving new features for their software solutions.",
+        "I conducted both technical and functional analysis, analyzed existing developments, worked on architectures, engaged in research and development, handled code migration, developed APIs and .NET applications, created NuGet packages, developed Azure Functions, and set up Azure Data Factory and Azure EventHubs."
+      ],
+      "responsibilities": [
+        "Conducted both technical and functional analysis to understand the requirements and specifications of the projects.",
+        "Analyzed existing developments to identify areas for improvement and potential issues.",
+        "Worked on architectures (NLayered and Onion) to ensure the software is well-structured and maintainable.",
+        "Engaged in research and development to explore new technologies and methodologies.",
+        "Handled migration of code to ensure smooth transition and minimal disruption.",
+        "Developed APIs and .NET applications to meet the needs of the projects.",
+        "Created NuGet packages for efficient management and distribution of .NET packages.",
+        "Developed Azure Functions with an orchestrator to manage the execution of functions.",
+        "Set up Azure Data Factory and Azure EventHubs for data integration and real-time analytics."
+      ],
+      "skills": [
+        "Azure DevOps",
+        "Azure Logic Apps",
+        ".NET",
+        "Cloud Computing",
+        "Azure Key Vault",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "FinOps",
+        "ASP.NET",
+        ".NET Core",
+        "Azure Kubernetes Service (AKS)",
+        "C#",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "Architecture",
+        "Swagger",
+        "Azure Cosmos DB",
+        "Azure Data Factory",
+        "Azure Event Hubs",
+        "Azure Service Bus",
+        "Azure Functions",
+        "Azure Automation",
+        "MongoDB"
+      ]
+    },
+    {
+      "title": ".NET and Azure Consultant",
+      "company": "CHARL'ANTOINE",
+      "mode": "Freelance",
+      "startDate": "2020-06-01",
+      "endDate": "2020-09-01",
+      "locations": [
+        "Strasbourg, France",
+        "Remote"
+      ],
+      "description": [
+        "Charl'Antoine is a company specializing in delivery services. They are known for their efficient and reliable delivery solutions.",
+        "I developed a logistics application for Charl'Antoine, Segmuller, and Ikea Grand Est, integrating GDPR compliance and enhancing security.",
+        "I conducted analysis, designed the architecture, developed tests, APIs, the mobile app, and an administration console. I also provided training and support to the team on the new technologies and best practices used in the app."
+      ],
+      "responsibilities": [
+        "Conducted analysis of existing developments to understand the structure and functionality of the current app.",
+        "Worked closely with the customer to analyze functional needs and translate them into technical requirements.",
+        "Designed the architecture of the new app, ensuring it is scalable and maintainable.",
+        "Developed tests following the Test-Driven Development (TDD) approach to ensure the reliability and stability of the app.",
+        "Developed APIs to facilitate communication between the app and the backend systems.",
+        "Developed the mobile app, enhancing its functionality and user experience.",
+        "Ensured the app is secure and data is protected.",
+        "Optimized the performance of the app for a smooth user experience.",
+        "Provided training and support to the team on the new technologies and best practices used in the app."
+      ],
+      "skills": [
+        "Blazor",
+        "UWP",
+        "Azure DevOps",
+        "Microsoft Power Apps",
+        "Azure Logic Apps",
+        "Mobile Applications",
+        ".NET",
+        "Cloud Computing",
+        "Web Development",
+        "ASP.NET Core",
+        "Azure Key Vault",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Azure Storage",
+        "Test-Driven Development",
+        "ASP.NET",
+        ".NET Core",
+        "C#",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "Architecture",
+        "Swagger",
+        "API Development",
+        "GraphQL",
+        "Azure Functions",
+        "Azure Automation"
+      ]
+    },
+    {
+      "title": "Business Analyst",
+      "company": "Renault-Nissan-Mitsubishi",
+      "mode": "Freelance",
+      "startDate": "2020-02-01",
+      "endDate": "2020-04-01",
+      "locations": [
+        "Issy-les-Moulineaux, France",
+        "Remote"
+      ],
+      "description": [
+        "Renault France, part of an alliance with Mitsubishi and Nissan, is a leading vehicle provider.",
+        "I conducted analysis of existing developments and worked closely with the final customer to analyze functional needs.",
+        "I held meetings with development teams and customers, wrote functional specifications in Azure DevOps, validated these with the final customer, configured Azure DevOps, reviewed code of off-shore teams, and documented differences in code and APIs specifications."
+      ],
+      "responsibilities": [
+        "I conducted analysis of existing developments and worked closely with the final customer to analyze functional needs. ",
+        "I also held meetings with development teams and customers (Renault, Mitsubishi, Nissan, etc.), wrote functional specifications in Azure DevOps.",
+        "Validated these with the final customer.",
+        "I configured Azure DevOps, reviewed code of off-shore teams, and documented differences in code and APIs specifications."
+      ],
+      "skills": [
+        "Azure DevOps",
+        ".NET",
+        "Cloud Computing",
+        "Techlead",
+        "Microsoft Azure",
+        "ASP.NET",
+        "C#",
+        "Azure Service Bus",
+        "SQL"
+      ]
+    },
+    {
+      "title": ".NET and Azure Techlead",
+      "company": "Cegid",
+      "mode": "Freelance",
+      "startDate": "2019-08-01",
+      "endDate": "2019-12-01",
+      "locations": [
+        "Reuil-Malmaison, France",
+        "Remote"
+      ],
+      "description": [
+        "Cegid is a leading provider of cloud business management solutions for finance, human resources, CPAs, and the retail and entrepreneurial sectors.",
+        "I was involved in designing the architecture of a new box, conducting PoCs, and performing functional analysis.",
+        "I worked on refactoring, implemented Azure services, coached about best practices, and participated in the development of three projects: Box, CDA, and Stream."
+      ],
+      "responsibilities": [
+        "Designed the architecture of the new box.",
+        "Conducted PoCs about different solutions to store data, durable functions, orchestrator, centralised configuration, etc.",
+        "Performed functional analysis and analysed existing developments.",
+        "Worked on refactoring & clean code.",
+        "Implemented Azure services (Functions, Centralized configuration, App Service, etc.).",
+        "Coached about best practices: micro-services, serverless, .NET Core, design patterns (development and cloud).",
+        "Participated in the development of 3 projects: Box, CDA, Stream."
+      ],
+      "skills": [
+        "Azure DevOps",
+        "Azure Logic Apps",
+        "Domain-Driven Design (DDD)",
+        ".NET",
+        "Cloud Computing",
+        "Web Development",
+        "ASP.NET Core",
+        "Azure Key Vault",
+        "Techlead",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Azure Storage",
+        "ASP.NET",
+        ".NET Core",
+        "C#",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "Swagger",
+        "Azure Cosmos DB",
+        "API Development",
+        "Azure Service Bus",
+        "Clean Architecture",
+        "Azure Functions",
+        "Microservices",
+        "SQL",
+        "Behavior-Driven Development (BDD)"
+      ]
+    },
+    {
+      "title": ".NET and Azure Consultant",
+      "company": "Corum",
+      "mode": "Freelance",
+      "startDate": "2019-05-01",
+      "endDate": "2019-08-01",
+      "locations": [
+        "Paris, France"
+      ],
+      "description": [
+        "Corum is a French company that specializes in providing investment solutions, particularly in real estate.",
+        "I was involved in developing and improving new features for their software solutions.",
+        "I conducted functional analysis, engaged in research and development, realized several Proof of Concepts (PoCs), provided training to teams, contributed to CD/CI pipelines, and developed unit tests."
+      ],
+      "responsibilities": [
+        "Conducted functional analysis to understand the requirements and specifications of the software.",
+        "Engaged in research and development to explore new technologies and methodologies.",
+        "Realized several Proof of Concepts (PoCs) to validate the feasibility of solutions.",
+        "Provided training to teams, enhancing their .NET skills and knowledge.",
+        "Made contributions to the Continuous Deployment/Continuous Integration (CD/CI) pipelines, improving the efficiency of the development process.",
+        "Developed unit tests to ensure the reliability and stability of the software."
+      ],
+      "skills": [
+        "Azure DevOps",
+        "Microsoft Power Apps",
+        ".NET",
+        "React.js",
+        "Cloud Computing",
+        "Web Development",
+        "ASP.NET Core",
+        "Azure API Management",
+        "Microsoft Azure",
+        "Test-Driven Development",
+        "ASP.NET",
+        ".NET Core",
+        "C#",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "API Development",
+        "Microservices",
+        "Microsoft Dynamics"
+      ]
+    },
+    {
+      "title": ".NET Techlead",
+      "company": "DAVIGOLD",
+      "mode": "Freelance",
+      "startDate": "2018-10-01",
+      "endDate": "2019-05-01",
+      "locations": [
+        "Paris, France",
+        "Remote"
+      ],
+      "description": [
+        "DAVIGOLD is a next-generation Fintech company that optimizes private equity operations.",
+        "I was involved in developing and improving new features for their software solutions.",
+        "I conducted analysis, developed Web APIs with Swagger and Open API, developed unit and integration tests, handled both on-premise and cloud deployment, managed the project, and coordinated with different providers."
+      ],
+      "responsibilities": [
+        "Conducted analysis of current developments and performed functional study to understand the requirements and specifications of the software.",
+        "Developed Web APIs with Swagger and Open API.",
+        "Developed unit tests and integration tests using NUnit to ensure the reliability and stability of the software.",
+        "Handled both on-premise and cloud deployment of the application.",
+        "Managed the project, ensuring it is delivered on time and within budget.",
+        "Managed different providers, coordinating and communicating effectively to ensure smooth operations."
+      ],
+      "skills": [
+        "Azure DevOps",
+        ".NET",
+        "Cloud Computing",
+        "Web Development",
+        "ASP.NET Core",
+        "Azure Key Vault",
+        "Techlead",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Azure Storage",
+        "Test-Driven Development",
+        "ASP.NET",
+        ".NET Core",
+        "C#",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "Swagger",
+        "API Development",
+        "Azure Functions",
+        "Microservices",
+        "SQL"
+      ]
+    },
+    {
+      "title": ".NET Developer (WPF)",
+      "company": "FORTIA Financial Solutions",
+      "mode": "Freelance",
+      "startDate": "2017-10-01",
+      "endDate": "2017-12-01",
+      "locations": [
+        "Paris, France"
+      ],
+      "description": [
+        "FORTIA is a financial technology company specializing in innovative solutions for the investment management industry.",
+        "I contributed to the development of the Innova application, a comprehensive tool designed for data management, enterprise risk management, and business process management.",
+        "I conducted functional analysis, engaged in research and development, performed reverse engineering, designed the architecture, developed the WPF application, their User Components and contributed to DevOps processes."
+      ],
+      "responsibilities": [
+        "Conducted functional analysis to understand the business requirements."
+      ],
+      "skills": [
+        ".NET",
+        ".NET Framework",
+        "Cloud Computing",
+        "Test-Driven Development",
+        "ASP.NET",
+        "C#",
+        "WPF"
+      ]
+    },
+    {
+      "title": ".NET Developer",
+      "company": "AFILIZA",
+      "mode": "Freelance",
+      "startDate": "2017-06-01",
+      "endDate": "2017-09-01",
+      "locations": [
+        "Paris, France",
+        "Remote"
+      ],
+      "description": [
+        "AFILIZA is a digital agency focused on creating effective online presence for businesses."
+      ],
+      "responsibilities": [
+        "Application development",
+        "Data management",
+        "Research and development",
+        "User experience enhancement"
+      ],
+      "skills": [
+        "Azure DevOps",
+        ".NET",
+        "Cloud Computing",
+        "Web Development",
+        "ASP.NET Core",
+        "Azure Key Vault",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Test-Driven Development",
+        "ASP.NET",
+        ".NET Core",
+        "C#",
+        "API Development"
+      ]
+    },
+    {
+      "title": "Business Unit Manager + .NET developer",
+      "company": "Digit-Prime",
+      "mode": "Full-time",
+      "startDate": "2016-11-01",
+      "endDate": "2017-04-01",
+      "locations": [
+        "Paris Area, France",
+        "Remote"
+      ],
+      "description": [
+        "Digit-Prime is a technology company offering a range of services from training to application development.",
+        "I was responsible for finding office space, seeking clients, and signing a contract with CORA. I also developed a gamification application for CORA's forklift operators.",
+        "I participated in the development of two applications for clients in Belfort and Strasbourg, and attempted to recruit collaborators."
+      ],
+      "responsibilities": [
+        "Web application development",
+        "Research and development",
+        "User experience enhancement"
+      ],
+      "skills": [
+        "Cloud Computing"
+      ]
+    },
+    {
+      "title": "Freelance .NET Software Developer and trainer",
+      "company": "Andrés Talavera",
+      "mode": "Freelance",
+      "startDate": "2015-07-01",
+      "endDate": "2016-11-01",
+      "locations": [
+        "France"
+      ],
+      "description": [
+        "Andrés Talavera is my personal brand, where I offer freelance .NET development and training services.",
+        "I provided my first training sessions on .NET, C#, and Azure at institutions like Supinfo and NextFormation.",
+        "I focused on delivering high-quality training, sharing my knowledge, and helping developers enhance their skills.",
+        "I was involved in the research and development of a web application for displaying promotion codes, enhancing the user experience and driving customer engagement.",
+        "I developed the first version of the logistics application for Charl'Antoine, developed an e-commerce site for SIEHR (lecoinsiehr.com), and developed several websites for real estate agencies."
+      ]
+    }
+  ],
+  "trainingCenters": [
+    {
+      "name": "IP-Formation / IPSSI",
+      "locations": [
+        "Paris, France"
+      ],
+      "courses": [
+        "Microsoft Azure"
+      ]
+    },
+    {
+      "name": "ORSYS",
+      "locations": [
+        "Paris, France",
+        "Charleroi, Belgium"
+      ],
+      "courses": [
+        "Microsoft Azure",
+        "Azure DevOps Services"
+      ]
+    },
+    {
+      "name": "LinkedIn Learning",
+      "locations": [
+        "Remote",
+        "Gratz, Austria"
+      ],
+      "courses": [
+        "Entity Framework Core",
+        "ASP.NET Core",
+        "Xamarin 4"
+      ]
+    },
+    {
+      "name": "NextFormation",
+      "locations": [
+        "Paris, France"
+      ],
+      "courses": [
+        ".NET Framework",
+        "HTML5, CSS3, JavaScript",
+        "Xamarin"
+      ]
+    },
+    {
+      "name": "Happly",
+      "locations": [
+        "Strasbourg, France"
+      ],
+      "courses": [
+        "Xamarin.Forms"
+      ]
+    },
+    {
+      "name": "Supinfo",
+      "locations": [
+        "Paris, France",
+        "Troyes, France",
+        "Montpellier, France"
+      ],
+      "courses": [
+        "ASP.NET",
+        "Xamarin"
+      ]
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-let observer = null;
+﻿let observer = null;
 let observedElements = new Set();
 
 export function initialize() {
