@@ -1,0 +1,39 @@
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@using IdeaStudio.Website.Shared
+@using Markdig
+
+<CardComponent Title="@(AboutSection.Title)" Index="@Index">
+	<Content>
+		@if (AboutSection.Paragraphs is not null)
+		{
+			@foreach (string paragraph in AboutSection.Paragraphs)
+			{
+				<p class="text-primary">@((MarkupString)Markdown.ToHtml(paragraph))</p>
+			}
+		}
+		@if (AboutSection.Icons is not null)
+		{
+			<div class="d-flex d-print-none justify-content-center gap-3 my-3">
+				@foreach (string icon in AboutSection.Icons)
+				{
+					<i class="@icon fa-4x" aria-hidden="true"></i>
+				}
+			</div>
+		}
+		@if (AboutSection.Images is not null)
+		{
+			<div class="d-flex d-print-none justify-content-center gap-3 my-3">
+				@foreach (string image in AboutSection.Images)
+				{
+					<img src="images/@image" alt="@image" class="p-1" width="70" height="70" loading="lazy">
+				}
+			</div>
+		}
+	</Content>
+</CardComponent>
+
+@code{
+	[Parameter] public AboutSection? AboutSection { get; set; }
+	[Parameter] public int Index { get; set; }
+}
