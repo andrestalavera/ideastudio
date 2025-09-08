@@ -9,7 +9,7 @@
 		<BlazorEnableCompression>true</BlazorEnableCompression>
 		<BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
 		<BlazorWebAssemblyJiterpreter>false</BlazorWebAssemblyJiterpreter>
-		<InvariantGlobalization>true</InvariantGlobalization>
+
 		<BlazorWebAssemblyLoadBootResource>true</BlazorWebAssemblyLoadBootResource>
 		<InvariantGlobalization>false</InvariantGlobalization>
 		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
