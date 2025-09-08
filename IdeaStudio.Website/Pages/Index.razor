@@ -13,13 +13,6 @@
 @inherits LocalizedComponent
 @layout MainLayout
 
-@{
-	if (MainLayoutInstance is not null)
-	{
-		MainLayoutInstance.NavbarContent = NavbarNavigationContent;
-	}
-}
-
 <HeroComponent PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
 <div class="pagebreak"></div>
 
@@ -204,7 +197,7 @@
         await AnimationService.InitializeAnimationsAsync();
     }
 
-	protected override async Task OnAfterRenderAsync(bool firstRender)
+	protected override void OnAfterRender(bool firstRender)
 	{
 		if (firstRender)
 		{

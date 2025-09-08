@@ -1,22 +1,23 @@
 ﻿@page "/privacy"
+@using Markdig
 @inherits LocalizedComponent
 @layout MainLayout
 
-<div class="container mt-5">
-	<div class="row mt-5">
-		<div class="col mt-5 pt-5">
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-8 col-lg-6 my-5 py-5">
 			<div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
 				<div class="card-body">
-					<div class="display-4">@titleText</div>
-					<p>@lastUpdateText</p>
-					<p>@introductionText</p>
-					<p>@informationCollectionText</p>
-					<p>@useOfInformationText</p>
-					<p>@informationSharingText</p>
-					<p>@dataSecurityText</p>
-					<p>@yourChoicesText</p>
-					<p>@changesToThisPolicyText</p>
-					<p>@contactUsText</p>
+					<div class="display-4">@((MarkupString)Markdown.ToHtml(titleText))</div>
+					<p>@((MarkupString)Markdown.ToHtml(lastUpdateText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(introductionText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(informationCollectionText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(useOfInformationText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(informationSharingText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(dataSecurityText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(yourChoicesText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(changesToThisPolicyText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(contactUsText))</p>
 				</div>
 			</div>
 		</div>
