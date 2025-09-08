@@ -1,18 +1,18 @@
-using IdeaStudio.Website.Services;
+﻿using IdeaStudio.Website.Services;
 
 namespace IdeaStudio.Website.Models;
 
-public static partial class Extensions
+public static class Extensions
 {
-	public static Experience? WithGeneratedId(this Experience experience, ISeoService seoService)
-		=> experience! with
-		{
-			Id = seoService.GenerateSlug(experience.CompanyAndTitle)
-		};
+    public static Experience? WithGeneratedId(this Experience experience, ISlugService slugService)
+    => experience with
+    {
+        Id = slugService.GenerateSlug(experience.CompanyAndTitle)
+    };
 
-	public static TrainingCenter? WithGeneratedId(this TrainingCenter trainingCenter, ISeoService seoService)
-		=> trainingCenter! with
-		{
-			Id = seoService.GenerateSlug(trainingCenter.Name)
-		};
+    public static TrainingCenter? WithGeneratedId(this TrainingCenter trainingCenter, ISlugService slugService)
+    => trainingCenter with
+    {
+        Id = slugService.GenerateSlug("training-center-centre-formation-" + trainingCenter.Name)
+    };
 }

@@ -1,4 +1,4 @@
-namespace IdeaStudio.Website.Models;
+﻿namespace IdeaStudio.Website.Models;
 
 /// <summary>
 /// Represents the personal information section of someone's resume
@@ -11,15 +11,15 @@ namespace IdeaStudio.Website.Models;
 /// <param name="Phone">Phone number</param>
 public record PersonalInformation
 {
-	public string? Name { get; set; }
-	public string? Hero { get; set; }
-	public string? Title { get; set; }
-	public string? Introduction { get; init; }
-	public IDictionary<string, string>? Languages { get; set; }
-	public string? Email { get; set; }
-	public string? Phone { get; set; }
-	public string? GitHub { get; set; }
-	public string? LinkedIn { get; set; }
-	public string? Website { get; set; }
-	public string? Twitter { get; set; }
+    public string? Name { get; set; }
+    public string? Hero { get; set; }
+    public string? Title { get; set; }
+    public string? Introduction { get; init; }
+    public IDictionary<string, string>? Languages { get; set; }
+    public string? Email { get; set; }
+    public string? Phone { get; set; }
+    public string? GitHub { get; set; }
+    public string? LinkedIn { get; set; }
+    public string? Website { get; set; }
+    public string? Twitter { get; set; }
 }

@@ -1,27 +1,26 @@
-using Microsoft.JSInterop;
+﻿using Microsoft.JSInterop;
 using System.Globalization;
 
 namespace IdeaStudio.Website.Services;
 
 public interface ICultureService
 {
-	CultureInfo CurrentCulture { get; }
-	List<CultureInfo> SupportedCultures { get; }
-	Task InitializeAsync();
-	Task SetCultureAsync(string culture);
-	event Action? CultureChanged;
+    CultureInfo CurrentCulture { get; }
+    List<CultureInfo> SupportedCultures { get; }
+    Task InitializeAsync();
+    Task SetCultureAsync(string culture);
+    event Action? CultureChanged;
 }
 
 public class CultureService(IJSRuntime jsRuntime) : ICultureService
 {
-    private readonly IJSRuntime _jsRuntime = jsRuntime;
-    private CultureInfo _currentCulture = new("en");
+    private readonly IJSRuntime jsRuntime = jsRuntime;
+    private CultureInfo currentCulture = new("en");
 
-	public CultureInfo CurrentCulture => _currentCulture;
+    public CultureInfo CurrentCulture => currentCulture;
 
-    public List<CultureInfo> SupportedCultures =>
-	[
-		new CultureInfo("en"),
+    public List<CultureInfo> SupportedCultures => [
+        new CultureInfo("en"),
         new CultureInfo("fr")
     ];
 
@@ -32,7 +31,7 @@ public class CultureService(IJSRuntime jsRuntime) : ICultureService
         try
         {
             // Try to get saved culture from localStorage
-            var savedCulture = await _jsRuntime.InvokeAsync<string>("localStorage.getItem", "preferredCulture");
+            string? savedCulture = await jsRuntime.InvokeAsync<string>("localStorage.getItem", "preferredCulture");
 
             if (!string.IsNullOrEmpty(savedCulture) && SupportedCultures.Any(c => c.Name == savedCulture))
             {
@@ -41,10 +40,10 @@ public class CultureService(IJSRuntime jsRuntime) : ICultureService
             }
 
             // Try to get browser language
-            var browserLanguage = await _jsRuntime.InvokeAsync<string>("navigator.language");
+            string? browserLanguage = await jsRuntime.InvokeAsync<string>("navigator.language");
             if (!string.IsNullOrEmpty(browserLanguage))
             {
-                var cultureName = browserLanguage.Split('-')[0]; // Get language part (en from en-US)
+                string? cultureName = browserLanguage.Split('-')[0]; // Get language part (en from en-US)
                 if (SupportedCultures.Any(c => c.Name == cultureName))
                 {
                     await SetCultureAsync(cultureName);
@@ -67,14 +66,14 @@ public class CultureService(IJSRuntime jsRuntime) : ICultureService
             !SupportedCultures.Any(c => c.Name == culture))
             return;
 
-        _currentCulture = new CultureInfo(culture);
-        CultureInfo.DefaultThreadCurrentCulture = _currentCulture;
-        CultureInfo.DefaultThreadCurrentUICulture = _currentCulture;
+        currentCulture = new CultureInfo(culture);
+        CultureInfo.DefaultThreadCurrentCulture = currentCulture;
+        CultureInfo.DefaultThreadCurrentUICulture = currentCulture;
 
         // Save to localStorage
         try
         {
-            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", "preferredCulture", culture);
+            await jsRuntime.InvokeVoidAsync("localStorage.setItem", "preferredCulture", culture);
         }
         catch
         {
@@ -84,4 +83,3 @@ public class CultureService(IJSRuntime jsRuntime) : ICultureService
         CultureChanged?.Invoke();
     }
 }
-

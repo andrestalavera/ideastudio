@@ -1,53 +1,55 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace IdeaStudio.Website.Services;
 
 public interface ILocalizationService
 {
-	string GetString(string key);
-	Task LoadCultureAsync(string culture);
+    string GetString(string key);
+    Task LoadCultureAsync(string culture);
 }
 
 public class LocalizationService(HttpClient httpClient) : ILocalizationService
 {
-	private readonly HttpClient _httpClient = httpClient;
-	private readonly Dictionary<string, Dictionary<string, string>> _cultureCache = [];
-	private Dictionary<string, string> _localizedStrings = [];
+    private readonly HttpClient httpClient = httpClient;
+    private readonly Dictionary<string, Dictionary<string, string>> cultureCache = [];
+    private Dictionary<string, string> localizedStrings = [];
 
-	public string GetString(string key)
-	{
-		if (_localizedStrings.TryGetValue(key, out var value))
-			return value;
+    public string GetString(string key)
+    {
+        if (localizedStrings.TryGetValue(key, out string? value))
+        {
+            return value;
+        }
 
-		return key;
-	}
+        return key;
+    }
 
-	public async Task LoadCultureAsync(string culture)
-	{
-		// Check cache first
-		if (_cultureCache.TryGetValue(culture, out var cachedStrings))
-		{
-			_localizedStrings = cachedStrings;
-			return;
-		}
+    public async Task LoadCultureAsync(string culture)
+    {
+        // Check cache first
+        if (cultureCache.TryGetValue(culture, out Dictionary<string, string>? cachedStrings))
+        {
+            localizedStrings = cachedStrings;
+            return;
+        }
 
-		try
-		{
-			var response = await _httpClient.GetAsync($"i18n/{culture}.json");
-			if (response.IsSuccessStatusCode)
-			{
-				var json = await response.Content.ReadAsStringAsync();
-				var strings = JsonSerializer.Deserialize<Dictionary<string, string>>(json) ?? [];
+        try
+        {
+            HttpResponseMessage response = await httpClient.GetAsync($"i18n/{culture}.json");
+            if (response.IsSuccessStatusCode)
+            {
+                string? json = await response.Content.ReadAsStringAsync();
+                var strings = JsonSerializer.Deserialize<Dictionary<string, string>>(json) ?? [];
 
-				// Cache the loaded strings
-				_cultureCache[culture] = strings;
-				_localizedStrings = strings;
-			}
-		}
-		catch
-		{
-			// Fallback to empty dictionary if loading fails
-			_localizedStrings = [];
-		}
-	}
+                // Cache the loaded strings
+                cultureCache[culture] = strings;
+                localizedStrings = strings;
+            }
+        }
+        catch
+        {
+            // Fallback to empty dictionary if loading fails
+            localizedStrings = [];
+        }
+    }
 }

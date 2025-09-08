@@ -1,47 +1,46 @@
-@using IdeaStudio.Website.Models
+﻿@using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
-@using IdeaStudio.Website.Shared
 @using Markdig
 @inherits LocalizedComponent
 
-<CardComponent Title="@TrainingCenter.Name" Index="@Index">
-	<Content>
-		@if (TrainingCenter.Courses is not null)
-		{
-			<div class="vstack">
-				<p>Courses</p>
-				@foreach (string course in TrainingCenter.Courses)
-				{
-					<div class="d-flex align-items-center text-primary">
-						<i class="fas fa-graduation-cap me-2 small"></i>@course
-					</div>
-				}
-			</div>
-		}
-		@if (TrainingCenter.Locations is not null)
-		{
-			<div class="mt-2">
-				<p>Locations</p>
-				@foreach (string location in TrainingCenter.Locations)
-				{
-					<span class="badge text-bg-light mt-2 me-2">
-						<i class="fas fa-map-marker-alt me-2 small"></i>@location
-					</span>
-				}
-			</div>
-		}
-	</Content>
-</CardComponent>
+<Card Title="@TrainingCenter.Name" Index="@Index">
+    <Content>
+        @if (TrainingCenter.Courses is not null)
+        {
+            <div class="vstack">
+                <p>Courses</p>
+                @foreach (string course in TrainingCenter.Courses)
+                {
+                    <div class="d-flex align-items-center text-primary">
+                        <i class="fas fa-graduation-cap me-2 small"></i>@course
+                    </div>
+                }
+            </div>
+        }
+        @if (TrainingCenter.Locations is not null)
+        {
+            <div class="mt-2">
+                <p>Locations</p>
+                @foreach (string location in TrainingCenter.Locations)
+                {
+                    <span class="badge text-bg-light mt-2 me-2">
+                        <i class="fas fa-map-marker-alt me-2 small"></i>@location
+                    </span>
+                }
+            </div>
+        }
+    </Content>
+</Card>
 
-@code{
-	[Parameter] public required TrainingCenter TrainingCenter { get; set; }
-	[Parameter] public required int Index { get; set; }
-	private string coursesText = "Courses";
-	private string locationsText = "Locations";
+@code {
+    [Parameter] public required TrainingCenter TrainingCenter { get; set; }
+    [Parameter] public required int Index { get; set; }
+    private string coursesText = "Courses";
+    private string locationsText = "Locations";
 
-	protected override void LoadTexts()
-	{
-		coursesText = LocalizationService.GetString("Courses");
-		locationsText = LocalizationService.GetString("Locations");
-	}
+    protected override void LoadTexts()
+    {
+        coursesText = LocalizationService.GetString("Courses");
+        locationsText = LocalizationService.GetString("Locations");
+    }
 }

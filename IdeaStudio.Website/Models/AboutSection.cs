@@ -9,8 +9,8 @@
 /// <param name="Icons">About section icons</param>
 public record AboutSection
 {
-	public string? Title { get; init; }
-	public IEnumerable<string>? Paragraphs { get; init; }
-	public IEnumerable<string>? Images { get; init; }
-	public IEnumerable<string>? Icons { get; init; }
+    public string? Title { get; init; }
+    public IEnumerable<string>? Paragraphs { get; init; }
+    public IEnumerable<string>? Images { get; init; }
+    public IEnumerable<string>? Icons { get; init; }
 }
