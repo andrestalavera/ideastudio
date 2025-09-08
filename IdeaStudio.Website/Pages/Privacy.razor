@@ -7,16 +7,16 @@
 		<div class="col mt-5 pt-5">
 			<div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
 				<div class="card-body">
-					<div class="display-4">@_title</div>
-					<p>@_lastUpdate</p>
-					<p>@_introduction</p>
-					<p>@_informationCollection</p>
-					<p>@_useOfInformation</p>
-					<p>@_informationSharing</p>
-					<p>@_dataSecurity</p>
-					<p>@_yourChoices</p>
-					<p>@_changesToThisPolicy</p>
-					<p>@_contactUs</p>
+					<div class="display-4">@titleText</div>
+					<p>@lastUpdateText</p>
+					<p>@introductionText</p>
+					<p>@informationCollectionText</p>
+					<p>@useOfInformationText</p>
+					<p>@informationSharingText</p>
+					<p>@dataSecurityText</p>
+					<p>@yourChoicesText</p>
+					<p>@changesToThisPolicyText</p>
+					<p>@contactUsText</p>
 				</div>
 			</div>
 		</div>
@@ -27,17 +27,16 @@
 @code {
 	[CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
 
-	private string _title = "Host";
-	private string _lastUpdate = "Last updated";
-	private string _introduction = "Introduction";
-	private string _informationCollection = "Information Collection";
-	private string _useOfInformation = "Use of Information";
-	private string _informationSharing = "Information Sharing";
-	private string _dataSecurity = "Data Security";
-	private string _yourChoices = "Your Choices";
-	private string _changesToThisPolicy = "Changes to This Policy";
-	private string _contactUs = "Contact Us";
-
+	private string titleText = "Host";
+	private string lastUpdateText = "Last updated";
+	private string introductionText = "Introduction";
+	private string informationCollectionText = "Information Collection";
+	private string useOfInformationText = "Use of Information";
+	private string informationSharingText = "Information Sharing";
+	private string dataSecurityText = "Data Security";
+	private string yourChoicesText = "Your Choices";
+	private string changesToThisPolicyText = "Changes to This Policy";
+	private string contactUsText = "Contact Us";
 	private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
 
 	protected override async Task LoadLocalizedStringsAsync()
@@ -53,15 +52,15 @@
 
 	protected override void LoadTexts()
 	{
-		_title = LocalizationService.GetString("PrivacyPolicy");
-		_lastUpdate = LocalizationService.GetString("PrivacyPolicy.LastUpdated");
-		_introduction = LocalizationService.GetString("PrivacyPolicy.Introduction");
-		_informationCollection = LocalizationService.GetString("PrivacyPolicy.InformationCollection");
-		_useOfInformation = LocalizationService.GetString("PrivacyPolicy.UseOfInformation");
-		_informationSharing = LocalizationService.GetString("PrivacyPolicy.InformationSharing");
-		_dataSecurity = LocalizationService.GetString("PrivacyPolicy.DataSecurity");
-		_yourChoices = LocalizationService.GetString("PrivacyPolicy.YourChoices");
-		_changesToThisPolicy = LocalizationService.GetString("PrivacyPolicy.ChangesToThisPolicy");
-		_contactUs = LocalizationService.GetString("PrivacyPolicy.ContactUs");
+		titleText = LocalizationService.GetString("PrivacyPolicy");
+		lastUpdateText = LocalizationService.GetString("PrivacyPolicy.LastUpdated");
+		introductionText = LocalizationService.GetString("PrivacyPolicy.Introduction");
+		informationCollectionText = LocalizationService.GetString("PrivacyPolicy.InformationCollection");
+		useOfInformationText = LocalizationService.GetString("PrivacyPolicy.UseOfInformation");
+		informationSharingText = LocalizationService.GetString("PrivacyPolicy.InformationSharing");
+		dataSecurityText = LocalizationService.GetString("PrivacyPolicy.DataSecurity");
+		yourChoicesText = LocalizationService.GetString("PrivacyPolicy.YourChoices");
+		changesToThisPolicyText = LocalizationService.GetString("PrivacyPolicy.ChangesToThisPolicy");
+		contactUsText = LocalizationService.GetString("PrivacyPolicy.ContactUs");
 	}
 }

@@ -1,4 +1,5 @@
 ﻿@page "/legal"
+@using Markdig
 @inherits LocalizedComponent
 @layout MainLayout
 
@@ -7,11 +8,11 @@
         <div class="col mt-5 pt-5">
             <div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
                 <div class="card-body">
-                    <div class="display-4">@_legalMentionsTitle</div>
-                    <p>@_lastUpdatedText</p>
-                    <p>@_developerText</p>
-                    <p>@_hostText</p>
-                    <p>@_videoAttributesText</p>
+                    <div class="display-4">@((MarkupString)Markdown.ToHtml(legalMentionsTitle))</div>
+                    <p>@((MarkupString)Markdown.ToHtml(lastUpdatedText))</p>
+                    <p>@((MarkupString)Markdown.ToHtml(developerText))</p>
+                    <p>@((MarkupString)Markdown.ToHtml(hostText))</p>
+                    <p>@((MarkupString)Markdown.ToHtml(videoAttributesText))</p>
                 </div>
             </div>
         </div>
@@ -21,11 +22,11 @@
 @code {
     [CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
 
-    private string _legalMentionsTitle = "Legal Mentions";
-    private string _lastUpdatedText = "Last updated";
-    private string _developerText = "Developer";
-    private string _hostText = "Host";
-	private string _videoAttributesText = "The background video is sourced from Pixabay and is under the Content License (https://pixabay.com/service/license-summary/). Source: https://pixabay.com/videos/news-technology-information-88425/";
+    private string legalMentionsTitle = "Legal Mentions";
+    private string lastUpdatedText = "Last updated";
+    private string developerText = "Developer";
+    private string hostText = "Host";
+	private string videoAttributesText = "The background video is sourced from Pixabay and is under the Content License (https://pixabay.com/service/license-summary/). Source: https://pixabay.com/videos/news-technology-information-88425/";
 
     private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
 
@@ -42,10 +43,10 @@
 
     protected override void LoadTexts()
     {
-        _legalMentionsTitle = LocalizationService.GetString("LegalMentions");
-        _lastUpdatedText = LocalizationService.GetString("LegalMentions.LastUpdated");
-        _developerText = LocalizationService.GetString("LegalMentions.Developer");
-        _hostText = LocalizationService.GetString("LegalMentions.Host");
-		_videoAttributesText = LocalizationService.GetString("LegalMentions.VideoAttributes");
+        legalMentionsTitle = LocalizationService.GetString("LegalMentions");
+        lastUpdatedText = LocalizationService.GetString("LegalMentions.LastUpdated");
+        developerText = LocalizationService.GetString("LegalMentions.Developer");
+        hostText = LocalizationService.GetString("LegalMentions.Host");
+        videoAttributesText = LocalizationService.GetString("LegalMentions.VideoAttributes");
     }
 }

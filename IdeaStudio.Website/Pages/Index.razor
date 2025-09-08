@@ -73,7 +73,7 @@
 
 <section id="experiences" class="py-5 pagebreak" data-bs-spy="scroll" data-bs-target="#navbar">
     <div class="container">
-        <SectionComponent Title="@_professionalExperiencesText" />
+        <SectionComponent Title="@professionalExperiencesText" />
 
 		@if (resume?.Experiences is not null)
 		{
@@ -86,18 +86,18 @@
 				}
 			</div>
 
-			@if (HasHiddenExperiences)
+			@if (hasHiddenExperiences)
 			{
 				<div class="row d-print-none">
 					<div class="col-12 text-center mt-4">
 						<button class="btn btn-light" @onclick="ToggleExperiences">
 							@if (showAllExperiences)
 							{
-								<span>@_showLatestExperiencesText</span>
+								<span>@showLatestExperiencesText</span>
 							}
 							else
 							{
-								<span>@string.Format(_showMoreExperiencesText, HiddenExperiencesCount)</span>
+								<span>@string.Format(showMoreExperiencesText, hiddenExperiencesCount)</span>
 							}
 						</button>
 					</div>
@@ -113,7 +113,7 @@
 
 <section id="trainings" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
     <div class="container">
-        <SectionComponent Title="@_trainingCoursesText" />
+        <SectionComponent Title="@trainingCoursesText" />
 
 		@if (resume?.TrainingCenters is not null)
 		{
@@ -170,31 +170,31 @@
     private Resume? resume;
     private bool showAllExperiences = false;
     private const int DEFAULT_EXPERIENCES_TO_SHOW = 3;
-    private int HiddenExperiencesCount => Math.Max(0, (resume?.Experiences?.Count() ?? 0) - DEFAULT_EXPERIENCES_TO_SHOW);
-    private bool HasHiddenExperiences => HiddenExperiencesCount > 0;
-    private string _professionalExperiencesText = "Professional experiences";
-    private string _trainingCoursesText = "I have conducted training courses for...";
-    private string _showMoreExperiencesText = "Show more experiences";
-    private string _showLatestExperiencesText = "Show only 3 latest experiences";
-    private string _aboutText = "About";
-    private string _experiencesText = "Experiences";
-    private string _trainingText = "Training";
-    private string _contactText = "Contact";
+    private int hiddenExperiencesCount => Math.Max(0, (resume?.Experiences?.Count() ?? 0) - DEFAULT_EXPERIENCES_TO_SHOW);
+    private bool hasHiddenExperiences => hiddenExperiencesCount > 0;
+    private string professionalExperiencesText = "Professional experiences";
+    private string trainingCoursesText = "I have conducted training courses for...";
+    private string showMoreExperiencesText = "Show more experiences";
+    private string showLatestExperiencesText = "Show only 3 latest experiences";
+    private string aboutText = "About";
+    private string experiencesText = "Experiences";
+    private string trainingText = "Training";
+    private string contactText = "Contact";
 
 
 	private RenderFragment NavbarNavigationContent =>
     @<ul class="navbar-nav me-auto">
         <li class="nav-item">
-            <a class="nav-link rounded-pill mx-1" href="#about" data-section="about">@_aboutText</a>
+            <a class="nav-link rounded-pill mx-1" href="#about" data-section="about">@aboutText</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link rounded-pill mx-1" href="#experiences" data-section="experiences">@_experiencesText</a>
+            <a class="nav-link rounded-pill mx-1" href="#experiences" data-section="experiences">@experiencesText</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link rounded-pill mx-1" href="#trainings" data-section="training">@_trainingText</a>
+            <a class="nav-link rounded-pill mx-1" href="#trainings" data-section="training">@trainingText</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link rounded-pill mx-1" href="#contact" data-section="contact">@_contactText</a>
+            <a class="nav-link rounded-pill mx-1" href="#contact" data-section="contact">@contactText</a>
         </li>
     </ul>;
 
@@ -222,14 +222,14 @@
 
     protected override void LoadTexts()
     {
-        _professionalExperiencesText = LocalizationService.GetString("ProfessionalExperiences");
-        _trainingCoursesText = LocalizationService.GetString("TrainingCourses");
-        _showMoreExperiencesText = LocalizationService.GetString("ShowMoreExperiences");
-        _showLatestExperiencesText = LocalizationService.GetString("ShowLatestExperiences");
-        _aboutText = LocalizationService.GetString("About");
-        _experiencesText = LocalizationService.GetString("Experiences");
-        _trainingText = LocalizationService.GetString("Training");
-        _contactText = LocalizationService.GetString("Contact");
+        professionalExperiencesText = LocalizationService.GetString("ProfessionalExperiences");
+        trainingCoursesText = LocalizationService.GetString("TrainingCourses");
+        showMoreExperiencesText = LocalizationService.GetString("ShowMoreExperiences");
+        showLatestExperiencesText = LocalizationService.GetString("ShowLatestExperiences");
+        aboutText = LocalizationService.GetString("About");
+        experiencesText = LocalizationService.GetString("Experiences");
+        trainingText = LocalizationService.GetString("Training");
+        contactText = LocalizationService.GetString("Contact");
     }
 
     private async Task LoadResumeAsync()
