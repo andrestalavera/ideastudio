@@ -5,7 +5,7 @@ namespace IdeaStudio.Website.Shared;
 
 public static class SkillBadge
 {
-	private static readonly FrozenDictionary<string, string> SkillToBadgeMap =
+	private static readonly FrozenDictionary<string, string> skillToBadgeMap =
 		CreateSkillMappings().ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
 
 	private const string FaGlobePointer = "fa-globe-pointer";
@@ -115,11 +115,11 @@ public static class SkillBadge
 		if (string.IsNullOrWhiteSpace(skill))
 			return "fa-code";
 
-		if (SkillToBadgeMap.GetAlternateLookup<ReadOnlySpan<char>>().TryGetValue(skill.AsSpan().Trim(), out string? exactMatch))
+		if (skillToBadgeMap.GetAlternateLookup<ReadOnlySpan<char>>().TryGetValue(skill.AsSpan().Trim(), out string? exactMatch))
 			return exactMatch;
 
 		string normalizedSkill = skill.Trim().ToLowerInvariant();
-		foreach ((string? key, string? badge) in SkillToBadgeMap)
+		foreach ((string? key, string? badge) in skillToBadgeMap)
 		{
 			if (normalizedSkill.Contains(key))
 				return badge;
