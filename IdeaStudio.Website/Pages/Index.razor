@@ -99,7 +99,10 @@
 </section>
 
 <section id="contact" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
-    <ContactSection />
+    <div class="container">
+        <Heading Title="@letsConnectText" />
+        <ContactSection />
+    </div>
 </section>
 
 @code {
@@ -118,6 +121,7 @@
     private string experiencesText = "Experiences";
     private string trainingText = "Training";
     private string contactText = "Contact";
+    private string letsConnectText = "Let's Connect";
 
 
     private RenderFragment NavbarNavigationContent => @<ul class="navbar-nav me-auto">
@@ -168,6 +172,7 @@
         experiencesText = LocalizationService.GetString("Experiences");
         trainingText = LocalizationService.GetString("Training");
         contactText = LocalizationService.GetString("Contact");
+        letsConnectText = LocalizationService.GetString("LetsConnect");
     }
 
     private async Task LoadResumeAsync()
