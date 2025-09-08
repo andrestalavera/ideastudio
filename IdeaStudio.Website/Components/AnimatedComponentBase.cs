@@ -3,7 +3,7 @@ using IdeaStudio.Website.Services;
 
 namespace IdeaStudio.Website.Components
 {
-    public abstract class AnimatedComponentBase : ComponentBase, IAsyncDisposable
+    public abstract class AnimatedComponentBase : LocalizedComponent, IAsyncDisposable
     {
         [Inject] protected IAnimationService AnimationService { get; set; } = default!;
 

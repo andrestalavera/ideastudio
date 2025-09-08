@@ -1,13 +1,11 @@
 using System.Collections.Frozen;
 using System.Runtime.CompilerServices;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
 
 namespace IdeaStudio.Website.Shared;
 
 public static class SkillBadge
 {
-	private static readonly FrozenDictionary<string, string> SkillToBadgeMap =
+	private static readonly FrozenDictionary<string, string> skillToBadgeMap =
 		CreateSkillMappings().ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
 
 	private const string FaGlobePointer = "fa-globe-pointer";
@@ -117,11 +115,11 @@ public static class SkillBadge
 		if (string.IsNullOrWhiteSpace(skill))
 			return "fa-code";
 
-		if (SkillToBadgeMap.GetAlternateLookup<ReadOnlySpan<char>>().TryGetValue(skill.AsSpan().Trim(), out string? exactMatch))
+		if (skillToBadgeMap.GetAlternateLookup<ReadOnlySpan<char>>().TryGetValue(skill.AsSpan().Trim(), out string? exactMatch))
 			return exactMatch;
 
 		string normalizedSkill = skill.Trim().ToLowerInvariant();
-		foreach ((string? key, string? badge) in SkillToBadgeMap)
+		foreach ((string? key, string? badge) in skillToBadgeMap)
 		{
 			if (normalizedSkill.Contains(key))
 				return badge;
@@ -129,19 +127,4 @@ public static class SkillBadge
 
 		return "fa-code";
 	}
-
-	public static RenderFragment GetBadge(string Title, string? Icon) => builder =>
-	{
-		builder.OpenElement(0, "span");
-		builder.AddAttribute(1, "class", "badge text-bg-light text-primary bg-light bg-opacity-50 me-2 mb-2 d-inline-flex align-items-center");
-		if (!string.IsNullOrEmpty(Icon))
-		{
-			builder.OpenElement(2, "i");
-			builder.AddAttribute(3, "class", $"fa-duotone fa-light {Icon} me-1");
-			builder.AddAttribute(4, "aria-hidden", "true");
-			builder.CloseElement();
-		}
-		builder.AddContent(5, Title);
-		builder.CloseElement();
-	};
 }

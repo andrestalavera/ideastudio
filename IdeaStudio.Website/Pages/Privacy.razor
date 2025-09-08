@@ -1,28 +1,67 @@
 ﻿@page "/privacy"
+@using Markdig
+@inherits LocalizedComponent
+@layout MainLayout
 
-<div class="container mt-5">
-	<div class="row mt-5">
-		<div class="col mt-5 pt-5">
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-8 col-lg-6 my-5 py-5">
 			<div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
 				<div class="card-body">
-				<div class="display-4">Privacy Policy</div>
-					<p>Last updated: 19 February, 2025.</p>
-					<p>Your privacy is important to me. It is my policy to respect your privacy regarding any information we may
-						collect from you across my website.</p>
-					<div class="display-5">Information we collect</div>
-					<p>We don't store any personal data on my side. IdeaStudio website uses Calendly for scheduling appointments. Please
-						refer to <a href="https://calendly.com/legal/privacy-notice" target="_blank">Calendly's privacy policy</a> for more information on how they handle your data.</p>
-					<div class="display-5">Third-party libraries</div>
-					<p>IdeaStudio website uses Bootstrap for styling. Bootstrap is an open-source toolkit for developing with HTML, CSS,
-						and JS. We do not collect or store any data through Bootstrap.</p>
-					<p>The background video on our website is a modified version of a video obtained from <a href="https://pixabay.com/videos/news-technology-information-88425/" target="_blank">https://pixabay.com/videos/news-technology-information-88425/</a>. We have made modifications to this video for use on our site.</p>
-					<div class="display-5">Changes to our privacy policy</div>
-					<p>We may update our privacy policy from time to time. We encourage you to review this privacy policy frequently
-						for any changes.</p>
-					<div class="display-5">Contact us</div>
-					<p>If you have any questions about the privacy policy, please contact us.</p>
+					<div class="display-4">@((MarkupString)Markdown.ToHtml(titleText))</div>
+					<p>@((MarkupString)Markdown.ToHtml(lastUpdateText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(introductionText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(informationCollectionText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(useOfInformationText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(informationSharingText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(dataSecurityText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(yourChoicesText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(changesToThisPolicyText))</p>
+					<p>@((MarkupString)Markdown.ToHtml(contactUsText))</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+@code {
+	[CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
+
+	private string titleText = "Privacy Policy";
+	private string lastUpdateText = "Last updated: September 8th, 2025";
+	private string introductionText = "This Privacy Policy explains how we collect, use, and protect your personal information.";
+	private string informationCollectionText = "We collect information that you provide directly to us, such as your name and email address when you contact us. The website uses Calendly for scheduling meetings, and their privacy policy can be found at [Calendly Privacy Policy](https://calendly.com/privacy).";
+	private string useOfInformationText = "We use the information we collect to respond to your inquiries and provide you with the services you request.";
+	private string informationSharingText = "We do not share your personal information with third parties except as necessary to provide our services or comply with legal obligations.";
+	private string dataSecurityText = "We implement reasonable security measures to protect your personal information.";
+	private string yourChoicesText = "You can choose not to provide certain information, but this may limit your ability to use some features of our website.";
+	private string changesToThisPolicyText = "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.";
+	private string contactUsText = "If you have any questions about this Privacy Policy, please contact us at contact@ideastud.io.";
+	private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
+
+	protected override async Task LoadLocalizedStringsAsync()
+	{
+		await base.LoadLocalizedStringsAsync();
+
+		// Update navbar content when language changes
+		if (MainLayoutInstance is not null)
+		{
+			MainLayoutInstance.SetNavbarContent(EmptyNavbarContent);
+		}
+	}
+
+	protected override void LoadTexts()
+	{
+		titleText = LocalizationService.GetString("PrivacyPolicy");
+		lastUpdateText = LocalizationService.GetString("PrivacyPolicy.LastUpdated");
+		introductionText = LocalizationService.GetString("PrivacyPolicy.Introduction");
+		informationCollectionText = LocalizationService.GetString("PrivacyPolicy.InformationCollection");
+		useOfInformationText = LocalizationService.GetString("PrivacyPolicy.UseOfInformation");
+		informationSharingText = LocalizationService.GetString("PrivacyPolicy.InformationSharing");
+		dataSecurityText = LocalizationService.GetString("PrivacyPolicy.DataSecurity");
+		yourChoicesText = LocalizationService.GetString("PrivacyPolicy.YourChoices");
+		changesToThisPolicyText = LocalizationService.GetString("PrivacyPolicy.ChangesToThisPolicy");
+		contactUsText = LocalizationService.GetString("PrivacyPolicy.ContactUs");
+	}
+}

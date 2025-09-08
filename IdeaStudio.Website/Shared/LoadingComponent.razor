@@ -1,5 +1,27 @@
-<div class="d-flex justify-content-center h-100 w-100 p-1" style="text-align:center;">
-	<div class="spinner-border" role="status">
-		<span class="visually-hidden">Loading...</span>
+@inherits LocalizedComponent
+
+<div id="loading-overlay-mainlayout"
+	class="loading-overlay position-fixed top-0 start-0 w-100 h-100 bg-light bg-opacity-50 bg-acrylic">
+	<div class="loading-content d-flex justify-content-center align-items-center h-100 z-3">
+		<div class="card bg-light text-bg-light bg-opacity-75 bg-opacity-50">
+			<div class="card-body text-center p-5">
+				<div class="spinner-border mb-3" role="status" aria-label="@loadingText">
+					<span class="visually-hidden">@loadingText</span>
+				</div>
+				<h1 class="h4 mb-2">IdeaStud.io</h1>
+				<p>@loadingAmazingContentText</p>
+			</div>
+		</div>
 	</div>
 </div>
+
+@code{
+	private string loadingText = "Loading...";
+	private string loadingAmazingContentText = "Loading amazing experience...";
+
+	protected override void LoadTexts()
+	{
+		loadingText = LocalizationService.GetString("Loading");
+		loadingAmazingContentText = LocalizationService.GetString("LoadingAmazingContent");
+	}
+}

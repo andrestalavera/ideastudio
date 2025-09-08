@@ -1,16 +1,52 @@
 ﻿@page "/legal"
+@using Markdig
+@inherits LocalizedComponent
+@layout MainLayout
 
-<div class="container mt-5">
-	<div class="row mt-5">
-		<div class="col mt-5 pt-5">
-			<div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
-				<div class="card-body">
-				<div class="display-4">Legal mentions</div>
-					<p>Last updated: August 19th, 2025.</p>
-					<p>Developer: Andrés Talavera</p>
-					<p>Host: Microsoft Azure</p>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 my-5 py-5">
+            <div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
+                <div class="card-body">
+                    <div class="display-4">@((MarkupString)Markdown.ToHtml(legalMentionsTitle))</div>
+                    <p>@((MarkupString)Markdown.ToHtml(lastUpdatedText))</p>
+                    <p>@((MarkupString)Markdown.ToHtml(developerText))</p>
+                    <p>@((MarkupString)Markdown.ToHtml(hostText))</p>
+                    <p>@((MarkupString)Markdown.ToHtml(videoAttributesText))</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@code {
+    [CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
+
+    private string legalMentionsTitle = "Legal Mentions";
+    private string lastUpdatedText = "Last updated: September 8th, 2025";
+    private string developerText = "Developer: Andres Talavera";
+    private string hostText = "Host: Azure Static Web Apps";
+	private string videoAttributesText = "The background video is sourced from Pixabay and is licensed under \"[Pixabay Content](https://pixabay.com/fr/service/license-summary/)\".<br/>Original version: [https://pixabay.com/videos/news-technology-information-88425/](https://pixabay.com/videos/news-technology-information-88425/)";
+
+    private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+
+        // Update navbar content when language changes
+        if (MainLayoutInstance is not null)
+        {
+            MainLayoutInstance.SetNavbarContent(EmptyNavbarContent);
+        }
+    }
+
+    protected override void LoadTexts()
+    {
+        legalMentionsTitle = LocalizationService.GetString("LegalMentions");
+        lastUpdatedText = LocalizationService.GetString("LegalMentions.LastUpdated");
+        developerText = LocalizationService.GetString("LegalMentions.Developer");
+        hostText = LocalizationService.GetString("LegalMentions.Host");
+        videoAttributesText = LocalizationService.GetString("LegalMentions.VideoAttributes");
+    }
+}

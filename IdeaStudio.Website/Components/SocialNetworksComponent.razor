@@ -1,0 +1,62 @@
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+
+<div class="d-flex gap-2 @(Vertical ? "flex-column" : "")">
+    <a href="https://www.linkedin.com/in/andrestalavera/"
+       class="@GetButtonClasses("dark")"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="@linkedInText Profile">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+        <span class="@GetTextClasses() ms-1 d-none d-md-inline">@linkedInText</span>
+    </a>
+
+    <a href="https://github.com/andrestalavera"
+       class="@GetButtonClasses("secondary")"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="@gitHubText Profile">
+        <i class="fab fa-github" aria-hidden="true"></i>
+        <span class="@GetTextClasses() ms-1 d-none d-md-inline">@gitHubText</span>
+    </a>
+
+    <button class="@GetButtonClasses("primary")"
+            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/30min'});return false;"
+            aria-label="@scheduleMeetingText">
+        <i class="fas fa-video" aria-hidden="true"></i>
+        <span class="@GetTextClasses() ms-1 d-none d-md-inline">@meetText</span>
+    </button>
+</div>
+
+@code {
+    [Parameter] public bool Vertical { get; set; } = false;
+    [Parameter] public string Size { get; set; } = "sm"; // sm, md, lg
+    [Parameter] public bool ShowText { get; set; } = true;
+
+    private string linkedInText = "LinkedIn";
+    private string gitHubText = "GitHub";
+    private string meetText = "Meet";
+    private string scheduleMeetingText = "Schedule a meeting";
+
+    protected override void LoadTexts()
+    {
+        linkedInText = LocalizationService.GetString("LinkedIn");
+        gitHubText = LocalizationService.GetString("GitHub");
+        meetText = LocalizationService.GetString("Meet");
+        scheduleMeetingText = LocalizationService.GetString("ScheduleMeeting");
+    }
+
+    private string GetButtonClasses(string variant = "light") => $"btn btn-{variant} btn-{Size} bg-acrylic rounded-pill";
+
+    private string GetTextClasses()
+    {
+        if (!ShowText) return "d-none";
+
+        return Size switch
+        {
+            "lg" => "d-none d-md-inline",
+            "md" => "d-none d-lg-inline",
+            _ => "d-none d-xl-inline"
+        };
+    }
+}

@@ -1,7 +1,11 @@
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Services
 @using Markdig
+@inject ISeoService SeoService
 @inherits AnimatedComponentBase
+
+<div class="clearfix"></div>
 
 <article @ref="ElementRef" id="@Experience.Id" class="bg-acrylic rounded fade-in-up pagebreak mb-4"
 	data-bs-theme="light">
@@ -12,7 +16,7 @@
 					<div class="sticky-lg-top" style="top: 120px;">
 						<div class="mb-3 text-center">
 							<div class="p-3">
-								<img src="@CompanyLogo" alt="@Experience.Company logo" class="img-fluid" loading="lazy"
+								<img src="@($"images/{SeoService.GenerateSlug(Experience.Company)}.png")" alt="@Experience.Company logo" class="img-fluid" loading="lazy"
 									height="80" onerror="this.src='images/placeholder.png'">
 							</div>
 						</div>
@@ -98,7 +102,7 @@
 			<div class="d-block d-lg-none">
 				<div class="d-flex align-items-center mb-4">
 					<div class="logo-wrapper p-2 me-3 flex-shrink-0">
-						<img src="@CompanyLogo" alt="@Experience.Company logo" width="100" loading="lazy"
+						<img src="@($"images/{SeoService.GenerateSlug(Experience.Company)}.png")" alt="@Experience.Company logo" width="100" loading="lazy"
 							onerror="this.src='images/placeholder.png'">
 					</div>
 					<div class="flex-grow-1">
@@ -173,16 +177,16 @@
 		</div>
 	</div>
 </article>
+
 <div class="clearfix"></div>
 
 @code {
 	private string? Duration { get; set; }
-	private string? CompanyLogo { get; set; }
 	[Parameter] public required Experience Experience { get; set; }
 
 	protected override void OnInitialized()
 	{
-		CompanyLogo = $"images/{Experience.Company?.ToSeoUrl()}.png";
+		Experience = Experience.WithGeneratedId(SeoService)!;
 	}
 
 	private RenderFragment<(string Title, string Icon)> Badge => (skill) =>
@@ -190,9 +194,9 @@
 		return @<span class="badge text-bg-light fw-light m-1">
 		@if (!string.IsNullOrEmpty(skill.Icon))
 		{
-				<i class="fa-duotone fa-light @skill.Icon me-1" aria-hidden="true"></i>
+			<i class="fa-duotone fa-light @skill.Icon me-1" aria-hidden="true"></i>
 		}
-			<span>@skill.Title</span>
+		<span>@skill.Title</span>
 		</span>;
 	};
 }

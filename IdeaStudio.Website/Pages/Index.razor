@@ -3,15 +3,19 @@
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
 @using IdeaStudio.Website.Shared
+@using IdeaStudio.Website.Components
 @using Markdig
 @using System.Text.Json
 @inject IAnimationService AnimationService
-@inject IJSRuntime JSRuntime
 @inject ILazyLoadingService LazyLoadingService
 @inject ISeoService SeoService
 
+@inherits LocalizedComponent
+@layout MainLayout
+
 <HeroComponent PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
 <div class="pagebreak"></div>
+
 <section id="about" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
 	<div class="container">
 		@if (resume?.AboutSections is not null)
@@ -20,35 +24,7 @@
 				@foreach (var (section, index) in resume.AboutSections.Select((s, i) => (s, i)))
 				{
 					<div class="col-12 col-lg-6 col-xxl-4">
-						<CardComponent Title="@(section.Title)" Index="@index">
-							<Content>
-								@if (section.Paragraphs is not null)
-								{
-									@foreach (string paragraph in section.Paragraphs)
-									{
-										<p class="text-primary">@((MarkupString)Markdown.ToHtml(paragraph))</p>
-									}
-								}
-								@if (section.Icons is not null)
-								{
-									<div class="d-flex d-print-none justify-content-center gap-3 my-3">
-										@foreach (string icon in section.Icons)
-										{
-											<i class="@icon fa-4x" aria-hidden="true"></i>
-										}
-									</div>
-								}
-								@if (section.Images is not null)
-								{
-									<div class="d-flex d-print-none justify-content-center gap-3 my-3">
-										@foreach (string image in section.Images)
-										{
-											<img src="images/@image" alt="@image" class="p-1" width="70" height="70" loading="lazy">
-										}
-									</div>
-								}
-							</Content>
-						</CardComponent>
+						<AboutCard AboutSection="@(section)" Index="@index" />
 					</div>
 				}
 			</div>
@@ -61,8 +37,8 @@
 </section>
 
 <section id="experiences" class="py-5 pagebreak" data-bs-spy="scroll" data-bs-target="#navbar">
-	<div class="container">
-		<SectionComponent Title="Professional experiences" />
+    <div class="container">
+        <SectionComponent Title="@professionalExperiencesText" />
 
 		@if (resume?.Experiences is not null)
 		{
@@ -70,23 +46,23 @@
 				@foreach (var (experience, index) in resume.Experiences.Select((e, i) => (e, i)))
 				{
 					<div class="col-12 @DisplayClasses(index, DEFAULT_EXPERIENCES_TO_SHOW)">
-						<ExperienceComponent Experience="@experience" />
+						<ExperienceComponent Experience="@experience.WithGeneratedId(SeoService)" />
 					</div>
 				}
 			</div>
 
-			@if (HasHiddenExperiences)
+			@if (hasHiddenExperiences)
 			{
 				<div class="row d-print-none">
 					<div class="col-12 text-center mt-4">
 						<button class="btn btn-light" @onclick="ToggleExperiences">
 							@if (showAllExperiences)
 							{
-								<span>Show only 3 latest experiences</span>
+								<span>@showLatestExperiencesText</span>
 							}
 							else
 							{
-								<span>Show @HiddenExperiencesCount more experiences</span>
+								<span>@string.Format(showMoreExperiencesText, hiddenExperiencesCount)</span>
 							}
 						</button>
 					</div>
@@ -101,8 +77,8 @@
 </section>
 
 <section id="trainings" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
-	<div class="container">
-		<SectionComponent Title="I have conducted training courses for..." />
+    <div class="container">
+        <SectionComponent Title="@trainingCoursesText" />
 
 		@if (resume?.TrainingCenters is not null)
 		{
@@ -110,34 +86,7 @@
 				@foreach (var (center, index) in resume.TrainingCenters.Select((t, i) => (t, i)))
 				{
 					<div class="col-12 col-lg-6 col-xxl-4">
-						<CardComponent Title="@center.Name" Index="@index">
-							<Content>
-								@if (center.Courses is not null)
-								{
-									<div class="vstack">
-									<p>Courses</p>
-									@foreach (string course in center.Courses)
-									{
-										<div class="d-flex align-items-center text-primary">
-											<i class="fas fa-graduation-cap me-2 small"></i>@course
-										</div>
-									}
-									</div>
-								}
-								@if (center.Locations is not null)
-								{
-									<div class="mt-2">
-									<p>Locations</p>
-										@foreach (string location in center.Locations)
-										{
-											<span class="badge text-bg-light mt-2 me-2">
-												<i class="fas fa-map-marker-alt me-2 small"></i>@location
-											</span>
-										}
-									</div>
-								}
-							</Content>
-						</CardComponent>
+						<TrainingCard TrainingCenter="@center.WithGeneratedId(SeoService)" Index="@index" />
 					</div>
 				}
 			</div>
@@ -154,43 +103,95 @@
 </section>
 
 @code {
-	private Resume? resume;
-	private bool showAllExperiences = false;
-	private const int DEFAULT_EXPERIENCES_TO_SHOW = 3;
+    [CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
 
-	private int HiddenExperiencesCount => Math.Max(0, (resume?.Experiences?.Count() ?? 0) - DEFAULT_EXPERIENCES_TO_SHOW);
-	private bool HasHiddenExperiences => HiddenExperiencesCount > 0;
+    private Resume? resume;
+    private bool showAllExperiences = false;
+    private const int DEFAULT_EXPERIENCES_TO_SHOW = 3;
+    private int hiddenExperiencesCount => Math.Max(0, (resume?.Experiences?.Count() ?? 0) - DEFAULT_EXPERIENCES_TO_SHOW);
+    private bool hasHiddenExperiences => hiddenExperiencesCount > 0;
+    private string professionalExperiencesText = "Professional experiences";
+    private string trainingCoursesText = "I have conducted training courses for...";
+    private string showMoreExperiencesText = "Show more experiences";
+    private string showLatestExperiencesText = "Show only 3 latest experiences";
+    private string aboutText = "About";
+    private string experiencesText = "Experiences";
+    private string trainingText = "Training";
+    private string contactText = "Contact";
 
-	protected override async Task OnInitializedAsync()
+
+	private RenderFragment NavbarNavigationContent =>
+    @<ul class="navbar-nav me-auto">
+        <li class="nav-item">
+            <a class="nav-link rounded-pill mx-1" href="#about" data-section="about">@aboutText</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link rounded-pill mx-1" href="#experiences" data-section="experiences">@experiencesText</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link rounded-pill mx-1" href="#trainings" data-section="training">@trainingText</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link rounded-pill mx-1" href="#contact" data-section="contact">@contactText</a>
+        </li>
+    </ul>;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await AnimationService.InitializeAnimationsAsync();
+    }
+
+	protected override void OnAfterRender(bool firstRender)
 	{
-		await AnimationService.InitializeAnimationsAsync();
-		await LoadResumeAsync();
-	}
-
-	private async Task LoadResumeAsync()
-	{
-		string languageCode = "en";
-		resume = await LazyLoadingService.LoadDataAsync<Resume>($"data/resume-{languageCode}.json");
-		StateHasChanged();
-	}
-
-	private void ToggleExperiences()
-	{
-		showAllExperiences = !showAllExperiences;
-		StateHasChanged();
-	}
-
-	private string DisplayClasses(int index, int toShow)
-	{
-		string baseClasses = "d-print-flex";
-
-		if (index < toShow)
+		if (firstRender)
 		{
-			return $"{baseClasses} d-flex";
+			MainLayoutInstance?.SetNavbarContent(NavbarNavigationContent);
 		}
-
-		return showAllExperiences
-		? $"{baseClasses} d-flex"
-		: $"{baseClasses} d-none";
 	}
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        await LoadResumeAsync();
+		MainLayoutInstance?.SetNavbarContent(NavbarNavigationContent);
+		StateHasChanged();
+    }
+
+    protected override void LoadTexts()
+    {
+        professionalExperiencesText = LocalizationService.GetString("ProfessionalExperiences");
+        trainingCoursesText = LocalizationService.GetString("TrainingCourses");
+        showMoreExperiencesText = LocalizationService.GetString("ShowMoreExperiences");
+        showLatestExperiencesText = LocalizationService.GetString("ShowLatestExperiences");
+        aboutText = LocalizationService.GetString("About");
+        experiencesText = LocalizationService.GetString("Experiences");
+        trainingText = LocalizationService.GetString("Training");
+        contactText = LocalizationService.GetString("Contact");
+    }
+
+    private async Task LoadResumeAsync()
+    {
+        string languageCode = GetLanguageCode(CultureService.CurrentCulture.Name);
+        resume = await LazyLoadingService.LoadDataAsync<Resume>($"data/resume-{languageCode}.json");
+        StateHasChanged();
+    }
+
+    private static string GetLanguageCode(string cultureName) => cultureName switch
+    {
+        "fr" or "fr-FR" => "fr",
+        _ => "en"
+    };
+
+    private void ToggleExperiences()
+    {
+        showAllExperiences = !showAllExperiences;
+        StateHasChanged();
+    }
+
+    private string DisplayClasses(int index, int toShow)
+    {
+        string baseClasses = "d-print-flex";
+        return index < toShow ? $"{baseClasses} d-flex" : showAllExperiences ? $"{baseClasses} d-flex" : $"{baseClasses} d-none";
+    }
 }

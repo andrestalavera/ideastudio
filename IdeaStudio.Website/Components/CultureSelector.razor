@@ -1,0 +1,54 @@
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+
+<div class="dropdown">
+	<button class="btn btn-light btn-sm bg-acrylic rounded-pill dropdown-toggle" type="button" id="cultureDropdown"
+		data-bs-toggle="dropdown" aria-expanded="false" aria-label="@changeLanguageText">
+		<i class="fas fa-globe me-1" aria-hidden="true"></i>
+		<span class="d-none d-xl-inline">@GetCurrentCultureDisplayName()</span>
+	</button>
+	<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cultureDropdown">
+		@foreach (var culture in CultureService.SupportedCultures)
+		{
+			<li>
+				<button class="dropdown-item @(IsCurrentCulture(culture) ? "active" : "")" type="button"
+					@onclick="() => ChangeCultureAsync(culture.Name)">
+					@GetCultureDisplayName(culture)
+				</button>
+			</li>
+		}
+	</ul>
+</div>
+
+@code {
+	private string changeLanguageText = "Change Language";
+	private string englishText = "English";
+	private string frenchText = "Français";
+
+	protected override void LoadTexts()
+	{
+		changeLanguageText = LocalizationService.GetString("ChangeLanguage");
+		englishText = LocalizationService.GetString("English");
+		frenchText = LocalizationService.GetString("French");
+	}
+
+	private async Task ChangeCultureAsync(string culture)
+		=> await CultureService.SetCultureAsync(culture);
+
+	private bool IsCurrentCulture(System.Globalization.CultureInfo culture)
+		=> CultureService.CurrentCulture.Name.Equals(culture.Name, StringComparison.OrdinalIgnoreCase);
+
+	private string GetCurrentCultureDisplayName()
+		=> CultureService.CurrentCulture.Name.ToLower() switch
+		{
+			"fr" => frenchText,
+			_ => englishText
+		};
+
+	private string GetCultureDisplayName(System.Globalization.CultureInfo culture)
+		=> culture.Name.ToLower() switch
+		{
+			"fr" => frenchText,
+			_ => englishText
+		};
+}
