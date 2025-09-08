@@ -39,5 +39,14 @@
   "PrivacyPolicy.DataSecurity": "Nous mettons en œuvre des mesures de sécurité raisonnables pour protéger vos informations personnelles.",
   "PrivacyPolicy.YourChoices": "Vous pouvez choisir de ne pas fournir certaines informations, mais cela peut limiter votre capacité à utiliser certaines fonctionnalités de notre site Web.",
   "PrivacyPolicy.ChangesToThisPolicy": "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Nous vous informerons de tout changement en publiant la nouvelle politique sur cette page.",
-  "PrivacyPolicy.ContactUs": "Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter à contact@ideastud.io."
+  "PrivacyPolicy.ContactUs": "Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter à contact@ideastud.io.",
+  "ContactForm.Name": "Nom:",
+  "ContactForm.Message": "Message:",
+  "ContactForm.Send": "Envoyer",
+  "ContactForm.Sending": "Envoi...",
+  "ContactForm.NamePlaceholder": "Entrez votre nom",
+  "ContactForm.MessagePlaceholder": "Parlez-moi de votre projet...",
+  "ContactForm.SuccessMessage": "Merci ! Votre message a été envoyé avec succès.",
+  "ContactForm.ErrorMessage": "Désolé, une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.",
+  "ContactForm.CharacterCount": "{0}/{1} caractères"
 }
