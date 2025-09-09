@@ -1,0 +1,137 @@
+﻿@inherits LocalizedComponent
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components
+@inject IContactService ContactService
+
+<EditForm Model="@contactFormModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+
+            @if (showSuccessMessage)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    @successMessageText
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                        @onclick="() => showSuccessMessage = false"></button>
+                </div>
+            }
+
+            @if (showErrorMessage)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    @errorMessageText
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                        @onclick="() => showErrorMessage = false"></button>
+                </div>
+            }
+
+            <div class="mb-3">
+                <label for="name" class="form-label fw-semibold">@nameText</label>
+                <InputText id="name" class="form-control" @bind-Value="@contactFormModel.Name"
+                    placeholder="@namePlaceholderText" />
+                <ValidationMessage For="@(() => contactFormModel.Name)" class="text-danger small mt-1" />
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-label fw-semibold">@messageText</label>
+                <InputTextArea id="message" class="form-control" rows="5" @bind-Value="@contactFormModel.Message"
+                    placeholder="@messagePlaceholderText" />
+                <ValidationMessage For="@(() => contactFormModel.Message)" class="text-danger small mt-1" />
+                <div class="form-text">@string.Format(characterCountText, contactFormModel.Message?.Length ?? 0, 200)
+                </div>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg" disabled="@isSubmitting">
+                    @if (isSubmitting)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        @sendingText
+                    }
+                    else
+                    {
+                        <i class="bi bi-send me-2"></i>
+                        @sendText
+                    }
+                </button>
+            </div>
+</EditForm>
+
+@code {
+    private ContactFormModel contactFormModel = new();
+    private bool isSubmitting = false;
+    private bool showSuccessMessage = false;
+    private bool showErrorMessage = false;
+
+    // Localized texts
+    private string nameText = "Name:";
+    private string messageText = "Message:";
+    private string sendText = "Send";
+    private string sendingText = "Sending...";
+    private string namePlaceholderText = "Enter your name";
+    private string messagePlaceholderText = "Tell me about your project...";
+    private string successMessageText = "Thank you! Your message has been sent successfully.";
+    private string errorMessageText = "Sorry, there was an error sending your message. Please try again.";
+    private string characterCountText = "{0}/{1} characters";
+
+    protected override void LoadTexts()
+    {
+        nameText = LocalizationService.GetString("ContactForm.Name");
+        messageText = LocalizationService.GetString("ContactForm.Message");
+        sendText = LocalizationService.GetString("ContactForm.Send");
+        sendingText = LocalizationService.GetString("ContactForm.Sending");
+        namePlaceholderText = LocalizationService.GetString("ContactForm.NamePlaceholder");
+        messagePlaceholderText = LocalizationService.GetString("ContactForm.MessagePlaceholder");
+        successMessageText = LocalizationService.GetString("ContactForm.SuccessMessage");
+        errorMessageText = LocalizationService.GetString("ContactForm.ErrorMessage");
+        characterCountText = LocalizationService.GetString("ContactForm.CharacterCount");
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        isSubmitting = true;
+        showSuccessMessage = false;
+        showErrorMessage = false;
+
+        try
+        {
+            ContactFormRequest contactFormRequest = new()
+            {
+                Name = contactFormModel.Name,
+                Message = contactFormModel.Message
+            };
+            bool success = await ContactService.SendContactFormAsync(contactFormRequest);
+
+            if (success)
+            {
+                showSuccessMessage = true;
+                contactFormModel = new(); // Reset form
+            }
+            else
+            {
+                showErrorMessage = true;
+            }
+        }
+        catch
+        {
+            showErrorMessage = true;
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+
+    public class ContactFormModel
+    {
+        [Required(ErrorMessage = "Name is required")]
+        [StringLength(20, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 20 characters")]
+        public string? Name { get; set; }
+
+        [Required(ErrorMessage = "Message is required")]
+        [StringLength(200, MinimumLength = 100, ErrorMessage = "Message must be between 100 and 200 characters")]
+        public string? Message { get; set; }
+    }
+}

@@ -1,15 +1,24 @@
 ﻿@inherits AnimatedComponentBase
 
-<div class="row justify-content-center">
-    <div @ref="ElementRef" class="col-lg-8 fade-in-up">
+<div class="row">
+    <div @ref="ElementRef" class="col-lg-8 mx-auto fade-in-up">
         <div class="card bg-white text-bg-light bg-opacity-75 contact-card">
             <div class="card-body p-5">
-                <h2 class="mb-4 display-5 fw-light text-primary text-center ">@letsConnectText</h2>
-                <p class="lead mb-4 opacity-90 text-primary text-center ">
-                    @readyToDiscussText
-                </p>
-                <div class="d-flex justify-content-center gap-3 flex-wrap text-center">
-                    <SocialNetworksComponent Size="lg" ShowText="true" />
+                <div class="row">
+                    <div class="col">
+                        <p class="lead mb-4 opacity-90 text-primary text-center ">
+                            @readyToDiscussText
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ContactForm />
+                        <hr class="my-3 vm-75"/>
+                        <div class="d-flex justify-content-center gap-3 flex-wrap text-center">
+                            <SocialNetworks Size="lg" ShowText="true" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -17,12 +26,10 @@
 </div>
 
 @code {
-    private string letsConnectText = "Let's Connect";
     private string readyToDiscussText = "Ready to discuss your next project? Let's build something amazing together.";
 
     protected override void LoadTexts()
     {
-        letsConnectText = LocalizationService.GetString("LetsConnect");
         readyToDiscussText = LocalizationService.GetString("ReadyToDiscuss");
     }
 }

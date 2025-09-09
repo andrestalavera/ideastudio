@@ -1,5 +1,4 @@
 name: Azure Static Web Apps CI/CD
-
 on:
   push:
     branches:
@@ -19,6 +18,13 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.dotnet
+            ~/.nuget
+            ~/.npm
+          key: ${{ runner.os }}-dotnet-${{ hashFiles('**/*.csproj') }}
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -27,7 +33,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "IdeaStudio.Website"
-          app_build_command: "dotnet workload install wasm-tools && dotnet clean && dotnet restore && dotnet publish -c Release -o published"
+          app_build_command: "dotnet publish -c Release -o published"
           output_location: "published/wwwroot"
           production_branch: "main"
 
