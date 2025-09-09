@@ -5,11 +5,11 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <AnalysisLevel>latest</AnalysisLevel>
-        <RunAOTCompilation>true</RunAOTCompilation>
         <BlazorEnableCompression>true</BlazorEnableCompression>
         <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
         <BlazorWebAssemblyJiterpreter>false</BlazorWebAssemblyJiterpreter>
-
+        <PublishTrimmed>true</PublishTrimmed>
+        <RunAOTCompilation>false</RunAOTCompilation>
         <BlazorWebAssemblyLoadBootResource>true</BlazorWebAssemblyLoadBootResource>
         <InvariantGlobalization>false</InvariantGlobalization>
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
