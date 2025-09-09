@@ -25,7 +25,7 @@ public abstract class LocalizedComponent : ComponentBase, IDisposable
     protected virtual void LoadTexts() { }
 
     private async void OnCultureChanged()
-     => await LoadLocalizedStringsAsync();
+    => await LoadLocalizedStringsAsync();
 
     public void Dispose()
     {
