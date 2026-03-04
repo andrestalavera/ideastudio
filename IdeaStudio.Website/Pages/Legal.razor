@@ -1,7 +1,19 @@
 ﻿@page "/legal"
 @using Markdig
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
 @inherits LocalizedComponent
 @layout MainLayout
+
+<SeoHead Title="@seoTitle"
+         Description="@seoDescription"
+         Author="Andrés Talavera"
+         CanonicalUrl="https://ideastud.io/legal"
+         Url="https://ideastud.io/legal"
+         SiteName="IdeaStud.io"
+         Locale="@seoLocale"
+         NoIndex="true"
+         StructuredData="@seoStructuredData" />
 
 <div class="container">
     <div class="row">
@@ -28,7 +40,19 @@
     private string hostText = "Host: Azure Static Web Apps";
     private string videoAttributesText = "The background video is sourced from Pixabay and is licensed under \"[Pixabay Content](https://pixabay.com/fr/service/license-summary/)\".<br/>Original version: [https://pixabay.com/videos/news-technology-information-88425/](https://pixabay.com/videos/news-technology-information-88425/)";
 
-     private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
+    // SEO fields
+    private string seoTitle = "Legal Mentions | IdeaStud.io";
+    private string seoDescription = "Legal mentions and attributions for IdeaStud.io - Andrés Talavera's professional portfolio.";
+    private string seoLocale = "en_US";
+    private List<string>? seoStructuredData;
+
+    private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        GenerateStructuredData();
+    }
 
     protected override async Task LoadLocalizedStringsAsync()
     {
@@ -45,5 +69,24 @@
         developerText = LocalizationService.GetString("LegalMentions.Developer");
         hostText = LocalizationService.GetString("LegalMentions.Host");
         videoAttributesText = LocalizationService.GetString("LegalMentions.VideoAttributes");
+
+        // Update SEO for current language
+        var isFrench = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = isFrench ? "fr_FR" : "en_US";
+        seoTitle = isFrench ? "Mentions Légales | IdeaStud.io" : "Legal Mentions | IdeaStud.io";
+        seoDescription = isFrench
+            ? "Mentions légales et attributions pour IdeaStud.io - Portfolio professionnel d'Andrés Talavera."
+            : "Legal mentions and attributions for IdeaStud.io - Andrés Talavera's professional portfolio.";
+
+        GenerateStructuredData();
+    }
+
+    private void GenerateStructuredData()
+    {
+        var breadcrumb = SchemaOrg.CreateBreadcrumb("https://ideastud.io",
+            ("Home", "/"),
+            ("Legal Mentions", "/legal"));
+
+        seoStructuredData = new List<string> { SchemaOrg.ToJsonLd(breadcrumb) };
     }
 }

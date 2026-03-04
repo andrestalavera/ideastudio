@@ -1,7 +1,18 @@
 ﻿@page "/privacy"
 @using Markdig
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
 @inherits LocalizedComponent
 @layout MainLayout
+
+<SeoHead Title="@seoTitle"
+         Description="@seoDescription"
+         Author="Andrés Talavera"
+         CanonicalUrl="https://ideastud.io/privacy"
+         Url="https://ideastud.io/privacy"
+         SiteName="IdeaStud.io"
+         Locale="@seoLocale"
+         StructuredData="@seoStructuredData" />
 
 <div class="container">
     <div class="row">
@@ -37,7 +48,20 @@
     private string yourChoicesText = "You can choose not to provide certain information, but this may limit your ability to use some features of our website.";
     private string changesToThisPolicyText = "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.";
     private string contactUsText = "If you have any questions about this Privacy Policy, please contact us at contact@ideastud.io.";
+
+    // SEO fields
+    private string seoTitle = "Privacy Policy | IdeaStud.io";
+    private string seoDescription = "Privacy policy for IdeaStud.io - Learn how we collect, use, and protect your personal information.";
+    private string seoLocale = "en_US";
+    private List<string>? seoStructuredData;
+
     private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        GenerateStructuredData();
+    }
 
     protected override async Task LoadLocalizedStringsAsync()
     {
@@ -59,5 +83,24 @@
         yourChoicesText = LocalizationService.GetString("PrivacyPolicy.YourChoices");
         changesToThisPolicyText = LocalizationService.GetString("PrivacyPolicy.ChangesToThisPolicy");
         contactUsText = LocalizationService.GetString("PrivacyPolicy.ContactUs");
+
+        // Update SEO for current language
+        var isFrench = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = isFrench ? "fr_FR" : "en_US";
+        seoTitle = isFrench ? "Politique de Confidentialité | IdeaStud.io" : "Privacy Policy | IdeaStud.io";
+        seoDescription = isFrench
+            ? "Politique de confidentialité pour IdeaStud.io - Découvrez comment nous collectons, utilisons et protégeons vos informations personnelles."
+            : "Privacy policy for IdeaStud.io - Learn how we collect, use, and protect your personal information.";
+
+        GenerateStructuredData();
+    }
+
+    private void GenerateStructuredData()
+    {
+        var breadcrumb = SchemaOrg.CreateBreadcrumb("https://ideastud.io",
+            ("Home", "/"),
+            ("Privacy Policy", "/privacy"));
+
+        seoStructuredData = new List<string> { SchemaOrg.ToJsonLd(breadcrumb) };
     }
 }

@@ -1,0 +1,172 @@
+﻿@using System.Text.Json
+@using System.Text.Json.Serialization
+
+<PageTitle>@Title</PageTitle>
+
+<HeadContent>
+    @* Primary Meta Tags *@
+    <meta name="title" content="@Title" />
+    <meta name="description" content="@Description" />
+    @if (!string.IsNullOrEmpty(Keywords))
+    {
+        <meta name="keywords" content="@Keywords" />
+    }
+    @if (!string.IsNullOrEmpty(Author))
+    {
+        <meta name="author" content="@Author" />
+    }
+    <meta name="robots" content="@(NoIndex ? "noindex, nofollow" : "index, follow")" />
+
+    @* Canonical URL *@
+    @if (!string.IsNullOrEmpty(CanonicalUrl))
+    {
+        <link rel="canonical" href="@CanonicalUrl" />
+    }
+
+    @* Hreflang for multilingual SEO *@
+    @if (HreflangUrls is not null)
+    {
+        @foreach (var (lang, url) in HreflangUrls)
+        {
+            <link rel="alternate" hreflang="@lang" href="@url" />
+        }
+    }
+
+    @* Open Graph / Facebook *@
+    <meta property="og:type" content="@OgType" />
+    <meta property="og:url" content="@(CanonicalUrl ?? Url)" />
+    <meta property="og:title" content="@(OgTitle ?? Title)" />
+    <meta property="og:description" content="@(OgDescription ?? Description)" />
+    @if (!string.IsNullOrEmpty(OgImage))
+    {
+        <meta property="og:image" content="@OgImage" />
+        <meta property="og:image:alt" content="@(OgImageAlt ?? Title)" />
+    }
+    @if (!string.IsNullOrEmpty(SiteName))
+    {
+        <meta property="og:site_name" content="@SiteName" />
+    }
+    <meta property="og:locale" content="@Locale" />
+
+    @* Twitter Card *@
+    <meta name="twitter:card" content="@TwitterCard" />
+    @if (!string.IsNullOrEmpty(TwitterSite))
+    {
+        <meta name="twitter:site" content="@TwitterSite" />
+    }
+    @if (!string.IsNullOrEmpty(TwitterCreator))
+    {
+        <meta name="twitter:creator" content="@TwitterCreator" />
+    }
+    <meta name="twitter:title" content="@(OgTitle ?? Title)" />
+    <meta name="twitter:description" content="@(OgDescription ?? Description)" />
+    @if (!string.IsNullOrEmpty(OgImage))
+    {
+        <meta name="twitter:image" content="@OgImage" />
+    }
+
+    @* AEO/GEO: Speakable for voice assistants *@
+    @if (SpeakableSelectors is not null && SpeakableSelectors.Any())
+    {
+        <script type="application/ld+json">@RenderSpeakable()</script>
+    }
+
+    @* Structured Data (JSON-LD) *@
+    @if (StructuredData is not null)
+    {
+        @foreach (var data in StructuredData)
+        {
+            <script type="application/ld+json">@data</script>
+        }
+    }
+
+    @* Additional head content *@
+    @ChildContent
+</HeadContent>
+
+@code {
+    /// <summary>Page title (required)</summary>
+    [Parameter, EditorRequired] public string Title { get; set; } = string.Empty;
+
+    /// <summary>Page description for SEO (required)</summary>
+    [Parameter, EditorRequired] public string Description { get; set; } = string.Empty;
+
+    /// <summary>Keywords for SEO (optional, less important in modern SEO)</summary>
+    [Parameter] public string? Keywords { get; set; }
+
+    /// <summary>Page author</summary>
+    [Parameter] public string? Author { get; set; }
+
+    /// <summary>Canonical URL for this page</summary>
+    [Parameter] public string? CanonicalUrl { get; set; }
+
+    /// <summary>Current page URL</summary>
+    [Parameter] public string? Url { get; set; }
+
+    /// <summary>Whether search engines should not index this page</summary>
+    [Parameter] public bool NoIndex { get; set; }
+
+    /// <summary>Hreflang URLs for multilingual support (lang code => URL)</summary>
+    [Parameter] public Dictionary<string, string>? HreflangUrls { get; set; }
+
+    /// <summary>Open Graph type (website, article, product, etc.)</summary>
+    [Parameter] public string OgType { get; set; } = "website";
+
+    /// <summary>Open Graph title (defaults to Title)</summary>
+    [Parameter] public string? OgTitle { get; set; }
+
+    /// <summary>Open Graph description (defaults to Description)</summary>
+    [Parameter] public string? OgDescription { get; set; }
+
+    /// <summary>Open Graph image URL</summary>
+    [Parameter] public string? OgImage { get; set; }
+
+    /// <summary>Alt text for OG image</summary>
+    [Parameter] public string? OgImageAlt { get; set; }
+
+    /// <summary>Site name for Open Graph</summary>
+    [Parameter] public string? SiteName { get; set; }
+
+    /// <summary>Locale for Open Graph (e.g., en_US, fr_FR)</summary>
+    [Parameter] public string Locale { get; set; } = "en_US";
+
+    /// <summary>Twitter card type</summary>
+    [Parameter] public string TwitterCard { get; set; } = "summary_large_image";
+
+    /// <summary>Twitter site handle (e.g., @example)</summary>
+    [Parameter] public string? TwitterSite { get; set; }
+
+    /// <summary>Twitter creator handle</summary>
+    [Parameter] public string? TwitterCreator { get; set; }
+
+    /// <summary>CSS selectors for speakable content (AEO)</summary>
+    [Parameter] public List<string>? SpeakableSelectors { get; set; }
+
+    /// <summary>Structured data JSON-LD strings</summary>
+    [Parameter] public List<string>? StructuredData { get; set; }
+
+    /// <summary>Additional head content</summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private string RenderSpeakable()
+    {
+        var speakable = new Dictionary<string, object?>
+        {
+            ["@context"] = "https://schema.org",
+            ["@type"] = "WebPage",
+            ["name"] = Title,
+            ["speakable"] = new Dictionary<string, object?>
+            {
+                ["@type"] = "SpeakableSpecification",
+                ["cssSelector"] = SpeakableSelectors
+            },
+            ["url"] = CanonicalUrl ?? Url
+        };
+
+        return JsonSerializer.Serialize(speakable, new JsonSerializerOptions
+        {
+            WriteIndented = false,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        });
+    }
+}

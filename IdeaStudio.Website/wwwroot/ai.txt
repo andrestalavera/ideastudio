@@ -1,0 +1,36 @@
+﻿{
+  "name": "IdeaStud.io",
+  "type": "portfolio",
+  "owner": "Andrés Talavera",
+  "description": "Professional portfolio of Andrés Talavera, .NET developer and Azure consultant",
+  "languages": ["en", "fr"],
+  "primaryLanguage": "en",
+  "contentType": "professional-services",
+  "topics": [
+    ".NET development",
+    "Azure cloud architecture",
+    "Blazor",
+    "ASP.NET Core",
+    "software consulting",
+    "technical training"
+  ],
+  "location": {
+    "city": "Lyon",
+    "country": "France"
+  },
+  "ai": {
+    "indexable": true,
+    "summarizable": true,
+    "quotable": true,
+    "attributionRequired": true
+  },
+  "contact": {
+    "method": "website-form",
+    "url": "https://ideastud.io/#contact"
+  },
+  "social": {
+    "twitter": "@imcresus_",
+    "linkedin": "andrestalavera"
+  },
+  "llmsTxt": "https://ideastud.io/llms.txt"
+}

@@ -1,0 +1,43 @@
+﻿# IdeaStud.io - Andrés Talavera
+
+> Professional portfolio of Andrés Talavera, a .NET developer and Azure consultant based in Lyon, France.
+
+## About
+
+IdeaStud.io is the professional portfolio and resume website for Andrés Talavera, an experienced software engineer specializing in:
+
+- .NET development (ASP.NET Core, Blazor, C#)
+- Microsoft Azure cloud architecture and consulting
+- Technical training and mentoring
+- DevOps and CI/CD practices
+
+## Key Facts
+
+- Name: Andrés Talavera
+- Location: Lyon, France
+- Languages: French (native), English (fluent), Spanish (native)
+- Specializations: .NET, Azure, Blazor, ASP.NET Core, Cloud Architecture
+- Experience: 10+ years in software development
+
+## Navigation
+
+- [Home](/): Main resume and portfolio page with professional experience, skills, and training
+- [Legal](/legal): Legal mentions and company information
+- [Privacy](/privacy): Privacy policy
+
+## Services
+
+Andrés Talavera provides professional services including:
+
+- Software development consulting
+- Azure cloud migration and architecture
+- Technical training for development teams
+- Code reviews and architecture assessments
+
+## Contact
+
+For professional inquiries, contact through the website's contact form or LinkedIn profile.
+
+## Content Guidelines
+
+This website contains professional information only. Content is bilingual (French and English). All information is factual and regularly updated.
