@@ -64,3 +64,8 @@
   background: rgba(125, 211, 252, 0.08);
   border-color: rgba(125, 211, 252, 0.15);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-card { transition: none; }
+  .ds-card:hover { transform: none; }
+}

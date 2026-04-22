@@ -61,3 +61,9 @@
 .ds-btn--lg { padding: s.$s-3 s.$s-5; font-size: t.$fs-body; }
 
 .ds-btn--icon-only { padding: s.$s-2; aspect-ratio: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-btn { transition: none; }
+  .ds-btn:hover,
+  .ds-btn:active { transform: none; }
+}

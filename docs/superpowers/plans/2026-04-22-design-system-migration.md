@@ -868,6 +868,12 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
 .ds-btn--lg { padding: s.$s-3 s.$s-5; font-size: t.$fs-body; }
 
 .ds-btn--icon-only { padding: s.$s-2; aspect-ratio: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-btn { transition: none; }
+  .ds-btn:hover,
+  .ds-btn:active { transform: none; }
+}
 ```
 
 - [ ] **Step 2: Register the pattern in `styles.scss`**
@@ -974,6 +980,11 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
   background: rgba(125, 211, 252, 0.08);
   border-color: rgba(125, 211, 252, 0.15);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-card { transition: none; }
+  .ds-card:hover { transform: none; }
+}
 ```
 
 - [ ] **Step 2: Register the pattern**
@@ -1050,14 +1061,24 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
 .ds-chapter__title em {
   font-style: normal;
   font-weight: t.$fw-medium;
-  background: linear-gradient(90deg, var(--ds-sky), var(--ds-teal));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--ds-sky); // fallback — solid sky on dark bg, high contrast
+
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    background: linear-gradient(90deg, var(--ds-sky), var(--ds-teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  @media (forced-colors: active) {
+    color: CanvasText;
+    background: none;
+    -webkit-text-fill-color: CanvasText;
+  }
 }
 
 .ds-chapter__rule {
-  width: 48px;
+  width: clamp(2rem, 4vw + 1rem, 4rem);
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--ds-teal), transparent);
   margin: s.$s-2 auto 0;
@@ -1137,7 +1158,7 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
   display: none;
   gap: s.$s-2;
 
-  @media (min-width: 1024px) {
+  @media (min-width: s.$bp-lg) {
     display: flex;
     align-items: center;
   }
@@ -1169,7 +1190,7 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
 
 // Mobile toggle
 .ds-nav__toggle {
-  @media (min-width: 1024px) { display: none; }
+  @media (min-width: s.$bp-lg) { display: none; }
   background: transparent;
   border: 1px solid rgba(125, 211, 252, 0.15);
   border-radius: s.$r-sm;

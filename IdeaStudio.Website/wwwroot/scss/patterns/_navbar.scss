@@ -31,7 +31,7 @@
   display: none;
   gap: s.$s-2;
 
-  @media (min-width: 1024px) {
+  @media (min-width: s.$bp-lg) {
     display: flex;
     align-items: center;
   }
@@ -63,7 +63,7 @@
 
 // Mobile toggle
 .ds-nav__toggle {
-  @media (min-width: 1024px) { display: none; }
+  @media (min-width: s.$bp-lg) { display: none; }
   background: transparent;
   border: 1px solid rgba(125, 211, 252, 0.15);
   border-radius: s.$r-sm;
