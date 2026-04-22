@@ -1,0 +1,66 @@
+@use '../tokens/space' as s;
+@use '../tokens/typography' as t;
+
+.ds-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: s.$s-5;
+  border-radius: s.$r-lg;
+  background: var(--ds-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--ds-glass-border);
+  box-shadow: s.$shadow-2, s.$shadow-inset-hl;
+  color: var(--ds-fg);
+  overflow: hidden;
+  transition: border-color var(--ds-dur-base) var(--ds-ease-out),
+              transform var(--ds-dur-base) var(--ds-ease-out),
+              box-shadow var(--ds-dur-base) var(--ds-ease-out);
+
+  &:hover {
+    border-color: rgba(125, 211, 252, 0.30);
+    transform: translateY(-2px);
+    box-shadow: s.$shadow-3, s.$shadow-inset-hl;
+  }
+}
+
+.ds-card__banner {
+  margin: -#{s.$s-5} -#{s.$s-5} s.$s-4;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-top-left-radius: s.$r-lg;
+  border-top-right-radius: s.$r-lg;
+}
+
+.ds-card__title {
+  font-size: t.$fs-h3;
+  font-weight: t.$fw-semibold;
+  color: var(--ds-fg);
+  margin: 0 0 s.$s-3;
+  letter-spacing: t.$tracking-snug;
+}
+
+.ds-card__body  { font-size: t.$fs-body; line-height: t.$lh-normal; color: var(--ds-fg-muted); flex: 1; }
+.ds-card__footer { margin-top: s.$s-4; padding-top: s.$s-3; border-top: 1px solid var(--ds-glass-border); }
+
+// Tag / badge inside a card.
+.ds-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: s.$s-1;
+  padding: s.$s-1 s.$s-3;
+  font-family: var(--ds-font-mono);
+  font-size: 0.75rem;
+  color: var(--ds-teal);
+  background: rgba(94, 234, 212, 0.1);
+  border: 1px solid rgba(94, 234, 212, 0.2);
+  border-radius: s.$r-sm;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ds-tag--neutral {
+  color: var(--ds-fg-muted);
+  background: rgba(125, 211, 252, 0.08);
+  border-color: rgba(125, 211, 252, 0.15);
+}
