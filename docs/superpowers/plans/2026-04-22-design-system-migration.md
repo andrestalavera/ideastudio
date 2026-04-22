@@ -825,6 +825,7 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
   font-weight: t.$fw-medium;
   font-size: t.$fs-small;
   line-height: 1;
+  min-height: 2.5rem;
   color: var(--ds-btn-fg);
   background: var(--ds-btn-bg);
   border: 1px solid var(--ds-btn-border);
@@ -863,7 +864,7 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
   --ds-btn-border-hover: transparent;
 }
 
-.ds-btn--sm { padding: s.$s-1 s.$s-3; font-size: 0.8rem; }
+.ds-btn--sm { padding: s.$s-1 s.$s-3; font-size: 0.8rem; min-height: 1.75rem; }
 .ds-btn--lg { padding: s.$s-3 s.$s-5; font-size: t.$fs-body; }
 
 .ds-btn--icon-only { padding: s.$s-2; aspect-ratio: 1; }
