@@ -8,3 +8,6 @@
 @media print {
   body { background: #fff !important; color: #000 !important; }
 }
+
+.ds-collapsed { display: none; }
+@media print { .ds-collapsed { display: initial; } }

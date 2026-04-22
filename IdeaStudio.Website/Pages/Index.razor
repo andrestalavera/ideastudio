@@ -30,80 +30,21 @@
 
 <HeroSection PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
 
-<div class="pagebreak"></div>
+<div class="ds-pagebreak"></div>
 
-<section id="about" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
-    <div class="container">
-    @if (resume?.AboutSections is not null)
-    {
-        <div class="row g-4">
-        @foreach (var (section, index) in resume.AboutSections.Select((s, i) => (s, i)))
+<section id="about" class="ds-chapter ds-print-hidden" data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="ds-container">
+        <header class="ds-chapter__heading">
+            <p class="ds-chapter__kicker">· Chapter II ·</p>
+            <h2 class="ds-chapter__title">About <em>me</em></h2>
+            <div class="ds-chapter__rule"></div>
+        </header>
+        @if (resume?.AboutSections is not null)
         {
-            <div class="col-12 col-lg-6 col-xxl-4">
-                <AboutCard AboutSection="@(section)" Index="@index" />
-            </div>
-        }
-        </div>
-    }
-    else
-    {
-        <Placeholder />
-    }
-    </div>
-</section>
-
-<section id="experiences" class="py-5 pagebreak" data-bs-spy="scroll" data-bs-target="#navbar">
-    <div class="container">
-        <Heading Title="@professionalExperiencesText" />
-
-        @if (resume?.Experiences is not null)
-        {
-            <div class="row g-4">
-            @foreach (var (experience, index) in resume.Experiences.Select((e, i) => (e, i)))
-            {
-                <div class="col-12 d-print-flex @DisplayClasses(index, DEFAULT_EXPERIENCES_TO_SHOW)">
-                    <ExperienceCard Experience="@experience.WithGeneratedId(SlugService)" />
-                </div>
-            }
-            </div>
-
-        @if (hasHiddenExperiences)
-        {
-            <div class="row d-print-none">
-                <div class="col-12 text-center mt-4">
-                    <button class="btn btn-light" @onclick="ToggleExperiences">
-                    @if (showAllExperiences)
-                    {
-                        <span>@showLatestExperiencesText</span>
-                    }
-                    else
-                    {
-                        <span>@string.Format(showMoreExperiencesText, hiddenExperiencesCount)</span>
-                    }
-                    </button>
-                </div>
-            </div>
-        }
-    }
-    else
-    {
-        <Placeholder />
-    }
-    </div>
-</section>
-
-<section id="trainings" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
-    <div class="container">
-        <Heading Title="@trainingCoursesText" />
-
-        @if (resume?.TrainingCenters is not null)
-        {
-            <div class="row g-4">
-                @foreach (var (center, index) in resume.TrainingCenters.Select((t, i) => (t, i)))
+            <div class="ds-grid ds-grid--3">
+                @foreach (var (section, index) in resume.AboutSections.Select((s, i) => (s, i)))
                 {
-                    <div class="col-12 col-lg-6 col-xxl-4">
-                        <TrainingCard TrainingCenter="@center.WithGeneratedId(SlugService)" Index="@index" />
-                    </div>
+                    <AboutCard AboutSection="@(section)" Index="@index" />
                 }
             </div>
         }
@@ -114,7 +55,70 @@
     </div>
 </section>
 
-<section id="contact" class="py-5 d-print-none" data-bs-spy="scroll" data-bs-target="#navbar">
+<section id="experiences" class="ds-chapter ds-pagebreak" data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="ds-container">
+        <header class="ds-chapter__heading">
+            <p class="ds-chapter__kicker">· Chapter III ·</p>
+            <h2 class="ds-chapter__title">@professionalExperiencesText</h2>
+            <div class="ds-chapter__rule"></div>
+        </header>
+        @if (resume?.Experiences is not null)
+        {
+            <div class="ds-stack">
+                @foreach (var (experience, index) in resume.Experiences.Select((e, i) => (e, i)))
+                {
+                    <div class="@DisplayClasses(index, DEFAULT_EXPERIENCES_TO_SHOW)">
+                        <ExperienceCard Experience="@experience.WithGeneratedId(SlugService)" />
+                    </div>
+                }
+            </div>
+            @if (hasHiddenExperiences)
+            {
+                <div class="ds-print-hidden" style="text-align: center; margin-top: 2rem;">
+                    <button class="ds-btn" @onclick="ToggleExperiences">
+                        @if (showAllExperiences)
+                        {
+                            <span>@showLatestExperiencesText</span>
+                        }
+                        else
+                        {
+                            <span>@string.Format(showMoreExperiencesText, hiddenExperiencesCount)</span>
+                        }
+                    </button>
+                </div>
+            }
+        }
+        else
+        {
+            <Placeholder />
+        }
+    </div>
+</section>
+
+<section id="trainings" class="ds-chapter ds-print-hidden" data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="ds-container">
+        <header class="ds-chapter__heading">
+            <p class="ds-chapter__kicker">· Chapter IV ·</p>
+            <h2 class="ds-chapter__title">@trainingCoursesText</h2>
+            <div class="ds-chapter__rule"></div>
+        </header>
+        @if (resume?.TrainingCenters is not null)
+        {
+            <div class="ds-grid ds-grid--3">
+                @foreach (var (center, index) in resume.TrainingCenters.Select((t, i) => (t, i)))
+                {
+                    <TrainingCard TrainingCenter="@center.WithGeneratedId(SlugService)" Index="@index" />
+                }
+            </div>
+        }
+        else
+        {
+            <Placeholder />
+        }
+    </div>
+</section>
+
+<section id="contact" class="ds-chapter ds-print-hidden" data-bs-spy="scroll" data-bs-target="#navbar">
     <ContactSection />
 </section>
 
@@ -150,21 +154,12 @@
     private List<string>? seoStructuredData;
 
 
-    private RenderFragment NavbarNavigationContent => @<ul class="navbar-nav me-auto">
-    <li class="nav-item">
-        <a class="nav-link rounded-pill mx-1" href="#about" data-section="about">@aboutText</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link rounded-pill mx-1" href="#experiences" data-section="experiences">@experiencesText</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link rounded-pill mx-1" href="#trainings" data-section="training">@trainingText</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link rounded-pill mx-1" href="#contact" data-section="contact">@contactText</a>
-    </li>
-</ul>
-    ;
+    private RenderFragment NavbarNavigationContent => @<text>
+    <a class="ds-nav__link" href="#about" data-section="about">@aboutText</a>
+    <a class="ds-nav__link" href="#experiences" data-section="experiences">@experiencesText</a>
+    <a class="ds-nav__link" href="#trainings" data-section="training">@trainingText</a>
+    <a class="ds-nav__link" href="#contact" data-section="contact">@contactText</a>
+</text>;
 
     protected override async Task OnInitializedAsync()
     {
@@ -264,5 +259,5 @@
     }
 
     private string DisplayClasses(int index, int toShow)
-    => index < toShow ? $"d-flex" : showAllExperiences ? $"d-flex" : $"d-none";
+    => index < toShow ? "" : showAllExperiences ? "" : "ds-collapsed";
 }
