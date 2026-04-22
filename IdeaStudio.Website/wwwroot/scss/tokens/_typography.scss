@@ -1,0 +1,31 @@
+// Typography scale — Inter Variable + JetBrains Mono.
+// Self-hosted; @font-face declarations live in base/_typography.scss.
+
+$font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+$font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+
+$fw-light:    300;
+$fw-regular:  400;
+$fw-medium:   500;
+$fw-semibold: 600;
+$fw-bold:     700;
+
+// Type scale (clamp for fluid sizing).
+$fs-display-1: clamp(3rem, 4vw + 1rem, 5.5rem);   // hero name
+$fs-display-2: clamp(2.25rem, 3vw + 1rem, 3.5rem);// act titles
+$fs-h1:        clamp(2rem, 2vw + 1rem, 2.75rem);
+$fs-h2:        clamp(1.5rem, 1.2vw + 1rem, 2rem);
+$fs-h3:        1.25rem;
+$fs-body:      1rem;
+$fs-small:     0.875rem;
+$fs-kicker:    0.75rem;   // mono, uppercase, tracked
+
+$lh-tight:  1.05;
+$lh-snug:   1.25;
+$lh-normal: 1.6;
+$lh-loose:  1.8;
+
+$tracking-tight: -0.03em;
+$tracking-snug:  -0.01em;
+$tracking-wide:   0.08em;
+$tracking-kicker: 0.25em;
