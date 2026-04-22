@@ -1,4 +1,4 @@
-﻿@using Markdig
+@using Markdig
 
 <Card Title="@(AboutSection.Title)" Index="@Index">
     <Content>
@@ -6,24 +6,24 @@
         {
             @foreach (string paragraph in AboutSection.Paragraphs)
             {
-                <p class="text-primary">@((MarkupString)Markdown.ToHtml(paragraph))</p>
+                <p>@((MarkupString)Markdown.ToHtml(paragraph))</p>
             }
         }
         @if (AboutSection.Icons is not null)
         {
-            <div class="d-flex d-print-none justify-content-center gap-3 my-3">
+            <div class="ds-cluster ds-cluster--tight ds-print-hidden" style="justify-content: center; margin-block: 1rem;">
                 @foreach (string icon in AboutSection.Icons)
                 {
-                    <i class="@icon fa-4x" aria-hidden="true"></i>
+                    <i class="@icon fa-4x" style="color: var(--ds-sky);" aria-hidden="true"></i>
                 }
             </div>
         }
         @if (AboutSection.Images is not null)
         {
-            <div class="d-flex d-print-none justify-content-center gap-3 my-3">
+            <div class="ds-cluster ds-cluster--tight ds-print-hidden" style="justify-content: center; margin-block: 1rem;">
                 @foreach (string image in AboutSection.Images)
                 {
-                    <img src="images/@image" alt="@image" class="p-1" width="70" height="70" loading="lazy">
+                    <img src="images/@image" alt="@image" width="70" height="70" loading="lazy" style="border-radius: 8px;">
                 }
             </div>
         }
