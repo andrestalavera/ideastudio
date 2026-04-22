@@ -62,7 +62,6 @@ IdeaStudio.sln
 │   └── Program.cs
 ├── IdeaStudio.Website.Models/     # Shared models library (currently minimal)
 ├── IdeaStudio.Website.Tests/      # Unit and integration tests
-│   ├── ExtensionsTests.cs
 │   ├── IntegrationTests.cs
 │   └── GlobalUsings.cs
 └── IdeaStudio.Apis/               # API project (placeholder)
@@ -102,7 +101,6 @@ dotnet run --project IdeaStudio.Website/IdeaStudio.Website.csproj
 ## Test Conventions
 
 - Tests live in `IdeaStudio.Website.Tests/`
-- `ExtensionsTests.cs` for extension method unit tests
 - `IntegrationTests.cs` for integration-level tests
 - Use xUnit or MSTest (check `.csproj` for framework)
 
