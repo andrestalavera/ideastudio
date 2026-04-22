@@ -1,0 +1,33 @@
+@use '../tokens/space' as s;
+@use '../tokens/typography' as t;
+
+.ds-footer {
+  padding-block: s.$s-6;
+  border-top: 1px solid rgba(125, 211, 252, 0.10);
+  color: var(--ds-fg-muted);
+  font-size: t.$fs-small;
+}
+
+.ds-footer__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: s.$s-4;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ds-footer__copyright { margin: 0; }
+
+.ds-footer__links {
+  display: flex;
+  gap: s.$s-4;
+}
+
+.ds-footer__link {
+  color: var(--ds-fg-muted);
+  text-decoration: none;
+  transition: color var(--ds-dur-fast) var(--ds-ease-out);
+
+  &:hover { color: var(--ds-fg); }
+  &:focus-visible { outline: 2px solid var(--ds-focus-ring); outline-offset: 2px; }
+}
