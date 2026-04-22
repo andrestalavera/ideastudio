@@ -697,7 +697,7 @@ Overwrite `IdeaStudio.Website/wwwroot/scss/styles.scss` with:
 // ============================================================
 // IdeaStud.io — styles entry
 // Dark cinema-atmospheric design system layered over Bootstrap.
-// Bootstrap is removed at the end of Phase 1 (see plan Task 18).
+// Bootstrap is removed at the end of Phase 1 (see plan Task 19).
 // ============================================================
 
 // --- Bootstrap (temporary, removed at end of Phase 1) ---
