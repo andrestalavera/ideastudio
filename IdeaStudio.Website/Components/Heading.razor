@@ -1,11 +1,8 @@
 ﻿@inherits AnimatedComponentBase
 @inject ISlugService SlugService
 
-<div class="row d-print-none">
-    <div class="col-12">
-        <h1 @ref="ElementRef" id="@id" class="text-center mb-5 fade-in-up display-1 text-white text-shadow-2">@Title
-        </h1>
-    </div>
+<div class="ds-print-hidden">
+    <h1 @ref="ElementRef" id="@id" class="ds-display-1 fade-in-up text-shadow-2" style="text-align: center; margin-bottom: 3rem;">@Title</h1>
 </div>
 
 @code {

@@ -15,21 +15,22 @@
          NoIndex="true"
          StructuredData="@seoStructuredData" />
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 my-5 py-5">
-            <div class="card bg-white text-bg-light bg-opacity-75 bg-acrylic">
-                <div class="card-body">
-                <div class="display-4">@((MarkupString)Markdown.ToHtml(legalMentionsTitle))</div>
+<section class="ds-chapter">
+    <div class="ds-container">
+        <header class="ds-chapter__heading">
+            <div class="ds-chapter__title">@((MarkupString)Markdown.ToHtml(legalMentionsTitle))</div>
+            <div class="ds-chapter__rule"></div>
+        </header>
+        <article class="ds-card">
+            <div class="ds-card__body ds-stack">
                 <p>@((MarkupString)Markdown.ToHtml(lastUpdatedText))</p>
                 <p>@((MarkupString)Markdown.ToHtml(developerText))</p>
                 <p>@((MarkupString)Markdown.ToHtml(hostText))</p>
                 <p>@((MarkupString)Markdown.ToHtml(videoAttributesText))</p>
-                </div>
             </div>
-        </div>
+        </article>
     </div>
-</div>
+</section>
 
 @code {
     [CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
@@ -46,7 +47,7 @@
     private string seoLocale = "en_US";
     private List<string>? seoStructuredData;
 
-    private static RenderFragment EmptyNavbarContent => @<div class="navbar-nav me-auto"></div>;
+    private static RenderFragment EmptyNavbarContent => @<div></div>;
 
     protected override async Task OnInitializedAsync()
     {
