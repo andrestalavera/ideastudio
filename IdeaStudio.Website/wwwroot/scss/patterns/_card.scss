@@ -69,3 +69,38 @@
   .ds-card { transition: none; }
   .ds-card:hover { transform: none; }
 }
+
+.ds-exp-card { padding: s.$s-6; }
+
+.ds-exp-card__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: s.$s-5;
+
+  @media (min-width: s.$bp-lg) {
+    grid-template-columns: 1fr 2fr;
+    gap: s.$s-6;
+  }
+}
+
+.ds-exp-card__sidebar {
+  @media (min-width: s.$bp-lg) {
+    position: sticky;
+    top: 120px;
+    align-self: flex-start;
+  }
+  text-align: center;
+  @media (min-width: s.$bp-lg) { text-align: left; }
+}
+
+.ds-exp-card__logo {
+  display: inline-block;
+  padding: s.$s-3;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: s.$r-md;
+  margin-bottom: s.$s-4;
+
+  img { max-height: 80px; width: auto; }
+}
+
+.ds-exp-card__content { min-width: 0; }
