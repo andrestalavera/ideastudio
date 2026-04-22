@@ -743,17 +743,17 @@ $enable-smooth-scroll: true;
 @import "../../node_modules/bootstrap/scss/dropdown";
 
 // --- Design system (new) ---
-@use 'base/reset';
-@use 'base/root';
-@use 'base/typography';
+@import 'base/reset';
+@import 'base/root';
+@import 'base/typography';
 
-@use 'utilities/responsive';
-@use 'utilities/stack';
-@use 'utilities/visually-hidden';
-@use 'utilities/print';
+@import 'utilities/responsive';
+@import 'utilities/stack';
+@import 'utilities/visually-hidden';
+@import 'utilities/print';
 ```
 
-**Important:** This file mixes `@import` (legacy, for Bootstrap) and `@use` (modern, for our new layers). That's intentional and works in dart-sass. When Bootstrap is removed (Task 18), the `@import` block goes away and the file becomes pure `@use`.
+**Important:** dart-sass (1.92+) requires `@use` rules to appear before any other rule — including `@import`. Because we must let Bootstrap emit its reboot/utilities *before* our design-system reset/root/typography (so our rules win on the cascade), the ds partials have to be referenced *after* the Bootstrap `@import` block. That means they must also be pulled in via `@import` — a top-level `@use` after the Bootstrap block is a compile error. The ds partials themselves still `@use '../tokens/...'` internally for token consumption, which is fine. In Task 19 (Bootstrap removal), the Bootstrap `@import` block goes away and the entire file is rewritten as pure `@use`.
 
 - [ ] **Step 2: Build and verify styles compile**
 
@@ -871,10 +871,10 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
 
 - [ ] **Step 2: Register the pattern in `styles.scss`**
 
-Append to `IdeaStudio.Website/wwwroot/scss/styles.scss` (after the other `@use` lines):
+Append to `IdeaStudio.Website/wwwroot/scss/styles.scss` (after the other `@import` lines for the ds layers):
 
 ```scss
-@use 'patterns/button';
+@import 'patterns/button';
 ```
 
 - [ ] **Step 3: Verify compile**
@@ -980,7 +980,7 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
 Append to `IdeaStudio.Website/wwwroot/scss/styles.scss`:
 
 ```scss
-@use 'patterns/card';
+@import 'patterns/card';
 ```
 
 - [ ] **Step 3: Verify compile**
@@ -1068,7 +1068,7 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
 Append to `IdeaStudio.Website/wwwroot/scss/styles.scss`:
 
 ```scss
-@use 'patterns/chapter';
+@import 'patterns/chapter';
 ```
 
 - [ ] **Step 3: Verify compile**
@@ -1183,7 +1183,7 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
 Append to `IdeaStudio.Website/wwwroot/scss/styles.scss`:
 
 ```scss
-@use 'patterns/navbar';
+@import 'patterns/navbar';
 ```
 
 - [ ] **Step 3: Verify compile**
@@ -1255,7 +1255,7 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
 Append to `IdeaStudio.Website/wwwroot/scss/styles.scss`:
 
 ```scss
-@use 'patterns/footer';
+@import 'patterns/footer';
 ```
 
 - [ ] **Step 3: Verify compile and build**
