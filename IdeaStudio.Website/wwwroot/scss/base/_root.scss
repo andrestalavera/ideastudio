@@ -1,0 +1,44 @@
+@use '../tokens/colors' as c;
+@use '../tokens/typography' as t;
+@use '../tokens/space' as s;
+@use '../tokens/motion' as m;
+
+:root {
+  // Surfaces
+  --ds-bg:        #{c.$ink-0};
+  --ds-surface-1: #{c.$ink-100};
+  --ds-surface-2: #{c.$ink-200};
+  --ds-surface-3: #{c.$ink-300};
+
+  // Text
+  --ds-fg:        #{c.$ink-900};
+  --ds-fg-muted:  #{c.$ink-700};
+  --ds-fg-faint:  #{c.$ink-500};
+
+  // Accents
+  --ds-deep:  #{c.$deep};
+  --ds-azure: #{c.$azure};
+  --ds-sky:   #{c.$sky};
+  --ds-cyan:  #{c.$cyan};
+  --ds-teal:  #{c.$teal};
+  --ds-mint:  #{c.$mint};
+
+  // Glass surface
+  --ds-glass-bg:     #{c.$surface-glass-bg};
+  --ds-glass-border: #{c.$surface-glass-border};
+
+  // Typography
+  --ds-font-sans: #{t.$font-sans};
+  --ds-font-mono: #{t.$font-mono};
+
+  // Motion
+  --ds-ease-out:    #{m.$ease-out};
+  --ds-ease-inout:  #{m.$ease-inout};
+  --ds-ease-spring: #{m.$ease-spring};
+  --ds-dur-fast: #{m.$dur-fast};
+  --ds-dur-base: #{m.$dur-base};
+  --ds-dur-slow: #{m.$dur-slow};
+
+  // Focus
+  --ds-focus-ring: #{c.$focus-ring};
+}

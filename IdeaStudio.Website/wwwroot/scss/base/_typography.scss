@@ -1,0 +1,66 @@
+@use '../tokens/typography' as t;
+@use '../tokens/space' as s;
+
+// Self-hosted fonts (files copied by scripts/copy-fonts.mjs).
+@font-face {
+  font-family: "Inter Variable";
+  src: url("/fonts/inter-variable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body {
+  font-family: var(--ds-font-sans);
+  font-size: t.$fs-body;
+  line-height: t.$lh-normal;
+  font-weight: t.$fw-regular;
+}
+
+// Utility text classes (prefixed .ds- to avoid collision with Bootstrap).
+.ds-display-1 {
+  font-size: t.$fs-display-1;
+  font-weight: t.$fw-light;
+  line-height: t.$lh-tight;
+  letter-spacing: t.$tracking-tight;
+}
+
+.ds-display-2 {
+  font-size: t.$fs-display-2;
+  font-weight: t.$fw-light;
+  line-height: t.$lh-tight;
+  letter-spacing: t.$tracking-tight;
+}
+
+.ds-h1 { font-size: t.$fs-h1; font-weight: t.$fw-medium; line-height: t.$lh-snug; letter-spacing: t.$tracking-snug; }
+.ds-h2 { font-size: t.$fs-h2; font-weight: t.$fw-medium; line-height: t.$lh-snug; letter-spacing: t.$tracking-snug; }
+.ds-h3 { font-size: t.$fs-h3; font-weight: t.$fw-semibold; line-height: t.$lh-snug; }
+
+.ds-body      { font-size: t.$fs-body;  line-height: t.$lh-normal; }
+.ds-body-lead { font-size: 1.125rem; line-height: t.$lh-normal; color: var(--ds-fg-muted); }
+.ds-small     { font-size: t.$fs-small; line-height: t.$lh-snug; color: var(--ds-fg-muted); }
+
+.ds-mono      { font-family: var(--ds-font-mono); }
+
+.ds-kicker {
+  font-family: var(--ds-font-mono);
+  font-size: t.$fs-kicker;
+  text-transform: uppercase;
+  letter-spacing: t.$tracking-kicker;
+  color: var(--ds-teal);
+}
+
+.ds-emphasis-gradient {
+  background: linear-gradient(90deg, var(--ds-sky), var(--ds-teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
