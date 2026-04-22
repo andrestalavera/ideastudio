@@ -1,29 +1,29 @@
-﻿@inherits LocalizedComponent
+@inherits LocalizedComponent
 
-<div class="d-flex gap-2 @(Vertical ? "flex-column" : "")">
-    <a href="https://www.linkedin.com/in/andrestalavera/" class="@GetButtonClasses("dark")" target="_blank"
+<div class="ds-cluster @(Vertical ? "ds-social--vertical" : "")">
+    <a href="https://www.linkedin.com/in/andrestalavera/" class="@GetButtonClasses()" target="_blank"
         rel="noopener noreferrer" aria-label="@linkedInText Profile">
         <i class="fab fa-linkedin" aria-hidden="true"></i>
-        <span class="@GetTextClasses() ms-1 d-none d-md-inline">@linkedInText</span>
+        @if (ShowText) { <span>@linkedInText</span> }
     </a>
 
-    <a href="https://github.com/andrestalavera" class="@GetButtonClasses("secondary")" target="_blank"
+    <a href="https://github.com/andrestalavera" class="@GetButtonClasses()" target="_blank"
         rel="noopener noreferrer" aria-label="@gitHubText Profile">
         <i class="fab fa-github" aria-hidden="true"></i>
-        <span class="@GetTextClasses() ms-1 d-none d-md-inline">@gitHubText</span>
+        @if (ShowText) { <span>@gitHubText</span> }
     </a>
 
-    <a href="@ResumeHref" class="@GetButtonClasses("light")" download target="_blank"
+    <a href="@ResumeHref" class="@GetButtonClasses()" download target="_blank"
         rel="noopener noreferrer" aria-label="@downloadResumeText">
         <i class="fas fa-file-pdf" aria-hidden="true"></i>
-        <span class="@GetTextClasses() ms-1 d-none d-md-inline">@resumeText</span>
+        @if (ShowText) { <span>@resumeText</span> }
     </a>
 
-    <button class="@GetButtonClasses("primary")"
+    <button class="@GetButtonClasses(primary: true)"
         onclick="Calendly.initPopupWidget({url: 'https://calendly.com/andres-talavera/30min'});return false;"
         aria-label="@scheduleMeetingText">
         <i class="fas fa-video" aria-hidden="true"></i>
-        <span class="@GetTextClasses() ms-1 d-none d-md-inline">@meetText</span>
+        @if (ShowText) { <span>@meetText</span> }
     </button>
 </div>
 
@@ -51,17 +51,10 @@
         downloadResumeText = LocalizationService.GetString("DownloadResume");
     }
 
-    private string GetButtonClasses(string variant = "light") => $"btn btn-{variant} btn-{Size} bg-acrylic rounded-pill";
-
-    private string GetTextClasses()
+    private string GetButtonClasses(bool primary = false)
     {
-        if (!ShowText) return "d-none";
-
-        return Size switch
-        {
-            "lg" => "d-none d-md-inline",
-            "md" => "d-none d-lg-inline",
-            _ => "d-none d-xl-inline"
-        };
+        var sizeClass = Size switch { "lg" => "ds-btn--lg", "sm" => "ds-btn--sm", _ => "" };
+        var variantClass = primary ? "ds-btn--primary" : "";
+        return $"ds-btn {sizeClass} {variantClass}".Trim();
     }
 }

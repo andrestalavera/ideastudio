@@ -71,3 +71,42 @@
   color: var(--ds-fg);
   cursor: pointer;
 }
+
+.ds-culture-selector {
+  position: relative;
+}
+
+.ds-culture-selector__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  min-width: 180px;
+  padding: s.$s-2;
+  background: var(--ds-surface-1);
+  border: 1px solid rgba(125, 211, 252, 0.15);
+  border-radius: s.$r-md;
+  box-shadow: s.$shadow-2;
+  z-index: 50;
+}
+
+.ds-culture-selector__item {
+  display: block;
+  width: 100%;
+  padding: s.$s-2 s.$s-3;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: s.$r-sm;
+  color: var(--ds-fg-muted);
+  cursor: pointer;
+  font: inherit;
+  transition: background var(--ds-dur-fast) var(--ds-ease-out),
+              color var(--ds-dur-fast) var(--ds-ease-out);
+
+  &:hover, &.is-active {
+    background: rgba(125, 211, 252, 0.08);
+    color: var(--ds-fg);
+  }
+
+  &:focus-visible { outline: 2px solid var(--ds-focus-ring); outline-offset: -2px; }
+}

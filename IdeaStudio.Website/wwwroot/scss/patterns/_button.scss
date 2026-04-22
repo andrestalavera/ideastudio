@@ -67,3 +67,5 @@
   .ds-btn:hover,
   .ds-btn:active { transform: none; }
 }
+
+.ds-social--vertical { flex-direction: column; align-items: stretch; }
