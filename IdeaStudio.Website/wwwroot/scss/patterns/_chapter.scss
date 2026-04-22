@@ -1,0 +1,48 @@
+@use '../tokens/space' as s;
+@use '../tokens/typography' as t;
+
+.ds-chapter {
+  position: relative;
+  padding-block: s.$s-9;
+}
+
+.ds-chapter__heading {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-3;
+  margin-bottom: s.$s-7;
+  text-align: center;
+}
+
+.ds-chapter__kicker {
+  font-family: var(--ds-font-mono);
+  font-size: t.$fs-kicker;
+  text-transform: uppercase;
+  letter-spacing: t.$tracking-kicker;
+  color: var(--ds-teal);
+}
+
+.ds-chapter__title {
+  font-size: t.$fs-display-2;
+  font-weight: t.$fw-light;
+  line-height: t.$lh-tight;
+  letter-spacing: t.$tracking-tight;
+  color: var(--ds-fg);
+  margin: 0;
+}
+
+.ds-chapter__title em {
+  font-style: normal;
+  font-weight: t.$fw-medium;
+  background: linear-gradient(90deg, var(--ds-sky), var(--ds-teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ds-chapter__rule {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ds-teal), transparent);
+  margin: s.$s-2 auto 0;
+}
