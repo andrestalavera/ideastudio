@@ -1,4 +1,4 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 @using IdeaStudio.Website.Services
 @using IdeaStudio.Website.Components
 @inject ICultureService CultureService
@@ -8,42 +8,29 @@
 <CascadingValue Value="this">
     <Loading />
 
-    <div id="main-content-container" class="d-flex flex-column min-vh-100">
-        <a href="#main-content"
-            class="skip-link visually-hidden-focusable position-absolute top-0 start-0 z-3 btn btn-primary">
-            @skipToMainContentText
-        </a>
+    <div id="main-content-container" class="ds-app">
+        <a href="#main-content" class="ds-skip-link">@skipToMainContentText</a>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-acrylic bg-opacity-25 sticky-top border-0 border-bottom border-opacity-25 d-print-none"
-            data-bs-spy="scroll" data-bs-target="#navbar-nav" data-bs-offset="70" style="z-index: 4 !important;">
-            <div class="container">
-                <a class="navbar-brand fw-bold d-flex align-items-center" href="/" aria-label="IdeaStudio - Home">
-                    <img src="images/logo-ideastudio-white.svg" alt="IdeaStudio"
-                        class="d-inline-block align-text-top me-2" height="40" width="100" loading="eager">
-                </a>
+        <nav class="ds-nav ds-print-hidden" id="navbar">
+            <div class="ds-container">
+                <div class="ds-nav__inner">
+                    <a class="ds-nav__brand" href="/" aria-label="IdeaStudio - Home">
+                        <img src="images/logo-ideastudio-white.svg" alt="IdeaStudio" height="40" width="100" loading="eager">
+                    </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav"
-                    aria-controls="navbar-nav" aria-expanded="false" aria-label="@toggleNavigationText">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbar-nav">
-                    <div class="me-auto">
-                        @if (NavbarContent is not null)
-                        {
-                            @NavbarContent
-                        }
+                    <div class="ds-nav__links">
+                        @if (NavbarContent is not null) { @NavbarContent }
                     </div>
 
-                    <div class="d-flex gap-2">
-                        <SocialNetworksComponent Size="sm" />
+                    <div class="ds-nav__actions">
+                        <SocialNetworksComponent Size="sm" ShowText="false" />
                         <CultureSelector />
                     </div>
                 </div>
             </div>
         </nav>
 
-        <main id="main-content" class="flex-grow-1 text-primary z-3" role="main">
+        <main id="main-content" role="main">
             @Body
         </main>
 
@@ -55,7 +42,6 @@
     [Parameter] public RenderFragment? NavbarContent { get; set; }
 
     private string skipToMainContentText = "Skip to main content";
-    private string toggleNavigationText = "Toggle navigation";
 
     protected override async Task OnInitializedAsync()
     {
@@ -76,13 +62,11 @@
         StateHasChanged();
     }
 
-    private async void OnCultureChanged()
-    => await LoadLocalizedStringsAsync();
+    private void OnCultureChanged() => _ = LoadLocalizedStringsAsync();
 
     private void LoadTexts()
     {
         skipToMainContentText = LocalizationService.GetString("SkipToMainContent");
-        toggleNavigationText = LocalizationService.GetString("ToggleNavigation");
     }
 
     public void Dispose()

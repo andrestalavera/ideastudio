@@ -40,3 +40,11 @@
 .ds-section {
   padding-block: s.$s-9;
 }
+
+.ds-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  > main { flex: 1; }
+}
