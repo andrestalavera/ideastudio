@@ -104,3 +104,57 @@
 }
 
 .ds-exp-card__content { min-width: 0; }
+
+.ds-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: s.$s-9;
+  position: relative;
+  overflow: hidden;
+}
+
+.ds-hero__inner {
+  max-width: 960px;
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-6;
+}
+
+.ds-hero__name {
+  margin: 0;
+  background: linear-gradient(90deg, var(--ds-sky), var(--ds-teal), var(--ds-mint));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ds-hero__row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: s.$s-5;
+
+  @media (min-width: s.$bp-md) {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: s.$s-7;
+  }
+}
+
+.ds-hero__avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(125, 211, 252, 0.20);
+  box-shadow: 0 10px 40px rgba(14, 165, 233, 0.15);
+  flex-shrink: 0;
+}
+
+.ds-hero__intro { flex: 1; }
