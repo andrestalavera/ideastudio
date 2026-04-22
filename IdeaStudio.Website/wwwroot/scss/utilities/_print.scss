@@ -1,0 +1,10 @@
+// Minimal replacements for Bootstrap's d-print-* utilities.
+// CV print view must remain functional after Bootstrap is removed.
+
+.ds-print-hidden { @media print { display: none !important; } }
+.ds-print-only   { display: none !important; @media print { display: initial !important; } }
+.ds-pagebreak    { page-break-after: always; }
+
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+}

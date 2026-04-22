@@ -1,0 +1,11 @@
+@use '../tokens/space' as s;
+
+@mixin sm   { @media (min-width: s.$bp-sm)   { @content; } }
+@mixin md   { @media (min-width: s.$bp-md)   { @content; } }
+@mixin lg   { @media (min-width: s.$bp-lg)   { @content; } }
+@mixin xl   { @media (min-width: s.$bp-xl)   { @content; } }
+@mixin xxl  { @media (min-width: s.$bp-2xl)  { @content; } }
+
+@mixin touch    { @media (hover: none) and (pointer: coarse) { @content; } }
+@mixin motion   { @media (prefers-reduced-motion: no-preference) { @content; } }
+@mixin no-motion{ @media (prefers-reduced-motion: reduce) { @content; } }
