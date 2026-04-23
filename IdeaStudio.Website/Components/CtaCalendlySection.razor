@@ -1,0 +1,29 @@
+@inherits LocalizedComponent
+
+<section id="cta" class="ds-section ds-section--cta">
+    <div class="ds-container ds-cta">
+        <h2 class="ds-cta__title">@titleText</h2>
+        <p class="ds-cta__lead">@leadText</p>
+        <a class="ds-btn ds-btn--primary ds-btn--lg"
+           href="https://calendly.com/andres-talavera/30min"
+           target="_blank" rel="noopener"
+           aria-label="@ariaText">
+            @buttonText
+        </a>
+    </div>
+</section>
+
+@code {
+    private string titleText = "Parlons de votre projet";
+    private string leadText = "30 minutes gratuites pour cadrer votre besoin et voir comment je peux vous aider.";
+    private string buttonText = "Réserver 30 min";
+    private string ariaText = "Book a 30-minute call on Calendly (opens in a new tab)";
+
+    protected override void LoadTexts()
+    {
+        titleText = LocalizationService.GetString("Home.CtaTitle");
+        leadText = LocalizationService.GetString("Home.CtaLead");
+        buttonText = LocalizationService.GetString("Home.CtaButton");
+        ariaText = LocalizationService.GetString("Nav.BookCall");
+    }
+}
