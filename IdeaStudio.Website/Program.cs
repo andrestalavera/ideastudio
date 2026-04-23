@@ -15,6 +15,7 @@ builder.Services.AddScoped<ISlugService, SlugService>();
 // Add localization services for Blazor WASM
 builder.Services.AddScoped<ICultureService, CultureService>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
+builder.Services.AddScoped<ILocalizedRoute, LocalizedRoute>();
 
 WebAssemblyHost app = builder.Build();
 
