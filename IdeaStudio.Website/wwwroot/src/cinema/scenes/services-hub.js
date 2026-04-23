@@ -103,24 +103,16 @@ export default async function servicesHubScene(ctx) {
     writeLines();
   };
 
-  updatePositions();
-
-  // rAF retry if the grid hasn't mounted yet (mirrors home.js pattern).
-  if (!cards.length) {
-    requestAnimationFrame(() => {
-      cards = document.querySelectorAll('[data-service-anchor]');
-      updatePositions();
-    });
-  }
-
-  const onScroll = () => updatePositions();
-  const onResize = () => updatePositions();
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onResize, { passive: true });
-
-  // IntersectionObserver: brighten a node when its card crosses 30% visible.
   let observer = null;
-  if ('IntersectionObserver' in window && cards.length) {
+
+  const setupObserver = () => {
+    observer?.disconnect();
+    observer = null;
+    if (!('IntersectionObserver' in window) || !cards.length) {
+      // No IO or no cards — default all activated so nodes aren't dead.
+      for (let i = 0; i < NODE_COUNT; i++) target[i] = 1;
+      return;
+    }
     observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         const idx = Array.prototype.indexOf.call(cards, entry.target);
@@ -130,10 +122,24 @@ export default async function servicesHubScene(ctx) {
       }
     }, { threshold: 0.3 });
     for (let i = 0; i < cards.length; i++) observer.observe(cards[i]);
-  } else {
-    // No IO or no cards at init — default all activated so nodes aren't dead.
-    for (let i = 0; i < NODE_COUNT; i++) target[i] = 1;
+  };
+
+  updatePositions();
+  setupObserver();
+
+  // rAF retry if the grid hasn't mounted yet (mirrors home.js pattern).
+  if (!cards.length) {
+    requestAnimationFrame(() => {
+      cards = document.querySelectorAll('[data-service-anchor]');
+      updatePositions();
+      setupObserver();
+    });
   }
+
+  const onScroll = () => updatePositions();
+  const onResize = () => updatePositions();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onResize, { passive: true });
 
   plasma.setPalette(palette.bg, palette.deep, palette.sky);
   plasma.setIntensity(0.85);
@@ -143,6 +149,14 @@ export default async function servicesHubScene(ctx) {
     root,
     update(dt) {
       t += dt;
+      // Defensive re-observe if Blazor replaced the grid DOM (route or
+      // content-count change). Same-culture re-renders reuse elements,
+      // so this is cheap insurance — one getter per frame.
+      if (cards.length && !cards[0].isConnected) {
+        cards = document.querySelectorAll('[data-service-anchor]');
+        setupObserver();
+        updatePositions();
+      }
       // Ease activation toward target (~250ms time-constant at dt=16ms).
       const k = Math.min(1, dt * 4);
       for (let i = 0; i < NODE_COUNT; i++) {

@@ -59,6 +59,20 @@ export async function boot(canvas) {
   return state;
 }
 
+/**
+ * Swaps the active scene with a 600ms opacity crossfade.
+ *
+ * Scenes may optionally expose `setEnterProgress(v)` / `setExitProgress(v)`
+ * hooks returning via their factory. These run AFTER `setGroupOpacity` in
+ * each tween tick, so a scene whose materials use a non-1.0 baseline opacity
+ * (e.g. nodes at 0.8, lines at 0.4) must implement them to scale its own
+ * baseline by v — otherwise the crossfade leaves the scene at opacity 1.0
+ * post-fade. See `scenes/services-hub.js` for a reference.
+ *
+ * Reentrancy: a new `switchScene` call mid-tween kills the in-flight tween,
+ * disposes the previous outgoing immediately, and starts fresh. A generation
+ * counter discards mid-factory awaits that would otherwise race.
+ */
 export async function switchScene(name, parameters) {
   if (!state) return;
   const factory = sceneRegistry.get(name);
