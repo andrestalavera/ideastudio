@@ -3,6 +3,7 @@
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
+@using ServiceModel = IdeaStudio.Website.Models.Service
 @inherits LocalizedComponent
 @inject ILazyLoadingService LazyLoadingService
 @inject ILocalizedRoute LocalizedRoute
@@ -18,7 +19,8 @@
          OgImage="https://ideastud.io/images/andres-talavera.jpeg"
          OgImageAlt="Andrés Talavera - Services"
          Locale="@seoLocale"
-         HreflangUrls="@seoHreflangUrls" />
+         HreflangUrls="@seoHreflangUrls"
+         StructuredData="@seoStructuredData" />
 
 <section class="ds-chapter">
     <div class="ds-container">
@@ -30,7 +32,7 @@
         </header>
 
         <div class="ds-grid ds-grid--3">
-            @foreach (Service service in services.OrderBy(s => s.Order))
+            @foreach (ServiceModel service in services.OrderBy(s => s.Order))
             {
                 <ServiceCard Service="@service" />
             }
@@ -41,7 +43,7 @@
 <CtaCalendlySection />
 
 @code {
-    private IReadOnlyList<Service> services = [];
+    private IReadOnlyList<ServiceModel> services = [];
     private string hubTitle = "My services";
     private string hubLead = "";
     private string kickerText = "· Services ·";
@@ -50,11 +52,13 @@
     private string seoCanonical = "https://ideastud.io/en/services";
     private string seoLocale = "en_US";
     private Dictionary<string, string> seoHreflangUrls = new();
+    private List<string>? seoStructuredData;
 
     protected override async Task LoadLocalizedStringsAsync()
     {
         await base.LoadLocalizedStringsAsync();
         await LoadDataAsync();
+        GenerateStructuredData();
         StateHasChanged();
     }
 
@@ -79,12 +83,56 @@
             ["en"] = "https://ideastud.io/en/services",
             ["x-default"] = "https://ideastud.io/en/services"
         };
+
+        GenerateStructuredData();
     }
 
     private async Task LoadDataAsync()
     {
         string lang = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
-        List<Service>? s = await LazyLoadingService.LoadDataAsync<List<Service>>($"data/services-{lang}.json");
+        List<ServiceModel>? s = await LazyLoadingService.LoadDataAsync<List<ServiceModel>>($"data/services-{lang}.json");
         services = s ?? [];
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string areaServed = isFr ? "France et international (remote)" : "France and worldwide (remote)";
+
+        SchemaOrg.Person person = new(
+            Name: "Andrés Talavera",
+            JobTitle: isFr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
+            Description: seoDescription,
+            Url: "https://ideastud.io",
+            Image: "https://ideastud.io/images/andres-talavera.jpeg"
+        );
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (isFr ? "Accueil" : "Home", isFr ? "/fr" : "/en"),
+            (isFr ? "Services" : "Services", isFr ? "/fr/services" : "/en/services"));
+
+        List<SchemaOrg.Service> svcs = services
+            .OrderBy(s => s.Order)
+            .Select(s => new SchemaOrg.Service(
+                Name: s.Title,
+                Description: string.IsNullOrWhiteSpace(s.Tagline) ? s.Summary : s.Tagline,
+                Provider: person,
+                AreaServed: areaServed))
+            .ToList();
+
+        SchemaOrg.ProfessionalService professional = new(
+            Name: isFr ? "Services IdeaStud.io" : "IdeaStud.io services",
+            Description: seoDescription,
+            Url: seoCanonical,
+            AreaServed: areaServed,
+            Provider: person,
+            Services: svcs);
+
+        seoStructuredData = new List<string>
+        {
+            SchemaOrg.ToJsonLd(breadcrumb),
+            SchemaOrg.ToJsonLd(professional)
+        };
     }
 }
