@@ -1,6 +1,6 @@
 @using Markdig
 
-<Card Title="@(AboutSection.Title)" Index="@Index">
+<Card Title="@(AboutSection.Title)">
     <Content>
         @if (AboutSection.Paragraphs is not null)
         {
@@ -32,5 +32,4 @@
 
 @code {
     [Parameter] public required AboutSection AboutSection { get; set; }
-    [Parameter] public required int Index { get; set; }
 }

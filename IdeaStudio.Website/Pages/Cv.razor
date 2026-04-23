@@ -53,9 +53,9 @@
         @if (resume?.AboutSections is not null)
         {
             <div class="ds-grid ds-grid--3">
-                @foreach (var (section, index) in resume.AboutSections.Select((s, i) => (s, i)))
+                @foreach (AboutSection aboutSection in resume.AboutSections)
                 {
-                    <AboutCard AboutSection="@(section)" Index="@index" />
+                    <AboutCard AboutSection="@aboutSection" />
                 }
             </div>
         }
@@ -116,9 +116,9 @@
         @if (resume?.TrainingCenters is not null)
         {
             <div class="ds-grid ds-grid--3">
-                @foreach (var (center, index) in resume.TrainingCenters.Select((t, i) => (t, i)))
+                @foreach (TrainingCenter center in resume.TrainingCenters)
                 {
-                    <TrainingCard TrainingCenter="@center.WithGeneratedId(SlugService)" Index="@index" />
+                    <TrainingCard TrainingCenter="@center.WithGeneratedId(SlugService)" />
                 }
             </div>
         }

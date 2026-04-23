@@ -3,7 +3,7 @@
 @using Markdig
 @inherits LocalizedComponent
 
-<Card Title="@TrainingCenter.Name" Index="@Index">
+<Card Title="@TrainingCenter.Name">
     <Content>
         @if (TrainingCenter.Courses is not null)
         {
@@ -37,7 +37,6 @@
 
 @code {
     [Parameter] public required TrainingCenter TrainingCenter { get; set; }
-    [Parameter] public required int Index { get; set; }
     private string coursesText = "Courses";
     private string locationsText = "Locations";
 
