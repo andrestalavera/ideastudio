@@ -1,0 +1,90 @@
+@page "/fr/services"
+@page "/en/services"
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject ILazyLoadingService LazyLoadingService
+@inject ILocalizedRoute LocalizedRoute
+@layout MainLayout
+
+<SeoHead Title="@seoTitle"
+         Description="@seoDescription"
+         Keywords=".NET, Azure, Techlead, Formateur, Consulting, Lyon"
+         Author="Andrés Talavera"
+         CanonicalUrl="@seoCanonical"
+         Url="@seoCanonical"
+         SiteName="IdeaStud.io"
+         OgImage="https://ideastud.io/images/andres-talavera.jpeg"
+         OgImageAlt="Andrés Talavera - Services"
+         Locale="@seoLocale"
+         HreflangUrls="@seoHreflangUrls" />
+
+<section class="ds-chapter">
+    <div class="ds-container">
+        <header class="ds-chapter__heading">
+            <p class="ds-chapter__kicker">@kickerText</p>
+            <h1 class="ds-chapter__title">@hubTitle</h1>
+            <div class="ds-chapter__rule"></div>
+            <p class="ds-body-lead">@hubLead</p>
+        </header>
+
+        <div class="ds-grid ds-grid--3">
+            @foreach (Service service in services.OrderBy(s => s.Order))
+            {
+                <ServiceCard Service="@service" />
+            }
+        </div>
+    </div>
+</section>
+
+<CtaCalendlySection />
+
+@code {
+    private IReadOnlyList<Service> services = [];
+    private string hubTitle = "My services";
+    private string hubLead = "";
+    private string kickerText = "· Services ·";
+    private string seoTitle = "Services — IdeaStud.io";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/en/services";
+    private string seoLocale = "en_US";
+    private Dictionary<string, string> seoHreflangUrls = new();
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        await LoadDataAsync();
+        StateHasChanged();
+    }
+
+    protected override void LoadTexts()
+    {
+        hubTitle = LocalizationService.GetString("Services.HubTitle");
+        hubLead = LocalizationService.GetString("Services.HubLead");
+
+        bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = isFr ? "fr_FR" : "en_US";
+        kickerText = isFr ? "· Services ·" : "· Services ·";
+        seoTitle = isFr
+            ? "Mes services — Consulting .NET & Azure, Tech lead, Formation | IdeaStud.io"
+            : "My services — .NET & Azure consulting, Tech lead, Training | IdeaStud.io";
+        seoDescription = isFr
+            ? "Six façons de vous accompagner sur vos projets tech : consulting .NET & Azure, tech lead, formation, vibe coding, applications mobiles, sites web."
+            : "Six ways I can help on your tech projects: .NET & Azure consulting, tech lead, training, vibe coding, mobile apps, websites.";
+        seoCanonical = isFr ? "https://ideastud.io/fr/services" : "https://ideastud.io/en/services";
+        seoHreflangUrls = new Dictionary<string, string>
+        {
+            ["fr"] = "https://ideastud.io/fr/services",
+            ["en"] = "https://ideastud.io/en/services",
+            ["x-default"] = "https://ideastud.io/en/services"
+        };
+    }
+
+    private async Task LoadDataAsync()
+    {
+        string lang = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
+        List<Service>? s = await LazyLoadingService.LoadDataAsync<List<Service>>($"data/services-{lang}.json");
+        services = s ?? [];
+    }
+}
