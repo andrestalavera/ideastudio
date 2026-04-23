@@ -1,0 +1,60 @@
+@inject NavigationManager NavigationManager
+
+@code {
+    private static readonly Dictionary<string, string> LegacyMap = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["/"] = "/fr",
+        ["/andres-talavera-resume"] = "/fr/cv",
+        ["/privacy"] = "/fr/confidentialite",
+        ["/legal"] = "/fr/mentions-legales"
+    };
+
+    protected override void OnInitialized()
+    {
+        Uri uri = new(NavigationManager.Uri);
+        string path = uri.AbsolutePath;
+        string query = uri.Query;
+
+        if (LegacyMap.TryGetValue(path, out string? target))
+        {
+            string final = AppendCultureAwareQuery(target, query);
+            NavigationManager.NavigateTo(final, replace: true);
+            return;
+        }
+
+        // Handle ?culture=fr|en on any legacy URL: prefix path with the culture.
+        if (!string.IsNullOrEmpty(query) && path != "/")
+        {
+            string? culture = ParseCultureQuery(query);
+            if (culture != null && !path.StartsWith("/fr") && !path.StartsWith("/en"))
+            {
+                NavigationManager.NavigateTo($"/{culture}{path}", replace: true);
+            }
+        }
+    }
+
+    private static string AppendCultureAwareQuery(string target, string query)
+    {
+        string? culture = ParseCultureQuery(query);
+        if (culture == "en" && target.StartsWith("/fr"))
+        {
+            return "/en" + target[3..];
+        }
+        return target;
+    }
+
+    private static string? ParseCultureQuery(string query)
+    {
+        if (string.IsNullOrEmpty(query)) return null;
+        string q = query.TrimStart('?');
+        foreach (string part in q.Split('&'))
+        {
+            string[] kv = part.Split('=', 2);
+            if (kv.Length == 2 && kv[0] == "culture" && kv[1] is "fr" or "en")
+            {
+                return kv[1];
+            }
+        }
+        return null;
+    }
+}

@@ -4,18 +4,13 @@
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
     <NotFound>
-        <PageTitle>404</PageTitle>
+        <LegacyRedirect />
+        <PageTitle>Not found</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
-            <section class="ds-chapter">
-                <div class="ds-container">
-                    <article class="ds-card">
-                        <div class="ds-card__body ds-stack">
-                            <p class="ds-body-lead">Désolé, il n'y a aucun contenu à cette adresse.</p>
-                            <p class="ds-body-lead">Vous pouvez vous rendre <a href="/">à la page d'accueil</a>.</p>
-                        </div>
-                    </article>
-                </div>
-            </section>
+            <div class="ds-section ds-container">
+                <h1>404</h1>
+                <p>Cette page n'existe pas. <a href="/fr">Retour à l'accueil</a></p>
+            </div>
         </LayoutView>
     </NotFound>
 </Router>
