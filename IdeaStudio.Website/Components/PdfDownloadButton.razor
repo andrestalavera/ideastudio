@@ -1,0 +1,12 @@
+<a class="ds-btn ds-btn--ghost ds-btn--sm"
+   href="@($"cv-andres-talavera-{Language}.pdf")"
+   download
+   aria-label="@Label">
+    <i class="fas fa-file-pdf" aria-hidden="true"></i>
+    <span>@Label</span>
+</a>
+
+@code {
+    [Parameter, EditorRequired] public string Language { get; set; } = "fr";
+    [Parameter, EditorRequired] public string Label { get; set; } = "";
+}
