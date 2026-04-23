@@ -1,68 +1,21 @@
 // ============================================================
 // IdeaStud.io — styles entry
-// Dark cinema-atmospheric design system layered over Bootstrap.
-// Bootstrap is removed at the end of Phase 1 (see plan Task 19).
-// Uses @import for ds partials too because dart-sass requires @use
-// to come first and we must let Bootstrap emit before our reset to
-// preserve the intended cascade order (our reset wins).
+// Dark cinema-atmospheric design system (Phase 1 complete).
 // ============================================================
 
-// --- Bootstrap (temporary, removed at end of Phase 1) ---
-@import "../../node_modules/bootstrap/scss/functions";
+@use 'base/reset';
+@use 'base/root';
+@use 'base/typography';
 
-$spacer: 24px;
-$border-radius: 12px;
-$border-radius-sm: 8px;
-$border-radius-lg: 16px;
-$border-radius-xl: 24px;
-$border-radius-xxl: 32px;
-$border-radius-pill: 50rem;
+@use 'utilities/responsive';
+@use 'utilities/stack';
+@use 'utilities/visually-hidden';
+@use 'utilities/print';
 
-$primary: rgb(0, 76, 141);
-$secondary: rgb(132, 44, 247);
-$success: rgb(0, 164, 98);
-$info: rgb(0, 113, 168);
-$warning: rgb(247, 131, 44);
-$danger: rgb(247, 44, 44);
-$light: rgb(170, 215, 255);
-$dark: rgb(18, 38, 55);
-
-$font-family-sans-serif: "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-$line-height-base: 1.6;
-$enable-gradients: false;
-$enable-negative-margins: false;
-$enable-rounded: true;
-$enable-smooth-scroll: true;
-
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/variables-dark";
-@import "../../node_modules/bootstrap/scss/maps";
-@import "../../node_modules/bootstrap/scss/mixins";
-@import "../../node_modules/bootstrap/scss/utilities";
-@import "../../node_modules/bootstrap/scss/root";
-@import "../../node_modules/bootstrap/scss/reboot";
-@import "../../node_modules/bootstrap/scss/type";
-@import "../../node_modules/bootstrap/scss/images";
-@import "../../node_modules/bootstrap/scss/containers";
-@import "../../node_modules/bootstrap/scss/grid";
-@import "../../node_modules/bootstrap/scss/forms";
-@import "../../node_modules/bootstrap/scss/buttons";
-@import "../../node_modules/bootstrap/scss/dropdown";
-
-// --- Design system (new) ---
-@import 'base/reset';
-@import 'base/root';
-@import 'base/typography';
-
-@import 'utilities/responsive';
-@import 'utilities/stack';
-@import 'utilities/visually-hidden';
-@import 'utilities/print';
-
-@import 'patterns/button';
-@import 'patterns/card';
-@import 'patterns/chapter';
-@import 'patterns/navbar';
-@import 'patterns/footer';
-@import 'patterns/spinner';
-@import 'patterns/placeholder';
+@use 'patterns/button';
+@use 'patterns/card';
+@use 'patterns/chapter';
+@use 'patterns/navbar';
+@use 'patterns/footer';
+@use 'patterns/spinner';
+@use 'patterns/placeholder';
