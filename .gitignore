@@ -409,3 +409,5 @@ FodyWeavers.xsd
 *.sln.iml
 .superpowers/
 IdeaStudio.Website/wwwroot/fonts/
+wwwroot/js/cinema.bundle.js
+wwwroot/js/cinema.bundle.js.map
