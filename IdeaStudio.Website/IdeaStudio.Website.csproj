@@ -5,12 +5,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <AnalysisLevel>latest</AnalysisLevel>
-        <RunAOTCompilation>true</RunAOTCompilation>
+        <RunAOTCompilation Condition="'$(Configuration)' == 'Release'">true</RunAOTCompilation>
         <BlazorEnableCompression>true</BlazorEnableCompression>
-        <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
-        <BlazorWebAssemblyJiterpreter>false</BlazorWebAssemblyJiterpreter>
-
-        <BlazorWebAssemblyLoadBootResource>true</BlazorWebAssemblyLoadBootResource>
+        <WasmEnableHotReload>false</WasmEnableHotReload>
         <InvariantGlobalization>false</InvariantGlobalization>
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     </PropertyGroup>

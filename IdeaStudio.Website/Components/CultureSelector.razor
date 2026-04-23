@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Components.Web
 @inherits LocalizedComponent
 @inject ILocalizedRoute LocalizedRoute
+@inject ISlugTranslator SlugTranslator
 @inject NavigationManager NavigationManager
 
 <div class="ds-culture-selector" @onkeydown="OnKeyDown">
@@ -57,9 +58,33 @@
     {
         isOpen = false;
         string currentPath = new Uri(NavigationManager.Uri).AbsolutePath;
-        string targetPath = LocalizedRoute.Translate(currentPath, culture);
+        string targetPath = await ResolveTargetPathAsync(currentPath, culture);
         await CultureService.SetCultureAsync(culture);
         NavigationManager.NavigateTo(targetPath, forceLoad: false);
+    }
+
+    private async Task<string> ResolveTargetPathAsync(string currentPath, string targetCulture)
+    {
+        string? sourceCulture = LocalizedRoute.ExtractCulture(currentPath);
+        if (sourceCulture != null)
+        {
+            string normalized = currentPath.TrimStart('/');
+            int firstSlash = normalized.IndexOf('/');
+            string rest = firstSlash < 0 ? string.Empty : normalized[(firstSlash + 1)..];
+
+            if (rest.StartsWith("services/", StringComparison.OrdinalIgnoreCase))
+            {
+                string sourceSlug = rest["services/".Length..];
+                string? translatedSlug = await SlugTranslator.TranslateServiceSlugAsync(sourceSlug, sourceCulture, targetCulture);
+                if (!string.IsNullOrEmpty(translatedSlug))
+                {
+                    string servicesHub = LocalizedRoute.For("services.hub", targetCulture);
+                    return $"{servicesHub}/{translatedSlug}";
+                }
+            }
+        }
+
+        return LocalizedRoute.Translate(currentPath, targetCulture);
     }
 
     private bool IsCurrentCulture(CultureInfo culture)
