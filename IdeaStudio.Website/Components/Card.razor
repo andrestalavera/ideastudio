@@ -1,30 +1,30 @@
 @using Markdig
-@inherits AnimatedComponentBase
 @inject ISlugService SlugService
 
-<article @ref="ElementRef" id="@SlugService.GenerateSlug(Title)"
-    class="ds-card fade-in-up">
-    @if (Banner is not null)
-    {
-        <img src="@Banner" class="ds-card__banner" alt="@Title banner" loading="lazy">
-    }
-    @if (Title is not null)
-    {
-        <h3 class="ds-card__title">@Title</h3>
-    }
-    <div class="ds-card__body @BodyStyle">
-        @if (Content is not null)
+<MotionReveal Kind="fade-up">
+    <article id="@SlugService.GenerateSlug(Title)" class="ds-card">
+        @if (Banner is not null)
         {
-            @Content
+            <img src="@Banner" class="ds-card__banner" alt="@Title banner" loading="lazy">
         }
-    </div>
-    @if (Footer is not null)
-    {
-        <div class="ds-card__footer">
-            @Footer
+        @if (Title is not null)
+        {
+            <h3 class="ds-card__title">@Title</h3>
+        }
+        <div class="ds-card__body @BodyStyle">
+            @if (Content is not null)
+            {
+                @Content
+            }
         </div>
-    }
-</article>
+        @if (Footer is not null)
+        {
+            <div class="ds-card__footer">
+                @Footer
+            </div>
+        }
+    </article>
+</MotionReveal>
 
 @code {
     [Parameter] public string? Banner { get; set; }

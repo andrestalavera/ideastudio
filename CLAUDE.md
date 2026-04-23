@@ -30,7 +30,6 @@ IdeaStudio.sln
 │   │   ├── Loading.razor
 │   │   ├── Placeholder.razor
 │   │   ├── SocialNetworksComponent.razor
-│   │   ├── AnimatedComponentBase.cs  # Base class for animated components
 │   │   ├── LocalizedComponent.cs     # Base class for localized components
 │   │   └── SkillBadge.cs             # Code-behind component
 │   ├── Models/                    # View models (in Website project)
@@ -50,7 +49,7 @@ IdeaStudio.sln
 │   │   ├── ILocalizationService.cs
 │   │   ├── ISlugService.cs
 │   │   ├── ILazyLoadingService.cs
-│   │   └── IAnimationService.cs
+│   │   └── ICinemaEngine.cs
 │   ├── wwwroot/                   # Static assets
 │   │   ├── css/, scss/, js/
 │   │   ├── images/, data/, i18n/
@@ -86,7 +85,9 @@ dotnet run --project IdeaStudio.Website/IdeaStudio.Website.csproj
 
 - Pages use `@page` directive and live in `Pages/`
 - Reusable components live in `Components/`
-- Base classes: `AnimatedComponentBase` for animations, `LocalizedComponent` for i18n
+- Base class: `LocalizedComponent` for i18n
+- Scroll reveals: wrap content in `<MotionReveal Kind="…" />`
+- Per-page WebGL scene: declare with `<PageScene Name="…" />`; `<CinemaStage />` (in MainLayout) owns the canvas
 - Code-behind components use `.cs` files (e.g., `SkillBadge.cs`)
 - Use `[Parameter]` attribute for component parameters
 - Use `@inject` for dependency injection

@@ -5,12 +5,13 @@
 @using IdeaStudio.Website.Components
 @using Markdig
 @using System.Text.Json
-@inject IAnimationService AnimationService
 @inject ILazyLoadingService LazyLoadingService
 @inject ISlugService SlugService
 
 @inherits LocalizedComponent
 @layout MainLayout
+
+<PageScene Name="cv" />
 
 <SeoHead Title="@seoTitle"
          Description="@seoDescription"
@@ -177,7 +178,6 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        await AnimationService.InitializeAnimationsAsync();
         GenerateStructuredData();
     }
 

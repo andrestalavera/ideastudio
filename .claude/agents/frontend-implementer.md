@@ -18,7 +18,7 @@ Blazor WASM specialist for IdeaStudio portfolio/blog with Markdown processing.
 ## Before Writing Code
 
 1. Read existing components for patterns
-2. Use base classes (`AnimatedComponentBase`, `LocalizedComponent`) where appropriate
+2. Use `LocalizedComponent` for i18n; wrap below-the-fold content in `<MotionReveal Kind="…" />` for scroll reveals; declare per-page WebGL scenes via `<PageScene Name="…" />`
 3. Add tests in `IdeaStudio.Website.Tests/`
 
 ## Build & Test

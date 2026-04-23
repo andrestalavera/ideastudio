@@ -1,17 +1,19 @@
-@inherits AnimatedComponentBase
+@inherits LocalizedComponent
 
-<div @ref="ElementRef" class="ds-contact fade-in-up">
-    <div class="ds-container" style="max-width: 720px;">
-        <div class="ds-card" style="text-align: center; padding: 3rem;">
-            <p class="ds-kicker">· Chapter V · Let's talk ·</p>
-            <h2 class="ds-display-2" style="margin: 0.5rem 0 1rem;">@letsConnectText</h2>
-            <p class="ds-body-lead">@readyToDiscussText</p>
-            <div class="ds-cluster" style="justify-content: center; margin-top: 2rem;">
-                <SocialNetworksComponent Size="lg" ShowText="true" />
+<MotionReveal Kind="fade-up">
+    <div class="ds-contact">
+        <div class="ds-container" style="max-width: 720px;">
+            <div class="ds-card" style="text-align: center; padding: 3rem;">
+                <p class="ds-kicker">· Chapter V · Let's talk ·</p>
+                <h2 class="ds-display-2" style="margin: 0.5rem 0 1rem;">@letsConnectText</h2>
+                <p class="ds-body-lead">@readyToDiscussText</p>
+                <div class="ds-cluster" style="justify-content: center; margin-top: 2rem;">
+                    <SocialNetworksComponent Size="lg" ShowText="true" />
+                </div>
             </div>
         </div>
     </div>
-</div>
+</MotionReveal>
 
 @code {
     private string letsConnectText = "Let's Connect";
