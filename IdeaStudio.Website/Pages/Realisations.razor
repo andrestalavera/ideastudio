@@ -22,54 +22,63 @@
     <div class="ds-container">
         <header class="ds-chapter__heading">
             <p class="ds-chapter__kicker">@kickerText</p>
-            <h1 class="ds-chapter__title">@titleText</h1>
+            <h1 class="ds-chapter__title">@pageTitle</h1>
             <div class="ds-chapter__rule"></div>
-            <p class="ds-body-lead">@leadText</p>
+            <p class="ds-body-lead">@pageLead</p>
         </header>
 
-        @if (realisations.Count > 0)
-        {
-            <div class="ds-grid ds-grid--realisations">
-                @foreach (Realisation r in OrderedRealisations)
-                {
-                    <RealisationCard Realisation="@r" />
-                }
-            </div>
-        }
-        else
-        {
-            <Placeholder />
-        }
+        <RealisationsFilters
+            AvailableTechnologies="@availableTechnologies"
+            AvailableTypes="@availableTypes"
+            SelectedTechnologies="@selectedTechnologies"
+            SelectedTypes="@selectedTypes"
+            OnChanged="HandleFilterChange" />
+
+        <p class="ds-results-count" aria-live="polite">@string.Format(resultsCountText, filtered.Count)</p>
+
+        <RealisationsGrid Items="@filtered"
+                          EmptyText="@emptyText"
+                          ClearText="@clearText"
+                          OnClearRequest="ClearFilters" />
     </div>
 </section>
 
 <CtaCalendlySection />
 
 @code {
-    private IReadOnlyList<Realisation> realisations = [];
-    private string titleText = "Recent projects";
-    private string leadText = "";
-    private string kickerText = "· Realisations ·";
+    private IReadOnlyList<Realisation> all = [];
+    private IReadOnlyList<string> availableTechnologies = [];
+    private IReadOnlyList<RealisationType> availableTypes = [];
+    private HashSet<string> selectedTechnologies = new(StringComparer.OrdinalIgnoreCase);
+    private HashSet<RealisationType> selectedTypes = [];
+    private IReadOnlyList<Realisation> filtered = [];
+
+    private string pageTitle = "Recent projects";
+    private string pageLead = "";
+    private string kickerText = "· Projects ·";
     private string seoTitle = "Projects — IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/en/projects";
     private string seoLocale = "en_US";
     private Dictionary<string, string> seoHreflangUrls = new();
-
-    private IEnumerable<Realisation> OrderedRealisations =>
-        realisations.OrderBy(r => r.DisplayOrder).ThenByDescending(r => r.CompletedOn);
+    private string resultsCountText = "{0} result(s)";
+    private string emptyText = "";
+    private string clearText = "";
 
     protected override async Task LoadLocalizedStringsAsync()
     {
         await base.LoadLocalizedStringsAsync();
-        await LoadDataAsync();
+        await LoadAsync();
         StateHasChanged();
     }
 
     protected override void LoadTexts()
     {
-        titleText = LocalizationService.GetString("Home.RealisationsTitle");
-        leadText = LocalizationService.GetString("Home.RealisationsLead");
+        pageTitle = LocalizationService.GetString("Realisations.PageTitle");
+        pageLead = LocalizationService.GetString("Realisations.PageLead");
+        resultsCountText = LocalizationService.GetString("Realisations.ResultsCount");
+        emptyText = LocalizationService.GetString("Realisations.NoResults");
+        clearText = LocalizationService.GetString("Realisations.Clear");
 
         bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = isFr ? "fr_FR" : "en_US";
@@ -89,10 +98,37 @@
         };
     }
 
-    private async Task LoadDataAsync()
+    private async Task LoadAsync()
     {
         string lang = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
-        List<Realisation>? r = await LazyLoadingService.LoadDataAsync<List<Realisation>>($"data/realisations-{lang}.json");
-        realisations = r ?? [];
+        List<Realisation>? list = await LazyLoadingService.LoadDataAsync<List<Realisation>>($"data/realisations-{lang}.json");
+        all = list ?? [];
+        availableTechnologies = RealisationFilter.AvailableTechnologies(all).ToList();
+        availableTypes = Enum.GetValues<RealisationType>();
+        Recompute();
+    }
+
+    private Task HandleFilterChange()
+    {
+        Recompute();
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    private Task ClearFilters()
+    {
+        selectedTechnologies.Clear();
+        selectedTypes.Clear();
+        Recompute();
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    private void Recompute()
+    {
+        filtered = RealisationFilter.Apply(all, selectedTechnologies, selectedTypes)
+                                    .OrderBy(r => r.DisplayOrder)
+                                    .ThenByDescending(r => r.CompletedOn)
+                                    .ToList();
     }
 }
