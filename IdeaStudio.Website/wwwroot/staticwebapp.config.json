@@ -1,0 +1,12 @@
+{
+  "routes": [
+    { "route": "/", "redirect": "/fr", "statusCode": 301 },
+    { "route": "/andres-talavera-resume", "redirect": "/fr/cv", "statusCode": 301 },
+    { "route": "/privacy", "redirect": "/fr/confidentialite", "statusCode": 301 },
+    { "route": "/legal", "redirect": "/fr/mentions-legales", "statusCode": 301 }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*.{png,jpg,gif,svg,webp,ico}", "/css/*", "/js/*", "/fonts/*", "/data/*.json", "/i18n/*.json", "*.pdf"]
+  }
+}
