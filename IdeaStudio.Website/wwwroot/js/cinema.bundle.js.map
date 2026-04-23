@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/cinema/index.js"],
+  "sourcesContent": ["// wwwroot/src/cinema/index.js\nlet state = null;\n\nexport async function initialize(canvas, dotNetRef) {\n  state = { canvas, dotNetRef };\n  console.info('[cinema] stub initialized');\n}\n\nexport async function setScene(name, parameters) {\n  console.info('[cinema] setScene', name, parameters);\n}\n\nexport async function registerReveal(id, element, options) {}\nexport async function unregisterReveal(id) {}\nexport async function registerPinnedTimeline(container, track, cardCount) {}\nexport async function setCulture(cultureName) {}\nexport async function dispose() { state = null; }\n"],
+  "mappings": "AACA,IAAIA,EAAQ,KAEZ,eAAsBC,EAAWC,EAAQC,EAAW,CAClDH,EAAQ,CAAE,OAAAE,EAAQ,UAAAC,CAAU,EAC5B,QAAQ,KAAK,2BAA2B,CAC1C,CAEA,eAAsBC,EAASC,EAAMC,EAAY,CAC/C,QAAQ,KAAK,oBAAqBD,EAAMC,CAAU,CACpD,CAEA,eAAsBC,EAAeC,EAAIC,EAASC,EAAS,CAAC,CAC5D,eAAsBC,EAAiBH,EAAI,CAAC,CAC5C,eAAsBI,EAAuBC,EAAWC,EAAOC,EAAW,CAAC,CAC3E,eAAsBC,EAAWC,EAAa,CAAC,CAC/C,eAAsBC,GAAU,CAAElB,EAAQ,IAAM",
+  "names": ["state", "initialize", "canvas", "dotNetRef", "setScene", "name", "parameters", "registerReveal", "id", "element", "options", "unregisterReveal", "registerPinnedTimeline", "container", "track", "cardCount", "setCulture", "cultureName", "dispose"]
+}

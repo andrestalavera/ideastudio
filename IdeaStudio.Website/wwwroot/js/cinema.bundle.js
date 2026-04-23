@@ -1,0 +1,2 @@
+var t=null;async function o(e,n){t={canvas:e,dotNetRef:n},console.info("[cinema] stub initialized")}async function c(e,n){console.info("[cinema] setScene",e,n)}async function s(e,n,i){}async function a(e){}async function r(e,n,i){}async function u(e){}async function l(){t=null}export{l as dispose,o as initialize,r as registerPinnedTimeline,s as registerReveal,u as setCulture,c as setScene,a as unregisterReveal};
+//# sourceMappingURL=cinema.bundle.js.map
