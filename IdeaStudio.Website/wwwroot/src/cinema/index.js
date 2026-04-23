@@ -1,4 +1,4 @@
-import { boot, switchScene, shutdown, registerScene } from './engine.js';
+import { boot, switchScene, shutdown, registerScene, pulseActiveScene } from './engine.js';
 import cvScene from './scenes/cv.js';
 import homeScene from './scenes/home.js';
 import servicesHubScene from './scenes/services-hub.js';
@@ -8,6 +8,8 @@ import trainingScene from './scenes/service/training.js';
 import vibeScene from './scenes/service/vibe.js';
 import mobileScene from './scenes/service/mobile.js';
 import webScene from './scenes/service/web.js';
+import realisationsScene from './scenes/realisations.js';
+import legalScene from './scenes/legal.js';
 import * as reveals from './scroll/reveals.js';
 import * as pinned from './scroll/pinned-timeline.js';
 import { gsap } from 'gsap';
@@ -23,6 +25,8 @@ registerScene('service/training',   trainingScene);
 registerScene('service/vibe',       vibeScene);
 registerScene('service/mobile',     mobileScene);
 registerScene('service/web',        webScene);
+registerScene('realisations',       realisationsScene);
+registerScene('legal',              legalScene);
 
 let booted = false;
 
@@ -74,6 +78,15 @@ export async function unregisterPinnedTimeline() {
 }
 
 export async function setCulture(cultureName) {}
+
+/**
+ * Forwards a keyless pulse signal to the active scene. Scenes opt in by
+ * exposing a `pulse()` method from their factory. Used for filter-change
+ * bursts (see scenes/realisations.js).
+ */
+export async function pulse() {
+  pulseActiveScene();
+}
 
 export async function dispose() {
   reveals.disposeAll();

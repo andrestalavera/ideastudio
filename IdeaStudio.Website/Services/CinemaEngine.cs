@@ -37,6 +37,9 @@ public sealed class CinemaEngine : ICinemaEngine, IAsyncDisposable
     public Task SetCultureAsync(string cultureName)
         => module is null ? Task.CompletedTask : module.InvokeVoidAsync("setCulture", cultureName).AsTask();
 
+    public Task PulseAsync()
+        => module is null ? Task.CompletedTask : module.InvokeVoidAsync("pulse").AsTask();
+
     public async ValueTask DisposeAsync()
     {
         if (module is not null)

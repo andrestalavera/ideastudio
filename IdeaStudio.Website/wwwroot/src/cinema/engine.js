@@ -159,6 +159,15 @@ function setGroupOpacity(group, v) {
   });
 }
 
+/**
+ * Sends a transient pulse signal to the active scene. Scenes may opt in by
+ * returning a `pulse()` method from their factory. Used for filter-change
+ * bursts and similar "something just happened on the page" accents.
+ */
+export function pulseActiveScene() {
+  state?.activeScene?.pulse?.();
+}
+
 export function shutdown() {
   if (!state) return;
   state.raf.running = false;

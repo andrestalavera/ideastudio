@@ -11,6 +11,7 @@ public interface ICinemaEngine
     Task RegisterPinnedTimelineAsync(ElementReference container, ElementReference track, int cardCount);
     Task UnregisterPinnedTimelineAsync();
     Task SetCultureAsync(string cultureName);
+    Task PulseAsync();
 }
 
 public sealed record RevealOptions(

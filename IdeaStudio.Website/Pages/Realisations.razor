@@ -3,9 +3,11 @@
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
+@using Microsoft.JSInterop
 @inherits LocalizedComponent
 @inject ILazyLoadingService LazyLoadingService
 @inject ILocalizedRoute LocalizedRoute
+@inject ICinemaEngine CinemaEngine
 @layout MainLayout
 
 <PageScene Name="realisations" />
@@ -147,20 +149,22 @@
         };
     }
 
-    private Task HandleFilterChange()
+    private async Task HandleFilterChange()
     {
         Recompute();
         StateHasChanged();
-        return Task.CompletedTask;
+        try { await CinemaEngine.PulseAsync(); }
+        catch (JSDisconnectedException) { /* runtime gone */ }
     }
 
-    private Task ClearFilters()
+    private async Task ClearFilters()
     {
         selectedTechnologies.Clear();
         selectedTypes.Clear();
         Recompute();
         StateHasChanged();
-        return Task.CompletedTask;
+        try { await CinemaEngine.PulseAsync(); }
+        catch (JSDisconnectedException) { /* runtime gone */ }
     }
 
     private void Recompute()
