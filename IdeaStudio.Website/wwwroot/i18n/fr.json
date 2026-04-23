@@ -76,5 +76,11 @@
   "Cv.PdfSectionTitle": "Télécharger mon CV",
   "NotFound.Title": "Page introuvable",
   "NotFound.Lead": "Désolé, cette page n'existe pas.",
-  "NotFound.BackHome": "Retour à l'accueil"
+  "NotFound.BackHome": "Retour à l'accueil",
+  "Service.HighlightsTitle": "Ce que vous obtenez",
+  "Service.UseCasesTitle": "Cas d'usage",
+  "Service.FaqTitle": "Questions fréquentes",
+  "Service.ReadMore": "En savoir plus",
+  "Services.HubTitle": "Mes services",
+  "Services.HubLead": "Six façons de vous accompagner sur vos projets tech."
 }

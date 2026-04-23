@@ -76,5 +76,11 @@
   "Cv.PdfSectionTitle": "Download my resume",
   "NotFound.Title": "Page not found",
   "NotFound.Lead": "Sorry, this page does not exist.",
-  "NotFound.BackHome": "Back to home"
+  "NotFound.BackHome": "Back to home",
+  "Service.HighlightsTitle": "What you get",
+  "Service.UseCasesTitle": "Use cases",
+  "Service.FaqTitle": "FAQ",
+  "Service.ReadMore": "Learn more",
+  "Services.HubTitle": "My services",
+  "Services.HubLead": "Six ways I can help on your tech projects."
 }
