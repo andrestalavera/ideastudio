@@ -1,4 +1,5 @@
 import { WebGLRenderer, Scene, OrthographicCamera, Clock } from 'three';
+import { gsap } from 'gsap';
 import { createPlasma } from './layers/plasma.js';
 import { readPalette } from './utils/tokens.js';
 import { hasWebGL2 } from './utils/webgl-support.js';
@@ -59,17 +60,60 @@ export async function boot(canvas) {
 export async function switchScene(name, parameters) {
   if (!state) return;
   const factory = sceneRegistry.get(name);
-  if (!factory) { console.warn('[cinema] unknown scene', name); return; }
-
-  if (state.activeScene) {
-    state.activeScene.dispose?.();
-    if (state.activeScene.root) state.scene.remove(state.activeScene.root);
+  if (!factory) {
+    console.warn('[cinema] unknown scene', name);
+    return;
   }
-  const instance = await factory({
-    scene: state.scene, camera: state.camera, palette: state.palette, plasma: state.plasma, parameters,
+
+  const outgoing = state.activeScene;
+  const incoming = await factory({
+    scene: state.scene,
+    camera: state.camera,
+    palette: state.palette,
+    plasma: state.plasma,
+    parameters,
   });
-  if (instance.root) state.scene.add(instance.root);
-  state.activeScene = instance;
+
+  setGroupOpacity(incoming.root, 0);
+  state.scene.add(incoming.root);
+
+  // Swap early so the render loop animates the incoming scene during the fade.
+  state.activeScene = incoming;
+
+  await new Promise(resolve => {
+    gsap.to({ v: 0 }, {
+      v: 1,
+      duration: 0.6,
+      ease: 'power2.out',
+      onUpdate() {
+        const v = this.targets()[0].v;
+        if (outgoing) setGroupOpacity(outgoing.root, 1 - v);
+        setGroupOpacity(incoming.root, v);
+      },
+      onComplete: resolve,
+    });
+  });
+
+  if (outgoing) {
+    state.scene.remove(outgoing.root);
+    outgoing.dispose?.();
+  }
+}
+
+function setGroupOpacity(group, v) {
+  group.traverse(obj => {
+    const mat = obj.material;
+    if (!mat) return;
+    if (Array.isArray(mat)) {
+      for (const m of mat) {
+        m.transparent = true;
+        m.opacity = v;
+      }
+    } else {
+      mat.transparent = true;
+      mat.opacity = v;
+    }
+  });
 }
 
 export function shutdown() {

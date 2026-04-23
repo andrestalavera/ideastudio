@@ -1,5 +1,6 @@
 import { boot, switchScene, shutdown, registerScene } from './engine.js';
 import cvScene from './scenes/cv.js';
+import homeScene from './scenes/home.js';
 import * as reveals from './scroll/reveals.js';
 import * as pinned from './scroll/pinned-timeline.js';
 import { gsap } from 'gsap';
@@ -7,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 registerScene('cv', cvScene);
+registerScene('home', homeScene);
 
 let booted = false;
 
