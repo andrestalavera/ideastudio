@@ -10,6 +10,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<ILazyLoadingService, LazyLoadingService>();
 builder.Services.AddScoped<IAnimationService, AnimationService>();
+builder.Services.AddScoped<ICinemaEngine, CinemaEngine>();
 builder.Services.AddScoped<ISlugService, SlugService>();
 builder.Services.AddScoped<ISlugTranslator, SlugTranslator>();
 

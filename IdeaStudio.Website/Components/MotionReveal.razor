@@ -1,0 +1,33 @@
+@using IdeaStudio.Website.Services
+@inject ICinemaEngine CinemaEngine
+@implements IAsyncDisposable
+
+<div @ref="elementRef" class="ds-reveal" data-reveal-kind="@Kind">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public string Kind { get; set; } = "fade-up";
+    [Parameter] public double DelayMs { get; set; } = 0;
+    [Parameter] public double StaggerMs { get; set; } = 80;
+    [Parameter] public string? Selector { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private ElementReference elementRef;
+    private readonly string id = Guid.NewGuid().ToString("N");
+    private bool registered;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && !registered)
+        {
+            await CinemaEngine.RegisterRevealAsync(id, elementRef, new RevealOptions(Kind, DelayMs, StaggerMs, Selector));
+            registered = true;
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (registered) await CinemaEngine.UnregisterRevealAsync(id);
+    }
+}

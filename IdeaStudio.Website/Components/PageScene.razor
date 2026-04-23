@@ -1,0 +1,18 @@
+@using IdeaStudio.Website.Services
+@inject ICinemaEngine CinemaEngine
+
+@code {
+    [Parameter, EditorRequired] public string Name { get; set; } = "";
+    [Parameter] public IDictionary<string, object?>? Parameters { get; set; }
+
+    private string? lastApplied;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (Name != lastApplied)
+        {
+            lastApplied = Name;
+            await CinemaEngine.SetSceneAsync(Name, Parameters);
+        }
+    }
+}

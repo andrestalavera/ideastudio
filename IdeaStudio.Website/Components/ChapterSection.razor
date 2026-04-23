@@ -1,0 +1,24 @@
+<section id="@Id" class="ds-chapter @ExtraClass">
+    <div class="ds-container">
+        <header class="ds-chapter__heading">
+            @if (!string.IsNullOrWhiteSpace(Kicker))
+            {
+                <p class="ds-chapter__kicker">@Kicker</p>
+            }
+            @if (!string.IsNullOrWhiteSpace(Title))
+            {
+                <h2 class="ds-chapter__title">@((MarkupString)Title)</h2>
+                <div class="ds-chapter__rule"></div>
+            }
+        </header>
+        @ChildContent
+    </div>
+</section>
+
+@code {
+    [Parameter, EditorRequired] public string Id { get; set; } = "";
+    [Parameter] public string? Kicker { get; set; }
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? ExtraClass { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

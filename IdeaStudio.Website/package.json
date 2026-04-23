@@ -7,8 +7,8 @@
 		"copy-fonts": "node scripts/copy-fonts.mjs",
 		"compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --update --color",
 		"watch-compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --update --watch --poll --color",
-		"compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --minify --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --legal-comments=none",
-		"watch-compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --watch",
+		"compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --minify --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --legal-comments=none --alias:three=./node_modules/three/build/three.module.js",
+		"watch-compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --watch --alias:three=./node_modules/three/build/three.module.js",
 		"build": "npm run copy-fonts && npm run compile-styles && npm run compile-scripts"
 	},
 	"repository": {
