@@ -1,0 +1,61 @@
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject ILocalizedRoute LocalizedRoute
+
+<section id="realisations" class="ds-section">
+    <div class="ds-container">
+        <div class="ds-section__header">
+            <h2 class="ds-section__title">@titleText</h2>
+            <p class="ds-section__lead">@leadText</p>
+        </div>
+        <div class="ds-grid ds-grid--realisations">
+            @foreach ((Realisation r, int index) in OrderedRealisations.Select((r, i) => (r, i)))
+            {
+                <div class="@(index < DefaultVisible ? "d-flex" : showAll ? "d-flex" : "d-none")">
+                    <RealisationCard Realisation="@r" />
+                </div>
+            }
+        </div>
+        <div class="ds-section__footer">
+            @if (HiddenCount > 0)
+            {
+                <button type="button" class="ds-btn ds-btn--ghost" @onclick="Toggle">
+                    @(showAll ? seeLessText : string.Format(seeMoreText, HiddenCount))
+                </button>
+            }
+            <a href="@LocalizedRoute.For("realisations")" class="ds-btn ds-btn--primary">
+                @seeAllText
+            </a>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<Realisation> Realisations { get; set; } = [];
+
+    private const int DefaultVisible = 3;
+    private bool showAll;
+
+    private IEnumerable<Realisation> OrderedRealisations =>
+        Realisations.OrderBy(r => r.DisplayOrder).ThenByDescending(r => r.CompletedOn);
+
+    private int HiddenCount => Math.Max(0, Realisations.Count - DefaultVisible);
+
+    private void Toggle() => showAll = !showAll;
+
+    private string titleText = "Recent projects";
+    private string leadText = "";
+    private string seeMoreText = "Show {0} more";
+    private string seeLessText = "Show fewer";
+    private string seeAllText = "See all projects";
+
+    protected override void LoadTexts()
+    {
+        titleText = LocalizationService.GetString("Home.RealisationsTitle");
+        leadText = LocalizationService.GetString("Home.RealisationsLead");
+        seeMoreText = LocalizationService.GetString("Home.RealisationsSeeMore");
+        seeLessText = LocalizationService.GetString("Home.RealisationsSeeLess");
+        seeAllText = LocalizationService.GetString("Home.RealisationsSeeAll");
+    }
+}
