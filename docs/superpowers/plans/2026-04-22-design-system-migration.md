@@ -2585,6 +2585,10 @@ Apply this translation table mechanically to every Razor file listed above (use 
 | `h2`, `h3`, `h4`, `h5`, `h6` classes | `.ds-h2`, `.ds-h3` etc |
 | `lead` | `ds-body-lead` |
 | `pagebreak` | `ds-pagebreak` |
+| `visually-hidden` | `ds-sr-only` |
+| `spinner-border` | `ds-spinner` |
+| `placeholder-glow` | `ds-placeholder-glow` |
+| `placeholder` | `ds-placeholder` |
 
 For pages with long content (Privacy, Legal), wrap the whole thing in a `<section class="ds-chapter">` with a `ds-chapter__heading` block. Use `.ds-container` for constraining width.
 
@@ -2609,6 +2613,105 @@ structure preserved; only class names change.
 
 Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
 ```
+
+---
+
+## Task 18bis: spinner/placeholder patterns
+
+Task 18's translation table missed that `spinner-border`, `placeholder-glow`, and
+`placeholder` are Bootstrap *components* (not utilities) — they would stop working
+once Bootstrap is removed in Task 19. Likewise, `visually-hidden` was left as
+Bootstrap's utility when the DS equivalent `ds-sr-only` already existed. This
+follow-up adds minimal DS equivalents and wires up the Razor templates.
+
+**Files:**
+
+- Create: `IdeaStudio.Website/wwwroot/scss/patterns/_spinner.scss`
+- Create: `IdeaStudio.Website/wwwroot/scss/patterns/_placeholder.scss`
+- Modify: `IdeaStudio.Website/wwwroot/scss/styles.scss`
+- Modify: `IdeaStudio.Website/Components/Loading.razor`
+- Modify: `IdeaStudio.Website/Components/Placeholder.razor`
+
+**`_spinner.scss`:**
+
+```scss
+@use '../tokens/space' as s;
+
+@keyframes ds-spinner-rotate {
+  to { transform: rotate(360deg); }
+}
+
+.ds-spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid rgba(125, 211, 252, 0.2);
+  border-top-color: var(--ds-teal);
+  border-radius: 50%;
+  animation: ds-spinner-rotate 0.8s linear infinite;
+}
+
+.ds-spinner--sm { width: 1rem; height: 1rem; border-width: 2px; }
+.ds-spinner--lg { width: 3rem; height: 3rem; border-width: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-spinner { animation-duration: 2s; }
+}
+```
+
+**`_placeholder.scss`:**
+
+```scss
+@use '../tokens/space' as s;
+
+@keyframes ds-placeholder-shimmer {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.75; }
+  100% { opacity: 0.4; }
+}
+
+.ds-placeholder {
+  display: inline-block;
+  min-height: 1em;
+  vertical-align: middle;
+  background: var(--ds-surface-2);
+  border-radius: s.$r-sm;
+  opacity: 0.5;
+}
+
+.ds-placeholder-glow .ds-placeholder {
+  animation: ds-placeholder-shimmer 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-placeholder-glow .ds-placeholder { animation: none; opacity: 0.5; }
+}
+```
+
+Register both in `styles.scss` after `@import 'patterns/footer';`:
+
+```scss
+@import 'patterns/spinner';
+@import 'patterns/placeholder';
+```
+
+Razor swaps:
+
+- `Loading.razor`: `spinner-border` → `ds-spinner`, `visually-hidden` → `ds-sr-only`
+- `Placeholder.razor`: `placeholder-glow` → `ds-placeholder-glow`, `placeholder` → `ds-placeholder`
+
+Verify:
+
+```bash
+cd IdeaStudio.Website && npm run compile-styles
+grep -c "ds-spinner" wwwroot/css/styles.min.css       # >= 1
+grep -c "ds-placeholder" wwwroot/css/styles.min.css   # >= 1
+cd .. && dotnet build IdeaStudio.Website/IdeaStudio.Website.csproj
+```
+
+Note: `fade-in-up` and `text-shadow-2` in `Heading.razor:5` remain as orphan
+class names with no SCSS rules — silent no-ops in Phase 1, reintroduced via
+cinema.js in Phase 2.
 
 ---
 
