@@ -3,6 +3,7 @@
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
+@using ServiceModel = IdeaStudio.Website.Models.Service
 @inherits LocalizedComponent
 @inject ILazyLoadingService LazyLoadingService
 @layout MainLayout
@@ -15,7 +16,8 @@
          SiteName="IdeaStud.io"
          OgImage="https://ideastud.io/images/andres-talavera.jpeg"
          OgImageAlt="Andrés Talavera - .NET & Azure"
-         Locale="@seoLocale" />
+         Locale="@seoLocale"
+         StructuredData="@seoStructuredData" />
 
 <CommercialHero />
 
@@ -28,7 +30,7 @@
 <CtaCalendlySection />
 
 @code {
-    private IReadOnlyList<Service> services = [];
+    private IReadOnlyList<ServiceModel> services = [];
     private IReadOnlyList<Realisation> realisations = [];
     private string servicesTitle = "My services";
     private string servicesLead = "";
@@ -36,11 +38,13 @@
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io";
     private string seoLocale = "fr_FR";
+    private List<string>? seoStructuredData;
 
     protected override async Task LoadLocalizedStringsAsync()
     {
         await base.LoadLocalizedStringsAsync();
         await LoadDataAsync();
+        GenerateStructuredData();
         StateHasChanged();
     }
 
@@ -50,20 +54,79 @@
         servicesLead = LocalizationService.GetString("Home.ServicesLead");
         bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = isFr ? "fr_FR" : "en_US";
+        seoCanonical = isFr ? "https://ideastud.io/fr" : "https://ideastud.io/en";
         seoTitle = isFr
             ? "Andrés Talavera — Consultant .NET & Azure, Techlead, Formateur | IdeaStud.io"
             : "Andrés Talavera — .NET & Azure Consultant, Tech Lead, Trainer | IdeaStud.io";
         seoDescription = isFr
             ? "Consultant .NET & Azure, techlead et formateur à Lyon. Je transforme vos idées en logiciels qui marchent."
             : ".NET & Azure consultant, tech lead and trainer in Lyon. I turn your ideas into software that ships.";
+
+        GenerateStructuredData();
     }
 
     private async Task LoadDataAsync()
     {
         string lang = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
-        List<Service>? s = await LazyLoadingService.LoadDataAsync<List<Service>>($"data/services-{lang}.json");
+        List<ServiceModel>? s = await LazyLoadingService.LoadDataAsync<List<ServiceModel>>($"data/services-{lang}.json");
         List<Realisation>? r = await LazyLoadingService.LoadDataAsync<List<Realisation>>($"data/realisations-{lang}.json");
         services = s ?? [];
         realisations = r ?? [];
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string homeUrl = isFr ? "https://ideastud.io/fr" : "https://ideastud.io/en";
+        string servicesUrl = isFr ? "https://ideastud.io/fr/services" : "https://ideastud.io/en/services";
+
+        SchemaOrg.Person person = new(
+            Name: "Andrés Talavera",
+            JobTitle: isFr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
+            Description: seoDescription,
+            Url: "https://ideastud.io",
+            Image: "https://ideastud.io/images/andres-talavera.jpeg",
+            SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
+            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "ASP.NET Core", "Cloud Architecture", "Software Training" },
+            Address: new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressRegion: "Auvergne-Rhône-Alpes", AddressCountry: "FR"),
+            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io")
+        );
+
+        SchemaOrg.WebSite website = new(
+            Name: "IdeaStud.io",
+            Url: "https://ideastud.io",
+            Description: isFr
+                ? "Portfolio et services d'Andrés Talavera, consultant .NET & Azure à Lyon."
+                : "Portfolio and services of Andrés Talavera, .NET & Azure consultant in Lyon."
+        );
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (isFr ? "Accueil" : "Home", isFr ? "/fr" : "/en"));
+
+        List<SchemaOrg.Service> svcs = services
+            .OrderBy(s => s.Order)
+            .Select(s => new SchemaOrg.Service(
+                Name: s.Title,
+                Description: string.IsNullOrWhiteSpace(s.Tagline) ? s.Summary : s.Tagline,
+                Provider: person,
+                AreaServed: isFr ? "France et international (remote)" : "France and worldwide (remote)"))
+            .ToList();
+
+        SchemaOrg.ProfessionalService professional = new(
+            Name: isFr ? "Services IdeaStud.io" : "IdeaStud.io services",
+            Description: seoDescription,
+            Url: servicesUrl,
+            AreaServed: isFr ? "France et international (remote)" : "France and worldwide (remote)",
+            Provider: person,
+            Services: svcs);
+
+        seoStructuredData = new List<string>
+        {
+            SchemaOrg.ToJsonLd(person),
+            SchemaOrg.ToJsonLd(website),
+            SchemaOrg.ToJsonLd(breadcrumb),
+            SchemaOrg.ToJsonLd(professional)
+        };
     }
 }
