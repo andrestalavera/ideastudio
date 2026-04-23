@@ -1,0 +1,82 @@
+@using IdeaStudio.Website.Models
+@inherits LocalizedComponent
+
+<div class="ds-filters">
+    <fieldset class="ds-filters__group">
+        <legend class="ds-filters__legend">@techLegend</legend>
+        <div class="ds-filters__chips">
+            @foreach (string tech in AvailableTechnologies)
+            {
+                bool active = SelectedTechnologies.Contains(tech);
+                <button type="button" class="ds-chip" aria-pressed="@active.ToString().ToLowerInvariant()"
+                        @onclick="() => ToggleTech(tech)">
+                    @tech
+                </button>
+            }
+        </div>
+    </fieldset>
+    <fieldset class="ds-filters__group">
+        <legend class="ds-filters__legend">@typeLegend</legend>
+        <div class="ds-filters__chips">
+            @foreach (RealisationType type in AvailableTypes)
+            {
+                bool active = SelectedTypes.Contains(type);
+                <button type="button" class="ds-chip" aria-pressed="@active.ToString().ToLowerInvariant()"
+                        @onclick="() => ToggleType(type)">
+                    @TypeLabel(type)
+                </button>
+            }
+        </div>
+    </fieldset>
+    @if (SelectedTechnologies.Count + SelectedTypes.Count > 0)
+    {
+        <button type="button" class="ds-btn ds-btn--ghost ds-btn--sm" @onclick="Clear">@clearText</button>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<string> AvailableTechnologies { get; set; } = [];
+    [Parameter, EditorRequired] public IReadOnlyList<RealisationType> AvailableTypes { get; set; } = [];
+    [Parameter, EditorRequired] public HashSet<string> SelectedTechnologies { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+    [Parameter, EditorRequired] public HashSet<RealisationType> SelectedTypes { get; set; } = [];
+    [Parameter] public EventCallback OnChanged { get; set; }
+
+    private string techLegend = "Filter by tech";
+    private string typeLegend = "Filter by type";
+    private string clearText = "Clear filters";
+
+    protected override void LoadTexts()
+    {
+        techLegend = LocalizationService.GetString("Realisations.FilterByTech");
+        typeLegend = LocalizationService.GetString("Realisations.FilterByType");
+        clearText = LocalizationService.GetString("Realisations.Clear");
+    }
+
+    private async Task ToggleTech(string tech)
+    {
+        if (!SelectedTechnologies.Remove(tech))
+        {
+            SelectedTechnologies.Add(tech);
+        }
+        await OnChanged.InvokeAsync();
+    }
+
+    private async Task ToggleType(RealisationType type)
+    {
+        if (!SelectedTypes.Remove(type))
+        {
+            SelectedTypes.Add(type);
+        }
+        await OnChanged.InvokeAsync();
+    }
+
+    private async Task Clear()
+    {
+        SelectedTechnologies.Clear();
+        SelectedTypes.Clear();
+        await OnChanged.InvokeAsync();
+    }
+
+    private string TypeLabel(RealisationType type) =>
+        LocalizationService.GetString($"Realisations.Type{type}");
+}
