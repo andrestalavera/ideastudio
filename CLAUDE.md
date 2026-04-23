@@ -27,7 +27,6 @@ IdeaStudio.sln
 │   │   ├── FooterSection.razor
 │   │   ├── SeoHead.razor
 │   │   ├── CultureSelector.razor
-│   │   ├── Heading.razor
 │   │   ├── Loading.razor
 │   │   ├── Placeholder.razor
 │   │   ├── SocialNetworksComponent.razor

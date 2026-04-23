@@ -3,7 +3,7 @@
 @inject ISlugService SlugService
 
 <article @ref="ElementRef" id="@SlugService.GenerateSlug(Title)"
-    class="ds-card fade-in-up" data-bs-delay="@(Index * 200)">
+    class="ds-card fade-in-up">
     @if (Banner is not null)
     {
         <img src="@Banner" class="ds-card__banner" alt="@Title banner" loading="lazy">
