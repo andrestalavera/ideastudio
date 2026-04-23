@@ -82,5 +82,18 @@
   "Service.FaqTitle": "Questions fréquentes",
   "Service.ReadMore": "En savoir plus",
   "Services.HubTitle": "Mes services",
-  "Services.HubLead": "Six façons de vous accompagner sur vos projets tech."
+  "Services.HubLead": "Six façons de vous accompagner sur vos projets tech.",
+  "Realisations.PageTitle": "Mes réalisations",
+  "Realisations.PageLead": "Sélection de projets récents. Filtrez par techno ou type.",
+  "Realisations.FilterByTech": "Filtrer par techno",
+  "Realisations.FilterByType": "Filtrer par type",
+  "Realisations.Clear": "Effacer les filtres",
+  "Realisations.ResultsCount": "{0} résultat(s)",
+  "Realisations.NoResults": "Aucun projet ne correspond à ces filtres.",
+  "Realisations.TypeSiteVitrine": "Site vitrine",
+  "Realisations.TypeApplicationWeb": "Application web",
+  "Realisations.TypeApplicationMobile": "Application mobile",
+  "Realisations.TypeApiBackend": "API / Backend",
+  "Realisations.TypeFormation": "Formation",
+  "Realisations.TypeAutre": "Autre"
 }

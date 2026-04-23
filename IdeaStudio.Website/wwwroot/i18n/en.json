@@ -82,5 +82,18 @@
   "Service.FaqTitle": "FAQ",
   "Service.ReadMore": "Learn more",
   "Services.HubTitle": "My services",
-  "Services.HubLead": "Six ways I can help on your tech projects."
+  "Services.HubLead": "Six ways I can help on your tech projects.",
+  "Realisations.PageTitle": "Recent projects",
+  "Realisations.PageLead": "A selection of recent work. Filter by tech or type.",
+  "Realisations.FilterByTech": "Filter by tech",
+  "Realisations.FilterByType": "Filter by type",
+  "Realisations.Clear": "Clear filters",
+  "Realisations.ResultsCount": "{0} result(s)",
+  "Realisations.NoResults": "No project matches these filters.",
+  "Realisations.TypeSiteVitrine": "Showcase site",
+  "Realisations.TypeApplicationWeb": "Web application",
+  "Realisations.TypeApplicationMobile": "Mobile application",
+  "Realisations.TypeApiBackend": "API / Backend",
+  "Realisations.TypeFormation": "Training",
+  "Realisations.TypeAutre": "Other"
 }
