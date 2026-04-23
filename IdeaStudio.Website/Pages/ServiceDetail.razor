@@ -3,6 +3,7 @@
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
+@using ServiceModel = IdeaStudio.Website.Models.Service
 @inherits LocalizedComponent
 @inject ILazyLoadingService LazyLoadingService
 @inject ILocalizedRoute LocalizedRoute
@@ -98,7 +99,7 @@ else if (loaded)
 @code {
     [Parameter] public string Slug { get; set; } = string.Empty;
 
-    private Service? service;
+    private ServiceModel? service;
     private bool loaded;
     private string highlightsTitle = "What you get";
     private string useCasesTitle = "Use cases";
@@ -184,7 +185,7 @@ else if (loaded)
     private async Task LoadServiceAsync()
     {
         string lang = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
-        List<Service>? all = await LazyLoadingService.LoadDataAsync<List<Service>>($"data/services-{lang}.json");
+        List<ServiceModel>? all = await LazyLoadingService.LoadDataAsync<List<ServiceModel>>($"data/services-{lang}.json");
         service = all?.FirstOrDefault(x => string.Equals(x.Slug, Slug, StringComparison.OrdinalIgnoreCase));
         loaded = true;
 
@@ -199,7 +200,7 @@ else if (loaded)
         await ComputeSeoAlternatesAsync(service);
     }
 
-    private async Task ComputeSeoAlternatesAsync(Service svc)
+    private async Task ComputeSeoAlternatesAsync(ServiceModel svc)
     {
         string currentCulture = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
 
@@ -212,31 +213,44 @@ else if (loaded)
         if (frSlug is not null) hreflang["x-default"] = $"https://ideastud.io/fr/services/{frSlug}";
         seoHreflangUrls = hreflang;
 
-        string providerUrl = "https://ideastud.io";
-        string canonical = currentCulture == "fr"
+        bool isFr = currentCulture == "fr";
+        string canonical = isFr
             ? $"https://ideastud.io/fr/services/{svc.Slug}"
             : $"https://ideastud.io/en/services/{svc.Slug}";
 
-        string serviceJson = $$"""
+        SchemaOrg.Person person = new(
+            Name: "Andrés Talavera",
+            JobTitle: isFr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
+            Url: "https://ideastud.io",
+            Image: "https://ideastud.io/images/andres-talavera.jpeg"
+        );
+
+        SchemaOrg.Service schemaService = new(
+            Name: svc.Title,
+            Description: string.IsNullOrWhiteSpace(svc.Tagline) ? svc.Summary : svc.Tagline,
+            Provider: person,
+            AreaServed: isFr ? "France et international (remote)" : "France and worldwide (remote)");
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (isFr ? "Accueil" : "Home", isFr ? "/fr" : "/en"),
+            (isFr ? "Services" : "Services", isFr ? "/fr/services" : "/en/services"),
+            (svc.Title, isFr ? $"/fr/services/{svc.Slug}" : $"/en/services/{svc.Slug}"));
+
+        List<string> jsonLd = new()
         {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": {{System.Text.Json.JsonSerializer.Serialize(svc.Title)}},
-          "description": {{System.Text.Json.JsonSerializer.Serialize(string.IsNullOrWhiteSpace(svc.Tagline) ? svc.Summary : svc.Tagline)}},
-          "url": "{{canonical}}",
-          "provider": {
-            "@type": "Person",
-            "name": "Andrés Talavera",
-            "url": "{{providerUrl}}"
-          },
-          "areaServed": [
-            { "@type": "Place", "name": "Lyon" },
-            { "@type": "Place", "name": "France" },
-            { "@type": "VirtualLocation", "name": "Remote" }
-          ],
-          "serviceType": {{System.Text.Json.JsonSerializer.Serialize(svc.Kicker)}}
+            SchemaOrg.ToJsonLd(schemaService),
+            SchemaOrg.ToJsonLd(breadcrumb)
+        };
+
+        if (svc.Faq is { Count: > 0 })
+        {
+            SchemaOrg.FAQPage faq = new(svc.Faq
+                .Select(entry => new SchemaOrg.Question(entry.Question, new SchemaOrg.Answer(entry.Answer)))
+                .ToArray());
+            jsonLd.Add(SchemaOrg.ToJsonLd(faq));
         }
-        """;
-        seoStructuredData = new List<string> { serviceJson };
+
+        seoStructuredData = jsonLd;
     }
 }
