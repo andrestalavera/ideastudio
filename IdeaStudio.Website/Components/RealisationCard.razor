@@ -1,0 +1,24 @@
+@using IdeaStudio.Website.Models
+
+<article class="ds-card ds-card--realisation">
+    <a href="@Realisation.LiveUrl" target="_blank" rel="noopener" class="ds-card__media">
+        <img src="@Realisation.ImageUrl" alt="@Realisation.ImageAlt" loading="lazy" />
+    </a>
+    <div class="ds-card__body">
+        <div class="ds-card__kicker">@Realisation.Client</div>
+        <h3 class="ds-card__title">
+            <a href="@Realisation.LiveUrl" target="_blank" rel="noopener">@Realisation.Title</a>
+        </h3>
+        <p class="ds-card__lead">@Realisation.Summary</p>
+        <ul class="ds-chips" aria-label="Technologies">
+            @foreach (string tech in Realisation.Technologies)
+            {
+                <li class="ds-chip ds-chip--sm">@tech</li>
+            }
+        </ul>
+    </div>
+</article>
+
+@code {
+    [Parameter, EditorRequired] public Realisation Realisation { get; set; } = null!;
+}
