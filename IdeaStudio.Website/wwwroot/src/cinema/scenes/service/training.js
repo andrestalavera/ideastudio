@@ -1,5 +1,5 @@
 import { Group, Color } from 'three';
-import { createParticles, textTargets, scatterTargets } from '../../layers/particles.js';
+import { createParticles, textTargets } from '../../layers/particles.js';
 
 const WORDS = ['LEARN', 'TEACH', 'SHARE'];
 const CYCLE_MS = 2400;

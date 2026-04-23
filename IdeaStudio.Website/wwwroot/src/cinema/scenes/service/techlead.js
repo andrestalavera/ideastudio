@@ -25,12 +25,16 @@ export default async function techleadScene(ctx) {
     speed: 0.4 + Math.random() * 0.6,
     tilt: (Math.random() - 0.5) * 0.5,
   }));
-  // Use orbit.setTargets + setProgress(1) with positions we update each frame.
   orbit.setTargets(orbitPositions);
   orbit.setProgress(1);
   orbit.setColor(accent);
   orbit.setSize(2.4);
   root.add(orbit.points);
+
+  // Hold a reference to the aTarget attribute so the per-frame loop writes
+  // directly into its buffer and flags needsUpdate — no new BufferAttribute
+  // wrapper per frame.
+  const aTarget = orbit.points.geometry.getAttribute('aTarget');
 
   plasma.setPalette(palette.bg, palette.deep, accent);
   plasma.setIntensity(0.75);
@@ -50,9 +54,7 @@ export default async function techleadScene(ctx) {
         orbitPositions[i * 3 + 1] = y;
         orbitPositions[i * 3 + 2] = z;
       }
-      // The target buffer drives final positions at progress=1. Rewrite by setTargets.
-      orbit.setTargets(orbitPositions);
-      orbit.setProgress(1);
+      aTarget.needsUpdate = true;
     },
     dispose() { ring.dispose(); orbit.dispose(); },
   };
