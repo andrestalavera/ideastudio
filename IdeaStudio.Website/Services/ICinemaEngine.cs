@@ -5,7 +5,7 @@ namespace IdeaStudio.Website.Services;
 public interface ICinemaEngine
 {
     Task InitializeAsync(ElementReference canvas);
-    Task SetSceneAsync(string sceneName, IDictionary<string, object?>? parameters = null);
+    Task SetSceneAsync(string sceneName, IReadOnlyDictionary<string, object?>? parameters = null);
     Task RegisterRevealAsync(string id, ElementReference element, RevealOptions? options = null);
     Task UnregisterRevealAsync(string id);
     Task RegisterPinnedTimelineAsync(ElementReference container, ElementReference track, int cardCount);

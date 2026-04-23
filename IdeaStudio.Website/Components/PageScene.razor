@@ -4,7 +4,7 @@
 
 @code {
     [Parameter, EditorRequired] public string Name { get; set; } = "";
-    [Parameter] public IDictionary<string, object?>? Parameters { get; set; }
+    [Parameter] public IReadOnlyDictionary<string, object?>? Parameters { get; set; }
 
     private string? lastApplied;
 

@@ -21,7 +21,7 @@ public sealed class CinemaEngine : ICinemaEngine, IAsyncDisposable
         await module.InvokeVoidAsync("initialize", canvas, selfRef);
     }
 
-    public Task SetSceneAsync(string sceneName, IDictionary<string, object?>? parameters = null)
+    public Task SetSceneAsync(string sceneName, IReadOnlyDictionary<string, object?>? parameters = null)
         => module is null ? Task.CompletedTask : module.InvokeVoidAsync("setScene", sceneName, parameters).AsTask();
 
     public Task RegisterRevealAsync(string id, ElementReference element, RevealOptions? options = null)
