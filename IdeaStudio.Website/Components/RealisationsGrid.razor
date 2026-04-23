@@ -1,0 +1,28 @@
+@using IdeaStudio.Website.Models
+
+@if (Items.Count == 0)
+{
+    <div class="ds-empty">
+        <p>@EmptyText</p>
+        @if (OnClearRequest.HasDelegate)
+        {
+            <button type="button" class="ds-btn ds-btn--ghost ds-btn--sm" @onclick="OnClearRequest">@ClearText</button>
+        }
+    </div>
+}
+else
+{
+    <div class="ds-grid ds-grid--realisations">
+        @foreach (Realisation r in Items)
+        {
+            <RealisationCard Realisation="@r" />
+        }
+    </div>
+}
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<Realisation> Items { get; set; } = [];
+    [Parameter] public string EmptyText { get; set; } = "";
+    [Parameter] public string ClearText { get; set; } = "";
+    [Parameter] public EventCallback OnClearRequest { get; set; }
+}
