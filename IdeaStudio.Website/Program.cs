@@ -11,6 +11,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<ILazyLoadingService, LazyLoadingService>();
 builder.Services.AddScoped<IAnimationService, AnimationService>();
 builder.Services.AddScoped<ISlugService, SlugService>();
+builder.Services.AddScoped<ISlugTranslator, SlugTranslator>();
 
 // Add localization services for Blazor WASM
 builder.Services.AddScoped<ICultureService, CultureService>();

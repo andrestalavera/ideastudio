@@ -6,6 +6,7 @@
 @inherits LocalizedComponent
 @inject ILazyLoadingService LazyLoadingService
 @inject ILocalizedRoute LocalizedRoute
+@inject ISlugTranslator SlugTranslator
 @inject NavigationManager NavigationManager
 @layout MainLayout
 
@@ -17,7 +18,9 @@
          SiteName="IdeaStud.io"
          OgImage="https://ideastud.io/images/andres-talavera.jpeg"
          OgImageAlt="@seoTitle"
-         Locale="@seoLocale" />
+         Locale="@seoLocale"
+         HreflangUrls="@seoHreflangUrls"
+         StructuredData="@seoStructuredData" />
 
 @if (service is not null)
 {
@@ -104,9 +107,32 @@ else if (loaded)
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io";
     private string seoLocale = "en_US";
+    private Dictionary<string, string>? seoHreflangUrls;
+    private List<string>? seoStructuredData;
+
+    // Remember the culture we last loaded under so we can detect a switch.
+    private string loadedCulture = string.Empty;
 
     protected override async Task LoadLocalizedStringsAsync()
     {
+        string currentCulture = CultureService.CurrentCulture.Name;
+
+        // If the culture changed since last load and we have a slug, translate it and redirect.
+        if (!string.IsNullOrEmpty(loadedCulture)
+            && !currentCulture.StartsWith(loadedCulture[..2])
+            && !string.IsNullOrEmpty(Slug))
+        {
+            string? targetSlug = await SlugTranslator.TranslateServiceSlugAsync(Slug, loadedCulture, currentCulture);
+            string targetCulturePrefix = currentCulture.StartsWith("fr") ? "fr" : "en";
+            string target = targetSlug is null
+                ? $"/{targetCulturePrefix}/services"
+                : $"/{targetCulturePrefix}/services/{targetSlug}";
+            loadedCulture = currentCulture;
+            NavigationManager.NavigateTo(target, replace: true);
+            return;
+        }
+
+        loadedCulture = currentCulture;
         await base.LoadLocalizedStringsAsync();
         await LoadServiceAsync();
         StateHasChanged();
@@ -170,5 +196,47 @@ else if (loaded)
         }
 
         UpdateSeoForService();
+        await ComputeSeoAlternatesAsync(service);
+    }
+
+    private async Task ComputeSeoAlternatesAsync(Service svc)
+    {
+        string currentCulture = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
+
+        string? frSlug = currentCulture == "fr" ? svc.Slug : await SlugTranslator.TranslateServiceSlugAsync(svc.Slug, "en", "fr");
+        string? enSlug = currentCulture == "en" ? svc.Slug : await SlugTranslator.TranslateServiceSlugAsync(svc.Slug, "fr", "en");
+
+        Dictionary<string, string> hreflang = new();
+        if (frSlug is not null) hreflang["fr"] = $"https://ideastud.io/fr/services/{frSlug}";
+        if (enSlug is not null) hreflang["en"] = $"https://ideastud.io/en/services/{enSlug}";
+        if (frSlug is not null) hreflang["x-default"] = $"https://ideastud.io/fr/services/{frSlug}";
+        seoHreflangUrls = hreflang;
+
+        string providerUrl = "https://ideastud.io";
+        string canonical = currentCulture == "fr"
+            ? $"https://ideastud.io/fr/services/{svc.Slug}"
+            : $"https://ideastud.io/en/services/{svc.Slug}";
+
+        string serviceJson = $$"""
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": {{System.Text.Json.JsonSerializer.Serialize(svc.Title)}},
+          "description": {{System.Text.Json.JsonSerializer.Serialize(string.IsNullOrWhiteSpace(svc.Tagline) ? svc.Summary : svc.Tagline)}},
+          "url": "{{canonical}}",
+          "provider": {
+            "@type": "Person",
+            "name": "Andrés Talavera",
+            "url": "{{providerUrl}}"
+          },
+          "areaServed": [
+            { "@type": "Place", "name": "Lyon" },
+            { "@type": "Place", "name": "France" },
+            { "@type": "VirtualLocation", "name": "Remote" }
+          ],
+          "serviceType": {{System.Text.Json.JsonSerializer.Serialize(svc.Kicker)}}
+        }
+        """;
+        seoStructuredData = new List<string> { serviceJson };
     }
 }
