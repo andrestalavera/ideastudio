@@ -1,0 +1,153 @@
+[
+  {
+    "slug": "dotnet-azure-consulting",
+    "title": ".NET & Azure Consulting",
+    "kicker": "ARCHITECTURE CONSULTING",
+    "tagline": "Architecture, hands-on guidance, and code on high-stakes .NET and Azure platforms.",
+    "iconId": "consulting",
+    "summary": "With 15+ years in software design, I help you make the right architecture calls, scale your .NET/Azure platforms, and run technical audits.",
+    "highlights": [
+      "Cloud-native architecture (App Service, Functions, Service Bus, Event Grid, Cosmos DB)",
+      "Code audits and progressive refactoring",
+      "Robust CI/CD (Azure DevOps, GitHub Actions)",
+      "Observability strategy (Application Insights, structured logging)",
+      "Application security and secrets management (Key Vault, Managed Identity)"
+    ],
+    "useCases": [
+      { "title": "SaaS platform audit and rebuild", "description": "Inventory, iterative refactoring plan, hands-on guidance through production." },
+      { "title": "Event-driven architecture design", "description": "Foundations for 10× growth, with Service Bus, Outbox patterns, and async projections." }
+    ],
+    "faq": [
+      { "question": "What's your daily rate?", "answer": "On request, depending on scope, duration, and level of involvement." },
+      { "question": "Remote work?", "answer": "Yes, full-remote or hybrid. I occasionally travel to Lyon and the Rhône-Alpes area." },
+      { "question": "Legacy systems?", "answer": "Yes. Audits and modernization plans are part of my day-to-day." }
+    ],
+    "ctaLabel": null,
+    "order": 1
+  },
+  {
+    "slug": "tech-lead",
+    "title": "Tech Lead",
+    "kicker": "TECHNICAL LEADERSHIP",
+    "tagline": "I own the technical direction of a product team and help it grow.",
+    "iconId": "techlead",
+    "summary": "As a tech lead, I align product vision with technical decisions, frame structural choices, grow the team's skills, and keep quality on course.",
+    "highlights": [
+      "Technical framing for new initiatives",
+      "Code reviews and pair programming",
+      "Individual and collective coaching",
+      "Direct collaboration with Product and Design",
+      "Ownership of delivery and quality indicators"
+    ],
+    "useCases": [
+      { "title": "Interim tech lead", "description": "Bridge the gap while you recruit, owning the technical direction of a product team." },
+      { "title": "Tech lead coaching", "description": "3-to-6-month pairing to transfer practices, tooling, and posture to a new tech lead." }
+    ],
+    "faq": [
+      { "question": "Team size?", "answer": "3 to 10 people ideally; beyond that, we discuss structure." },
+      { "question": "Do you hire?", "answer": "I take part in technical interviews but don't own recruitment end-to-end." }
+    ],
+    "ctaLabel": null,
+    "order": 2
+  },
+  {
+    "slug": "trainer",
+    "title": "Trainer",
+    "kicker": "KNOWLEDGE TRANSFER",
+    "tagline": "I train your teams on .NET, Azure, and modern web fundamentals and advanced practices.",
+    "iconId": "training",
+    "summary": "3000+ hours of training delivered to developers and tech leads. Sessions tailored to your needs, hands-on exercises, post-training follow-up.",
+    "highlights": [
+      "ASP.NET Core and Blazor",
+      "Azure fundamentals and platform (AZ-204, AZ-400)",
+      "Pragmatic software architecture and patterns",
+      "Automated testing and TDD",
+      "DevOps and CI/CD"
+    ],
+    "useCases": [
+      { "title": "Inter-company 3-day training", "description": "Catalog sessions on Blazor, Azure DevOps, or Clean Architecture." },
+      { "title": "Bespoke in-house training", "description": "Program tailored with you after a needs-assessment." }
+    ],
+    "faq": [
+      { "question": "Remote training?", "answer": "Yes, synchronous virtual classroom with pair exercises and live feedback." },
+      { "question": "Certified?", "answer": "Yes, Microsoft Certified Trainer and multiple Azure certifications." }
+    ],
+    "ctaLabel": null,
+    "order": 3
+  },
+  {
+    "slug": "vibe-coding",
+    "title": "Vibe-coding rollout",
+    "kicker": "AI IN YOUR IDE",
+    "tagline": "I help your team adopt AI coding tools (Claude Code, Copilot) without losing quality.",
+    "iconId": "vibe",
+    "summary": "AI coding tools are reshaping developer workflows. I help you frame usage: which tools, which guardrails, which practices, and how to measure gains.",
+    "highlights": [
+      "Internal AI usage policy framing",
+      "Claude Code / Copilot / agent rollout",
+      "Workflow and security hook definition",
+      "Developer pair-coaching with AI",
+      "Impact measurement (velocity, quality, satisfaction)"
+    ],
+    "useCases": [
+      { "title": "Pilot with a willing team", "description": "2-to-3-month framed pilot, debrief, and recommendation for scale-up." },
+      { "title": "Org-wide deployment", "description": "Rollout across the organization with best-practice guide and support structure." }
+    ],
+    "faq": [
+      { "question": "Does it work on our stack?", "answer": "Current tools are stack-agnostic. We validate on your code base together." },
+      { "question": "Code confidentiality?", "answer": "We pick a setup that fits your constraints (SaaS, self-hosted, zero-retention)." }
+    ],
+    "ctaLabel": null,
+    "order": 4
+  },
+  {
+    "slug": "mobile-apps",
+    "title": "Mobile app development",
+    "kicker": "CROSS-PLATFORM MOBILE",
+    "tagline": "I design and build your iOS/Android apps with a single technical base.",
+    "iconId": "mobile",
+    "summary": "B2B and B2C mobile apps, cross-platform (.NET MAUI, Flutter depending on context). From mockup to store publishing.",
+    "highlights": [
+      "Feasibility audit and tech choice",
+      "Mobile UX/UI and prototyping",
+      "Backend and companion APIs",
+      "Apple Store / Play Store publishing",
+      "Evolutive maintenance"
+    ],
+    "useCases": [
+      { "title": "B2B field app", "description": "Field app for agents, offline sync, IS integration." },
+      { "title": "Consumer app", "description": "Fast MVP, user-driven iterations, organic growth." }
+    ],
+    "faq": [
+      { "question": "Native iOS?", "answer": "Yes when justified. By default I favor cross-platform for cost-efficiency." },
+      { "question": "Who owns Apple/Google accounts?", "answer": "You. I support creation and submissions." }
+    ],
+    "ctaLabel": null,
+    "order": 5
+  },
+  {
+    "slug": "websites",
+    "title": "Website development",
+    "kicker": "BESPOKE WEB",
+    "tagline": "I design and build your showcase sites, e-commerce, and custom web apps.",
+    "iconId": "web",
+    "summary": "High-performance, SEO-optimized, accessible websites. From elegant showcase to complex business web apps, always on modern, maintainable tech.",
+    "highlights": [
+      "Design system and layout",
+      "Blazor, ASP.NET Core, or the right stack",
+      "Technical SEO and Core Web Vitals",
+      "Azure hosting or equivalent",
+      "Handover training"
+    ],
+    "useCases": [
+      { "title": "Premium showcase site", "description": "Editorial site, strong identity, max performance — perfect for a brand." },
+      { "title": "Business web application", "description": "Customer portal, back-office, complex workflows, IS integrations." }
+    ],
+    "faq": [
+      { "question": "Do you design too?", "answer": "On small projects yes. On identity-driven projects I collaborate with designers." },
+      { "question": "Maintenance?", "answer": "Maintenance contract or ad-hoc pricing, to suit your needs." }
+    ],
+    "ctaLabel": null,
+    "order": 6
+  }
+]
