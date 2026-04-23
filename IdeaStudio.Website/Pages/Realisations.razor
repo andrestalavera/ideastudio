@@ -16,7 +16,8 @@
          OgImage="https://ideastud.io/images/andres-talavera.jpeg"
          OgImageAlt="@seoTitle"
          Locale="@seoLocale"
-         HreflangUrls="@seoHreflangUrls" />
+         HreflangUrls="@seoHreflangUrls"
+         StructuredData="@seoStructuredData" />
 
 <section class="ds-chapter">
     <div class="ds-container">
@@ -61,6 +62,7 @@
     private string seoCanonical = "https://ideastud.io/en/projects";
     private string seoLocale = "en_US";
     private Dictionary<string, string> seoHreflangUrls = new();
+    private List<string>? seoStructuredData;
     private string resultsCountText = "{0} result(s)";
     private string emptyText = "";
     private string clearText = "";
@@ -105,7 +107,40 @@
         all = list ?? [];
         availableTechnologies = RealisationFilter.AvailableTechnologies(all).ToList();
         availableTypes = Enum.GetValues<RealisationType>();
+        GenerateStructuredData();
         Recompute();
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
+
+        List<SchemaOrg.CreativeWork> items = all
+            .OrderBy(r => r.DisplayOrder)
+            .ThenByDescending(r => r.CompletedOn)
+            .Select(r => new SchemaOrg.CreativeWork(
+                Name: r.Title,
+                Description: r.Summary,
+                Url: string.IsNullOrWhiteSpace(r.LiveUrl) ? seoCanonical : r.LiveUrl,
+                Image: string.IsNullOrWhiteSpace(r.ImageUrl) ? null : r.ImageUrl))
+            .ToList();
+
+        SchemaOrg.CollectionPage collection = new(
+            Name: pageTitle,
+            Description: seoDescription,
+            Url: seoCanonical,
+            Items: items);
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (isFr ? "Accueil" : "Home", isFr ? "/fr" : "/en"),
+            (isFr ? "Réalisations" : "Projects", isFr ? "/fr/realisations" : "/en/projects"));
+
+        seoStructuredData = new List<string>
+        {
+            SchemaOrg.ToJsonLd(collection),
+            SchemaOrg.ToJsonLd(breadcrumb)
+        };
     }
 
     private Task HandleFilterChange()
