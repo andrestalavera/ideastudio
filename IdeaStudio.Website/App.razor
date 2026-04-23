@@ -6,13 +6,16 @@
     <NotFound>
         <PageTitle>404</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
-            <div class="container">
-                <div class="card">
-                    <p class="col-lg-8 mx-auto my-5 fs-5 text-muted">Désolé, il n'y a aucun contenu à cette adresse.</p>
-                    <p class="col-lg-8 mx-auto my-5 fs-5 text-muted">Vous pouvez vous rendre <a href="/">à la page
-                            d'accueil</a>.</p>
+            <section class="ds-chapter">
+                <div class="ds-container">
+                    <article class="ds-card">
+                        <div class="ds-card__body ds-stack">
+                            <p class="ds-body-lead">Désolé, il n'y a aucun contenu à cette adresse.</p>
+                            <p class="ds-body-lead">Vous pouvez vous rendre <a href="/">à la page d'accueil</a>.</p>
+                        </div>
+                    </article>
                 </div>
-            </div>
+            </section>
         </LayoutView>
     </NotFound>
 </Router>
