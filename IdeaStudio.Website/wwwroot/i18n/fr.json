@@ -43,5 +43,20 @@
   "PrivacyPolicy.DataSecurity": "Nous mettons en œuvre des mesures de sécurité raisonnables pour protéger vos informations personnelles.",
   "PrivacyPolicy.YourChoices": "Vous pouvez choisir de ne pas fournir certaines informations, mais cela peut limiter votre capacité à utiliser certaines fonctionnalités de notre site Web.",
   "PrivacyPolicy.ChangesToThisPolicy": "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Nous vous informerons de tout changement en publiant la nouvelle politique sur cette page.",
-  "PrivacyPolicy.ContactUs": "Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter à contact@ideastud.io."
+  "PrivacyPolicy.ContactUs": "Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter à contact@ideastud.io.",
+  "Nav.Services": "Services",
+  "Nav.Realisations": "Réalisations",
+  "Nav.Cv": "CV",
+  "Nav.BookCall": "Réserver 30 min",
+  "Footer.Services": "Services",
+  "Footer.Links": "Liens",
+  "Footer.Follow": "Me suivre",
+  "Footer.Legal": "Légal",
+  "Footer.Copyright": "© {0} IdeaStud.io — Tous droits réservés",
+  "Cv.DownloadPdfFr": "Télécharger CV (FR, PDF)",
+  "Cv.DownloadPdfEn": "Télécharger CV (EN, PDF)",
+  "Cv.PdfSectionTitle": "Télécharger mon CV",
+  "NotFound.Title": "Page introuvable",
+  "NotFound.Lead": "Désolé, cette page n'existe pas.",
+  "NotFound.BackHome": "Retour à l'accueil"
 }
