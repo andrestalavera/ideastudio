@@ -107,10 +107,11 @@
             Image: "https://ideastud.io/images/andres-talavera.jpeg"
         );
 
+        string cultureCode = isFr ? "fr" : "en";
         SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
             "https://ideastud.io",
-            (isFr ? "Accueil" : "Home", isFr ? "/fr" : "/en"),
-            (isFr ? "Services" : "Services", isFr ? "/fr/services" : "/en/services"));
+            (isFr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+            (isFr ? "Services" : "Services", LocalizedRoute.For("services.hub", cultureCode)));
 
         List<SchemaOrg.Service> svcs = services
             .OrderBy(s => s.Order)

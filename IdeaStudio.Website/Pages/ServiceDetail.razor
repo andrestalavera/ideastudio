@@ -164,7 +164,8 @@ else if (loaded)
     private void UpdateSeoForService()
     {
         bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        string basePath = isFr ? "/fr/services" : "/en/services";
+        string cultureCode = isFr ? "fr" : "en";
+        string basePath = LocalizedRoute.For("services.hub", cultureCode);
         string effectiveSlug = service?.Slug ?? Slug;
         seoCanonical = $"https://ideastud.io{basePath}/{effectiveSlug}";
 
@@ -207,16 +208,17 @@ else if (loaded)
         string? frSlug = currentCulture == "fr" ? svc.Slug : await SlugTranslator.TranslateServiceSlugAsync(svc.Slug, "en", "fr");
         string? enSlug = currentCulture == "en" ? svc.Slug : await SlugTranslator.TranslateServiceSlugAsync(svc.Slug, "fr", "en");
 
+        string frServicesHub = LocalizedRoute.For("services.hub", "fr");
+        string enServicesHub = LocalizedRoute.For("services.hub", "en");
         Dictionary<string, string> hreflang = new();
-        if (frSlug is not null) hreflang["fr"] = $"https://ideastud.io/fr/services/{frSlug}";
-        if (enSlug is not null) hreflang["en"] = $"https://ideastud.io/en/services/{enSlug}";
-        if (frSlug is not null) hreflang["x-default"] = $"https://ideastud.io/fr/services/{frSlug}";
+        if (frSlug is not null) hreflang["fr"] = $"https://ideastud.io{frServicesHub}/{frSlug}";
+        if (enSlug is not null) hreflang["en"] = $"https://ideastud.io{enServicesHub}/{enSlug}";
+        if (frSlug is not null) hreflang["x-default"] = $"https://ideastud.io{frServicesHub}/{frSlug}";
         seoHreflangUrls = hreflang;
 
         bool isFr = currentCulture == "fr";
-        string canonical = isFr
-            ? $"https://ideastud.io/fr/services/{svc.Slug}"
-            : $"https://ideastud.io/en/services/{svc.Slug}";
+        string servicesHubPath = LocalizedRoute.For("services.hub", currentCulture);
+        string canonical = $"https://ideastud.io{servicesHubPath}/{svc.Slug}";
 
         SchemaOrg.Person person = new(
             Name: "Andrés Talavera",
@@ -233,9 +235,9 @@ else if (loaded)
 
         SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
             "https://ideastud.io",
-            (isFr ? "Accueil" : "Home", isFr ? "/fr" : "/en"),
-            (isFr ? "Services" : "Services", isFr ? "/fr/services" : "/en/services"),
-            (svc.Title, isFr ? $"/fr/services/{svc.Slug}" : $"/en/services/{svc.Slug}"));
+            (isFr ? "Accueil" : "Home", LocalizedRoute.For("home", currentCulture)),
+            (isFr ? "Services" : "Services", servicesHubPath),
+            (svc.Title, $"{servicesHubPath}/{svc.Slug}"));
 
         List<string> jsonLd = new()
         {

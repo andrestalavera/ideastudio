@@ -5,6 +5,7 @@
 @using IdeaStudio.Website.Services
 @inherits LocalizedComponent
 @inject ILazyLoadingService LazyLoadingService
+@inject ILocalizedRoute LocalizedRoute
 @layout MainLayout
 
 <SeoHead Title="@seoTitle"
@@ -131,10 +132,11 @@
             Url: seoCanonical,
             Items: items);
 
+        string cultureCode = isFr ? "fr" : "en";
         SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
             "https://ideastud.io",
-            (isFr ? "Accueil" : "Home", isFr ? "/fr" : "/en"),
-            (isFr ? "Réalisations" : "Projects", isFr ? "/fr/realisations" : "/en/projects"));
+            (isFr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+            (isFr ? "Réalisations" : "Projects", LocalizedRoute.For("realisations", cultureCode)));
 
         seoStructuredData = new List<string>
         {

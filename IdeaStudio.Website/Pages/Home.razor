@@ -6,6 +6,7 @@
 @using ServiceModel = IdeaStudio.Website.Models.Service
 @inherits LocalizedComponent
 @inject ILazyLoadingService LazyLoadingService
+@inject ILocalizedRoute LocalizedRoute
 @layout MainLayout
 
 <SeoHead Title="@seoTitle"
@@ -77,8 +78,9 @@
     private void GenerateStructuredData()
     {
         bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        string homeUrl = isFr ? "https://ideastud.io/fr" : "https://ideastud.io/en";
-        string servicesUrl = isFr ? "https://ideastud.io/fr/services" : "https://ideastud.io/en/services";
+        string cultureCode = isFr ? "fr" : "en";
+        string homeUrl = $"https://ideastud.io{LocalizedRoute.For("home", cultureCode)}";
+        string servicesUrl = $"https://ideastud.io{LocalizedRoute.For("services.hub", cultureCode)}";
 
         SchemaOrg.Person person = new(
             Name: "Andrés Talavera",
@@ -102,7 +104,7 @@
 
         SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
             "https://ideastud.io",
-            (isFr ? "Accueil" : "Home", isFr ? "/fr" : "/en"));
+            (isFr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)));
 
         List<SchemaOrg.Service> svcs = services
             .OrderBy(s => s.Order)
