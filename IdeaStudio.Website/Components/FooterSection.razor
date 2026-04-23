@@ -1,29 +1,73 @@
+@using IdeaStudio.Website.Services
 @inherits LocalizedComponent
+@inject ILocalizedRoute LocalizedRoute
 
-<footer class="ds-footer ds-print-hidden">
-    <div class="ds-container">
-        <div class="ds-footer__row">
-            <p class="ds-footer__copyright">
-                &copy; @DateTime.Now.Year IdeaStud.io — Andrés Talavera. @allRightsReservedText
-            </p>
-            <div class="ds-footer__links">
-                <a href="/privacy" class="ds-footer__link">@privacyPolicyText</a>
-                <a href="/legal" class="ds-footer__link">@legalMentionsText</a>
+<footer class="ds-footer">
+    <div class="ds-container ds-footer__grid">
+        <nav class="ds-footer__block" aria-labelledby="footer-services">
+            <h3 id="footer-services" class="ds-footer__title">@servicesTitleText</h3>
+            <ul class="ds-footer__list">
+                <li><a href="@LocalizedRoute.For("services.hub")">@allServicesText</a></li>
+            </ul>
+        </nav>
+        <nav class="ds-footer__block" aria-labelledby="footer-links">
+            <h3 id="footer-links" class="ds-footer__title">@linksTitleText</h3>
+            <ul class="ds-footer__list">
+                <li><a href="@LocalizedRoute.For("home")">@homeText</a></li>
+                <li><a href="@LocalizedRoute.For("realisations")">@realisationsText</a></li>
+                <li><a href="@LocalizedRoute.For("cv")">@cvText</a></li>
+            </ul>
+            <div class="ds-stack ds-stack--row ds-gap-xs ds-mt-sm">
+                <PdfDownloadButton Language="fr" Label="@pdfFrText" />
+                <PdfDownloadButton Language="en" Label="@pdfEnText" />
             </div>
-            <CultureSelector />
-        </div>
+        </nav>
+        <nav class="ds-footer__block" aria-labelledby="footer-follow">
+            <h3 id="footer-follow" class="ds-footer__title">@followTitleText</h3>
+            <SocialNetworksComponent />
+        </nav>
+        <nav class="ds-footer__block" aria-labelledby="footer-legal">
+            <h3 id="footer-legal" class="ds-footer__title">@legalTitleText</h3>
+            <ul class="ds-footer__list">
+                <li><a href="@LocalizedRoute.For("legal")">@legalLinkText</a></li>
+                <li><a href="@LocalizedRoute.For("privacy")">@privacyLinkText</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="ds-container ds-footer__bottom">
+        <small>@string.Format(copyrightText, DateTime.UtcNow.Year)</small>
     </div>
 </footer>
 
 @code {
-    private string allRightsReservedText = "All rights reserved.";
-    private string privacyPolicyText = "Privacy Policy";
-    private string legalMentionsText = "Legal Mentions";
+    private string servicesTitleText = "Services";
+    private string linksTitleText = "Links";
+    private string followTitleText = "Follow me";
+    private string legalTitleText = "Legal";
+    private string allServicesText = "All services";
+    private string homeText = "Home";
+    private string realisationsText = "Projects";
+    private string cvText = "Resume";
+    private string legalLinkText = "Legal notice";
+    private string privacyLinkText = "Privacy";
+    private string pdfFrText = "Download resume (FR)";
+    private string pdfEnText = "Download resume (EN)";
+    private string copyrightText = "© {0} IdeaStud.io";
 
     protected override void LoadTexts()
     {
-        allRightsReservedText = LocalizationService.GetString("AllRightsReserved");
-        privacyPolicyText = LocalizationService.GetString("PrivacyPolicy");
-        legalMentionsText = LocalizationService.GetString("LegalMentions");
+        servicesTitleText = LocalizationService.GetString("Footer.Services");
+        linksTitleText = LocalizationService.GetString("Footer.Links");
+        followTitleText = LocalizationService.GetString("Footer.Follow");
+        legalTitleText = LocalizationService.GetString("Footer.Legal");
+        allServicesText = LocalizationService.GetString("Nav.Services");
+        homeText = LocalizationService.GetString("Nav.Home");
+        realisationsText = LocalizationService.GetString("Nav.Realisations");
+        cvText = LocalizationService.GetString("Nav.Cv");
+        legalLinkText = LocalizationService.GetString("Footer.LegalLink");
+        privacyLinkText = LocalizationService.GetString("Footer.PrivacyLink");
+        pdfFrText = LocalizationService.GetString("Cv.DownloadPdfFr");
+        pdfEnText = LocalizationService.GetString("Cv.DownloadPdfEn");
+        copyrightText = LocalizationService.GetString("Footer.Copyright");
     }
 }
