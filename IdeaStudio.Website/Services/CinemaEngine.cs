@@ -3,22 +3,22 @@ using Microsoft.JSInterop;
 
 namespace IdeaStudio.Website.Services;
 
-public sealed class CinemaEngine : ICinemaEngine
+public sealed class CinemaEngine : ICinemaEngine, IAsyncDisposable
 {
     private readonly IJSRuntime js;
     private IJSObjectReference? module;
     private DotNetObjectReference<CinemaEngine>? selfRef;
-    private bool initialized;
+    private Task? initTask;
 
     public CinemaEngine(IJSRuntime js) => this.js = js;
 
-    public async Task InitializeAsync(ElementReference canvas)
+    public Task InitializeAsync(ElementReference canvas) => initTask ??= InitializeCoreAsync(canvas);
+
+    private async Task InitializeCoreAsync(ElementReference canvas)
     {
-        if (initialized) return;
         module = await js.InvokeAsync<IJSObjectReference>("import", "./js/cinema.bundle.js");
         selfRef = DotNetObjectReference.Create(this);
         await module.InvokeVoidAsync("initialize", canvas, selfRef);
-        initialized = true;
     }
 
     public Task SetSceneAsync(string sceneName, IDictionary<string, object?>? parameters = null)
@@ -42,7 +42,10 @@ public sealed class CinemaEngine : ICinemaEngine
         {
             try { await module.InvokeVoidAsync("dispose"); } catch { /* ignore: page unload */ }
             await module.DisposeAsync();
+            module = null;
         }
         selfRef?.Dispose();
+        selfRef = null;
+        initTask = null;
     }
 }

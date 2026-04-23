@@ -24,30 +24,35 @@ export async function boot(canvas) {
   const plasma = createPlasma(palette);
   scene.add(plasma.mesh);
 
-  let activeScene = null;
-  let rafId;
+  const raf = { id: 0, running: true };
 
   function render() {
+    if (!raf.running) return;
     const dt = clock.getDelta();
     plasma.update(dt);
-    activeScene?.update?.(dt);
+    state?.activeScene?.update?.(dt);
     renderer.render(scene, camera);
-    rafId = requestAnimationFrame(render);
+    raf.id = requestAnimationFrame(render);
   }
-  rafId = requestAnimationFrame(render);
+  raf.id = requestAnimationFrame(render);
 
-  function onResize() {
+  const onResize = () => {
     renderer.setSize(window.innerWidth, window.innerHeight, false);
-    activeScene?.onResize?.(window.innerWidth, window.innerHeight);
-  }
+    state?.activeScene?.onResize?.(window.innerWidth, window.innerHeight);
+  };
   window.addEventListener('resize', onResize, { passive: true });
 
-  watchReducedMotion(on => {
-    if (on) { cancelAnimationFrame(rafId); renderer.clear(); }
-    else { rafId = requestAnimationFrame(render); }
+  const reducedMotionDispose = watchReducedMotion(on => {
+    if (on) { raf.running = false; cancelAnimationFrame(raf.id); renderer.clear(); }
+    else if (!raf.running) { raf.running = true; raf.id = requestAnimationFrame(render); }
   });
 
-  state = { renderer, scene, camera, clock, palette, plasma, activeScene, rafId };
+  const listenerDisposers = [
+    () => window.removeEventListener('resize', onResize),
+    reducedMotionDispose,
+  ];
+
+  state = { renderer, scene, camera, clock, palette, plasma, activeScene: null, raf, listenerDisposers };
   return state;
 }
 
@@ -58,7 +63,7 @@ export async function switchScene(name, parameters) {
 
   if (state.activeScene) {
     state.activeScene.dispose?.();
-    state.scene.remove(state.activeScene.root);
+    if (state.activeScene.root) state.scene.remove(state.activeScene.root);
   }
   const instance = await factory({
     scene: state.scene, camera: state.camera, palette: state.palette, plasma: state.plasma, parameters,
@@ -69,7 +74,9 @@ export async function switchScene(name, parameters) {
 
 export function shutdown() {
   if (!state) return;
-  cancelAnimationFrame(state.rafId);
+  state.raf.running = false;
+  cancelAnimationFrame(state.raf.id);
+  for (const dispose of state.listenerDisposers) dispose();
   state.activeScene?.dispose?.();
   state.plasma.dispose();
   state.renderer.dispose();

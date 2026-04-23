@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace IdeaStudio.Website.Services;
 
-public interface ICinemaEngine : IAsyncDisposable
+public interface ICinemaEngine
 {
     Task InitializeAsync(ElementReference canvas);
     Task SetSceneAsync(string sceneName, IDictionary<string, object?>? parameters = null);

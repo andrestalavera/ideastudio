@@ -1,6 +1,5 @@
 @using IdeaStudio.Website.Services
 @inject ICinemaEngine CinemaEngine
-@implements IAsyncDisposable
 
 <canvas @ref="canvasRef" class="ds-cinema-stage" aria-hidden="true"></canvas>
 
@@ -13,10 +12,5 @@
         {
             await CinemaEngine.InitializeAsync(canvasRef);
         }
-    }
-
-    public async ValueTask DisposeAsync()
-    {
-        await CinemaEngine.DisposeAsync();
     }
 }

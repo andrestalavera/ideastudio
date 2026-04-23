@@ -1,4 +1,5 @@
 @using IdeaStudio.Website.Services
+@using Microsoft.JSInterop
 @inject ICinemaEngine CinemaEngine
 @implements IAsyncDisposable
 
@@ -28,6 +29,9 @@
 
     public async ValueTask DisposeAsync()
     {
-        if (registered) await CinemaEngine.UnregisterRevealAsync(id);
+        if (!registered) return;
+        try { await CinemaEngine.UnregisterRevealAsync(id); }
+        catch (JSDisconnectedException) { /* runtime gone */ }
+        catch (ObjectDisposedException) { /* race with shutdown */ }
     }
 }

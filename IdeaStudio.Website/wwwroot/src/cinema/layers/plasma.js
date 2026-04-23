@@ -43,9 +43,9 @@ export function createPlasma(palette) {
     uniforms: {
       uTime: { value: 0 },
       uIntensity: { value: 0.9 },
-      uColorA: { value: palette['ink-0'] },
-      uColorB: { value: palette['deep'] },
-      uColorC: { value: palette['azure'] },
+      uColorA: { value: palette.bg },
+      uColorB: { value: palette.deep },
+      uColorC: { value: palette.azure },
     },
     depthTest: false,
     depthWrite: false,

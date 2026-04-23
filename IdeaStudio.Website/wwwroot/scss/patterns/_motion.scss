@@ -6,8 +6,8 @@
   &.is-revealed {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    transition: opacity var(--motion-slow, 600ms) var(--ease-out, cubic-bezier(.2, .7, .1, 1)),
-                transform var(--motion-slow, 600ms) var(--ease-out, cubic-bezier(.2, .7, .1, 1));
+    transition: opacity var(--ds-dur-slow, 600ms) var(--ds-ease-out, cubic-bezier(.2, .7, .1, 1)),
+                transform var(--ds-dur-slow, 600ms) var(--ds-ease-out, cubic-bezier(.2, .7, .1, 1));
   }
 }
 

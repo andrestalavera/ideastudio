@@ -1,6 +1,8 @@
+using System.Collections.Immutable;
+
 namespace IdeaStudio.Website.Services;
 
 public static class CinemaSceneConfig
 {
-    public static IDictionary<string, object?> Empty => new Dictionary<string, object?>();
+    public static IReadOnlyDictionary<string, object?> Empty { get; } = ImmutableDictionary<string, object?>.Empty;
 }

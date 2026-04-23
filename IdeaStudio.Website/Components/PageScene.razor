@@ -1,4 +1,5 @@
 @using IdeaStudio.Website.Services
+@using Microsoft.JSInterop
 @inject ICinemaEngine CinemaEngine
 
 @code {
@@ -12,7 +13,8 @@
         if (Name != lastApplied)
         {
             lastApplied = Name;
-            await CinemaEngine.SetSceneAsync(Name, Parameters);
+            try { await CinemaEngine.SetSceneAsync(Name, Parameters); }
+            catch (JSDisconnectedException) { /* runtime gone */ }
         }
     }
 }
