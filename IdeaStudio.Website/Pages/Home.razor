@@ -1,0 +1,31 @@
+@page "/fr"
+@page "/en"
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@layout MainLayout
+
+<SeoHead Title="IdeaStud.io — Andrés Talavera"
+         Description="Consultant .NET & Azure, techlead, formateur — site en cours de refonte commerciale."
+         Author="Andrés Talavera"
+         CanonicalUrl="https://ideastud.io"
+         SiteName="IdeaStud.io" />
+
+<section class="ds-section ds-container">
+    <h1>IdeaStud.io</h1>
+    <p class="ds-lead">@placeholderText</p>
+    <p>
+        <a class="ds-btn ds-btn--primary" href="/fr/cv">@visitCvText</a>
+    </p>
+</section>
+
+@code {
+    private string placeholderText = "La nouvelle page d'accueil arrive bientôt.";
+    private string visitCvText = "Voir mon CV";
+
+    protected override void LoadTexts()
+    {
+        placeholderText = LocalizationService.GetString("Home.Placeholder");
+        visitCvText = LocalizationService.GetString("Home.VisitCv");
+    }
+}
