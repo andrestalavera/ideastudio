@@ -2,6 +2,12 @@ import { boot, switchScene, shutdown, registerScene } from './engine.js';
 import cvScene from './scenes/cv.js';
 import homeScene from './scenes/home.js';
 import servicesHubScene from './scenes/services-hub.js';
+import consultingScene from './scenes/service/consulting.js';
+import techleadScene from './scenes/service/techlead.js';
+import trainingScene from './scenes/service/training.js';
+import vibeScene from './scenes/service/vibe.js';
+import mobileScene from './scenes/service/mobile.js';
+import webScene from './scenes/service/web.js';
 import * as reveals from './scroll/reveals.js';
 import * as pinned from './scroll/pinned-timeline.js';
 import { gsap } from 'gsap';
@@ -11,6 +17,12 @@ gsap.registerPlugin(ScrollTrigger);
 registerScene('cv', cvScene);
 registerScene('home', homeScene);
 registerScene('services-hub', servicesHubScene);
+registerScene('service/consulting', consultingScene);
+registerScene('service/techlead',   techleadScene);
+registerScene('service/training',   trainingScene);
+registerScene('service/vibe',       vibeScene);
+registerScene('service/mobile',     mobileScene);
+registerScene('service/web',        webScene);
 
 let booted = false;
 

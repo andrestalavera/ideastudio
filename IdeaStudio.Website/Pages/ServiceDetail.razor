@@ -11,8 +11,6 @@
 @inject NavigationManager NavigationManager
 @layout MainLayout
 
-<PageScene Name="@($"service/{Slug}")" />
-
 <SeoHead Title="@seoTitle"
          Description="@seoDescription"
          Author="Andrés Talavera"
@@ -27,6 +25,8 @@
 
 @if (service is not null)
 {
+    <PageScene Name="@($"service/{service.IconId}")" Parameters="@sceneParams" />
+
     <section class="ds-chapter">
         <div class="ds-container">
             <header class="ds-chapter__heading">
@@ -101,8 +101,20 @@ else if (loaded)
 @code {
     [Parameter] public string Slug { get; set; } = string.Empty;
 
+    private static readonly IReadOnlyDictionary<string, string> AccentsByIconId =
+        new Dictionary<string, string>
+        {
+            ["consulting"] = "#0ea5e9",
+            ["techlead"]   = "#5eead4",
+            ["training"]   = "#67e8f9",
+            ["vibe"]       = "#a78bfa",
+            ["mobile"]     = "#34d399",
+            ["web"]        = "#7dd3fc",
+        };
+
     private ServiceModel? service;
     private bool loaded;
+    private IReadOnlyDictionary<string, object?>? sceneParams;
     private string highlightsTitle = "What you get";
     private string useCasesTitle = "Use cases";
     private string faqTitle = "FAQ";
@@ -198,6 +210,11 @@ else if (loaded)
             NavigationManager.NavigateTo(hubPath, replace: true);
             return;
         }
+
+        sceneParams = new Dictionary<string, object?>
+        {
+            ["accent"] = AccentsByIconId.GetValueOrDefault(service.IconId, "#0ea5e9"),
+        };
 
         UpdateSeoForService();
         await ComputeSeoAlternatesAsync(service);
