@@ -37,6 +37,23 @@ export default async function cvScene(ctx) {
     root.add(constellation.lines);
   }
 
+  let scrollTrigger = null;
+  let introDone = false;
+
+  // While the intro is running, the rAF tick owns particles.setProgress.
+  // Once introDone flips true, scroll drives the visual state.
+  const applyProgress = (p) => {
+    if (!introDone) return;
+    const clamped = Math.min(1, Math.max(0, p));
+    particles.setProgress(1 - clamped);
+    constellation.setOpacity?.(clamped * 0.8);
+  };
+
+  const finishIntro = () => {
+    introDone = true;
+    if (scrollTrigger) applyProgress(scrollTrigger.progress);
+  };
+
   const assembleName = () => {
     const targets = textTargets(particleCount, 'Andrés Talavera', {
       fontSize: isMobile ? 80 : 140,
@@ -58,30 +75,26 @@ export default async function cvScene(ctx) {
         const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
         particles.setProgress(eased);
         if (t < 1) requestAnimationFrame(tick);
+        else finishIntro();
       };
       requestAnimationFrame(tick);
     }).catch(() => {
       // Font unavailable — fall back to scattered; still readable.
       assembleName();
       particles.setProgress(1);
+      finishIntro();
     });
   } else {
     // Legacy browser with no Font Loading API — assemble immediately.
     assembleName();
     particles.setProgress(1);
+    finishIntro();
   }
 
   plasma.setPalette(palette.bg, palette.deep, palette.cyan);
   plasma.setIntensity(0.85);
 
   const heroEl = document.querySelector('.ds-hero');
-  let scrollTrigger = null;
-
-  const applyProgress = (p) => {
-    const clamped = Math.min(1, Math.max(0, p));
-    particles.setProgress(1 - clamped);
-    constellation.setOpacity?.(clamped * 0.8);
-  };
 
   if (heroEl) {
     scrollTrigger = ScrollTrigger.create({
