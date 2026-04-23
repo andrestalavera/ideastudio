@@ -9,6 +9,8 @@ const sceneRegistry = new Map();
 export function registerScene(name, factory) { sceneRegistry.set(name, factory); }
 
 let state = null;
+let generation = 0;
+let current = { tween: null, outgoing: null };
 
 export async function boot(canvas) {
   if (!hasWebGL2()) return null;
@@ -65,6 +67,18 @@ export async function switchScene(name, parameters) {
     return;
   }
 
+  // Cancel any in-flight transition: kill its tween and dispose its outgoing.
+  if (current.tween) {
+    current.tween.kill();
+    current.tween = null;
+  }
+  if (current.outgoing) {
+    state.scene.remove(current.outgoing.root);
+    current.outgoing.dispose?.();
+    current.outgoing = null;
+  }
+
+  const myGeneration = ++generation;
   const outgoing = state.activeScene;
   const incoming = await factory({
     scene: state.scene,
@@ -74,29 +88,44 @@ export async function switchScene(name, parameters) {
     parameters,
   });
 
+  // If a newer switchScene started during factory await, abandon this one.
+  if (myGeneration !== generation) {
+    incoming.dispose?.();
+    return;
+  }
+
   setGroupOpacity(incoming.root, 0);
   state.scene.add(incoming.root);
 
   // Swap early so the render loop animates the incoming scene during the fade.
   state.activeScene = incoming;
 
+  if (!outgoing) return;
+
+  current.outgoing = outgoing;
+  const proxy = { v: 0 };
   await new Promise(resolve => {
-    gsap.to({ v: 0 }, {
+    current.tween = gsap.to(proxy, {
       v: 1,
       duration: 0.6,
       ease: 'power2.out',
-      onUpdate() {
-        const v = this.targets()[0].v;
-        if (outgoing) setGroupOpacity(outgoing.root, 1 - v);
-        setGroupOpacity(incoming.root, v);
+      onUpdate: () => {
+        setGroupOpacity(outgoing.root, 1 - proxy.v);
+        outgoing.setExitProgress?.(proxy.v);
+        setGroupOpacity(incoming.root, proxy.v);
+        incoming.setEnterProgress?.(proxy.v);
       },
       onComplete: resolve,
+      onInterrupt: resolve,
     });
   });
+  current.tween = null;
 
-  if (outgoing) {
+  // If still ours (not pre-empted by a cancellation), dispose.
+  if (current.outgoing === outgoing) {
     state.scene.remove(outgoing.root);
     outgoing.dispose?.();
+    current.outgoing = null;
   }
 }
 

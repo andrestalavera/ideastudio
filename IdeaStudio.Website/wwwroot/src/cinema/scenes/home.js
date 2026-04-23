@@ -51,8 +51,12 @@ export default async function homeScene(ctx) {
   const rays = new LineSegments(rayGeom, rayMat);
   root.add(rays);
 
+  // Grid is mounted before PageScene renders, but if a future change reorders
+  // things, re-query next tick as a fallback. `cards` is cached for the scene's
+  // lifetime to avoid querySelectorAll on every scroll event.
+  let cards = document.querySelectorAll('[data-service-anchor]');
+
   const updateRays = () => {
-    const cards = document.querySelectorAll('[data-service-anchor]');
     if (!cards.length) return;
     const w = window.innerWidth;
     const h = window.innerHeight;
@@ -72,6 +76,12 @@ export default async function homeScene(ctx) {
   };
 
   updateRays();
+  if (!cards.length) {
+    requestAnimationFrame(() => {
+      cards = document.querySelectorAll('[data-service-anchor]');
+      updateRays();
+    });
+  }
   const onScroll = () => updateRays();
   const onResize = () => updateRays();
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -89,6 +99,11 @@ export default async function homeScene(ctx) {
       root.scale.setScalar(1 + Math.sin(t * 0.8) * 0.03);
     },
     onResize() { updateRays(); },
+    setExitProgress(v) {
+      // v: 0 = in-place, 1 = fully dispersed. Drives the particles shader's
+      // morph uniform to fade the sphere back into its scattered state.
+      particles.setProgress(1 - v);
+    },
     dispose() {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
