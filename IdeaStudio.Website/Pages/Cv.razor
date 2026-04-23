@@ -31,6 +31,16 @@
 
 <HeroSection PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
 
+<section id="cv-pdf" class="ds-section d-print-none">
+    <div class="ds-container">
+        <h2>@pdfSectionTitleText</h2>
+        <div class="ds-stack ds-stack--row ds-gap-sm">
+            <PdfDownloadButton Language="fr" Label="@pdfFrText" />
+            <PdfDownloadButton Language="en" Label="@pdfEnText" />
+        </div>
+    </div>
+</section>
+
 <div class="ds-pagebreak"></div>
 
 <section id="about" class="ds-chapter ds-print-hidden">
@@ -139,6 +149,9 @@
     private string experiencesText = "Experiences";
     private string trainingText = "Training";
     private string contactText = "Contact";
+    private string pdfSectionTitleText = "Download my resume";
+    private string pdfFrText = "Download resume (FR, PDF)";
+    private string pdfEnText = "Download resume (EN, PDF)";
 
     // SEO fields
     private string seoTitle = "Andrés Talavera - Expert .NET Developer & Azure Consultant | IdeaStud.io";
@@ -195,6 +208,9 @@
         experiencesText = LocalizationService.GetString("Experiences");
         trainingText = LocalizationService.GetString("Training");
         contactText = LocalizationService.GetString("Contact");
+        pdfSectionTitleText = LocalizationService.GetString("Cv.PdfSectionTitle");
+        pdfFrText = LocalizationService.GetString("Cv.DownloadPdfFr");
+        pdfEnText = LocalizationService.GetString("Cv.DownloadPdfEn");
 
         // Update SEO for current language
         var isFrench = CultureService.CurrentCulture.Name.StartsWith("fr");
