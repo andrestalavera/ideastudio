@@ -116,6 +116,11 @@
   overflow: hidden;
 }
 
+.ds-hero__content {
+  position: relative;
+  z-index: 1;
+}
+
 .ds-hero__inner {
   max-width: 960px;
   margin-inline: auto;

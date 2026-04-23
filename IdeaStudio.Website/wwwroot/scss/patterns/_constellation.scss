@@ -1,0 +1,88 @@
+@use '../tokens/space' as s;
+
+.ds-constellation {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.8;
+
+  @media (max-width: 767px) { display: none; }
+  @media print { display: none; }
+}
+
+.ds-constellation__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  animation: ds-constellation-spin 240s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-constellation__svg { animation: none; }
+}
+
+@keyframes ds-constellation-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.ds-constellation__line {
+  stroke: rgba(125, 211, 252, 0.20);
+  stroke-width: 1;
+  stroke-dasharray: 3 7;
+  fill: none;
+}
+
+.ds-constellation__node {
+  fill: url(#ds-constellation-node-gradient);
+  filter: drop-shadow(0 0 6px rgba(125, 211, 252, 0.8))
+          drop-shadow(0 0 14px rgba(94, 234, 212, 0.5));
+  pointer-events: auto;
+  cursor: default;
+  transition: r var(--ds-dur-fast) var(--ds-ease-out),
+              filter var(--ds-dur-fast) var(--ds-ease-out);
+}
+
+@keyframes ds-constellation-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+
+.ds-constellation__node { animation: ds-constellation-pulse 4s ease-in-out infinite; }
+.ds-constellation__node:nth-child(1) { animation-delay: 0s; }
+.ds-constellation__node:nth-child(2) { animation-delay: 0.6s; }
+.ds-constellation__node:nth-child(3) { animation-delay: 1.2s; }
+.ds-constellation__node:nth-child(4) { animation-delay: 1.8s; }
+.ds-constellation__node:nth-child(5) { animation-delay: 2.4s; }
+.ds-constellation__node:nth-child(6) { animation-delay: 3.0s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-constellation__node { animation: none; opacity: 0.8; }
+}
+
+.ds-constellation__label {
+  font-family: var(--ds-font-mono);
+  font-size: 11px;
+  fill: var(--ds-sky);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0;
+  transition: opacity var(--ds-dur-base) var(--ds-ease-out);
+  pointer-events: none;
+}
+
+.ds-constellation__node-group:hover .ds-constellation__node { r: 8; filter: drop-shadow(0 0 10px var(--ds-sky)) drop-shadow(0 0 20px var(--ds-teal)); }
+.ds-constellation__node-group:hover .ds-constellation__label { opacity: 1; }
+
+/* Parallax wrapper — translated by JS */
+.ds-constellation__parallax {
+  position: absolute;
+  inset: 0;
+  transition: transform var(--ds-dur-slow) var(--ds-ease-out);
+  will-change: transform;
+}
