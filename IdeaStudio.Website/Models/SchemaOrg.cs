@@ -243,17 +243,76 @@ public static class SchemaOrg
     /// </summary>
     public record Service(
         string Name,
-        string? Description = null,
-        string? Url = null,
-        Organization? Provider = null,
-        string? ServiceType = null,
-        string? AreaServed = null)
+        string Description,
+        Person Provider,
+        string AreaServed)
     {
         [JsonPropertyName("@context")]
         public string Context => "https://schema.org";
 
         [JsonPropertyName("@type")]
         public string Type => "Service";
+    }
+
+    /// <summary>
+    /// Schema.org ProfessionalService aggregating a set of services offered by a provider.
+    /// </summary>
+    public record ProfessionalService(
+        string Name,
+        string Description,
+        string Url,
+        string AreaServed,
+        Person Provider,
+        IReadOnlyList<Service> Services)
+    {
+        [JsonPropertyName("@context")]
+        public string Context => "https://schema.org";
+
+        [JsonPropertyName("@type")]
+        public string Type => "ProfessionalService";
+
+        [JsonPropertyName("hasOfferCatalog")]
+        public object HasOfferCatalog => new
+        {
+            type = "OfferCatalog",
+            name = Name,
+            itemListElement = Services.Select(s => new
+            {
+                type = "Offer",
+                itemOffered = s
+            })
+        };
+    }
+
+    /// <summary>
+    /// Schema.org CollectionPage for curated lists of works.
+    /// </summary>
+    public record CollectionPage(
+        string Name,
+        string Description,
+        string Url,
+        IReadOnlyList<CreativeWork> Items)
+    {
+        [JsonPropertyName("@context")]
+        public string Context => "https://schema.org";
+
+        [JsonPropertyName("@type")]
+        public string Type => "CollectionPage";
+
+        [JsonPropertyName("hasPart")]
+        public IReadOnlyList<CreativeWork> HasPart => Items;
+    }
+
+    /// <summary>
+    /// Schema.org CreativeWork — generic creative output (projects, case studies, etc.).
+    /// </summary>
+    public record CreativeWork(string Name, string Description, string Url, string? Image)
+    {
+        [JsonPropertyName("@context")]
+        public string Context => "https://schema.org";
+
+        [JsonPropertyName("@type")]
+        public string Type => "CreativeWork";
     }
 
     /// <summary>
