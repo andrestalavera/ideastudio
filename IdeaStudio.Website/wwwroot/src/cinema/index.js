@@ -10,6 +10,13 @@ export async function setScene(name, parameters) {
   console.info('[cinema] setScene', name, parameters);
 }
 
+/**
+ * Registers a DOM element for a scroll-triggered reveal animation.
+ * @param {string} id
+ * @param {HTMLElement} element
+ * @param {{kind:string, delayMs:number, staggerMs:number, selector:string|null}} options
+ *   Blazor serializes `RevealOptions` to camelCase via JS interop default naming policy.
+ */
 export async function registerReveal(id, element, options) {}
 export async function unregisterReveal(id) {}
 export async function registerPinnedTimeline(container, track, cardCount) {}

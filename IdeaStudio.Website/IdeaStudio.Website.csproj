@@ -30,7 +30,7 @@
     <Target Name="NpmRunBuild"
             DependsOnTargets="NpmInstall"
             BeforeTargets="BeforeBuild"
-            Inputs="package.json;$(MSBuildProjectDirectory)/wwwroot/scss/**/*.scss;$(MSBuildProjectDirectory)/wwwroot/src/**/*.js"
+            Inputs="package.json;package-lock.json;$(MSBuildProjectDirectory)/wwwroot/scss/**/*.scss;$(MSBuildProjectDirectory)/wwwroot/src/**/*.js"
             Outputs="$(MSBuildProjectDirectory)/wwwroot/css/styles.min.css;$(MSBuildProjectDirectory)/wwwroot/js/cinema.bundle.js">
         <Exec Command="npm run build" />
     </Target>
