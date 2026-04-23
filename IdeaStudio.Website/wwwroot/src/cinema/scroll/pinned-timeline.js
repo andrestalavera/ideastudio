@@ -3,8 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '../utils/reduced-motion.js';
 
-gsap.registerPlugin(ScrollTrigger);
-
 /** @type {{ tween: gsap.core.Tween|null, trigger: ScrollTrigger|null }} */
 let current = { tween: null, trigger: null };
 
@@ -14,6 +12,7 @@ let current = { tween: null, trigger: null };
  */
 export function register(container, track) {
   if (!container || !track) return;
+  if (!container.isConnected || !track.isConnected) return;
   if (prefersReducedMotion()) return;
   if (window.matchMedia('(max-width: 767px), (hover: none)').matches) return;
 
@@ -28,17 +27,25 @@ export function register(container, track) {
       trigger: container,
       pin: true,
       scrub: 1,
-      start: 'top top',
+      start: () => {
+        const headerVar = getComputedStyle(document.documentElement).getPropertyValue('--ds-nav-height').trim();
+        const headerHeight = headerVar
+          ? parseInt(headerVar, 10) || 0
+          : (document.querySelector('.ds-header')?.offsetHeight ?? 0);
+        return `top top+=${headerHeight}`;
+      },
       end: () => `+=${distance()}`,
       invalidateOnRefresh: true,
     },
   });
 
   current = { tween, trigger: tween.scrollTrigger };
+  ScrollTrigger.refresh();
 }
 
 export function unregister() {
   current.trigger?.kill();
   current.tween?.kill();
   current = { tween: null, trigger: null };
+  ScrollTrigger.refresh();
 }

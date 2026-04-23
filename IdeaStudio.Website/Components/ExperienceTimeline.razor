@@ -8,10 +8,10 @@
 
 <div @ref="containerRef" class="ds-timeline">
     <div @ref="trackRef" class="ds-timeline__track">
-        @foreach (Experience experience in Experiences)
+        @foreach (Experience experience in experiencesWithIds)
         {
             <div class="ds-timeline__slot">
-                <ExperienceCard Experience="@experience.WithGeneratedId(SlugService)" />
+                <ExperienceCard Experience="@experience" />
             </div>
         }
     </div>
@@ -23,14 +23,22 @@
     private ElementReference containerRef;
     private ElementReference trackRef;
     private bool registered;
+    private IReadOnlyList<Experience> experiencesWithIds = Array.Empty<Experience>();
+
+    protected override void OnParametersSet()
+    {
+        experiencesWithIds = Experiences
+            .Select(e => e.WithGeneratedId(SlugService))
+            .ToArray();
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && Experiences.Count > 0)
+        if (firstRender && experiencesWithIds.Count > 0)
         {
             try
             {
-                await CinemaEngine.RegisterPinnedTimelineAsync(containerRef, trackRef, Experiences.Count);
+                await CinemaEngine.RegisterPinnedTimelineAsync(containerRef, trackRef, experiencesWithIds.Count);
                 registered = true;
             }
             catch (JSDisconnectedException) { /* runtime gone */ }

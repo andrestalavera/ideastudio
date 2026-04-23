@@ -1,9 +1,6 @@
 // wwwroot/src/cinema/scroll/reveals.js
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '../utils/reduced-motion.js';
-
-gsap.registerPlugin(ScrollTrigger);
 
 /** @type {Map<string, { tween: gsap.core.Tween, trigger: ScrollTrigger|null }>} */
 const registry = new Map();

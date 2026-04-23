@@ -7,7 +7,6 @@ public sealed class CinemaEngine : ICinemaEngine, IAsyncDisposable
 {
     private readonly IJSRuntime js;
     private IJSObjectReference? module;
-    private DotNetObjectReference<CinemaEngine>? selfRef;
     private Task? initTask;
 
     public CinemaEngine(IJSRuntime js) => this.js = js;
@@ -17,8 +16,7 @@ public sealed class CinemaEngine : ICinemaEngine, IAsyncDisposable
     private async Task InitializeCoreAsync(ElementReference canvas)
     {
         module = await js.InvokeAsync<IJSObjectReference>("import", "./js/cinema.bundle.js");
-        selfRef = DotNetObjectReference.Create(this);
-        await module.InvokeVoidAsync("initialize", canvas, selfRef);
+        await module.InvokeVoidAsync("initialize", canvas);
     }
 
     public Task SetSceneAsync(string sceneName, IReadOnlyDictionary<string, object?>? parameters = null)
@@ -47,8 +45,6 @@ public sealed class CinemaEngine : ICinemaEngine, IAsyncDisposable
             await module.DisposeAsync();
             module = null;
         }
-        selfRef?.Dispose();
-        selfRef = null;
         initTask = null;
     }
 }

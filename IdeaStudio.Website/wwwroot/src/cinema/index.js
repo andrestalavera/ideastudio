@@ -2,6 +2,9 @@ import { boot, switchScene, shutdown, registerScene } from './engine.js';
 import cvScene from './scenes/cv.js';
 import * as reveals from './scroll/reveals.js';
 import * as pinned from './scroll/pinned-timeline.js';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 registerScene('cv', cvScene);
 
@@ -9,9 +12,8 @@ let booted = false;
 
 /**
  * @param {HTMLCanvasElement} canvas
- * @param {any} dotNetRef
  */
-export async function initialize(canvas, dotNetRef) {
+export async function initialize(canvas) {
   if (booted) return;
   const result = await boot(canvas);
   booted = result !== null;

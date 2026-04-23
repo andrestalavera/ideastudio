@@ -1,5 +1,6 @@
 // wwwroot/src/cinema/scenes/cv.js
 import { Group } from 'three';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { createParticles, textTargets } from '../layers/particles.js';
 import { createConstellation } from '../layers/constellation.js';
 
@@ -42,33 +43,65 @@ export default async function cvScene(ctx) {
       font: 'Inter, sans-serif',
     });
     particles.setTargets(targets);
-    particles.setProgress(1);
   };
-  assembleName();
-  if ('fonts' in document) {
-    document.fonts.ready.then(() => assembleName());
+
+  // Start scattered. Assemble once Inter is available.
+  particles.setProgress(0);
+  if ('fonts' in document && 'load' in document.fonts) {
+    document.fonts.load(`700 ${isMobile ? 80 : 140}px "Inter"`).then(() => {
+      assembleName();
+      // Fade progress to 1 so the scattered cloud glides into the name shape.
+      const start = performance.now();
+      const duration = 900;
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+        particles.setProgress(eased);
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }).catch(() => {
+      // Font unavailable — fall back to scattered; still readable.
+      assembleName();
+      particles.setProgress(1);
+    });
+  } else {
+    // Legacy browser with no Font Loading API — assemble immediately.
+    assembleName();
+    particles.setProgress(1);
   }
 
   plasma.setPalette(palette.bg, palette.deep, palette.cyan);
   plasma.setIntensity(0.85);
 
-  const onScroll = () => {
-    const hero = document.getElementById('hero');
-    if (!hero) return;
-    const heroBottom = hero.offsetTop + hero.offsetHeight;
-    const p = Math.min(1, Math.max(0, window.scrollY / Math.max(1, heroBottom)));
-    particles.setProgress(1 - p);
-    constellation.setOpacity?.(p * 0.8);
+  const heroEl = document.querySelector('.ds-hero');
+  let scrollTrigger = null;
+
+  const applyProgress = (p) => {
+    const clamped = Math.min(1, Math.max(0, p));
+    particles.setProgress(1 - clamped);
+    constellation.setOpacity?.(clamped * 0.8);
   };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+
+  if (heroEl) {
+    scrollTrigger = ScrollTrigger.create({
+      trigger: heroEl,
+      start: 'top top',
+      end: 'bottom top',
+      onUpdate: (self) => applyProgress(self.progress),
+      onRefresh: (self) => applyProgress(self.progress),
+    });
+  } else {
+    // No hero element (unexpected on /cv, but handle gracefully):
+    // particles stay assembled, constellation hidden.
+    applyProgress(0);
+  }
 
   return {
     root,
     update(dt) { particles.update(dt); },
-    onResize() { onScroll(); },
     dispose() {
-      window.removeEventListener('scroll', onScroll);
+      scrollTrigger?.kill();
       particles.dispose();
       constellation.dispose();
     },

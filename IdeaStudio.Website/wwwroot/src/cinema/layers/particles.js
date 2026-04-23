@@ -57,8 +57,10 @@ export function createParticles({ count = 18000, palette }) {
     points,
     /** Replace the aTarget buffer. `arr.length` must equal `count * 3`. */
     setTargets(arr) {
-      geom.attributes.aTarget.array = arr;
-      geom.attributes.aTarget.needsUpdate = true;
+      const old = geom.getAttribute('aTarget');
+      geom.setAttribute('aTarget', new BufferAttribute(arr, 3));
+      // three.js disposes the typed array when the attribute is swapped;
+      // no explicit old.dispose() (BufferAttribute has no dispose method).
     },
     /** 0 = scattered, 1 = assembled onto targets. */
     setProgress(v) { mat.uniforms.uProgress.value = v; },
