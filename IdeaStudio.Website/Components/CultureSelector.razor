@@ -1,6 +1,8 @@
 @using System.Globalization
 @using Microsoft.AspNetCore.Components.Web
 @inherits LocalizedComponent
+@inject ILocalizedRoute LocalizedRoute
+@inject NavigationManager NavigationManager
 
 <div class="ds-culture-selector" @onkeydown="OnKeyDown">
     @if (isOpen)
@@ -54,7 +56,10 @@
     private async Task SelectCultureAsync(string culture)
     {
         isOpen = false;
+        string currentPath = new Uri(NavigationManager.Uri).AbsolutePath;
+        string targetPath = LocalizedRoute.Translate(currentPath, culture);
         await CultureService.SetCultureAsync(culture);
+        NavigationManager.NavigateTo(targetPath, forceLoad: false);
     }
 
     private bool IsCurrentCulture(CultureInfo culture)
