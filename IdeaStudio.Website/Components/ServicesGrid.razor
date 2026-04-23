@@ -1,0 +1,22 @@
+@using IdeaStudio.Website.Models
+
+<section id="services" class="ds-section">
+    <div class="ds-container">
+        <div class="ds-section__header">
+            <h2 class="ds-section__title">@Title</h2>
+            <p class="ds-section__lead">@Lead</p>
+        </div>
+        <div class="ds-grid ds-grid--services">
+            @foreach (Service service in Services.OrderBy(s => s.Order))
+            {
+                <ServiceCard Service="@service" />
+            }
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<Service> Services { get; set; } = [];
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string Lead { get; set; } = "";
+}
