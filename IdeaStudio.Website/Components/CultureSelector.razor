@@ -1,7 +1,12 @@
 @using System.Globalization
+@using Microsoft.AspNetCore.Components.Web
 @inherits LocalizedComponent
 
-<div class="ds-culture-selector">
+<div class="ds-culture-selector" @onkeydown="OnKeyDown">
+    @if (isOpen)
+    {
+        <button type="button" class="ds-culture-selector__backdrop" aria-hidden="true" @onclick="CloseMenu"></button>
+    }
     <button class="ds-btn ds-btn--sm" type="button"
         @onclick="ToggleOpen" aria-haspopup="menu" aria-expanded="@isOpen" aria-label="@changeLanguageText">
         <i class="fas fa-globe" aria-hidden="true"></i>
@@ -38,6 +43,13 @@
     }
 
     private void ToggleOpen() => isOpen = !isOpen;
+
+    private void CloseMenu() => isOpen = false;
+
+    private void OnKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Escape") isOpen = false;
+    }
 
     private async Task SelectCultureAsync(string culture)
     {

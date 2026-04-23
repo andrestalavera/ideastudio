@@ -106,7 +106,8 @@
 .ds-exp-card__content { min-width: 0; }
 
 .ds-hero {
-  min-height: 100vh;
+  min-height: 100vh; /* fallback */
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,11 +127,21 @@
 
 .ds-hero__name {
   margin: 0;
-  background: linear-gradient(90deg, var(--ds-sky), var(--ds-teal), var(--ds-mint));
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--ds-sky); /* fallback before gradient clips */
+
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    background: linear-gradient(90deg, var(--ds-sky), var(--ds-teal), var(--ds-mint));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  @media (forced-colors: active) {
+    color: CanvasText;
+    background: none;
+    -webkit-text-fill-color: CanvasText;
+  }
 }
 
 .ds-hero__row {
@@ -148,8 +159,9 @@
 }
 
 .ds-hero__avatar {
-  width: 200px;
-  height: 200px;
+  width: clamp(140px, 40vw, 200px);
+  height: clamp(140px, 40vw, 200px);
+  max-width: 100%;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid rgba(125, 211, 252, 0.20);

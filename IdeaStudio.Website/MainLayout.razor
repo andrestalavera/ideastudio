@@ -62,7 +62,19 @@
         StateHasChanged();
     }
 
-    private void OnCultureChanged() => _ = LoadLocalizedStringsAsync();
+    private void OnCultureChanged() => _ = SafeLoadLocalizedStringsAsync();
+
+    private async Task SafeLoadLocalizedStringsAsync()
+    {
+        try
+        {
+            await LoadLocalizedStringsAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[MainLayout] Failed to load culture: {ex.Message}");
+        }
+    }
 
     private void LoadTexts()
     {
