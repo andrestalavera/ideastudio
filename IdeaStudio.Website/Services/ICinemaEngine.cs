@@ -9,6 +9,7 @@ public interface ICinemaEngine
     Task RegisterRevealAsync(string id, ElementReference element, RevealOptions? options = null);
     Task UnregisterRevealAsync(string id);
     Task RegisterPinnedTimelineAsync(ElementReference container, ElementReference track, int cardCount);
+    Task UnregisterPinnedTimelineAsync();
     Task SetCultureAsync(string cultureName);
 }
 

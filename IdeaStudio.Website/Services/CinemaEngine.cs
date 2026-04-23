@@ -33,6 +33,9 @@ public sealed class CinemaEngine : ICinemaEngine, IAsyncDisposable
     public Task RegisterPinnedTimelineAsync(ElementReference container, ElementReference track, int cardCount)
         => module is null ? Task.CompletedTask : module.InvokeVoidAsync("registerPinnedTimeline", container, track, cardCount).AsTask();
 
+    public Task UnregisterPinnedTimelineAsync()
+        => module is null ? Task.CompletedTask : module.InvokeVoidAsync("unregisterPinnedTimeline").AsTask();
+
     public Task SetCultureAsync(string cultureName)
         => module is null ? Task.CompletedTask : module.InvokeVoidAsync("setCulture", cultureName).AsTask();
 

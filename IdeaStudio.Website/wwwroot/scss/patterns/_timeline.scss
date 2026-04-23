@@ -1,0 +1,39 @@
+.ds-timeline {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+  &__track {
+    display: flex;
+    gap: 2rem;
+    padding-inline: 10vw;
+    will-change: transform;
+  }
+
+  &__slot {
+    flex: 0 0 min(520px, 80vw);
+  }
+
+  @media (max-width: 767px), (hover: none) {
+    height: auto;
+    overflow: visible;
+
+    &__track {
+      flex-direction: column;
+      padding-inline: 1rem;
+      will-change: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    height: auto;
+    overflow: visible;
+
+    &__track {
+      flex-direction: column;
+      will-change: auto;
+    }
+  }
+}

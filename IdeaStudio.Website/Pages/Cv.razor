@@ -75,29 +75,7 @@
         </header>
         @if (resume?.Experiences is not null)
         {
-            <div class="ds-stack">
-                @foreach (var (experience, index) in resume.Experiences.Select((e, i) => (e, i)))
-                {
-                    <div class="@DisplayClasses(index, DEFAULT_EXPERIENCES_TO_SHOW)">
-                        <ExperienceCard Experience="@experience.WithGeneratedId(SlugService)" />
-                    </div>
-                }
-            </div>
-            @if (hasHiddenExperiences)
-            {
-                <div class="ds-print-hidden" style="text-align: center; margin-top: 2rem;">
-                    <button class="ds-btn" @onclick="ToggleExperiences">
-                        @if (showAllExperiences)
-                        {
-                            <span>@showLatestExperiencesText</span>
-                        }
-                        else
-                        {
-                            <span>@string.Format(showMoreExperiencesText, hiddenExperiencesCount)</span>
-                        }
-                    </button>
-                </div>
-            }
+            <ExperienceTimeline Experiences="@resume.Experiences.ToList()" />
         }
         else
         {
@@ -137,14 +115,8 @@
     [CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
 
     private Resume? resume;
-    private bool showAllExperiences = false;
-    private const int DEFAULT_EXPERIENCES_TO_SHOW = 3;
-    private int hiddenExperiencesCount => Math.Max(0, (resume?.Experiences?.Count() ?? 0) - DEFAULT_EXPERIENCES_TO_SHOW);
-    private bool hasHiddenExperiences => hiddenExperiencesCount > 0;
     private string professionalExperiencesText = "Professional experiences";
     private string trainingCoursesText = "I have conducted training courses for...";
-    private string showMoreExperiencesText = "Show more experiences";
-    private string showLatestExperiencesText = "Show only 3 latest experiences";
     private string aboutText = "About";
     private string experiencesText = "Experiences";
     private string trainingText = "Training";
@@ -201,8 +173,6 @@
     {
         professionalExperiencesText = LocalizationService.GetString("ProfessionalExperiences");
         trainingCoursesText = LocalizationService.GetString("TrainingCourses");
-        showMoreExperiencesText = LocalizationService.GetString("ShowMoreExperiences");
-        showLatestExperiencesText = LocalizationService.GetString("ShowLatestExperiences");
         aboutText = LocalizationService.GetString("About");
         experiencesText = LocalizationService.GetString("Experiences");
         trainingText = LocalizationService.GetString("Training");
@@ -267,13 +237,4 @@
         "fr" or "fr-FR" => "fr",
         _ => "en"
     };
-
-    private void ToggleExperiences()
-    {
-        showAllExperiences = !showAllExperiences;
-        StateHasChanged();
-    }
-
-    private string DisplayClasses(int index, int toShow)
-    => index < toShow ? "" : showAllExperiences ? "" : "ds-collapsed";
 }

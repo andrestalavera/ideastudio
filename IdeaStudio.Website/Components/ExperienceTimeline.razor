@@ -1,0 +1,47 @@
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@using IdeaStudio.Website.Components
+@using Microsoft.JSInterop
+@inject ICinemaEngine CinemaEngine
+@inject ISlugService SlugService
+@implements IAsyncDisposable
+
+<div @ref="containerRef" class="ds-timeline">
+    <div @ref="trackRef" class="ds-timeline__track">
+        @foreach (Experience experience in Experiences)
+        {
+            <div class="ds-timeline__slot">
+                <ExperienceCard Experience="@experience.WithGeneratedId(SlugService)" />
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<Experience> Experiences { get; set; } = Array.Empty<Experience>();
+
+    private ElementReference containerRef;
+    private ElementReference trackRef;
+    private bool registered;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && Experiences.Count > 0)
+        {
+            try
+            {
+                await CinemaEngine.RegisterPinnedTimelineAsync(containerRef, trackRef, Experiences.Count);
+                registered = true;
+            }
+            catch (JSDisconnectedException) { /* runtime gone */ }
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (!registered) return;
+        try { await CinemaEngine.UnregisterPinnedTimelineAsync(); }
+        catch (JSDisconnectedException) { }
+        catch (ObjectDisposedException) { }
+    }
+}
