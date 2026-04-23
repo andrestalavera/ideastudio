@@ -1,0 +1,54 @@
+[
+  {
+    "slug": "monseigneurchampagne",
+    "title": "Monseigneur Champagne",
+    "client": "Monseigneur Champagne",
+    "summary": "Showcase site for a champagne house — premium identity and customer journey.",
+    "imageUrl": "images/realisations/monseigneur-champagne.webp",
+    "imageAlt": "Screenshot of the Monseigneur Champagne website",
+    "liveUrl": "https://www.monseigneurchampagne.com",
+    "type": "SiteVitrine",
+    "technologies": [".NET", "Blazor", "Azure"],
+    "completedOn": "2025-11-01",
+    "displayOrder": 1
+  },
+  {
+    "slug": "coronaclubnobless",
+    "title": "Corona Club Noblesse",
+    "client": "Corona Club Noblesse",
+    "summary": "Institutional site for a Swiss club, with an elegant rendering and tri-language support.",
+    "imageUrl": "images/realisations/corona-club-noblesse.webp",
+    "imageAlt": "Screenshot of the Corona Club Noblesse website",
+    "liveUrl": "https://www.coronaclubnobless.ch",
+    "type": "SiteVitrine",
+    "technologies": [".NET", "Blazor"],
+    "completedOn": "2025-09-15",
+    "displayOrder": 2
+  },
+  {
+    "slug": "krosquare",
+    "title": "Krosquare",
+    "client": "Krosquare",
+    "summary": "Showcase and offer-presentation site for a French brand.",
+    "imageUrl": "images/realisations/krosquare.webp",
+    "imageAlt": "Screenshot of the Krosquare website",
+    "liveUrl": "https://www.krosquare.fr",
+    "type": "SiteVitrine",
+    "technologies": [".NET", "Blazor", "Azure"],
+    "completedOn": "2025-07-20",
+    "displayOrder": 3
+  },
+  {
+    "slug": "ideastudio",
+    "title": "IdeaStud.io",
+    "client": "Personal project",
+    "summary": "The site you're currently browsing: portfolio, services, blog.",
+    "imageUrl": "images/realisations/ideastudio.webp",
+    "imageAlt": "Screenshot of the IdeaStud.io website",
+    "liveUrl": "https://www.ideastud.io",
+    "type": "SiteVitrine",
+    "technologies": [".NET", "Blazor", "Azure", "Markdig"],
+    "completedOn": "2025-04-01",
+    "displayOrder": 4
+  }
+]
