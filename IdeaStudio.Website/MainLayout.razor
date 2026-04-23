@@ -3,6 +3,7 @@
 @using IdeaStudio.Website.Components
 @inject ICultureService CultureService
 @inject ILocalizationService LocalizationService
+@inject ILocalizedRoute LocalizedRoute
 @implements IDisposable
 
 <CascadingValue Value="this">
@@ -11,24 +12,25 @@
     <div id="main-content-container" class="ds-app">
         <a href="#main-content" class="ds-skip-link">@skipToMainContentText</a>
 
-        <nav class="ds-nav ds-print-hidden" id="navbar">
-            <div class="ds-container">
-                <div class="ds-nav__inner">
-                    <a class="ds-nav__brand" href="/" aria-label="IdeaStudio - Home">
-                        <img src="images/logo-ideastudio-white.svg" alt="IdeaStudio" height="40" width="100" loading="eager">
+        <header class="ds-header ds-print-hidden">
+            <div class="ds-container ds-header__inner">
+                <a class="ds-header__logo" href="@LocalizedRoute.For("home")">IdeaStud.io</a>
+                <nav class="ds-header__nav" aria-label="Main">
+                    <a href="@LocalizedRoute.For("services.hub")">@servicesText</a>
+                    <a href="@LocalizedRoute.For("realisations")">@realisationsText</a>
+                    <a href="@LocalizedRoute.For("cv")">@cvText</a>
+                </nav>
+                <div class="ds-header__actions">
+                    <CultureSelector />
+                    <a class="ds-btn ds-btn--primary ds-btn--sm"
+                       href="https://calendly.com/andres-talavera/30min"
+                       target="_blank" rel="noopener"
+                       aria-label="@bookCallAriaText">
+                        @bookCallText
                     </a>
-
-                    <div class="ds-nav__links">
-                        @if (NavbarContent is not null) { @NavbarContent }
-                    </div>
-
-                    <div class="ds-nav__actions">
-                        <SocialNetworksComponent Size="sm" ShowText="false" />
-                        <CultureSelector />
-                    </div>
                 </div>
             </div>
-        </nav>
+        </header>
 
         <main id="main-content" role="main">
             @Body
@@ -42,6 +44,11 @@
     [Parameter] public RenderFragment? NavbarContent { get; set; }
 
     private string skipToMainContentText = "Skip to main content";
+    private string servicesText = "Services";
+    private string realisationsText = "Projects";
+    private string cvText = "Resume";
+    private string bookCallText = "Book 30 min";
+    private string bookCallAriaText = "Book a 30-minute call on Calendly (opens in a new tab)";
 
     protected override async Task OnInitializedAsync()
     {
@@ -79,6 +86,15 @@
     private void LoadTexts()
     {
         skipToMainContentText = LocalizationService.GetString("SkipToMainContent");
+        LoadNavTexts();
+    }
+
+    private void LoadNavTexts()
+    {
+        servicesText = LocalizationService.GetString("Nav.Services");
+        realisationsText = LocalizationService.GetString("Nav.Realisations");
+        cvText = LocalizationService.GetString("Nav.Cv");
+        bookCallText = LocalizationService.GetString("Nav.BookCall");
     }
 
     public void Dispose()
