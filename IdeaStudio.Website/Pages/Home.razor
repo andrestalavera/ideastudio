@@ -1,39 +1,263 @@
 @page "/fr"
 @page "/en"
 @using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
+@using ServiceModel = IdeaStudio.Website.Models.Service
 @inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
 @layout MainLayout
 
-<SeoHead Title="IdeaStud.io — Andrés Talavera"
+<SeoHead Title="@seoTitle"
          Description="@seoDescription"
          Author="Andrés Talavera"
          CanonicalUrl="@seoCanonical"
          SiteName="IdeaStud.io"
-         Locale="@seoLocale" />
+         Locale="@seoLocale"
+         OgImage="https://ideastud.io/images/andres-talavera.jpeg"
+         OgImageAlt="Andrés Talavera - .NET & Azure"
+         StructuredData="@seoStructuredData"
+         SpeakableSelectors="@speakable" />
 
+@* 1 · Hero *@
 <Hero Kicker="@kicker" Lead="@lead" ThreadAnchor="hero">
-    <span>Andrés Talavera</span><span class="ds-display__accent">.</span>
+    <ChildContent>
+        <span>Andrés Talavera</span><span class="ds-display__accent">.</span>
+    </ChildContent>
+    <Actions>
+        <ActionRow Label="@meetLabel" />
+    </Actions>
 </Hero>
 
+@* 2 · Latest realisations *@
+<section class="ds-section ds-section--chapter ds-section--bordered" data-thread-anchor="work">
+    <div class="ds-container">
+        <ChapterBand Kicker="@realisationsKicker" Title="@realisationsTitle" />
+        <div class="ds-grid ds-grid--auto ds-home__tiles" style="margin-block-start: 3rem;">
+            @if (realisations.Count > 0)
+            {
+                int i = 0;
+                foreach (Realisation r in realisations.Take(3))
+                {
+                    <ProjectTile Href="@r.LiveUrl"
+                                 Target="_blank" Rel="noopener"
+                                 ImageUrl="@r.ImageUrl" ImageAlt="@r.ImageAlt"
+                                 Type="@r.Type.ToString()" Year="@r.CompletedOn.Year.ToString()"
+                                 Title="@r.Title" Summary="@r.Summary"
+                                 Tags="@r.Technologies" />
+                    i++;
+                }
+            }
+        </div>
+        <p style="margin-block-start: 2.5rem;" data-reveal>
+            <a class="ds-link" href="@LocalizedRoute.For("realisations")">
+                @seeAllRealisations <span class="ds-link__arrow" aria-hidden="true">→</span>
+            </a>
+        </p>
+    </div>
+</section>
+
+@* 3 · Go to my resume *@
+<ResumeBand YearsValue="@yearsValue"
+            StackValue=".NET · Azure · Mobile"
+            LanguagesValue="FR · EN · ES" />
+
+@* 4 · Services *@
+<section class="ds-section ds-section--chapter ds-section--bordered" data-thread-anchor="services">
+    <div class="ds-container">
+        <ChapterBand Kicker="@servicesKicker" Title="@servicesTitle" />
+        <div style="margin-block-start: 2rem;" data-reveal>
+            <EditorialList Items="@services" />
+        </div>
+    </div>
+</section>
+
+@* 5 · Where I teach *@
+<section class="ds-section ds-section--chapter ds-section--bordered" data-thread-anchor="teach">
+    <div class="ds-container">
+        <ChapterBand Kicker="@teachKicker" Title="@teachTitle" />
+        <div style="margin-block-start: 2.5rem;">
+            <TeachList Centers="@trainingCenters" />
+        </div>
+        <p style="margin-block-start: 2.5rem;" data-reveal>
+            <a class="ds-link" href="@LocalizedRoute.For("cv")">
+                @allTrainings <span class="ds-link__arrow" aria-hidden="true">→</span>
+            </a>
+        </p>
+    </div>
+</section>
+
+@* 6 · Questions (expanded Q&A — no accordion) *@
+<section class="ds-section ds-section--chapter ds-section--bordered">
+    <div class="ds-container ds-container--narrow">
+        <ChapterBand Kicker="@questionsKicker" Title="@questionsTitle" />
+        <div style="margin-block-start: 2.5rem;">
+            @for (int i = 0; i < faq.Count; i++)
+            {
+                (string q, string a) = faq[i];
+                <QABlock Kicker="@($"Q {i + 1:D2}")" Question="@q" Answer="@a" Step="@i" />
+            }
+        </div>
+    </div>
+</section>
+
 @code {
+    private IReadOnlyList<ServiceModel> services = Array.Empty<ServiceModel>();
+    private IReadOnlyList<Realisation> realisations = Array.Empty<Realisation>();
+    private IEnumerable<TrainingCenter>? trainingCenters;
+    private List<(string Q, string A)> faq = new();
+
     private string kicker = "CONSULTANT · TECHLEAD · FORMATEUR";
-    private string lead = "Je transforme des idées en logiciels qui marchent. .NET, Azure, mobile, web — à Lyon et à distance.";
+    private string lead = "Je transforme des idées en logiciels qui marchent.";
+    private string meetLabel = "Rencontrer";
+    private string realisationsKicker = "Réalisations";
+    private string realisationsTitle = "Projets récents.";
+    private string seeAllRealisations = "Voir toutes les réalisations";
+    private string servicesKicker = "Services";
+    private string servicesTitle = "Six façons de collaborer.";
+    private string teachKicker = "Formations";
+    private string teachTitle = "Où j'enseigne.";
+    private string allTrainings = "Voir toutes les formations";
+    private string questionsKicker = "Questions";
+    private string questionsTitle = "Les plus demandées.";
+    private string yearsValue = "15";
+
+    private string seoTitle = "IdeaStud.io — Andrés Talavera";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr";
     private string seoLocale = "fr_FR";
+    private List<string>? seoStructuredData;
+    private List<string> speakable = new() { ".ds-hero .ds-lead", ".ds-hero .ds-display" };
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        await LoadDataAsync();
+        GenerateStructuredData();
+        StateHasChanged();
+    }
 
     protected override void LoadTexts()
     {
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr" : "https://ideastud.io/en";
-        kicker = fr
-            ? "CONSULTANT · TECHLEAD · FORMATEUR"
-            : "CONSULTANT · TECH LEAD · TRAINER";
+        seoTitle = fr
+            ? "Andrés Talavera — Consultant .NET & Azure, Techlead, Formateur | IdeaStud.io"
+            : "Andrés Talavera — .NET & Azure Consultant, Tech Lead, Trainer | IdeaStud.io";
         lead = fr
             ? "Je transforme des idées en logiciels qui marchent. .NET, Azure, mobile, web — à Lyon et à distance."
             : "I turn ideas into software that ships. .NET, Azure, mobile, web — in Lyon and remote.";
         seoDescription = lead;
+
+        kicker = fr
+            ? "CONSULTANT · TECHLEAD · FORMATEUR"
+            : "CONSULTANT · TECH LEAD · TRAINER";
+
+        meetLabel = fr ? "Rencontrer" : "Meet";
+
+        realisationsKicker = fr ? "Réalisations" : "Work";
+        realisationsTitle  = fr ? "Projets récents." : "Recent projects.";
+        seeAllRealisations = fr ? "Voir toutes les réalisations" : "See all projects";
+
+        servicesKicker = fr ? "Services" : "Services";
+        servicesTitle  = fr ? "Six façons de collaborer." : "Six ways to collaborate.";
+
+        teachKicker = fr ? "Formations" : "Trainings";
+        teachTitle  = fr ? "Où j'enseigne." : "Where I teach.";
+        allTrainings = fr ? "Voir toutes les formations" : "See all trainings";
+
+        questionsKicker = fr ? "Questions" : "Questions";
+        questionsTitle  = fr ? "Les plus demandées." : "Most asked.";
+
+        faq = fr
+            ? new() {
+                ("Quels projets acceptes-tu ?", "Des missions de consulting, techlead, formation ou réalisation — .NET & Azure, mobile, web. Si le cadrage est clair et le délai sain, j'y vais."),
+                ("Tes tarifs ?", "Tarif journalier moyen à 850 €. Ajusté selon durée, complexité et contexte. Premier cadrage Calendly gratuit."),
+                ("Tu travailles à distance ?", "Oui — Lyon ou full-remote. Je me déplace volontiers pour les kick-offs, ateliers techniques ou formations sur site.")
+            }
+            : new() {
+                ("What projects do you take on?", "Consulting, tech-lead, training and delivery work — .NET & Azure, mobile, web. If scope is clear and the timeline is sane, I'm in."),
+                ("What are your rates?", "My typical day rate is 850 €. Adjusted for duration, complexity and context. First Calendly scoping call is free."),
+                ("Do you work remote?", "Yes — Lyon or full-remote. Happy to travel for kick-offs, technical workshops or on-site training.")
+            };
+    }
+
+    private async Task LoadDataAsync()
+    {
+        string culture = CultureService.CurrentCulture.Name;
+        services     = await Content.GetServicesAsync(culture);
+        realisations = await Content.GetRealisationsAsync(culture);
+        Resume? resume = await Content.GetResumeAsync(culture);
+        trainingCenters = resume?.TrainingCenters?.Take(6).ToArray();
+
+        if (resume is not null && resume.Experiences is { Count: > 0 })
+        {
+            DateTime earliest = resume.Experiences.Min(e => e.StartDate);
+            int years = Math.Max(1, DateTime.Today.Year - earliest.Year);
+            yearsValue = years.ToString();
+        }
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+        string servicesUrl = $"https://ideastud.io{LocalizedRoute.For("services.hub", cultureCode)}";
+
+        SchemaOrg.Person person = new(
+            Name: "Andrés Talavera",
+            JobTitle: fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
+            Description: seoDescription,
+            Url: "https://ideastud.io",
+            Image: "https://ideastud.io/images/andres-talavera.jpeg",
+            SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
+            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "ASP.NET Core", "Cloud Architecture", "Software Training" },
+            Address: new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressRegion: "Auvergne-Rhône-Alpes", AddressCountry: "FR"),
+            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io")
+        );
+
+        SchemaOrg.WebSite website = new(
+            Name: "IdeaStud.io",
+            Url: "https://ideastud.io",
+            Description: fr
+                ? "Portfolio et services d'Andrés Talavera, consultant .NET & Azure à Lyon."
+                : "Portfolio and services of Andrés Talavera, .NET & Azure consultant in Lyon."
+        );
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)));
+
+        List<SchemaOrg.Service> svcs = services
+            .Select(s => new SchemaOrg.Service(
+                Name: s.Title,
+                Description: string.IsNullOrWhiteSpace(s.Tagline) ? s.Summary : s.Tagline,
+                Provider: person,
+                AreaServed: fr ? "France et international (remote)" : "France and worldwide (remote)"))
+            .ToList();
+
+        SchemaOrg.ProfessionalService professional = new(
+            Name: fr ? "Services IdeaStud.io" : "IdeaStud.io services",
+            Description: seoDescription,
+            Url: servicesUrl,
+            AreaServed: fr ? "France et international (remote)" : "France and worldwide (remote)",
+            Provider: person,
+            Services: svcs);
+
+        // FAQPage JSON-LD — fed by the 3 Home Q&A.
+        SchemaOrg.FAQPage faqPage = new(
+            faq.Select(x => new SchemaOrg.Question(x.Q, new SchemaOrg.Answer(x.A))).ToArray()
+        );
+
+        seoStructuredData = new List<string>
+        {
+            SchemaOrg.ToJsonLd(person),
+            SchemaOrg.ToJsonLd(website),
+            SchemaOrg.ToJsonLd(breadcrumb),
+            SchemaOrg.ToJsonLd(professional),
+            SchemaOrg.ToJsonLd(faqPage)
+        };
     }
 }

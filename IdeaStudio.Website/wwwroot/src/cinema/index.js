@@ -1,11 +1,16 @@
-// cinema/index.js — V3 orchestrator. Exposes initialize / applyTheme / dispose
-// over JS interop so Blazor can boot, theme, and tear down the engine.
-// Passes (mesh, thread, letters) will be added in Phase 1.
+// cinema/index.js — V3 orchestrator. Owns the renderer, clock, inputs, hero
+// state machine, and the mesh + thread passes. Exposes initialize /
+// applyTheme / dispose over JS interop.
 
 import { Renderer } from './engine/renderer.js';
 import { Clock } from './engine/clock.js';
 import { Inputs } from './engine/inputs.js';
 import { HeroState } from './engine/state.js';
+import { createMeshPass } from './passes/mesh.js';
+import { createThreadPass } from './passes/thread.js';
+import { attachReveals, disposeReveals } from './interactions/reveals.js';
+import { attachCursor, disposeCursor } from './interactions/cursor.js';
+import { attachNavMorph, disposeNavMorph } from './interactions/nav-morph.js';
 import { prefersReducedMotion, batteryLow, setMotionMode } from './utils/perf.js';
 
 let booted = false;
@@ -13,6 +18,8 @@ let renderer = null;
 let clock = null;
 let inputs = null;
 let state = null;
+let mesh = null;
+let thread = null;
 let paused = false;
 const pauseReasons = new Set();
 
@@ -22,15 +29,20 @@ async function computeInitialMotion() {
   return null;
 }
 
-function pause(reason) { pauseReasons.add(reason); clock?.stop(); paused = true; }
-function resume(reason) {
-  pauseReasons.delete(reason);
+function pause(r) { pauseReasons.add(r); clock?.stop(); paused = true; }
+function resume(r) {
+  pauseReasons.delete(r);
   if (pauseReasons.size === 0 && paused) { clock?.start(); paused = false; }
 }
 
 export async function initialize() {
   if (booted) return;
   booted = true;
+
+  // Always attach reveals/cursor/nav-morph — they work without WebGL.
+  attachReveals();
+  attachCursor();
+  attachNavMorph();
 
   const canvas = document.getElementById('gl-canvas');
   if (!canvas) return;
@@ -43,11 +55,17 @@ export async function initialize() {
 
   inputs = new Inputs();
   state = new HeroState();
+  mesh = createMeshPass(renderer);
+  thread = createThreadPass(renderer);
+
+  const ctx = () => ({ pointer: inputs.pointer, scroll: inputs.scroll, state });
 
   clock = new Clock((t, dt) => {
     inputs.step(dt);
     state.update(inputs.scroll.page, window.innerWidth);
-    // passes will render into renderer.gl here (Phase 1)
+    const c = ctx();
+    mesh?.render(t, c);
+    thread?.render(t, c);
   });
   clock.start();
 
@@ -62,22 +80,35 @@ export async function initialize() {
     window.addEventListener('scroll', tickBar, { passive: true });
     tickBar();
   }
+
+  // Route-change hook: re-anchor the thread and rewire reveals when the
+  // DOM swaps via Blazor's router.
+  window.addEventListener('ideastudio:routechanged', () => {
+    attachReveals();
+    thread?.rebuild();
+  });
 }
 
 export function applyTheme(scene) {
   if (typeof scene === 'string') document.documentElement.dataset.scene = scene;
+  mesh?.refreshPalette?.();
+  thread?.refresh?.();
 }
 
 export function dispose() {
   clock?.stop();
+  thread?.dispose();
+  mesh?.dispose();
   inputs?.dispose();
   renderer?.dispose();
-  renderer = null; inputs = null; state = null; clock = null;
+  disposeReveals();
+  disposeCursor();
+  disposeNavMorph();
+  mesh = null; thread = null; renderer = null; inputs = null; state = null; clock = null;
   booted = false;
   pauseReasons.clear();
 }
 
-// Expose on window so Blazor's IJSRuntime can reach us without ES module gymnastics.
 if (typeof window !== 'undefined') {
   window.ideastudioCinema = { initialize, applyTheme, dispose };
 }

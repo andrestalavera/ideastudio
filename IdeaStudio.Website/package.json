@@ -7,8 +7,8 @@
 		"copy-fonts": "node scripts/copy-fonts.mjs",
 		"compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --update --color",
 		"watch-compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --update --watch --poll --color",
-		"compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --minify --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --legal-comments=none --alias:gsap=./node_modules/gsap/index.js",
-		"watch-compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --watch --alias:gsap=./node_modules/gsap/index.js",
+		"compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --minify --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --legal-comments=none --alias:gsap=./node_modules/gsap/index.js --loader:.vert=text --loader:.frag=text --loader:.glsl=text",
+		"watch-compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --watch --alias:gsap=./node_modules/gsap/index.js --loader:.vert=text --loader:.frag=text --loader:.glsl=text",
 		"build": "npm run copy-fonts && npm run compile-styles && npm run compile-scripts"
 	},
 	"repository": {
