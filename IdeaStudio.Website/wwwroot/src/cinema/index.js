@@ -12,6 +12,8 @@ import realisationsScene from './scenes/realisations.js';
 import legalScene from './scenes/legal.js';
 import * as reveals from './scroll/reveals.js';
 import * as pinned from './scroll/pinned-timeline.js';
+import * as magnetic from './interactions/magnetic.js';
+import * as cursor from './interactions/cursor.js';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
@@ -37,6 +39,8 @@ export async function initialize(canvas) {
   if (booted) return;
   const result = await boot(canvas);
   booted = result !== null;
+  magnetic.attachAll();
+  cursor.enable();
 }
 
 /**
@@ -46,6 +50,8 @@ export async function initialize(canvas) {
 export async function setScene(name, parameters) {
   if (!booted) return;
   await switchScene(name, parameters);
+  // Idempotent; picks up newly mounted [data-magnetic] elements after nav.
+  magnetic.attachAll();
 }
 
 /**
@@ -89,6 +95,8 @@ export async function pulse() {
 }
 
 export async function dispose() {
+  cursor.disable();
+  magnetic.disposeAll();
   reveals.disposeAll();
   pinned.unregister();
   shutdown();

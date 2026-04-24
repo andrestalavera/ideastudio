@@ -1,0 +1,59 @@
+@use '../tokens/colors' as colors;
+
+// Custom cursor — rendered by src/cinema/interactions/cursor.js.
+// Hidden on touch and for users who prefer reduced motion.
+
+.ds-cursor,
+.ds-cursor__halo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  mix-blend-mode: screen;
+}
+
+.ds-cursor {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ds-cyan, #{colors.$cyan});
+  box-shadow: 0 0 8px currentcolor;
+}
+
+.ds-cursor__halo {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--ds-cyan, #{colors.$cyan});
+  border-radius: 50%;
+  transition: opacity 0.2s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.ds-cursor--visible,
+.ds-cursor__halo--visible {
+  opacity: 0.9;
+}
+
+.ds-cursor__halo--hover {
+  width: 56px;
+  height: 56px;
+}
+
+// Pointer device only. No custom cursor on touch or reduced-motion.
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .ds-cursor,
+  .ds-cursor__halo {
+    display: none !important;
+  }
+}
+
+// Hide the native cursor on interactive elements when the custom cursor is on.
+html.ds-cursor-enabled,
+html.ds-cursor-enabled a,
+html.ds-cursor-enabled button,
+html.ds-cursor-enabled [role='button'] {
+  cursor: none;
+}
