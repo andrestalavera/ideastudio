@@ -1,0 +1,68 @@
+// components/_home.scss — Home-specific tightening so the signature hero
+// is the loud beat and every other section whispers underneath.
+
+@use '../tokens/space' as s;
+@use '../tokens/colors' as c;
+
+// 1 · Hero takes most of the first viewport — the signature is the moment.
+.ds-hero--signature {
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  padding-block: clamp(4rem, 8vh, 8rem);
+
+  @media (max-width: 767px) {
+    min-height: 80vh;
+  }
+}
+
+// 2 · Home sections breathe. We layer this on top of .ds-section--chapter
+// so the rest of the site keeps its (slightly tighter) default rhythm.
+.ds-page--home {
+  .ds-section--chapter {
+    padding-block: clamp(7rem, 14vw, 14rem);
+  }
+
+  // 3 · Drop the iridescent corner accent on Home — it competes visually with
+  // the signature's amber halo. Keep the hairline rule, but soften it.
+  .ds-section--bordered {
+    border-block-start: 1px solid c.$rule;
+
+    &::before { display: none; }
+  }
+}
+
+// 4 · Project tiles on Home: 3 selected works, each in single-column,
+// generous margin between. The grid on /realisations stays multi-col.
+.ds-home__projects {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 6vw, 5rem);
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.ds-home__projects .ds-tile {
+  width: 100%;
+}
+
+.ds-home__projects .ds-tile__media {
+  aspect-ratio: 16 / 9;
+}
+
+@media (min-width: 1024px) {
+  .ds-home__projects .ds-tile {
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: center;
+  }
+
+  .ds-home__projects .ds-tile__media {
+    grid-row: 1 / span 4;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+// 5 · Chapter band on Home: less section-feel, more page-spread feel.
+.ds-page--home .ds-rhythm > .ds-kicker { letter-spacing: 0.18em; }

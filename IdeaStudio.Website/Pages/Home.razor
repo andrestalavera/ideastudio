@@ -23,6 +23,7 @@
 @* 1 · Hero — the name is shipped as a living WebGL glyph object, not a flat
    <h1>. SignatureName carries its own sr-only <h1> for SEO + AT. The kicker
    and lead remain to give the same vertical rhythm as the rest of the site. *@
+<div class="ds-page--home">
 <section class="ds-hero ds-hero--signature" data-thread-anchor="hero">
     <div class="ds-container">
         <div class="ds-hero__inner ds-rhythm">
@@ -40,10 +41,9 @@
 <section class="ds-section ds-section--chapter ds-section--bordered" data-thread-anchor="work">
     <div class="ds-container">
         <ChapterBand Kicker="@realisationsKicker" Title="@realisationsTitle" />
-        <div class="ds-grid ds-grid--auto ds-home__tiles" style="margin-block-start: 3rem;">
+        <div class="ds-home__projects" style="margin-block-start: 3rem;">
             @if (realisations.Count > 0)
             {
-                int i = 0;
                 foreach (Realisation r in realisations.Take(3))
                 {
                     <ProjectTile Href="@r.LiveUrl"
@@ -52,7 +52,6 @@
                                  Type="@r.Type.ToString()" Year="@r.CompletedOn.Year.ToString()"
                                  Title="@r.Title" Summary="@r.Summary"
                                  Tags="@r.Technologies" />
-                    i++;
                 }
             }
         </div>
@@ -107,6 +106,7 @@
         </div>
     </div>
 </section>
+</div>
 
 @code {
     private IReadOnlyList<ServiceModel> services = Array.Empty<ServiceModel>();
