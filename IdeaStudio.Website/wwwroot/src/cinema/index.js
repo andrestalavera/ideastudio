@@ -10,13 +10,17 @@ import * as cursor from './interactions/cursor.js';
 import * as reveals from './interactions/reveals.js';
 import * as stickyHero from './interactions/sticky-hero.js';
 import * as heroStage from './interactions/hero-stage.js';
+import * as backdropShader from './backdrop-shader.js';
 import { applyTheme as applyThemeInternal } from './scene-theme.js';
 
 let booted = false;
+/** @type {{ shutdown(): void }|null} */
+let shader = null;
 
 export async function initialize() {
   if (booted) return;
   booted = true;
+  shader = backdropShader.boot();
   cursor.enable();
   reveals.attachAll();
   stickyHero.attach();
@@ -47,5 +51,7 @@ export async function dispose() {
   cursor.disable();
   reveals.disposeAll();
   stickyHero.detach();
+  shader?.shutdown();
+  shader = null;
   booted = false;
 }

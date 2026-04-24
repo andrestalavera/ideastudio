@@ -29,7 +29,6 @@
                 <p>@((MarkupString)Markdown.ToHtml(lastUpdatedText))</p>
                 <p>@((MarkupString)Markdown.ToHtml(developerText))</p>
                 <p>@((MarkupString)Markdown.ToHtml(hostText))</p>
-                <p>@((MarkupString)Markdown.ToHtml(videoAttributesText))</p>
             </div>
         </article>
     </div>
@@ -42,7 +41,6 @@
     private string lastUpdatedText = "Last updated: September 8th, 2025";
     private string developerText = "Developer: Andres Talavera";
     private string hostText = "Host: Azure Static Web Apps";
-    private string videoAttributesText = "The background video is sourced from Pixabay and is licensed under \"[Pixabay Content](https://pixabay.com/fr/service/license-summary/)\".<br/>Original version: [https://pixabay.com/videos/news-technology-information-88425/](https://pixabay.com/videos/news-technology-information-88425/)";
 
     // SEO fields
     private string seoTitle = "Legal Mentions | IdeaStud.io";
@@ -72,7 +70,6 @@
         lastUpdatedText = LocalizationService.GetString("LegalMentions.LastUpdated");
         developerText = LocalizationService.GetString("LegalMentions.Developer");
         hostText = LocalizationService.GetString("LegalMentions.Host");
-        videoAttributesText = LocalizationService.GetString("LegalMentions.VideoAttributes");
 
         // Update SEO for current language
         var isFrench = CultureService.CurrentCulture.Name.StartsWith("fr");

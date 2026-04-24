@@ -55,3 +55,46 @@ html.is-pulsing::before {
 @media print {
   html::before { display: none; }
 }
+
+// Full-viewport WebGL backdrop (replaces the previous <video> that iOS
+// Safari wouldn't autoplay in low-power mode). A raw WebGL2 fragment shader
+// draws into #backdrop-canvas; a PNG fallback is revealed if the context
+// fails to create or compile.
+.ds-backdrop {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  background: var(--ds-bg, #0a0a0b);
+}
+
+.ds-backdrop__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ds-backdrop__fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  opacity: 0.45;
+  filter: hue-rotate(30deg) saturate(0.5);
+}
+
+html.no-webgl .ds-backdrop__canvas { display: none; }
+html.no-webgl .ds-backdrop__fallback { display: block; }
+
+.ds-backdrop-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  // Very subtle darkening so the foreground type reads cleanly over the
+  // shader's brighter moments. The shader is already restrained, so this
+  // is light-handed.
+  background: color-mix(in srgb, var(--ds-bg, #0a0a0b) 32%, transparent);
+}
