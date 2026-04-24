@@ -127,3 +127,22 @@ html[data-scene="service/web"] {
   --ds-scene-accent:   #7dd3fc;
   --ds-scene-accent-2: #0ea5e9;
 }
+
+// Phase C3: the WebGL aurora canvas is the primary backdrop when JS is alive.
+// It's injected as the first child of <body> at position:fixed, sitting behind
+// the CSS radial-gradient fallback; when it boots, it adds .has-webgl-backdrop
+// on <html> and we gently fade the fallback out so only the shader shows.
+.ds-backdrop-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;  // BEHIND html::before fallback (which is z-index: -1)
+  pointer-events: none;
+  display: block;
+}
+
+html.has-webgl-backdrop::before {
+  opacity: 0;
+  transition: opacity 600ms ease-out;
+}

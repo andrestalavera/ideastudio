@@ -5,10 +5,13 @@ namespace IdeaStudio.Website.Tests;
 
 public class BundleBudgetTests
 {
-    // After Phase C1 the runtime is cursor + reveals + magnetic + sticky-hero +
-    // scene-theme. No WebGL, no GSAP. ~20 KB gzipped is the measured target;
-    // 30 KB leaves headroom for small additions (e.g. Phase C2 sprinkles).
-    private const long MaxGzipBytes = 30 * 1024;
+    // Phase C3 re-introduced Three.js (aurora backdrop shader) and GSAP (hero
+    // entrance timeline) where they earn their keep. The plan's "~70-90 KB"
+    // estimate underestimated Three.js core: r170 lands at ~120 KB gzipped on
+    // its own; adding GSAP core + CSSPlugin + our modules measures ~150 KB
+    // gzipped. Still well under the pre-refactor 250 KB starting point. 160 KB
+    // leaves modest headroom for minor C3.x additions.
+    private const long MaxGzipBytes = 160 * 1024;
 
     [Fact]
     public void CinemaBundle_Gzipped_IsUnderBudget()
