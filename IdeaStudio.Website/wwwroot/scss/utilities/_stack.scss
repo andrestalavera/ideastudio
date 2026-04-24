@@ -36,6 +36,21 @@
 .ds-grid--3 { grid-template-columns: repeat(1, 1fr); @media (min-width: s.$bp-md) { grid-template-columns: repeat(2, 1fr); } @media (min-width: s.$bp-xl) { grid-template-columns: repeat(3, 1fr); } }
 .ds-grid--4 { grid-template-columns: repeat(1, 1fr); @media (min-width: s.$bp-md) { grid-template-columns: repeat(2, 1fr); } @media (min-width: s.$bp-lg) { grid-template-columns: repeat(4, 1fr); } }
 
+// Content-specific grid modifiers. .ds-grid supplies display + gap.
+.ds-grid--services {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: s.$s-4;
+
+  @media (min-width: s.$bp-lg) {
+    grid-template-columns: repeat(3, 1fr); // 2×3 on desktop, matches hub scene layout
+  }
+}
+
+.ds-grid--realisations {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: s.$s-4;
+}
+
 // Section.
 .ds-section {
   padding-block: s.$s-9;

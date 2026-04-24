@@ -142,7 +142,7 @@ export default async function servicesHubScene(ctx) {
   window.addEventListener('resize', onResize, { passive: true });
 
   plasma.setPalette(palette.bg, palette.deep, palette.sky);
-  plasma.setIntensity(0.85);
+  plasma.setIntensity(0.28);
 
   let t = 0;
   return {

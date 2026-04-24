@@ -43,7 +43,7 @@ export default async function realisationsScene(ctx) {
   });
 
   plasma.setPalette(palette.bg, palette.deep, palette.azure);
-  plasma.setIntensity(0.85);
+  plasma.setIntensity(0.28);
 
   // Mouse parallax: root x/y tracks mouse offset (lerped in update).
   let mouseX = 0;

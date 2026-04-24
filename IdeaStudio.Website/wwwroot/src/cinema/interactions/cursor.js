@@ -25,11 +25,37 @@ const onMove = (e) => {
     dot.classList.add('ds-cursor--visible');
     halo?.classList.add('ds-cursor__halo--visible');
   }
+  // If the rAF loop was paused (cursor had left the doc), snap halo to dot and restart.
+  if (!running) {
+    hx = mx;
+    hy = my;
+    running = true;
+    rafId = requestAnimationFrame(tick);
+  }
 };
 
-const onLeaveWindow = () => {
+const onLeaveDoc = () => {
   dot?.classList.remove('ds-cursor--visible');
   halo?.classList.remove('ds-cursor__halo--visible');
+  halo?.classList.remove('ds-cursor__halo--hover');
+  if (running) {
+    running = false;
+    cancelAnimationFrame(rafId);
+  }
+};
+
+const onEnterDoc = () => {
+  if (!running && dot) {
+    // Snap halo to current dot position so it doesn't trail from stale location.
+    hx = mx;
+    hy = my;
+    running = true;
+    rafId = requestAnimationFrame(tick);
+  }
+};
+
+const onVisibilityChange = () => {
+  if (document.hidden) onLeaveDoc();
 };
 
 const onOver = (e) => {
@@ -57,7 +83,9 @@ function tick() {
 }
 
 export function enable() {
-  if (running) return;
+  // Guard against double-init. `running` can be false while paused (cursor
+  // outside doc) but `dot` is still mounted — treat that as enabled.
+  if (running || dot) return;
   if (prefersReducedMotion() || isTouch()) return;
 
   dot = document.createElement('div');
@@ -71,7 +99,9 @@ export function enable() {
   document.documentElement.classList.add('ds-cursor-enabled');
 
   window.addEventListener('mousemove', onMove, { passive: true });
-  window.addEventListener('mouseleave', onLeaveWindow);
+  document.documentElement.addEventListener('mouseleave', onLeaveDoc);
+  document.documentElement.addEventListener('mouseenter', onEnterDoc);
+  document.addEventListener('visibilitychange', onVisibilityChange);
   document.addEventListener('mouseover', onOver);
   document.addEventListener('mouseout', onOut);
 
@@ -80,11 +110,15 @@ export function enable() {
 }
 
 export function disable() {
-  if (!running) return;
-  running = false;
-  cancelAnimationFrame(rafId);
+  if (!running && !dot) return;
+  if (running) {
+    running = false;
+    cancelAnimationFrame(rafId);
+  }
   window.removeEventListener('mousemove', onMove);
-  window.removeEventListener('mouseleave', onLeaveWindow);
+  document.documentElement.removeEventListener('mouseleave', onLeaveDoc);
+  document.documentElement.removeEventListener('mouseenter', onEnterDoc);
+  document.removeEventListener('visibilitychange', onVisibilityChange);
   document.removeEventListener('mouseover', onOver);
   document.removeEventListener('mouseout', onOut);
   dot?.remove();

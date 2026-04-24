@@ -37,7 +37,7 @@ export default async function techleadScene(ctx) {
   const aTarget = orbit.points.geometry.getAttribute('aTarget');
 
   plasma.setPalette(palette.bg, palette.deep, accent);
-  plasma.setIntensity(0.75);
+  plasma.setIntensity(0.28);
 
   return {
     root,

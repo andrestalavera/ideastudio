@@ -75,7 +75,7 @@ export default async function mobileScene(ctx) {
   root.add(particles.points);
 
   plasma.setPalette(palette.bg, palette.deep, accent);
-  plasma.setIntensity(0.8);
+  plasma.setIntensity(0.28);
 
   const RISE_MS = 1600;
   let t = 0;

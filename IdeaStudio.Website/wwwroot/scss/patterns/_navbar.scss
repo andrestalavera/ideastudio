@@ -1,6 +1,71 @@
 @use '../tokens/space' as s;
 @use '../tokens/typography' as t;
 
+.ds-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(2, 6, 23, 0.55);
+  border-bottom: 1px solid rgba(125, 211, 252, 0.10);
+}
+
+.ds-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: s.$s-4;
+  padding-block: s.$s-3;
+}
+
+.ds-header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: s.$s-3;
+  color: var(--ds-fg);
+  text-decoration: none;
+  font-weight: t.$fw-semibold;
+  letter-spacing: 0.02em;
+}
+
+.ds-header__nav {
+  display: flex;
+  gap: s.$s-1;
+  flex: 1 1 auto;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    padding: s.$s-2 s.$s-4;
+    border-radius: s.$r-pill;
+    color: var(--ds-fg-muted);
+    text-decoration: none;
+    font-size: t.$fs-small;
+    font-weight: t.$fw-medium;
+    white-space: nowrap;
+    transition: color var(--ds-dur-fast) var(--ds-ease-out),
+                background var(--ds-dur-fast) var(--ds-ease-out);
+    &:hover {
+      color: var(--ds-fg);
+      background: rgba(125, 211, 252, 0.08);
+    }
+    &:focus-visible { outline: 2px solid var(--ds-focus-ring); outline-offset: 2px; }
+  }
+
+  @media (max-width: 767px) {
+    display: none; // mobile: links collapse; hamburger later
+  }
+}
+
+.ds-header__actions {
+  display: flex;
+  align-items: center;
+  gap: s.$s-2;
+  flex-shrink: 0;
+}
+
 .ds-nav {
   position: sticky;
   top: 0;

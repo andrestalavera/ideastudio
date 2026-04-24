@@ -92,7 +92,7 @@ export default async function cvScene(ctx) {
   }
 
   plasma.setPalette(palette.bg, palette.deep, palette.cyan);
-  plasma.setIntensity(0.85);
+  plasma.setIntensity(0.3);
 
   const heroEl = document.querySelector('.ds-hero');
 

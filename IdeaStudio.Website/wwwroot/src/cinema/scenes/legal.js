@@ -13,7 +13,7 @@ export default async function legalScene(ctx) {
 
   // Dim plasma, shift palette toward deep ink (less chromatic pop).
   plasma.setPalette(palette.bg, palette.deep, palette.deep);
-  plasma.setIntensity(0.5);
+  plasma.setIntensity(0.2);
 
   return {
     root,

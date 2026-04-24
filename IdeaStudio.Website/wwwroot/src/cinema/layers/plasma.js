@@ -42,7 +42,7 @@ export function createPlasma(palette) {
     fragmentShader: frag,
     uniforms: {
       uTime: { value: 0 },
-      uIntensity: { value: 0.9 },
+      uIntensity: { value: 0.25 },
       uColorA: { value: palette.bg },
       uColorB: { value: palette.deep },
       uColorC: { value: palette.azure },

@@ -30,7 +30,7 @@ export default async function vibeScene(ctx) {
   root.add(b.points);
 
   plasma.setPalette(palette.bg, palette.deep, accent);
-  plasma.setIntensity(0.95);
+  plasma.setIntensity(0.32);
 
   let t = 0;
   let nextGlitch = 1.5 + Math.random() * 2.5;

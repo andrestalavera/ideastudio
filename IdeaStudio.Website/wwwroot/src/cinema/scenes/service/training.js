@@ -39,7 +39,7 @@ export default async function trainingScene(ctx) {
   });
 
   plasma.setPalette(palette.bg, palette.deep, accent);
-  plasma.setIntensity(0.8);
+  plasma.setIntensity(0.28);
 
   return {
     root,

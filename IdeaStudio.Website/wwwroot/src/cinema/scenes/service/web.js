@@ -47,7 +47,7 @@ export default async function webScene(ctx) {
   root.add(mesh);
 
   plasma.setPalette(palette.bg, palette.deep, accent);
-  plasma.setIntensity(0.7);
+  plasma.setIntensity(0.25);
 
   return {
     root,

@@ -54,7 +54,7 @@ export default async function consultingScene(ctx) {
   root.add(particles);
 
   plasma.setPalette(palette.bg, palette.deep, accent);
-  plasma.setIntensity(0.8);
+  plasma.setIntensity(0.28);
 
   const writeParticles = (dt) => {
     for (let i = 0; i < PARTICLE_COUNT; i++) {

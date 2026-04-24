@@ -88,7 +88,7 @@ export default async function homeScene(ctx) {
   window.addEventListener('resize', onResize, { passive: true });
 
   plasma.setPalette(palette.bg, palette.deep, palette.mint);
-  plasma.setIntensity(0.9);
+  plasma.setIntensity(0.28);
 
   let t = 0;
   return {
