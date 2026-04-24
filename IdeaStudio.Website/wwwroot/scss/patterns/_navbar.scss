@@ -22,11 +22,53 @@
 .ds-header__logo {
   display: inline-flex;
   align-items: center;
-  gap: s.$s-3;
+  gap: s.$s-2;
   color: var(--ds-fg);
   text-decoration: none;
   font-weight: t.$fw-semibold;
   letter-spacing: 0.02em;
+}
+
+.ds-header__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(0.6);
+  transform-origin: left center;
+  transition: opacity 0.28s var(--ds-ease-out), transform 0.28s var(--ds-ease-out);
+  pointer-events: none;
+}
+
+html.is-past-hero .ds-header__avatar {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ds-header__icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--ds-fg-muted);
+  text-decoration: none;
+  transition: color var(--ds-dur-fast) var(--ds-ease-out),
+              background var(--ds-dur-fast) var(--ds-ease-out);
+
+  &:hover {
+    color: var(--ds-fg);
+    background: rgba(125, 211, 252, 0.08);
+  }
+
+  &:focus-visible { outline: 2px solid var(--ds-focus-ring); outline-offset: 2px; }
+  i { font-size: 1.05rem; }
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 }
 
 .ds-header__nav {

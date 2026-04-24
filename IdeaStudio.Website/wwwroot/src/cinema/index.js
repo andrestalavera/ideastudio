@@ -14,6 +14,7 @@ import * as reveals from './scroll/reveals.js';
 import * as pinned from './scroll/pinned-timeline.js';
 import * as magnetic from './interactions/magnetic.js';
 import * as cursor from './interactions/cursor.js';
+import * as stickyHero from './interactions/sticky-hero.js';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
@@ -41,6 +42,7 @@ export async function initialize(canvas) {
   booted = result !== null;
   magnetic.attachAll();
   cursor.enable();
+  stickyHero.attach();
 }
 
 /**
@@ -52,6 +54,8 @@ export async function setScene(name, parameters) {
   await switchScene(name, parameters);
   // Idempotent; picks up newly mounted [data-magnetic] elements after nav.
   magnetic.attachAll();
+  // Re-evaluate sticky hero target — it may have just appeared/disappeared.
+  stickyHero.attach();
 }
 
 /**
@@ -99,6 +103,7 @@ export async function dispose() {
   magnetic.disposeAll();
   reveals.disposeAll();
   pinned.unregister();
+  stickyHero.detach();
   shutdown();
   booted = false;
 }
