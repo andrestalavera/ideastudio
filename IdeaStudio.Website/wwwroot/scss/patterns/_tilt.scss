@@ -5,6 +5,7 @@
 // Disabled on touch and under prefers-reduced-motion.
 
 [data-tilt] {
+  position: relative;
   transform:
     perspective(900px)
     rotateX(calc(var(--my, 0) * -6deg))
@@ -18,6 +19,31 @@
     // Snappier when actively tracked so the tilt follows the pointer.
     transition-duration: 80ms;
   }
+}
+
+// Phase C4.4 — specular shine that follows the pointer. The --px/--py custom
+// properties come from interactions/magnetic.js (pointermove). We stay inside
+// the card because .ds-card already has overflow:hidden; mix-blend:screen
+// brightens rather than overwrites content.
+[data-tilt]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--px, 50%) var(--py, 50%),
+    color-mix(in srgb, var(--ds-scene-accent, white) 22%, transparent) 0%,
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 260ms ease-out;
+  mix-blend-mode: screen;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+[data-tilt]:hover::after {
+  opacity: 1;
 }
 
 // Direct children get a small Z-lift so intra-card content parallaxes with the
@@ -40,4 +66,5 @@
 @media (hover: none), (prefers-reduced-motion: reduce) {
   [data-tilt] { transform: none; }
   [data-tilt] > * { transform: none; }
+  [data-tilt]::after { display: none; }
 }

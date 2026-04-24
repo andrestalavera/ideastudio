@@ -26,14 +26,21 @@ export function attachAll() {
 function attach(el) {
   const onMove = (e) => {
     const r = el.getBoundingClientRect();
-    const mx = ((e.clientX - r.left) / r.width) - 0.5;   // -0.5 .. 0.5
+    const mx = ((e.clientX - r.left) / r.width) - 0.5;   // -0.5 .. 0.5 (for tilt)
     const my = ((e.clientY - r.top)  / r.height) - 0.5;
+    // Percentage coords (0..100) power the card shine radial gradient.
+    const px = ((e.clientX - r.left) / r.width) * 100;
+    const py = ((e.clientY - r.top)  / r.height) * 100;
     el.style.setProperty('--mx', mx.toFixed(3));
     el.style.setProperty('--my', my.toFixed(3));
+    el.style.setProperty('--px', px.toFixed(1) + '%');
+    el.style.setProperty('--py', py.toFixed(1) + '%');
   };
   const onLeave = () => {
     el.style.setProperty('--mx', '0');
     el.style.setProperty('--my', '0');
+    el.style.setProperty('--px', '50%');
+    el.style.setProperty('--py', '50%');
   };
   el.addEventListener('pointermove', onMove);
   el.addEventListener('pointerleave', onLeave);

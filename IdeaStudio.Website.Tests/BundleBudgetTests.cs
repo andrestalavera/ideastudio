@@ -9,9 +9,11 @@ public class BundleBudgetTests
     // entrance timeline) where they earn their keep. The plan's "~70-90 KB"
     // estimate underestimated Three.js core: r170 lands at ~120 KB gzipped on
     // its own; adding GSAP core + CSSPlugin + our modules measures ~150 KB
-    // gzipped. Still well under the pre-refactor 250 KB starting point. 160 KB
-    // leaves modest headroom for minor C3.x additions.
-    private const long MaxGzipBytes = 160 * 1024;
+    // gzipped. Phase C4 added ScrollTrigger for the CV Chronicles scrubbed
+    // timeline (~18 KB gzipped) — budget raised to 170 KB to accommodate it
+    // with a small margin for future C4.x additions. Still well under the
+    // pre-refactor 250 KB starting point.
+    private const long MaxGzipBytes = 170 * 1024;
 
     [Fact]
     public void CinemaBundle_Gzipped_IsUnderBudget()

@@ -1,0 +1,15 @@
+@use '../tokens/space' as s;
+
+// Phase C4.2 — breathing room. Applies generous, fluid block padding to any
+// section opting-in via .ds-section--spacious, and bumps the default
+// .ds-section / .ds-chapter padding the whole site already uses.
+
+.ds-section--spacious {
+  padding-block: clamp(4rem, 10vw, 8rem);
+}
+
+// Tighten only when specifically requested (legacy pages that can't afford the
+// extra height, e.g. print / ad-hoc admin views).
+.ds-section--tight {
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+}

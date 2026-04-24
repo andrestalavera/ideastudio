@@ -15,6 +15,7 @@
 @use 'utilities/stack';
 @use 'utilities/visually-hidden';
 @use 'utilities/print';
+@use 'utilities/spacing';
 
 @use 'patterns/button';
 @use 'patterns/card';
@@ -25,7 +26,7 @@
 @use 'patterns/placeholder';
 @use 'patterns/motion';
 @use 'patterns/reveal';
-@use 'patterns/snap-timeline';
+@use 'patterns/chronicles';
 @use 'patterns/cursor';
 @use 'patterns/intro-hero';
 @use 'patterns/tilt';

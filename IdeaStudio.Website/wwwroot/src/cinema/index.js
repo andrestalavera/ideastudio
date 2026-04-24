@@ -8,6 +8,7 @@ import * as reveals from './interactions/reveals.js';
 import * as magnetic from './interactions/magnetic.js';
 import * as stickyHero from './interactions/sticky-hero.js';
 import * as heroStage from './interactions/hero-stage.js';
+import * as chronicles from './interactions/cv-chronicles.js';
 import * as backdrop from './backdrop.js';
 import { applyTheme as applyThemeInternal } from './scene-theme.js';
 
@@ -22,6 +23,7 @@ export async function initialize() {
   magnetic.attachAll();
   stickyHero.attach();
   heroStage.attachAll();
+  chronicles.attach();
 }
 
 /**
@@ -37,6 +39,9 @@ export async function applyTheme(scene, parameters) {
   stickyHero.attach();
   heroStage.reset();      // allow a new page's hero to play
   heroStage.attachAll();
+  // Detach any previous Chronicles timeline and re-attach if the new page has one.
+  chronicles.detach();
+  chronicles.attach();
 }
 
 export async function pulse() {
@@ -54,6 +59,7 @@ export async function dispose() {
   reveals.disposeAll();
   magnetic.disposeAll();
   stickyHero.detach();
+  chronicles.detach();
   backdrop.shutdown();
   booted = false;
 }

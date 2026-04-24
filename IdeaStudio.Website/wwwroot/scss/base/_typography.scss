@@ -21,7 +21,10 @@
 html, body {
   font-family: var(--ds-font-sans);
   font-size: t.$fs-body;
-  line-height: t.$lh-normal;
+  // Phase C4.2 — slightly looser line-height + a whisper of tracking on Inter
+  // for better legibility over the aurora backdrop.
+  line-height: 1.65;
+  letter-spacing: 0.01em;
   font-weight: t.$fw-regular;
 }
 
@@ -44,8 +47,8 @@ html, body {
 .ds-h2 { font-size: t.$fs-h2; font-weight: t.$fw-medium; line-height: t.$lh-snug; letter-spacing: t.$tracking-snug; }
 .ds-h3 { font-size: t.$fs-h3; font-weight: t.$fw-semibold; line-height: t.$lh-snug; }
 
-.ds-body      { font-size: t.$fs-body;  line-height: t.$lh-normal; }
-.ds-body-lead { font-size: 1.125rem; line-height: t.$lh-normal; color: var(--ds-fg-muted); }
+.ds-body      { font-size: t.$fs-body;  line-height: 1.65; max-width: 65ch; }
+.ds-body-lead { font-size: 1.125rem; line-height: 1.65; color: var(--ds-fg-muted); max-width: 62ch; }
 .ds-small     { font-size: t.$fs-small; line-height: t.$lh-snug; color: var(--ds-fg-muted); }
 
 .ds-mono      { font-family: var(--ds-font-mono); }

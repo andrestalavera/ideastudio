@@ -2,13 +2,51 @@
 @using IdeaStudio.Website.Services
 @inject ISlugService SlugService
 
-<div class="ds-snap-timeline" role="list">
-    @foreach (Experience experience in experiencesWithIds)
-    {
-        <div class="ds-snap-timeline__slot" role="listitem">
-            <ExperienceCard Experience="@experience" />
+@* Phase C4.1 — CV Chronicles. Desktop: a pinned stage scrubbed by GSAP (see
+   interactions/cv-chronicles.js). Mobile / touch / reduced-motion: a natural
+   vertical stack (ds-chronicles__stack) takes over via CSS media queries. *@
+
+<div class="ds-chronicles" data-chronicles>
+    <div class="ds-chronicles__stage" aria-hidden="true">
+        <div class="ds-chronicles__years">
+            @foreach ((Experience exp, int i) in experiencesWithIds.Select((e, i) => (e, i)))
+            {
+                <span class="ds-chronicles__year" data-chronicles-year style="--i:@i">@YearOf(exp)</span>
+            }
         </div>
-    }
+        <div class="ds-chronicles__cards">
+            @foreach ((Experience exp, int i) in experiencesWithIds.Select((e, i) => (e, i)))
+            {
+                <article class="ds-chronicles__card" data-chronicles-slide style="--i:@i">
+                    <ExperienceCard Experience="@exp" />
+                </article>
+            }
+        </div>
+        <nav class="ds-chronicles__dots" aria-label="Jump to experience">
+            @foreach (Experience exp in experiencesWithIds)
+            {
+                <button type="button"
+                        class="ds-chronicles__dot"
+                        data-chronicles-dot
+                        aria-label="@($"{YearOf(exp)} — {exp.Company}")"></button>
+            }
+        </nav>
+        <div class="ds-chronicles__progress" data-chronicles-progress>
+            <div class="ds-chronicles__progress-fill"></div>
+        </div>
+    </div>
+
+    @* Mobile / touch / reduced-motion fallback: naturally-scrolling stack with
+       [data-reveal] on each item. Hidden on desktop via CSS media queries. *@
+    <div class="ds-chronicles__stack" role="list">
+        @foreach ((Experience exp, int i) in experiencesWithIds.Select((e, i) => (e, i)))
+        {
+            <div class="ds-chronicles__stack-item" role="listitem" data-reveal style="--reveal-step: @i">
+                <span class="ds-chronicles__stack-year" aria-hidden="true">@YearOf(exp)</span>
+                <ExperienceCard Experience="@exp" />
+            </div>
+        }
+    </div>
 </div>
 
 @code {
@@ -20,4 +58,9 @@
         experiencesWithIds = Experiences
             .Select(e => e.WithGeneratedId(SlugService))
             .ToArray();
+
+    // Experience.StartDate is a DateTime (required), so we use its Year directly.
+    // If the year is unset (default DateTime), fall back to an em-dash.
+    private static string YearOf(Experience exp) =>
+        exp.StartDate.Year > 1 ? exp.StartDate.Year.ToString(System.Globalization.CultureInfo.InvariantCulture) : "—";
 }
