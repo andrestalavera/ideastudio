@@ -1,37 +1,19 @@
-@using IdeaStudio.Website.Services
-@using Microsoft.JSInterop
-@inject ICinemaEngine CinemaEngine
-@implements IAsyncDisposable
+@* Thin wrapper: renders a div with [data-reveal]. IntersectionObserver in
+   interactions/reveals.js toggles `is-revealed`; SCSS handles the animation.
+   Parameters Kind / DelayMs / StaggerMs / Selector are kept for API
+   compatibility with earlier callers (no-op now). *@
 
-<div @ref="elementRef" class="ds-reveal" data-reveal-kind="@Kind">
+<div class="@BuildClasses()" data-reveal>
     @ChildContent
 </div>
 
 @code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter] public string Kind { get; set; } = "fade-up";
     [Parameter] public double DelayMs { get; set; } = 0;
     [Parameter] public double StaggerMs { get; set; } = 80;
     [Parameter] public string? Selector { get; set; }
-    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    private ElementReference elementRef;
-    private readonly string id = Guid.NewGuid().ToString("N");
-    private bool registered;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender && !registered)
-        {
-            await CinemaEngine.RegisterRevealAsync(id, elementRef, new RevealOptions(Kind, DelayMs, StaggerMs, Selector));
-            registered = true;
-        }
-    }
-
-    public async ValueTask DisposeAsync()
-    {
-        if (!registered) return;
-        try { await CinemaEngine.UnregisterRevealAsync(id); }
-        catch (JSDisconnectedException) { /* runtime gone */ }
-        catch (ObjectDisposedException) { /* race with shutdown */ }
-    }
+    private string BuildClasses() => string.IsNullOrWhiteSpace(Class) ? string.Empty : Class!;
 }

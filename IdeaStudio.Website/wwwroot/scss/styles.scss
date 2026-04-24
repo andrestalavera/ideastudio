@@ -1,6 +1,6 @@
 // ============================================================
 // IdeaStud.io — styles entry
-// Dark cinema-atmospheric design system (Phase 1 complete).
+// Dark cinema-atmospheric design system — SCSS-first (Phase C1).
 // ============================================================
 
 @use 'tokens/service-accents';
@@ -8,6 +8,7 @@
 @use 'base/reset';
 @use 'base/root';
 @use 'base/typography';
+@use 'base/backdrop';
 
 @use 'utilities/responsive';
 @use 'utilities/stack';
@@ -21,8 +22,8 @@
 @use 'patterns/footer';
 @use 'patterns/spinner';
 @use 'patterns/placeholder';
-@use 'patterns/cinema-stage';
 @use 'patterns/motion';
-@use 'patterns/timeline';
+@use 'patterns/reveal';
+@use 'patterns/snap-timeline';
 @use 'patterns/cursor';
 @use 'patterns/intro-hero';

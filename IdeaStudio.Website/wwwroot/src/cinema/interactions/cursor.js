@@ -38,6 +38,7 @@ const onLeaveDoc = () => {
   dot?.classList.remove('ds-cursor--visible');
   halo?.classList.remove('ds-cursor__halo--visible');
   halo?.classList.remove('ds-cursor__halo--hover');
+  halo?.classList.remove('ds-cursor__halo--target');
   if (running) {
     running = false;
     cancelAnimationFrame(rafId);
@@ -61,13 +62,20 @@ const onVisibilityChange = () => {
 const onOver = (e) => {
   const el = e.target;
   if (!(el instanceof Element)) return;
-  if (el.closest(INTERACTIVE_SELECTOR)) {
+  if (el.closest('[data-magnetic]')) {
+    // "Target" reticle — user loves this affordance. More emphatic than plain hover.
+    halo?.classList.add('ds-cursor__halo--target');
+    halo?.classList.remove('ds-cursor__halo--hover');
+  } else if (el.closest(INTERACTIVE_SELECTOR)) {
     halo?.classList.add('ds-cursor__halo--hover');
   }
 };
 
 const onOut = (e) => {
   const related = e.relatedTarget;
+  if (!(related instanceof Element) || !related.closest('[data-magnetic]')) {
+    halo?.classList.remove('ds-cursor__halo--target');
+  }
   if (!(related instanceof Element) || !related.closest(INTERACTIVE_SELECTOR)) {
     halo?.classList.remove('ds-cursor__halo--hover');
   }

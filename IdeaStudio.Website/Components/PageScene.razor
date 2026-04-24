@@ -1,6 +1,6 @@
 @using IdeaStudio.Website.Services
 @using Microsoft.JSInterop
-@inject ICinemaEngine CinemaEngine
+@inject ISceneTheme SceneTheme
 
 @code {
     [Parameter, EditorRequired] public string Name { get; set; } = "";
@@ -10,11 +10,9 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (Name != lastApplied)
-        {
-            lastApplied = Name;
-            try { await CinemaEngine.SetSceneAsync(Name, Parameters); }
-            catch (JSDisconnectedException) { /* runtime gone */ }
-        }
+        if (Name == lastApplied) return;
+        lastApplied = Name;
+        try { await SceneTheme.ApplyAsync(Name, Parameters); }
+        catch (JSDisconnectedException) { /* runtime gone */ }
     }
 }

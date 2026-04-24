@@ -1,0 +1,41 @@
+@use '../tokens/space' as s;
+
+// CSS scroll-snap horizontal carousel. Replaces the GSAP pinned-timeline used
+// for the CV experience timeline. Keyboard + trackpad native, no JS needed.
+
+.ds-snap-timeline {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 10vw;
+  gap: s.$s-4;
+  padding-block: s.$s-6;
+  padding-inline: 10vw;
+  scrollbar-width: thin;
+
+  // Reserve the viewport height so cards feel like full "panels" on desktop.
+  min-height: 60vh;
+  align-items: stretch;
+
+  &__slot {
+    flex: 0 0 min(520px, 80vw);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    display: flex;
+  }
+
+  @media (max-width: 767px) {
+    padding-inline: s.$s-4;
+    scroll-padding-inline: s.$s-4;
+    min-height: auto;
+
+    &__slot {
+      flex-basis: min(440px, 88vw);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-snap-type: none;
+  }
+}

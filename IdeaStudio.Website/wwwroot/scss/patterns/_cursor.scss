@@ -42,6 +42,26 @@
   height: 56px;
 }
 
+// "Target" reticle for [data-magnetic] — more emphatic than plain hover.
+.ds-cursor__halo--target {
+  width: 64px;
+  height: 64px;
+  border-width: 2px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+      linear-gradient(to right, transparent 46%, currentcolor 46%, currentcolor 54%, transparent 54%),
+      linear-gradient(to bottom, transparent 46%, currentcolor 46%, currentcolor 54%, transparent 54%);
+    -webkit-mask: radial-gradient(circle, transparent 30%, black 32%, black 100%);
+            mask: radial-gradient(circle, transparent 30%, black 32%, black 100%);
+    opacity: 0.6;
+  }
+}
+
 // Pointer device only. No custom cursor on touch or reduced-motion.
 @media (hover: none), (prefers-reduced-motion: reduce) {
   .ds-cursor,

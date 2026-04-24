@@ -4,53 +4,55 @@ using Xunit;
 namespace IdeaStudio.Website.Tests;
 
 /// <summary>
-/// Static-scan tests guarding the per-page scene registry. The Blazor side
-/// declares scenes via <c>&lt;PageScene Name="..." /&gt;</c> in pages and
-/// components; the JS side registers scene factories in
-/// <c>wwwroot/src/cinema/index.js</c>. A mismatch produces a silent runtime
-/// warning (the engine just logs '[cinema] unknown scene'), so these tests
-/// catch regressions at build time.
+/// Static-scan test guarding the per-page scene mapping. Pages declare their
+/// scene via <c>&lt;PageScene Name="..." /&gt;</c>; the SCSS side exposes a
+/// <c>html[data-scene="..."]</c> selector per scene in
+/// <c>wwwroot/scss/base/_backdrop.scss</c>. A mismatch means a page falls
+/// back to the default accent silently — these tests catch the regression.
+/// Replaces the pre-Phase-C1 <c>registerScene(...)</c> invariant.
 /// </summary>
 public class CinemaScenesTests
 {
     // Matches two Blazor forms:
     //   <PageScene Name="home" ... />                — literal
     //   <PageScene Name="@($"service/{x.Slug}")" ... /> — interpolated
-    // The interpolated branch runs first so the literal branch (which
-    // excludes '@' from its character class) doesn't swallow the leading '@'.
     private static readonly Regex PageSceneRegex = new(
         """"<PageScene\s+Name="(?:@\(\$"(?<interp>[^"]+)"\)|(?<name>[^"@]+))"""",
         RegexOptions.Compiled);
 
-    private static readonly Regex RegisterSceneRegex = new(
-        """registerScene\s*\(\s*['"](?<name>[^'"]+)['"]""",
+    // Matches  html[data-scene="service/techlead"]  (whitespace tolerant).
+    private static readonly Regex DataSceneSelectorRegex = new(
+        """html\[data-scene\s*=\s*"(?<name>[^"]+)"\]""",
         RegexOptions.Compiled);
 
+    private static readonly string[] KnownServiceIconIds =
+        ["consulting", "techlead", "training", "vibe", "mobile", "web"];
+
     [Fact]
-    public void EveryPageSceneName_IsRegisteredInIndexJs()
+    public void EveryPageSceneName_HasMatchingBackdropSelector()
     {
         HashSet<string> pageNames = DiscoverPageSceneNames();
-        HashSet<string> registered = DiscoverRegisteredScenes();
+        HashSet<string> selectors = DiscoverBackdropSelectors();
 
         Assert.NotEmpty(pageNames);
-        Assert.NotEmpty(registered);
+        Assert.NotEmpty(selectors);
 
-        List<string> missing = pageNames.Where(n => !registered.Contains(n)).ToList();
+        List<string> missing = pageNames.Where(n => !selectors.Contains(n)).ToList();
         Assert.True(missing.Count == 0,
-            $"PageScene Names without matching registerScene in index.js: {string.Join(", ", missing)}. "
-            + $"Registered: {string.Join(", ", registered.OrderBy(x => x))}");
+            $"PageScene Names without matching html[data-scene=\"...\"] in _backdrop.scss: {string.Join(", ", missing)}. "
+            + $"Selectors present: {string.Join(", ", selectors.OrderBy(x => x))}");
     }
 
     [Fact]
-    public void EveryRegisteredScene_IsReachableFromAPageScene()
+    public void EveryBackdropSelector_IsReachableFromAPageScene()
     {
         HashSet<string> pageNames = DiscoverPageSceneNames();
-        HashSet<string> registered = DiscoverRegisteredScenes();
+        HashSet<string> selectors = DiscoverBackdropSelectors();
 
-        List<string> unreachable = registered.Where(n => !pageNames.Contains(n)).ToList();
+        List<string> unreachable = selectors.Where(n => !pageNames.Contains(n)).ToList();
         Assert.True(unreachable.Count == 0,
-            $"Registered scenes not referenced by any PageScene: {string.Join(", ", unreachable)}. "
-            + $"Either remove the registration or add a PageScene that uses it.");
+            $"_backdrop.scss selectors not referenced by any PageScene: {string.Join(", ", unreachable)}. "
+            + $"Either remove the selector or add a PageScene that uses it.");
     }
 
     private static HashSet<string> DiscoverPageSceneNames()
@@ -70,8 +72,6 @@ public class CinemaScenesTests
             foreach (Match m in PageSceneRegex.Matches(text))
             {
                 string raw = m.Groups["name"].Success ? m.Groups["name"].Value : m.Groups["interp"].Value;
-                // Expand the one known interpolation: service/{service.IconId} → service/<iconId>.
-                // The iconIds are defined in ServiceDetail.razor's AccentsByIconId dict.
                 if (raw.Contains("{service.IconId}"))
                 {
                     foreach (string iconId in KnownServiceIconIds)
@@ -87,21 +87,19 @@ public class CinemaScenesTests
         return names;
     }
 
-    private static HashSet<string> DiscoverRegisteredScenes()
+    private static HashSet<string> DiscoverBackdropSelectors()
     {
         string root = LocateRepoRoot();
-        string indexJs = Path.Combine(root, "IdeaStudio.Website", "wwwroot", "src", "cinema", "index.js");
-        Assert.True(File.Exists(indexJs), $"index.js not found at {indexJs}.");
+        string backdrop = Path.Combine(
+            root, "IdeaStudio.Website", "wwwroot", "scss", "base", "_backdrop.scss");
+        Assert.True(File.Exists(backdrop), $"_backdrop.scss not found at {backdrop}.");
 
-        string text = File.ReadAllText(indexJs);
+        string text = File.ReadAllText(backdrop);
         HashSet<string> names = new(StringComparer.Ordinal);
-        foreach (Match m in RegisterSceneRegex.Matches(text))
+        foreach (Match m in DataSceneSelectorRegex.Matches(text))
             names.Add(m.Groups["name"].Value);
         return names;
     }
-
-    private static readonly string[] KnownServiceIconIds =
-        ["consulting", "techlead", "training", "vibe", "mobile", "web"];
 
     private static string LocateRepoRoot()
     {

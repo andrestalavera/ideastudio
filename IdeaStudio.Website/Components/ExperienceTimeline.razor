@@ -1,55 +1,23 @@
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
-@using IdeaStudio.Website.Components
-@using Microsoft.JSInterop
-@inject ICinemaEngine CinemaEngine
 @inject ISlugService SlugService
-@implements IAsyncDisposable
 
-<div @ref="containerRef" class="ds-timeline">
-    <div @ref="trackRef" class="ds-timeline__track">
-        @foreach (Experience experience in experiencesWithIds)
-        {
-            <div class="ds-timeline__slot">
-                <ExperienceCard Experience="@experience" />
-            </div>
-        }
-    </div>
+<div class="ds-snap-timeline" role="list">
+    @foreach (Experience experience in experiencesWithIds)
+    {
+        <div class="ds-snap-timeline__slot" role="listitem">
+            <ExperienceCard Experience="@experience" />
+        </div>
+    }
 </div>
 
 @code {
     [Parameter, EditorRequired] public IReadOnlyList<Experience> Experiences { get; set; } = Array.Empty<Experience>();
 
-    private ElementReference containerRef;
-    private ElementReference trackRef;
-    private bool registered;
     private IReadOnlyList<Experience> experiencesWithIds = Array.Empty<Experience>();
 
-    protected override void OnParametersSet()
-    {
+    protected override void OnParametersSet() =>
         experiencesWithIds = Experiences
             .Select(e => e.WithGeneratedId(SlugService))
             .ToArray();
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender && experiencesWithIds.Count > 0)
-        {
-            try
-            {
-                await CinemaEngine.RegisterPinnedTimelineAsync(containerRef, trackRef, experiencesWithIds.Count);
-                registered = true;
-            }
-            catch (JSDisconnectedException) { /* runtime gone */ }
-        }
-    }
-
-    public async ValueTask DisposeAsync()
-    {
-        if (!registered) return;
-        try { await CinemaEngine.UnregisterPinnedTimelineAsync(); }
-        catch (JSDisconnectedException) { }
-        catch (ObjectDisposedException) { }
-    }
 }

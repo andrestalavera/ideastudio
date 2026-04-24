@@ -1,0 +1,81 @@
+// Ambient site backdrop — replaces the WebGL plasma.
+// Two scene-tinted radial gradients + a base deep gradient, with a slow drift.
+// Per-scene accent is set via html[data-scene=scene-name] selectors below.
+
+// Register the scene accent as a <color>-typed custom property so the
+// color-mix() output in html::before can transition smoothly when the user
+// navigates between pages — the crossfade that GSAP used to give us.
+@property --ds-scene-accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0ea5e9;
+}
+
+:root {
+  --ds-scene-accent: var(--ds-azure, #0ea5e9);
+  transition: --ds-scene-accent 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { transition: none; }
+}
+
+html::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 15% 12%,
+      color-mix(in srgb, var(--ds-scene-accent) 10%, transparent) 0%,
+      transparent 60%),
+    radial-gradient(100% 70% at 85% 88%,
+      color-mix(in srgb, var(--ds-scene-accent) 8%, transparent) 0%,
+      transparent 65%),
+    radial-gradient(60% 60% at 50% 50%,
+      var(--ds-deep, #020617) 0%,
+      var(--ds-bg, #0b1220) 70%);
+  animation: ds-backdrop-drift 40s ease-in-out infinite alternate;
+}
+
+@keyframes ds-backdrop-drift {
+  0%   { background-position: 0% 0%, 100% 100%, 50% 50%; }
+  100% { background-position: 5% 8%, 95% 92%, 50% 50%; }
+}
+
+// Pulse window — briefly brighten the backdrop when a client state change
+// asks for a reaction (e.g. filter applied on /realisations).
+html.is-pulsing::before {
+  animation: ds-backdrop-drift 40s ease-in-out infinite alternate,
+             ds-backdrop-pulse 0.7s ease-out;
+}
+
+@keyframes ds-backdrop-pulse {
+  0%   { filter: brightness(1); }
+  30%  { filter: brightness(1.18); }
+  100% { filter: brightness(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html::before,
+  html.is-pulsing::before { animation: none; }
+}
+
+@media print {
+  html::before { display: none; }
+}
+
+// Per-scene accent overrides. Kept serene — single hue each, 8-10% tint max in
+// the gradients above mean the background never overwhelms content.
+html[data-scene="home"]                  { --ds-scene-accent: var(--ds-mint,  #34d399); }
+html[data-scene="cv"]                    { --ds-scene-accent: var(--ds-cyan,  #67e8f9); }
+html[data-scene="services-hub"]          { --ds-scene-accent: var(--ds-sky,   #7dd3fc); }
+html[data-scene="realisations"]          { --ds-scene-accent: var(--ds-azure, #0ea5e9); }
+html[data-scene="legal"]                 { --ds-scene-accent: var(--ds-deep,  #020617); }
+html[data-scene="service/consulting"]    { --ds-scene-accent: #0ea5e9; }
+html[data-scene="service/techlead"]      { --ds-scene-accent: #5eead4; }
+html[data-scene="service/training"]      { --ds-scene-accent: #67e8f9; }
+html[data-scene="service/vibe"]          { --ds-scene-accent: #a78bfa; }
+html[data-scene="service/mobile"]        { --ds-scene-accent: #34d399; }
+html[data-scene="service/web"]           { --ds-scene-accent: #7dd3fc; }

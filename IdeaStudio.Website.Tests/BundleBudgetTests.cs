@@ -5,7 +5,10 @@ namespace IdeaStudio.Website.Tests;
 
 public class BundleBudgetTests
 {
-    private const long MaxGzipBytes = 250 * 1024;
+    // After Phase C1 the runtime is cursor + reveals + magnetic + sticky-hero +
+    // scene-theme. No WebGL, no GSAP. ~20 KB gzipped is the measured target;
+    // 30 KB leaves headroom for small additions (e.g. Phase C2 sprinkles).
+    private const long MaxGzipBytes = 30 * 1024;
 
     [Fact]
     public void CinemaBundle_Gzipped_IsUnderBudget()

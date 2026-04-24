@@ -7,7 +7,7 @@
 @inherits LocalizedComponent
 @inject ILazyLoadingService LazyLoadingService
 @inject ILocalizedRoute LocalizedRoute
-@inject ICinemaEngine CinemaEngine
+@inject ISceneTheme SceneTheme
 @layout MainLayout
 
 <PageScene Name="realisations" />
@@ -153,7 +153,7 @@
     {
         Recompute();
         StateHasChanged();
-        try { await CinemaEngine.PulseAsync(); }
+        try { await SceneTheme.PulseAsync(); }
         catch (JSDisconnectedException) { /* runtime gone */ }
     }
 
@@ -163,7 +163,7 @@
         selectedTypes.Clear();
         Recompute();
         StateHasChanged();
-        try { await CinemaEngine.PulseAsync(); }
+        try { await SceneTheme.PulseAsync(); }
         catch (JSDisconnectedException) { /* runtime gone */ }
     }
 

@@ -45,19 +45,27 @@
 .ds-card__footer { margin-top: s.$s-4; padding-top: s.$s-3; border-top: 1px solid var(--ds-glass-border); }
 
 // Tag / badge inside a card.
+// Slightly denser fill + brighter ink than the original rgba(teal, .1) so the
+// tag reads as content, not as an empty border (Phase C1 /cv fix).
 .ds-tag {
   display: inline-flex;
   align-items: center;
-  gap: s.$s-1;
+  gap: s.$s-2;
   padding: s.$s-1 s.$s-3;
   font-family: var(--ds-font-mono);
   font-size: 0.75rem;
-  color: var(--ds-teal);
-  background: rgba(94, 234, 212, 0.1);
-  border: 1px solid rgba(94, 234, 212, 0.2);
+  color: var(--ds-fg);
+  background: rgba(94, 234, 212, 0.18);
+  border: 1px solid rgba(94, 234, 212, 0.35);
   border-radius: s.$r-sm;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+
+  // Font Awesome kit replaces <i> with an <svg>; both should sit centered
+  // without kerning pulling the text into the icon.
+  > i, > svg {
+    color: var(--ds-teal);
+  }
 }
 .ds-tag--neutral {
   color: var(--ds-fg-muted);
@@ -132,20 +140,14 @@
 
 .ds-hero__name {
   margin: 0;
-  color: var(--ds-sky); /* fallback before gradient clips */
-
-  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-    background: linear-gradient(90deg, var(--ds-sky), var(--ds-teal), var(--ds-mint));
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+  // Solid near-white for legibility. The page accent is already carried by the
+  // ambient backdrop and the kicker above — the headline itself should read
+  // cleanly as foreground text (see Phase C1 /cv visual fixes).
+  color: var(--ds-fg);
+  letter-spacing: -0.01em;
 
   @media (forced-colors: active) {
     color: CanvasText;
-    background: none;
-    -webkit-text-fill-color: CanvasText;
   }
 }
 
@@ -174,4 +176,15 @@
   flex-shrink: 0;
 }
 
-.ds-hero__intro { flex: 1; }
+.ds-hero__intro {
+  flex: 1;
+
+  // The "Andrés Talavera" h2 inside the hero intro — solid foreground, slight
+  // tracking for a premium feel. Was rendering faded against the ambient
+  // backdrop before Phase C1.
+  h2 {
+    color: var(--ds-fg);
+    letter-spacing: 0.01em;
+    margin: 0 0 s.$s-3;
+  }
+}

@@ -1,0 +1,33 @@
+// Scroll-reveal pattern. JS adds `is-revealed` via IntersectionObserver; we do
+// the transition here. Also keeps .ds-reveal for API compatibility with the
+// <MotionReveal> wrapper (which still renders a plain div).
+
+[data-reveal],
+.ds-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+
+  &.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Progressive stagger — parent opts in with [data-reveal-stagger], children
+// set `--reveal-step: <n>` inline (or via :nth-child hooks) to delay.
+[data-reveal-stagger] [data-reveal] {
+  transition-delay: calc(var(--reveal-step, 0) * 80ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .ds-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

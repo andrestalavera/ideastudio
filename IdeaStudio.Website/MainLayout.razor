@@ -5,11 +5,10 @@
 @inject ILocalizationService LocalizationService
 @inject ILocalizedRoute LocalizedRoute
 @inject NavigationManager Navigation
-@inject ICinemaEngine CinemaEngine
+@inject ISceneTheme SceneTheme
 @implements IDisposable
 
 <CascadingValue Value="this">
-    <CinemaStage />
     <div id="main-content-container" class="ds-app">
         <a href="#main-content" class="ds-skip-link">@skipToMainContentText</a>
 
@@ -63,11 +62,21 @@
     private string meetText = "Meet";
     private string bookCallAriaText = "Book a 30-minute call on Calendly (opens in a new tab)";
 
+    private bool runtimeInitialized;
+
     protected override async Task OnInitializedAsync()
     {
         CultureService.CultureChanged += OnCultureChanged;
         Navigation.LocationChanged += OnLocationChanged;
         await LoadLocalizedStringsAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender || runtimeInitialized) return;
+        runtimeInitialized = true;
+        try { await SceneTheme.InitializeAsync(); }
+        catch (Microsoft.JSInterop.JSDisconnectedException) { /* runtime gone */ }
     }
 
     public void SetNavbarContent(RenderFragment? content)

@@ -7,8 +7,8 @@
 		"copy-fonts": "node scripts/copy-fonts.mjs",
 		"compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --update --color",
 		"watch-compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --update --watch --poll --color",
-		"compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --minify --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --legal-comments=none --alias:three=./node_modules/three/build/three.module.js --alias:gsap=./node_modules/gsap/index.js --alias:gsap/ScrollTrigger=./node_modules/gsap/ScrollTrigger.js",
-		"watch-compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --watch --alias:three=./node_modules/three/build/three.module.js --alias:gsap=./node_modules/gsap/index.js --alias:gsap/ScrollTrigger=./node_modules/gsap/ScrollTrigger.js",
+		"compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --minify --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --legal-comments=none",
+		"watch-compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --watch",
 		"build": "npm run copy-fonts && npm run compile-styles && npm run compile-scripts"
 	},
 	"repository": {
@@ -22,9 +22,7 @@
 	"dependencies": {
 		"@fontsource-variable/inter": "5.2.5",
 		"@fontsource/jetbrains-mono": "5.2.5",
-		"gsap": "^3.13.0",
-		"modern-normalize": "^3.0.1",
-		"three": "^0.170.0"
+		"modern-normalize": "^3.0.1"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.0",
