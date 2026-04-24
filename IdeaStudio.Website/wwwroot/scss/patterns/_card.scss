@@ -89,6 +89,50 @@
   .ds-card:hover { transform: none; }
 }
 
+// ---------------------------------------------------------------------------
+// Realisation card — Phase C5.2. Reveals with a horizontal clip-path wipe
+// when the parent [data-reveal] wrapper enters the viewport, then lifts on
+// hover with an accent-tinted shadow. The wipe is driven by the same
+// `is-revealed` class IntersectionObserver toggles on the wrapper; stagger
+// is picked up from --reveal-step so sibling cards chase each other.
+// ---------------------------------------------------------------------------
+
+.ds-realisation-card {
+  position: relative;
+  clip-path: inset(0 100% 0 0);
+  opacity: 0;
+  transition:
+    clip-path 900ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    opacity 600ms ease-out,
+    transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 320ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color var(--ds-dur-base) var(--ds-ease-out);
+  transition-delay: calc(var(--reveal-step, 0) * 100ms);
+}
+
+// Parent wrapper is [data-reveal]; when it flips to .is-revealed, wipe open.
+[data-reveal].is-revealed .ds-realisation-card,
+.ds-realisation-card[data-reveal].is-revealed {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+.ds-realisation-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px -20px color-mix(in srgb, var(--ds-scene-accent, #0ea5e9) 45%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-realisation-card {
+    clip-path: none;
+    opacity: 1;
+    transition: none;
+  }
+  .ds-realisation-card:hover {
+    transform: none;
+  }
+}
+
 .ds-exp-card { padding: s.$s-6; }
 
 .ds-exp-card__grid {

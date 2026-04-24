@@ -170,7 +170,12 @@ export function boot() {
   // Mark html so SCSS can fade the CSS backdrop fallback.
   document.documentElement.classList.add('has-webgl-backdrop');
 
-  state = { renderer, mesh, mat, raf, canvas, refreshPalette, cleanup() {
+  // Phase C5.4: flash() spikes scrollV so the aurora gets a "camera flash"
+  // beat on page-nav. Uses Math.max so we never cut the value down if a
+  // real scroll happens to be louder in that exact frame.
+  const flash = () => { scrollV = Math.max(scrollV, 0.8); };
+
+  state = { renderer, mesh, mat, raf, canvas, refreshPalette, flash, cleanup() {
     raf.running = false;
     cancelAnimationFrame(raf.id);
     window.removeEventListener('scroll', onScroll);
@@ -189,6 +194,11 @@ export function boot() {
 /** Called on page nav so the shader re-reads the new scene accent CSS vars. */
 export function refresh() {
   state?.refreshPalette?.();
+}
+
+/** One-shot spike on uScrollPulse; decays naturally via the render loop. */
+export function flash() {
+  state?.flash?.();
 }
 
 export function shutdown() {

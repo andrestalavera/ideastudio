@@ -2,6 +2,10 @@
 // orchestration for the hero entrance. CSS keeps char reveal, page stagger,
 // 3D tilt, view transitions, read progress; WebGL adds a single continuous
 // aurora behind everything; GSAP amplifies the hero envelope.
+//
+// Phase C5 additions (kinetic premium):
+//   - backdrop.flash() on every applyTheme — camera-flash beat at page nav
+//   - accent-journey observer — scroll-linked per-section accent fades
 
 import * as cursor from './interactions/cursor.js';
 import * as reveals from './interactions/reveals.js';
@@ -9,6 +13,7 @@ import * as magnetic from './interactions/magnetic.js';
 import * as stickyHero from './interactions/sticky-hero.js';
 import * as heroStage from './interactions/hero-stage.js';
 import * as chronicles from './interactions/cv-chronicles.js';
+import * as accentJourney from './interactions/accent-journey.js';
 import * as backdrop from './backdrop.js';
 import { applyTheme as applyThemeInternal } from './scene-theme.js';
 
@@ -24,6 +29,7 @@ export async function initialize() {
   stickyHero.attach();
   heroStage.attachAll();
   chronicles.attach();
+  accentJourney.attach();
 }
 
 /**
@@ -33,6 +39,7 @@ export async function initialize() {
 export async function applyTheme(scene, parameters) {
   applyThemeInternal(scene, parameters);
   backdrop.refresh();     // re-read CSS accents after the data-scene swap
+  backdrop.flash();       // Phase C5.4 — camera-flash beat at page nav
   // After a page swap, newly-rendered DOM needs reveals/magnetic/sticky-hero re-attached.
   reveals.attachAll();
   magnetic.attachAll();
@@ -42,6 +49,9 @@ export async function applyTheme(scene, parameters) {
   // Detach any previous Chronicles timeline and re-attach if the new page has one.
   chronicles.detach();
   chronicles.attach();
+  // Re-wire the accent journey observer against the new DOM (if any sections carry data-accent).
+  accentJourney.detach();
+  accentJourney.attach();
 }
 
 export async function pulse() {
@@ -60,6 +70,7 @@ export async function dispose() {
   magnetic.disposeAll();
   stickyHero.detach();
   chronicles.detach();
+  accentJourney.detach();
   backdrop.shutdown();
   booted = false;
 }

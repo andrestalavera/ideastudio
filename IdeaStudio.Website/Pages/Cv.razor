@@ -43,11 +43,11 @@
 
 <div class="ds-pagebreak"></div>
 
-<section id="about" class="ds-chapter ds-print-hidden" data-reveal style="--reveal-step: 2">
+<section id="about" class="ds-chapter ds-print-hidden" data-reveal data-accent="#67e8f9" style="--reveal-step: 2">
     <div class="ds-container">
         <header class="ds-chapter__heading">
             <p class="ds-chapter__kicker">· Chapter II ·</p>
-            <h2 class="ds-chapter__title">About <em>me</em></h2>
+            <RevealWords Text="@aboutMeText" Tag="h2" Class="ds-chapter__title" />
             <div class="ds-chapter__rule"></div>
         </header>
         @if (resume?.AboutSections is not null)
@@ -66,11 +66,11 @@
     </div>
 </section>
 
-<section id="experiences" class="ds-chapter ds-pagebreak" data-reveal style="--reveal-step: 3">
+<section id="experiences" class="ds-chapter ds-pagebreak" data-reveal data-accent="#7dd3fc" style="--reveal-step: 3">
     <div class="ds-container">
         <header class="ds-chapter__heading">
             <p class="ds-chapter__kicker">· Chapter III ·</p>
-            <h2 class="ds-chapter__title">@professionalExperiencesText</h2>
+            <RevealWords Text="@professionalExperiencesText" Tag="h2" Class="ds-chapter__title" />
             <div class="ds-chapter__rule"></div>
         </header>
         @if (resume?.Experiences is not null)
@@ -84,11 +84,11 @@
     </div>
 </section>
 
-<section id="trainings" class="ds-chapter ds-print-hidden" data-reveal style="--reveal-step: 4">
+<section id="trainings" class="ds-chapter ds-print-hidden" data-reveal data-accent="#5eead4" style="--reveal-step: 4">
     <div class="ds-container">
         <header class="ds-chapter__heading">
             <p class="ds-chapter__kicker">· Chapter IV ·</p>
-            <h2 class="ds-chapter__title">@trainingCoursesText</h2>
+            <RevealWords Text="@trainingCoursesText" Tag="h2" Class="ds-chapter__title" />
             <div class="ds-chapter__rule"></div>
         </header>
         @if (resume?.TrainingCenters is not null)
@@ -107,7 +107,7 @@
     </div>
 </section>
 
-<section id="contact" class="ds-chapter ds-print-hidden" data-reveal style="--reveal-step: 5">
+<section id="contact" class="ds-chapter ds-print-hidden" data-reveal data-accent="#34d399" style="--reveal-step: 5">
     <ContactSection />
 </section>
 
@@ -117,6 +117,7 @@
     private Resume? resume;
     private string professionalExperiencesText = "Professional experiences";
     private string trainingCoursesText = "I have conducted training courses for...";
+    private string aboutMeText = "About me";
     private string aboutText = "About";
     private string experiencesText = "Experiences";
     private string trainingText = "Training";
@@ -173,6 +174,7 @@
     {
         professionalExperiencesText = LocalizationService.GetString("ProfessionalExperiences");
         trainingCoursesText = LocalizationService.GetString("TrainingCourses");
+        aboutMeText = LocalizationService.GetString("Cv.AboutMeTitle");
         aboutText = LocalizationService.GetString("About");
         experiencesText = LocalizationService.GetString("Experiences");
         trainingText = LocalizationService.GetString("Training");

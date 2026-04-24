@@ -80,3 +80,43 @@
     filter: none;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Per-word reveal — used by <RevealWords /> (Phase C5.1). Class-triggered:
+// `is-revealed` is toggled by the shared IntersectionObserver in reveals.js
+// once the host enters the viewport, so the animation only plays on first
+// appearance. Spans keep --i for stagger; perspective lives on the host so
+// every word tips from the same vanishing point.
+// ---------------------------------------------------------------------------
+
+[data-reveal-words] {
+  display: inline-block;
+  perspective: 800px;
+}
+
+.ds-reveal-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px) rotateX(60deg);
+  transform-origin: 50% 100%;
+  will-change: opacity, transform;
+}
+
+[data-reveal-words].is-revealed .ds-reveal-word {
+  animation: ds-word-in 800ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+@keyframes ds-word-in {
+  0%   { opacity: 0; transform: translateY(40px) rotateX(60deg); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-reveal-word {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
