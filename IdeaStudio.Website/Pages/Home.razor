@@ -20,15 +20,21 @@
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
 
-@* 1 · Hero *@
-<Hero Kicker="@kicker" Lead="@lead" ThreadAnchor="hero">
-    <ChildContent>
-        <span>Andrés Talavera</span><span class="ds-display__accent">.</span>
-    </ChildContent>
-    <Actions>
-        <ActionRow Label="@meetLabel" />
-    </Actions>
-</Hero>
+@* 1 · Hero — the name is shipped as a living WebGL glyph object, not a flat
+   <h1>. SignatureName carries its own sr-only <h1> for SEO + AT. The kicker
+   and lead remain to give the same vertical rhythm as the rest of the site. *@
+<section class="ds-hero ds-hero--signature" data-thread-anchor="hero">
+    <div class="ds-container">
+        <div class="ds-hero__inner ds-rhythm">
+            <p class="ds-kicker" data-reveal style="--reveal-step: 0">— @kicker</p>
+            <SignatureName Text="Andrés Talavera" />
+            <p class="ds-lead" data-reveal style="--reveal-step: 2">@lead</p>
+            <div class="ds-hero__actions" data-reveal style="--reveal-step: 3">
+                <ActionRow Label="@meetLabel" />
+            </div>
+        </div>
+    </div>
+</section>
 
 @* 2 · Latest realisations *@
 <section class="ds-section ds-section--chapter ds-section--bordered" data-thread-anchor="work">
