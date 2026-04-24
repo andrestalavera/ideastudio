@@ -1,7 +1,7 @@
 @* Per-character reveal wrapper: splits Text into <span>s with a --i index used
-   by SCSS to stagger animation-delay. Whitespace is preserved verbatim so word
-   breaks stay intact. A screen-reader-only copy of the full Text is emitted
-   first so AT reads the plain string — the animated spans are aria-hidden. *@
+   by SCSS to stagger animation-delay. Whitespace preserved verbatim. The host
+   element carries aria-label=Text and each char span is aria-hidden so
+   assistive tech reads the string once, not character by character. *@
 
 @code {
     [Parameter, EditorRequired] public string Text { get; set; } = "";
@@ -14,19 +14,15 @@
     string tag = string.IsNullOrWhiteSpace(Tag) ? "span" : Tag!;
     string classAttr = string.IsNullOrWhiteSpace(Class) ? "" : $" class=\"{Class}\"";
     char[] chars = (Text ?? "").ToCharArray();
+    string ariaLabel = EscapeAttr(Text ?? "");
 }
 
-@((MarkupString)$"<{tag}{classAttr} data-reveal-text>{BuildMarkup(chars)}</{tag}>")
+@((MarkupString)$"<{tag}{classAttr} data-reveal-text aria-label=\"{ariaLabel}\">{BuildMarkup(chars)}</{tag}>")
 
 @code {
     private string BuildMarkup(char[] chars)
     {
         System.Text.StringBuilder sb = new();
-        // Screen-reader copy of the whole string, read once as a unit.
-        sb.Append("<span class=\"ds-visually-hidden\">");
-        sb.Append(Escape(Text ?? ""));
-        sb.Append("</span>");
-
         int i = StartIndex;
         foreach (char c in chars)
         {
@@ -55,13 +51,10 @@
         _ => c.ToString(),
     };
 
-    private static string Escape(string s)
+    private static string EscapeAttr(string s)
     {
         System.Text.StringBuilder sb = new(s.Length);
-        foreach (char c in s)
-        {
-            sb.Append(EscapeChar(c));
-        }
+        foreach (char c in s) sb.Append(EscapeChar(c));
         return sb.ToString();
     }
 }
