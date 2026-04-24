@@ -1,18 +1,18 @@
-// Pointer-tracked 3D tilt for cards. Uses the same --mx / --my custom
-// properties set by interactions/magnetic.js — no new JS. Kept subtle (6deg
-// max) and with a small translateZ on children for a whisper of parallax.
+// Pointer-tracked 3D tilt for cards. Uses --mx / --my set by
+// interactions/magnetic.js — no new JS. Phase C6 softens the amplitude
+// (6deg → 3deg), drops the inner parallax translateZ, and drops the
+// pointer-tracked shine — cards stay quiet.
 //
 // Disabled on touch and under prefers-reduced-motion.
 
 [data-tilt] {
   position: relative;
   transform:
-    perspective(900px)
-    rotateX(calc(var(--my, 0) * -6deg))
-    rotateY(calc(var(--mx, 0) * 6deg))
+    perspective(1200px)
+    rotateX(calc(var(--my, 0) * -3deg))
+    rotateY(calc(var(--mx, 0) * 3deg))
     translateZ(0);
-  transition: transform 240ms cubic-bezier(0.2, 0.7, 0.2, 1);
-  transform-style: preserve-3d;
+  transition: transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
   will-change: transform;
 
   &:hover {
@@ -21,44 +21,19 @@
   }
 }
 
-// Phase C4.4 — specular shine that follows the pointer. The --px/--py custom
-// properties come from interactions/magnetic.js (pointermove). We stay inside
-// the card because .ds-card already has overflow:hidden; mix-blend:screen
-// brightens rather than overwrites content.
-[data-tilt]::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at var(--px, 50%) var(--py, 50%),
-    color-mix(in srgb, var(--ds-scene-accent, white) 22%, transparent) 0%,
-    transparent 45%
-  );
-  opacity: 0;
-  transition: opacity 260ms ease-out;
-  mix-blend-mode: screen;
-  border-radius: inherit;
-  z-index: 0;
-}
+// Direct children stay flat — inner parallax translateZ dropped in C6.
+[data-tilt] > * { transform: none; }
 
-[data-tilt]:hover::after {
-  opacity: 1;
-}
+// Shine layer dropped — keep cards quiet.
+[data-tilt]::after { content: none; }
 
-// Direct children get a small Z-lift so intra-card content parallaxes with the
-// tilt. Kept to direct children so nested grids don't compound the effect.
-[data-tilt] > * {
-  transform: translateZ(12px);
-}
-
-// Experience cards are wide and full-bleed — a 6deg rotation looks exaggerated
-// on them. Halve the tilt amplitude and drop the inner parallax lift.
+// Experience cards are wide and full-bleed — halve the tilt amplitude so
+// the large surface doesn't feel overly dramatic.
 [data-tilt].ds-exp-card {
   transform:
     perspective(1400px)
-    rotateX(calc(var(--my, 0) * -2deg))
-    rotateY(calc(var(--mx, 0) * 2deg))
+    rotateX(calc(var(--my, 0) * -1.5deg))
+    rotateY(calc(var(--mx, 0) * 1.5deg))
     translateZ(0);
 }
 [data-tilt].ds-exp-card > * { transform: none; }
@@ -66,5 +41,4 @@
 @media (hover: none), (prefers-reduced-motion: reduce) {
   [data-tilt] { transform: none; }
   [data-tilt] > * { transform: none; }
-  [data-tilt]::after { display: none; }
 }

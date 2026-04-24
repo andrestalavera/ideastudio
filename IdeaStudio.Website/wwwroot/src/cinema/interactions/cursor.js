@@ -1,11 +1,7 @@
 // Custom cursor — a 6px dot that follows the pointer 1:1 and a 36px halo
 // that lerps behind it (k=0.18) for a trailing feel. Halo expands over
-// interactive elements. No-op on touch (hover: none) and reduced-motion.
-//
-// Phase C5.3 adds a pooled "wake" — small accent-tinted particles that fade
-// out behind the dot as the cursor moves. The pool is a circular buffer of
-// 8 elements re-used via a restart-animation trick (remove class + force
-// reflow + add class) so we never allocate per-move.
+// interactive elements, and becomes a "target" reticle over [data-magnetic].
+// No-op on touch (hover: none) and reduced-motion.
 
 import { prefersReducedMotion } from '../utils/reduced-motion.js';
 
@@ -20,45 +16,6 @@ let rafId = 0;
 
 const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select, [data-magnetic]';
 
-// --- Wake pool -------------------------------------------------------------
-const WAKE_POOL = 8;
-/** @type {HTMLElement[]} */
-let wakeEls = [];
-let wakeIndex = 0;
-let lastWakeTime = 0;
-const WAKE_THROTTLE_MS = 50;
-
-function ensureWake() {
-  if (wakeEls.length) return;
-  for (let i = 0; i < WAKE_POOL; i++) {
-    const el = document.createElement('div');
-    el.className = 'ds-cursor__wake';
-    el.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(el);
-    wakeEls.push(el);
-  }
-}
-
-function spawnWake(x, y) {
-  if (!wakeEls.length) return;
-  const now = performance.now();
-  if (now - lastWakeTime < WAKE_THROTTLE_MS) return;
-  lastWakeTime = now;
-  const el = wakeEls[wakeIndex];
-  wakeIndex = (wakeIndex + 1) % WAKE_POOL;
-  // Feed position to the keyframes via CSS vars so the animation can tween
-  // scale without losing the placement.
-  el.style.setProperty('--x', x + 'px');
-  el.style.setProperty('--y', y + 'px');
-  el.classList.remove('ds-cursor__wake--live');
-  // Force reflow to restart the animation on the re-used element.
-  // eslint-disable-next-line no-unused-expressions
-  void el.offsetWidth;
-  el.classList.add('ds-cursor__wake--live');
-}
-
-// --------------------------------------------------------------------------
-
 const isTouch = () => window.matchMedia('(hover: none)').matches;
 
 const onMove = (e) => {
@@ -68,7 +25,6 @@ const onMove = (e) => {
     dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
     dot.classList.add('ds-cursor--visible');
     halo?.classList.add('ds-cursor__halo--visible');
-    spawnWake(mx, my);
   }
   // If the rAF loop was paused (cursor had left the doc), snap halo to dot and restart.
   if (!running) {
@@ -149,7 +105,6 @@ export function enable() {
   halo.setAttribute('aria-hidden', 'true');
   document.body.appendChild(dot);
   document.body.appendChild(halo);
-  ensureWake();
   document.documentElement.classList.add('ds-cursor-enabled');
 
   window.addEventListener('mousemove', onMove, { passive: true });
@@ -177,9 +132,6 @@ export function disable() {
   document.removeEventListener('mouseout', onOut);
   dot?.remove();
   halo?.remove();
-  wakeEls.forEach(el => el.remove());
-  wakeEls = [];
-  wakeIndex = 0;
   dot = null;
   halo = null;
   document.documentElement.classList.remove('ds-cursor-enabled');

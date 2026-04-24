@@ -6,13 +6,12 @@
 .ds-reveal {
   --reveal-step: 0;
   opacity: 0;
-  // Phase C4.5 — slightly more drama: 32px rise + a whisper of scale so each
-  // block feels lifted into place instead of nudged.
-  transform: translateY(32px) scale(0.98);
+  // Phase C6 — subtler premium entrance: 20px rise, no scale, tighter stagger.
+  transform: translateY(20px);
   transition:
-    opacity 0.7s cubic-bezier(0.2, 0.9, 0.2, 1),
-    transform 0.7s cubic-bezier(0.2, 0.9, 0.2, 1);
-  transition-delay: calc(var(--reveal-step) * 120ms);
+    opacity 720ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 720ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--reveal-step) * 80ms);
   will-change: opacity, transform;
 
   &.is-revealed {
@@ -24,7 +23,7 @@
 // Back-compat stagger hook for pre-existing markup. Same math, just a more
 // explicit parent opt-in — children can still set --reveal-step themselves.
 [data-reveal-stagger] [data-reveal] {
-  transition-delay: calc(var(--reveal-step, 0) * 120ms);
+  transition-delay: calc(var(--reveal-step, 0) * 80ms);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -14,7 +14,7 @@
   align-items: center;
   text-align: center;
   gap: s.$s-4;
-  max-width: 720px;
+  max-width: 640px;          // Phase C6 — tighter, more luxurious feel.
   margin-inline: auto;
 }
 
@@ -27,21 +27,12 @@
   box-shadow: 0 12px 40px -12px rgba(2, 6, 23, 0.6);
 }
 
-.ds-intro-hero__kicker {
-  margin: 0;
-  font-size: t.$fs-small;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ds-fg-muted);
-  font-weight: t.$fw-medium;
-}
+// Kicker + name typography are defined centrally in base/_typography.scss
+// (Phase C6). Only layout-adjacent properties remain here.
+.ds-intro-hero__kicker { margin: 0; }
 
 .ds-intro-hero__name {
   margin: 0;
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  line-height: 1.1;
-  font-weight: t.$fw-semibold;
-  letter-spacing: -0.015em;
   color: var(--ds-fg);
 }
 

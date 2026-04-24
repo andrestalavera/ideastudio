@@ -1,10 +1,11 @@
 @use '../tokens/space' as s;
 @use '../tokens/typography' as t;
 
+// Chapter block padding lives in utilities/_stack.scss (Phase C6 premium
+// scale). Only structural + decorative bits remain here.
+
 .ds-chapter {
   position: relative;
-  // Phase C4.2 — generous fluid block padding so chapters feel like chapters.
-  padding-block: clamp(4rem, 10vw, 8rem);
 }
 
 .ds-chapter__heading {
@@ -12,24 +13,14 @@
   display: flex;
   flex-direction: column;
   gap: s.$s-3;
-  // Phase C4.2 — a touch more breathing room between heading and content.
+  // Phase C6 — chapter heading breathes before the content block.
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
   text-align: center;
 }
 
-.ds-chapter__kicker {
-  font-family: var(--ds-font-mono);
-  font-size: t.$fs-kicker;
-  text-transform: uppercase;
-  letter-spacing: t.$tracking-kicker;
-  color: var(--ds-teal);
-}
-
+// Chapter kicker + title typography live in base/_typography.scss (Phase C6).
+// Only layout-adjacent properties + the accent span belong here.
 .ds-chapter__title {
-  font-size: t.$fs-display-2;
-  font-weight: t.$fw-light;
-  line-height: t.$lh-tight;
-  letter-spacing: t.$tracking-tight;
   color: var(--ds-fg);
   margin: 0;
 }
@@ -53,41 +44,14 @@
   }
 }
 
-// Phase C4.3 — chapter accent line that draws in as the chapter reveals.
-// Starts at width:0 and expands to min(120px, 30%) over 900ms once the parent
-// [data-reveal] gains .is-revealed. On reduced-motion the final state is
-// shown immediately with no transition.
+// Phase C6 — static chapter accent rule. The draw-in animation was dropped
+// because <RevealWords> on the title already owns the attention.
 .ds-chapter__rule {
   display: block;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    var(--ds-scene-accent, currentColor),
-    color-mix(in srgb, var(--ds-scene-accent, currentColor) 20%, transparent)
-  );
-  margin: s.$s-3 auto s.$s-5;
+  height: 1px;
+  width: min(120px, 30%);
+  background: color-mix(in srgb, var(--ds-scene-accent, currentColor) 60%, transparent);
+  margin-block: 1.2rem 2.5rem;
+  margin-inline: auto;
   border-radius: 2px;
-  will-change: width;
-  transition: width 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-// When any ancestor [data-reveal] reveals, draw the line.
-[data-reveal].is-revealed .ds-chapter__rule {
-  width: min(120px, 30%);
-}
-
-// When the chapter heading is never inside a [data-reveal] (e.g. static
-// pages like Legal/Privacy), show the rule without animation so layout
-// doesn't collapse.
-:where(.ds-chapter__heading):not(:is([data-reveal] *, [data-reveal])) .ds-chapter__rule {
-  width: min(120px, 30%);
-  transition: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ds-chapter__rule {
-    width: min(120px, 30%);
-    transition: none;
-  }
 }

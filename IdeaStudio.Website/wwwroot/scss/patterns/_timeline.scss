@@ -1,0 +1,94 @@
+@use '../tokens/space' as s;
+@use '../tokens/typography' as t;
+
+// Phase C6 — elegant static vertical timeline for the CV "experiences"
+// chapter. Left column: giant year number + rail dot. Right column: the
+// ExperienceCard. Mobile collapses to a single column with year-above-card.
+
+.ds-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 7vw, 6rem);
+  padding-block: s.$s-4;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.ds-timeline__rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: clamp(90px, 14vw, 180px);
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--ds-scene-accent, var(--ds-cyan)) 35%, transparent) 8%,
+    color-mix(in srgb, var(--ds-scene-accent, var(--ds-cyan)) 35%, transparent) 92%,
+    transparent
+  );
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.ds-timeline__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(90px, 14vw, 180px) 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+    gap: s.$s-3;
+  }
+}
+
+.ds-timeline__year {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: clamp(1rem, 1.5vw, 2rem);
+
+  @media (max-width: 767px) {
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-top: 0.25em;
+  }
+}
+
+.ds-timeline__year-number {
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 200;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--ds-scene-accent, var(--ds-cyan));
+  opacity: 0.88;
+  text-shadow:
+    0 0 40px color-mix(in srgb, var(--ds-scene-accent, currentColor) 30%, transparent);
+}
+
+.ds-timeline__year-dot {
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ds-scene-accent, var(--ds-cyan));
+  box-shadow: 0 0 20px color-mix(in srgb, var(--ds-scene-accent, currentColor) 60%, transparent);
+  transform: translateY(-50%);
+
+  @media (max-width: 767px) { display: none; }
+}
+
+.ds-timeline__card {
+  // Let the inner <ExperienceCard> own its styling; just ensure no max-width
+  // restrictions and allow vertical padding.
+  min-width: 0;
+}

@@ -2,51 +2,25 @@
 @using IdeaStudio.Website.Services
 @inject ISlugService SlugService
 
-@* Phase C4.1 — CV Chronicles. Desktop: a pinned stage scrubbed by GSAP (see
-   interactions/cv-chronicles.js). Mobile / touch / reduced-motion: a natural
-   vertical stack (ds-chronicles__stack) takes over via CSS media queries. *@
+@* Phase C6 — static vertical timeline. A giant accent-tinted year on the
+   left, an ExperienceCard on the right, and a thin rail running between
+   them with a dot at each row. Zero JS, zero pinning, zero bugs. Mobile
+   collapses to a single column with the year sitting above each card. *@
 
-<div class="ds-chronicles" data-chronicles>
-    <div class="ds-chronicles__stage" aria-hidden="true">
-        <div class="ds-chronicles__years">
-            @foreach ((Experience exp, int i) in experiencesWithIds.Select((e, i) => (e, i)))
-            {
-                <span class="ds-chronicles__year" data-chronicles-year style="--i:@i">@YearOf(exp)</span>
-            }
-        </div>
-        <div class="ds-chronicles__cards">
-            @foreach ((Experience exp, int i) in experiencesWithIds.Select((e, i) => (e, i)))
-            {
-                <article class="ds-chronicles__card" data-chronicles-slide style="--i:@i">
-                    <ExperienceCard Experience="@exp" />
-                </article>
-            }
-        </div>
-        <nav class="ds-chronicles__dots" aria-label="Jump to experience">
-            @foreach (Experience exp in experiencesWithIds)
-            {
-                <button type="button"
-                        class="ds-chronicles__dot"
-                        data-chronicles-dot
-                        aria-label="@($"{YearOf(exp)} — {exp.Company}")"></button>
-            }
-        </nav>
-        <div class="ds-chronicles__progress" data-chronicles-progress>
-            <div class="ds-chronicles__progress-fill"></div>
-        </div>
-    </div>
-
-    @* Mobile / touch / reduced-motion fallback: naturally-scrolling stack with
-       [data-reveal] on each item. Hidden on desktop via CSS media queries. *@
-    <div class="ds-chronicles__stack" role="list">
-        @foreach ((Experience exp, int i) in experiencesWithIds.Select((e, i) => (e, i)))
-        {
-            <div class="ds-chronicles__stack-item" role="listitem" data-reveal style="--reveal-step: @i">
-                <span class="ds-chronicles__stack-year" aria-hidden="true">@YearOf(exp)</span>
+<div class="ds-timeline">
+    <div class="ds-timeline__rail" aria-hidden="true"></div>
+    @foreach ((Experience exp, int i) in experiencesWithIds.Select((e, i) => (e, i)))
+    {
+        <div class="ds-timeline__row" data-reveal style="--reveal-step:@i">
+            <div class="ds-timeline__year">
+                <span class="ds-timeline__year-number">@YearOf(exp)</span>
+                <span class="ds-timeline__year-dot" aria-hidden="true"></span>
+            </div>
+            <div class="ds-timeline__card">
                 <ExperienceCard Experience="@exp" />
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>
 
 @code {

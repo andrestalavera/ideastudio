@@ -18,23 +18,40 @@
   font-display: swap;
 }
 
+// Phase C6 premium baseline. 17px body, looser line-height, antialiasing.
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 html, body {
   font-family: var(--ds-font-sans);
-  font-size: t.$fs-body;
-  // Phase C4.2 — slightly looser line-height + a whisper of tracking on Inter
-  // for better legibility over the aurora backdrop.
-  line-height: 1.65;
-  letter-spacing: 0.01em;
+  font-size: 1.0625rem;          // 17px premium baseline
+  line-height: 1.7;
+  letter-spacing: 0.005em;
   font-weight: t.$fw-regular;
 }
 
 // Utility text classes (prefixed .ds- to avoid collision with Bootstrap).
-.ds-display-1 {
-  font-size: t.$fs-display-1;
-  font-weight: t.$fw-light;
-  line-height: t.$lh-tight;
-  letter-spacing: t.$tracking-tight;
+// Phase C6: oversized display faces, tight tracking, generous leading.
+.ds-display-1,
+.ds-hero__name,
+.ds-intro-hero__name,
+.ds-chapter__title,
+.ds-section__title {
+  font-family: var(--ds-font-sans);
+  font-weight: t.$fw-semibold;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
 }
+
+.ds-display-1        { font-size: clamp(3rem, 7vw, 6.5rem); }
+.ds-hero__name       { font-size: clamp(2.6rem, 5.5vw, 5rem); }
+.ds-intro-hero__name { font-size: clamp(2.6rem, 5.5vw, 5rem); }
+.ds-chapter__title   { font-size: clamp(2rem, 4vw, 3.4rem); }
+.ds-section__title   { font-size: clamp(1.8rem, 3.6vw, 3rem); }
 
 .ds-display-2 {
   font-size: t.$fs-display-2;
@@ -47,18 +64,27 @@ html, body {
 .ds-h2 { font-size: t.$fs-h2; font-weight: t.$fw-medium; line-height: t.$lh-snug; letter-spacing: t.$tracking-snug; }
 .ds-h3 { font-size: t.$fs-h3; font-weight: t.$fw-semibold; line-height: t.$lh-snug; }
 
-.ds-body      { font-size: t.$fs-body;  line-height: 1.65; max-width: 65ch; }
-.ds-body-lead { font-size: 1.125rem; line-height: 1.65; color: var(--ds-fg-muted); max-width: 62ch; }
+.ds-body      { font-size: 1.0625rem; line-height: 1.7; max-width: 65ch; }
+.ds-body-lead {
+  font-size: clamp(1.0625rem, 1.2vw, 1.25rem);
+  line-height: 1.65;
+  letter-spacing: 0.005em;
+  color: var(--ds-fg-muted);
+  max-width: 62ch;
+}
 .ds-small     { font-size: t.$fs-small; line-height: t.$lh-snug; color: var(--ds-fg-muted); }
 
 .ds-mono      { font-family: var(--ds-font-mono); }
 
-.ds-kicker {
-  font-family: var(--ds-font-mono);
-  font-size: t.$fs-kicker;
+.ds-kicker,
+.ds-chapter__kicker,
+.ds-intro-hero__kicker {
+  font-family: var(--ds-font-sans);
+  font-size: 0.8125rem;
+  font-weight: t.$fw-medium;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  letter-spacing: t.$tracking-kicker;
-  color: var(--ds-teal);
+  color: var(--ds-fg-muted);
 }
 
 .ds-emphasis-gradient {

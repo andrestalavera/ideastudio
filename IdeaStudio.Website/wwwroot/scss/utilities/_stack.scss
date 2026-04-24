@@ -51,11 +51,11 @@
   gap: s.$s-4;
 }
 
-// Section. Phase C4.2 — fluid block padding for breathing room on all
-// viewports. Scales from 4rem on narrow to 7rem on wide.
-.ds-section {
-  padding-block: clamp(4rem, 8vw, 7rem);
-}
+// Section. Phase C6 — more breathing room, premium minimalism scale.
+.ds-section        { padding-block: clamp(4rem, 8vw, 8rem); }
+.ds-chapter        { padding-block: clamp(5rem, 10vw, 10rem); }
+.ds-section--spacious,
+.ds-chapter--spacious { padding-block: clamp(6rem, 12vw, 12rem); }
 
 .ds-app {
   position: relative;

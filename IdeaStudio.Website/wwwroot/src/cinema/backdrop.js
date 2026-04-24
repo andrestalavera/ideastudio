@@ -1,7 +1,10 @@
 // wwwroot/src/cinema/backdrop.js
 // A single full-viewport WebGL "aurora" shader. Runs continuously, tinted by
-// --ds-scene-accent / --ds-scene-accent-2 (read from the document root).
-// Mouse parallax + scroll pulse. Honors prefers-reduced-motion.
+// --ds-scene-accent (read from the document root). Mouse parallax + scroll
+// pulse. Honors prefers-reduced-motion.
+//
+// Phase C6: the dual accent system was dropped — the shader now tints with a
+// single accent plus a cheap 1.3x highlight variant, quieter and luxurious.
 
 import {
   WebGLRenderer, Scene, OrthographicCamera, Clock,
@@ -14,8 +17,9 @@ varying vec2 vUv;
 void main() { vUv = uv; gl_Position = vec4(position, 1.0); }
 `;
 
-// Aurora: two layers of domain-warped noise. Tint lerps between two accent
-// colors. Soft vignette keeps edges dark so it never competes with content.
+// Aurora: two layers of domain-warped noise. Tint mixes one accent with a
+// brighter variant of itself. Soft vignette keeps edges dark so it never
+// competes with content.
 const frag = /* glsl */`
 precision highp float;
 varying vec2 vUv;
@@ -24,7 +28,6 @@ uniform float uScrollPulse;
 uniform vec2  uMouse;
 uniform vec2  uResolution;
 uniform vec3  uAccentA;
-uniform vec3  uAccentB;
 uniform vec3  uDeep;
 
 // Hash & value noise.
@@ -62,11 +65,11 @@ void main() {
   float band = sin(p.y * 3.0 + n * 2.8 + t * 0.6) * 0.5 + 0.5;
   float flow = smoothstep(0.25, 0.85, mix(n, band, 0.55));
 
-  // Tint.
-  vec3 col = mix(uAccentA, uAccentB, flow);
+  // Tint — single accent, brighter variant as the highlight.
+  vec3 col = mix(uAccentA, uAccentA * 1.3, flow);
 
-  // Base deep.
-  col = mix(uDeep, col, 0.30 + uScrollPulse * 0.25);
+  // Base deep. Lower mix floor than C5 — the backdrop reads quieter.
+  col = mix(uDeep, col, 0.22 + uScrollPulse * 0.18);
 
   // Vignette — radial falloff so the edges are quiet.
   float vign = smoothstep(1.1, 0.4, length(p));
@@ -102,9 +105,8 @@ export function boot() {
     return new Color(raw || fallback);
   };
 
-  const uAccentA = { value: readColor('--ds-scene-accent',   '#0ea5e9') };
-  const uAccentB = { value: readColor('--ds-scene-accent-2', '#7dd3fc') };
-  const uDeep    = { value: readColor('--ds-deep',           '#020617') };
+  const uAccentA = { value: readColor('--ds-scene-accent', '#0ea5e9') };
+  const uDeep    = { value: readColor('--ds-deep',         '#020617') };
 
   const mat = new ShaderMaterial({
     vertexShader: vert, fragmentShader: frag,
@@ -113,7 +115,7 @@ export function boot() {
       uScrollPulse: { value: 0 },
       uMouse:       { value: new Vector2(0.5, 0.5) },
       uResolution:  { value: new Vector2(window.innerWidth, window.innerHeight) },
-      uAccentA, uAccentB, uDeep,
+      uAccentA, uDeep,
     },
   });
   const mesh = new Mesh(new PlaneGeometry(2, 2), mat);
@@ -143,13 +145,11 @@ export function boot() {
   };
   window.addEventListener('resize', onResize, { passive: true });
 
-  // Refresh tints when --ds-scene-accent changes (page nav).
+  // Refresh tint when --ds-scene-accent changes (page nav).
   const refreshPalette = () => {
     const cs2 = getComputedStyle(document.documentElement);
-    const a1 = cs2.getPropertyValue('--ds-scene-accent').trim()   || '#0ea5e9';
-    const a2 = cs2.getPropertyValue('--ds-scene-accent-2').trim() || '#7dd3fc';
+    const a1 = cs2.getPropertyValue('--ds-scene-accent').trim() || '#0ea5e9';
     try { uAccentA.value.set(a1); } catch { /* keep previous */ }
-    try { uAccentB.value.set(a2); } catch { /* keep previous */ }
   };
 
   const raf = { id: 0, running: true };
@@ -170,12 +170,7 @@ export function boot() {
   // Mark html so SCSS can fade the CSS backdrop fallback.
   document.documentElement.classList.add('has-webgl-backdrop');
 
-  // Phase C5.4: flash() spikes scrollV so the aurora gets a "camera flash"
-  // beat on page-nav. Uses Math.max so we never cut the value down if a
-  // real scroll happens to be louder in that exact frame.
-  const flash = () => { scrollV = Math.max(scrollV, 0.8); };
-
-  state = { renderer, mesh, mat, raf, canvas, refreshPalette, flash, cleanup() {
+  state = { renderer, mesh, mat, raf, canvas, refreshPalette, cleanup() {
     raf.running = false;
     cancelAnimationFrame(raf.id);
     window.removeEventListener('scroll', onScroll);
@@ -191,14 +186,9 @@ export function boot() {
   return state;
 }
 
-/** Called on page nav so the shader re-reads the new scene accent CSS vars. */
+/** Called on page nav so the shader re-reads the new scene accent CSS var. */
 export function refresh() {
   state?.refreshPalette?.();
-}
-
-/** One-shot spike on uScrollPulse; decays naturally via the render loop. */
-export function flash() {
-  state?.flash?.();
 }
 
 export function shutdown() {
