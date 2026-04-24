@@ -97,22 +97,28 @@ export function createThreadPass(renderer) {
 
   // Rebuild the geometry from the current DOM.
   function rebuild() {
+    // Thread is a desktop-only ornament — mobile is too narrow to give it
+    // visual room without competing with content.
+    if (mobile()) { vertexCount = 0; return; }
+
     const nodes = Array.from(document.querySelectorAll('[data-thread-anchor]'));
     if (nodes.length < 3) { vertexCount = 0; return; }
 
-    // DOM-page coordinates (absolute) → canvas is fixed viewport; we render
-    // in window.scroll space so we offset by scrollY per frame via u_resolution
-    // and positions. Simplest: sample in viewport space each rebuild, and
-    // rebuild on scroll (cheap: ≤200 verts). But to avoid per-frame rebuilds
-    // we compute document-space positions and convert to viewport in shader?
-    // Too much. For Phase 1 we rebuild on scroll (throttled).
+    // Route the thread along the LEFT margin, not through each anchor's
+    // center. Each anchor contributes a y-coordinate; x oscillates in a
+    // gentle sway around a fixed column so the spline feels organic
+    // instead of degenerating into a straight vertical line.
     const viewportY = window.scrollY;
-    const anchors = nodes.map((el) => {
+    const vw = window.innerWidth;
+    const column = Math.max(28, Math.min(vw * 0.08, 120));  // ~8% of viewport, clamped
+    const swayAmp = Math.min(48, vw * 0.02);
+    const anchors = nodes.map((el, i) => {
       const r = el.getBoundingClientRect();
-      return [r.left + r.width * 0.5, r.top + r.height * 0.5 + viewportY];
+      const sway = Math.sin(i * 1.7) * swayAmp;
+      return [column + sway, r.top + r.height * 0.5 + viewportY];
     });
 
-    const segs = mobile() ? 120 : 220;
+    const segs = 180;
     const spline = sampleSpline(anchors, segs);
 
     // Emit triangle strip: two verts per sample (side -1 / +1), with normals.

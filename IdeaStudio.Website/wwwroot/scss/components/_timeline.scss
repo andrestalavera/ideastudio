@@ -7,37 +7,50 @@
 .ds-timeline {
   display: flex;
   flex-direction: column;
-  gap: s.$s-8;
 
   &__row {
     display: grid;
-    grid-template-columns: minmax(120px, 180px) 1fr;
-    gap: s.$s-6;
+    grid-template-columns: minmax(140px, 200px) 1fr;
+    gap: s.$s-7;
     align-items: flex-start;
+    padding-block: s.$s-8;
+    border-block-end: 1px solid c.$rule;
+    transition: border-color 320ms var(--ease-out);
 
-    @container (max-width: 64rem) {
+    &:last-child {
+      border-block-end: 0;
+    }
+
+    &.is-active {
+      border-block-end-color: rgba(0, 194, 212, 0.22);
+    }
+
+    @media (max-width: 64rem) {
       grid-template-columns: 1fr;
       gap: s.$s-3;
+      padding-block: s.$s-6;
     }
   }
 
   &__year {
     font-family: t.$font-sans;
     font-weight: 600;
-    font-size: t.$fs-hero;
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
     line-height: 0.95;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
     color: c.$fg-faint;
-    transition: color 320ms var(--ease-out);
+    transition: color 420ms var(--ease-out), text-shadow 420ms var(--ease-out);
+    font-variant-numeric: tabular-nums;
 
-    @container (min-width: 64rem) {
+    @media (min-width: 64rem) {
       position: sticky;
-      inset-block-start: 30vh;
+      inset-block-start: 32vh;
     }
   }
 
   &__row.is-active .ds-timeline__year {
     color: c.$ir-duck;
+    text-shadow: 0 0 32px rgba(0, 194, 212, 0.35);
   }
 
   &__period {
@@ -77,7 +90,16 @@
   &__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: s.$s-2;
-    margin-block-start: s.$s-4;
+    gap: s.$s-1;
+    margin-block-start: s.$s-5;
+
+    .ds-tag {
+      padding-inline: s.$s-2;
+      padding-block: 2px;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: c.$fg-faint;
+      border-color: rgba(234, 244, 242, 0.06);
+    }
   }
 }

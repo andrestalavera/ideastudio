@@ -27,8 +27,9 @@ vec3 sampleGradient(float t) {
 
 void main() {
   // Feathered edges (side goes -1 → +1 across the strip).
-  float edge = 1.0 - smoothstep(0.6, 1.0, abs(v_side));
+  float edge = 1.0 - smoothstep(0.55, 1.0, abs(v_side));
 
   vec3 col = sampleGradient(v_arc * 1.2);
-  fragColor = vec4(col, edge * 0.9 * v_clip);
+  // Ambient alpha — the thread is decoration, never a focal element.
+  fragColor = vec4(col, edge * 0.42 * v_clip);
 }

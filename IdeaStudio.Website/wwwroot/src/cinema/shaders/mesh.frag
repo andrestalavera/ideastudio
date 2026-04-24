@@ -69,17 +69,20 @@ void main() {
   c = mix(c, u_pink, (1.0 - t1) * (1.0 - t3) * 0.55);
 
   // Blend heavily toward the deep background so the mesh reads as ambient,
-  // not a foreground surface.
-  c = mix(u_bg, c, 0.55);
+  // never competes with text. Dialed further down for legibility.
+  c = mix(u_bg, c, 0.32);
 
   // Vignette toward the bottom so hero text keeps contrast above the mesh.
   float vy = smoothstep(1.05, 0.0, uv.y);
-  c *= 0.55 + 0.45 * vy;
+  c *= 0.65 + 0.35 * vy;
 
   // Edge fade to reinforce focus center.
   float r = length((uv - vec2(0.5, 0.5)) * vec2(asp.x * 0.9, 1.0));
   float edge = smoothstep(1.1, 0.3, r);
-  c *= 0.6 + 0.4 * edge;
+  c *= 0.7 + 0.3 * edge;
+
+  // Final darken toward void — keeps body copy on $fg at AAA.
+  c = mix(c, u_bg, 0.22);
 
   fragColor = vec4(c, 1.0);
 }

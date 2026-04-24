@@ -1,5 +1,6 @@
-// interactions/reveals.js — adds .is-revealed to [data-reveal] elements
-// when they enter the viewport. Stagger is via inline --reveal-step CSS var.
+// interactions/reveals.js — toggles .is-revealed on [data-reveal] elements
+// based on viewport intersection. Reversible: scrolling back up re-hides,
+// scrolling down reveals again. Stagger via --reveal-step CSS var.
 
 let observer = null;
 
@@ -7,25 +8,22 @@ function ensureObserver() {
   if (observer) return observer;
   observer = new IntersectionObserver((entries) => {
     for (const e of entries) {
-      if (e.isIntersecting) {
-        e.target.classList.add('is-revealed');
-        observer.unobserve(e.target);
-      }
+      // Toggle both ways — no unobserve, so reveals replay on reverse scroll.
+      e.target.classList.toggle('is-revealed', e.isIntersecting);
     }
-  }, { rootMargin: '-10% 0px', threshold: 0.05 });
+  }, { rootMargin: '-8% 0px -8% 0px', threshold: 0.05 });
   return observer;
 }
 
 export function attachReveals() {
   const io = ensureObserver();
-  for (const el of document.querySelectorAll('[data-reveal]:not(.is-revealed)')) {
+  for (const el of document.querySelectorAll('[data-reveal]')) {
     io.observe(el);
   }
-  // Observe newly added nodes too (pages rerender after culture switch).
   if (!attachReveals._mo) {
     attachReveals._mo = new MutationObserver(() => {
-      for (const el of document.querySelectorAll('[data-reveal]:not(.is-revealed)')) {
-        io.observe(el);
+      for (const el of document.querySelectorAll('[data-reveal]')) {
+        io.observe(el);  // re-observing an already-observed node is a no-op.
       }
     });
     attachReveals._mo.observe(document.body, { childList: true, subtree: true });
