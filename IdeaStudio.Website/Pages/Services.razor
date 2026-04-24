@@ -24,7 +24,7 @@
          HreflangUrls="@seoHreflangUrls"
          StructuredData="@seoStructuredData" />
 
-<section class="ds-chapter">
+<section class="ds-chapter" data-reveal style="--reveal-step: 1">
     <div class="ds-container">
         <header class="ds-chapter__heading">
             <p class="ds-chapter__kicker">@kickerText</p>
@@ -34,15 +34,19 @@
         </header>
 
         <div class="ds-grid ds-grid--3">
-            @foreach (ServiceModel service in services.OrderBy(s => s.Order))
+            @foreach ((ServiceModel service, int idx) in services.OrderBy(s => s.Order).Select((s, i) => (s, i)))
             {
-                <ServiceCard Service="@service" />
+                <div data-reveal style="--reveal-step: @idx">
+                    <ServiceCard Service="@service" />
+                </div>
             }
         </div>
     </div>
 </section>
 
-<CtaCalendlySection />
+<div data-reveal style="--reveal-step: 2">
+    <CtaCalendlySection />
+</div>
 
 @code {
     private IReadOnlyList<ServiceModel> services = [];

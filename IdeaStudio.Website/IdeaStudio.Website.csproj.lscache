@@ -362,6 +362,7 @@ Components/
  RealisationsFilters.razor
  RealisationsGrid.razor
  RealisationsTeaser.razor
+ RevealText.razor
  SeoHead.razor
  ServiceCard.razor
  ServicesGrid.razor
@@ -402,6 +403,7 @@ Components/
  RealisationsFilters.razor
  RealisationsGrid.razor
  RealisationsTeaser.razor
+ RevealText.razor
  SeoHead.razor
  ServiceCard.razor
  ServicesGrid.razor

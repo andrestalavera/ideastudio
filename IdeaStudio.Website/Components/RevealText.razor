@@ -1,0 +1,67 @@
+@* Per-character reveal wrapper: splits Text into <span>s with a --i index used
+   by SCSS to stagger animation-delay. Whitespace is preserved verbatim so word
+   breaks stay intact. A screen-reader-only copy of the full Text is emitted
+   first so AT reads the plain string — the animated spans are aria-hidden. *@
+
+@code {
+    [Parameter, EditorRequired] public string Text { get; set; } = "";
+    [Parameter] public string? Tag { get; set; } = "span";
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public int StartIndex { get; set; } = 0;
+}
+
+@{
+    string tag = string.IsNullOrWhiteSpace(Tag) ? "span" : Tag!;
+    string classAttr = string.IsNullOrWhiteSpace(Class) ? "" : $" class=\"{Class}\"";
+    char[] chars = (Text ?? "").ToCharArray();
+}
+
+@((MarkupString)$"<{tag}{classAttr} data-reveal-text>{BuildMarkup(chars)}</{tag}>")
+
+@code {
+    private string BuildMarkup(char[] chars)
+    {
+        System.Text.StringBuilder sb = new();
+        // Screen-reader copy of the whole string, read once as a unit.
+        sb.Append("<span class=\"ds-visually-hidden\">");
+        sb.Append(Escape(Text ?? ""));
+        sb.Append("</span>");
+
+        int i = StartIndex;
+        foreach (char c in chars)
+        {
+            if (char.IsWhiteSpace(c))
+            {
+                sb.Append(c);
+            }
+            else
+            {
+                sb.Append($"<span class=\"ds-reveal-char\" style=\"--i:{i}\" aria-hidden=\"true\">");
+                sb.Append(EscapeChar(c));
+                sb.Append("</span>");
+                i++;
+            }
+        }
+        return sb.ToString();
+    }
+
+    private static string EscapeChar(char c) => c switch
+    {
+        '<' => "&lt;",
+        '>' => "&gt;",
+        '&' => "&amp;",
+        '\'' => "&#39;",
+        '"' => "&quot;",
+        _ => c.ToString(),
+    };
+
+    private static string Escape(string s)
+    {
+        System.Text.StringBuilder sb = new(s.Length);
+        foreach (char c in s)
+        {
+            sb.Append(EscapeChar(c));
+        }
+        return sb.ToString();
+    }
+}

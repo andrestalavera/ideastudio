@@ -1,5 +1,10 @@
-// SCSS-driven magnetic hover: JS only updates --mx / --my custom properties
+// SCSS-driven pointer tracking: JS only updates --mx / --my custom properties
 // on pointermove. SCSS handles the transform. No animation library needed.
+//
+// Two selectors share the same pipeline:
+//   - [data-magnetic] — buttons / actions that translate toward the pointer
+//   - [data-tilt]     — cards that rotate a few degrees around their center
+// Both consume the same --mx / --my pair; the SCSS for each is what differs.
 
 import { prefersReducedMotion } from '../utils/reduced-motion.js';
 
@@ -10,7 +15,7 @@ export function attachAll() {
   if (prefersReducedMotion()) return;
   if (window.matchMedia?.('(hover: none)').matches) return;
 
-  const els = document.querySelectorAll('[data-magnetic]');
+  const els = document.querySelectorAll('[data-magnetic], [data-tilt]');
   for (const el of els) {
     if (moveHandlers.has(el)) continue;
     attach(el);

@@ -7,9 +7,11 @@
             <p class="ds-section__lead">@Lead</p>
         </div>
         <div class="ds-grid ds-grid--services">
-            @foreach (Service service in Services.OrderBy(s => s.Order))
+            @foreach ((Service service, int idx) in Services.OrderBy(s => s.Order).Select((s, i) => (s, i)))
             {
-                <ServiceCard Service="@service" />
+                <div data-reveal style="--reveal-step: @idx">
+                    <ServiceCard Service="@service" />
+                </div>
             }
         </div>
     </div>

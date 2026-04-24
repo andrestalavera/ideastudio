@@ -24,13 +24,19 @@
 
 <HomeIntroHero />
 
-<ServicesGrid Services="@services"
-              Title="@servicesTitle"
-              Lead="@servicesLead" />
+<div data-reveal style="--reveal-step: 1">
+    <ServicesGrid Services="@services"
+                  Title="@servicesTitle"
+                  Lead="@servicesLead" />
+</div>
 
-<RealisationsTeaser Realisations="@realisations" />
+<div data-reveal style="--reveal-step: 2">
+    <RealisationsTeaser Realisations="@realisations" />
+</div>
 
-<CtaCalendlySection />
+<div data-reveal style="--reveal-step: 3">
+    <CtaCalendlySection />
+</div>
 
 @code {
     private IReadOnlyList<ServiceModel> services = [];

@@ -17,7 +17,7 @@
                             onerror="this.src='images/placeholder.png'">
                     }
                     <div class="ds-hero__intro">
-                        <h2 class="ds-h1">@PersonalInformation.Name</h2>
+                        <RevealText Text="@PersonalInformation.Name" Tag="h2" Class="ds-h1" />
                         <div class="ds-body-lead">
                             @if (!string.IsNullOrEmpty(PersonalInformation.Introduction))
                             {

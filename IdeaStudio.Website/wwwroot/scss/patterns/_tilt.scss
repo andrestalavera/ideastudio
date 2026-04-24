@@ -1,0 +1,43 @@
+// Pointer-tracked 3D tilt for cards. Uses the same --mx / --my custom
+// properties set by interactions/magnetic.js — no new JS. Kept subtle (6deg
+// max) and with a small translateZ on children for a whisper of parallax.
+//
+// Disabled on touch and under prefers-reduced-motion.
+
+[data-tilt] {
+  transform:
+    perspective(900px)
+    rotateX(calc(var(--my, 0) * -6deg))
+    rotateY(calc(var(--mx, 0) * 6deg))
+    translateZ(0);
+  transition: transform 240ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  &:hover {
+    // Snappier when actively tracked so the tilt follows the pointer.
+    transition-duration: 80ms;
+  }
+}
+
+// Direct children get a small Z-lift so intra-card content parallaxes with the
+// tilt. Kept to direct children so nested grids don't compound the effect.
+[data-tilt] > * {
+  transform: translateZ(12px);
+}
+
+// Experience cards are wide and full-bleed — a 6deg rotation looks exaggerated
+// on them. Halve the tilt amplitude and drop the inner parallax lift.
+[data-tilt].ds-exp-card {
+  transform:
+    perspective(1400px)
+    rotateX(calc(var(--my, 0) * -2deg))
+    rotateY(calc(var(--mx, 0) * 2deg))
+    translateZ(0);
+}
+[data-tilt].ds-exp-card > * { transform: none; }
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  [data-tilt] { transform: none; }
+  [data-tilt] > * { transform: none; }
+}

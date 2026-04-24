@@ -8,8 +8,10 @@
   padding: s.$s-5;
   border-radius: s.$r-lg;
   background: var(--ds-glass-bg);
-  backdrop-filter: blur(12px);
+  // Default blur; the @supports block below adds saturation where available
+  // so cards feel lifted over the colored ambient backdrop (Phase C2.7).
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--ds-glass-border);
   box-shadow: s.$shadow-2, s.$shadow-inset-hl;
   color: var(--ds-fg);
@@ -17,6 +19,11 @@
   transition: border-color var(--ds-dur-base) var(--ds-ease-out),
               transform var(--ds-dur-base) var(--ds-ease-out),
               box-shadow var(--ds-dur-base) var(--ds-ease-out);
+
+  @supports (backdrop-filter: blur(1px)) {
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    backdrop-filter: blur(12px) saturate(140%);
+  }
 
   &:hover {
     border-color: rgba(125, 211, 252, 0.30);

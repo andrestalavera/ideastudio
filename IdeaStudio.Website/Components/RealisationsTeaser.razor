@@ -12,7 +12,9 @@
         <div class="ds-grid ds-grid--realisations">
             @foreach ((Realisation r, int index) in OrderedRealisations.Select((r, i) => (r, i)))
             {
-                <div class="@(index < DefaultVisible ? "d-flex" : showAll ? "d-flex" : "d-none")">
+                <div class="@(index < DefaultVisible ? "d-flex" : showAll ? "d-flex" : "d-none")"
+                     data-reveal
+                     style="--reveal-step: @index">
                     <RealisationCard Realisation="@r" />
                 </div>
             }

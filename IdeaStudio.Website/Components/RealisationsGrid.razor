@@ -13,9 +13,11 @@
 else
 {
     <div class="ds-grid ds-grid--realisations">
-        @foreach (Realisation r in Items)
+        @foreach ((Realisation r, int idx) in Items.Select((r, i) => (r, i)))
         {
-            <RealisationCard Realisation="@r" />
+            <div data-reveal style="--reveal-step: @idx">
+                <RealisationCard Realisation="@r" />
+            </div>
         }
     </div>
 }
