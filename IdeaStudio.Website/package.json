@@ -23,7 +23,6 @@
 	"homepage": "https://github.com/andrestalavera/ideastudio#readme",
 	"dependencies": {
 		"@fontsource-variable/inter": "5.2.5",
-		"@fontsource/instrument-serif": "^5.2.8",
 		"@fontsource/jetbrains-mono": "5.2.5",
 		"gsap": "^3.13.0",
 		"modern-normalize": "^3.0.1"

@@ -1,43 +1,37 @@
-// Phase D — editorial brass-and-black.
-// Single amber accent on true black. Legacy cyan/sky/etc tokens are kept for
-// back-compat (_service-accents.scss still references them) but the new
-// editorial pages ignore them and style off --ds-accent.
+// tokens/_colors.scss — techno-iridescent palette (V3)
+// Single source of truth for colors. Mirrored into CSS custom properties
+// in base/_root.scss and sampled by the WebGL shaders via getComputedStyle.
 
-// New editorial palette.
-$bg:          #0a0a0b;   // slightly off-black for warmth on matte OLED
-$surface-1:   #111114;   // barely-raised card/surface
-$surface-2:   #1a1a1f;   // secondary
-$fg:          #f5f3ee;   // warm cream, reads like aged paper
-$fg-muted:    #9b968d;   // warm grey, pairs with cream fg
-$fg-faint:    #6c6860;   // quietest text
-$accent:      #f3c577;   // brass / whiskey / vintage paper
-$accent-deep: #c79958;   // darker amber moments
-$rule:        rgba(245, 243, 238, 0.08);  // 1px rules — 8% fg
+// Surfaces
+$bg-void:    #020a0d;   // far body, under canvas
+$bg-deep:    #05161a;   // primary page background
+$bg-surface: #0a2328;   // masthead pill, chapter bands
+$bg-raised:  #0e2d33;   // cards, stat chips
 
-// --- Legacy tokens (kept to avoid breaking unrelated partials during the
-//     swap). New styles must NOT reference these — style off --ds-accent. ---
+// Foreground
+$fg:       #eaf4f2;  // primary text on $bg-deep (AAA)
+$fg-muted: #7f9a96;  // captions / meta (large text only)
+$fg-faint: #4d6966;  // decorative, never body copy
 
-$ink-0:    #020617;
-$ink-100:  #0f172a;
-$ink-200:  #1e293b;
-$ink-300:  #334155;
-$ink-400:  #475569;
-$ink-500:  #64748b;
-$ink-600:  #94a3b8;
-$ink-700:  #cbd5e1;
-$ink-800:  #e2e8f0;
-$ink-900:  #f1f5f9;
+// Iridescent accents
+$ir-duck:  #00c2d4;  // primary brand / CTA / focus / rail
+$ir-blue:  #2d44ff;  // secondary accent
+$ir-amber: #ff8c1a;
+$ir-pink:  #ff3670;
 
-$deep:     #0c4a6e;
-$azure:    #0ea5e9;
-$sky:      #7dd3fc;
-$cyan:     #67e8f9;
-$teal:     #5eead4;
-$mint:     #34d399;
+// Derived
+$rule:  rgba(234, 244, 242, 0.08);
+$ring:  rgba(0, 194, 212, 0.6);
+$glass: rgba(234, 244, 242, 0.06);
 
-$surface-glass-bg:     rgba(15, 23, 42, 0.55);
-$surface-glass-border: rgba(125, 211, 252, 0.15);
-$surface-glass-bg-hover:     rgba(15, 23, 42, 0.72);
-$surface-glass-border-hover: rgba(125, 211, 252, 0.30);
-
-$focus-ring: $accent;
+// The one iridescent gradient. Reused by:
+//   - SCSS: CTA borders, text-clip accents, thin rules
+//   - WebGL: mesh + thread pass (sampled via CSS custom properties)
+$gradient-iridescent: conic-gradient(
+  from 140deg at 50% 50%,
+  $ir-duck,
+  $ir-blue,
+  $ir-amber,
+  $ir-pink,
+  $ir-duck
+);

@@ -1,36 +1,28 @@
-// 4pt spacing scale + radii + elevations.
+// tokens/_space.scss — rem-based scale + containers + section rhythm + breakpoints.
 
-$s-0:  0;
-$s-1:  0.25rem;   // 4px
-$s-2:  0.5rem;    // 8px
-$s-3:  0.75rem;   // 12px
-$s-4:  1rem;      // 16px
-$s-5:  1.5rem;    // 24px
-$s-6:  2rem;      // 32px
-$s-7:  3rem;      // 48px
-$s-8:  4rem;      // 64px
-$s-9:  6rem;      // 96px
-$s-10: 8rem;      // 128px
+$s-1:  0.25rem;
+$s-2:  0.5rem;
+$s-3:  0.75rem;
+$s-4:  1rem;
+$s-5:  1.5rem;
+$s-6:  2rem;
+$s-7:  3rem;
+$s-8:  4rem;
+$s-9:  6rem;
+$s-10: 8rem;
+$s-11: 12rem;
 
-$r-sm:   6px;
-$r-md:   10px;
-$r-lg:   14px;
-$r-xl:   20px;
-$r-2xl:  28px;
-$r-pill: 999px;
+// Container widths
+$container-narrow: 720px;
+$container:        1200px;
+$container-wide:   1440px;
 
-$shadow-1: 0 2px 8px rgba(2, 6, 23, 0.35);
-$shadow-2: 0 10px 40px rgba(2, 6, 23, 0.5);
-$shadow-3: 0 20px 60px rgba(14, 165, 233, 0.2);
-$shadow-inset-hl: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+// Section / chapter vertical rhythm (fluid)
+$py-section: clamp(5rem, 10vw, 9rem);
+$py-chapter: clamp(7rem, 14vw, 14rem);
 
-// Breakpoints
-$bp-sm: 480px;
-$bp-md: 768px;
-$bp-lg: 1024px;
-$bp-xl: 1280px;
-$bp-2xl: 1536px;
-
-// Container
-$container-max: 1280px;
-$container-pad: $s-5;
+// Breakpoints (container queries preferred; media queries only at page frame)
+$bp-s:  24rem;   // 384px — small phones
+$bp-m:  40rem;   // 640px — tablet portrait
+$bp-l:  64rem;   // 1024px — tablet landscape / small laptop
+$bp-xl: 90rem;   // 1440px — large desktop

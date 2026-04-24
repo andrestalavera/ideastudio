@@ -1,0 +1,26 @@
+// layout/_rhythm.scss — the SINGLE source of kicker → title → lead spacing.
+// Every <Hero> and <ChapterBand> opens with .ds-rhythm. Do not duplicate
+// this spacing in individual components.
+
+@use '../tokens/space' as s;
+
+.ds-rhythm {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-3;
+
+  > .ds-kicker + * {
+    margin-block-start: s.$s-3;
+  }
+
+  > .ds-display + *,
+  > .ds-title + *,
+  > h1 + *,
+  > h2 + * {
+    margin-block-start: s.$s-4;
+  }
+
+  > .ds-lead + * {
+    margin-block-start: s.$s-5;
+  }
+}

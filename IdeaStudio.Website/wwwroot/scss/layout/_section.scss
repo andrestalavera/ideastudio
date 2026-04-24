@@ -1,0 +1,17 @@
+// layout/_section.scss — section + chapter vertical rhythm.
+
+@use '../tokens/space' as s;
+@use '../tokens/colors' as c;
+
+.ds-section {
+  padding-block: s.$py-section;
+  position: relative;
+
+  &--chapter {
+    padding-block: s.$py-chapter;
+  }
+
+  &--bordered {
+    border-block-start: 1px solid c.$rule;
+  }
+}

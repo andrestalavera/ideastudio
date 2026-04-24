@@ -1,51 +1,41 @@
+// base/_root.scss — mirror SCSS tokens into CSS custom properties so the
+// WebGL passes can read the same palette (via getComputedStyle) and stay
+// in lockstep with SCSS.
+
 @use '../tokens/colors' as c;
-@use '../tokens/typography' as t;
-@use '../tokens/space' as s;
+@use '../tokens/type' as t;
 @use '../tokens/motion' as m;
 
 :root {
-  // Surfaces — Phase D true-black + barely-raised surface
-  --ds-bg:        #{c.$bg};
-  --ds-deep:      #{c.$bg};
-  --ds-surface-1: #{c.$surface-1};
-  --ds-surface-2: #{c.$surface-2};
-  --ds-surface-3: #{c.$surface-2};
+  // Palette
+  --bg-void:    #{c.$bg-void};
+  --bg-deep:    #{c.$bg-deep};
+  --bg-surface: #{c.$bg-surface};
+  --bg-raised:  #{c.$bg-raised};
 
-  // Text — warm cream on black
-  --ds-fg:        #{c.$fg};
-  --ds-fg-muted:  #{c.$fg-muted};
-  --ds-fg-faint:  #{c.$fg-faint};
+  --fg:       #{c.$fg};
+  --fg-muted: #{c.$fg-muted};
+  --fg-faint: #{c.$fg-faint};
 
-  // Editorial accent — single brass/amber hue
-  --ds-accent:      #{c.$accent};
-  --ds-accent-deep: #{c.$accent-deep};
-  --ds-rule:        #{c.$rule};
+  --ir-duck:  #{c.$ir-duck};
+  --ir-blue:  #{c.$ir-blue};
+  --ir-amber: #{c.$ir-amber};
+  --ir-pink:  #{c.$ir-pink};
 
-  // Legacy tokens — left intact for back-compat (_service-accents and older
-  // partials still reference them). New pages must style off --ds-accent.
-  --ds-azure: #{c.$azure};
-  --ds-sky:   #{c.$sky};
-  --ds-cyan:  #{c.$cyan};
-  --ds-teal:  #{c.$teal};
-  --ds-mint:  #{c.$mint};
+  --rule:  #{c.$rule};
+  --ring:  #{c.$ring};
+  --glass: #{c.$glass};
 
-  // Glass surface
-  --ds-glass-bg:     #{c.$surface-glass-bg};
-  --ds-glass-border: #{c.$surface-glass-border};
-
-  // Typography
-  --ds-font-sans:  #{t.$font-sans};
-  --ds-font-serif: 'Instrument Serif', 'Times New Roman', Times, serif;
-  --ds-font-mono:  #{t.$font-mono};
+  // Type
+  --font-sans: #{t.$font-sans};
+  --font-mono: #{t.$font-mono};
 
   // Motion
-  --ds-ease-out:    #{m.$ease-out};
-  --ds-ease-inout:  #{m.$ease-inout};
-  --ds-ease-spring: #{m.$ease-spring};
-  --ds-dur-fast: #{m.$dur-fast};
-  --ds-dur-base: #{m.$dur-base};
-  --ds-dur-slow: #{m.$dur-slow};
+  --ease-out:    #{m.$ease-out};
+  --ease-in:     #{m.$ease-in};
+  --ease-smooth: #{m.$ease-smooth};
+  --ease-bounce: #{m.$ease-bounce};
 
-  // Focus
-  --ds-focus-ring: var(--ds-accent);
+  color-scheme: dark;
+  accent-color: var(--ir-duck);
 }

@@ -1,0 +1,27 @@
+// components/_rule.scss — 1px horizontal divider, three variants.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+
+.ds-rule {
+  block-size: 1px;
+  inline-size: 100%;
+  border: 0;
+  background: c.$rule;
+  margin: 0;
+
+  &--iridescent {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 194, 212, 0.35) 20%,
+      rgba(45, 68, 255, 0.35) 50%,
+      rgba(255, 140, 26, 0.35) 80%,
+      transparent 100%
+    );
+  }
+
+  &--bright {
+    background: rgba(234, 244, 242, 0.18);
+  }
+}

@@ -1,0 +1,13 @@
+// layout/_container.scss — three container widths with logical padding.
+
+@use '../tokens/space' as s;
+
+.ds-container {
+  margin-inline: auto;
+  padding-inline: s.$s-5;
+  width: 100%;
+  max-width: s.$container;
+
+  &--narrow { max-width: s.$container-narrow; }
+  &--wide   { max-width: s.$container-wide; }
+}

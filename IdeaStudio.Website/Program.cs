@@ -9,6 +9,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<ILazyLoadingService, LazyLoadingService>();
+builder.Services.AddScoped<IContentGateway, JsonContentGateway>();
 builder.Services.AddScoped<ISceneTheme, SceneTheme>();
 builder.Services.AddScoped<ISlugService, SlugService>();
 builder.Services.AddScoped<ISlugTranslator, SlugTranslator>();

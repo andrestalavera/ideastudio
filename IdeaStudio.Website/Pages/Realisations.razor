@@ -3,256 +3,32 @@
 @page "/fr/portfolio"
 @page "/en/portfolio"
 @using IdeaStudio.Website.Components
-@using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
-@using Microsoft.JSInterop
 @inherits LocalizedComponent
-@inject ILazyLoadingService LazyLoadingService
-@inject ILocalizedRoute LocalizedRoute
-@inject ISceneTheme SceneTheme
 @layout MainLayout
 
-<PageScene Name="realisations" />
+<SeoHead Title="@seoTitle" Description="@seoDescription" CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
 
-<SeoHead Title="@seoTitle"
-         Description="@seoDescription"
-         Author="Andrés Talavera"
-         CanonicalUrl="@seoCanonical"
-         Url="@seoCanonical"
-         SiteName="IdeaStud.io"
-         OgImage="https://ideastud.io/images/andres-talavera.jpeg"
-         OgImageAlt="@seoTitle"
-         Locale="@seoLocale"
-         HreflangUrls="@seoHreflangUrls"
-         StructuredData="@seoStructuredData" />
-
-<section class="ds-ed-realisations" data-reveal>
-    <header class="ds-ed-realisations__header">
-        <span class="ds-ed-kicker">@kickerText</span>
-        <h1 class="ds-ed-title">@titleLine1<br /><span class="ds-ed-accent">@titleLine2</span></h1>
-    </header>
-
-    @if (availableTechnologies is { Count: > 0 } || availableTypes is { Count: > 0 })
-    {
-        <div class="ds-ed-realisations__toolbar" role="toolbar" aria-label="@filtersAriaText">
-            @if (availableTypes is { Count: > 0 })
-            {
-                <div class="ds-ed-realisations__filter-group">
-                    <span class="ds-ed-realisations__filter-label">@filterTypeLabel</span>
-                    @foreach (RealisationType type in availableTypes)
-                    {
-                        bool active = selectedTypes.Contains(type);
-                        <button type="button"
-                                class="ds-ed-filter-chip @(active ? "is-active" : "")"
-                                aria-pressed="@active.ToString().ToLowerInvariant()"
-                                @onclick="() => ToggleType(type)">
-                            @TypeLabel(type)
-                        </button>
-                    }
-                </div>
-            }
-            @if (availableTechnologies is { Count: > 0 })
-            {
-                <div class="ds-ed-realisations__filter-group">
-                    <span class="ds-ed-realisations__filter-label">@filterTechLabel</span>
-                    @foreach (string tech in availableTechnologies)
-                    {
-                        bool active = selectedTechnologies.Contains(tech);
-                        <button type="button"
-                                class="ds-ed-filter-chip @(active ? "is-active" : "")"
-                                aria-pressed="@active.ToString().ToLowerInvariant()"
-                                @onclick="() => ToggleTech(tech)">
-                            @tech
-                        </button>
-                    }
-                </div>
-            }
-        </div>
-    }
-
-    <p class="ds-ed-results-count" aria-live="polite">@string.Format(resultsCountText, filtered.Count)</p>
-
-    @if (filtered.Count == 0)
-    {
-        <div class="ds-ed-empty">
-            <p>@emptyText</p>
-            <button class="ds-ed-filter-chip" type="button" @onclick="ClearFilters">@clearText</button>
-        </div>
-    }
-    else
-    {
-        <ol class="ds-ed-realisations__list">
-            @foreach ((Realisation r, int i) in filtered.Select((r, i) => (r, i)))
-            {
-                <li class="ds-ed-project" data-reveal style="--reveal-step:@(i % 3)">
-                    <a class="ds-ed-project__link"
-                       href="@(string.IsNullOrWhiteSpace(r.LiveUrl) ? "#" : r.LiveUrl)"
-                       target="_blank" rel="noopener">
-                        <span class="ds-ed-project__index ds-ed-mono">@($"0{i + 1}")</span>
-                        <span class="ds-ed-project__title">@r.Title</span>
-                        <span class="ds-ed-project__arrow" aria-hidden="true">↗</span>
-                        <span class="ds-ed-project__summary">@r.Summary</span>
-                        <span class="ds-ed-project__meta">
-                            @if (r.Technologies is { Count: > 0 })
-                            {
-                                <ul class="ds-ed-project__tech">
-                                    @foreach (string tech in r.Technologies)
-                                    {
-                                        <li>@tech</li>
-                                    }
-                                </ul>
-                            }
-                        </span>
-                    </a>
-                </li>
-            }
-        </ol>
-    }
-</section>
-
-<CtaCalendlySection />
+<Hero Kicker="— Projets" Title="@titleText" Lead="@lead" />
 
 @code {
-    private IReadOnlyList<Realisation> all = [];
-    private IReadOnlyList<string> availableTechnologies = [];
-    private IReadOnlyList<RealisationType> availableTypes = [];
-    private HashSet<string> selectedTechnologies = new(StringComparer.OrdinalIgnoreCase);
-    private HashSet<RealisationType> selectedTypes = [];
-    private IReadOnlyList<Realisation> filtered = [];
-
-    private string titleLine1 = "Recent";
-    private string titleLine2 = "projects";
-    private string kickerText = "Projects";
-    private string seoTitle = "Projects — IdeaStud.io";
+    private string seoTitle = "Réalisations — IdeaStud.io";
     private string seoDescription = "";
-    private string seoCanonical = "https://ideastud.io/en/projects";
-    private string seoLocale = "en_US";
-    private Dictionary<string, string> seoHreflangUrls = new();
-    private List<string>? seoStructuredData;
-    private string resultsCountText = "{0} result(s)";
-    private string emptyText = "";
-    private string clearText = "";
-    private string filterTechLabel = "Tech";
-    private string filterTypeLabel = "Type";
-    private string filtersAriaText = "Filters";
-
-    protected override async Task LoadLocalizedStringsAsync()
-    {
-        await base.LoadLocalizedStringsAsync();
-        await LoadAsync();
-        StateHasChanged();
-    }
+    private string seoCanonical = "https://ideastud.io/fr/realisations";
+    private string seoLocale = "fr_FR";
+    private string titleText = "Réalisations récentes.";
+    private string lead = "";
 
     protected override void LoadTexts()
     {
-        resultsCountText = LocalizationService.GetString("Realisations.ResultsCount");
-        emptyText = LocalizationService.GetString("Realisations.NoResults");
-        clearText = LocalizationService.GetString("Realisations.Clear");
-        filterTechLabel = LocalizationService.GetString("Realisations.FilterTech");
-        filterTypeLabel = LocalizationService.GetString("Realisations.FilterType");
-        kickerText = LocalizationService.GetString("Realisations.Kicker");
-        titleLine1 = LocalizationService.GetString("Realisations.TitleLine1");
-        titleLine2 = LocalizationService.GetString("Realisations.TitleLine2");
-
-        bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        seoLocale = isFr ? "fr_FR" : "en_US";
-        seoTitle = isFr
-            ? "Mes réalisations — Projets .NET, Azure, mobile et web | IdeaStud.io"
-            : "My projects — .NET, Azure, mobile and web work | IdeaStud.io";
-        seoDescription = isFr
-            ? "Une sélection de projets récents : applications web et mobiles, plateformes .NET/Azure et sites vitrines."
-            : "A selection of recent projects: web and mobile apps, .NET/Azure platforms and showcase websites.";
-        seoCanonical = isFr ? "https://ideastud.io/fr/realisations" : "https://ideastud.io/en/projects";
-        seoHreflangUrls = new Dictionary<string, string>
-        {
-            ["fr"] = "https://ideastud.io/fr/realisations",
-            ["en"] = "https://ideastud.io/en/projects",
-            ["x-default"] = "https://ideastud.io/en/projects"
-        };
-    }
-
-    private string TypeLabel(RealisationType type) =>
-        LocalizationService.GetString($"Realisations.Type{type}");
-
-    private async Task LoadAsync()
-    {
-        string lang = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
-        List<Realisation>? list = await LazyLoadingService.LoadDataAsync<List<Realisation>>($"data/realisations-{lang}.json");
-        all = list ?? [];
-        availableTechnologies = RealisationFilter.AvailableTechnologies(all).ToList();
-        availableTypes = Enum.GetValues<RealisationType>();
-        GenerateStructuredData();
-        Recompute();
-    }
-
-    private void GenerateStructuredData()
-    {
-        bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
-
-        List<SchemaOrg.CreativeWork> items = all
-            .OrderBy(r => r.DisplayOrder)
-            .ThenByDescending(r => r.CompletedOn)
-            .Select(r => new SchemaOrg.CreativeWork(
-                Name: r.Title,
-                Description: r.Summary,
-                Url: string.IsNullOrWhiteSpace(r.LiveUrl) ? seoCanonical : r.LiveUrl,
-                Image: string.IsNullOrWhiteSpace(r.ImageUrl) ? null : r.ImageUrl))
-            .ToList();
-
-        SchemaOrg.CollectionPage collection = new(
-            Name: $"{titleLine1} {titleLine2}",
-            Description: seoDescription,
-            Url: seoCanonical,
-            Items: items);
-
-        string cultureCode = isFr ? "fr" : "en";
-        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
-            "https://ideastud.io",
-            (isFr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
-            (isFr ? "Réalisations" : "Projects", LocalizedRoute.For("realisations", cultureCode)));
-
-        seoStructuredData = new List<string>
-        {
-            SchemaOrg.ToJsonLd(collection),
-            SchemaOrg.ToJsonLd(breadcrumb)
-        };
-    }
-
-    private async Task ToggleTech(string tech)
-    {
-        if (!selectedTechnologies.Add(tech)) selectedTechnologies.Remove(tech);
-        await HandleFilterChange();
-    }
-
-    private async Task ToggleType(RealisationType type)
-    {
-        if (!selectedTypes.Add(type)) selectedTypes.Remove(type);
-        await HandleFilterChange();
-    }
-
-    private async Task HandleFilterChange()
-    {
-        Recompute();
-        StateHasChanged();
-        try { await SceneTheme.PulseAsync(); }
-        catch (JSDisconnectedException) { /* runtime gone */ }
-    }
-
-    private async Task ClearFilters()
-    {
-        selectedTechnologies.Clear();
-        selectedTypes.Clear();
-        Recompute();
-        StateHasChanged();
-        try { await SceneTheme.PulseAsync(); }
-        catch (JSDisconnectedException) { /* runtime gone */ }
-    }
-
-    private void Recompute()
-    {
-        filtered = RealisationFilter.Apply(all, selectedTechnologies, selectedTypes)
-                                    .OrderBy(r => r.DisplayOrder)
-                                    .ThenByDescending(r => r.CompletedOn)
-                                    .ToList();
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoCanonical = fr ? "https://ideastud.io/fr/realisations" : "https://ideastud.io/en/projects";
+        seoTitle = fr ? "Réalisations — IdeaStud.io" : "Projects — IdeaStud.io";
+        titleText = fr ? "Réalisations récentes." : "Recent projects.";
+        lead = fr
+            ? "Une sélection de travaux récents — web, mobile, backend."
+            : "A selection of recent work — web, mobile, backend.";
+        seoDescription = lead;
     }
 }

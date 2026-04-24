@@ -1,0 +1,52 @@
+// components/_footer.scss — 4-column footer; 2-col tablet, 1-col mobile.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-footer {
+  padding-block: s.$s-8;
+  padding-inline: max(s.$s-5, env(safe-area-inset-left));
+  padding-inline-end: max(s.$s-5, env(safe-area-inset-right));
+  padding-block-end: max(s.$s-8, env(safe-area-inset-bottom));
+  background: c.$bg-void;
+  color: c.$fg-muted;
+  font-family: t.$font-mono;
+  font-size: t.$fs-mono;
+  border-block-start: 1px solid c.$rule;
+
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: s.$s-6;
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+
+  @container (max-width: 64rem) {
+    &__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @container (max-width: 40rem) {
+    &__inner { grid-template-columns: 1fr; }
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: s.$s-2;
+  }
+
+  &__label {
+    color: c.$ir-duck;
+    letter-spacing: t.$ls-kicker;
+    text-transform: uppercase;
+    margin-block-end: s.$s-2;
+  }
+
+  a {
+    color: c.$fg-muted;
+    transition: color 160ms var(--ease-out);
+
+    &:hover { color: c.$fg; }
+  }
+}

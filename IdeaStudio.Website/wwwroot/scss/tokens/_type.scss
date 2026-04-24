@@ -1,0 +1,32 @@
+// tokens/_type.scss — V3: one sans family (Inter Variable) + one mono (JetBrains Mono Variable).
+// No serif anywhere. Direction C is sans-grotesk.
+
+$font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+$font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+// Fluid sizes
+$fs-display:  clamp(4rem, 11vw, 10.5rem);   // hero name only, once per page
+$fs-hero:     clamp(3rem, 7vw, 6rem);       // other page heroes
+$fs-title:    clamp(2rem, 4.5vw, 3.6rem);   // chapter title
+$fs-subtitle: clamp(1.25rem, 2vw, 1.75rem); // sub-section
+$fs-lead:     clamp(1.125rem, 1.4vw, 1.3rem);
+$fs-body:     1rem;
+$fs-small:    0.875rem;
+$fs-mono:     0.8125rem;
+
+// Line-height
+$lh-display: 0.95;
+$lh-title:   1.05;
+$lh-body:    1.6;
+
+// Letter-spacing
+$ls-display: -0.05em;
+$ls-title:   -0.03em;
+$ls-body:     0;
+$ls-kicker:   0.28em;  // uppercase mono kickers
+
+// Weight
+$fw-display: 600;
+$fw-title:   600;
+$fw-body:    400;
+$fw-strong:  500;

@@ -1,0 +1,44 @@
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject ILocalizedRoute LocalizedRoute
+
+<header class="ds-masthead ds-print-hidden" aria-label="Primary">
+    <nav class="ds-masthead__pill" aria-label="Main">
+        <a class="ds-masthead__wordmark" href="@LocalizedRoute.For("home")">
+            IdeaStud<span class="ds-masthead__dot">.</span>io
+        </a>
+
+        <div class="ds-masthead__nav" role="menubar">
+            <a role="menuitem" href="@LocalizedRoute.For("services.hub")">@servicesText</a>
+            <a role="menuitem" href="@LocalizedRoute.For("realisations")">@realisationsText</a>
+            <a role="menuitem" href="@LocalizedRoute.For("cv")">@cvText</a>
+        </div>
+
+        <CultureSelector />
+
+        <a class="ds-masthead__cta"
+           href="https://calendly.com/andres-talavera/30min"
+           target="_blank" rel="noopener"
+           aria-label="@bookCallAriaText">
+            @meetText <span aria-hidden="true">↗</span>
+        </a>
+
+        <button class="ds-masthead__toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+    </nav>
+</header>
+
+@code {
+    private string servicesText = "Services";
+    private string realisationsText = "Projects";
+    private string cvText = "Resume";
+    private string meetText = "Meet";
+    private string bookCallAriaText = "Book a 30-minute call on Calendly (opens in a new tab)";
+
+    protected override void LoadTexts()
+    {
+        servicesText = LocalizationService.GetString("Nav.Services");
+        realisationsText = LocalizationService.GetString("Nav.Realisations");
+        cvText = LocalizationService.GetString("Nav.Cv");
+        meetText = LocalizationService.GetString("Nav.Meet");
+    }
+}

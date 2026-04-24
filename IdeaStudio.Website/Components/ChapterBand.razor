@@ -1,0 +1,25 @@
+@* ChapterBand — kicker + title + optional lead. Opens every content chapter.
+   Single source of chapter rhythm via .ds-rhythm. *@
+
+<header class="ds-rhythm" data-reveal style="--reveal-step: 0">
+    @if (!string.IsNullOrWhiteSpace(Kicker))
+    {
+        <p class="ds-kicker">@Kicker</p>
+    }
+    @if (!string.IsNullOrWhiteSpace(Title))
+    {
+        <h2 class="ds-title">@Title</h2>
+    }
+    @if (!string.IsNullOrWhiteSpace(Lead))
+    {
+        <p class="ds-lead">@Lead</p>
+    }
+    @ChildContent
+</header>
+
+@code {
+    [Parameter] public string? Kicker { get; set; }
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Lead { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

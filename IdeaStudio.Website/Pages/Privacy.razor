@@ -1,110 +1,40 @@
-﻿@page "/fr/confidentialite"
+@page "/fr/confidentialite"
 @page "/en/privacy"
-@using Markdig
 @using IdeaStudio.Website.Components
-@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
 @inherits LocalizedComponent
 @layout MainLayout
 
-<PageScene Name="legal" />
+<SeoHead Title="@seoTitle" Description="@seoDescription" CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
 
-<SeoHead Title="@seoTitle"
-         Description="@seoDescription"
-         Author="Andrés Talavera"
-         CanonicalUrl="https://ideastud.io/privacy"
-         Url="https://ideastud.io/privacy"
-         SiteName="IdeaStud.io"
-         Locale="@seoLocale"
-         StructuredData="@seoStructuredData" />
+<Hero Kicker="@kicker" Title="@titleText" />
 
-<section class="ds-chapter">
-    <div class="ds-container">
-        <header class="ds-chapter__heading">
-            <div class="ds-chapter__title">@((MarkupString)Markdown.ToHtml(titleText))</div>
-            <div class="ds-chapter__rule"></div>
-        </header>
-        <article class="ds-card">
-            <div class="ds-card__body ds-stack">
-                <p>@((MarkupString)Markdown.ToHtml(lastUpdateText))</p>
-                <p>@((MarkupString)Markdown.ToHtml(introductionText))</p>
-                <p>@((MarkupString)Markdown.ToHtml(informationCollectionText))</p>
-                <p>@((MarkupString)Markdown.ToHtml(useOfInformationText))</p>
-                <p>@((MarkupString)Markdown.ToHtml(informationSharingText))</p>
-                <p>@((MarkupString)Markdown.ToHtml(dataSecurityText))</p>
-                <p>@((MarkupString)Markdown.ToHtml(yourChoicesText))</p>
-                <p>@((MarkupString)Markdown.ToHtml(changesToThisPolicyText))</p>
-                <p>@((MarkupString)Markdown.ToHtml(contactUsText))</p>
-            </div>
-        </article>
+<section class="ds-section">
+    <div class="ds-container ds-container--narrow">
+        <p class="ds-body">@leadText</p>
     </div>
 </section>
 
 @code {
-    [CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
-
-    private string titleText = "Privacy Policy";
-    private string lastUpdateText = "Last updated: September 8th, 2025";
-    private string introductionText = "This Privacy Policy explains how we collect, use, and protect your personal information.";
-    private string informationCollectionText = "We collect information that you provide directly to us, such as your name and email address when you contact us. The website uses Calendly for scheduling meetings, and their privacy policy can be found at [Calendly Privacy Policy](https://calendly.com/privacy).";
-    private string useOfInformationText = "We use the information we collect to respond to your inquiries and provide you with the services you request.";
-    private string informationSharingText = "We do not share your personal information with third parties except as necessary to provide our services or comply with legal obligations.";
-    private string dataSecurityText = "We implement reasonable security measures to protect your personal information.";
-    private string yourChoicesText = "You can choose not to provide certain information, but this may limit your ability to use some features of our website.";
-    private string changesToThisPolicyText = "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.";
-    private string contactUsText = "If you have any questions about this Privacy Policy, please contact us at contact@ideastud.io.";
-
-    // SEO fields
-    private string seoTitle = "Privacy Policy | IdeaStud.io";
-    private string seoDescription = "Privacy policy for IdeaStud.io - Learn how we collect, use, and protect your personal information.";
-    private string seoLocale = "en_US";
-    private List<string>? seoStructuredData;
-
-    private static RenderFragment EmptyNavbarContent => @<div></div>;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        GenerateStructuredData();
-    }
-
-    protected override async Task LoadLocalizedStringsAsync()
-    {
-        await base.LoadLocalizedStringsAsync();
-
-        // Update navbar content when language changes
-        MainLayoutInstance?.SetNavbarContent(EmptyNavbarContent);
-    }
+    private string seoTitle = "Confidentialité";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/confidentialite";
+    private string seoLocale = "fr_FR";
+    private string kicker = "— Légal";
+    private string titleText = "Confidentialité.";
+    private string leadText = "";
 
     protected override void LoadTexts()
     {
-        titleText = LocalizationService.GetString("PrivacyPolicy");
-        lastUpdateText = LocalizationService.GetString("PrivacyPolicy.LastUpdated");
-        introductionText = LocalizationService.GetString("PrivacyPolicy.Introduction");
-        informationCollectionText = LocalizationService.GetString("PrivacyPolicy.InformationCollection");
-        useOfInformationText = LocalizationService.GetString("PrivacyPolicy.UseOfInformation");
-        informationSharingText = LocalizationService.GetString("PrivacyPolicy.InformationSharing");
-        dataSecurityText = LocalizationService.GetString("PrivacyPolicy.DataSecurity");
-        yourChoicesText = LocalizationService.GetString("PrivacyPolicy.YourChoices");
-        changesToThisPolicyText = LocalizationService.GetString("PrivacyPolicy.ChangesToThisPolicy");
-        contactUsText = LocalizationService.GetString("PrivacyPolicy.ContactUs");
-
-        // Update SEO for current language
-        var isFrench = CultureService.CurrentCulture.Name.StartsWith("fr");
-        seoLocale = isFrench ? "fr_FR" : "en_US";
-        seoTitle = isFrench ? "Politique de Confidentialité | IdeaStud.io" : "Privacy Policy | IdeaStud.io";
-        seoDescription = isFrench
-            ? "Politique de confidentialité pour IdeaStud.io - Découvrez comment nous collectons, utilisons et protégeons vos informations personnelles."
-            : "Privacy policy for IdeaStud.io - Learn how we collect, use, and protect your personal information.";
-
-        GenerateStructuredData();
-    }
-
-    private void GenerateStructuredData()
-    {
-        var breadcrumb = SchemaOrg.CreateBreadcrumb("https://ideastud.io",
-            ("Home", "/"),
-            ("Privacy Policy", "/privacy"));
-
-        seoStructuredData = new List<string> { SchemaOrg.ToJsonLd(breadcrumb) };
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoCanonical = fr ? "https://ideastud.io/fr/confidentialite" : "https://ideastud.io/en/privacy";
+        seoTitle = fr ? "Confidentialité — IdeaStud.io" : "Privacy — IdeaStud.io";
+        kicker = fr ? "— Légal" : "— Legal";
+        titleText = fr ? "Confidentialité." : "Privacy.";
+        leadText = fr
+            ? "Page en cours de rédaction — V3 phase 2."
+            : "Page under construction — V3 phase 2.";
+        seoDescription = leadText;
     }
 }

@@ -3,60 +3,30 @@
 @using IdeaStudio.Website.Components
 @inject ICultureService CultureService
 @inject ILocalizationService LocalizationService
-@inject ILocalizedRoute LocalizedRoute
 @inject NavigationManager Navigation
 @inject ISceneTheme SceneTheme
 @implements IDisposable
 
 <CascadingValue Value="this">
-    <div id="main-content-container" class="ds-app">
-        <a href="#main-content" class="ds-skip-link">@skipToMainContentText</a>
-        <div class="ds-read-progress" aria-hidden="true"></div>
+    <GlCanvas />
+    <a href="#main-content" class="ds-skip-link">@skipToMainContentText</a>
+    <Progress />
+    <Masthead />
 
-        <header class="ds-ed-masthead ds-print-hidden">
-            <div class="ds-container ds-ed-masthead__inner">
-                <a class="ds-ed-masthead__logo" href="@LocalizedRoute.For("home")">
-                    <img src="images/andres-talavera.jpeg"
-                         alt=""
-                         class="ds-ed-masthead__avatar"
-                         width="28" height="28" />
-                    <span>IdeaStud.io</span>
-                </a>
-                <nav class="ds-ed-masthead__nav" aria-label="Main">
-                    <a href="@LocalizedRoute.For("services.hub")">@servicesText</a>
-                    <a href="@LocalizedRoute.For("realisations")">@realisationsText</a>
-                    <a href="@LocalizedRoute.For("cv")">@cvText</a>
-                </nav>
-                <div class="ds-ed-masthead__actions">
-                    <CultureSelector />
-                    <a class="ds-ed-masthead__cta"
-                       href="https://calendly.com/andres-talavera/30min"
-                       target="_blank" rel="noopener"
-                       aria-label="@bookCallAriaText">
-                        @meetText <span aria-hidden="true">↗</span>
-                    </a>
-                </div>
-            </div>
-        </header>
+    <main id="main-content" role="main">
+        @Body
+    </main>
 
-        <main id="main-content" role="main">
-            @Body
-        </main>
-
-        <FooterSection />
-    </div>
+    @if (showCta)
+    {
+        <CtaBand />
+    }
+    <Footer />
 </CascadingValue>
 
 @code {
-    [Parameter] public RenderFragment? NavbarContent { get; set; }
-
     private string skipToMainContentText = "Skip to main content";
-    private string servicesText = "Services";
-    private string realisationsText = "Projects";
-    private string cvText = "Resume";
-    private string meetText = "Meet";
-    private string bookCallAriaText = "Book a 30-minute call on Calendly (opens in a new tab)";
-
+    private bool showCta = true;
     private bool runtimeInitialized;
 
     protected override async Task OnInitializedAsync()
@@ -64,6 +34,7 @@
         CultureService.CultureChanged += OnCultureChanged;
         Navigation.LocationChanged += OnLocationChanged;
         await LoadLocalizedStringsAsync();
+        UpdateCtaVisibility(Navigation.Uri);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -74,16 +45,10 @@
         catch (Microsoft.JSInterop.JSDisconnectedException) { /* runtime gone */ }
     }
 
-    public void SetNavbarContent(RenderFragment? content)
-    {
-        NavbarContent = content;
-        StateHasChanged();
-    }
-
     private async Task LoadLocalizedStringsAsync()
     {
         await LocalizationService.LoadCultureAsync(CultureService.CurrentCulture.Name);
-        LoadTexts();
+        skipToMainContentText = LocalizationService.GetString("SkipToMainContent");
         StateHasChanged();
     }
 
@@ -91,34 +56,25 @@
 
     private async Task SafeLoadLocalizedStringsAsync()
     {
-        try
-        {
-            await LoadLocalizedStringsAsync();
-        }
+        try { await LoadLocalizedStringsAsync(); }
         catch (Exception ex)
         {
             Console.Error.WriteLine($"[MainLayout] Failed to load culture: {ex.Message}");
         }
     }
 
-    private void LoadTexts()
-    {
-        skipToMainContentText = LocalizationService.GetString("SkipToMainContent");
-        LoadNavTexts();
-    }
-
-    private void LoadNavTexts()
-    {
-        servicesText = LocalizationService.GetString("Nav.Services");
-        realisationsText = LocalizationService.GetString("Nav.Realisations");
-        cvText = LocalizationService.GetString("Nav.Cv");
-        meetText = LocalizationService.GetString("Nav.Meet");
-    }
-
     private void OnLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
     {
-        // Scene refresh is driven by <PageScene> on each page.
-        // Phase 4 will add crossfade coordination here if pages race.
+        UpdateCtaVisibility(e.Location);
+        StateHasChanged();
+    }
+
+    private void UpdateCtaVisibility(string uri)
+    {
+        Uri absolute = new(uri);
+        string path = absolute.AbsolutePath.ToLowerInvariant();
+        showCta = !(path.Contains("mentions-legales") || path.Contains("/legal")
+                    || path.Contains("confidentialite") || path.Contains("/privacy"));
     }
 
     public void Dispose()

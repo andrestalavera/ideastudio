@@ -1,57 +1,83 @@
-// Phase D — editorial rebuild.
-// WebGL backdrop removed (the CSS radial + breath handles ambience now).
-// magnetic interactions dropped. What's left:
-//   - cursor: one 12px amber dot, mix-blend-difference.
-//   - reveals: IntersectionObserver-driven fade-up for [data-reveal].
-//   - sticky-hero: adds is-past-hero on html once the hero has scrolled off.
-//   - hero-stage: a quiet GSAP fade-up on hero direct children.
+// cinema/index.js — V3 orchestrator. Exposes initialize / applyTheme / dispose
+// over JS interop so Blazor can boot, theme, and tear down the engine.
+// Passes (mesh, thread, letters) will be added in Phase 1.
 
-import * as cursor from './interactions/cursor.js';
-import * as reveals from './interactions/reveals.js';
-import * as stickyHero from './interactions/sticky-hero.js';
-import * as heroStage from './interactions/hero-stage.js';
-import * as backdropShader from './backdrop-shader.js';
-import { applyTheme as applyThemeInternal } from './scene-theme.js';
+import { Renderer } from './engine/renderer.js';
+import { Clock } from './engine/clock.js';
+import { Inputs } from './engine/inputs.js';
+import { HeroState } from './engine/state.js';
+import { prefersReducedMotion, batteryLow, setMotionMode } from './utils/perf.js';
 
 let booted = false;
-/** @type {{ shutdown(): void }|null} */
-let shader = null;
+let renderer = null;
+let clock = null;
+let inputs = null;
+let state = null;
+let paused = false;
+const pauseReasons = new Set();
+
+async function computeInitialMotion() {
+  if (prefersReducedMotion()) return 'reduced';
+  if (await batteryLow()) return 'reduced';
+  return null;
+}
+
+function pause(reason) { pauseReasons.add(reason); clock?.stop(); paused = true; }
+function resume(reason) {
+  pauseReasons.delete(reason);
+  if (pauseReasons.size === 0 && paused) { clock?.start(); paused = false; }
+}
 
 export async function initialize() {
   if (booted) return;
   booted = true;
-  shader = backdropShader.boot();
-  cursor.enable();
-  reveals.attachAll();
-  stickyHero.attach();
-  heroStage.attachAll();
+
+  const canvas = document.getElementById('gl-canvas');
+  if (!canvas) return;
+
+  const mode = await computeInitialMotion();
+  if (mode) { setMotionMode(mode); return; }
+
+  renderer = new Renderer(canvas);
+  if (renderer.unsupported) { setMotionMode('off'); return; }
+
+  inputs = new Inputs();
+  state = new HeroState();
+
+  clock = new Clock((t, dt) => {
+    inputs.step(dt);
+    state.update(inputs.scroll.page, window.innerWidth);
+    // passes will render into renderer.gl here (Phase 1)
+  });
+  clock.start();
+
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? pause('hidden') : resume('hidden');
+  });
+
+  // Reading-progress rail.
+  const bar = document.getElementById('ds-progress-bar');
+  if (bar) {
+    const tickBar = () => { bar.style.inlineSize = (inputs.scroll.page * 100).toFixed(2) + '%'; };
+    window.addEventListener('scroll', tickBar, { passive: true });
+    tickBar();
+  }
 }
 
-/**
- * @param {string} scene
- * @param {Record<string, unknown>|null} parameters
- */
-export async function applyTheme(scene, parameters) {
-  applyThemeInternal(scene, parameters);
-  reveals.attachAll();
-  stickyHero.attach();
-  heroStage.reset();
-  heroStage.attachAll();
+export function applyTheme(scene) {
+  if (typeof scene === 'string') document.documentElement.dataset.scene = scene;
 }
 
-export async function pulse() {
-  const root = document.documentElement;
-  root.classList.remove('is-pulsing');
-  void root.offsetWidth;
-  root.classList.add('is-pulsing');
-  window.setTimeout(() => root.classList.remove('is-pulsing'), 700);
-}
-
-export async function dispose() {
-  cursor.disable();
-  reveals.disposeAll();
-  stickyHero.detach();
-  shader?.shutdown();
-  shader = null;
+export function dispose() {
+  clock?.stop();
+  inputs?.dispose();
+  renderer?.dispose();
+  renderer = null; inputs = null; state = null; clock = null;
   booted = false;
+  pauseReasons.clear();
+}
+
+// Expose on window so Blazor's IJSRuntime can reach us without ES module gymnastics.
+if (typeof window !== 'undefined') {
+  window.ideastudioCinema = { initialize, applyTheme, dispose };
 }

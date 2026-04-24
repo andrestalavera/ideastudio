@@ -1,0 +1,19 @@
+// components/_display.scss — hero display type ($fs-display), used once per page.
+
+@use '../tokens/colors' as c;
+@use '../tokens/type' as t;
+
+.ds-display {
+  font-family: t.$font-sans;
+  font-weight: t.$fw-display;
+  font-size: t.$fs-display;
+  line-height: t.$lh-display;
+  letter-spacing: t.$ls-display;
+  color: c.$fg;
+  margin: 0;
+
+  // Accent dot on the final character of the brand name.
+  .ds-display__accent {
+    color: c.$ir-duck;
+  }
+}

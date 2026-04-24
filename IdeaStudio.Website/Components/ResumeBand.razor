@@ -1,0 +1,66 @@
+@using IdeaStudio.Website.Services
+@inject ILocalizedRoute LocalizedRoute
+@inject ICultureService CultureService
+
+@* ResumeBand — editorial "go to my resume" band: kicker + serif-less display
+   pitch + 3 iridescent stat chips + CTA. Home §3. *@
+
+<section class="ds-section ds-section--chapter ds-section--bordered" data-thread-anchor="cv">
+    <div class="ds-container">
+        <div class="ds-rhythm">
+            <p class="ds-kicker" data-reveal>@kickerText</p>
+            <h2 class="ds-title" data-reveal style="--reveal-step: 1">@titleText</h2>
+        </div>
+        <div class="ds-grid ds-grid--3 ds-resume-band__stats" data-reveal style="--reveal-step: 2">
+            <div class="ds-stat">
+                <div class="ds-stat__label">@yearsLabel</div>
+                <div class="ds-stat__value">@YearsValue</div>
+            </div>
+            <div class="ds-stat">
+                <div class="ds-stat__label">@stackLabel</div>
+                <div class="ds-stat__value">@StackValue</div>
+            </div>
+            <div class="ds-stat">
+                <div class="ds-stat__label">@langsLabel</div>
+                <div class="ds-stat__value">@LanguagesValue</div>
+            </div>
+        </div>
+        <div class="ds-resume-band__cta" data-reveal style="--reveal-step: 3">
+            <a class="ds-btn ds-btn--iridescent" href="@LocalizedRoute.For("cv")">
+                @ctaLabel <span aria-hidden="true">→</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter] public string YearsValue { get; set; } = "15";
+    [Parameter] public string StackValue { get; set; } = ".NET · Azure · Mobile";
+    [Parameter] public string LanguagesValue { get; set; } = "FR · EN · ES";
+
+    private string kickerText = "Chapter III · Career";
+    private string titleText = "15 ans de code, 3 langues, 1 conviction.";
+    private string yearsLabel = "Années";
+    private string stackLabel = "Stack";
+    private string langsLabel = "Langues";
+    private string ctaLabel = "Read the full story";
+
+    protected override void OnParametersSet()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        if (fr)
+        {
+            kickerText = "Chapter III · Career";
+            titleText = "15 ans de code, 3 langues, 1 conviction.";
+            yearsLabel = "Années"; stackLabel = "Stack"; langsLabel = "Langues";
+            ctaLabel = "Voir mon parcours";
+        }
+        else
+        {
+            kickerText = "Chapter III · Career";
+            titleText = "15 years of code, 3 languages, 1 conviction.";
+            yearsLabel = "Years"; stackLabel = "Stack"; langsLabel = "Languages";
+            ctaLabel = "Read the full story";
+        }
+    }
+}

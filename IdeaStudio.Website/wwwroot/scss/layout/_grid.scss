@@ -1,0 +1,25 @@
+// layout/_grid.scss — utility grids. Responsive by container queries.
+
+@use '../tokens/space' as s;
+
+.ds-grid {
+  display: grid;
+  gap: s.$s-5;
+
+  &--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  &--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  &--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  // Auto-fit cards — min tile width 280px on narrow, 320 on wider.
+  &--auto {
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  }
+}
+
+@container (max-width: 640px) {
+  .ds-grid--2,
+  .ds-grid--3,
+  .ds-grid--4 {
+    grid-template-columns: 1fr;
+  }
+}

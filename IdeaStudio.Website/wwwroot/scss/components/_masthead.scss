@@ -1,0 +1,103 @@
+// components/_masthead.scss — the nav. Three visual states driven by
+// html[data-hero-state]: 'hero' (transparent, hero owns the brand),
+// 'morphing' (GSAP Flip scrubs in), 'pill' (floating glass pill top-center).
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-masthead {
+  position: fixed;
+  inset-block-start: s.$s-4;
+  inset-inline: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  padding-inline: s.$s-4;
+  padding-inline-start: max(#{s.$s-4}, env(safe-area-inset-left));
+  padding-inline-end: max(#{s.$s-4}, env(safe-area-inset-right));
+  pointer-events: none;
+  container-type: inline-size;
+  container-name: masthead;
+
+  &__pill {
+    display: flex;
+    align-items: center;
+    gap: s.$s-4;
+    padding-inline: s.$s-4;
+    padding-block: s.$s-2;
+    min-block-size: 2.75rem;
+    border-radius: 999px;
+    background: linear-gradient(c.$bg-deep, c.$bg-deep) padding-box,
+                c.$gradient-iridescent border-box;
+    border: 1px solid transparent;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    pointer-events: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(-12px);
+    transition: opacity 320ms var(--ease-out),
+                transform 320ms var(--ease-out);
+  }
+
+  &__wordmark {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-small;
+    letter-spacing: -0.01em;
+    color: c.$fg;
+
+    .ds-masthead__dot { color: c.$ir-duck; }
+  }
+
+  &__nav {
+    display: flex;
+    gap: s.$s-4;
+    font-family: t.$font-sans;
+    font-size: t.$fs-small;
+    font-weight: 500;
+
+    a {
+      color: c.$fg-muted;
+      transition: color 180ms var(--ease-out);
+
+      &:hover, &[aria-current='page'] {
+        color: c.$fg;
+      }
+    }
+  }
+
+  &__cta {
+    padding-inline: s.$s-4;
+    padding-block: s.$s-2;
+    background: c.$ir-duck;
+    color: c.$bg-void;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: t.$fs-mono;
+    transition: background-color 180ms var(--ease-out);
+
+    &:hover {
+      background: color-mix(in oklab, c.$ir-duck 85%, white);
+    }
+  }
+
+  &__toggle {
+    display: none;
+    padding: s.$s-2;
+    color: c.$fg;
+  }
+}
+
+// State: pill visible.
+html[data-hero-state='pill'] .ds-masthead__pill {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// Container-query compacting.
+@container masthead (max-width: 40rem) {
+  .ds-masthead__nav { display: none; }
+  .ds-masthead__toggle { display: inline-flex; }
+}

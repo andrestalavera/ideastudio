@@ -1,93 +1,40 @@
-﻿@page "/fr/mentions-legales"
+@page "/fr/mentions-legales"
 @page "/en/legal"
-@using Markdig
 @using IdeaStudio.Website.Components
-@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
 @inherits LocalizedComponent
 @layout MainLayout
 
-<PageScene Name="legal" />
+<SeoHead Title="@seoTitle" Description="@seoDescription" CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
 
-<SeoHead Title="@seoTitle"
-         Description="@seoDescription"
-         Author="Andrés Talavera"
-         CanonicalUrl="https://ideastud.io/legal"
-         Url="https://ideastud.io/legal"
-         SiteName="IdeaStud.io"
-         Locale="@seoLocale"
-         NoIndex="true"
-         StructuredData="@seoStructuredData" />
+<Hero Kicker="@kicker" Title="@titleText" />
 
-<section class="ds-chapter">
-    <div class="ds-container">
-        <header class="ds-chapter__heading">
-            <div class="ds-chapter__title">@((MarkupString)Markdown.ToHtml(legalMentionsTitle))</div>
-            <div class="ds-chapter__rule"></div>
-        </header>
-        <article class="ds-card">
-            <div class="ds-card__body ds-stack">
-                <p>@((MarkupString)Markdown.ToHtml(lastUpdatedText))</p>
-                <p>@((MarkupString)Markdown.ToHtml(developerText))</p>
-                <p>@((MarkupString)Markdown.ToHtml(hostText))</p>
-            </div>
-        </article>
+<section class="ds-section">
+    <div class="ds-container ds-container--narrow">
+        <p class="ds-body">@leadText</p>
     </div>
 </section>
 
 @code {
-    [CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
-
-    private string legalMentionsTitle = "Legal Mentions";
-    private string lastUpdatedText = "Last updated: September 8th, 2025";
-    private string developerText = "Developer: Andres Talavera";
-    private string hostText = "Host: Azure Static Web Apps";
-
-    // SEO fields
-    private string seoTitle = "Legal Mentions | IdeaStud.io";
-    private string seoDescription = "Legal mentions and attributions for IdeaStud.io - Andrés Talavera's professional portfolio.";
-    private string seoLocale = "en_US";
-    private List<string>? seoStructuredData;
-
-    private static RenderFragment EmptyNavbarContent => @<div></div>;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        GenerateStructuredData();
-    }
-
-    protected override async Task LoadLocalizedStringsAsync()
-    {
-        await base.LoadLocalizedStringsAsync();
-
-        // Update navbar content when language changes
-        MainLayoutInstance?.SetNavbarContent(EmptyNavbarContent);
-    }
+    private string seoTitle = "Mentions légales";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/mentions-legales";
+    private string seoLocale = "fr_FR";
+    private string kicker = "— Légal";
+    private string titleText = "Mentions légales.";
+    private string leadText = "";
 
     protected override void LoadTexts()
     {
-        legalMentionsTitle = LocalizationService.GetString("LegalMentions");
-        lastUpdatedText = LocalizationService.GetString("LegalMentions.LastUpdated");
-        developerText = LocalizationService.GetString("LegalMentions.Developer");
-        hostText = LocalizationService.GetString("LegalMentions.Host");
-
-        // Update SEO for current language
-        var isFrench = CultureService.CurrentCulture.Name.StartsWith("fr");
-        seoLocale = isFrench ? "fr_FR" : "en_US";
-        seoTitle = isFrench ? "Mentions Légales | IdeaStud.io" : "Legal Mentions | IdeaStud.io";
-        seoDescription = isFrench
-            ? "Mentions légales et attributions pour IdeaStud.io - Portfolio professionnel d'Andrés Talavera."
-            : "Legal mentions and attributions for IdeaStud.io - Andrés Talavera's professional portfolio.";
-
-        GenerateStructuredData();
-    }
-
-    private void GenerateStructuredData()
-    {
-        var breadcrumb = SchemaOrg.CreateBreadcrumb("https://ideastud.io",
-            ("Home", "/"),
-            ("Legal Mentions", "/legal"));
-
-        seoStructuredData = new List<string> { SchemaOrg.ToJsonLd(breadcrumb) };
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoCanonical = fr ? "https://ideastud.io/fr/mentions-legales" : "https://ideastud.io/en/legal";
+        seoTitle = fr ? "Mentions légales — IdeaStud.io" : "Legal notice — IdeaStud.io";
+        kicker = fr ? "— Légal" : "— Legal";
+        titleText = fr ? "Mentions légales." : "Legal notice.";
+        leadText = fr
+            ? "Page en cours de rédaction — V3 phase 2."
+            : "Page under construction — V3 phase 2.";
+        seoDescription = leadText;
     }
 }

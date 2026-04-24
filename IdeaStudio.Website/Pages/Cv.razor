@@ -2,241 +2,34 @@
 @page "/en/resume"
 @page "/fr/resume-andres-talavera"
 @page "/en/resume-andres-talavera"
-@using IdeaStudio.Website.Models
-@using IdeaStudio.Website.Services
 @using IdeaStudio.Website.Components
-@using Markdig
-@using System.Text.Json
-@inject ILazyLoadingService LazyLoadingService
-@inject ISlugService SlugService
-
+@using IdeaStudio.Website.Services
 @inherits LocalizedComponent
 @layout MainLayout
 
-<PageScene Name="cv" />
+<SeoHead Title="@seoTitle" Description="@seoDescription" CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
 
-<SeoHead Title="@seoTitle"
-         Description="@seoDescription"
-         Keywords="@seoKeywords"
-         Author="Andrés Talavera"
-         CanonicalUrl="@seoCanonicalUrl"
-         Url="@seoCanonicalUrl"
-         SiteName="IdeaStud.io"
-         OgImage="https://ideastud.io/images/andres-talavera.jpeg"
-         OgImageAlt="Andrés Talavera - .NET Developer & Azure Consultant"
-         Locale="@seoLocale"
-         TwitterSite="@("@imcresus_")"
-         TwitterCreator="@("@imcresus_")"
-         HreflangUrls="@seoHreflangUrls"
-         SpeakableSelectors="@(new List<string> { "h1", ".hero-title", "#about h2", ".experience-summary" })"
-         StructuredData="@seoStructuredData" />
-
-<HeroSection PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
-
-<section id="cv-pdf" class="ds-ed-chapter d-print-none" data-reveal style="--reveal-step: 1">
-    <header class="ds-ed-chapter__heading">
-        <span class="ds-ed-number">I</span>
-        <h2 class="ds-ed-title">@pdfSectionTitleText</h2>
-    </header>
-    <div class="ds-ed-chapter__content">
-        <div class="ds-stack ds-stack--row ds-gap-sm">
-            <PdfDownloadButton Language="fr" Label="@pdfFrText" />
-            <PdfDownloadButton Language="en" Label="@pdfEnText" />
-        </div>
-    </div>
-</section>
-
-<div class="ds-pagebreak"></div>
-
-<section id="about" class="ds-ed-chapter ds-print-hidden" data-reveal style="--reveal-step: 2">
-    <header class="ds-ed-chapter__heading">
-        <span class="ds-ed-number">II</span>
-        <h2 class="ds-ed-title">@aboutMeText</h2>
-    </header>
-    <div class="ds-ed-chapter__content">
-        @if (resume?.AboutSections is not null)
-        {
-            <div class="ds-grid ds-grid--3">
-                @foreach (AboutSection aboutSection in resume.AboutSections)
-                {
-                    <AboutCard AboutSection="@aboutSection" />
-                }
-            </div>
-        }
-        else
-        {
-            <Placeholder />
-        }
-    </div>
-</section>
-
-<section id="experiences" class="ds-ed-chapter ds-pagebreak" data-reveal style="--reveal-step: 3">
-    <header class="ds-ed-chapter__heading">
-        <span class="ds-ed-number">III</span>
-        <h2 class="ds-ed-title">@professionalExperiencesText</h2>
-    </header>
-    @if (resume?.Experiences is not null)
-    {
-        <ExperienceTimeline Experiences="@resume.Experiences.ToList()" />
-    }
-    else
-    {
-        <Placeholder />
-    }
-</section>
-
-<section id="trainings" class="ds-ed-chapter ds-print-hidden" data-reveal style="--reveal-step: 4">
-    <header class="ds-ed-chapter__heading">
-        <span class="ds-ed-number">IV</span>
-        <h2 class="ds-ed-title">@trainingCoursesText</h2>
-    </header>
-    <div class="ds-ed-chapter__content">
-        @if (resume?.TrainingCenters is not null)
-        {
-            <div class="ds-grid ds-grid--3">
-                @foreach (TrainingCenter center in resume.TrainingCenters)
-                {
-                    <TrainingCard TrainingCenter="@center.WithGeneratedId(SlugService)" />
-                }
-            </div>
-        }
-        else
-        {
-            <Placeholder />
-        }
-    </div>
-</section>
-
-<section id="contact" class="ds-ed-chapter ds-print-hidden" data-reveal style="--reveal-step: 5">
-    <ContactSection />
-</section>
+<Hero Kicker="@kicker" Title="@titleText" Lead="@lead" ThreadAnchor="intro" />
 
 @code {
-    [CascadingParameter] public MainLayout? MainLayoutInstance { get; set; }
-
-    private Resume? resume;
-    private string professionalExperiencesText = "Professional experiences";
-    private string trainingCoursesText = "I have conducted training courses for...";
-    private string aboutMeText = "About me";
-    private string aboutText = "About";
-    private string experiencesText = "Experiences";
-    private string trainingText = "Training";
-    private string contactText = "Contact";
-    private string pdfSectionTitleText = "Download my resume";
-    private string pdfFrText = "Download resume (FR, PDF)";
-    private string pdfEnText = "Download resume (EN, PDF)";
-
-    // SEO fields
-    private string seoTitle = "Andrés Talavera - Expert .NET Developer & Azure Consultant | IdeaStud.io";
-    private string seoDescription = "Experienced .NET developer, Azure consultant, and technical trainer specializing in cloud-based applications, ASP.NET Core, and software architecture. Based in Lyon, France.";
-    private string seoKeywords = ".NET developer, Azure consultant, Blazor expert, ASP.NET Core, cloud architecture, software trainer, Lyon France";
-    private string seoCanonicalUrl = "https://ideastud.io";
-    private string seoLocale = "en_US";
-    private Dictionary<string, string> seoHreflangUrls => new()
-    {
-        ["en"] = "https://ideastud.io",
-        ["fr"] = "https://ideastud.io?culture=fr",
-        ["x-default"] = "https://ideastud.io"
-    };
-    private List<string>? seoStructuredData;
-
-
-    private RenderFragment NavbarNavigationContent => @<text>
-    <a class="ds-nav__link" href="#about" data-section="about">@aboutText</a>
-    <a class="ds-nav__link" href="#experiences" data-section="experiences">@experiencesText</a>
-    <a class="ds-nav__link" href="#trainings" data-section="training">@trainingText</a>
-    <a class="ds-nav__link" href="#contact" data-section="contact">@contactText</a>
-</text>;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        GenerateStructuredData();
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (firstRender)
-        {
-            MainLayoutInstance?.SetNavbarContent(NavbarNavigationContent);
-        }
-    }
-
-    protected override async Task LoadLocalizedStringsAsync()
-    {
-        await base.LoadLocalizedStringsAsync();
-        await LoadResumeAsync();
-        MainLayoutInstance?.SetNavbarContent(NavbarNavigationContent);
-        StateHasChanged();
-    }
+    private string seoTitle = "Andrés Talavera — Parcours";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/cv";
+    private string seoLocale = "fr_FR";
+    private string kicker = "Chapter I · Introduction";
+    private string titleText = "Parcours.";
+    private string lead = "";
 
     protected override void LoadTexts()
     {
-        professionalExperiencesText = LocalizationService.GetString("ProfessionalExperiences");
-        trainingCoursesText = LocalizationService.GetString("TrainingCourses");
-        aboutMeText = LocalizationService.GetString("Cv.AboutMeTitle");
-        aboutText = LocalizationService.GetString("About");
-        experiencesText = LocalizationService.GetString("Experiences");
-        trainingText = LocalizationService.GetString("Training");
-        contactText = LocalizationService.GetString("Contact");
-        pdfSectionTitleText = LocalizationService.GetString("Cv.PdfSectionTitle");
-        pdfFrText = LocalizationService.GetString("Cv.DownloadPdfFr");
-        pdfEnText = LocalizationService.GetString("Cv.DownloadPdfEn");
-
-        // Update SEO for current language
-        var isFrench = CultureService.CurrentCulture.Name.StartsWith("fr");
-        seoLocale = isFrench ? "fr_FR" : "en_US";
-        seoTitle = isFrench
-            ? "Andrés Talavera - Développeur .NET Expert & Consultant Azure | IdeaStud.io"
-            : "Andrés Talavera - Expert .NET Developer & Azure Consultant | IdeaStud.io";
-        seoDescription = isFrench
-            ? "Développeur .NET expérimenté, consultant Azure et formateur technique spécialisé dans les applications cloud, ASP.NET Core et l'architecture logicielle. Basé à Lyon, France."
-            : "Experienced .NET developer, Azure consultant, and technical trainer specializing in cloud-based applications, ASP.NET Core, and software architecture. Based in Lyon, France.";
-
-        // Generate structured data
-        GenerateStructuredData();
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoCanonical = fr ? "https://ideastud.io/fr/cv" : "https://ideastud.io/en/resume";
+        seoTitle = fr ? "Andrés Talavera — Parcours" : "Andrés Talavera — Resume";
+        titleText = fr ? "Parcours." : "Resume.";
+        lead = fr
+            ? "15 ans à transformer des idées en logiciels. .NET, Azure, mobile, web."
+            : "15 years turning ideas into shipped software. .NET, Azure, mobile, web.";
+        seoDescription = lead;
     }
-
-    private void GenerateStructuredData()
-    {
-        var person = new SchemaOrg.Person(
-            Name: "Andrés Talavera",
-            JobTitle: ".NET Developer and Azure Consultant",
-            Description: seoDescription,
-            Url: "https://ideastud.io",
-            Image: "https://ideastud.io/images/andres-talavera.jpeg",
-            SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
-            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "ASP.NET Core", "Cloud Architecture", "Software Training" },
-            Address: new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressRegion: "Auvergne-Rhône-Alpes", AddressCountry: "FR"),
-            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io")
-        );
-
-        var website = new SchemaOrg.WebSite(
-            Name: "IdeaStud.io",
-            Url: "https://ideastud.io",
-            Description: "Professional portfolio and services of Andrés Talavera, .NET Developer and Azure Consultant"
-        );
-
-        var breadcrumb = SchemaOrg.CreateBreadcrumb("https://ideastud.io", ("Home", "/"));
-
-        seoStructuredData = new List<string>
-        {
-            SchemaOrg.ToJsonLd(person),
-            SchemaOrg.ToJsonLd(website),
-            SchemaOrg.ToJsonLd(breadcrumb)
-        };
-    }
-
-    private async Task LoadResumeAsync()
-    {
-        string languageCode = GetLanguageCode(CultureService.CurrentCulture.Name);
-        resume = await LazyLoadingService.LoadDataAsync<Resume>($"data/resume-{languageCode}.json");
-        StateHasChanged();
-    }
-
-    private static string GetLanguageCode(string cultureName) => cultureName switch
-    {
-        "fr" or "fr-FR" => "fr",
-        _ => "en"
-    };
 }

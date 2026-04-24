@@ -1,116 +1,32 @@
 @page "/fr/services"
 @page "/en/services"
 @using IdeaStudio.Website.Components
-@using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
-@using ServiceModel = IdeaStudio.Website.Models.Service
 @inherits LocalizedComponent
-@inject ILazyLoadingService LazyLoadingService
-@inject ILocalizedRoute LocalizedRoute
 @layout MainLayout
 
-<PageScene Name="services-hub" />
+<SeoHead Title="@seoTitle" Description="@seoDescription" CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
 
-<SeoHead Title="@seoTitle"
-         Description="@seoDescription"
-         Keywords=".NET, Azure, Techlead, Formateur, Consulting, Lyon"
-         Author="Andrés Talavera"
-         CanonicalUrl="@seoCanonical"
-         Url="@seoCanonical"
-         SiteName="IdeaStud.io"
-         OgImage="https://ideastud.io/images/andres-talavera.jpeg"
-         OgImageAlt="Andrés Talavera - Services"
-         Locale="@seoLocale"
-         HreflangUrls="@seoHreflangUrls"
-         StructuredData="@seoStructuredData" />
-
-<EditorialServicesStrip Services="@services" />
+<Hero Kicker="— Services" Title="@titleText" Lead="@lead" />
 
 @code {
-    private IReadOnlyList<ServiceModel> services = [];
     private string seoTitle = "Services — IdeaStud.io";
     private string seoDescription = "";
-    private string seoCanonical = "https://ideastud.io/en/services";
-    private string seoLocale = "en_US";
-    private Dictionary<string, string> seoHreflangUrls = new();
-    private List<string>? seoStructuredData;
-
-    protected override async Task LoadLocalizedStringsAsync()
-    {
-        await base.LoadLocalizedStringsAsync();
-        await LoadDataAsync();
-        GenerateStructuredData();
-        StateHasChanged();
-    }
+    private string seoCanonical = "https://ideastud.io/fr/services";
+    private string seoLocale = "fr_FR";
+    private string titleText = "Six façons de collaborer.";
+    private string lead = "";
 
     protected override void LoadTexts()
     {
-        bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        seoLocale = isFr ? "fr_FR" : "en_US";
-        seoTitle = isFr
-            ? "Mes services — Consulting .NET & Azure, Tech lead, Formation | IdeaStud.io"
-            : "My services — .NET & Azure consulting, Tech lead, Training | IdeaStud.io";
-        seoDescription = isFr
-            ? "Six façons de vous accompagner sur vos projets tech : consulting .NET & Azure, tech lead, formation, vibe coding, applications mobiles, sites web."
-            : "Six ways I can help on your tech projects: .NET & Azure consulting, tech lead, training, vibe coding, mobile apps, websites.";
-        seoCanonical = isFr ? "https://ideastud.io/fr/services" : "https://ideastud.io/en/services";
-        seoHreflangUrls = new Dictionary<string, string>
-        {
-            ["fr"] = "https://ideastud.io/fr/services",
-            ["en"] = "https://ideastud.io/en/services",
-            ["x-default"] = "https://ideastud.io/en/services"
-        };
-
-        GenerateStructuredData();
-    }
-
-    private async Task LoadDataAsync()
-    {
-        string lang = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
-        List<ServiceModel>? s = await LazyLoadingService.LoadDataAsync<List<ServiceModel>>($"data/services-{lang}.json");
-        services = s ?? [];
-    }
-
-    private void GenerateStructuredData()
-    {
-        bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        string areaServed = isFr ? "France et international (remote)" : "France and worldwide (remote)";
-
-        SchemaOrg.Person person = new(
-            Name: "Andrés Talavera",
-            JobTitle: isFr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
-            Description: seoDescription,
-            Url: "https://ideastud.io",
-            Image: "https://ideastud.io/images/andres-talavera.jpeg"
-        );
-
-        string cultureCode = isFr ? "fr" : "en";
-        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
-            "https://ideastud.io",
-            (isFr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
-            (isFr ? "Services" : "Services", LocalizedRoute.For("services.hub", cultureCode)));
-
-        List<SchemaOrg.Service> svcs = services
-            .OrderBy(s => s.Order)
-            .Select(s => new SchemaOrg.Service(
-                Name: s.Title,
-                Description: string.IsNullOrWhiteSpace(s.Tagline) ? s.Summary : s.Tagline,
-                Provider: person,
-                AreaServed: areaServed))
-            .ToList();
-
-        SchemaOrg.ProfessionalService professional = new(
-            Name: isFr ? "Services IdeaStud.io" : "IdeaStud.io services",
-            Description: seoDescription,
-            Url: seoCanonical,
-            AreaServed: areaServed,
-            Provider: person,
-            Services: svcs);
-
-        seoStructuredData = new List<string>
-        {
-            SchemaOrg.ToJsonLd(breadcrumb),
-            SchemaOrg.ToJsonLd(professional)
-        };
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoCanonical = fr ? "https://ideastud.io/fr/services" : "https://ideastud.io/en/services";
+        seoTitle = fr ? "Services — IdeaStud.io" : "Services — IdeaStud.io";
+        titleText = fr ? "Six façons de collaborer." : "Six ways to collaborate.";
+        lead = fr
+            ? "Consultant, techlead, formateur. Choisissez votre angle."
+            : "Consultant, tech lead, trainer. Pick your angle.";
+        seoDescription = lead;
     }
 }

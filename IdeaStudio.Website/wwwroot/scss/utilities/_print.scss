@@ -1,13 +1,25 @@
-// Minimal replacements for Bootstrap's d-print-* utilities.
-// CV print view must remain functional after Bootstrap is removed.
+// utilities/_print.scss — CV print stylesheet.
+
+@media print {
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  #gl-canvas,
+  .ds-masthead,
+  .ds-progress,
+  .ds-cursor,
+  .ds-cta-band,
+  .ds-footer,
+  .ds-print-hidden {
+    display: none !important;
+  }
+
+  .ds-section {
+    padding-block: 1.5rem !important;
+  }
+}
 
 .ds-print-hidden { @media print { display: none !important; } }
 .ds-print-only   { display: none !important; @media print { display: initial !important; } }
-.ds-pagebreak    { page-break-after: always; }
-
-@media print {
-  body { background: #fff !important; color: #000 !important; }
-}
-
-.ds-collapsed { display: none; }
-@media print { .ds-collapsed { display: initial; } }

@@ -1,0 +1,24 @@
+// components/_reveal.scss — scroll-reveal via [data-reveal].
+
+@use '../tokens/space' as s;
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 640ms var(--ease-out),
+              transform 640ms var(--ease-out);
+  transition-delay: calc(var(--reveal-step, 0) * 80ms);
+
+  &.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

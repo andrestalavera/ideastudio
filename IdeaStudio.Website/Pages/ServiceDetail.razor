@@ -1,272 +1,33 @@
 @page "/fr/services/{slug}"
 @page "/en/services/{slug}"
 @using IdeaStudio.Website.Components
-@using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
-@using ServiceModel = IdeaStudio.Website.Models.Service
 @inherits LocalizedComponent
-@inject ILazyLoadingService LazyLoadingService
-@inject ILocalizedRoute LocalizedRoute
-@inject ISlugTranslator SlugTranslator
-@inject NavigationManager NavigationManager
 @layout MainLayout
 
-<SeoHead Title="@seoTitle"
-         Description="@seoDescription"
-         Author="Andrés Talavera"
-         CanonicalUrl="@seoCanonical"
-         Url="@seoCanonical"
-         SiteName="IdeaStud.io"
-         OgImage="https://ideastud.io/images/andres-talavera.jpeg"
-         OgImageAlt="@seoTitle"
-         Locale="@seoLocale"
-         HreflangUrls="@seoHreflangUrls"
-         StructuredData="@seoStructuredData" />
+<SeoHead Title="@seoTitle" Description="@seoDescription" CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
 
-@if (service is not null)
-{
-    <PageScene Name="@($"service/{service.IconId}")" Parameters="@sceneParams" />
-
-    <article class="ds-ed-service-detail" data-reveal>
-        <header class="ds-ed-service-detail__header">
-            <span class="ds-ed-kicker">@service.Kicker</span>
-            <h1 class="ds-ed-display">@service.Title</h1>
-            <p class="ds-ed-lead">@service.Tagline</p>
-        </header>
-
-        <div class="ds-ed-service-detail__lede ds-ed-body">
-            @service.Summary
-        </div>
-
-        @if (service.Highlights is { Count: > 0 })
-        {
-            <section class="ds-ed-service-detail__section" data-reveal style="--reveal-step: 1">
-                <h2 class="ds-ed-title">@highlightsTitle</h2>
-                <ul class="ds-ed-checklist">
-                    @foreach (string item in service.Highlights)
-                    {
-                        <li>@item</li>
-                    }
-                </ul>
-            </section>
-        }
-
-        @if (service.UseCases is { Count: > 0 })
-        {
-            <section class="ds-ed-service-detail__section" data-reveal style="--reveal-step: 2">
-                <h2 class="ds-ed-title">@useCasesTitle</h2>
-                <div class="ds-ed-usecases">
-                    @foreach (UseCase uc in service.UseCases)
-                    {
-                        <article class="ds-ed-usecase">
-                            <h3>@uc.Title</h3>
-                            <p>@uc.Description</p>
-                        </article>
-                    }
-                </div>
-            </section>
-        }
-
-        @if (service.Faq is { Count: > 0 })
-        {
-            <section class="ds-ed-service-detail__section" data-reveal style="--reveal-step: 3">
-                <h2 class="ds-ed-title">@faqTitle</h2>
-                <div class="ds-ed-faq">
-                    @foreach (FaqEntry entry in service.Faq)
-                    {
-                        <details class="ds-ed-faq__entry">
-                            <summary>@entry.Question</summary>
-                            <p>@entry.Answer</p>
-                        </details>
-                    }
-                </div>
-            </section>
-        }
-    </article>
-
-    <CtaCalendlySection />
-}
-else if (loaded)
-{
-    <section class="ds-ed-service-detail">
-        <Placeholder />
-    </section>
-}
+<Hero Kicker="— Service" Title="@titleText" Lead="@lead" />
 
 @code {
-    [Parameter] public string Slug { get; set; } = string.Empty;
+    [Parameter] public string? Slug { get; set; }
 
-    private static readonly IReadOnlyDictionary<string, string> AccentsByIconId =
-        new Dictionary<string, string>
-        {
-            ["consulting"] = "#0ea5e9",
-            ["techlead"]   = "#5eead4",
-            ["training"]   = "#67e8f9",
-            ["vibe"]       = "#a78bfa",
-            ["mobile"]     = "#34d399",
-            ["web"]        = "#7dd3fc",
-        };
-
-    private ServiceModel? service;
-    private bool loaded;
-    private IReadOnlyDictionary<string, object?>? sceneParams;
-    private string highlightsTitle = "What you get";
-    private string useCasesTitle = "Use cases";
-    private string faqTitle = "FAQ";
-    private string seoTitle = "Service — IdeaStud.io";
+    private string seoTitle = "Service";
     private string seoDescription = "";
-    private string seoCanonical = "https://ideastud.io";
-    private string seoLocale = "en_US";
-    private Dictionary<string, string>? seoHreflangUrls;
-    private List<string>? seoStructuredData;
-
-    // Remember the culture we last loaded under so we can detect a switch.
-    private string loadedCulture = string.Empty;
-
-    protected override async Task LoadLocalizedStringsAsync()
-    {
-        string currentCulture = CultureService.CurrentCulture.Name;
-
-        // If the culture changed since last load and we have a slug, translate it and redirect.
-        if (!string.IsNullOrEmpty(loadedCulture)
-            && !currentCulture.StartsWith(loadedCulture[..2])
-            && !string.IsNullOrEmpty(Slug))
-        {
-            string? targetSlug = await SlugTranslator.TranslateServiceSlugAsync(Slug, loadedCulture, currentCulture);
-            string targetCulturePrefix = currentCulture.StartsWith("fr") ? "fr" : "en";
-            string target = targetSlug is null
-                ? $"/{targetCulturePrefix}/services"
-                : $"/{targetCulturePrefix}/services/{targetSlug}";
-            loadedCulture = currentCulture;
-            NavigationManager.NavigateTo(target, replace: true);
-            return;
-        }
-
-        loadedCulture = currentCulture;
-        await base.LoadLocalizedStringsAsync();
-        await LoadServiceAsync();
-        StateHasChanged();
-    }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-        // Re-load when the Slug parameter changes (navigating between details).
-        if (loaded)
-        {
-            await LoadServiceAsync();
-            StateHasChanged();
-        }
-    }
+    private string seoCanonical = "https://ideastud.io/fr/services";
+    private string seoLocale = "fr_FR";
+    private string titleText = "Service";
+    private string lead = "";
 
     protected override void LoadTexts()
     {
-        highlightsTitle = LocalizationService.GetString("Service.HighlightsTitle");
-        useCasesTitle = LocalizationService.GetString("Service.UseCasesTitle");
-        faqTitle = LocalizationService.GetString("Service.FaqTitle");
-
-        bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        seoLocale = isFr ? "fr_FR" : "en_US";
-        UpdateSeoForService();
-    }
-
-    private void UpdateSeoForService()
-    {
-        bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        string cultureCode = isFr ? "fr" : "en";
-        string basePath = LocalizedRoute.For("services.hub", cultureCode);
-        string effectiveSlug = service?.Slug ?? Slug;
-        seoCanonical = $"https://ideastud.io{basePath}/{effectiveSlug}";
-
-        if (service is not null)
-        {
-            seoTitle = $"{service.Title} — IdeaStud.io";
-            seoDescription = string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline;
-        }
-        else
-        {
-            seoTitle = isFr ? "Service — IdeaStud.io" : "Service — IdeaStud.io";
-            seoDescription = isFr
-                ? "Découvrez mes services .NET & Azure, tech lead, formation et plus."
-                : "Discover my .NET & Azure, tech lead, training and other services.";
-        }
-    }
-
-    private async Task LoadServiceAsync()
-    {
-        string lang = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
-        List<ServiceModel>? all = await LazyLoadingService.LoadDataAsync<List<ServiceModel>>($"data/services-{lang}.json");
-        service = all?.FirstOrDefault(x => string.Equals(x.Slug, Slug, StringComparison.OrdinalIgnoreCase));
-        loaded = true;
-
-        if (service is null)
-        {
-            string hubPath = LocalizedRoute.For("services.hub");
-            NavigationManager.NavigateTo(hubPath, replace: true);
-            return;
-        }
-
-        sceneParams = new Dictionary<string, object?>
-        {
-            ["accent"] = AccentsByIconId.GetValueOrDefault(service.IconId, "#0ea5e9"),
-        };
-
-        UpdateSeoForService();
-        await ComputeSeoAlternatesAsync(service);
-    }
-
-    private async Task ComputeSeoAlternatesAsync(ServiceModel svc)
-    {
-        string currentCulture = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
-
-        string? frSlug = currentCulture == "fr" ? svc.Slug : await SlugTranslator.TranslateServiceSlugAsync(svc.Slug, "en", "fr");
-        string? enSlug = currentCulture == "en" ? svc.Slug : await SlugTranslator.TranslateServiceSlugAsync(svc.Slug, "fr", "en");
-
-        string frServicesHub = LocalizedRoute.For("services.hub", "fr");
-        string enServicesHub = LocalizedRoute.For("services.hub", "en");
-        Dictionary<string, string> hreflang = new();
-        if (frSlug is not null) hreflang["fr"] = $"https://ideastud.io{frServicesHub}/{frSlug}";
-        if (enSlug is not null) hreflang["en"] = $"https://ideastud.io{enServicesHub}/{enSlug}";
-        if (frSlug is not null) hreflang["x-default"] = $"https://ideastud.io{frServicesHub}/{frSlug}";
-        seoHreflangUrls = hreflang;
-
-        bool isFr = currentCulture == "fr";
-        string servicesHubPath = LocalizedRoute.For("services.hub", currentCulture);
-        string canonical = $"https://ideastud.io{servicesHubPath}/{svc.Slug}";
-
-        SchemaOrg.Person person = new(
-            Name: "Andrés Talavera",
-            JobTitle: isFr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
-            Url: "https://ideastud.io",
-            Image: "https://ideastud.io/images/andres-talavera.jpeg"
-        );
-
-        SchemaOrg.Service schemaService = new(
-            Name: svc.Title,
-            Description: string.IsNullOrWhiteSpace(svc.Tagline) ? svc.Summary : svc.Tagline,
-            Provider: person,
-            AreaServed: isFr ? "France et international (remote)" : "France and worldwide (remote)");
-
-        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
-            "https://ideastud.io",
-            (isFr ? "Accueil" : "Home", LocalizedRoute.For("home", currentCulture)),
-            (isFr ? "Services" : "Services", servicesHubPath),
-            (svc.Title, $"{servicesHubPath}/{svc.Slug}"));
-
-        List<string> jsonLd = new()
-        {
-            SchemaOrg.ToJsonLd(schemaService),
-            SchemaOrg.ToJsonLd(breadcrumb)
-        };
-
-        if (svc.Faq is { Count: > 0 })
-        {
-            SchemaOrg.FAQPage faq = new(svc.Faq
-                .Select(entry => new SchemaOrg.Question(entry.Question, new SchemaOrg.Answer(entry.Answer)))
-                .ToArray());
-            jsonLd.Add(SchemaOrg.ToJsonLd(faq));
-        }
-
-        seoStructuredData = jsonLd;
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        string cultureSeg = fr ? "fr" : "en";
+        seoCanonical = $"https://ideastud.io/{cultureSeg}/services/{Slug ?? string.Empty}";
+        seoTitle = Slug is null ? (fr ? "Service" : "Service") : $"{Slug} — IdeaStud.io";
+        titleText = Slug ?? (fr ? "Service" : "Service");
+        lead = fr ? "Page service en construction (V3 phase 2)." : "Service page under construction (V3 phase 2).";
+        seoDescription = lead;
     }
 }

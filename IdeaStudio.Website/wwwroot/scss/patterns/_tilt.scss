@@ -1,8 +1,0 @@
-// Phase D — tilt neutralised. The [data-tilt] attribute is still present in
-// some legacy components (harmless) but the editorial direction wants no 3D
-// card tilt. Keep the selector here so compiled CSS stays consistent; emit a
-// no-op.
-
-[data-tilt] { transform: none; }
-[data-tilt] > * { transform: none; }
-[data-tilt]::after { content: none; }

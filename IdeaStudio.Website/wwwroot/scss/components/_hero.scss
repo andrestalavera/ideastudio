@@ -1,0 +1,27 @@
+// components/_hero.scss — the big top-of-page block.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+
+.ds-hero {
+  min-block-size: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-block-start: s.$s-10;
+  padding-block-end: s.$s-10;
+  position: relative;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: s.$s-4;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.$s-3;
+    margin-block-start: s.$s-6;
+  }
+}

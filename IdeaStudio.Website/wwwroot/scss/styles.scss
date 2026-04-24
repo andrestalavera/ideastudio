@@ -1,43 +1,42 @@
 // ============================================================
-// IdeaStud.io — styles entry
-// Phase D: editorial rebuild — brass-and-black, serif italic display,
-// mono technical details, brutal minimalism. All editorial pages style
-// off --ds-accent (single amber). Legacy per-service accent tokens and
-// cyan/sky/teal are kept for back-compat but the new pages ignore them.
+// IdeaStud.io — styles entry (V3: techno-iridescent)
+// Single @use chain: tokens → base → layout → components → utilities.
 // ============================================================
 
-@use 'tokens/service-accents';
-
+// Tokens are forwarded through :root custom properties in base/_root.scss.
 @use 'base/reset';
 @use 'base/root';
 @use 'base/typography';
-@use 'base/backdrop';
-@use 'base/view-transitions';
+@use 'base/a11y';
+@use 'base/canvas';
 
-@use 'utilities/responsive';
-@use 'utilities/stack';
+@use 'layout/container';
+@use 'layout/section';
+@use 'layout/stack';
+@use 'layout/grid';
+@use 'layout/rhythm';
+
+@use 'components/masthead';
+@use 'components/hero';
+@use 'components/kicker';
+@use 'components/display';
+@use 'components/title';
+@use 'components/lead';
+@use 'components/button';
+@use 'components/link';
+@use 'components/list';
+@use 'components/tag';
+@use 'components/card';
+@use 'components/tile';
+@use 'components/timeline';
+@use 'components/rule';
+@use 'components/stat';
+@use 'components/qa';
+@use 'components/footer';
+@use 'components/reveal';
+@use 'components/cursor';
+@use 'components/progress';
+
 @use 'utilities/visually-hidden';
+@use 'utilities/responsive';
 @use 'utilities/print';
-@use 'utilities/spacing';
-
-@use 'patterns/button';
-@use 'patterns/card';
-@use 'patterns/chapter';
-@use 'patterns/navbar';
-@use 'patterns/footer';
-@use 'patterns/spinner';
-@use 'patterns/placeholder';
-@use 'patterns/motion';
-@use 'patterns/reveal';
-@use 'patterns/timeline';
-@use 'patterns/cursor';
-@use 'patterns/intro-hero';
-@use 'patterns/tilt';
-@use 'patterns/read-progress';
-
-// Editorial (Phase D) patterns.
-@use 'patterns/ed-hero';
-@use 'patterns/ed-masthead';
-@use 'patterns/ed-services';
-@use 'patterns/ed-service-detail';
-@use 'patterns/ed-realisations';
