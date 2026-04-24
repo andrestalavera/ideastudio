@@ -1,0 +1,60 @@
+// components/_boot.scss — very lightweight loading state shown until
+// Blazor WASM renders the first page. No external dependencies, no
+// variables from other layers (inlined values) so it renders even if
+// the rest of the app CSS fails to load.
+
+.ds-boot {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: #05161a;
+  color: #eaf4f2;
+  font: 500 0.75rem/1 'Inter', system-ui, sans-serif;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  z-index: 9000;
+  pointer-events: none;
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00c2d4;
+    box-shadow: 0 0 24px rgba(0, 194, 212, 0.55);
+    animation: ds-boot-pulse 1400ms ease-in-out infinite;
+  }
+}
+
+@keyframes ds-boot-pulse {
+  0%, 100% { transform: scale(0.85); opacity: 0.55; }
+  50%      { transform: scale(1.15); opacity: 1; }
+}
+
+// Blazor error UI — shown if the runtime itself fails.
+.ds-error-ui {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: #05161a;
+  color: #eaf4f2;
+  border-block-start: 1px solid rgba(234, 244, 242, 0.08);
+  font: 500 0.875rem/1.4 'Inter', system-ui, sans-serif;
+  z-index: 99;
+
+  &[hidden] { display: none; }
+
+  a { color: #00c2d4; }
+  a.dismiss {
+    margin-inline-start: auto;
+    cursor: pointer;
+    color: #7f9a96;
+  }
+}
