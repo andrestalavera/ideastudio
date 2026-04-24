@@ -9,6 +9,7 @@
 @use 'base/typography';
 @use 'base/a11y';
 @use 'base/canvas';
+@use 'base/view-transitions';
 
 @use 'layout/container';
 @use 'layout/section';
@@ -26,12 +27,15 @@
 @use 'components/link';
 @use 'components/list';
 @use 'components/tag';
+@use 'components/filter-bar';
 @use 'components/card';
 @use 'components/tile';
 @use 'components/timeline';
 @use 'components/rule';
 @use 'components/stat';
 @use 'components/qa';
+@use 'components/highlight';
+@use 'components/longform';
 @use 'components/footer';
 @use 'components/reveal';
 @use 'components/cursor';

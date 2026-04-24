@@ -31,8 +31,8 @@
     background: linear-gradient(c.$bg-deep, c.$bg-deep) padding-box,
                 c.$gradient-iridescent border-box;
     border: 1px solid transparent;
-    backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
     pointer-events: auto;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
     opacity: 0;
@@ -90,10 +90,26 @@
   }
 }
 
-// State: pill visible.
+// State transitions. The morph is driven by a single --hero-progress CSS
+// variable set by interactions/nav-morph.js on <html>. Covers 0 (hero
+// fully in view) to 1 (pill landed). Mixed with the discrete state
+// attribute for hard snap points.
+
+html {
+  --hero-progress: 0;
+}
+
+// While hero dominates — pill invisible / compressed.
+html[data-hero-state='hero'] .ds-masthead__pill,
+html[data-hero-state='morphing'] .ds-masthead__pill {
+  opacity: calc(var(--hero-progress) * 1.25 - 0.15);
+  transform: translateY(calc((1 - var(--hero-progress)) * -22px))
+             scale(calc(0.88 + var(--hero-progress) * 0.12));
+}
+
 html[data-hero-state='pill'] .ds-masthead__pill {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 // Container-query compacting.

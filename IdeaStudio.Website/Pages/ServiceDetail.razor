@@ -1,33 +1,205 @@
 @page "/fr/services/{slug}"
 @page "/en/services/{slug}"
 @using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
+@using ServiceModel = IdeaStudio.Website.Models.Service
 @inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
 @layout MainLayout
 
-<SeoHead Title="@seoTitle" Description="@seoDescription" CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         SiteName="IdeaStud.io"
+         StructuredData="@seoStructuredData" />
 
-<Hero Kicker="— Service" Title="@titleText" Lead="@lead" />
+@if (service is null)
+{
+    <Hero Kicker="— 404" Title="@notFoundTitle" Lead="@notFoundLead">
+        <Actions>
+            <a class="ds-btn ds-btn--primary" href="@LocalizedRoute.For("services.hub")">
+                @backText <span aria-hidden="true">→</span>
+            </a>
+        </Actions>
+    </Hero>
+}
+else
+{
+    <Hero Kicker="@service.Kicker" Title="@service.Title" Lead="@service.Tagline" />
+
+    @* Summary *@
+    <section class="ds-section">
+        <div class="ds-container ds-container--narrow">
+            <p class="ds-lead" data-reveal>@service.Summary</p>
+        </div>
+    </section>
+
+    @* Highlights *@
+    @if (service.Highlights is { Count: > 0 })
+    {
+        <section class="ds-section ds-section--chapter ds-section--bordered">
+            <div class="ds-container ds-container--narrow">
+                <ChapterBand Kicker="@highlightsKicker" Title="@highlightsTitle" />
+                <ul class="ds-highlight-list" style="margin-block-start: 2rem;">
+                    @for (int i = 0; i < service.Highlights.Count; i++)
+                    {
+                        <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
+                            <span class="ds-highlight__mark" aria-hidden="true"></span>
+                            <span>@service.Highlights[i]</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </section>
+    }
+
+    @* Use cases *@
+    @if (service.UseCases is { Count: > 0 })
+    {
+        <section class="ds-section ds-section--chapter ds-section--bordered">
+            <div class="ds-container">
+                <ChapterBand Kicker="@useCaseKicker" Title="@useCaseTitle" />
+                <div class="ds-grid ds-grid--2" style="margin-block-start: 2.5rem;">
+                    @for (int i = 0; i < service.UseCases.Count; i++)
+                    {
+                        UseCase uc = service.UseCases[i];
+                        <div class="ds-card" data-reveal style="@($"--reveal-step:{i}")">
+                            <h3 class="ds-card__title">@uc.Title</h3>
+                            <p class="ds-card__body">@uc.Description</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+
+    @* FAQ — expanded editorial Q&A *@
+    @if (service.Faq is { Count: > 0 })
+    {
+        <section class="ds-section ds-section--chapter ds-section--bordered">
+            <div class="ds-container ds-container--narrow">
+                <ChapterBand Kicker="@faqKicker" Title="@faqTitle" />
+                <div style="margin-block-start: 2.5rem;">
+                    @for (int i = 0; i < service.Faq.Count; i++)
+                    {
+                        FaqEntry f = service.Faq[i];
+                        <QABlock Kicker="@($"Q {i + 1:D2}")" Question="@f.Question" Answer="@f.Answer" Step="@i" />
+                    }
+                </div>
+            </div>
+        </section>
+    }
+}
 
 @code {
     [Parameter] public string? Slug { get; set; }
 
-    private string seoTitle = "Service";
+    private ServiceModel? service;
+    private string seoTitle = "Service — IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/services";
     private string seoLocale = "fr_FR";
-    private string titleText = "Service";
-    private string lead = "";
+    private string highlightsKicker = "Concrètement";
+    private string highlightsTitle = "Ce que vous obtenez.";
+    private string useCaseKicker = "Cas d'usage";
+    private string useCaseTitle = "Où ça a fonctionné.";
+    private string faqKicker = "Questions fréquentes";
+    private string faqTitle = "Ce que les clients demandent.";
+    private string notFoundTitle = "Service introuvable.";
+    private string notFoundLead = "Ce service n'existe pas dans ce slug. Retour à la liste des services.";
+    private string backText = "Voir les services";
+    private List<string>? seoStructuredData;
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        await LoadServiceAsync();
+        GenerateStructuredData();
+        StateHasChanged();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadServiceAsync();
+        GenerateStructuredData();
+    }
 
     protected override void LoadTexts()
     {
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
-        string cultureSeg = fr ? "fr" : "en";
-        seoCanonical = $"https://ideastud.io/{cultureSeg}/services/{Slug ?? string.Empty}";
-        seoTitle = Slug is null ? (fr ? "Service" : "Service") : $"{Slug} — IdeaStud.io";
-        titleText = Slug ?? (fr ? "Service" : "Service");
-        lead = fr ? "Page service en construction (V3 phase 2)." : "Service page under construction (V3 phase 2).";
-        seoDescription = lead;
+        highlightsKicker = fr ? "Concrètement" : "Concretely";
+        highlightsTitle  = fr ? "Ce que vous obtenez." : "What you get.";
+        useCaseKicker    = fr ? "Cas d'usage" : "Use cases";
+        useCaseTitle     = fr ? "Où ça a fonctionné." : "Where it worked.";
+        faqKicker        = fr ? "Questions fréquentes" : "Frequent questions";
+        faqTitle         = fr ? "Ce que les clients demandent." : "What clients ask.";
+        notFoundTitle    = fr ? "Service introuvable." : "Service not found.";
+        notFoundLead     = fr ? "Ce service n'existe pas. Retour à la liste." : "That service doesn't exist. Back to the list.";
+        backText         = fr ? "Voir les services" : "See all services";
+    }
+
+    private async Task LoadServiceAsync()
+    {
+        if (string.IsNullOrWhiteSpace(Slug)) { service = null; return; }
+        string culture = CultureService.CurrentCulture.Name;
+        IReadOnlyList<ServiceModel> all = await Content.GetServicesAsync(culture);
+        service = all.FirstOrDefault(s => string.Equals(s.Slug, Slug, StringComparison.OrdinalIgnoreCase));
+        if (service is not null)
+        {
+            bool fr = culture.StartsWith("fr");
+            seoTitle = $"{service.Title} — IdeaStud.io";
+            seoDescription = string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline;
+            seoCanonical = $"https://ideastud.io{LocalizedRoute.For("services.hub", fr ? "fr" : "en")}/{service.Slug}";
+        }
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+
+        List<string> blocks = new();
+
+        SchemaOrg.Person person = new(
+            Name: "Andrés Talavera",
+            JobTitle: fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
+            Description: seoDescription,
+            Url: "https://ideastud.io",
+            Image: "https://ideastud.io/images/andres-talavera.jpeg",
+            SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
+            KnowsAbout: new[] { ".NET", "Azure", "Blazor" },
+            Address: null,
+            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io")
+        );
+
+        if (service is not null)
+        {
+            SchemaOrg.Service svc = new(
+                Name: service.Title,
+                Description: string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline,
+                Provider: person,
+                AreaServed: fr ? "France et international (remote)" : "France and worldwide (remote)");
+            blocks.Add(SchemaOrg.ToJsonLd(svc));
+
+            if (service.Faq is { Count: > 0 })
+            {
+                SchemaOrg.FAQPage faq = new(
+                    service.Faq.Select(f => new SchemaOrg.Question(f.Question, new SchemaOrg.Answer(f.Answer))).ToArray());
+                blocks.Add(SchemaOrg.ToJsonLd(faq));
+            }
+        }
+
+        blocks.Add(SchemaOrg.ToJsonLd(
+            SchemaOrg.CreateBreadcrumb(
+                "https://ideastud.io",
+                (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+                (fr ? "Services" : "Services", LocalizedRoute.For("services.hub", cultureCode)),
+                (service?.Title ?? Slug ?? "Service",
+                    $"{LocalizedRoute.For("services.hub", cultureCode)}/{service?.Slug ?? Slug ?? string.Empty}")
+            )));
+
+        seoStructuredData = blocks;
     }
 }

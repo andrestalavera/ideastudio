@@ -1,4 +1,8 @@
 // components/_hero.scss — the big top-of-page block.
+// The inner content scales + translates upward as the user scrolls, driven
+// by --hero-progress (0 → 1) written by interactions/nav-morph.js. That
+// creates the "display physically rises toward the pill" feeling without
+// ever swapping layout.
 
 @use '../tokens/colors' as c;
 @use '../tokens/space' as s;
@@ -11,11 +15,19 @@
   padding-block-start: s.$s-10;
   padding-block-end: s.$s-10;
   position: relative;
+  will-change: transform, opacity;
 
+  // Apply the morph to inner so the backdrop underneath stays static.
   &__inner {
     display: flex;
     flex-direction: column;
     gap: s.$s-4;
+    transform-origin: 0 100%;
+    transform:
+      translate3d(0, calc(var(--hero-progress, 0) * -10vh), 0)
+      scale(calc(1 - var(--hero-progress, 0) * 0.12));
+    opacity: calc(1 - var(--hero-progress, 0) * 0.85);
+    transition: transform 120ms linear, opacity 120ms linear;
   }
 
   &__actions {
@@ -23,5 +35,13 @@
     flex-wrap: wrap;
     gap: s.$s-3;
     margin-block-start: s.$s-6;
+  }
+}
+
+// Reduced motion: freeze the hero at progress 0.
+@media (prefers-reduced-motion: reduce) {
+  .ds-hero__inner {
+    transform: none !important;
+    opacity: 1 !important;
   }
 }

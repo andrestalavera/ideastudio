@@ -3,15 +3,58 @@
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Services
 @inherits LocalizedComponent
+@inject ILocalizedRoute LocalizedRoute
 @layout MainLayout
 
-<SeoHead Title="@seoTitle" Description="@seoDescription" CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
 
-<Hero Kicker="@kicker" Title="@titleText" />
+<Hero Kicker="@kicker" Title="@titleText" Lead="@leadText" />
 
 <section class="ds-section">
     <div class="ds-container ds-container--narrow">
-        <p class="ds-body">@leadText</p>
+        <div class="ds-longform">
+            @if (isFr)
+            {
+                <h2 class="ds-longform__h2">Éditeur</h2>
+                <p><strong>Andrés Talavera</strong><br/>
+                   Consultant indépendant en développement logiciel<br/>
+                   Lyon, France<br/>
+                   Email : <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a></p>
+
+                <h2 class="ds-longform__h2">Hébergement</h2>
+                <p>Site hébergé sur Azure Static Web Apps — Microsoft Ireland Operations Ltd.<br/>
+                   One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Irlande.</p>
+
+                <h2 class="ds-longform__h2">Propriété intellectuelle</h2>
+                <p>L'ensemble du site — code source, textes, images, typographie, identité graphique — est protégé
+                   par le droit d'auteur. Toute reproduction sans autorisation est interdite.</p>
+
+                <h2 class="ds-longform__h2">Responsabilité</h2>
+                <p>Les informations publiées sur ce site sont fournies à titre indicatif et peuvent évoluer. L'éditeur
+                   ne saurait être tenu responsable d'erreurs ou d'inexactitudes qui pourraient y figurer.</p>
+            }
+            else
+            {
+                <h2 class="ds-longform__h2">Publisher</h2>
+                <p><strong>Andrés Talavera</strong><br/>
+                   Independent software consultant<br/>
+                   Lyon, France<br/>
+                   Email: <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a></p>
+
+                <h2 class="ds-longform__h2">Hosting</h2>
+                <p>Site hosted on Azure Static Web Apps — Microsoft Ireland Operations Ltd.<br/>
+                   One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Ireland.</p>
+
+                <h2 class="ds-longform__h2">Intellectual property</h2>
+                <p>All site content — source code, text, images, typography, graphic identity — is protected by
+                   copyright. Reproduction without prior written consent is prohibited.</p>
+
+                <h2 class="ds-longform__h2">Liability</h2>
+                <p>Information on this site is provided for informational purposes and may change without notice.
+                   The publisher accepts no liability for any inaccuracies or errors.</p>
+            }
+        </div>
     </div>
 </section>
 
@@ -23,18 +66,19 @@
     private string kicker = "— Légal";
     private string titleText = "Mentions légales.";
     private string leadText = "";
+    private bool isFr = true;
 
     protected override void LoadTexts()
     {
-        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        seoLocale = fr ? "fr_FR" : "en_US";
-        seoCanonical = fr ? "https://ideastud.io/fr/mentions-legales" : "https://ideastud.io/en/legal";
-        seoTitle = fr ? "Mentions légales — IdeaStud.io" : "Legal notice — IdeaStud.io";
-        kicker = fr ? "— Légal" : "— Legal";
-        titleText = fr ? "Mentions légales." : "Legal notice.";
-        leadText = fr
-            ? "Page en cours de rédaction — V3 phase 2."
-            : "Page under construction — V3 phase 2.";
+        isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale    = isFr ? "fr_FR" : "en_US";
+        seoCanonical = isFr ? "https://ideastud.io/fr/mentions-legales" : "https://ideastud.io/en/legal";
+        seoTitle     = isFr ? "Mentions légales — IdeaStud.io" : "Legal notice — IdeaStud.io";
+        kicker       = isFr ? "— Légal" : "— Legal";
+        titleText    = isFr ? "Mentions légales." : "Legal notice.";
+        leadText     = isFr
+            ? "Informations sur l'éditeur, l'hébergeur et la propriété intellectuelle."
+            : "Publisher, hosting and intellectual property information.";
         seoDescription = leadText;
     }
 }

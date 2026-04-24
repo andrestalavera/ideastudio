@@ -3,21 +3,94 @@
 @page "/fr/portfolio"
 @page "/en/portfolio"
 @using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
 @inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
+@inject NavigationManager Nav
 @layout MainLayout
 
-<SeoHead Title="@seoTitle" Description="@seoDescription" CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         SiteName="IdeaStud.io"
+         StructuredData="@seoStructuredData" />
 
 <Hero Kicker="— Projets" Title="@titleText" Lead="@lead" />
 
+<section class="ds-section">
+    <div class="ds-container">
+        @* Filters *@
+        @if (allTechs.Count > 0)
+        {
+            <div class="ds-filter-bar" role="tablist" aria-label="@filterAriaLabel">
+                <span class="ds-filter-bar__label">@filterLabel</span>
+                <button type="button" class="ds-tag @(activeTech is null ? "ds-tag--active" : "")"
+                        role="tab" aria-pressed="@(activeTech is null)"
+                        @onclick="() => SetTech(null)">@allTechsLabel</button>
+                @foreach (string tech in allTechs)
+                {
+                    <button type="button" class="ds-tag @(activeTech == tech ? "ds-tag--active" : "")"
+                            role="tab" aria-pressed="@(activeTech == tech)"
+                            @onclick="() => SetTech(tech)">@tech</button>
+                }
+            </div>
+        }
+
+        @* Grid *@
+        @if (filtered.Count == 0)
+        {
+            <div class="ds-empty" data-reveal>
+                <p class="ds-lead">@emptyText</p>
+                <a class="ds-btn ds-btn--iridescent" href="@Nav.Uri" @onclick="() => SetTech(null)" @onclick:preventDefault="true">
+                    @resetText <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="ds-grid ds-grid--auto ds-realisations__grid" style="margin-block-start: 2.5rem;">
+                @foreach (Realisation r in filtered)
+                {
+                    <ProjectTile Href="@r.LiveUrl" Target="_blank" Rel="noopener"
+                                 ImageUrl="@r.ImageUrl" ImageAlt="@r.ImageAlt"
+                                 Type="@r.Type.ToString()" Year="@r.CompletedOn.Year.ToString()"
+                                 Title="@r.Title" Summary="@r.Summary"
+                                 Tags="@r.Technologies" />
+                }
+            </div>
+        }
+    </div>
+</section>
+
 @code {
+    private IReadOnlyList<Realisation> all = Array.Empty<Realisation>();
+    private IReadOnlyList<Realisation> filtered = Array.Empty<Realisation>();
+    private IReadOnlyList<string> allTechs = Array.Empty<string>();
+    private string? activeTech;
+
     private string seoTitle = "Réalisations — IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/realisations";
     private string seoLocale = "fr_FR";
     private string titleText = "Réalisations récentes.";
     private string lead = "";
+    private string filterLabel = "Filtrer";
+    private string filterAriaLabel = "Filtrer les réalisations par technologie";
+    private string allTechsLabel = "Toutes";
+    private string emptyText = "Rien ne correspond à ce filtre.";
+    private string resetText = "Voir tous les projets";
+    private List<string>? seoStructuredData;
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        all = await Content.GetRealisationsAsync(CultureService.CurrentCulture.Name);
+        allTechs = all.SelectMany(r => r.Technologies).Distinct().OrderBy(x => x).ToArray();
+        ApplyFilter();
+        GenerateStructuredData();
+        StateHasChanged();
+    }
 
     protected override void LoadTexts()
     {
@@ -27,8 +100,54 @@
         seoTitle = fr ? "Réalisations — IdeaStud.io" : "Projects — IdeaStud.io";
         titleText = fr ? "Réalisations récentes." : "Recent projects.";
         lead = fr
-            ? "Une sélection de travaux récents — web, mobile, backend."
-            : "A selection of recent work — web, mobile, backend.";
+            ? "Une sélection de travaux récents — sites, apps, APIs, migrations cloud. Filtrez par technologie."
+            : "A selection of recent work — sites, apps, APIs, cloud migrations. Filter by technology.";
         seoDescription = lead;
+        filterLabel      = fr ? "Filtrer" : "Filter";
+        filterAriaLabel  = fr ? "Filtrer par technologie" : "Filter by technology";
+        allTechsLabel    = fr ? "Toutes" : "All";
+        emptyText        = fr ? "Rien ne correspond à ce filtre." : "Nothing matches this filter.";
+        resetText        = fr ? "Voir tous les projets" : "See all projects";
+    }
+
+    private void SetTech(string? tech)
+    {
+        activeTech = tech;
+        ApplyFilter();
+    }
+
+    private void ApplyFilter()
+    {
+        filtered = activeTech is null
+            ? all
+            : all.Where(r => r.Technologies.Contains(activeTech)).ToArray();
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+            (fr ? "Réalisations" : "Projects", LocalizedRoute.For("realisations", cultureCode)));
+
+        SchemaOrg.ListItem[] items = all.Select((r, i) => new SchemaOrg.ListItem(
+            Position: i + 1,
+            Name: r.Title,
+            Item: string.IsNullOrWhiteSpace(r.LiveUrl) ? $"https://ideastud.io{LocalizedRoute.For("realisations", cultureCode)}" : r.LiveUrl)).ToArray();
+
+        SchemaOrg.ItemList list = new(
+            Name: fr ? "Réalisations" : "Projects",
+            Description: lead,
+            NumberOfItems: items.Length,
+            ItemListElement: items);
+
+        seoStructuredData = new List<string>
+        {
+            SchemaOrg.ToJsonLd(breadcrumb),
+            SchemaOrg.ToJsonLd(list)
+        };
     }
 }

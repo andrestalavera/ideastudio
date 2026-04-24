@@ -3,15 +3,56 @@
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Services
 @inherits LocalizedComponent
+@inject ILocalizedRoute LocalizedRoute
 @layout MainLayout
 
-<SeoHead Title="@seoTitle" Description="@seoDescription" CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
 
-<Hero Kicker="@kicker" Title="@titleText" />
+<Hero Kicker="@kicker" Title="@titleText" Lead="@leadText" />
 
 <section class="ds-section">
     <div class="ds-container ds-container--narrow">
-        <p class="ds-body">@leadText</p>
+        <div class="ds-longform">
+            @if (isFr)
+            {
+                <h2 class="ds-longform__h2">Données collectées</h2>
+                <p>Ce site ne collecte aucune donnée personnelle et n'utilise aucun cookie de suivi. Aucun outil
+                   d'analyse tiers (Google Analytics, Plausible, etc.) n'est installé.</p>
+
+                <h2 class="ds-longform__h2">Hébergeur</h2>
+                <p>Les journaux techniques minimaux (adresse IP, user-agent) conservés par Azure Static Web Apps
+                   peuvent l'être pendant la durée définie par Microsoft à des fins de sécurité et de lutte contre
+                   les abus. Ces journaux ne sont pas exploités par l'éditeur.</p>
+
+                <h2 class="ds-longform__h2">Prise de rendez-vous</h2>
+                <p>Le bouton de prise de rendez-vous redirige vers Calendly. Les données saisies sur Calendly sont
+                   régies par <a class="ds-link" href="https://calendly.com/privacy">la politique de confidentialité de Calendly</a>.</p>
+
+                <h2 class="ds-longform__h2">Vos droits</h2>
+                <p>Conformément au RGPD, vous pouvez exercer vos droits d'accès, de rectification et d'effacement
+                   par email : <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a>.</p>
+            }
+            else
+            {
+                <h2 class="ds-longform__h2">Data we collect</h2>
+                <p>This site collects no personal data and uses no tracking cookies. No third-party analytics
+                   (Google Analytics, Plausible, etc.) are installed.</p>
+
+                <h2 class="ds-longform__h2">Hosting logs</h2>
+                <p>Minimal technical logs (IP address, user-agent) retained by Azure Static Web Apps for the period
+                   defined by Microsoft, for security and abuse-prevention purposes. These logs are not exploited
+                   by the publisher.</p>
+
+                <h2 class="ds-longform__h2">Scheduling</h2>
+                <p>The "book a call" button redirects to Calendly. Data entered on Calendly is governed by
+                   <a class="ds-link" href="https://calendly.com/privacy">Calendly's privacy policy</a>.</p>
+
+                <h2 class="ds-longform__h2">Your rights</h2>
+                <p>Under GDPR, you can exercise your access, rectification and erasure rights by email:
+                   <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a>.</p>
+            }
+        </div>
     </div>
 </section>
 
@@ -23,18 +64,19 @@
     private string kicker = "— Légal";
     private string titleText = "Confidentialité.";
     private string leadText = "";
+    private bool isFr = true;
 
     protected override void LoadTexts()
     {
-        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        seoLocale = fr ? "fr_FR" : "en_US";
-        seoCanonical = fr ? "https://ideastud.io/fr/confidentialite" : "https://ideastud.io/en/privacy";
-        seoTitle = fr ? "Confidentialité — IdeaStud.io" : "Privacy — IdeaStud.io";
-        kicker = fr ? "— Légal" : "— Legal";
-        titleText = fr ? "Confidentialité." : "Privacy.";
-        leadText = fr
-            ? "Page en cours de rédaction — V3 phase 2."
-            : "Page under construction — V3 phase 2.";
+        isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale    = isFr ? "fr_FR" : "en_US";
+        seoCanonical = isFr ? "https://ideastud.io/fr/confidentialite" : "https://ideastud.io/en/privacy";
+        seoTitle     = isFr ? "Confidentialité — IdeaStud.io" : "Privacy — IdeaStud.io";
+        kicker       = isFr ? "— Légal" : "— Legal";
+        titleText    = isFr ? "Confidentialité." : "Privacy.";
+        leadText     = isFr
+            ? "Zéro tracking, zéro cookie tiers. Voici ce que ça implique."
+            : "Zero tracking, zero third-party cookies. Here's what that means.";
         seoDescription = leadText;
     }
 }

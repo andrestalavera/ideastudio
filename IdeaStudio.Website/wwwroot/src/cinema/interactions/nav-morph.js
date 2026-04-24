@@ -1,33 +1,66 @@
-// interactions/nav-morph.js — drives the state attribute html[data-hero-state]
-// from scroll progress. The visual morph (hero → pill) is pure CSS; this
-// module writes the state. No GSAP needed; the CSS transitions on
-// .ds-masthead__pill do the choreography.
-//
-// If we later need a scrubbed timeline with more fine-grained effects,
-// we'll pull in GSAP ScrollTrigger here — but keeping it CSS-only for now
-// keeps the bundle tight and feels "fluid" per the brief.
+// interactions/nav-morph.js — drives the scroll-scrubbed hero→pill morph.
+// Writes two things on <html>:
+//   - data-hero-state: 'hero' | 'morphing' | 'pill'  (discrete state)
+//   - --hero-progress: 0..1                           (continuous progress)
+// Pure CSS on .ds-hero__inner and .ds-masthead__pill renders the motion.
+
+let rafQueued = false;
+let lastProgress = 0;
+
+function computeState() {
+  const hero = document.querySelector('.ds-hero');
+  if (!hero) return { state: 'pill', progress: 1 };
+  const rect = hero.getBoundingClientRect();
+  const vh = window.innerHeight;
+  // Hero starts exiting once its bottom crosses 85% vh, fully out at 25% vh.
+  const exitStart = vh * 0.85;
+  const exitEnd = vh * 0.25;
+  let progress = 0;
+  if (rect.bottom >= exitStart) progress = 0;
+  else if (rect.bottom <= exitEnd) progress = 1;
+  else progress = 1 - (rect.bottom - exitEnd) / (exitStart - exitEnd);
+
+  let state = 'morphing';
+  if (progress <= 0.02) state = 'hero';
+  else if (progress >= 0.98) state = 'pill';
+
+  return { state, progress };
+}
+
+function writeState() {
+  rafQueued = false;
+  const html = document.documentElement;
+  const { state, progress } = computeState();
+
+  if (html.dataset.heroState !== state) html.dataset.heroState = state;
+  // Quantize to 3 decimals to reduce style recalc churn.
+  const q = Math.round(progress * 1000) / 1000;
+  if (Math.abs(q - lastProgress) > 0.004) {
+    html.style.setProperty('--hero-progress', q.toString());
+    lastProgress = q;
+  }
+}
+
+function schedule() {
+  if (rafQueued) return;
+  rafQueued = true;
+  requestAnimationFrame(writeState);
+}
 
 export function attachNavMorph() {
-  const html = document.documentElement;
-  const hero = document.querySelector('.ds-hero');
-  const update = () => {
-    const bottom = hero ? hero.getBoundingClientRect().bottom : 0;
-    const mobile = window.innerWidth < 640;
-    const threshold = mobile ? 40 : 80;
-    const state = bottom > threshold ? (bottom > window.innerHeight * 0.85 ? 'hero' : 'morphing') : 'pill';
-    if (html.dataset.heroState !== state) html.dataset.heroState = state;
-  };
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update, { passive: true });
-  update();
-  attachNavMorph._update = update;
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule, { passive: true });
+  // Two rAFs so Blazor has rendered the hero before our first measurement.
+  requestAnimationFrame(() => requestAnimationFrame(writeState));
+  attachNavMorph._schedule = schedule;
 }
 
 export function disposeNavMorph() {
-  if (attachNavMorph._update) {
-    window.removeEventListener('scroll', attachNavMorph._update);
-    window.removeEventListener('resize', attachNavMorph._update);
-    attachNavMorph._update = null;
+  if (attachNavMorph._schedule) {
+    window.removeEventListener('scroll', attachNavMorph._schedule);
+    window.removeEventListener('resize', attachNavMorph._schedule);
+    attachNavMorph._schedule = null;
   }
   document.documentElement.dataset.heroState = '';
+  document.documentElement.style.removeProperty('--hero-progress');
 }
