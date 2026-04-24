@@ -1,18 +1,15 @@
-// Phase C3: CSS-first foundation + living WebGL aurora backdrop + GSAP
-// orchestration for the hero entrance. CSS keeps char reveal, page stagger,
-// 3D tilt, view transitions, read progress; WebGL adds a single continuous
-// aurora behind everything; GSAP amplifies the hero envelope.
-//
-// Phase C6: Chronicles pinned timeline, accent-journey observer, and the
-// backdrop flash() beat all stripped — the site leans into static luxury
-// typography and a single-accent aurora instead.
+// Phase D — editorial rebuild.
+// WebGL backdrop removed (the CSS radial + breath handles ambience now).
+// magnetic interactions dropped. What's left:
+//   - cursor: one 12px amber dot, mix-blend-difference.
+//   - reveals: IntersectionObserver-driven fade-up for [data-reveal].
+//   - sticky-hero: adds is-past-hero on html once the hero has scrolled off.
+//   - hero-stage: a quiet GSAP fade-up on hero direct children.
 
 import * as cursor from './interactions/cursor.js';
 import * as reveals from './interactions/reveals.js';
-import * as magnetic from './interactions/magnetic.js';
 import * as stickyHero from './interactions/sticky-hero.js';
 import * as heroStage from './interactions/hero-stage.js';
-import * as backdrop from './backdrop.js';
 import { applyTheme as applyThemeInternal } from './scene-theme.js';
 
 let booted = false;
@@ -20,10 +17,8 @@ let booted = false;
 export async function initialize() {
   if (booted) return;
   booted = true;
-  backdrop.boot();
   cursor.enable();
   reveals.attachAll();
-  magnetic.attachAll();
   stickyHero.attach();
   heroStage.attachAll();
 }
@@ -34,21 +29,16 @@ export async function initialize() {
  */
 export async function applyTheme(scene, parameters) {
   applyThemeInternal(scene, parameters);
-  backdrop.refresh();     // re-read CSS accents after the data-scene swap
-  // After a page swap, newly-rendered DOM needs reveals/magnetic/sticky-hero re-attached.
   reveals.attachAll();
-  magnetic.attachAll();
   stickyHero.attach();
-  heroStage.reset();      // allow a new page's hero to play
+  heroStage.reset();
   heroStage.attachAll();
 }
 
 export async function pulse() {
-  // One-shot class for SCSS-driven reaction to state changes (e.g. filter applied).
   const root = document.documentElement;
   root.classList.remove('is-pulsing');
-  // eslint-disable-next-line no-unused-expressions
-  void root.offsetWidth; // reflow to reset any in-flight animation
+  void root.offsetWidth;
   root.classList.add('is-pulsing');
   window.setTimeout(() => root.classList.remove('is-pulsing'), 700);
 }
@@ -56,8 +46,6 @@ export async function pulse() {
 export async function dispose() {
   cursor.disable();
   reveals.disposeAll();
-  magnetic.disposeAll();
   stickyHero.detach();
-  backdrop.shutdown();
   booted = false;
 }

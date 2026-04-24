@@ -1,0 +1,112 @@
+@use '../tokens/space' as s;
+
+// Phase D — editorial services list.
+// Services render as a numbered list. Each row: 01 · title · tagline · arrow.
+// Hover indents the whole row and shifts title/arrow to amber.
+
+.ds-ed-services {
+  padding-block: clamp(5rem, 10vw, 10rem);
+}
+
+.ds-ed-services__header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: clamp(1rem, 3vw, 3rem);
+  padding-bottom: clamp(2rem, 4vw, 4rem);
+  border-bottom: 1px solid var(--ds-rule);
+  margin-bottom: clamp(2rem, 4vw, 4rem);
+
+  @media (max-width: 639px) {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+.ds-ed-services__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-ed-service {
+  border-bottom: 1px solid var(--ds-rule);
+}
+
+.ds-ed-service__link {
+  display: grid;
+  grid-template-columns: 4rem 1fr 1fr 2rem;
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: baseline;
+  padding-block: clamp(1.25rem, 2.4vw, 2rem);
+  color: var(--ds-fg);
+  text-decoration: none;
+  position: relative;
+  transition: padding-inline-start 340ms cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  &:hover {
+    padding-inline-start: 1rem;
+  }
+
+  &:hover .ds-ed-service__title {
+    color: var(--ds-accent);
+  }
+
+  &:hover .ds-ed-service__arrow {
+    transform: translateX(6px);
+    color: var(--ds-accent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ds-accent);
+    outline-offset: -2px;
+  }
+
+  @media (max-width: 767px) {
+    grid-template-columns: 3rem 1fr 1.5rem;
+    grid-template-rows: auto auto;
+    align-items: start;
+
+    .ds-ed-service__tagline {
+      grid-column: 2 / 3;
+      grid-row: 2;
+      margin-top: 0.25rem;
+    }
+
+    .ds-ed-service__arrow {
+      grid-column: 3;
+      grid-row: 1;
+    }
+  }
+}
+
+.ds-ed-service__index {
+  align-self: start;
+  padding-top: 0.25rem;
+}
+
+.ds-ed-service__title {
+  font-family: var(--ds-font-serif);
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ds-fg);
+  transition: color 340ms;
+}
+
+.ds-ed-service__tagline {
+  font-family: var(--ds-font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ds-fg-muted);
+}
+
+.ds-ed-service__arrow {
+  font-size: 1.25rem;
+  color: var(--ds-fg-muted);
+  justify-self: end;
+  transition: transform 340ms, color 340ms;
+}

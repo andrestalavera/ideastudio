@@ -25,24 +25,11 @@
 <HomeIntroHero />
 
 <div data-reveal style="--reveal-step: 1">
-    <ServicesGrid Services="@services"
-                  Title="@servicesTitle"
-                  Lead="@servicesLead" />
-</div>
-
-<div data-reveal style="--reveal-step: 2">
-    <RealisationsTeaser Realisations="@realisations" />
-</div>
-
-<div data-reveal style="--reveal-step: 3">
-    <CtaCalendlySection />
+    <EditorialServicesStrip Services="@services" />
 </div>
 
 @code {
     private IReadOnlyList<ServiceModel> services = [];
-    private IReadOnlyList<Realisation> realisations = [];
-    private string servicesTitle = "My services";
-    private string servicesLead = "";
     private string seoTitle = "IdeaStud.io — Andrés Talavera";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io";
@@ -59,8 +46,6 @@
 
     protected override void LoadTexts()
     {
-        servicesTitle = LocalizationService.GetString("Home.ServicesTitle");
-        servicesLead = LocalizationService.GetString("Home.ServicesLead");
         bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = isFr ? "fr_FR" : "en_US";
         seoCanonical = isFr ? "https://ideastud.io/fr" : "https://ideastud.io/en";
@@ -78,16 +63,13 @@
     {
         string lang = CultureService.CurrentCulture.Name.StartsWith("fr") ? "fr" : "en";
         List<ServiceModel>? s = await LazyLoadingService.LoadDataAsync<List<ServiceModel>>($"data/services-{lang}.json");
-        List<Realisation>? r = await LazyLoadingService.LoadDataAsync<List<Realisation>>($"data/realisations-{lang}.json");
         services = s ?? [];
-        realisations = r ?? [];
     }
 
     private void GenerateStructuredData()
     {
         bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
         string cultureCode = isFr ? "fr" : "en";
-        string homeUrl = $"https://ideastud.io{LocalizedRoute.For("home", cultureCode)}";
         string servicesUrl = $"https://ideastud.io{LocalizedRoute.For("services.hub", cultureCode)}";
 
         SchemaOrg.Person person = new(

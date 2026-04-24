@@ -1,0 +1,107 @@
+@use '../tokens/space' as s;
+
+// Phase D — editorial masthead.
+// Mono wordmark + avatar (collapsed pre-hero) · centered nav · culture + mini
+// amber CTA. Drops LinkedIn/GitHub icons from chrome.
+
+.ds-ed-masthead {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--ds-bg) 80%, transparent);
+  border-bottom: 1px solid var(--ds-rule);
+}
+
+.ds-ed-masthead__inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding-block: 1rem;
+  gap: 2rem;
+}
+
+.ds-ed-masthead__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--ds-fg);
+  text-decoration: none;
+  font-family: var(--ds-font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+
+  &:focus-visible {
+    outline: 2px solid var(--ds-accent);
+    outline-offset: 4px;
+  }
+}
+
+.ds-ed-masthead__avatar {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(0.7);
+  transform-origin: left center;
+  transition: opacity 340ms, transform 340ms;
+  pointer-events: none;
+}
+
+html.is-past-hero .ds-ed-masthead__avatar {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ds-ed-masthead__nav {
+  display: flex;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  justify-self: center;
+
+  a {
+    color: var(--ds-fg-muted);
+    text-decoration: none;
+    font-family: var(--ds-font-sans);
+    font-size: 0.9375rem;
+    transition: color 200ms;
+  }
+
+  a:hover { color: var(--ds-accent); }
+
+  a:focus-visible {
+    outline: 2px solid var(--ds-accent);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 767px) { display: none; }
+}
+
+.ds-ed-masthead__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-self: end;
+}
+
+.ds-ed-masthead__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--ds-accent);
+  color: #0a0a0b;
+  font-family: var(--ds-font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 200ms;
+
+  &:hover { background: color-mix(in srgb, var(--ds-accent) 85%, white); }
+
+  &:focus-visible {
+    outline: 2px solid var(--ds-accent);
+    outline-offset: 3px;
+  }
+}

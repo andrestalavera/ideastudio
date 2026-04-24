@@ -31,9 +31,12 @@
 
 <HeroSection PersonalInformation="@resume?.PersonalInformation" ProfileImage="images/andres-talavera.jpeg" />
 
-<section id="cv-pdf" class="ds-section d-print-none" data-reveal style="--reveal-step: 1">
-    <div class="ds-container">
-        <h2>@pdfSectionTitleText</h2>
+<section id="cv-pdf" class="ds-ed-chapter d-print-none" data-reveal style="--reveal-step: 1">
+    <header class="ds-ed-chapter__heading">
+        <span class="ds-ed-number">I</span>
+        <h2 class="ds-ed-title">@pdfSectionTitleText</h2>
+    </header>
+    <div class="ds-ed-chapter__content">
         <div class="ds-stack ds-stack--row ds-gap-sm">
             <PdfDownloadButton Language="fr" Label="@pdfFrText" />
             <PdfDownloadButton Language="en" Label="@pdfEnText" />
@@ -43,13 +46,12 @@
 
 <div class="ds-pagebreak"></div>
 
-<section id="about" class="ds-chapter ds-print-hidden" data-reveal style="--reveal-step: 2">
-    <div class="ds-container">
-        <header class="ds-chapter__heading">
-            <p class="ds-chapter__kicker">· Chapter II ·</p>
-            <RevealWords Text="@aboutMeText" Tag="h2" Class="ds-chapter__title" />
-            <div class="ds-chapter__rule"></div>
-        </header>
+<section id="about" class="ds-ed-chapter ds-print-hidden" data-reveal style="--reveal-step: 2">
+    <header class="ds-ed-chapter__heading">
+        <span class="ds-ed-number">II</span>
+        <h2 class="ds-ed-title">@aboutMeText</h2>
+    </header>
+    <div class="ds-ed-chapter__content">
         @if (resume?.AboutSections is not null)
         {
             <div class="ds-grid ds-grid--3">
@@ -66,31 +68,27 @@
     </div>
 </section>
 
-<section id="experiences" class="ds-chapter ds-pagebreak" data-reveal style="--reveal-step: 3">
-    <div class="ds-container">
-        <header class="ds-chapter__heading">
-            <p class="ds-chapter__kicker">· Chapter III ·</p>
-            <RevealWords Text="@professionalExperiencesText" Tag="h2" Class="ds-chapter__title" />
-            <div class="ds-chapter__rule"></div>
-        </header>
-        @if (resume?.Experiences is not null)
-        {
-            <ExperienceTimeline Experiences="@resume.Experiences.ToList()" />
-        }
-        else
-        {
-            <Placeholder />
-        }
-    </div>
+<section id="experiences" class="ds-ed-chapter ds-pagebreak" data-reveal style="--reveal-step: 3">
+    <header class="ds-ed-chapter__heading">
+        <span class="ds-ed-number">III</span>
+        <h2 class="ds-ed-title">@professionalExperiencesText</h2>
+    </header>
+    @if (resume?.Experiences is not null)
+    {
+        <ExperienceTimeline Experiences="@resume.Experiences.ToList()" />
+    }
+    else
+    {
+        <Placeholder />
+    }
 </section>
 
-<section id="trainings" class="ds-chapter ds-print-hidden" data-reveal style="--reveal-step: 4">
-    <div class="ds-container">
-        <header class="ds-chapter__heading">
-            <p class="ds-chapter__kicker">· Chapter IV ·</p>
-            <RevealWords Text="@trainingCoursesText" Tag="h2" Class="ds-chapter__title" />
-            <div class="ds-chapter__rule"></div>
-        </header>
+<section id="trainings" class="ds-ed-chapter ds-print-hidden" data-reveal style="--reveal-step: 4">
+    <header class="ds-ed-chapter__heading">
+        <span class="ds-ed-number">IV</span>
+        <h2 class="ds-ed-title">@trainingCoursesText</h2>
+    </header>
+    <div class="ds-ed-chapter__content">
         @if (resume?.TrainingCenters is not null)
         {
             <div class="ds-grid ds-grid--3">
@@ -107,7 +105,7 @@
     </div>
 </section>
 
-<section id="contact" class="ds-chapter ds-print-hidden" data-reveal style="--reveal-step: 5">
+<section id="contact" class="ds-ed-chapter ds-print-hidden" data-reveal style="--reveal-step: 5">
     <ContactSection />
 </section>
 

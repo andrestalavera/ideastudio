@@ -24,29 +24,88 @@
          HreflangUrls="@seoHreflangUrls"
          StructuredData="@seoStructuredData" />
 
-<section class="ds-chapter" data-reveal style="--reveal-step: 1">
-    <div class="ds-container">
-        <header class="ds-chapter__heading">
-            <p class="ds-chapter__kicker">@kickerText</p>
-            <RevealWords Text="@pageTitle" Tag="h1" Class="ds-chapter__title" />
-            <div class="ds-chapter__rule"></div>
-            <p class="ds-body-lead">@pageLead</p>
-        </header>
+<section class="ds-ed-realisations" data-reveal>
+    <header class="ds-ed-realisations__header">
+        <span class="ds-ed-kicker">@kickerText</span>
+        <h1 class="ds-ed-title">@titleLine1<br /><span class="ds-ed-accent">@titleLine2</span></h1>
+    </header>
 
-        <RealisationsFilters
-            AvailableTechnologies="@availableTechnologies"
-            AvailableTypes="@availableTypes"
-            SelectedTechnologies="@selectedTechnologies"
-            SelectedTypes="@selectedTypes"
-            OnChanged="HandleFilterChange" />
+    @if (availableTechnologies is { Count: > 0 } || availableTypes is { Count: > 0 })
+    {
+        <div class="ds-ed-realisations__toolbar" role="toolbar" aria-label="@filtersAriaText">
+            @if (availableTypes is { Count: > 0 })
+            {
+                <div class="ds-ed-realisations__filter-group">
+                    <span class="ds-ed-realisations__filter-label">@filterTypeLabel</span>
+                    @foreach (RealisationType type in availableTypes)
+                    {
+                        bool active = selectedTypes.Contains(type);
+                        <button type="button"
+                                class="ds-ed-filter-chip @(active ? "is-active" : "")"
+                                aria-pressed="@active.ToString().ToLowerInvariant()"
+                                @onclick="() => ToggleType(type)">
+                            @TypeLabel(type)
+                        </button>
+                    }
+                </div>
+            }
+            @if (availableTechnologies is { Count: > 0 })
+            {
+                <div class="ds-ed-realisations__filter-group">
+                    <span class="ds-ed-realisations__filter-label">@filterTechLabel</span>
+                    @foreach (string tech in availableTechnologies)
+                    {
+                        bool active = selectedTechnologies.Contains(tech);
+                        <button type="button"
+                                class="ds-ed-filter-chip @(active ? "is-active" : "")"
+                                aria-pressed="@active.ToString().ToLowerInvariant()"
+                                @onclick="() => ToggleTech(tech)">
+                            @tech
+                        </button>
+                    }
+                </div>
+            }
+        </div>
+    }
 
-        <p class="ds-results-count" aria-live="polite">@string.Format(resultsCountText, filtered.Count)</p>
+    <p class="ds-ed-results-count" aria-live="polite">@string.Format(resultsCountText, filtered.Count)</p>
 
-        <RealisationsGrid Items="@filtered"
-                          EmptyText="@emptyText"
-                          ClearText="@clearText"
-                          OnClearRequest="ClearFilters" />
-    </div>
+    @if (filtered.Count == 0)
+    {
+        <div class="ds-ed-empty">
+            <p>@emptyText</p>
+            <button class="ds-ed-filter-chip" type="button" @onclick="ClearFilters">@clearText</button>
+        </div>
+    }
+    else
+    {
+        <ol class="ds-ed-realisations__list">
+            @foreach ((Realisation r, int i) in filtered.Select((r, i) => (r, i)))
+            {
+                <li class="ds-ed-project" data-reveal style="--reveal-step:@(i % 3)">
+                    <a class="ds-ed-project__link"
+                       href="@(string.IsNullOrWhiteSpace(r.LiveUrl) ? "#" : r.LiveUrl)"
+                       target="_blank" rel="noopener">
+                        <span class="ds-ed-project__index ds-ed-mono">@($"0{i + 1}")</span>
+                        <span class="ds-ed-project__title">@r.Title</span>
+                        <span class="ds-ed-project__arrow" aria-hidden="true">↗</span>
+                        <span class="ds-ed-project__summary">@r.Summary</span>
+                        <span class="ds-ed-project__meta">
+                            @if (r.Technologies is { Count: > 0 })
+                            {
+                                <ul class="ds-ed-project__tech">
+                                    @foreach (string tech in r.Technologies)
+                                    {
+                                        <li>@tech</li>
+                                    }
+                                </ul>
+                            }
+                        </span>
+                    </a>
+                </li>
+            }
+        </ol>
+    }
 </section>
 
 <CtaCalendlySection />
@@ -59,9 +118,9 @@
     private HashSet<RealisationType> selectedTypes = [];
     private IReadOnlyList<Realisation> filtered = [];
 
-    private string pageTitle = "Recent projects";
-    private string pageLead = "";
-    private string kickerText = "· Projects ·";
+    private string titleLine1 = "Recent";
+    private string titleLine2 = "projects";
+    private string kickerText = "Projects";
     private string seoTitle = "Projects — IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/en/projects";
@@ -71,6 +130,9 @@
     private string resultsCountText = "{0} result(s)";
     private string emptyText = "";
     private string clearText = "";
+    private string filterTechLabel = "Tech";
+    private string filterTypeLabel = "Type";
+    private string filtersAriaText = "Filters";
 
     protected override async Task LoadLocalizedStringsAsync()
     {
@@ -81,15 +143,17 @@
 
     protected override void LoadTexts()
     {
-        pageTitle = LocalizationService.GetString("Realisations.PageTitle");
-        pageLead = LocalizationService.GetString("Realisations.PageLead");
         resultsCountText = LocalizationService.GetString("Realisations.ResultsCount");
         emptyText = LocalizationService.GetString("Realisations.NoResults");
         clearText = LocalizationService.GetString("Realisations.Clear");
+        filterTechLabel = LocalizationService.GetString("Realisations.FilterTech");
+        filterTypeLabel = LocalizationService.GetString("Realisations.FilterType");
+        kickerText = LocalizationService.GetString("Realisations.Kicker");
+        titleLine1 = LocalizationService.GetString("Realisations.TitleLine1");
+        titleLine2 = LocalizationService.GetString("Realisations.TitleLine2");
 
         bool isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = isFr ? "fr_FR" : "en_US";
-        kickerText = isFr ? "· Réalisations ·" : "· Projects ·";
         seoTitle = isFr
             ? "Mes réalisations — Projets .NET, Azure, mobile et web | IdeaStud.io"
             : "My projects — .NET, Azure, mobile and web work | IdeaStud.io";
@@ -104,6 +168,9 @@
             ["x-default"] = "https://ideastud.io/en/projects"
         };
     }
+
+    private string TypeLabel(RealisationType type) =>
+        LocalizationService.GetString($"Realisations.Type{type}");
 
     private async Task LoadAsync()
     {
@@ -131,7 +198,7 @@
             .ToList();
 
         SchemaOrg.CollectionPage collection = new(
-            Name: pageTitle,
+            Name: $"{titleLine1} {titleLine2}",
             Description: seoDescription,
             Url: seoCanonical,
             Items: items);
@@ -147,6 +214,18 @@
             SchemaOrg.ToJsonLd(collection),
             SchemaOrg.ToJsonLd(breadcrumb)
         };
+    }
+
+    private async Task ToggleTech(string tech)
+    {
+        if (!selectedTechnologies.Add(tech)) selectedTechnologies.Remove(tech);
+        await HandleFilterChange();
+    }
+
+    private async Task ToggleType(RealisationType type)
+    {
+        if (!selectedTypes.Add(type)) selectedTypes.Remove(type);
+        await HandleFilterChange();
     }
 
     private async Task HandleFilterChange()

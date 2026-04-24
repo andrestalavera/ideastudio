@@ -1,79 +1,37 @@
-@use '../tokens/colors' as colors;
+// Phase D — simplified cursor.
+// One 12px warm amber dot that lags the pointer by a few pixels. No halo, no
+// target reticle, no crosshair. mix-blend-difference so it stays readable on
+// any surface. Disabled on touch and reduced motion.
 
-// Custom cursor — rendered by src/cinema/interactions/cursor.js.
-// Hidden on touch and for users who prefer reduced motion.
-
-.ds-cursor,
-.ds-cursor__halo {
+.ds-cursor {
   position: fixed;
   top: 0;
   left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ds-accent);
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
   opacity: 0;
-  transition: opacity 0.2s ease;
-  mix-blend-mode: screen;
+  transition: opacity 220ms ease-out;
+  mix-blend-mode: difference;
+  will-change: transform, opacity;
 }
 
-.ds-cursor {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--ds-cyan, #{colors.$cyan});
-  box-shadow: 0 0 8px currentcolor;
-}
+.ds-cursor--visible { opacity: 1; }
 
-.ds-cursor__halo {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--ds-cyan, #{colors.$cyan});
-  border-radius: 50%;
-  transition: opacity 0.2s ease, width 0.3s ease, height 0.3s ease;
-}
-
-.ds-cursor--visible,
-.ds-cursor__halo--visible {
-  opacity: 0.9;
-}
-
-.ds-cursor__halo--hover {
-  width: 56px;
-  height: 56px;
-}
-
-// "Target" reticle for [data-magnetic] — more emphatic than plain hover.
-.ds-cursor__halo--target {
-  width: 64px;
-  height: 64px;
-  border-width: 2px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background:
-      linear-gradient(to right, transparent 46%, currentcolor 46%, currentcolor 54%, transparent 54%),
-      linear-gradient(to bottom, transparent 46%, currentcolor 46%, currentcolor 54%, transparent 54%);
-    -webkit-mask: radial-gradient(circle, transparent 30%, black 32%, black 100%);
-            mask: radial-gradient(circle, transparent 30%, black 32%, black 100%);
-    opacity: 0.6;
-  }
-}
-
-// Pointer device only. No custom cursor on touch or reduced-motion.
-@media (hover: none), (prefers-reduced-motion: reduce) {
-  .ds-cursor,
-  .ds-cursor__halo {
-    display: none !important;
-  }
-}
-
-// Hide the native cursor on interactive elements when the custom cursor is on.
 html.ds-cursor-enabled,
+html.ds-cursor-enabled *,
 html.ds-cursor-enabled a,
 html.ds-cursor-enabled button,
-html.ds-cursor-enabled [role='button'] {
-  cursor: none;
+html.ds-cursor-enabled [role='button'] { cursor: none; }
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .ds-cursor { display: none !important; }
+  html.ds-cursor-enabled,
+  html.ds-cursor-enabled *,
+  html.ds-cursor-enabled a,
+  html.ds-cursor-enabled button,
+  html.ds-cursor-enabled [role='button'] { cursor: auto; }
 }

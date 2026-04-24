@@ -27,74 +27,69 @@
 {
     <PageScene Name="@($"service/{service.IconId}")" Parameters="@sceneParams" />
 
-    <section class="ds-chapter" data-reveal style="--reveal-step: 1">
-        <div class="ds-container">
-            <header class="ds-chapter__heading">
-                <p class="ds-chapter__kicker">@service.Kicker</p>
-                <RevealWords Text="@service.Title" Tag="h1" Class="ds-chapter__title" />
-                <div class="ds-chapter__rule"></div>
-                <p class="ds-body-lead">@service.Tagline</p>
-            </header>
+    <article class="ds-ed-service-detail" data-reveal>
+        <header class="ds-ed-service-detail__header">
+            <span class="ds-ed-kicker">@service.Kicker</span>
+            <h1 class="ds-ed-display">@service.Title</h1>
+            <p class="ds-ed-lead">@service.Tagline</p>
+        </header>
 
-            <div class="ds-stack ds-stack--loose">
-                <p class="ds-body-lead">@service.Summary</p>
-
-                @if (service.Highlights is { Count: > 0 })
-                {
-                    <div class="ds-card">
-                        <h2 class="ds-card__title">@highlightsTitle</h2>
-                        <ul class="ds-stack ds-stack--tight">
-                            @foreach (string item in service.Highlights)
-                            {
-                                <li>@item</li>
-                            }
-                        </ul>
-                    </div>
-                }
-
-                @if (service.UseCases is { Count: > 0 })
-                {
-                    <div>
-                        <h2 class="ds-chapter__title" style="font-size: 1.75rem; text-align: left;">@useCasesTitle</h2>
-                        <div class="ds-grid ds-grid--2">
-                            @foreach (UseCase uc in service.UseCases)
-                            {
-                                <article class="ds-card">
-                                    <h3 class="ds-card__title">@uc.Title</h3>
-                                    <p class="ds-card__body">@uc.Description</p>
-                                </article>
-                            }
-                        </div>
-                    </div>
-                }
-
-                @if (service.Faq is { Count: > 0 })
-                {
-                    <div>
-                        <h2 class="ds-chapter__title" style="font-size: 1.75rem; text-align: left;">@faqTitle</h2>
-                        <div class="ds-stack">
-                            @foreach (FaqEntry entry in service.Faq)
-                            {
-                                <details class="ds-card">
-                                    <summary class="ds-card__title" style="cursor: pointer; margin: 0;">@entry.Question</summary>
-                                    <p class="ds-card__body" style="margin-top: 0.75rem;">@entry.Answer</p>
-                                </details>
-                            }
-                        </div>
-                    </div>
-                }
-            </div>
+        <div class="ds-ed-service-detail__lede ds-ed-body">
+            @service.Summary
         </div>
-    </section>
+
+        @if (service.Highlights is { Count: > 0 })
+        {
+            <section class="ds-ed-service-detail__section" data-reveal style="--reveal-step: 1">
+                <h2 class="ds-ed-title">@highlightsTitle</h2>
+                <ul class="ds-ed-checklist">
+                    @foreach (string item in service.Highlights)
+                    {
+                        <li>@item</li>
+                    }
+                </ul>
+            </section>
+        }
+
+        @if (service.UseCases is { Count: > 0 })
+        {
+            <section class="ds-ed-service-detail__section" data-reveal style="--reveal-step: 2">
+                <h2 class="ds-ed-title">@useCasesTitle</h2>
+                <div class="ds-ed-usecases">
+                    @foreach (UseCase uc in service.UseCases)
+                    {
+                        <article class="ds-ed-usecase">
+                            <h3>@uc.Title</h3>
+                            <p>@uc.Description</p>
+                        </article>
+                    }
+                </div>
+            </section>
+        }
+
+        @if (service.Faq is { Count: > 0 })
+        {
+            <section class="ds-ed-service-detail__section" data-reveal style="--reveal-step: 3">
+                <h2 class="ds-ed-title">@faqTitle</h2>
+                <div class="ds-ed-faq">
+                    @foreach (FaqEntry entry in service.Faq)
+                    {
+                        <details class="ds-ed-faq__entry">
+                            <summary>@entry.Question</summary>
+                            <p>@entry.Answer</p>
+                        </details>
+                    }
+                </div>
+            </section>
+        }
+    </article>
 
     <CtaCalendlySection />
 }
 else if (loaded)
 {
-    <section class="ds-chapter">
-        <div class="ds-container">
-            <Placeholder />
-        </div>
+    <section class="ds-ed-service-detail">
+        <Placeholder />
     </section>
 }
 

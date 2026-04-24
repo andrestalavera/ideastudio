@@ -2,30 +2,59 @@
 @using IdeaStudio.Website.Services
 @inject ISlugService SlugService
 
-@* Phase C6 — static vertical timeline. A giant accent-tinted year on the
-   left, an ExperienceCard on the right, and a thin rail running between
-   them with a dot at each row. Zero JS, zero pinning, zero bugs. Mobile
-   collapses to a single column with the year sitting above each card. *@
+@* Phase D — editorial CV timeline.
+   Two-column: sticky year + period label on the left, role + company +
+   description + tech tags on the right. No cards, no tilt, no data-magnetic.
+   The typographic hierarchy *is* the visual interest. *@
 
-<div class="ds-timeline">
-    <div class="ds-timeline__rail" aria-hidden="true"></div>
+<div class="ds-ed-timeline">
     @foreach ((Experience exp, int i) in experiencesWithIds.Select((e, i) => (e, i)))
     {
-        <div class="ds-timeline__row" data-reveal style="--reveal-step:@i">
-            <div class="ds-timeline__year">
-                <span class="ds-timeline__year-number">@YearOf(exp)</span>
-                <span class="ds-timeline__year-dot" aria-hidden="true"></span>
+        <article id="@exp.Id" class="ds-ed-exp" data-reveal style="--reveal-step:@(i % 3)">
+            <header class="ds-ed-exp__header">
+                <span class="ds-ed-number">@YearOf(exp)</span>
+                <span class="ds-ed-mono ds-ed-exp__period">@PeriodOf(exp)</span>
+            </header>
+            <div class="ds-ed-exp__body">
+                <h3 class="ds-ed-exp__role">@exp.Title</h3>
+                <p class="ds-ed-exp__company">
+                    <span>@exp.Company</span>
+                    @if (FirstLocation(exp) is { Length: > 0 } loc)
+                    {
+                        <span class="ds-ed-exp__location">@loc</span>
+                    }
+                </p>
+                @if (exp.Description is not null)
+                {
+                    <div class="ds-ed-exp__description ds-ed-body">
+                        @foreach (string? paragraph in exp.Description)
+                        {
+                            if (!string.IsNullOrWhiteSpace(paragraph))
+                            {
+                                <p>@((MarkupString)paragraph)</p>
+                            }
+                        }
+                    </div>
+                }
+                @if (exp.Skills is not null)
+                {
+                    <ul class="ds-ed-exp__tech ds-ed-mono">
+                        @foreach (string? skill in exp.Skills)
+                        {
+                            if (!string.IsNullOrWhiteSpace(skill))
+                            {
+                                <li>@skill</li>
+                            }
+                        }
+                    </ul>
+                }
             </div>
-            <div class="ds-timeline__card">
-                <ExperienceCard Experience="@exp" />
-            </div>
-        </div>
+        </article>
     }
 </div>
 
 @code {
     [Parameter, EditorRequired] public IReadOnlyList<Experience> Experiences { get; set; } = Array.Empty<Experience>();
-
     private IReadOnlyList<Experience> experiencesWithIds = Array.Empty<Experience>();
 
     protected override void OnParametersSet() =>
@@ -33,8 +62,25 @@
             .Select(e => e.WithGeneratedId(SlugService))
             .ToArray();
 
-    // Experience.StartDate is a DateTime (required), so we use its Year directly.
-    // If the year is unset (default DateTime), fall back to an em-dash.
     private static string YearOf(Experience exp) =>
-        exp.StartDate.Year > 1 ? exp.StartDate.Year.ToString(System.Globalization.CultureInfo.InvariantCulture) : "—";
+        exp.StartDate.Year > 1
+            ? exp.StartDate.Year.ToString(System.Globalization.CultureInfo.InvariantCulture)
+            : "—";
+
+    private static string PeriodOf(Experience exp)
+    {
+        try
+        {
+            string start = exp.StartDate.ToString("MMM yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            bool isPresent = exp.EndDate.Date == DateTime.Today.Date;
+            string end = isPresent
+                ? "Present"
+                : exp.EndDate.ToString("MMM yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            return $"{start} → {end}".ToUpperInvariant();
+        }
+        catch { return ""; }
+    }
+
+    private static string? FirstLocation(Experience exp) =>
+        exp.Locations?.FirstOrDefault(l => !string.IsNullOrWhiteSpace(l));
 }

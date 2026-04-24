@@ -1,6 +1,9 @@
 // ============================================================
 // IdeaStud.io — styles entry
-// Dark cinema-atmospheric design system — SCSS-first (Phase C1+C2).
+// Phase D: editorial rebuild — brass-and-black, serif italic display,
+// mono technical details, brutal minimalism. All editorial pages style
+// off --ds-accent (single amber). Legacy per-service accent tokens and
+// cyan/sky/teal are kept for back-compat but the new pages ignore them.
 // ============================================================
 
 @use 'tokens/service-accents';
@@ -31,3 +34,10 @@
 @use 'patterns/intro-hero';
 @use 'patterns/tilt';
 @use 'patterns/read-progress';
+
+// Editorial (Phase D) patterns.
+@use 'patterns/ed-hero';
+@use 'patterns/ed-masthead';
+@use 'patterns/ed-services';
+@use 'patterns/ed-service-detail';
+@use 'patterns/ed-realisations';

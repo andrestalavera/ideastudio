@@ -1,57 +1,37 @@
 @use '../tokens/space' as s;
-@use '../tokens/typography' as t;
 
-// Chapter block padding lives in utilities/_stack.scss (Phase C6 premium
-// scale). Only structural + decorative bits remain here.
+// Phase D — minimal chapter supporting classes.
+// Font sizes live in base/_typography.scss. This file only carries layout for
+// the old .ds-chapter structure (kept to avoid touching legacy components).
 
 .ds-chapter {
   position: relative;
+  padding-block: clamp(3rem, 6vw, 6rem);
 }
 
 .ds-chapter__heading {
-  position: relative;
   display: flex;
   flex-direction: column;
-  gap: s.$s-3;
-  // Phase C6 — chapter heading breathes before the content block.
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  text-align: center;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  text-align: left;
 }
 
-// Chapter kicker + title typography live in base/_typography.scss (Phase C6).
-// Only layout-adjacent properties + the accent span belong here.
 .ds-chapter__title {
-  color: var(--ds-fg);
   margin: 0;
 }
 
 .ds-chapter__title em {
-  font-style: normal;
-  font-weight: t.$fw-medium;
-  color: var(--ds-sky); // fallback — solid sky on dark bg, high contrast
-
-  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-    background: linear-gradient(90deg, var(--ds-sky), var(--ds-teal));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  @media (forced-colors: active) {
-    color: CanvasText;
-    background: none;
-    -webkit-text-fill-color: CanvasText;
-  }
+  font-style: italic;
+  color: var(--ds-accent);
 }
 
-// Phase C6 — static chapter accent rule. The draw-in animation was dropped
-// because <RevealWords> on the title already owns the attention.
+// Rule kept for back-compat but visual impact dropped to a muted 1px hr.
 .ds-chapter__rule {
   display: block;
   height: 1px;
   width: min(120px, 30%);
-  background: color-mix(in srgb, var(--ds-scene-accent, currentColor) 60%, transparent);
-  margin-block: 1.2rem 2.5rem;
-  margin-inline: auto;
-  border-radius: 2px;
+  background: var(--ds-rule);
+  margin: 0.5rem 0 1.5rem;
+  border: 0;
 }

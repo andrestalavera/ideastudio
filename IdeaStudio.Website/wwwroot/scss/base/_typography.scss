@@ -1,24 +1,31 @@
 @use '../tokens/typography' as t;
 @use '../tokens/space' as s;
 
-// Self-hosted fonts (files copied by scripts/copy-fonts.mjs).
+// Self-hosted faces (files copied by scripts/copy-fonts.mjs).
 @font-face {
-  font-family: "Inter Variable";
-  src: url("/fonts/inter-variable.woff2") format("woff2-variations");
+  font-family: 'Inter Variable';
+  src: url('/fonts/inter-variable.woff2') format('woff2-variations');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "JetBrains Mono";
-  src: url("/fonts/jetbrains-mono.woff2") format("woff2");
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/jetbrains-mono.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
-// Phase C6 premium baseline. 17px body, looser line-height, antialiasing.
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/instrument-serif-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -28,68 +35,118 @@ html {
 
 html, body {
   font-family: var(--ds-font-sans);
-  font-size: 1.0625rem;          // 17px premium baseline
+  font-size: 1rem;
   line-height: 1.7;
-  letter-spacing: 0.005em;
+  letter-spacing: 0;
   font-weight: t.$fw-regular;
+  color: var(--ds-fg);
+  background: var(--ds-bg);
 }
 
-// Utility text classes (prefixed .ds- to avoid collision with Bootstrap).
-// Phase C6: oversized display faces, tight tracking, generous leading.
+// --- Editorial typography scale ------------------------------------------
+
+// Display — serif italic, huge, tight line-height.
+.ds-display,
 .ds-display-1,
+.ds-ed-display,
 .ds-hero__name,
-.ds-intro-hero__name,
+.ds-intro-hero__name {
+  font-family: var(--ds-font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(3.6rem, 10vw, 9rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--ds-fg);
+}
+
+// Chapter / section title — serif italic, smaller.
+.ds-ed-title,
 .ds-chapter__title,
 .ds-section__title {
-  font-family: var(--ds-font-sans);
-  font-weight: t.$fw-semibold;
+  font-family: var(--ds-font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 3.8rem);
   line-height: 1.05;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.015em;
+  color: var(--ds-fg);
 }
 
-.ds-display-1        { font-size: clamp(3rem, 7vw, 6.5rem); }
-.ds-hero__name       { font-size: clamp(2.6rem, 5.5vw, 5rem); }
-.ds-intro-hero__name { font-size: clamp(2.6rem, 5.5vw, 5rem); }
-.ds-chapter__title   { font-size: clamp(2rem, 4vw, 3.4rem); }
-.ds-section__title   { font-size: clamp(1.8rem, 3.6vw, 3rem); }
-
-.ds-display-2 {
-  font-size: t.$fs-display-2;
-  font-weight: t.$fw-light;
-  line-height: t.$lh-tight;
-  letter-spacing: t.$tracking-tight;
+// Giant editorial numbers (years, indices) — serif italic, tinted amber.
+.ds-ed-number {
+  font-family: var(--ds-font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ds-accent);
 }
 
-.ds-h1 { font-size: t.$fs-h1; font-weight: t.$fw-medium; line-height: t.$lh-snug; letter-spacing: t.$tracking-snug; }
-.ds-h2 { font-size: t.$fs-h2; font-weight: t.$fw-medium; line-height: t.$lh-snug; letter-spacing: t.$tracking-snug; }
-.ds-h3 { font-size: t.$fs-h3; font-weight: t.$fw-semibold; line-height: t.$lh-snug; }
-
-.ds-body      { font-size: 1.0625rem; line-height: 1.7; max-width: 65ch; }
-.ds-body-lead {
-  font-size: clamp(1.0625rem, 1.2vw, 1.25rem);
-  line-height: 1.65;
-  letter-spacing: 0.005em;
+// Technical / mono details — dates, tech tags, indices.
+.ds-ed-mono {
+  font-family: var(--ds-font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
   color: var(--ds-fg-muted);
-  max-width: 62ch;
+  text-transform: uppercase;
 }
-.ds-small     { font-size: t.$fs-small; line-height: t.$lh-snug; color: var(--ds-fg-muted); }
 
-.ds-mono      { font-family: var(--ds-font-mono); }
-
+.ds-ed-kicker,
 .ds-kicker,
 .ds-chapter__kicker,
 .ds-intro-hero__kicker {
-  font-family: var(--ds-font-sans);
-  font-size: 0.8125rem;
-  font-weight: t.$fw-medium;
-  letter-spacing: 0.22em;
+  font-family: var(--ds-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ds-fg-muted);
+  color: var(--ds-accent);
 }
 
+.ds-ed-lead,
+.ds-body-lead {
+  font-family: var(--ds-font-sans);
+  font-size: clamp(1.0625rem, 1.3vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--ds-fg-muted);
+  max-width: 58ch;
+}
+
+.ds-ed-body {
+  font-family: var(--ds-font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ds-fg);
+  max-width: 68ch;
+}
+
+// Inline amber tint.
+.ds-ed-accent {
+  color: var(--ds-accent);
+  font-style: italic;
+}
+
+// --- Legacy back-compat classes (rewired to editorial scale) -------------
+
+.ds-display-2 {
+  font-family: var(--ds-font-serif);
+  font-style: italic;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ds-fg);
+}
+
+.ds-h1 { font-size: t.$fs-h1; font-weight: t.$fw-medium; line-height: t.$lh-snug; letter-spacing: t.$tracking-snug; color: var(--ds-fg); }
+.ds-h2 { font-size: t.$fs-h2; font-weight: t.$fw-medium; line-height: t.$lh-snug; letter-spacing: t.$tracking-snug; color: var(--ds-fg); }
+.ds-h3 { font-size: t.$fs-h3; font-weight: t.$fw-semibold; line-height: t.$lh-snug; color: var(--ds-fg); }
+
+.ds-body      { font-size: 1.0625rem; line-height: 1.75; max-width: 68ch; color: var(--ds-fg); }
+.ds-small     { font-size: t.$fs-small; line-height: t.$lh-snug; color: var(--ds-fg-muted); }
+.ds-mono      { font-family: var(--ds-font-mono); }
+
 .ds-emphasis-gradient {
-  background: linear-gradient(90deg, var(--ds-sky), var(--ds-teal));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--ds-accent);
 }

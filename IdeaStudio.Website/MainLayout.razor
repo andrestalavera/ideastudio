@@ -13,33 +13,27 @@
         <a href="#main-content" class="ds-skip-link">@skipToMainContentText</a>
         <div class="ds-read-progress" aria-hidden="true"></div>
 
-        <header class="ds-header ds-print-hidden">
-            <div class="ds-container ds-header__inner">
-                <a class="ds-header__logo" href="@LocalizedRoute.For("home")">
+        <header class="ds-ed-masthead ds-print-hidden">
+            <div class="ds-container ds-ed-masthead__inner">
+                <a class="ds-ed-masthead__logo" href="@LocalizedRoute.For("home")">
                     <img src="images/andres-talavera.jpeg"
                          alt=""
-                         class="ds-header__avatar"
-                         width="32" height="32" />
+                         class="ds-ed-masthead__avatar"
+                         width="28" height="28" />
                     <span>IdeaStud.io</span>
                 </a>
-                <nav class="ds-header__nav" aria-label="Main">
+                <nav class="ds-ed-masthead__nav" aria-label="Main">
                     <a href="@LocalizedRoute.For("services.hub")">@servicesText</a>
                     <a href="@LocalizedRoute.For("realisations")">@realisationsText</a>
                     <a href="@LocalizedRoute.For("cv")">@cvText</a>
                 </nav>
-                <div class="ds-header__actions">
-                    <a class="ds-header__icon-link" href="https://linkedin.com/in/andres-talavera" target="_blank" rel="noopener" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin" aria-hidden="true"></i>
-                    </a>
-                    <a class="ds-header__icon-link" href="https://github.com/andrestalavera" target="_blank" rel="noopener" aria-label="GitHub">
-                        <i class="fab fa-github" aria-hidden="true"></i>
-                    </a>
+                <div class="ds-ed-masthead__actions">
                     <CultureSelector />
-                    <a class="ds-btn ds-btn--primary ds-btn--sm"
+                    <a class="ds-ed-masthead__cta"
                        href="https://calendly.com/andres-talavera/30min"
                        target="_blank" rel="noopener"
                        aria-label="@bookCallAriaText">
-                        @meetText
+                        @meetText <span aria-hidden="true">↗</span>
                     </a>
                 </div>
             </div>

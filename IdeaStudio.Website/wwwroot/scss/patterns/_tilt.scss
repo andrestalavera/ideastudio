@@ -1,44 +1,8 @@
-// Pointer-tracked 3D tilt for cards. Uses --mx / --my set by
-// interactions/magnetic.js — no new JS. Phase C6 softens the amplitude
-// (6deg → 3deg), drops the inner parallax translateZ, and drops the
-// pointer-tracked shine — cards stay quiet.
-//
-// Disabled on touch and under prefers-reduced-motion.
+// Phase D — tilt neutralised. The [data-tilt] attribute is still present in
+// some legacy components (harmless) but the editorial direction wants no 3D
+// card tilt. Keep the selector here so compiled CSS stays consistent; emit a
+// no-op.
 
-[data-tilt] {
-  position: relative;
-  transform:
-    perspective(1200px)
-    rotateX(calc(var(--my, 0) * -3deg))
-    rotateY(calc(var(--mx, 0) * 3deg))
-    translateZ(0);
-  transition: transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
-  will-change: transform;
-
-  &:hover {
-    // Snappier when actively tracked so the tilt follows the pointer.
-    transition-duration: 80ms;
-  }
-}
-
-// Direct children stay flat — inner parallax translateZ dropped in C6.
+[data-tilt] { transform: none; }
 [data-tilt] > * { transform: none; }
-
-// Shine layer dropped — keep cards quiet.
 [data-tilt]::after { content: none; }
-
-// Experience cards are wide and full-bleed — halve the tilt amplitude so
-// the large surface doesn't feel overly dramatic.
-[data-tilt].ds-exp-card {
-  transform:
-    perspective(1400px)
-    rotateX(calc(var(--my, 0) * -1.5deg))
-    rotateY(calc(var(--mx, 0) * 1.5deg))
-    translateZ(0);
-}
-[data-tilt].ds-exp-card > * { transform: none; }
-
-@media (hover: none), (prefers-reduced-motion: reduce) {
-  [data-tilt] { transform: none; }
-  [data-tilt] > * { transform: none; }
-}

@@ -1,41 +1,58 @@
 @using IdeaStudio.Website.Services
 @inherits LocalizedComponent
 
-<section class="ds-intro-hero" id="home-intro-hero">
-    <div class="ds-container ds-intro-hero__inner">
-        <img src="images/andres-talavera.jpeg"
-             alt="@nameText"
-             class="ds-intro-hero__avatar"
-             width="140" height="140"
-             loading="eager" />
-        <p class="ds-intro-hero__kicker">@kickerText</p>
-        <RevealText Text="@nameText" Tag="h1" Class="ds-intro-hero__name" />
-        <p class="ds-intro-hero__lead">@leadText</p>
-        <div class="ds-intro-hero__actions">
-            <a class="ds-action" href="https://linkedin.com/in/andres-talavera" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <i class="fab fa-linkedin" aria-hidden="true"></i>
-                <span>LinkedIn</span>
-            </a>
-            <a class="ds-action" href="https://github.com/andrestalavera" target="_blank" rel="noopener" aria-label="GitHub">
-                <i class="fab fa-github" aria-hidden="true"></i>
-                <span>GitHub</span>
-            </a>
-            <a class="ds-action ds-action--primary"
-               href="https://calendly.com/andres-talavera/30min"
-               target="_blank" rel="noopener"
-               data-magnetic>
-                <i class="fas fa-calendar" aria-hidden="true"></i>
-                <span>@meetText</span>
-            </a>
+@* Phase D — editorial hero.
+   Kicker rule · serif display name · one lead sentence · three numbered
+   contact links in a vertical list · scroll hint at the bottom. Avatar
+   moved to the masthead (collapsed pre-hero). *@
+
+<section class="ds-ed-hero" id="home-intro-hero">
+    <div class="ds-ed-hero__grid">
+        <div class="ds-ed-hero__kicker">
+            <span class="ds-ed-mono">— @kickerText</span>
         </div>
+        <h1 class="ds-ed-display ds-ed-hero__name">
+            <RevealText Text="@firstName" Tag="span" />
+            <br />
+            <RevealText Text="@lastName" Tag="span" StartIndex="@firstName.Length" />
+        </h1>
+        <p class="ds-ed-lead ds-ed-hero__lead">@leadText</p>
+
+        <nav class="ds-ed-hero__links" aria-label="@contactAriaText">
+            <a class="ds-ed-link" href="https://linkedin.com/in/andres-talavera" target="_blank" rel="noopener">
+                <span class="ds-ed-mono">01</span>
+                <span>LinkedIn</span>
+                <span class="ds-ed-link__arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="ds-ed-link" href="https://github.com/andrestalavera" target="_blank" rel="noopener">
+                <span class="ds-ed-mono">02</span>
+                <span>GitHub</span>
+                <span class="ds-ed-link__arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="ds-ed-link ds-ed-link--primary"
+               href="https://calendly.com/andres-talavera/30min"
+               target="_blank" rel="noopener">
+                <span class="ds-ed-mono">03</span>
+                <span>@meetText</span>
+                <span class="ds-ed-link__arrow" aria-hidden="true">↗</span>
+            </a>
+        </nav>
+    </div>
+    <div class="ds-ed-hero__scroll" aria-hidden="true">
+        <span class="ds-ed-mono">@scrollText</span>
+        <span class="ds-ed-hero__scroll-line"></span>
     </div>
 </section>
 
 @code {
-    private string nameText = "Andrés Talavera";
+    private const string firstName = "Andrés";
+    private const string lastName = "Talavera";
+
     private string kickerText = "Consultant · Techlead · Formateur";
-    private string leadText = "Je transforme vos idées en logiciels qui marchent. .NET & Azure, techlead, formation, mobile, web.";
+    private string leadText = "Je transforme des idées en logiciels qui marchent. .NET, Azure, mobile, web — à Lyon et à distance.";
     private string meetText = "Rencontrer";
+    private string scrollText = "scroll";
+    private string contactAriaText = "Contact";
 
     protected override void LoadTexts()
     {

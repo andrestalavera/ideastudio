@@ -4,19 +4,25 @@
 @use '../tokens/motion' as m;
 
 :root {
-  // Surfaces
-  --ds-bg:        #{c.$ink-0};
-  --ds-surface-1: #{c.$ink-100};
-  --ds-surface-2: #{c.$ink-200};
-  --ds-surface-3: #{c.$ink-300};
+  // Surfaces — Phase D true-black + barely-raised surface
+  --ds-bg:        #{c.$bg};
+  --ds-deep:      #{c.$bg};
+  --ds-surface-1: #{c.$surface-1};
+  --ds-surface-2: #{c.$surface-2};
+  --ds-surface-3: #{c.$surface-2};
 
-  // Text
-  --ds-fg:        #{c.$ink-900};
-  --ds-fg-muted:  #{c.$ink-700};
-  --ds-fg-faint:  #{c.$ink-500};
+  // Text — warm cream on black
+  --ds-fg:        #{c.$fg};
+  --ds-fg-muted:  #{c.$fg-muted};
+  --ds-fg-faint:  #{c.$fg-faint};
 
-  // Accents
-  --ds-deep:  #{c.$deep};
+  // Editorial accent — single brass/amber hue
+  --ds-accent:      #{c.$accent};
+  --ds-accent-deep: #{c.$accent-deep};
+  --ds-rule:        #{c.$rule};
+
+  // Legacy tokens — left intact for back-compat (_service-accents and older
+  // partials still reference them). New pages must style off --ds-accent.
   --ds-azure: #{c.$azure};
   --ds-sky:   #{c.$sky};
   --ds-cyan:  #{c.$cyan};
@@ -28,8 +34,9 @@
   --ds-glass-border: #{c.$surface-glass-border};
 
   // Typography
-  --ds-font-sans: #{t.$font-sans};
-  --ds-font-mono: #{t.$font-mono};
+  --ds-font-sans:  #{t.$font-sans};
+  --ds-font-serif: 'Instrument Serif', 'Times New Roman', Times, serif;
+  --ds-font-mono:  #{t.$font-mono};
 
   // Motion
   --ds-ease-out:    #{m.$ease-out};
@@ -40,5 +47,5 @@
   --ds-dur-slow: #{m.$dur-slow};
 
   // Focus
-  --ds-focus-ring: #{c.$focus-ring};
+  --ds-focus-ring: var(--ds-accent);
 }

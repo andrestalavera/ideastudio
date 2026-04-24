@@ -1,0 +1,46 @@
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@using ServiceModel = IdeaStudio.Website.Models.Service
+@inherits LocalizedComponent
+@inject ILocalizedRoute LocalizedRoute
+
+@* Phase D — editorial services list.
+   Renders services as a numbered magazine list instead of a card grid.
+   Each row: index · title (serif italic) · tagline · arrow. *@
+
+<section class="ds-ed-services" id="services">
+    <div class="ds-ed-services__inner">
+        <header class="ds-ed-services__header">
+            <span class="ds-ed-kicker">@kickerText</span>
+            <h2 class="ds-ed-title">@titleLine1<br /><span class="ds-ed-accent">@titleLine2</span></h2>
+        </header>
+        <ol class="ds-ed-services__list">
+            @foreach ((ServiceModel svc, int i) in Services.OrderBy(s => s.Order).Select((s, i) => (s, i)))
+            {
+                <li class="ds-ed-service" data-reveal style="--reveal-step:@i">
+                    <a class="ds-ed-service__link" href="@($"{LocalizedRoute.For("services.hub")}/{svc.Slug}")">
+                        <span class="ds-ed-service__index ds-ed-mono">@($"0{i + 1}")</span>
+                        <span class="ds-ed-service__title">@svc.Title</span>
+                        <span class="ds-ed-service__tagline">@svc.Tagline</span>
+                        <span class="ds-ed-service__arrow" aria-hidden="true">→</span>
+                    </a>
+                </li>
+            }
+        </ol>
+    </div>
+</section>
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<ServiceModel> Services { get; set; } = [];
+
+    private string kickerText = "Services";
+    private string titleLine1 = "Six façons";
+    private string titleLine2 = "de collaborer";
+
+    protected override void LoadTexts()
+    {
+        kickerText = LocalizationService.GetString("Services.Kicker");
+        titleLine1 = LocalizationService.GetString("Services.TitleLine1");
+        titleLine2 = LocalizationService.GetString("Services.TitleLine2");
+    }
+}
