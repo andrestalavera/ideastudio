@@ -12,6 +12,7 @@ import { attachReveals, disposeReveals } from './interactions/reveals.js';
 import { attachCursor, disposeCursor } from './interactions/cursor.js';
 import { attachNavMorph, disposeNavMorph } from './interactions/nav-morph.js';
 import { prefersReducedMotion, batteryLow, setMotionMode } from './utils/perf.js';
+export { mountSignature } from './signature/signature-name.js';
 
 let booted = false;
 let renderer = null;
