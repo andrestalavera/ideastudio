@@ -1,6 +1,7 @@
 @using IdeaStudio.Website.Services
 @inherits LocalizedComponent
 @inject ILocalizedRoute LocalizedRoute
+@inject IConsentService Consent
 
 @* Footer — 4-col mono footer. *@
 
@@ -28,6 +29,7 @@
             <div class="ds-footer__label">@legalLabel</div>
             <a href="@LocalizedRoute.For("legal")">@legalText</a>
             <a href="@LocalizedRoute.For("privacy")">@privacyText</a>
+            <button type="button" class="ds-footer__link-btn" @onclick="OpenCookieSettings">@manageCookiesText</button>
         </div>
     </div>
 </footer>
@@ -43,19 +45,26 @@
     private string legalLabel = "Légal";
     private string legalText = "Mentions légales";
     private string privacyText = "Confidentialité";
+    private string manageCookiesText = "Gestion des cookies";
 
     protected override void LoadTexts()
     {
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        taglineText      = fr ? "Lyon · Paris · Genève · Fribourg — remote" : "Lyon · Paris · Geneva · Fribourg — remote";
-        sitemapLabel     = fr ? "Plan du site" : "Sitemap";
-        homeText         = fr ? "Accueil" : "Home";
-        servicesText     = fr ? "Services" : "Services";
-        realisationsText = fr ? "Réalisations" : "Projects";
-        cvText           = fr ? "Parcours" : "Resume";
-        contactLabel     = fr ? "Contact" : "Contact";
-        legalLabel       = fr ? "Légal" : "Legal";
-        legalText        = fr ? "Mentions légales" : "Legal";
-        privacyText      = fr ? "Confidentialité" : "Privacy";
+        taglineText        = fr ? "Lyon · Paris · Genève · Fribourg — remote" : "Lyon · Paris · Geneva · Fribourg — remote";
+        sitemapLabel       = fr ? "Plan du site" : "Sitemap";
+        homeText           = fr ? "Accueil" : "Home";
+        servicesText       = fr ? "Services" : "Services";
+        realisationsText   = fr ? "Réalisations" : "Projects";
+        cvText             = fr ? "Parcours" : "Resume";
+        contactLabel       = fr ? "Contact" : "Contact";
+        legalLabel         = fr ? "Légal" : "Legal";
+        legalText          = fr ? "Mentions légales" : "Legal";
+        privacyText        = fr ? "Confidentialité" : "Privacy";
+        manageCookiesText  = LocalizationService.GetString("Cookies.FooterManage");
+    }
+
+    private async Task OpenCookieSettings()
+    {
+        await Consent.ResetAsync();
     }
 }
