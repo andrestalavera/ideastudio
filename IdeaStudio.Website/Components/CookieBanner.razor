@@ -1,0 +1,84 @@
+@* IdeaStudio.Website/Components/CookieBanner.razor *@
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@implements IDisposable
+@inject IConsentService Consent
+@inject IAnalyticsService Analytics
+@inject ILocalizedRoute LocalizedRoute
+
+@if (showBanner)
+{
+    <div class="ds-cookie-banner" role="dialog" aria-labelledby="ds-cookie-banner-title" aria-describedby="ds-cookie-banner-desc">
+        <div class="ds-cookie-banner__inner">
+            <div class="ds-cookie-banner__copy">
+                <h2 id="ds-cookie-banner-title" class="ds-cookie-banner__title">@titleText</h2>
+                <p id="ds-cookie-banner-desc" class="ds-cookie-banner__desc">
+                    @descText
+                    <a class="ds-link" href="@privacyAnchor">@learnMoreText</a>
+                </p>
+            </div>
+            <div class="ds-cookie-banner__actions">
+                <button type="button" class="ds-btn ds-btn--ghost ds-btn--sm" @onclick="OnDecline">@declineText</button>
+                <button type="button" class="ds-btn ds-btn--primary ds-btn--sm" @onclick="OnAccept">@acceptText</button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private bool showBanner;
+    private bool initialized;
+    private string titleText = "Cookies & mesure d'audience";
+    private string descText = "Nous utilisons Google Analytics, Microsoft Clarity et Meta Pixel.";
+    private string learnMoreText = "En savoir plus";
+    private string acceptText = "Accepter";
+    private string declineText = "Refuser";
+    private string privacyAnchor = "#cookies";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        Consent.OnChanged += OnConsentChanged;
+        await Consent.LoadAsync();
+        initialized = true;
+        showBanner = !Consent.HasDecided;
+        StateHasChanged();
+    }
+
+    protected override void LoadTexts()
+    {
+        titleText      = LocalizationService.GetString("Cookies.BannerTitle");
+        descText       = LocalizationService.GetString("Cookies.BannerDescription");
+        learnMoreText  = LocalizationService.GetString("Cookies.BannerLearnMore");
+        acceptText     = LocalizationService.GetString("Cookies.BannerAccept");
+        declineText    = LocalizationService.GetString("Cookies.BannerDecline");
+        privacyAnchor  = LocalizedRoute.For("privacy") + "#cookies";
+    }
+
+    private async Task OnAccept()
+    {
+        await Consent.AcceptAsync();
+        // OnConsentChanged will close the banner.
+    }
+
+    private async Task OnDecline()
+    {
+        await Consent.DeclineAsync();
+    }
+
+    private void OnConsentChanged()
+    {
+        if (!initialized) return;
+        showBanner = !Consent.HasDecided;
+        InvokeAsync(StateHasChanged);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            Consent.OnChanged -= OnConsentChanged;
+        }
+        base.Dispose(disposing);
+    }
+}
