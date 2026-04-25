@@ -1,4 +1,6 @@
-// components/_progress.scss — thin reading progress rail (top of viewport).
+// components/_progress.scss — reading progress rail (top of viewport).
+// A 3px iridescent ribbon over a faint track, with a soft glow so it reads
+// against light hero imagery as well as dark surfaces.
 
 @use '../tokens/colors' as c;
 
@@ -7,15 +9,23 @@
   inset-block-start: 0;
   inset-inline-start: 0;
   inline-size: 100%;
-  block-size: 2px;
-  background: transparent;
+  block-size: 3px;
+  background: rgba(234, 244, 242, 0.08);
   z-index: 50;
   pointer-events: none;
 
   &__bar {
     block-size: 100%;
     inline-size: 0%;
-    background: c.$gradient-iridescent;
+    background: linear-gradient(
+      90deg,
+      c.$ir-duck 0%,
+      c.$ir-blue 33%,
+      c.$ir-amber 66%,
+      c.$ir-pink 100%
+    );
+    box-shadow: 0 0 8px rgba(0, 194, 212, 0.55),
+                0 0 14px rgba(255, 54, 112, 0.25);
     transform-origin: left;
     transition: inline-size 80ms linear;
   }

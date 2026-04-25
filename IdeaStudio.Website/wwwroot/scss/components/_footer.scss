@@ -23,10 +23,10 @@
     margin-inline: auto;
   }
 
-  @container (max-width: 64rem) {
+  @media (max-width: 64rem) {
     &__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-  @container (max-width: 40rem) {
+  @media (max-width: 40rem) {
     &__inner { grid-template-columns: 1fr; }
   }
 

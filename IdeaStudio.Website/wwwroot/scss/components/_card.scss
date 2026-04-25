@@ -13,6 +13,8 @@
   display: flex;
   flex-direction: column;
   gap: s.$s-3;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
 
   &__title {
     font-family: t.$font-sans;

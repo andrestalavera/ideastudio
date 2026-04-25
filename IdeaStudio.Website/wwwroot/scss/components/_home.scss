@@ -1,69 +1,15 @@
 // components/_home.scss — Home-specific layout. The signature hero leads,
-// chapters whisper underneath, and a single iridescent rail tracks scroll
-// progress down the page.
+// chapters whisper underneath. Scroll progress is tracked by the top
+// .ds-progress rail; the home page itself stays clean.
 
 @use '../tokens/space' as s;
 @use '../tokens/colors' as c;
 
-// 1 · Page-level scroll-progress rail. A 1px iridescent line pinned to the
-// left margin that grows with scroll progress. Pure CSS via animation-timeline:
-// scroll() in browsers that support it; static low-opacity line elsewhere.
-// This is the "thread connecting the chapters" — the metaphor the removed
-// WebGL thread pass tried to express, in CSS only.
 .ds-page--home {
   position: relative;
-
-  &::before {
-    content: '';
-    position: fixed;
-    inset-block: 0;
-    inset-inline-start: clamp(0.5rem, 2vw, 2rem);
-    inline-size: 1px;
-    background: linear-gradient(
-      180deg,
-      c.$ir-duck 0%,
-      c.$ir-blue 33%,
-      c.$ir-amber 66%,
-      c.$ir-pink 100%
-    );
-    opacity: 0.45;
-    transform-origin: top;
-    transform: scaleY(0);
-    z-index: 1;
-    pointer-events: none;
-  }
 }
 
-@supports (animation-timeline: scroll()) {
-  .ds-page--home::before {
-    animation: ds-home-rail linear forwards;
-    animation-timeline: scroll(root);
-  }
-
-  @keyframes ds-home-rail {
-    from { transform: scaleY(0); }
-    to   { transform: scaleY(1); }
-  }
-}
-
-// Fallback: static low-opacity rail in browsers without scroll-driven
-// animations (Safari < 17, older Firefox).
-@supports not (animation-timeline: scroll()) {
-  .ds-page--home::before {
-    transform: scaleY(1);
-    opacity: 0.18;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ds-page--home::before {
-    transform: scaleY(1);
-    opacity: 0.15;
-    animation: none;
-  }
-}
-
-// 2 · Asymmetric Home hero. The signature is a four-area editorial layout
+// Asymmetric Home hero. The signature is a four-area editorial layout
 // instead of a centered column. Variance promised by the design system =
 // variance delivered.
 //   ┌─────────────────────────────────────────┬───┐
@@ -165,15 +111,14 @@
   }
 }
 
-// 3 · Chapter padding on Home — generously airy.
+// Chapter padding on Home — generously airy.
 .ds-page--home {
   .ds-section--chapter {
     padding-block: clamp(7rem, 14vw, 14rem);
   }
 
-  // 4 · Reactivate the iridescent chapter accent on Home (it was disabled
-  // previously). On Home, rotate it 90° so it appears as a short vertical
-  // stub at the chapter break, anchoring the rail metaphor.
+  // Iridescent chapter accent on Home: a short vertical stub at the chapter
+  // break, anchoring each section against its hairline rule.
   .ds-section--bordered::before {
     inset-block-start: 0;
     inset-inline-start: clamp(1rem, 4vw, 4rem);
@@ -184,7 +129,7 @@
   }
 }
 
-// 5 · Project tiles on Home — editorial zig-zag instead of uniform rows.
+// Project tiles on Home — editorial zig-zag instead of uniform rows.
 // Each tile is a self-contained 2-col composition; even rows flip the
 // composition (text-left, image-right) to break the visual rhythm.
 .ds-home__projects {
@@ -234,7 +179,7 @@
   }
 }
 
-// 6 · Home FAQ — magazine-style 2-col Q/A on desktop. Question + kicker
+// Home FAQ — magazine-style 2-col Q/A on desktop. Question + kicker
 // stack on the left, answer occupies the wider right column. Each Q&A
 // keeps its own hairline separators (from _qa.scss) so chapters still
 // feel structured. On tablet/mobile the layout collapses to the default
@@ -261,5 +206,5 @@
   }
 }
 
-// 7 · Kicker tracking is a touch wider on Home for editorial feel.
+// Kicker tracking is a touch wider on Home for editorial feel.
 .ds-page--home .ds-rhythm > .ds-kicker { letter-spacing: 0.18em; }
