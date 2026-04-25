@@ -79,10 +79,11 @@ void main() {
   float thresh = mix(1.0, 0.40, emerge);
 
   // Letter body (crisp edge via smoothstep around threshold).
-  float inside = smoothstep(thresh + 0.02, thresh - 0.02, field * noiseGate);
+  // High field value = inside the glyph; low = outside.
+  float inside = smoothstep(thresh - 0.02, thresh + 0.02, field * noiseGate);
 
-  // Glow just outside the letter edge — a warm amber halo.
-  float glow = smoothstep(thresh + 0.18, thresh + 0.02, field * noiseGate) - inside;
+  // Glow just inside-of-edge — a warm amber halo on the rim of the letter.
+  float glow = smoothstep(thresh - 0.18, thresh - 0.02, field * noiseGate) - inside;
 
   // Compose.
   vec3 col = uFg;
@@ -239,7 +240,11 @@ export async function mountSignature(canvas, options) {
   // Extract the red channel into a Uint8Array for R8 upload.
   const r = new Uint8Array(field.width * field.height);
   for (let i = 0; i < r.length; i++) r[i] = field.data[i * 4];
+  // Canvas2D origin is top-left, WebGL UV origin is bottom-left → flip Y so
+  // the texture matches the orientation we sample with vUv in the shader.
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.R8, field.width, field.height, 0, gl.RED, gl.UNSIGNED_BYTE, r);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
