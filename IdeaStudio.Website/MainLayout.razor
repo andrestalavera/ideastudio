@@ -36,7 +36,6 @@
     {
         CultureService.CultureChanged += OnCultureChanged;
         Navigation.LocationChanged += OnLocationChanged;
-        Consent.OnChanged += OnConsentChanged;
         await LoadLocalizedStringsAsync();
         UpdateCtaVisibility(Navigation.Uri);
         await Consent.LoadAsync();
@@ -44,6 +43,7 @@
         {
             await Analytics.SetConsentAsync(Consent.IsGranted);
         }
+        Consent.OnChanged += OnConsentChanged;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
