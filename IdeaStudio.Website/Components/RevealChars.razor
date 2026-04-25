@@ -1,0 +1,61 @@
+@* RevealChars — splits Text into one <span> per non-whitespace character with
+   --i index for stagger. The host element carries aria-label so screen readers
+   read the string once, not character-by-character. ChildContent renders after
+   the chars (handy for trailing accent marks like the period). *@
+
+@code {
+    [Parameter, EditorRequired] public string Text { get; set; } = "";
+    [Parameter] public string? Tag { get; set; } = "h1";
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}
+
+@{
+    string tag = string.IsNullOrWhiteSpace(Tag) ? "h1" : Tag!;
+    string classAttr = string.IsNullOrWhiteSpace(Class)
+        ? " class=\"ds-reveal-chars\""
+        : $" class=\"{Class} ds-reveal-chars\"";
+    string ariaLabel = EscapeAttr(Text ?? "");
+}
+
+@((MarkupString)$"<{tag}{classAttr} aria-label=\"{ariaLabel}\">{BuildSpans()}")
+@ChildContent
+@((MarkupString)$"</{tag}>")
+
+@code {
+    private string BuildSpans()
+    {
+        var sb = new System.Text.StringBuilder();
+        int i = 0;
+        foreach (char c in Text ?? "")
+        {
+            if (char.IsWhiteSpace(c))
+            {
+                // Preserve word breaks as plain text nodes — they won't animate.
+                sb.Append(c);
+            }
+            else
+            {
+                sb.Append($"<span class=\"ds-reveal-chars__char\" style=\"--i:{i}\" aria-hidden=\"true\">");
+                sb.Append(EscapeChar(c));
+                sb.Append("</span>");
+                i++;
+            }
+        }
+        return sb.ToString();
+    }
+
+    private static string EscapeChar(char c) => c switch
+    {
+        '<' => "&lt;", '>' => "&gt;", '&' => "&amp;",
+        '\'' => "&#39;", '"' => "&quot;",
+        _ => c.ToString(),
+    };
+
+    private static string EscapeAttr(string s)
+    {
+        var sb = new System.Text.StringBuilder(s.Length);
+        foreach (char c in s) sb.Append(EscapeChar(c));
+        return sb.ToString();
+    }
+}
