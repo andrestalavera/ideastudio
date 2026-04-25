@@ -3,7 +3,6 @@
 @inherits LocalizedComponent
 @implements IDisposable
 @inject IConsentService Consent
-@inject IAnalyticsService Analytics
 @inject ILocalizedRoute LocalizedRoute
 
 @if (showBanner)
@@ -27,7 +26,6 @@
 
 @code {
     private bool showBanner;
-    private bool initialized;
     private string titleText = "Cookies & mesure d'audience";
     private string descText = "Nous utilisons Google Analytics, Microsoft Clarity et Meta Pixel.";
     private string learnMoreText = "En savoir plus";
@@ -38,11 +36,9 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        Consent.OnChanged += OnConsentChanged;
         await Consent.LoadAsync();
-        initialized = true;
         showBanner = !Consent.HasDecided;
-        StateHasChanged();
+        Consent.OnChanged += OnConsentChanged;
     }
 
     protected override void LoadTexts()
@@ -61,14 +57,10 @@
         // OnConsentChanged will close the banner.
     }
 
-    private async Task OnDecline()
-    {
-        await Consent.DeclineAsync();
-    }
+    private Task OnDecline() => Consent.DeclineAsync();
 
     private void OnConsentChanged()
     {
-        if (!initialized) return;
         showBanner = !Consent.HasDecided;
         InvokeAsync(StateHasChanged);
     }
