@@ -14,10 +14,11 @@ IdeaStud.io is the professional portfolio and resume website for Andrés Talaver
 ## Key Facts
 
 - Name: Andrés Talavera
-- Location: Lyon, France
+- Location: Lyon (France) — also working in Paris, Geneva and Fribourg
+- Available for: on-site, hybrid, fully remote
 - Languages: French (native), English (fluent), Spanish (native)
-- Specializations: .NET, Azure, Blazor, ASP.NET Core, Cloud Architecture
-- Experience: 10+ years in software development
+- Specializations: .NET, Azure, Blazor, ASP.NET Core, Cloud Architecture, Vibe coding & AI, MCP servers
+- Experience: 15+ years in software development
 
 ## Navigation
 
@@ -40,12 +41,14 @@ IdeaStud.io is the professional portfolio and resume website for Andrés Talaver
 - /fr/services/techlead — Techlead
 - /fr/services/formateur — Formateur
 - /fr/services/vibe-coding — Mise en place de vibe-coding
+- /fr/services/ia-en-entreprise — IA en entreprise
 - /fr/services/applications-mobiles — Création d'applications mobiles
 - /fr/services/sites-internet — Création de sites internet
 - /en/services/dotnet-azure-consulting — .NET & Azure consulting
 - /en/services/tech-lead — Tech lead
 - /en/services/trainer — Trainer
 - /en/services/vibe-coding — Vibe-coding rollout
+- /en/services/ai-enterprise — AI for the enterprise
 - /en/services/mobile-apps — Mobile apps
 - /en/services/websites — Websites
 

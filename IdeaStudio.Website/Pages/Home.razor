@@ -124,7 +124,7 @@
     private string realisationsTitle = "Projets récents.";
     private string seeAllRealisations = "Voir toutes les réalisations";
     private string servicesKicker = "Services";
-    private string servicesTitle = "Six façons de collaborer.";
+    private string servicesTitle = "Sept façons de collaborer.";
     private string teachKicker = "Formations";
     private string teachTitle = "Où j'enseigne.";
     private string allTrainings = "Voir toutes les formations";
@@ -156,8 +156,8 @@
             ? "Andrés Talavera — Consultant .NET & Azure, Techlead, Formateur | IdeaStud.io"
             : "Andrés Talavera — .NET & Azure Consultant, Tech Lead, Trainer | IdeaStud.io";
         lead = fr
-            ? "Je transforme des idées en logiciels qui marchent. .NET, Azure, mobile, web — à Lyon et à distance."
-            : "I turn ideas into software that ships. .NET, Azure, mobile, web — in Lyon and remote.";
+            ? "Je transforme des idées en logiciels qui marchent. .NET, Azure, mobile, web — Lyon · Paris · Genève · Fribourg ou full-remote."
+            : "I turn ideas into software that ships. .NET, Azure, mobile, web — Lyon · Paris · Geneva · Fribourg or fully remote.";
         seoDescription = lead;
 
         kicker = fr
@@ -171,7 +171,7 @@
         seeAllRealisations = fr ? "Voir toutes les réalisations" : "See all projects";
 
         servicesKicker = fr ? "Services" : "Services";
-        servicesTitle  = fr ? "Six façons de collaborer." : "Six ways to collaborate.";
+        servicesTitle  = fr ? "Sept façons de collaborer." : "Seven ways to collaborate.";
 
         teachKicker = fr ? "Formations" : "Trainings";
         teachTitle  = fr ? "Où j'enseigne." : "Where I teach.";
@@ -182,14 +182,32 @@
 
         faq = fr
             ? new() {
-                ("Quels projets acceptes-tu ?", "Des missions de consulting, techlead, formation ou réalisation — .NET & Azure, mobile, web. Si le cadrage est clair et le délai sain, j'y vais."),
-                ("Tes tarifs ?", "Tarif journalier moyen à 850 €. Ajusté selon durée, complexité et contexte. Premier cadrage Calendly gratuit."),
-                ("Tu travailles à distance ?", "Oui — Lyon ou full-remote. Je me déplace volontiers pour les kick-offs, ateliers techniques ou formations sur site.")
+                ("Quels projets acceptez-vous ?", "Des missions de consulting, techlead, formation, vibe coding, IA en entreprise, ou des réalisations sur-mesure — .NET, Azure, mobile, web. Si le cadrage est clair et le délai sain, j'y vais."),
+                ("Quels sont vos tarifs ?", "TJM 600 € en consulting et techlead, 800 € en formation, vibe coding et IA entreprise. Ajusté selon durée, complexité et niveau d'implication. Cadrage initial gratuit."),
+                ("Où pouvez-vous intervenir ?", "Lyon, Paris, Genève, Fribourg — sur site, hybride ou full-remote selon votre besoin. Je me déplace volontiers pour les kick-offs, les ateliers techniques et les sessions de formation."),
+                ("Comment me commander une mission ?", "Je travaille en portage salarial via OpenWork (société française). Facturation en EUR par défaut ; CHF possible pour les missions côté suisse. Pas de prestation directe — le portage simplifie le contractuel pour vous comme pour moi."),
+                ("Quelles formations dispensez-vous ?", "Vingt modules au catalogue, regroupés en quatre familles : .NET, Azure, vibe coding & IA, architecture & DevOps. Chaque module se décline en inter ou intra. Détail sur la fiche Formateur."),
+                ("Vous installez de l'IA en interne chez nous ?", "Oui — modèles open-weight (Llama, Qwen, Mistral) hébergés localement avec Ollama ou vLLM, intégrés à vos outils existants. Détail sur la fiche IA en entreprise."),
+                ("Vous savez créer des serveurs MCP ?", "Oui — c'est un livrable courant des missions IA en entreprise. Un serveur MCP custom expose votre SI ou votre base de connaissance aux IA des dev (Claude Code, Cursor, Copilot)."),
+                ("Quels outils IA utilisez-vous au quotidien ?", "Claude Code en orchestrateur principal, Cursor pour le pair-programming au plus près du code, GitHub Copilot pour l'autocomplétion fine, Antigravity + Gemini quand un browser-side agent est utile. Le choix dépend du contexte client."),
+                ("Comment garantissez-vous la qualité du code généré par IA ?", "Aucune ligne générée n'est mergée sans relecture. Je diffe, je raisonne, je corrige — la productivité IA n'est utile que si elle ne crée pas de dette cachée. Cette méthodologie est au cœur de mes missions vibe-coding."),
+                ("Vous configurez des analytics multi-régies ?", "Oui — Google Analytics 4, Bing Webmaster, Meta Pixel, en respectant la conformité RGPD (consentement, anonymisation, durées de rétention). On peut aussi intégrer des KPI IA-aware si vous mesurez des trafics venant des assistants conversationnels."),
+                ("Mon site doit être lisible par les IA — vous savez faire ?", "Oui. Trois leviers : llms.txt et ai.txt pour exposer votre contenu aux crawlers IA, JSON-LD enrichi (Schema.org) pour structurer la sémantique, et un robots.txt IA-aware pour gérer ce que vous autorisez. Approche identique à celle qui rend ce site indexable par Perplexity et ChatGPT."),
+                ("Sur quelles plateformes déployez-vous ?", "Azure en priorité, mais aussi Netlify, Vercel, Scaleway, CleverCloud, Infomaniak et OVHCloud selon le contexte — souveraineté européenne, edge functions, jamstack, contraintes RGPD. Le choix dépend du projet, pas d'un dogme cloud.")
             }
             : new() {
-                ("What projects do you take on?", "Consulting, tech-lead, training and delivery work — .NET & Azure, mobile, web. If scope is clear and the timeline is sane, I'm in."),
-                ("What are your rates?", "My typical day rate is 850 €. Adjusted for duration, complexity and context. First Calendly scoping call is free."),
-                ("Do you work remote?", "Yes — Lyon or full-remote. Happy to travel for kick-offs, technical workshops or on-site training.")
+                ("What projects do you take on?", "Consulting, tech-lead, training, vibe coding, enterprise AI, or custom delivery — .NET, Azure, mobile, web. If the scope is clear and the timeline sane, I'm in."),
+                ("What are your rates?", "Day rate: 600 € for consulting & tech-lead, 800 € for training, vibe coding and enterprise AI. Adjusted for duration, complexity and engagement level. First scoping call is free."),
+                ("Where do you work?", "Lyon, Paris, Geneva, Fribourg — on-site, hybrid or fully remote depending on your need. I travel for kick-offs, technical workshops and training sessions."),
+                ("How do I engage you?", "I work via French wage-portage company OpenWork. Default invoicing in EUR; CHF available for Swiss assignments. No direct freelance billing — portage keeps the contract simple for both sides."),
+                ("What trainings do you deliver?", "Twenty catalogue modules across four families: .NET, Azure, vibe coding & AI, architecture & DevOps. Each module runs as inter-company or in-house. Full details on the Trainer page."),
+                ("Can you set up AI in-house?", "Yes — open-weight models (Llama, Qwen, Mistral) self-hosted with Ollama or vLLM, integrated with your existing tooling. Full details on the Enterprise AI page."),
+                ("Can you build MCP servers?", "Yes — it's a regular deliverable on enterprise AI engagements. A custom MCP server exposes your IT systems or knowledge base to dev-team AI (Claude Code, Cursor, Copilot)."),
+                ("What AI tools do you use day-to-day?", "Claude Code as the main orchestrator, Cursor for close-quarters pair programming, GitHub Copilot for fine-grained autocomplete, Antigravity + Gemini when a browser-side agent is useful. The choice depends on the client's context."),
+                ("How do you guarantee AI-generated code quality?", "No AI-generated line gets merged without review. I diff, reason, correct — AI productivity is only valuable if it doesn't create hidden debt. This methodology is central to my vibe-coding engagements."),
+                ("Do you configure multi-platform analytics?", "Yes — Google Analytics 4, Bing Webmaster, Meta Pixel, with GDPR compliance (consent, anonymization, retention). I can also wire AI-aware KPIs if you want to measure traffic from conversational assistants."),
+                ("Can you make a site readable by AIs?", "Yes. Three levers: llms.txt and ai.txt to expose content to AI crawlers, enriched JSON-LD (Schema.org) for semantic structure, and an AI-aware robots.txt to control what you allow. Same approach used on this site to make it indexable by Perplexity and ChatGPT."),
+                ("What platforms do you deploy on?", "Azure primarily, but also Netlify, Vercel, Scaleway, CleverCloud, Infomaniak and OVHCloud depending on context — European sovereignty, edge functions, jamstack, GDPR constraints. The choice depends on the project, not on cloud dogma.")
             };
     }
 
@@ -225,7 +243,14 @@
             SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
             KnowsAbout: new[] { ".NET", "Azure", "Blazor", "ASP.NET Core", "Cloud Architecture", "Software Training" },
             Address: new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressRegion: "Auvergne-Rhône-Alpes", AddressCountry: "FR"),
-            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io")
+            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io"),
+            WorkLocation: new[]
+            {
+                new SchemaOrg.Place(new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressCountry: "FR")),
+                new SchemaOrg.Place(new SchemaOrg.PostalAddress(AddressLocality: "Paris", AddressCountry: "FR")),
+                new SchemaOrg.Place(new SchemaOrg.PostalAddress(AddressLocality: fr ? "Genève" : "Geneva", AddressCountry: "CH")),
+                new SchemaOrg.Place(new SchemaOrg.PostalAddress(AddressLocality: "Fribourg", AddressCountry: "CH"))
+            }
         );
 
         SchemaOrg.WebSite website = new(
@@ -245,14 +270,14 @@
                 Name: s.Title,
                 Description: string.IsNullOrWhiteSpace(s.Tagline) ? s.Summary : s.Tagline,
                 Provider: person,
-                AreaServed: fr ? "France et international (remote)" : "France and worldwide (remote)"))
+                AreaServed: fr ? "France · Suisse · Europe (remote)" : "France · Switzerland · Europe (remote)"))
             .ToList();
 
         SchemaOrg.ProfessionalService professional = new(
             Name: fr ? "Services IdeaStud.io" : "IdeaStud.io services",
             Description: seoDescription,
             Url: servicesUrl,
-            AreaServed: fr ? "France et international (remote)" : "France and worldwide (remote)",
+            AreaServed: fr ? "France · Suisse · Europe (remote)" : "France · Switzerland · Europe (remote)",
             Provider: person,
             Services: svcs);
 

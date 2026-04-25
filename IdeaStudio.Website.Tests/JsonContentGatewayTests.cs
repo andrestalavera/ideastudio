@@ -128,6 +128,38 @@ public class JsonContentGatewayTests
     }
 
     [Fact]
+    public void ServicesJson_HasSevenEntries_InBothLanguages_WithUniqueOrders()
+    {
+        JsonSerializerOptions opts = new(JsonSerializerDefaults.Web);
+        IdeaStudio.Website.Models.Service[]? fr = JsonSerializer.Deserialize<IdeaStudio.Website.Models.Service[]>(
+            File.ReadAllText(LocateDataFile("services-fr.json")), opts);
+        IdeaStudio.Website.Models.Service[]? en = JsonSerializer.Deserialize<IdeaStudio.Website.Models.Service[]>(
+            File.ReadAllText(LocateDataFile("services-en.json")), opts);
+
+        Assert.NotNull(fr);
+        Assert.NotNull(en);
+        Assert.Equal(7, fr!.Length);
+        Assert.Equal(7, en!.Length);
+
+        int[] expected = { 1, 2, 3, 4, 5, 6, 7 };
+        Assert.Equal(expected, fr.Select(s => s.Order).OrderBy(o => o).ToArray());
+        Assert.Equal(expected, en.Select(s => s.Order).OrderBy(o => o).ToArray());
+    }
+
+    [Fact]
+    public void ServicesJson_NewAiEnterpriseSlug_PresentInBothLanguages()
+    {
+        JsonSerializerOptions opts = new(JsonSerializerDefaults.Web);
+        IdeaStudio.Website.Models.Service[]? fr = JsonSerializer.Deserialize<IdeaStudio.Website.Models.Service[]>(
+            File.ReadAllText(LocateDataFile("services-fr.json")), opts);
+        IdeaStudio.Website.Models.Service[]? en = JsonSerializer.Deserialize<IdeaStudio.Website.Models.Service[]>(
+            File.ReadAllText(LocateDataFile("services-en.json")), opts);
+
+        Assert.Contains(fr!, s => s.Slug == "ia-en-entreprise");
+        Assert.Contains(en!, s => s.Slug == "ai-enterprise");
+    }
+
+    [Fact]
     public void TrainingsJson_AllModulesUseValidCategory()
     {
         HashSet<string> allowed = new(StringComparer.Ordinal) { ".NET", "Azure", "Vibe coding & IA", "Architecture & DevOps" };

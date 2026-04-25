@@ -11,7 +11,8 @@
       "Code audits and progressive refactoring",
       "Robust CI/CD (Azure DevOps, GitHub Actions)",
       "Observability strategy (Application Insights, structured logging)",
-      "Application security and secrets management (Key Vault, Managed Identity)"
+      "Application security and secrets management (Key Vault, Managed Identity)",
+      "Multi-cloud working knowledge — Netlify, Vercel, Scaleway, CleverCloud, Infomaniak, OVHCloud when context steers away from Azure"
     ],
     "useCases": [
       { "title": "SaaS platform audit and rebuild", "description": "Inventory, iterative refactoring plan, hands-on guidance through production." },
@@ -19,7 +20,7 @@
     ],
     "faq": [
       { "question": "What's your daily rate?", "answer": "On request, depending on scope, duration, and level of involvement." },
-      { "question": "Remote work?", "answer": "Yes, full-remote or hybrid. I occasionally travel to Lyon and the Rhône-Alpes area." },
+      { "question": "Remote work?", "answer": "Yes, full-remote or hybrid. I occasionally travel to Lyon, Paris, Geneva and Fribourg." },
       { "question": "Legacy systems?", "answer": "Yes. Audits and modernization plans are part of my day-to-day." }
     ],
     "ctaLabel": null,
@@ -44,6 +45,7 @@
       { "title": "Tech lead coaching", "description": "3-to-6-month pairing to transfer practices, tooling, and posture to a new tech lead." }
     ],
     "faq": [
+      { "question": "What's your daily rate?", "answer": "On request, depending on scope, duration, and level of involvement." },
       { "question": "Team size?", "answer": "3 to 10 people ideally; beyond that, we discuss structure." },
       { "question": "Do you hire?", "answer": "I take part in technical interviews but don't own recruitment end-to-end." }
     ],
@@ -56,19 +58,21 @@
     "kicker": "KNOWLEDGE TRANSFER",
     "tagline": "I train your teams on .NET, Azure, and modern web fundamentals and advanced practices.",
     "iconId": "training",
-    "summary": "3000+ hours of training delivered to developers and tech leads. Sessions tailored to your needs, hands-on exercises, post-training follow-up.",
+    "summary": "3000+ hours of training delivered to developers and tech leads. Sessions tailored to your needs, hands-on exercises, post-training follow-up. Catalogue of 20 modules below.",
     "highlights": [
       "ASP.NET Core and Blazor",
       "Azure fundamentals and platform (AZ-204, AZ-400)",
       "Pragmatic software architecture and patterns",
       "Automated testing and TDD",
-      "DevOps and CI/CD"
+      "DevOps and CI/CD",
+      "Vibe coding & AI — Claude Code, Copilot, MCP, on-prem AI"
     ],
     "useCases": [
       { "title": "Inter-company 3-day training", "description": "Catalog sessions on Blazor, Azure DevOps, or Clean Architecture." },
       { "title": "Bespoke in-house training", "description": "Program tailored with you after a needs-assessment." }
     ],
     "faq": [
+      { "question": "What's your training day rate?", "answer": "800 € — day rate × days delivered, or inter / in-house package depending on format." },
       { "question": "Remote training?", "answer": "Yes, synchronous virtual classroom with pair exercises and live feedback." },
       { "question": "Certified?", "answer": "Yes, Microsoft Certified Trainer and multiple Azure certifications." }
     ],
@@ -79,26 +83,62 @@
     "slug": "vibe-coding",
     "title": "Vibe-coding rollout",
     "kicker": "AI IN YOUR IDE",
-    "tagline": "I help your team adopt AI coding tools (Claude Code, Copilot) without losing quality.",
+    "tagline": "I help your team adopt Claude Code, Copilot, Cursor, Antigravity — without blind trust in generated code.",
     "iconId": "vibe",
-    "summary": "AI coding tools are reshaping developer workflows. I help you frame usage: which tools, which guardrails, which practices, and how to measure gains.",
+    "summary": "AI coding tools are reshaping developer workflows. I help you frame usage: which tools, which guardrails, which practices, how to measure gains — and most importantly, how to keep ownership of generated code quality.",
     "highlights": [
-      "Internal AI usage policy framing",
-      "Claude Code / Copilot / agent rollout",
-      "Workflow and security hook definition",
-      "Developer pair-coaching with AI",
-      "Impact measurement (velocity, quality, satisfaction)"
+      "Adoption of Claude Code, GitHub Copilot, Cursor, Antigravity + Gemini — tooling chosen for stack and constraints",
+      "Team-grade Claude Code config: skills, hooks, sub-agents, MCP, plugins, governance",
+      "Deep-review methodology for generated code — diff, reason, correct",
+      "CI guardrails: automated tests on AI PRs, security scans, prompt audit trail",
+      "Dev/lead coaching — from initial prompt to merge",
+      "Impact metrics (velocity, quality, satisfaction) before/after"
     ],
     "useCases": [
       { "title": "Pilot with a willing team", "description": "2-to-3-month framed pilot, debrief, and recommendation for scale-up." },
-      { "title": "Org-wide deployment", "description": "Rollout across the organization with best-practice guide and support structure." }
+      { "title": "Org-wide deployment", "description": "Rollout across the organization with best-practice guide and support structure." },
+      { "title": "AI-generated code audit", "description": "Detect anti-patterns, secure existing generations, put humans back in the loop." }
     ],
     "faq": [
+      { "question": "What's your day rate for vibe-coding work?", "answer": "800 € — these engagements are coaching and transmission, with significant time spent in pair-programming." },
       { "question": "Does it work on our stack?", "answer": "Current tools are stack-agnostic. We validate on your code base together." },
-      { "question": "Code confidentiality?", "answer": "We pick a setup that fits your constraints (SaaS, self-hosted, zero-retention)." }
+      { "question": "Code confidentiality?", "answer": "We pick a setup that fits your constraints (SaaS, self-hosted, zero-retention)." },
+      { "question": "Do you keep humans in the loop?", "answer": "Yes — the promise isn't 'fewer devs', it's 'more effective devs who keep ownership'. Every generated line gets reviewed." },
+      { "question": "How long for a pilot?", "answer": "4 to 6 weeks, team of 3 to 5 devs, measured deliverable." }
     ],
     "ctaLabel": null,
     "order": 4
+  },
+  {
+    "slug": "ai-enterprise",
+    "title": "AI for the enterprise",
+    "kicker": "SOVEREIGN & MEASURABLE AI",
+    "tagline": "I bring AI in-house: local models, custom MCP servers, LLM-readable site, multi-platform analytics.",
+    "iconId": "ai-enterprise",
+    "summary": "Generative AI is reaching the enterprise. Stay sovereign with your data, build custom integrations, measure the impact. I cover four angles: on-prem AI (Ollama, vLLM, open-weight models), custom MCP servers, sites optimized for LLM consumption (llms.txt, structured data), and AI-aware analytics (Google, Bing, Meta).",
+    "highlights": [
+      "On-premise AI — Ollama, vLLM, open-weight models (Llama, Qwen, Mistral)",
+      "Custom MCP servers — expose your IT systems to your devs' AI (Claude Code, Cursor, Copilot)",
+      "LLM-readable site — llms.txt, ai.txt, enriched JSON-LD, AI-aware robots.txt",
+      "Multi-platform analytics — Google Analytics 4, Bing Webmaster, Meta Pixel, GDPR-compliant",
+      "Sovereignty & GDPR scoping — where prompts live, where data lives",
+      "European sovereign hosting available — Scaleway, OVHCloud, Infomaniak (GDPR-by-design)",
+      "Business impact metrics — AI KPIs in your existing dashboards"
+    ],
+    "useCases": [
+      { "title": "On-prem AI deployment", "description": "For a confidentiality-bound client: model selection, hardware sizing, internal tool integration." },
+      { "title": "Custom MCP server", "description": "Connect your IT systems or knowledge base to Claude Code / Cursor for compounded dev productivity." },
+      { "title": "AI-discoverability overhaul", "description": "llms.txt + JSON-LD + AI analytics for a B2B site that wants to surface in Perplexity / ChatGPT answers." }
+    ],
+    "faq": [
+      { "question": "What's your day rate?", "answer": "800 € — technical setup and coaching engagement." },
+      { "question": "Why self-host AI rather than use ChatGPT/Claude?", "answer": "Data sovereignty, GDPR / sector compliance, controlled recurring cost on heavy usage." },
+      { "question": "Which models do you install?", "answer": "Llama 3, Qwen, Mistral, Gemma — based on use case (coding, search, summarization) and available hardware." },
+      { "question": "What's an MCP server, exactly?", "answer": "A standardized connector between an AI and your tools: expose internal APIs, doc bases, business data — the AI uses them as functions." },
+      { "question": "Will you touch our existing marketing pixels?", "answer": "No — we extend. AI-aware events get added without breaking GA4 / Meta Pixel already in place." }
+    ],
+    "ctaLabel": null,
+    "order": 5
   },
   {
     "slug": "mobile-apps",
@@ -112,7 +152,8 @@
       "Mobile UX/UI and prototyping",
       "Backend and companion APIs",
       "Apple Store / Play Store publishing",
-      "Evolutive maintenance"
+      "Evolutive maintenance",
+      "Backend hosted on Azure or European alternative — Scaleway, OVHCloud, Infomaniak"
     ],
     "useCases": [
       { "title": "B2B field app", "description": "Field app for agents, offline sync, IS integration." },
@@ -123,7 +164,7 @@
       { "question": "Who owns Apple/Google accounts?", "answer": "You. I support creation and submissions." }
     ],
     "ctaLabel": null,
-    "order": 5
+    "order": 6
   },
   {
     "slug": "websites",
@@ -137,7 +178,8 @@
       "Blazor, ASP.NET Core, or the right stack",
       "Technical SEO and Core Web Vitals",
       "Azure hosting or equivalent",
-      "Handover training"
+      "Handover training",
+      "Hosting matched to context — Azure, Netlify, Vercel, Scaleway, CleverCloud, Infomaniak or OVHCloud"
     ],
     "useCases": [
       { "title": "Premium showcase site", "description": "Editorial site, strong identity, max performance — perfect for a brand." },
@@ -148,6 +190,6 @@
       { "question": "Maintenance?", "answer": "Maintenance contract or ad-hoc pricing, to suit your needs." }
     ],
     "ctaLabel": null,
-    "order": 6
+    "order": 7
   }
 ]

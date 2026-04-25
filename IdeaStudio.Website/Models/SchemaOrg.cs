@@ -36,7 +36,8 @@ public static class SchemaOrg
         PostalAddress? Address = null,
         Organization? WorksFor = null,
         string? Email = null,
-        string? Telephone = null)
+        string? Telephone = null,
+        Place[]? WorkLocation = null)
     {
         [JsonPropertyName("@context")]
         public string Context => "https://schema.org";
@@ -78,6 +79,15 @@ public static class SchemaOrg
     {
         [JsonPropertyName("@type")]
         public string Type => "PostalAddress";
+    }
+
+    /// <summary>
+    /// Schema.org Place — a location with a postal address.
+    /// </summary>
+    public record Place(PostalAddress Address)
+    {
+        [JsonPropertyName("@type")]
+        public string Type => "Place";
     }
 
     /// <summary>
