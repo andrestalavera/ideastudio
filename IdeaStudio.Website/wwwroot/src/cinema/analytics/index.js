@@ -18,11 +18,12 @@ const META_PIXEL_ID = null; // TODO: set when Meta Pixel ID is available
 
 const isLocalhost =
   typeof location !== 'undefined' &&
-  (location.hostname === 'localhost' || location.hostname === '127.0.0.1');
+  (location.hostname === 'localhost' ||
+   location.hostname === '127.0.0.1' ||
+   location.hostname === '[::1]');
 
 let clarityLoaded = false;
 let pixelLoaded = false;
-let granted = false;
 
 function gtag() {
   if (typeof window === 'undefined' || !window.dataLayer) return;
@@ -58,8 +59,7 @@ function loadMetaPixel() {
 
 export function setConsent(grant) {
   if (isLocalhost) return;
-  granted = !!grant;
-  if (granted) {
+  if (!!grant) {
     gtag('consent', 'update', {
       ad_storage: 'granted',
       ad_user_data: 'granted',
