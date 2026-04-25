@@ -5,6 +5,8 @@
 @inject ILocalizationService LocalizationService
 @inject NavigationManager Navigation
 @inject ISceneTheme SceneTheme
+@inject IConsentService Consent
+@inject IAnalyticsService Analytics
 @implements IDisposable
 
 <CascadingValue Value="this">
@@ -22,6 +24,7 @@
         <CtaBand />
     }
     <Footer />
+    <CookieBanner />
 </CascadingValue>
 
 @code {
@@ -33,8 +36,14 @@
     {
         CultureService.CultureChanged += OnCultureChanged;
         Navigation.LocationChanged += OnLocationChanged;
+        Consent.OnChanged += OnConsentChanged;
         await LoadLocalizedStringsAsync();
         UpdateCtaVisibility(Navigation.Uri);
+        await Consent.LoadAsync();
+        if (Consent.HasDecided)
+        {
+            await Analytics.SetConsentAsync(Consent.IsGranted);
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -67,6 +76,12 @@
     {
         UpdateCtaVisibility(e.Location);
         StateHasChanged();
+        _ = Analytics.TrackPageViewAsync(e.Location);
+    }
+
+    private void OnConsentChanged()
+    {
+        _ = Analytics.SetConsentAsync(Consent.IsGranted);
     }
 
     private void UpdateCtaVisibility(string uri)
@@ -81,6 +96,7 @@
     {
         CultureService.CultureChanged -= OnCultureChanged;
         Navigation.LocationChanged -= OnLocationChanged;
+        Consent.OnChanged -= OnConsentChanged;
         GC.SuppressFinalize(this);
     }
 }
