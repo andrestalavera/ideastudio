@@ -46,6 +46,12 @@
     transition: none;
   }
 
+  // Word wrapper: keeps a word's per-char inline-blocks bound together so the
+  // browser can only wrap on the literal spaces between words.
+  &__word {
+    white-space: nowrap;
+  }
+
   &__char {
     display: inline-block;
     opacity: 0;

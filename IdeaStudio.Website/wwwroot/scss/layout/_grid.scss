@@ -1,4 +1,7 @@
-// layout/_grid.scss — utility grids. Responsive by container queries.
+// layout/_grid.scss — utility grids with a 3-step responsive progression:
+// desktop (default) → tablet (≤64rem) → mobile (≤40rem).
+// .ds-grid--3 / --4 collapse one step at the tablet breakpoint, then to a
+// single column on phones; .ds-grid--2 stays at 2 cols until phone.
 
 @use '../tokens/space' as s;
 
@@ -16,6 +19,15 @@
   }
 }
 
+// Tablet: --3 and --4 step down to 2 columns; --2 already at 2.
+@media (max-width: 64rem) {
+  .ds-grid--3,
+  .ds-grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// Phone: every fixed-column grid collapses to a single column.
 @media (max-width: 40rem) {
   .ds-grid--2,
   .ds-grid--3,
