@@ -33,7 +33,7 @@
 </footer>
 
 @code {
-    private string taglineText = "Lyon — remote";
+    private string taglineText = "Lyon · Paris · Genève · Fribourg — remote";
     private string sitemapLabel = "Plan du site";
     private string homeText = "Accueil";
     private string servicesText = "Services";
@@ -47,7 +47,7 @@
     protected override void LoadTexts()
     {
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        taglineText      = fr ? "Lyon — remote" : "Lyon — remote";
+        taglineText      = fr ? "Lyon · Paris · Genève · Fribourg — remote" : "Lyon · Paris · Geneva · Fribourg — remote";
         sitemapLabel     = fr ? "Plan du site" : "Sitemap";
         homeText         = fr ? "Accueil" : "Home";
         servicesText     = fr ? "Services" : "Services";

@@ -23,12 +23,14 @@
     { "slug": "techlead", "lang": "fr", "title": "Techlead", "url": "https://ideastud.io/fr/services/techlead" },
     { "slug": "formateur", "lang": "fr", "title": "Formateur", "url": "https://ideastud.io/fr/services/formateur" },
     { "slug": "vibe-coding", "lang": "fr", "title": "Mise en place de vibe-coding", "url": "https://ideastud.io/fr/services/vibe-coding" },
+    { "slug": "ia-en-entreprise", "lang": "fr", "title": "IA en entreprise", "url": "https://ideastud.io/fr/services/ia-en-entreprise" },
     { "slug": "applications-mobiles", "lang": "fr", "title": "Création d'applications mobiles", "url": "https://ideastud.io/fr/services/applications-mobiles" },
     { "slug": "sites-internet", "lang": "fr", "title": "Création de sites internet", "url": "https://ideastud.io/fr/services/sites-internet" },
     { "slug": "dotnet-azure-consulting", "lang": "en", "title": ".NET & Azure consulting", "url": "https://ideastud.io/en/services/dotnet-azure-consulting" },
     { "slug": "tech-lead", "lang": "en", "title": "Tech lead", "url": "https://ideastud.io/en/services/tech-lead" },
     { "slug": "trainer", "lang": "en", "title": "Trainer", "url": "https://ideastud.io/en/services/trainer" },
     { "slug": "vibe-coding", "lang": "en", "title": "Vibe-coding rollout", "url": "https://ideastud.io/en/services/vibe-coding" },
+    { "slug": "ai-enterprise", "lang": "en", "title": "AI for the enterprise", "url": "https://ideastud.io/en/services/ai-enterprise" },
     { "slug": "mobile-apps", "lang": "en", "title": "Mobile apps", "url": "https://ideastud.io/en/services/mobile-apps" },
     { "slug": "websites", "lang": "en", "title": "Websites", "url": "https://ideastud.io/en/services/websites" }
   ],
@@ -39,8 +41,14 @@
     { "name": "IdeaStud.io", "url": "https://www.ideastud.io" }
   ],
   "location": {
-    "city": "Lyon",
-    "country": "France"
+    "primary": { "city": "Lyon", "country": "France" },
+    "workLocations": [
+      { "city": "Lyon", "country": "France" },
+      { "city": "Paris", "country": "France" },
+      { "city": "Geneva", "country": "Switzerland" },
+      { "city": "Fribourg", "country": "Switzerland" }
+    ],
+    "remote": true
   },
   "ai": {
     "indexable": true,

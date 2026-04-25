@@ -1,0 +1,354 @@
+[
+  {
+    "slug": "csharp-modern",
+    "title": "C# moderne (records, source generators, pattern matching)",
+    "summary": "Maîtriser les fonctionnalités modernes de C# pour écrire du code expressif et performant : records, primary constructors, file-scoped types, source generators, pattern matching avancé.",
+    "category": ".NET",
+    "outline": [
+      "Records et types valeurs immuables",
+      "Primary constructors et init-only",
+      "File-scoped types et compilation incrémentale",
+      "Pattern matching avancé et switch expressions",
+      "Source generators — bases",
+      "Async, ValueTask et performance"
+    ],
+    "prerequisites": "C# de base, lecture de code orienté objet.",
+    "durationDays": 2,
+    "level": "foundation"
+  },
+  {
+    "slug": "aspnet-core-fundamentals",
+    "title": "ASP.NET Core 10 — fondamentaux",
+    "summary": "Construire des APIs et applications web modernes avec ASP.NET Core 10 : DI, middleware, minimal APIs, EF Core, configuration, logs.",
+    "category": ".NET",
+    "outline": [
+      "Hôte générique et démarrage de l'app",
+      "Routing et minimal APIs",
+      "Injection de dépendances et options",
+      "Middleware pipeline",
+      "EF Core 10 — premiers contacts",
+      "Configuration et secrets utilisateurs",
+      "Logging structuré"
+    ],
+    "prerequisites": "C# moderne, notions de HTTP.",
+    "durationDays": 3,
+    "level": "intermediate"
+  },
+  {
+    "slug": "aspnet-core-advanced",
+    "title": "ASP.NET Core 10 — avancé",
+    "summary": "Pousser ASP.NET Core en production : authentification & autorisation, observabilité OpenTelemetry, performance, tests d'intégration robustes.",
+    "category": ".NET",
+    "outline": [
+      "Authentification (cookies, JWT, OIDC)",
+      "Autorisation par policies et claims",
+      "Observabilité — OpenTelemetry, logs, métriques",
+      "Performance — benchmarks, caching, response compression",
+      "Tests d'intégration avec WebApplicationFactory",
+      "Déploiement et hot-reload contrôlé"
+    ],
+    "prerequisites": "ASP.NET Core fondamentaux ou expérience équivalente.",
+    "durationDays": 3,
+    "level": "advanced"
+  },
+  {
+    "slug": "blazor-modern",
+    "title": "Blazor 10 — Server, WASM et Hybrid",
+    "summary": "Construire des SPA et applications hybrides en Blazor : composants, état, rendu côté serveur, AOT WASM, interop JS et SignalR.",
+    "category": ".NET",
+    "outline": [
+      "Composants, paramètres, événements",
+      "Cycle de vie et rendu",
+      "Modèles d'état (cascading, services scoped)",
+      "Blazor Server vs WASM — choix techno",
+      "Interop JS et préchargement",
+      "Compilation AOT et budget de bundle"
+    ],
+    "prerequisites": "C# moderne, HTML/CSS, notions JS.",
+    "durationDays": 3,
+    "level": "intermediate"
+  },
+  {
+    "slug": "ef-core-10",
+    "title": "Entity Framework Core 10",
+    "summary": "Modéliser un domaine avec EF Core 10 : conventions, fluent API, migrations, requêtes optimisées, SaveChanges concurrent et performance.",
+    "category": ".NET",
+    "outline": [
+      "Conventions et fluent API",
+      "Relations 1-N, N-N, héritage TPT/TPH",
+      "Migrations et déploiement",
+      "Requêtes — IQueryable, projections, split queries",
+      "Tracking, AsNoTracking, identity resolution",
+      "Performance — benchmarks et plan d'exécution"
+    ],
+    "prerequisites": "C# moderne, notions SQL.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "dotnet-testing",
+    "title": "Tests automatisés .NET",
+    "summary": "Mettre en place une stratégie de tests pragmatique : xUnit, Testcontainers, snapshot testing, tests de mutation, golden tests.",
+    "category": ".NET",
+    "outline": [
+      "xUnit — fondamentaux et organisation",
+      "Tests d'intégration et Testcontainers",
+      "Snapshot testing avec Verify",
+      "Tests de mutation avec Stryker",
+      "Couverture et métriques utiles",
+      "TDD pragmatique — quand, comment"
+    ],
+    "prerequisites": "C# moderne, expérience d'un projet en équipe.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "azure-az204-prep",
+    "title": "Azure pour développeurs (préparation AZ-204)",
+    "summary": "Couvrir l'examen AZ-204 : développer des solutions Azure (App Service, Functions, Cosmos DB, Service Bus, Key Vault, Identity).",
+    "category": "Azure",
+    "outline": [
+      "App Service et configuration",
+      "Azure Functions et Durable Functions",
+      "Storage et Cosmos DB",
+      "Service Bus et Event Grid",
+      "Key Vault, Managed Identity, App Configuration",
+      "Identity et Microsoft Entra ID",
+      "Préparation à l'examen — questions types"
+    ],
+    "prerequisites": "C# moderne, notions de cloud.",
+    "durationDays": 5,
+    "level": "intermediate",
+    "certification": "AZ-204"
+  },
+  {
+    "slug": "azure-az400-prep",
+    "title": "Azure DevOps & CI/CD (préparation AZ-400)",
+    "summary": "Mettre en place une chaîne DevOps complète : stratégies de branche, pipelines CI/CD multi-stage, tests automatisés, infrastructure as code, sécurité et gouvernance.",
+    "category": "Azure",
+    "outline": [
+      "Source control et stratégies de branche",
+      "Azure Pipelines — multi-stage YAML",
+      "Tests automatisés dans le pipeline",
+      "Infrastructure as code (Bicep, Terraform)",
+      "Release management et environnements",
+      "Sécurité — secrets, scans, gouvernance",
+      "Préparation à l'examen — questions types"
+    ],
+    "prerequisites": "Expérience d'un projet en équipe, notions Git, notions cloud.",
+    "durationDays": 5,
+    "level": "advanced",
+    "certification": "AZ-400"
+  },
+  {
+    "slug": "azure-functions-events",
+    "title": "Azure Functions & event-driven",
+    "summary": "Construire des architectures événementielles avec Azure Functions, Service Bus, Event Grid et Durable Functions.",
+    "category": "Azure",
+    "outline": [
+      "Functions — bindings et triggers",
+      "Durable Functions — orchestration et entités",
+      "Service Bus — files, sujets, sessions",
+      "Event Grid — abonnements et schémas",
+      "Patterns — outbox, fan-out, retry",
+      "Observabilité et tracing distribué"
+    ],
+    "prerequisites": "ASP.NET Core ou Azure 204, notions d'asynchrone.",
+    "durationDays": 3,
+    "level": "intermediate"
+  },
+  {
+    "slug": "azure-app-service-containers",
+    "title": "Azure App Service & containers",
+    "summary": "Déployer en production sur App Service, Container Apps et ACR : slots, autoscale, networking, monitoring.",
+    "category": "Azure",
+    "outline": [
+      "App Service — plans, configuration, slots",
+      "Container Apps — Dapr et autoscale",
+      "Azure Container Registry et signature d'images",
+      "Networking — VNet integration, Private Endpoint",
+      "Déploiement multi-env et blue/green",
+      "Monitoring — Application Insights"
+    ],
+    "prerequisites": "Notions Azure, expérience Docker.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "azure-security-fundamentals",
+    "title": "Sécurité Azure pour développeurs",
+    "summary": "Sécuriser une application Azure de bout en bout : Key Vault, Managed Identity, networking, Defender for Cloud, gestion des secrets et RBAC.",
+    "category": "Azure",
+    "outline": [
+      "Key Vault et rotation des secrets",
+      "Managed Identity — system & user assigned",
+      "RBAC et principes du moindre privilège",
+      "Networking sécurisé — Private Endpoint, NSG",
+      "Defender for Cloud — recommandations",
+      "Microsoft Entra ID et Conditional Access"
+    ],
+    "prerequisites": "Notions Azure, notions de sécurité applicative.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "claude-code-team",
+    "title": "Claude Code en équipe",
+    "summary": "Adopter Claude Code à l'échelle d'une équipe : skills, hooks, sub-agents, plugins, MCP, gouvernance et mesures d'impact.",
+    "category": "Vibe coding & IA",
+    "outline": [
+      "Modèles de prompt et style maison",
+      "Skills — créer, packager, partager",
+      "Hooks PreToolUse / PostToolUse / Stop",
+      "Sub-agents et délégation",
+      "Intégration MCP — outils internes",
+      "Garde-fous CI et politique d'usage",
+      "Mesure d'impact — vélocité, qualité"
+    ],
+    "prerequisites": "Pratique Git, expérience d'équipe dev.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "copilot-advanced",
+    "title": "GitHub Copilot avancé",
+    "summary": "Pousser GitHub Copilot au-delà de l'auto-complétion : custom instructions, edits, agentic mode, MCP, intégration en équipe.",
+    "category": "Vibe coding & IA",
+    "outline": [
+      "Custom instructions par projet",
+      "Copilot Edits — refactor multi-fichiers",
+      "Agentic mode — exécution de tâches",
+      "MCP avec Copilot",
+      "Politique d'usage et conformité",
+      "Mesure d'impact"
+    ],
+    "prerequisites": "Pratique Copilot ou autre assistant IDE.",
+    "durationDays": 1,
+    "level": "intermediate"
+  },
+  {
+    "slug": "mcp-server-design",
+    "title": "Concevoir vos serveurs MCP",
+    "summary": "Construire un serveur Model Context Protocol robuste : transports, tools, resources, sécurité, erreurs, déploiement.",
+    "category": "Vibe coding & IA",
+    "outline": [
+      "Architecture MCP — clients, serveurs, transports",
+      "Transport stdio vs HTTP/SSE",
+      "Tools — schémas, validation, erreurs",
+      "Resources — lecture, abonnements",
+      "Sécurité — auth, audit, secrets",
+      "Déploiement et observabilité",
+      "Tests de bout en bout"
+    ],
+    "prerequisites": "Pratique d'un langage backend (TS, Python ou C#), notions API.",
+    "durationDays": 2,
+    "level": "advanced"
+  },
+  {
+    "slug": "ai-on-premise",
+    "title": "IA locale en entreprise",
+    "summary": "Déployer des modèles d'IA générative en local : Ollama, vLLM, modèles open-weight, dimensionnement matériel, intégration.",
+    "category": "Vibe coding & IA",
+    "outline": [
+      "Paysage des modèles open-weight (Llama, Qwen, Mistral, Gemma)",
+      "Ollama — premier déploiement",
+      "vLLM — production et concurrent serving",
+      "Dimensionnement GPU/CPU/RAM",
+      "Intégration API — OpenAI-compatible",
+      "Sécurité, audit, RGPD",
+      "Cas d'usage internes — code, recherche, summarization"
+    ],
+    "prerequisites": "Notions Linux/Docker, notions IA générative.",
+    "durationDays": 2,
+    "level": "advanced"
+  },
+  {
+    "slug": "clean-architecture-dotnet",
+    "title": "Clean Architecture en .NET",
+    "summary": "Structurer une application .NET selon les principes hexagonaux : ports & adapters, DDD-lite, séparation domaine / application / infrastructure.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Pourquoi — coût du couplage",
+      "Couches — domaine, application, infrastructure, présentation",
+      "Ports & adapters",
+      "DDD-lite — entités, value objects, agrégats",
+      "Use cases et MediatR",
+      "Tests par couche",
+      "Migration progressive d'un legacy"
+    ],
+    "prerequisites": "ASP.NET Core, expérience d'une app de taille moyenne.",
+    "durationDays": 3,
+    "level": "advanced"
+  },
+  {
+    "slug": "event-driven-cqrs",
+    "title": "Architecture événementielle & CQRS pratique",
+    "summary": "Mettre en place CQRS et architecture événementielle sans dogmatisme : commandes, événements, projections, outbox, idempotence.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "CQRS — pourquoi, quand, comment",
+      "Commandes et validation",
+      "Événements de domaine vs intégration",
+      "Outbox pattern et garantie at-least-once",
+      "Idempotence et déduplication",
+      "Projections et read models",
+      "Tests et observabilité"
+    ],
+    "prerequisites": "ASP.NET Core, EF Core, notions message brokers.",
+    "durationDays": 3,
+    "level": "advanced"
+  },
+  {
+    "slug": "observability-otel",
+    "title": "Observabilité moderne — OpenTelemetry",
+    "summary": "Instrumenter une application .NET avec OpenTelemetry : traces, métriques, logs structurés, intégration Application Insights et back-ends OSS.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Pourquoi OTel — standardisation et portabilité",
+      "Traces, spans, propagation",
+      "Métriques — counters, histograms, gauges",
+      "Logs structurés et corrélation",
+      "Application Insights et back-ends OSS",
+      "Sampling et budgets",
+      "Diagnostiquer un incident en prod"
+    ],
+    "prerequisites": "ASP.NET Core, notions de production.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "dotnet-performance",
+    "title": "Performance & scalabilité .NET",
+    "summary": "Mesurer, profiler et optimiser une application .NET : benchmarks, GC, allocations, async patterns, caching, charge.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Mesurer avant d'optimiser — BenchmarkDotNet",
+      "Allocations et GC — Span<T>, ArrayPool",
+      "Async patterns et ConfigureAwait",
+      "Caching — IMemoryCache, IDistributedCache",
+      "Profilage — dotnet-trace, PerfView",
+      "Tests de charge — k6, NBomber"
+    ],
+    "prerequisites": "ASP.NET Core, expérience d'une app en production.",
+    "durationDays": 2,
+    "level": "advanced"
+  },
+  {
+    "slug": "cicd-github-actions",
+    "title": "CI/CD avec GitHub Actions",
+    "summary": "Construire des pipelines GitHub Actions robustes : workflows réutilisables, security scanning, déploiement multi-env, OIDC vers Azure.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Anatomie d'un workflow",
+      "Workflows réutilisables et composite actions",
+      "Tests, lint et qualité de code",
+      "Security scanning — CodeQL, dépendances, secrets",
+      "Déploiement multi-env et environments",
+      "OIDC vers Azure — sans secrets",
+      "Observabilité du pipeline"
+    ],
+    "prerequisites": "Notions Git, pratique d'un CI quelconque.",
+    "durationDays": 2,
+    "level": "intermediate"
+  }
+]

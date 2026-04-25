@@ -1,0 +1,66 @@
+[
+  {
+    "name": "IP-Formation / IPSSI",
+    "locations": [
+      "Paris, France"
+    ],
+    "courses": [
+      "Microsoft Azure"
+    ]
+  },
+  {
+    "name": "ORSYS",
+    "locations": [
+      "Paris, France",
+      "Charleroi, Belgique"
+    ],
+    "courses": [
+      "Microsoft Azure",
+      "Azure DevOps Services"
+    ]
+  },
+  {
+    "name": "LinkedIn Learning",
+    "locations": [
+      "Remote",
+      "Graz, Autriche"
+    ],
+    "courses": [
+      "Entity Framework Core",
+      "ASP.NET Core",
+      "Xamarin 4"
+    ]
+  },
+  {
+    "name": "NextFormation",
+    "locations": [
+      "Paris, France"
+    ],
+    "courses": [
+      ".NET Framework",
+      "HTML5, CSS3, JavaScript",
+      "Xamarin"
+    ]
+  },
+  {
+    "name": "Happly",
+    "locations": [
+      "Strasbourg, France"
+    ],
+    "courses": [
+      "Xamarin.Forms"
+    ]
+  },
+  {
+    "name": "Supinfo",
+    "locations": [
+      "Paris, France",
+      "Troyes, France",
+      "Montpellier, France"
+    ],
+    "courses": [
+      "ASP.NET",
+      "Xamarin"
+    ]
+  }
+]

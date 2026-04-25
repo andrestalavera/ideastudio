@@ -1,0 +1,123 @@
+// components/_training-catalogue.scss — 20-module training catalogue rendered on /services/formateur.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-training-catalogue {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-8;
+  margin-block-start: s.$s-7;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: s.$s-5;
+  }
+
+  &__category {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    letter-spacing: -0.015em;
+    color: c.$fg;
+    margin: 0;
+    padding-block-end: s.$s-3;
+    border-block-end: 1px solid c.$rule;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: s.$s-5;
+
+    @media (min-width: s.$bp-l) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+.ds-training-card {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-3;
+  padding: s.$s-5;
+  background: c.$bg-raised;
+  border: 1px solid c.$rule;
+  border-radius: 12px;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: s.$s-2;
+  }
+
+  &__title {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    letter-spacing: -0.015em;
+    color: c.$fg;
+    margin: 0;
+  }
+
+  &__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.$s-2;
+  }
+
+  &__pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem s.$s-3;
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: c.$fg-muted;
+    border: 1px solid c.$rule;
+    border-radius: 999px;
+
+    &--cert {
+      color: c.$ir-duck;
+      border-color: c.$ir-duck;
+    }
+  }
+
+  &__summary {
+    font-size: t.$fs-body;
+    line-height: 1.55;
+    color: c.$fg-muted;
+    margin: 0;
+  }
+
+  &__outline {
+    margin: 0;
+    padding-inline-start: s.$s-5;
+    font-size: t.$fs-small;
+    color: c.$fg-muted;
+
+    li {
+      margin-block: 0.25rem;
+    }
+  }
+
+  &__prereq {
+    font-size: t.$fs-small;
+    color: c.$fg-faint;
+    margin: 0;
+    padding-block-start: s.$s-3;
+    border-block-start: 1px dashed c.$rule;
+  }
+
+  &__prereq-label {
+    font-weight: 600;
+    color: c.$fg-muted;
+  }
+}

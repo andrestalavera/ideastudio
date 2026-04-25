@@ -44,12 +44,14 @@ public class IntegrationTests
     [InlineData("/fr/services/vibe-coding", "/fr/services/{slug}")]
     [InlineData("/fr/services/applications-mobiles", "/fr/services/{slug}")]
     [InlineData("/fr/services/sites-internet", "/fr/services/{slug}")]
+    [InlineData("/fr/services/ia-en-entreprise", "/fr/services/{slug}")]
     [InlineData("/en/services/dotnet-azure-consulting", "/en/services/{slug}")]
     [InlineData("/en/services/tech-lead", "/en/services/{slug}")]
     [InlineData("/en/services/trainer", "/en/services/{slug}")]
     [InlineData("/en/services/vibe-coding", "/en/services/{slug}")]
     [InlineData("/en/services/mobile-apps", "/en/services/{slug}")]
     [InlineData("/en/services/websites", "/en/services/{slug}")]
+    [InlineData("/en/services/ai-enterprise", "/en/services/{slug}")]
     public void ServiceSlug_Routes_MatchTemplate(string requestedPath, string template)
     {
         Assert.Contains(template, DeclaredRoutes);

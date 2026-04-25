@@ -1,0 +1,85 @@
+@using IdeaStudio.Website.Models
+@inherits LocalizedComponent
+
+@{
+    string[] orderedCategories = new[] { ".NET", "Azure", "Vibe coding & IA", "Architecture & DevOps" };
+    var grouped = orderedCategories
+        .Select(cat => (Category: cat, Items: Trainings.Where(t => t.Category == cat).ToArray()))
+        .Where(g => g.Items.Length > 0)
+        .ToArray();
+}
+
+<div class="ds-training-catalogue">
+    @foreach (var group in grouped)
+    {
+        <section class="ds-training-catalogue__group" data-reveal>
+            <h3 class="ds-training-catalogue__category">@group.Category</h3>
+            <ul class="ds-training-catalogue__list">
+                @foreach (Training t in group.Items)
+                {
+                    <li class="ds-training-card" id="@t.Slug">
+                        <header class="ds-training-card__head">
+                            <h4 class="ds-training-card__title">@t.Title</h4>
+                            <div class="ds-training-card__pills">
+                                @if (t.DurationDays is int days)
+                                {
+                                    <span class="ds-training-card__pill">@days@durationSuffix</span>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(t.Level))
+                                {
+                                    <span class="ds-training-card__pill">@FormatLevel(t.Level)</span>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(t.Certification))
+                                {
+                                    <span class="ds-training-card__pill ds-training-card__pill--cert">@t.Certification</span>
+                                }
+                            </div>
+                        </header>
+                        <p class="ds-training-card__summary">@t.Summary</p>
+                        @if (t.Outline is { Count: > 0 })
+                        {
+                            <ul class="ds-training-card__outline">
+                                @foreach (string item in t.Outline)
+                                {
+                                    <li>@item</li>
+                                }
+                            </ul>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(t.Prerequisites))
+                        {
+                            <p class="ds-training-card__prereq">
+                                <span class="ds-training-card__prereq-label">@prereqLabel</span> @t.Prerequisites
+                            </p>
+                        }
+                    </li>
+                }
+            </ul>
+        </section>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<Training> Trainings { get; set; } = Array.Empty<Training>();
+
+    private string durationSuffix = "j";
+    private string prereqLabel = "Prérequis :";
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        durationSuffix = fr ? "j" : "d";
+        prereqLabel    = fr ? "Prérequis :" : "Prerequisites:";
+    }
+
+    private string FormatLevel(string? level)
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        return level switch
+        {
+            "foundation"   => fr ? "Fondations" : "Foundations",
+            "intermediate" => fr ? "Intermédiaire" : "Intermediate",
+            "advanced"     => fr ? "Avancé" : "Advanced",
+            _              => level ?? string.Empty,
+        };
+    }
+}

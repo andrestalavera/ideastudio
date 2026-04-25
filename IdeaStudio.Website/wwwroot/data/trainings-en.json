@@ -1,0 +1,354 @@
+[
+  {
+    "slug": "csharp-modern",
+    "title": "Modern C# (records, source generators, pattern matching)",
+    "summary": "Master modern C# features to write expressive, fast code: records, primary constructors, file-scoped types, source generators, advanced pattern matching.",
+    "category": ".NET",
+    "outline": [
+      "Records and immutable value types",
+      "Primary constructors and init-only properties",
+      "File-scoped types and incremental compilation",
+      "Advanced pattern matching and switch expressions",
+      "Source generators — basics",
+      "Async, ValueTask and performance"
+    ],
+    "prerequisites": "Basic C#, ability to read object-oriented code.",
+    "durationDays": 2,
+    "level": "foundation"
+  },
+  {
+    "slug": "aspnet-core-fundamentals",
+    "title": "ASP.NET Core 10 — fundamentals",
+    "summary": "Build modern web APIs and applications with ASP.NET Core 10: DI, middleware, minimal APIs, EF Core, configuration, logging.",
+    "category": ".NET",
+    "outline": [
+      "Generic host and app bootstrap",
+      "Routing and minimal APIs",
+      "Dependency injection and options",
+      "Middleware pipeline",
+      "EF Core 10 — first contact",
+      "Configuration and user secrets",
+      "Structured logging"
+    ],
+    "prerequisites": "Modern C#, HTTP basics.",
+    "durationDays": 3,
+    "level": "intermediate"
+  },
+  {
+    "slug": "aspnet-core-advanced",
+    "title": "ASP.NET Core 10 — advanced",
+    "summary": "Push ASP.NET Core to production: auth & authorization, OpenTelemetry observability, performance, robust integration tests.",
+    "category": ".NET",
+    "outline": [
+      "Authentication (cookies, JWT, OIDC)",
+      "Policy-based authorization with claims",
+      "Observability — OpenTelemetry, logs, metrics",
+      "Performance — benchmarks, caching, response compression",
+      "Integration testing with WebApplicationFactory",
+      "Deployment and controlled hot-reload"
+    ],
+    "prerequisites": "ASP.NET Core fundamentals or equivalent experience.",
+    "durationDays": 3,
+    "level": "advanced"
+  },
+  {
+    "slug": "blazor-modern",
+    "title": "Blazor 10 — Server, WASM and Hybrid",
+    "summary": "Build SPAs and hybrid apps with Blazor: components, state, server rendering, WASM AOT, JS interop and SignalR.",
+    "category": ".NET",
+    "outline": [
+      "Components, parameters, events",
+      "Lifecycle and rendering",
+      "State patterns (cascading, scoped services)",
+      "Blazor Server vs WASM — tech choice",
+      "JS interop and prerendering",
+      "AOT compilation and bundle budget"
+    ],
+    "prerequisites": "Modern C#, HTML/CSS, basic JS.",
+    "durationDays": 3,
+    "level": "intermediate"
+  },
+  {
+    "slug": "ef-core-10",
+    "title": "Entity Framework Core 10",
+    "summary": "Model a domain with EF Core 10: conventions, fluent API, migrations, tuned queries, concurrent SaveChanges and performance.",
+    "category": ".NET",
+    "outline": [
+      "Conventions and fluent API",
+      "Relationships 1-N, N-N, inheritance TPT/TPH",
+      "Migrations and deployment",
+      "Queries — IQueryable, projections, split queries",
+      "Tracking, AsNoTracking, identity resolution",
+      "Performance — benchmarks and execution plan"
+    ],
+    "prerequisites": "Modern C#, basic SQL.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "dotnet-testing",
+    "title": "Automated testing in .NET",
+    "summary": "Set up a pragmatic test strategy: xUnit, Testcontainers, snapshot testing, mutation testing, golden tests.",
+    "category": ".NET",
+    "outline": [
+      "xUnit — basics and organization",
+      "Integration testing and Testcontainers",
+      "Snapshot testing with Verify",
+      "Mutation testing with Stryker",
+      "Coverage and useful metrics",
+      "Pragmatic TDD — when, how"
+    ],
+    "prerequisites": "Modern C#, team-project experience.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "azure-az204-prep",
+    "title": "Azure for developers (AZ-204 prep)",
+    "summary": "Cover the AZ-204 exam: develop Azure solutions (App Service, Functions, Cosmos DB, Service Bus, Key Vault, Identity).",
+    "category": "Azure",
+    "outline": [
+      "App Service and configuration",
+      "Azure Functions and Durable Functions",
+      "Storage and Cosmos DB",
+      "Service Bus and Event Grid",
+      "Key Vault, Managed Identity, App Configuration",
+      "Identity and Microsoft Entra ID",
+      "Exam prep — sample questions"
+    ],
+    "prerequisites": "Modern C#, cloud basics.",
+    "durationDays": 5,
+    "level": "intermediate",
+    "certification": "AZ-204"
+  },
+  {
+    "slug": "azure-az400-prep",
+    "title": "Azure DevOps & CI/CD (AZ-400 prep)",
+    "summary": "Build a complete DevOps pipeline: branching strategies, multi-stage CI/CD, automated testing, infrastructure as code, security and governance.",
+    "category": "Azure",
+    "outline": [
+      "Source control and branching strategies",
+      "Azure Pipelines — multi-stage YAML",
+      "Automated tests in pipeline",
+      "Infrastructure as code (Bicep, Terraform)",
+      "Release management and environments",
+      "Security — secrets, scans, governance",
+      "Exam prep — sample questions"
+    ],
+    "prerequisites": "Team project experience, basic Git, basic cloud.",
+    "durationDays": 5,
+    "level": "advanced",
+    "certification": "AZ-400"
+  },
+  {
+    "slug": "azure-functions-events",
+    "title": "Azure Functions & event-driven",
+    "summary": "Build event-driven architectures with Azure Functions, Service Bus, Event Grid and Durable Functions.",
+    "category": "Azure",
+    "outline": [
+      "Functions — bindings and triggers",
+      "Durable Functions — orchestration and entities",
+      "Service Bus — queues, topics, sessions",
+      "Event Grid — subscriptions and schemas",
+      "Patterns — outbox, fan-out, retry",
+      "Observability and distributed tracing"
+    ],
+    "prerequisites": "ASP.NET Core or Azure 204, async basics.",
+    "durationDays": 3,
+    "level": "intermediate"
+  },
+  {
+    "slug": "azure-app-service-containers",
+    "title": "Azure App Service & containers",
+    "summary": "Ship to production on App Service, Container Apps and ACR: slots, autoscale, networking, monitoring.",
+    "category": "Azure",
+    "outline": [
+      "App Service — plans, configuration, slots",
+      "Container Apps — Dapr and autoscale",
+      "Azure Container Registry and image signing",
+      "Networking — VNet integration, Private Endpoint",
+      "Multi-env and blue/green deployment",
+      "Monitoring — Application Insights"
+    ],
+    "prerequisites": "Azure basics, Docker experience.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "azure-security-fundamentals",
+    "title": "Azure security for developers",
+    "summary": "End-to-end security for an Azure app: Key Vault, Managed Identity, networking, Defender for Cloud, secret management and RBAC.",
+    "category": "Azure",
+    "outline": [
+      "Key Vault and secret rotation",
+      "Managed Identity — system & user assigned",
+      "RBAC and least privilege",
+      "Secure networking — Private Endpoint, NSG",
+      "Defender for Cloud — recommendations",
+      "Microsoft Entra ID and Conditional Access"
+    ],
+    "prerequisites": "Azure basics, app security basics.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "claude-code-team",
+    "title": "Claude Code for teams",
+    "summary": "Adopt Claude Code at team scale: skills, hooks, sub-agents, plugins, MCP, governance and impact measurement.",
+    "category": "Vibe coding & IA",
+    "outline": [
+      "Prompt patterns and house style",
+      "Skills — create, package, share",
+      "Hooks PreToolUse / PostToolUse / Stop",
+      "Sub-agents and delegation",
+      "MCP integration — internal tools",
+      "CI guardrails and usage policy",
+      "Impact metrics — velocity, quality"
+    ],
+    "prerequisites": "Git practice, dev team experience.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "copilot-advanced",
+    "title": "GitHub Copilot — advanced",
+    "summary": "Push GitHub Copilot beyond autocomplete: custom instructions, edits, agentic mode, MCP, team integration.",
+    "category": "Vibe coding & IA",
+    "outline": [
+      "Per-project custom instructions",
+      "Copilot Edits — multi-file refactor",
+      "Agentic mode — task execution",
+      "MCP with Copilot",
+      "Usage policy and compliance",
+      "Impact metrics"
+    ],
+    "prerequisites": "Hands-on Copilot or other IDE assistant.",
+    "durationDays": 1,
+    "level": "intermediate"
+  },
+  {
+    "slug": "mcp-server-design",
+    "title": "Designing your MCP servers",
+    "summary": "Build a robust Model Context Protocol server: transports, tools, resources, security, errors, deployment.",
+    "category": "Vibe coding & IA",
+    "outline": [
+      "MCP architecture — clients, servers, transports",
+      "stdio vs HTTP/SSE transport",
+      "Tools — schemas, validation, errors",
+      "Resources — reading, subscriptions",
+      "Security — auth, audit, secrets",
+      "Deployment and observability",
+      "End-to-end testing"
+    ],
+    "prerequisites": "Hands-on backend language (TS, Python or C#), API basics.",
+    "durationDays": 2,
+    "level": "advanced"
+  },
+  {
+    "slug": "ai-on-premise",
+    "title": "On-premise AI in the enterprise",
+    "summary": "Deploy generative AI on-premise: Ollama, vLLM, open-weight models, hardware sizing, integration.",
+    "category": "Vibe coding & IA",
+    "outline": [
+      "Open-weight model landscape (Llama, Qwen, Mistral, Gemma)",
+      "Ollama — first deploy",
+      "vLLM — production and concurrent serving",
+      "GPU/CPU/RAM sizing",
+      "API integration — OpenAI-compatible",
+      "Security, audit, GDPR",
+      "Internal use cases — code, search, summarization"
+    ],
+    "prerequisites": "Linux/Docker basics, generative AI basics.",
+    "durationDays": 2,
+    "level": "advanced"
+  },
+  {
+    "slug": "clean-architecture-dotnet",
+    "title": "Clean Architecture in .NET",
+    "summary": "Structure a .NET app along hexagonal principles: ports & adapters, DDD-lite, domain / application / infrastructure separation.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Why — coupling cost",
+      "Layers — domain, application, infrastructure, presentation",
+      "Ports & adapters",
+      "DDD-lite — entities, value objects, aggregates",
+      "Use cases and MediatR",
+      "Layer-by-layer testing",
+      "Progressive legacy migration"
+    ],
+    "prerequisites": "ASP.NET Core, mid-size app experience.",
+    "durationDays": 3,
+    "level": "advanced"
+  },
+  {
+    "slug": "event-driven-cqrs",
+    "title": "Event-driven architecture & practical CQRS",
+    "summary": "Implement CQRS and event-driven architecture pragmatically: commands, events, projections, outbox, idempotency.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "CQRS — why, when, how",
+      "Commands and validation",
+      "Domain vs integration events",
+      "Outbox pattern and at-least-once delivery",
+      "Idempotency and dedup",
+      "Projections and read models",
+      "Testing and observability"
+    ],
+    "prerequisites": "ASP.NET Core, EF Core, message broker basics.",
+    "durationDays": 3,
+    "level": "advanced"
+  },
+  {
+    "slug": "observability-otel",
+    "title": "Modern observability — OpenTelemetry",
+    "summary": "Instrument a .NET application with OpenTelemetry: traces, metrics, structured logs, Application Insights and OSS backends.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Why OTel — standardization and portability",
+      "Traces, spans, propagation",
+      "Metrics — counters, histograms, gauges",
+      "Structured logs and correlation",
+      "Application Insights and OSS backends",
+      "Sampling and budgets",
+      "Diagnosing a prod incident"
+    ],
+    "prerequisites": "ASP.NET Core, production basics.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "dotnet-performance",
+    "title": ".NET performance & scalability",
+    "summary": "Measure, profile and tune a .NET app: benchmarks, GC, allocations, async patterns, caching, load.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Measure before optimizing — BenchmarkDotNet",
+      "Allocations and GC — Span<T>, ArrayPool",
+      "Async patterns and ConfigureAwait",
+      "Caching — IMemoryCache, IDistributedCache",
+      "Profiling — dotnet-trace, PerfView",
+      "Load testing — k6, NBomber"
+    ],
+    "prerequisites": "ASP.NET Core, production app experience.",
+    "durationDays": 2,
+    "level": "advanced"
+  },
+  {
+    "slug": "cicd-github-actions",
+    "title": "CI/CD with GitHub Actions",
+    "summary": "Build robust GitHub Actions pipelines: reusable workflows, security scanning, multi-env deployment, OIDC to Azure.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Workflow anatomy",
+      "Reusable workflows and composite actions",
+      "Tests, lint and code quality",
+      "Security scanning — CodeQL, dependencies, secrets",
+      "Multi-env deployment with environments",
+      "OIDC to Azure — secret-less auth",
+      "Pipeline observability"
+    ],
+    "prerequisites": "Git basics, hands-on with any CI.",
+    "durationDays": 2,
+    "level": "intermediate"
+  }
+]
