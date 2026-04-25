@@ -12,6 +12,7 @@ import { attachCursor, disposeCursor } from './interactions/cursor.js';
 import { attachNavMorph, disposeNavMorph } from './interactions/nav-morph.js';
 import { prefersReducedMotion, batteryLow, setMotionMode } from './utils/perf.js';
 export { mountSignature } from './signature/signature-name.js';
+import './analytics/index.js'; // side-effect: defines window.ideaAnalytics
 
 let booted = false;
 let renderer = null;
