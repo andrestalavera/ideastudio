@@ -13,7 +13,7 @@ Enrich the IdeaStud.io editorial content to reflect:
 - New geographic positioning (Lyon · Paris · Geneva · Fribourg + remote, with Swiss cross-border setup).
 - An expanded skill surface around vibe coding, on-premise AI, MCP servers, multi-platform analytics, AI-readable site configuration.
 - A formal training catalogue (~20 modules) extracted to its own first-class data structure.
-- A FAQ on the home page that goes from 3 placeholder questions to 11 substantive Q&A, eligible for `FAQPage` rich snippets.
+- A FAQ on the home page that goes from 3 placeholder questions to 12 substantive Q&A, eligible for `FAQPage` rich snippets.
 
 The content overhaul lands as a **single Pull Request** branching from `main` (currently `ec63c3b Version 3 (#38)`), structured internally as three logical commits.
 
@@ -433,6 +433,7 @@ Inserted at `order: 5`. `applications-mobiles` and `sites-internet` shift to `or
     "Site lisible par IA — llms.txt, ai.txt, JSON-LD enrichi, robots.txt IA-aware",
     "Analytics multi-régies — Google Analytics 4, Bing Webmaster, Meta Pixel, intégration RGPD",
     "Cadrage souveraineté & RGPD — où vivent les prompts, où vivent les données",
+    "Hébergement souverain européen disponible — Scaleway, OVHCloud, Infomaniak (RGPD-by-design)",
     "Mesure d'impact business — KPI IA injectés dans vos dashboards existants"
   ],
   "useCases": [
@@ -468,6 +469,7 @@ Inserted at `order: 5`. `applications-mobiles` and `sites-internet` shift to `or
     "LLM-readable site — llms.txt, ai.txt, enriched JSON-LD, AI-aware robots.txt",
     "Multi-platform analytics — Google Analytics 4, Bing Webmaster, Meta Pixel, GDPR-compliant",
     "Sovereignty & GDPR scoping — where prompts live, where data lives",
+    "European sovereign hosting available — Scaleway, OVHCloud, Infomaniak (GDPR-by-design)",
     "Business impact metrics — AI KPIs in your existing dashboards"
   ],
   "useCases": [
@@ -495,6 +497,24 @@ Inserted at `order: 5`. `applications-mobiles` and `sites-internet` shift to `or
 - `/services/ia-en-entreprise` and `/services/ai-enterprise` reuse the `vibe-coding` signature motif at launch.
 - A dedicated motif may be added in a later PR.
 
+### Multi-cloud deployment highlights (strategy A+)
+
+In addition to the dedicated `ai-en-entreprise` European-sovereign-hosting bullet above, three other service entries gain a multi-cloud bullet to correct the Azure-centric framing where it matters:
+
+**`consultant-dotnet-azure`** — append one highlight at the end of the existing list:
+- **FR** : « Multi-cloud opérationnel — Netlify, Vercel, Scaleway, CleverCloud, Infomaniak, OVHCloud quand le contexte ne pousse pas vers Azure »
+- **EN** : « Multi-cloud working knowledge — Netlify, Vercel, Scaleway, CleverCloud, Infomaniak, OVHCloud when context steers away from Azure »
+
+**`sites-internet`** — append one highlight at the end of the existing list:
+- **FR** : « Hébergement adapté — Azure, Netlify, Vercel, Scaleway, CleverCloud, Infomaniak ou OVHCloud selon le contexte projet »
+- **EN** : « Hosting matched to context — Azure, Netlify, Vercel, Scaleway, CleverCloud, Infomaniak or OVHCloud »
+
+**`applications-mobiles`** — append one highlight at the end of the existing list (backend angle only):
+- **FR** : « Backend hébergé sur Azure ou alternative européenne — Scaleway, OVHCloud, Infomaniak »
+- **EN** : « Backend hosted on Azure or European alternative — Scaleway, OVHCloud, Infomaniak »
+
+`techlead`, `formateur` and `vibe-coding` are intentionally **left untouched** — multi-cloud isn't their commercial angle and a generic bullet there would dilute the focus.
+
 ### Pricing FAQ updates per service (strategy B)
 
 | Service | Pricing FAQ |
@@ -509,7 +529,7 @@ Inserted at `order: 5`. `applications-mobiles` and `sites-internet` shift to `or
 
 ## 5. FAQ Home expansion (Section 4/7)
 
-The `Pages/Home.razor` `faq` list grows from 3 to **11 entries**. The existing rendering loop with `<QABlock>` handles the count automatically; the JSON-LD `FAQPage` serializer iterates the same list and surfaces 11 questions for SERP rich snippets.
+The `Pages/Home.razor` `faq` list grows from 3 to **12 entries**. The existing rendering loop with `<QABlock>` handles the count automatically; the JSON-LD `FAQPage` serializer iterates the same list and surfaces 12 questions for SERP rich snippets.
 
 Order: from broadest (does this match my need?) to most specific (do you do X?).
 
@@ -567,6 +587,11 @@ EN : Yes — Google Analytics 4, Bing Webmaster, Meta Pixel, with GDPR complianc
 
 FR : Oui. Trois leviers : llms.txt et ai.txt pour exposer votre contenu aux crawlers IA, JSON-LD enrichi (Schema.org) pour structurer la sémantique, et un robots.txt IA-aware pour gérer ce que vous autorisez. Approche identique à celle qui rend ce site indexable par Perplexity et ChatGPT.
 EN : Yes. Three levers: llms.txt and ai.txt to expose content to AI crawlers, enriched JSON-LD (Schema.org) for semantic structure, and an AI-aware robots.txt to control what you allow. Same approach used on this site to make it indexable by Perplexity and ChatGPT.
+
+### Q12 — Sur quelles plateformes déployez-vous ? / What platforms do you deploy on?
+
+FR : Azure en priorité, mais aussi Netlify, Vercel, Scaleway, CleverCloud, Infomaniak et OVHCloud selon le contexte — souveraineté européenne, edge functions, jamstack, contraintes RGPD. Le choix dépend du projet, pas d'un dogme cloud.
+EN : Azure primarily, but also Netlify, Vercel, Scaleway, CleverCloud, Infomaniak and OVHCloud depending on context — European sovereignty, edge functions, jamstack, GDPR constraints. The choice depends on the project, not on cloud dogma.
 
 ## 6. Locations & Schema.org (Section 5/7)
 
@@ -630,7 +655,8 @@ Single PR, three internal commits.
 ### Commit 3 — `feat(content): expand FAQ, add ai-enterprise service, update locations`
 
 - Enrich `vibe-coding` and add `ia-en-entreprise` / `ai-enterprise` to `services-{fr,en}.json`.
-- 11 Q&A in `Home.razor` (FR + EN).
+- 12 Q&A in `Home.razor` (FR + EN).
+- Multi-cloud highlights added to `consultant-dotnet-azure`, `sites-internet`, `applications-mobiles` (strategy A+).
 - Pricing FAQ updates per strategy B.
 - `Person.workLocation × 4` JSON-LD.
 - Lead, footer, llms.txt, ai.txt copy updates.
@@ -656,7 +682,7 @@ Single PR, three internal commits.
 | `HardcodedPathsTests` | Inchangé — toutes les nouvelles routes via `ILocalizedRoute` |
 | `LocalizedRouteTests` | + assertion paire `ia-en-entreprise` ↔ `ai-enterprise` |
 | `RealisationFilterTests` | Inchangé |
-| `IntegrationTests` | + `/services/ai-enterprise` (FR/EN), 4 nouveaux JSON publiés, `FAQPage ≥ 11`, `Person.workLocation × 4`, `Course[]` sur formateur |
+| `IntegrationTests` | + `/services/ai-enterprise` (FR/EN), 4 nouveaux JSON publiés, `FAQPage ≥ 12`, `Person.workLocation × 4`, `Course[]` sur formateur |
 | `JsonContentGatewayTests` *(new file if absent)* | `GetTrainingsAsync`, `GetTrainingCentersAsync`, parity FR/EN, count = 20 |
 | `TrainingCatalogueTests` *(new)* | Rendu groupé par catégorie, ordre stable, pills présents |
 
@@ -681,7 +707,7 @@ After Checkpoint C the PR is opened.
 
 - ✅ Branch `feature/content-revision-v3-1` merged into `main` via PR.
 - ✅ CI green (build + tests + Sonar).
-- ✅ `https://ideastud.io/fr` renders 11 Q&A.
+- ✅ `https://ideastud.io/fr` renders 12 Q&A.
 - ✅ `https://ideastud.io/fr/services/formateur` renders the 20 modules grouped.
 - ✅ `https://ideastud.io/fr/services/ia-en-entreprise` and `/en/services/ai-enterprise` render `200 OK`.
 - ✅ Lighthouse SEO score unchanged or improved (FAQPage rich snippet eligibility).
