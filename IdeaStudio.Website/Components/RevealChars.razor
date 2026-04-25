@@ -18,7 +18,9 @@
     string ariaLabel = EscapeAttr(Text ?? "");
 }
 
-@((MarkupString)$"<{tag}{classAttr} aria-label=\"{ariaLabel}\">{BuildSpans()}")
+@* data-reveal lets the shared IO toggle .is-revealed on this host on
+   entry/exit; the chars' own transitions react via the parent state class. *@
+@((MarkupString)$"<{tag}{classAttr} aria-label=\"{ariaLabel}\" data-reveal>{BuildSpans()}")
 @ChildContent
 @((MarkupString)$"</{tag}>")
 

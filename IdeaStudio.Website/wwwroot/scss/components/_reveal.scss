@@ -4,10 +4,11 @@
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 520ms var(--ease-out),
-              transform 520ms var(--ease-out);
-  // Stagger entry, not exit — keeps exits snappy when scrolling back up.
+  transform: translateY(28px);
+  transition: opacity 640ms var(--ease-out),
+              transform 640ms var(--ease-out);
+  // Stagger entry; exits drop the delay so they feel snappier when scrolling
+  // back up and don't pile cascading delays at the top of viewport.
   transition-delay: 0ms;
 
   &.is-revealed {
