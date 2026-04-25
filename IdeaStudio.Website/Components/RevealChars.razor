@@ -27,23 +27,29 @@
 @code {
     private string BuildSpans()
     {
+        // Group chars into per-word wrappers so line breaks only fall on the
+        // literal spaces between words, never mid-word. The per-char spans
+        // remain inline-block (animatable) inside their nowrap parent.
         var sb = new System.Text.StringBuilder();
         int i = 0;
+        bool wordOpen = false;
         foreach (char c in Text ?? "")
         {
             if (char.IsWhiteSpace(c))
             {
-                // Preserve word breaks as plain text nodes — they won't animate.
+                if (wordOpen) { sb.Append("</span>"); wordOpen = false; }
                 sb.Append(c);
             }
             else
             {
+                if (!wordOpen) { sb.Append("<span class=\"ds-reveal-chars__word\">"); wordOpen = true; }
                 sb.Append($"<span class=\"ds-reveal-chars__char\" style=\"--i:{i}\" aria-hidden=\"true\">");
                 sb.Append(EscapeChar(c));
                 sb.Append("</span>");
                 i++;
             }
         }
+        if (wordOpen) sb.Append("</span>");
         return sb.ToString();
     }
 
