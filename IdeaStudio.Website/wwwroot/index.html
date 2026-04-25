@@ -28,6 +28,29 @@
 
     <!-- Preconnect -->
     <link rel="preconnect" href="https://assets.calendly.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+    <!-- Google Consent Mode v2 — defaults to denied. Updated by IdeaStudio
+         analytics module (wwwroot/src/cinema/analytics/index.js) once the user
+         decides via the cookie banner. localhost short-circuit lives there. -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied',
+            functionality_storage: 'granted',
+            security_storage: 'granted',
+            wait_for_update: 500
+        });
+        gtag('js', new Date());
+        gtag('config', 'G-VFWV1QDJFB', { send_page_view: false });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VFWV1QDJFB"></script>
 
     <!-- Preload critical static assets -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-variable.woff2" crossorigin />
