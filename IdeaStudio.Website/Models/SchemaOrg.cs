@@ -328,4 +328,23 @@ public static class SchemaOrg
 
         return new BreadcrumbList(listItems);
     }
+
+    /// <summary>
+    /// Schema.org Course for educational programs (training catalogue).
+    /// </summary>
+    public record Course(
+        string Name,
+        string Description,
+        Person Provider,
+        string? CourseCode = null,
+        string? EducationalLevel = null,
+        string? TimeRequired = null,
+        string? Url = null)
+    {
+        [JsonPropertyName("@context")]
+        public string Context => "https://schema.org";
+
+        [JsonPropertyName("@type")]
+        public string Type => "Course";
+    }
 }

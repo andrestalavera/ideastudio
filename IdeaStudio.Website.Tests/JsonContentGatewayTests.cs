@@ -110,6 +110,35 @@ public class JsonContentGatewayTests
         Assert.Equal(fr!.Length, en!.Length);
     }
 
+    [Fact]
+    public void TrainingsJson_HasTwentyModules_AndParityBetweenFrAndEn()
+    {
+        JsonSerializerOptions opts = new(JsonSerializerDefaults.Web);
+        Training[]? fr = JsonSerializer.Deserialize<Training[]>(File.ReadAllText(LocateDataFile("trainings-fr.json")), opts);
+        Training[]? en = JsonSerializer.Deserialize<Training[]>(File.ReadAllText(LocateDataFile("trainings-en.json")), opts);
+
+        Assert.NotNull(fr);
+        Assert.NotNull(en);
+        Assert.Equal(20, fr!.Length);
+        Assert.Equal(20, en!.Length);
+
+        IEnumerable<string> frSlugs = fr.Select(t => t.Slug).OrderBy(s => s);
+        IEnumerable<string> enSlugs = en.Select(t => t.Slug).OrderBy(s => s);
+        Assert.Equal(frSlugs, enSlugs);
+    }
+
+    [Fact]
+    public void TrainingsJson_AllModulesUseValidCategory()
+    {
+        HashSet<string> allowed = new(StringComparer.Ordinal) { ".NET", "Azure", "Vibe coding & IA", "Architecture & DevOps" };
+        Training[]? fr = JsonSerializer.Deserialize<Training[]>(
+            File.ReadAllText(LocateDataFile("trainings-fr.json")),
+            new JsonSerializerOptions(JsonSerializerDefaults.Web));
+
+        Assert.NotNull(fr);
+        Assert.All(fr!, t => Assert.Contains(t.Category, allowed));
+    }
+
     private static Training Sample(string slug) => new()
     {
         Slug = slug,

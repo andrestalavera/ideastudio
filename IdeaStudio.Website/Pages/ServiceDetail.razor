@@ -90,12 +90,24 @@ else
             </div>
         </section>
     }
+
+    @* Training catalogue (formateur only) *@
+    @if (service.Slug == "formateur" && trainings is { Count: > 0 })
+    {
+        <section class="ds-section ds-section--chapter ds-section--bordered">
+            <div class="ds-container">
+                <ChapterBand Kicker="@catalogueKicker" Title="@catalogueTitle" />
+                <TrainingCatalogue Trainings="@trainings" />
+            </div>
+        </section>
+    }
 }
 
 @code {
     [Parameter] public string? Slug { get; set; }
 
     private ServiceModel? service;
+    private IReadOnlyList<Training> trainings = Array.Empty<Training>();
     private string seoTitle = "Service — IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/services";
@@ -106,6 +118,8 @@ else
     private string useCaseTitle = "Où ça a fonctionné.";
     private string faqKicker = "Questions fréquentes";
     private string faqTitle = "Ce que les clients demandent.";
+    private string catalogueKicker = "Catalogue";
+    private string catalogueTitle = "20 modules pour vos équipes.";
     private string notFoundTitle = "Service introuvable.";
     private string notFoundLead = "Ce service n'existe pas dans ce slug. Retour à la liste des services.";
     private string backText = "Voir les services";
@@ -135,6 +149,8 @@ else
         useCaseTitle     = fr ? "Où ça a fonctionné." : "Where it worked.";
         faqKicker        = fr ? "Questions fréquentes" : "Frequent questions";
         faqTitle         = fr ? "Ce que les clients demandent." : "What clients ask.";
+        catalogueKicker  = fr ? "Catalogue" : "Catalogue";
+        catalogueTitle   = fr ? "20 modules pour vos équipes." : "20 modules for your teams.";
         notFoundTitle    = fr ? "Service introuvable." : "Service not found.";
         notFoundLead     = fr ? "Ce service n'existe pas. Retour à la liste." : "That service doesn't exist. Back to the list.";
         backText         = fr ? "Voir les services" : "See all services";
@@ -152,6 +168,11 @@ else
             seoTitle = $"{service.Title} — IdeaStud.io";
             seoDescription = string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline;
             seoCanonical = $"https://ideastud.io{LocalizedRoute.For("services.hub", fr ? "fr" : "en")}/{service.Slug}";
+
+            if (service.Slug == "formateur")
+            {
+                trainings = await Content.GetTrainingsAsync(culture);
+            }
         }
     }
 
@@ -180,7 +201,7 @@ else
                 Name: service.Title,
                 Description: string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline,
                 Provider: person,
-                AreaServed: fr ? "France et international (remote)" : "France and worldwide (remote)");
+                AreaServed: fr ? "France · Suisse · Europe (remote)" : "France · Switzerland · Europe (remote)");
             blocks.Add(SchemaOrg.ToJsonLd(svc));
 
             if (service.Faq is { Count: > 0 })
@@ -188,6 +209,22 @@ else
                 SchemaOrg.FAQPage faq = new(
                     service.Faq.Select(f => new SchemaOrg.Question(f.Question, new SchemaOrg.Answer(f.Answer))).ToArray());
                 blocks.Add(SchemaOrg.ToJsonLd(faq));
+            }
+
+            if (service.Slug == "formateur" && trainings is { Count: > 0 })
+            {
+                foreach (Training t in trainings)
+                {
+                    SchemaOrg.Course course = new(
+                        Name: t.Title,
+                        Description: t.Summary,
+                        Provider: person,
+                        CourseCode: t.Slug,
+                        EducationalLevel: t.Level,
+                        TimeRequired: t.DurationDays is int d ? $"P{d}D" : null,
+                        Url: $"https://ideastud.io{LocalizedRoute.For("services.hub", cultureCode)}/formateur#{t.Slug}");
+                    blocks.Add(SchemaOrg.ToJsonLd(course));
+                }
             }
         }
 
