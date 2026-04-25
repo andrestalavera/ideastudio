@@ -12,10 +12,22 @@
   color: c.$fg;
   margin: 0;
 
-  // Accent dot on the final character of the brand name.
+  // Accent dot on the final character of the brand name. Slight scale
+  // breathe to read as "alive" without competing with the per-char reveal.
+  // This is the only perpetual loop on the home hero — selective, not
+  // pervasive — and obeys prefers-reduced-motion below.
   .ds-display__accent {
     color: c.$ir-duck;
+    display: inline-block;
+    transform-origin: 50% 80%;
+    animation: ds-display-accent-breathe 3.6s ease-in-out infinite;
+    will-change: transform;
   }
+}
+
+@keyframes ds-display-accent-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.18); }
 }
 
 // Per-character reveal driven by parent state. The host carries [data-reveal]
@@ -54,6 +66,11 @@
   .ds-reveal-chars__char {
     transition: none;
     opacity: 1;
+    transform: none;
+  }
+
+  .ds-display .ds-display__accent {
+    animation: none;
     transform: none;
   }
 }

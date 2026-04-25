@@ -24,3 +24,11 @@
     margin-block-start: s.$s-5;
   }
 }
+
+// .ds-chapter-gap — the canonical space between a ChapterBand and the
+// content block that follows it (project list, editorial list, FAQ, CTA).
+// Replaces ad-hoc inline `style="margin-block-start: …"` overrides on
+// chapter contents — keeps token discipline at the page level.
+.ds-chapter-gap {
+  margin-block-start: clamp(2rem, 4vw, 3rem);
+}

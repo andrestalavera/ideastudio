@@ -20,17 +20,19 @@
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
 
-@* 1 · Hero — the name uses the V3 .ds-display (Inter Variable 600, no italic),
-   with a per-character entrance reveal driven by SCSS keyframes (no JS). *@
+@* 1 · Hero — asymmetric editorial layout: name occupies the left ten columns
+   at display scale, kicker pinned vertically to the right rail as an
+   orientation marker, lead offset right beneath the name. Per-character
+   reveal preserved; --hero-progress scroll morph preserved. *@
 <div class="ds-page--home">
-<section class="ds-hero">
-    <div class="ds-container">
-        <div class="ds-hero__inner ds-rhythm">
-            <p class="ds-kicker" data-reveal style="--reveal-step: 0">— @kicker</p>
-            <RevealChars Text="Andrés Talavera" Tag="h1" Class="ds-display">
+<section class="ds-hero ds-hero--home">
+    <div class="ds-container ds-container--wide">
+        <div class="ds-hero__inner">
+            <p class="ds-kicker ds-hero__kicker" data-reveal style="--reveal-step: 0">@kicker</p>
+            <RevealChars Text="Andrés Talavera" Tag="h1" Class="ds-display ds-hero__name">
                 <span class="ds-display__accent" aria-hidden="true">.</span>
             </RevealChars>
-            <p class="ds-lead" data-reveal style="--reveal-step: 2">@lead</p>
+            <p class="ds-lead ds-hero__lead" data-reveal style="--reveal-step: 2">@lead</p>
             <div class="ds-hero__actions" data-reveal style="--reveal-step: 3">
                 <ActionRow Label="@meetLabel" />
             </div>
@@ -38,11 +40,11 @@
     </div>
 </section>
 
-@* 2 · Latest realisations *@
+@* 2 · Latest realisations — editorial zig-zag stack, not uniform rows *@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@realisationsKicker" Title="@realisationsTitle" />
-        <div class="ds-home__projects" style="margin-block-start: 3rem;">
+        <div class="ds-home__projects ds-chapter-gap">
             @if (realisations.Count > 0)
             {
                 foreach (Realisation r in realisations.Take(3))
@@ -56,7 +58,7 @@
                 }
             }
         </div>
-        <p style="margin-block-start: 2.5rem;" data-reveal>
+        <p class="ds-chapter-gap" data-reveal>
             <a class="ds-link" href="@LocalizedRoute.For("realisations")">
                 @seeAllRealisations <span class="ds-link__arrow" aria-hidden="true">→</span>
             </a>
@@ -73,7 +75,7 @@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@servicesKicker" Title="@servicesTitle" />
-        <div style="margin-block-start: 2rem;" data-reveal>
+        <div class="ds-chapter-gap" data-reveal>
             <EditorialList Items="@services" />
         </div>
     </div>
@@ -83,10 +85,10 @@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@teachKicker" Title="@teachTitle" />
-        <div style="margin-block-start: 2.5rem;">
+        <div class="ds-chapter-gap">
             <TeachList Centers="@trainingCenters" />
         </div>
-        <p style="margin-block-start: 2.5rem;" data-reveal>
+        <p class="ds-chapter-gap" data-reveal>
             <a class="ds-link" href="@LocalizedRoute.For("cv")">
                 @allTrainings <span class="ds-link__arrow" aria-hidden="true">→</span>
             </a>
@@ -94,11 +96,11 @@
     </div>
 </section>
 
-@* 6 · Questions (expanded Q&A — no accordion) *@
+@* 6 · Questions (expanded Q&A — magazine-style 2-col Q/A layout on desktop) *@
 <section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container ds-container--narrow">
+    <div class="ds-container">
         <ChapterBand Kicker="@questionsKicker" Title="@questionsTitle" />
-        <div style="margin-block-start: 2.5rem;">
+        <div class="ds-chapter-gap ds-faq-list">
             @for (int i = 0; i < faq.Count; i++)
             {
                 (string q, string a) = faq[i];
