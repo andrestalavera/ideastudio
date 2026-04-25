@@ -23,7 +23,7 @@
 @* 1 · Hero — the name uses the V3 .ds-display (Inter Variable 600, no italic),
    with a per-character entrance reveal driven by SCSS keyframes (no JS). *@
 <div class="ds-page--home">
-<section class="ds-hero" data-thread-anchor="hero">
+<section class="ds-hero">
     <div class="ds-container">
         <div class="ds-hero__inner ds-rhythm">
             <p class="ds-kicker" data-reveal style="--reveal-step: 0">— @kicker</p>
@@ -39,7 +39,7 @@
 </section>
 
 @* 2 · Latest realisations *@
-<section class="ds-section ds-section--chapter ds-section--bordered" data-thread-anchor="work">
+<section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@realisationsKicker" Title="@realisationsTitle" />
         <div class="ds-home__projects" style="margin-block-start: 3rem;">
@@ -70,7 +70,7 @@
             LanguagesValue="FR · EN · ES" />
 
 @* 4 · Services *@
-<section class="ds-section ds-section--chapter ds-section--bordered" data-thread-anchor="services">
+<section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@servicesKicker" Title="@servicesTitle" />
         <div style="margin-block-start: 2rem;" data-reveal>
@@ -80,7 +80,7 @@
 </section>
 
 @* 5 · Where I teach *@
-<section class="ds-section ds-section--chapter ds-section--bordered" data-thread-anchor="teach">
+<section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@teachKicker" Title="@teachTitle" />
         <div style="margin-block-start: 2.5rem;">

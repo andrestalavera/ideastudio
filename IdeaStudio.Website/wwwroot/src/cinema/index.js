@@ -7,7 +7,6 @@ import { Clock } from './engine/clock.js';
 import { Inputs } from './engine/inputs.js';
 import { HeroState } from './engine/state.js';
 import { createMeshPass } from './passes/mesh.js';
-import { createThreadPass } from './passes/thread.js';
 import { attachReveals, disposeReveals } from './interactions/reveals.js';
 import { attachCursor, disposeCursor } from './interactions/cursor.js';
 import { attachNavMorph, disposeNavMorph } from './interactions/nav-morph.js';
@@ -20,7 +19,6 @@ let clock = null;
 let inputs = null;
 let state = null;
 let mesh = null;
-let thread = null;
 let paused = false;
 const pauseReasons = new Set();
 
@@ -57,7 +55,6 @@ export async function initialize() {
   inputs = new Inputs();
   state = new HeroState();
   mesh = createMeshPass(renderer);
-  thread = createThreadPass(renderer);
 
   const ctx = () => ({ pointer: inputs.pointer, scroll: inputs.scroll, state });
 
@@ -66,7 +63,6 @@ export async function initialize() {
     state.update(inputs.scroll.page, window.innerWidth);
     const c = ctx();
     mesh?.render(t, c);
-    thread?.render(t, c);
   });
   clock.start();
 
@@ -82,30 +78,26 @@ export async function initialize() {
     tickBar();
   }
 
-  // Route-change hook: re-anchor the thread and rewire reveals when the
-  // DOM swaps via Blazor's router.
+  // Route-change hook: rewire reveals when the DOM swaps via Blazor's router.
   window.addEventListener('ideastudio:routechanged', () => {
     attachReveals();
-    thread?.rebuild();
   });
 }
 
 export function applyTheme(scene) {
   if (typeof scene === 'string') document.documentElement.dataset.scene = scene;
   mesh?.refreshPalette?.();
-  thread?.refresh?.();
 }
 
 export function dispose() {
   clock?.stop();
-  thread?.dispose();
   mesh?.dispose();
   inputs?.dispose();
   renderer?.dispose();
   disposeReveals();
   disposeCursor();
   disposeNavMorph();
-  mesh = null; thread = null; renderer = null; inputs = null; state = null; clock = null;
+  mesh = null; renderer = null; inputs = null; state = null; clock = null;
   booted = false;
   pauseReasons.clear();
 }

@@ -1,8 +1,7 @@
 @* Hero — kicker → display → lead → optional action row.
-   Used on every page. On Home, the display is the brand name and morphs
-   into the masthead pill on scroll. *@
+   Used on every page except Home (Home does its own per-char hero). *@
 
-<section class="ds-hero" data-thread-anchor="@(ThreadAnchor ?? "hero")">
+<section class="ds-hero">
     <div class="ds-container">
         <div class="ds-hero__inner ds-rhythm">
             @if (!string.IsNullOrWhiteSpace(Kicker))
@@ -39,5 +38,7 @@
     [Parameter] public string? Lead { get; set; }
     [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter] public RenderFragment? Actions { get; set; }
+    // ThreadAnchor parameter retained for API compat with existing call sites
+    // (e.g., Cv.razor) but no longer used since the thread pass was removed.
     [Parameter] public string? ThreadAnchor { get; set; }
 }
