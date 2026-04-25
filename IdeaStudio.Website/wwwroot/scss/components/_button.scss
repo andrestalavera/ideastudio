@@ -1,0 +1,77 @@
+// components/_button.scss — buttons + modifiers.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: s.$s-2;
+  padding-inline: s.$s-5;
+  padding-block: s.$s-3;
+  min-block-size: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: t.$font-sans;
+  font-size: t.$fs-small;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: c.$fg;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 180ms var(--ease-out),
+              color 180ms var(--ease-out),
+              background-color 180ms var(--ease-out),
+              transform 180ms var(--ease-out);
+
+  &:hover {
+    color: c.$fg;
+    transform: translateY(-1px);
+  }
+
+  // Primary — iridescent filled pill.
+  &--primary {
+    background: c.$ir-duck;
+    color: c.$bg-void;
+    border-color: c.$ir-duck;
+
+    &:hover {
+      background: color-mix(in oklab, c.$ir-duck 85%, white);
+      color: c.$bg-void;
+    }
+  }
+
+  // Ghost — duck outline, translucent fill on hover.
+  &--ghost {
+    border-color: rgba(0, 194, 212, 0.55);
+
+    &:hover {
+      border-color: c.$ir-duck;
+      background: rgba(0, 194, 212, 0.08);
+    }
+  }
+
+  // Iridescent border pill — gradient border via padding-box trick.
+  &--iridescent {
+    background: linear-gradient(c.$bg-deep, c.$bg-deep) padding-box,
+                c.$gradient-iridescent border-box;
+    border: 1px solid transparent;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  &--sm {
+    padding-inline: s.$s-4;
+    padding-block: s.$s-2;
+    font-size: t.$fs-mono;
+    min-block-size: 2.25rem;
+  }
+
+  &[aria-disabled='true'] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,61 @@
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject ILocalizedRoute LocalizedRoute
+
+@* Footer — 4-col mono footer. *@
+
+<footer class="ds-footer ds-print-hidden">
+    <div class="ds-footer__inner">
+        <div class="ds-footer__col">
+            <div class="ds-footer__label">IdeaStud.io</div>
+            <p>Andrés Talavera</p>
+            <p>@taglineText</p>
+        </div>
+        <div class="ds-footer__col">
+            <div class="ds-footer__label">@sitemapLabel</div>
+            <a href="@LocalizedRoute.For("home")">@homeText</a>
+            <a href="@LocalizedRoute.For("services.hub")">@servicesText</a>
+            <a href="@LocalizedRoute.For("realisations")">@realisationsText</a>
+            <a href="@LocalizedRoute.For("cv")">@cvText</a>
+        </div>
+        <div class="ds-footer__col">
+            <div class="ds-footer__label">@contactLabel</div>
+            <a href="mailto:andres.talavera@@live.fr">andres.talavera@@live.fr</a>
+            <a href="https://www.linkedin.com/in/andrestalavera/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="https://github.com/andrestalavera" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <div class="ds-footer__col">
+            <div class="ds-footer__label">@legalLabel</div>
+            <a href="@LocalizedRoute.For("legal")">@legalText</a>
+            <a href="@LocalizedRoute.For("privacy")">@privacyText</a>
+        </div>
+    </div>
+</footer>
+
+@code {
+    private string taglineText = "Lyon — remote";
+    private string sitemapLabel = "Plan du site";
+    private string homeText = "Accueil";
+    private string servicesText = "Services";
+    private string realisationsText = "Réalisations";
+    private string cvText = "Parcours";
+    private string contactLabel = "Contact";
+    private string legalLabel = "Légal";
+    private string legalText = "Mentions légales";
+    private string privacyText = "Confidentialité";
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        taglineText      = fr ? "Lyon — remote" : "Lyon — remote";
+        sitemapLabel     = fr ? "Plan du site" : "Sitemap";
+        homeText         = fr ? "Accueil" : "Home";
+        servicesText     = fr ? "Services" : "Services";
+        realisationsText = fr ? "Réalisations" : "Projects";
+        cvText           = fr ? "Parcours" : "Resume";
+        contactLabel     = fr ? "Contact" : "Contact";
+        legalLabel       = fr ? "Légal" : "Legal";
+        legalText        = fr ? "Mentions légales" : "Legal";
+        privacyText      = fr ? "Confidentialité" : "Privacy";
+    }
+}

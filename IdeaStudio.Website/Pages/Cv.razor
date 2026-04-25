@@ -1,0 +1,217 @@
+@page "/fr/cv"
+@page "/en/resume"
+@page "/fr/resume-andres-talavera"
+@page "/en/resume-andres-talavera"
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
+@layout MainLayout
+
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         SiteName="IdeaStud.io"
+         OgImage="https://ideastud.io/images/andres-talavera.jpeg"
+         OgImageAlt="Andrés Talavera - .NET & Azure"
+         StructuredData="@seoStructuredData"
+         SpeakableSelectors="@speakable" />
+
+@* 1 · Hero *@
+<Hero Kicker="@chapterOne" Lead="@introText" ThreadAnchor="intro">
+    <ChildContent>
+        @heroText
+    </ChildContent>
+    <Actions>
+        <div class="ds-row">
+            @if (resume?.PersonalInformation?.Languages is not null)
+            {
+                foreach (KeyValuePair<string, string> lang in resume.PersonalInformation.Languages)
+                {
+                    <span class="ds-tag">@lang.Key · @lang.Value</span>
+                }
+            }
+        </div>
+    </Actions>
+</Hero>
+
+@* 2 · About *@
+<section class="ds-section ds-section--chapter ds-section--bordered">
+    <div class="ds-container">
+        <ChapterBand Kicker="@chapterTwo" Title="@aboutTitle" />
+        <div class="ds-grid ds-grid--3" style="margin-block-start: 3rem;">
+            @if (resume?.AboutSections is not null)
+            {
+                int i = 0;
+                foreach (AboutSection s in resume.AboutSections)
+                {
+                    <div class="ds-card" data-reveal style="@($"--reveal-step:{i}")">
+                        <h3 class="ds-card__title">@s.Title</h3>
+                        @if (s.Paragraphs is not null)
+                        {
+                            foreach (string p in s.Paragraphs)
+                            {
+                                <p class="ds-card__body">@p</p>
+                            }
+                        }
+                    </div>
+                    i++;
+                }
+            }
+        </div>
+    </div>
+</section>
+
+@* 3 · Experiences *@
+<section class="ds-section ds-section--chapter ds-section--bordered">
+    <div class="ds-container">
+        <ChapterBand Kicker="@chapterThree" Title="@xpTitle" />
+        <div style="margin-block-start: 3rem;">
+            <Timeline Experiences="@resume?.Experiences" />
+        </div>
+    </div>
+</section>
+
+@* 4 · Formations *@
+<section class="ds-section ds-section--chapter ds-section--bordered">
+    <div class="ds-container">
+        <ChapterBand Kicker="@chapterFour" Title="@trainTitle" />
+        <div style="margin-block-start: 2.5rem;">
+            <TeachList Centers="@resume?.TrainingCenters" />
+        </div>
+    </div>
+</section>
+
+@* 5 · Contact *@
+<section class="ds-section ds-section--chapter ds-section--bordered">
+    <div class="ds-container">
+        <ChapterBand Kicker="@chapterFive" Title="@contactTitle" />
+        <div class="ds-grid ds-grid--3" style="margin-block-start: 2.5rem;">
+            @if (resume?.PersonalInformation is { } pi)
+            {
+                @if (!string.IsNullOrWhiteSpace(pi.Email))
+                {
+                    <div class="ds-card" data-reveal style="--reveal-step: 0">
+                        <div class="ds-card__title">Email</div>
+                        <a class="ds-link" href="mailto:@pi.Email">@pi.Email <span class="ds-link__arrow">→</span></a>
+                    </div>
+                }
+                @if (!string.IsNullOrWhiteSpace(pi.LinkedIn))
+                {
+                    <div class="ds-card" data-reveal style="--reveal-step: 1">
+                        <div class="ds-card__title">LinkedIn</div>
+                        <a class="ds-link" href="@($"https://www.linkedin.com/in/{pi.LinkedIn}/")" target="_blank" rel="noopener">@pi.LinkedIn <span class="ds-link__arrow">↗</span></a>
+                    </div>
+                }
+                @if (!string.IsNullOrWhiteSpace(pi.GitHub))
+                {
+                    <div class="ds-card" data-reveal style="--reveal-step: 2">
+                        <div class="ds-card__title">GitHub</div>
+                        <a class="ds-link" href="@($"https://github.com/{pi.GitHub}")" target="_blank" rel="noopener">@pi.GitHub <span class="ds-link__arrow">↗</span></a>
+                    </div>
+                }
+            }
+        </div>
+        <div class="ds-contact__cta" data-reveal style="--reveal-step: 3">
+            <a class="ds-btn ds-btn--primary"
+               href="https://calendly.com/andres-talavera/30min"
+               target="_blank" rel="noopener">
+                @bookText <span aria-hidden="true">→</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+@code {
+    private Resume? resume;
+    private string seoTitle = "Andrés Talavera — Parcours";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/cv";
+    private string seoLocale = "fr_FR";
+    private string chapterOne = "— Chapter I · Introduction";
+    private string chapterTwo = "Chapter II · About";
+    private string chapterThree = "Chapter III · Experiences";
+    private string chapterFour = "Chapter IV · Trainings";
+    private string chapterFive = "Chapter V · Contact";
+    private string aboutTitle = "Un parcours, plusieurs angles.";
+    private string xpTitle = "Ce que j'ai construit.";
+    private string trainTitle = "J'apprends, j'enseigne.";
+    private string contactTitle = "Parlons de votre projet.";
+    private string heroText = "Parcours.";
+    private string introText = "";
+    private string bookText = "Prendre rendez-vous";
+    private List<string>? seoStructuredData;
+    private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        await LoadDataAsync();
+        GenerateStructuredData();
+        StateHasChanged();
+    }
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoCanonical = fr ? "https://ideastud.io/fr/cv" : "https://ideastud.io/en/resume";
+        seoTitle = fr ? "Andrés Talavera — Parcours" : "Andrés Talavera — Resume";
+
+        chapterOne   = fr ? "— Chapter I · Introduction"  : "— Chapter I · Introduction";
+        chapterTwo   = fr ? "Chapter II · À propos"       : "Chapter II · About";
+        chapterThree = fr ? "Chapter III · Expériences"   : "Chapter III · Experiences";
+        chapterFour  = fr ? "Chapter IV · Formations"     : "Chapter IV · Trainings";
+        chapterFive  = fr ? "Chapter V · Contact"         : "Chapter V · Contact";
+
+        aboutTitle   = fr ? "Un parcours, plusieurs angles." : "One path, several angles.";
+        xpTitle      = fr ? "Ce que j'ai construit."          : "What I've built.";
+        trainTitle   = fr ? "J'apprends, j'enseigne."         : "I learn, I teach.";
+        contactTitle = fr ? "Parlons de votre projet."        : "Let's talk about your project.";
+        bookText     = fr ? "Prendre rendez-vous"             : "Book a call";
+    }
+
+    private async Task LoadDataAsync()
+    {
+        string culture = CultureService.CurrentCulture.Name;
+        resume = await Content.GetResumeAsync(culture);
+        heroText = resume?.PersonalInformation?.Hero ?? (culture.StartsWith("fr") ? "Parcours." : "Resume.");
+        introText = resume?.PersonalInformation?.Introduction ?? "";
+        seoDescription = introText;
+    }
+
+    private void GenerateStructuredData()
+    {
+        if (resume?.PersonalInformation is null) return;
+        PersonalInformation pi = resume.PersonalInformation;
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+
+        SchemaOrg.Person person = new(
+            Name: pi.Name ?? "Andrés Talavera",
+            JobTitle: pi.Title ?? (fr ? "Consultant .NET & Azure" : ".NET & Azure Consultant"),
+            Description: introText,
+            Url: "https://ideastud.io",
+            Image: "https://ideastud.io/images/andres-talavera.jpeg",
+            SameAs: new[] {
+                $"https://www.linkedin.com/in/{pi.LinkedIn}/",
+                $"https://github.com/{pi.GitHub}"
+            },
+            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "ASP.NET Core", "Cloud Architecture", "Software Training" },
+            Address: new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressRegion: "Auvergne-Rhône-Alpes", AddressCountry: "FR"),
+            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io")
+        );
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+            (fr ? "Parcours" : "Resume", LocalizedRoute.For("cv", cultureCode)));
+
+        seoStructuredData = new List<string>
+        {
+            SchemaOrg.ToJsonLd(person),
+            SchemaOrg.ToJsonLd(breadcrumb)
+        };
+    }
+}

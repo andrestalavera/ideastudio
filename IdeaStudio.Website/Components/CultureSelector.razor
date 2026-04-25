@@ -1,26 +1,39 @@
-﻿@using System.Globalization
+@using System.Globalization
+@using Microsoft.AspNetCore.Components.Web
 @inherits LocalizedComponent
+@inject ILocalizedRoute LocalizedRoute
+@inject ISlugTranslator SlugTranslator
+@inject NavigationManager NavigationManager
 
-<div class="dropdown">
-    <button class="btn btn-light btn-sm bg-acrylic rounded-pill dropdown-toggle" type="button" id="cultureDropdown"
-        data-bs-toggle="dropdown" aria-expanded="false" aria-label="@changeLanguageText">
-        <i class="fas fa-globe me-1" aria-hidden="true"></i>
-        <span class="d-none d-xl-inline">@GetCurrentCultureDisplayName()</span>
+<div class="ds-culture-selector" @onkeydown="OnKeyDown">
+    @if (isOpen)
+    {
+        <button type="button" class="ds-culture-selector__backdrop" aria-hidden="true" @onclick="CloseMenu"></button>
+    }
+    <button class="ds-btn ds-btn--sm" type="button"
+        @onclick="ToggleOpen" aria-haspopup="menu" aria-expanded="@isOpen" aria-label="@changeLanguageText">
+        <i class="fas fa-globe" aria-hidden="true"></i>
+        <span>@GetCurrentCultureDisplayName()</span>
     </button>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cultureDropdown">
-        @foreach (CultureInfo culture in CultureService.SupportedCultures)
-        {
-            <li>
-                <button class="dropdown-item @(IsCurrentCulture(culture) ? "active" : "")" type="button"
-                    @onclick="() => ChangeCultureAsync(culture.Name)">
-                    @GetCultureDisplayName(culture)
-                </button>
-            </li>
-        }
-    </ul>
+    @if (isOpen)
+    {
+        <ul class="ds-culture-selector__menu" role="menu">
+            @foreach (CultureInfo culture in CultureService.SupportedCultures)
+            {
+                <li role="none">
+                    <button class="ds-culture-selector__item @(IsCurrentCulture(culture) ? "is-active" : "")"
+                        type="button" role="menuitem"
+                        @onclick="() => SelectCultureAsync(culture.Name)">
+                        @GetCultureDisplayName(culture)
+                    </button>
+                </li>
+            }
+        </ul>
+    }
 </div>
 
 @code {
+    private bool isOpen;
     private string changeLanguageText = "Change Language";
     private string englishText = "English";
     private string frenchText = "Français";
@@ -32,10 +45,49 @@
         frenchText = LocalizationService.GetString("French");
     }
 
-    private async Task ChangeCultureAsync(string culture)
-    => await CultureService.SetCultureAsync(culture);
+    private void ToggleOpen() => isOpen = !isOpen;
 
-    private bool IsCurrentCulture(System.Globalization.CultureInfo culture)
+    private void CloseMenu() => isOpen = false;
+
+    private void OnKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Escape") isOpen = false;
+    }
+
+    private async Task SelectCultureAsync(string culture)
+    {
+        isOpen = false;
+        string currentPath = new Uri(NavigationManager.Uri).AbsolutePath;
+        string targetPath = await ResolveTargetPathAsync(currentPath, culture);
+        await CultureService.SetCultureAsync(culture);
+        NavigationManager.NavigateTo(targetPath, forceLoad: false);
+    }
+
+    private async Task<string> ResolveTargetPathAsync(string currentPath, string targetCulture)
+    {
+        string? sourceCulture = LocalizedRoute.ExtractCulture(currentPath);
+        if (sourceCulture != null)
+        {
+            string normalized = currentPath.TrimStart('/');
+            int firstSlash = normalized.IndexOf('/');
+            string rest = firstSlash < 0 ? string.Empty : normalized[(firstSlash + 1)..];
+
+            if (rest.StartsWith("services/", StringComparison.OrdinalIgnoreCase))
+            {
+                string sourceSlug = rest["services/".Length..];
+                string? translatedSlug = await SlugTranslator.TranslateServiceSlugAsync(sourceSlug, sourceCulture, targetCulture);
+                if (!string.IsNullOrEmpty(translatedSlug))
+                {
+                    string servicesHub = LocalizedRoute.For("services.hub", targetCulture);
+                    return $"{servicesHub}/{translatedSlug}";
+                }
+            }
+        }
+
+        return LocalizedRoute.Translate(currentPath, targetCulture);
+    }
+
+    private bool IsCurrentCulture(CultureInfo culture)
     => CultureService.CurrentCulture.Name.Equals(culture.Name, StringComparison.OrdinalIgnoreCase);
 
     private string GetCurrentCultureDisplayName()
@@ -45,7 +97,7 @@
         _ => englishText
     };
 
-    private string GetCultureDisplayName(System.Globalization.CultureInfo culture)
+    private string GetCultureDisplayName(CultureInfo culture)
     => culture.Name.ToLower() switch
     {
         "fr" => frenchText,

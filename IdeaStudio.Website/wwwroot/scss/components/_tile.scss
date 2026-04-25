@@ -1,0 +1,68 @@
+// components/_tile.scss — project tile (image + meta).
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-tile {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-3;
+  color: c.$fg;
+  text-decoration: none;
+
+  &__media {
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    background: c.$bg-raised;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 400ms var(--ease-out);
+    }
+  }
+
+  &__meta {
+    display: flex;
+    gap: s.$s-3;
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    color: c.$fg-muted;
+    letter-spacing: 0.05em;
+  }
+
+  &__title {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    letter-spacing: -0.015em;
+    color: c.$fg;
+    margin: 0;
+    transition: color 240ms var(--ease-out);
+  }
+
+  &__summary {
+    font-size: t.$fs-body;
+    color: c.$fg-muted;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.$s-1;
+    margin-block-start: s.$s-2;
+  }
+
+  &:hover {
+    .ds-tile__media img { transform: scale(1.035); }
+    .ds-tile__title { color: c.$ir-duck; }
+  }
+}

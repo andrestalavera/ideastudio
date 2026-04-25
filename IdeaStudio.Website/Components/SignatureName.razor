@@ -1,0 +1,51 @@
+@* SignatureName — renders a name as a live WebGL glyph object that emerges
+   from a mesh, breathes, reacts to cursor and dissolves on scroll. A hidden
+   <h1> carries the actual text for search engines and assistive tech. *@
+
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<div class="ds-signature" @ref="containerRef">
+    <h1 class="ds-signature__sr">@Text</h1>
+    <canvas class="ds-signature__canvas" @ref="canvasRef" aria-hidden="true"></canvas>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Text { get; set; } = "";
+    [Parameter] public int FontSizePx { get; set; } = 520;
+    [Parameter] public int BlurPx { get; set; } = 36;
+    [Parameter] public int EmergeMs { get; set; } = 2500;
+
+    private ElementReference containerRef;
+    private ElementReference canvasRef;
+    private IJSObjectReference? module;
+    private IJSObjectReference? handle;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        try
+        {
+            module = await JS.InvokeAsync<IJSObjectReference>(
+                "import", "./js/cinema.bundle.js");
+            handle = await module.InvokeAsync<IJSObjectReference>(
+                "mountSignature",
+                canvasRef,
+                new
+                {
+                    text = Text,
+                    fontSizePx = FontSizePx,
+                    blurPx = BlurPx,
+                    emergeMs = EmergeMs
+                });
+        }
+        catch (JSDisconnectedException) { /* runtime gone — ignore */ }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try { if (handle is not null) await handle.InvokeVoidAsync("dispose"); } catch { }
+        try { if (handle is not null) await handle.DisposeAsync(); } catch { }
+        try { if (module is not null) await module.DisposeAsync(); } catch { }
+    }
+}

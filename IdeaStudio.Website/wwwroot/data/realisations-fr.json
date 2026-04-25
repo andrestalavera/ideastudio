@@ -1,0 +1,54 @@
+[
+  {
+    "slug": "monseigneurchampagne",
+    "title": "Monseigneur Champagne",
+    "client": "Monseigneur Champagne",
+    "summary": "Site vitrine d'une maison de champagne, identité premium et parcours client.",
+    "imageUrl": "images/realisations/monseigneur-champagne.svg",
+    "imageAlt": "Capture d'écran du site Monseigneur Champagne",
+    "liveUrl": "https://www.monseigneurchampagne.com",
+    "type": "SiteVitrine",
+    "technologies": [".NET", "Blazor", "Azure"],
+    "completedOn": "2025-11-01",
+    "displayOrder": 1
+  },
+  {
+    "slug": "coronaclubnobless",
+    "title": "Corona Club Noblesse",
+    "client": "Corona Club Noblesse",
+    "summary": "Site institutionnel d'un club suisse, rendu élégant et tri-langue.",
+    "imageUrl": "images/realisations/corona-club-noblesse.svg",
+    "imageAlt": "Capture d'écran du site Corona Club Noblesse",
+    "liveUrl": "https://www.coronaclubnobless.ch",
+    "type": "SiteVitrine",
+    "technologies": [".NET", "Blazor"],
+    "completedOn": "2025-09-15",
+    "displayOrder": 2
+  },
+  {
+    "slug": "krosquare",
+    "title": "Krosquare",
+    "client": "Krosquare",
+    "summary": "Site vitrine et présentation d'offre pour une marque française.",
+    "imageUrl": "images/realisations/krosquare.svg",
+    "imageAlt": "Capture d'écran du site Krosquare",
+    "liveUrl": "https://www.krosquare.fr",
+    "type": "SiteVitrine",
+    "technologies": [".NET", "Blazor", "Azure"],
+    "completedOn": "2025-07-20",
+    "displayOrder": 3
+  },
+  {
+    "slug": "ideastudio",
+    "title": "IdeaStud.io",
+    "client": "Projet personnel",
+    "summary": "Le site que vous êtes en train de consulter : portfolio, services, blog.",
+    "imageUrl": "images/realisations/ideastudio.svg",
+    "imageAlt": "Capture d'écran du site IdeaStud.io",
+    "liveUrl": "https://www.ideastud.io",
+    "type": "SiteVitrine",
+    "technologies": [".NET", "Blazor", "Azure", "Markdig"],
+    "completedOn": "2025-04-01",
+    "displayOrder": 4
+  }
+]

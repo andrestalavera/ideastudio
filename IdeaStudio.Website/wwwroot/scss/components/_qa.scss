@@ -1,0 +1,43 @@
+// components/_qa.scss — expanded editorial Q&A block (no accordion).
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-qa {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-3;
+  padding-block: s.$s-6;
+  border-block-end: 1px solid c.$rule;
+
+  &:first-of-type {
+    border-block-start: 1px solid c.$rule;
+  }
+
+  &__kicker {
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    color: c.$ir-duck;
+    letter-spacing: t.$ls-kicker;
+    text-transform: uppercase;
+  }
+
+  &__question {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    letter-spacing: -0.02em;
+    color: c.$fg;
+    margin: 0;
+  }
+
+  &__answer {
+    font-family: t.$font-sans;
+    font-size: t.$fs-lead;
+    line-height: 1.55;
+    color: c.$fg-muted;
+    margin: 0;
+    max-width: 64ch;
+  }
+}

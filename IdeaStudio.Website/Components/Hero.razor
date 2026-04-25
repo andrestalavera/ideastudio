@@ -1,0 +1,44 @@
+@* Hero — kicker → display → lead → optional action row.
+   Used on every page except Home (Home does its own per-char hero). *@
+
+<section class="ds-hero">
+    <div class="ds-container">
+        <div class="ds-hero__inner ds-rhythm">
+            @if (!string.IsNullOrWhiteSpace(Kicker))
+            {
+                <p class="ds-kicker" data-reveal style="--reveal-step: 0">— @Kicker</p>
+            }
+            <h1 class="ds-display" data-reveal style="--reveal-step: 1">
+                @if (ChildContent is not null)
+                {
+                    @ChildContent
+                }
+                else
+                {
+                    @Title
+                }
+            </h1>
+            @if (!string.IsNullOrWhiteSpace(Lead))
+            {
+                <p class="ds-lead" data-reveal style="--reveal-step: 2">@Lead</p>
+            }
+            @if (Actions is not null)
+            {
+                <div class="ds-hero__actions" data-reveal style="--reveal-step: 3">
+                    @Actions
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter] public string? Kicker { get; set; }
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Lead { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? Actions { get; set; }
+    // ThreadAnchor parameter retained for API compat with existing call sites
+    // (e.g., Cv.razor) but no longer used since the thread pass was removed.
+    [Parameter] public string? ThreadAnchor { get; set; }
+}

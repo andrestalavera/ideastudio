@@ -1,0 +1,37 @@
+// tokens/_colors.scss — techno-iridescent palette (V3)
+// Single source of truth for colors. Mirrored into CSS custom properties
+// in base/_root.scss and sampled by the WebGL shaders via getComputedStyle.
+
+// Surfaces
+$bg-void:    #020a0d;   // far body, under canvas
+$bg-deep:    #05161a;   // primary page background
+$bg-surface: #0a2328;   // masthead pill, chapter bands
+$bg-raised:  #0e2d33;   // cards, stat chips
+
+// Foreground
+$fg:       #eaf4f2;  // primary text on $bg-deep (AAA)
+$fg-muted: #a8bfbb;  // captions / meta / body copy (AA on $bg-deep)
+$fg-faint: #5e7a77;  // decorative, never body copy
+
+// Iridescent accents
+$ir-duck:  #00c2d4;  // primary brand / CTA / focus / rail
+$ir-blue:  #2d44ff;  // secondary accent
+$ir-amber: #ff8c1a;
+$ir-pink:  #ff3670;
+
+// Derived
+$rule:  rgba(234, 244, 242, 0.08);
+$ring:  rgba(0, 194, 212, 0.6);
+$glass: rgba(234, 244, 242, 0.06);
+
+// The one iridescent gradient. Reused by:
+//   - SCSS: CTA borders, text-clip accents, thin rules
+//   - WebGL: mesh + thread pass (sampled via CSS custom properties)
+$gradient-iridescent: conic-gradient(
+  from 140deg at 50% 50%,
+  $ir-duck,
+  $ir-blue,
+  $ir-amber,
+  $ir-pink,
+  $ir-duck
+);

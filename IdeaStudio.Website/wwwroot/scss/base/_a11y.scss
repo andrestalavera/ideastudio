@@ -1,0 +1,42 @@
+// base/_a11y.scss — skip link, focus ring, screen-reader-only.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+
+.ds-skip-link {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  padding: s.$s-3 s.$s-5;
+  background: c.$ir-duck;
+  color: c.$bg-void;
+  font-weight: 600;
+  z-index: 1000;
+  transform: translateY(-120%);
+  transition: transform 180ms var(--ease-out);
+
+  &:focus-visible {
+    transform: translateY(0);
+    outline: none;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid c.$ir-duck;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+// Matches both WAI-ARIA visually-hidden and modern helpers.
+.sr-only,
+.ds-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

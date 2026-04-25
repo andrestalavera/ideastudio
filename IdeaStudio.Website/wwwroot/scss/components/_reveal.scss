@@ -1,0 +1,27 @@
+// components/_reveal.scss — scroll-reveal via [data-reveal].
+
+@use '../tokens/space' as s;
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 640ms var(--ease-out),
+              transform 640ms var(--ease-out);
+  // Stagger entry; exits drop the delay so they feel snappier when scrolling
+  // back up and don't pile cascading delays at the top of viewport.
+  transition-delay: 0ms;
+
+  &.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--reveal-step, 0) * 70ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

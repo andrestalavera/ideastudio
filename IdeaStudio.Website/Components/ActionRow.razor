@@ -1,0 +1,34 @@
+@* ActionRow — LinkedIn / GitHub ghost pills + Calendly iridescent CTA.
+   Reused in the Home hero and in CtaBand. *@
+
+<div class="ds-row">
+    @if (ShowSocials)
+    {
+        <a class="ds-btn ds-btn--ghost"
+           href="https://www.linkedin.com/in/andrestalavera/"
+           target="_blank" rel="noopener">
+            <span>01</span> LinkedIn <span aria-hidden="true">↗</span>
+        </a>
+        <a class="ds-btn ds-btn--ghost"
+           href="https://github.com/andrestalavera"
+           target="_blank" rel="noopener">
+            <span>02</span> GitHub <span aria-hidden="true">↗</span>
+        </a>
+    }
+    <a class="ds-btn ds-btn--primary"
+       href="https://calendly.com/andres-talavera/30min"
+       target="_blank" rel="noopener"
+       aria-label="@AriaLabel">
+        @if (ShowSocials)
+        {
+            <span>03</span>
+        }
+        @Label <span aria-hidden="true">→</span>
+    </a>
+</div>
+
+@code {
+    [Parameter] public bool ShowSocials { get; set; } = true;
+    [Parameter] public string Label { get; set; } = "Meet";
+    [Parameter] public string AriaLabel { get; set; } = "Book a 30-minute call on Calendly (opens in a new tab)";
+}

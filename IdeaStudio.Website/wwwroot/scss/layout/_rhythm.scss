@@ -1,0 +1,34 @@
+// layout/_rhythm.scss — the SINGLE source of kicker → title → lead spacing.
+// Every <Hero> and <ChapterBand> opens with .ds-rhythm. Do not duplicate
+// this spacing in individual components.
+
+@use '../tokens/space' as s;
+
+.ds-rhythm {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-3;
+
+  > .ds-kicker + * {
+    margin-block-start: s.$s-3;
+  }
+
+  > .ds-display + *,
+  > .ds-title + *,
+  > h1 + *,
+  > h2 + * {
+    margin-block-start: s.$s-4;
+  }
+
+  > .ds-lead + * {
+    margin-block-start: s.$s-5;
+  }
+}
+
+// .ds-chapter-gap — the canonical space between a ChapterBand and the
+// content block that follows it (project list, editorial list, FAQ, CTA).
+// Replaces ad-hoc inline `style="margin-block-start: …"` overrides on
+// chapter contents — keeps token discipline at the page level.
+.ds-chapter-gap {
+  margin-block-start: clamp(2rem, 4vw, 3rem);
+}

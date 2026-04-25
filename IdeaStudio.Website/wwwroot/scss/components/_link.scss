@@ -1,0 +1,28 @@
+// components/_link.scss — text link with underline + trailing arrow slide.
+
+@use '../tokens/colors' as c;
+
+.ds-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  color: c.$fg;
+  text-decoration: none;
+  border-block-end: 1px solid rgba(0, 194, 212, 0.35);
+  transition: color 180ms var(--ease-out),
+              border-color 180ms var(--ease-out);
+
+  &__arrow {
+    display: inline-block;
+    transition: transform 180ms var(--ease-out);
+  }
+
+  &:hover {
+    color: c.$ir-duck;
+    border-block-end-color: c.$ir-duck;
+
+    .ds-link__arrow {
+      transform: translateX(0.25em);
+    }
+  }
+}

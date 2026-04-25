@@ -1,0 +1,40 @@
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+
+@* CtaBand — "Travaillons ensemble" band with iridescent Calendly pill.
+   Shown on every page except Legal/Privacy. *@
+
+<section class="ds-section ds-section--bordered ds-print-hidden">
+    <div class="ds-container">
+        <div class="ds-rhythm" data-reveal>
+            <p class="ds-kicker">@kickerText</p>
+            <h2 class="ds-title">@titleText</h2>
+            <p class="ds-lead">@leadText</p>
+            <div style="margin-block-start: 2rem;">
+                <a class="ds-btn ds-btn--primary"
+                   href="https://calendly.com/andres-talavera/30min"
+                   target="_blank" rel="noopener">
+                    @ctaText <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private string kickerText = "— Ensemble";
+    private string titleText = "Travaillons ensemble.";
+    private string leadText = "Un projet, une idée, un coup de main ? Parlons-en.";
+    private string ctaText = "Prendre rendez-vous";
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        kickerText = fr ? "— Ensemble" : "— Together";
+        titleText  = fr ? "Travaillons ensemble." : "Let's work together.";
+        leadText   = fr
+            ? "Un projet, une idée, un coup de main ? Parlons-en."
+            : "A project, an idea, a second pair of eyes? Let's talk.";
+        ctaText    = fr ? "Prendre rendez-vous" : "Book a call";
+    }
+}

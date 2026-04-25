@@ -1,0 +1,31 @@
+@using IdeaStudio.Website.Models
+@using ServiceModel = IdeaStudio.Website.Models.Service
+@using IdeaStudio.Website.Services
+@inject ILocalizedRoute LocalizedRoute
+@inject IdeaStudio.Website.Services.ICultureService CultureService
+
+@* EditorialList — numbered list of services: index · title · tagline · →
+   Single row primitive; see components/_list.scss. *@
+
+<ol class="ds-list" role="list">
+    @for (int i = 0; i < Items.Count; i++)
+    {
+        ServiceModel item = Items[i];
+        string href = $"{LocalizedRoute.For("services.hub")}/{item.Slug}";
+        <li>
+            <a class="ds-list__row" href="@href" data-reveal style="@($"--reveal-step:{i}")">
+                <span class="ds-list__index">@($"{i + 1:D2}")</span>
+                <span class="ds-list__title">@item.Title</span>
+                <span class="ds-list__arrow" aria-hidden="true">→</span>
+                @if (!string.IsNullOrWhiteSpace(item.Tagline))
+                {
+                    <span class="ds-list__tagline">@item.Tagline</span>
+                }
+            </a>
+        </li>
+    }
+</ol>
+
+@code {
+    [Parameter] public IReadOnlyList<ServiceModel> Items { get; set; } = Array.Empty<ServiceModel>();
+}

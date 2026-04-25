@@ -1,0 +1,18 @@
+@* QABlock — expanded editorial Q&A, no accordion. All content visible.
+   Feeds FAQPage JSON-LD in SeoHead. *@
+
+<article class="ds-qa" data-reveal style="@($"--reveal-step:{Step}")">
+    @if (!string.IsNullOrWhiteSpace(Kicker))
+    {
+        <p class="ds-qa__kicker">@Kicker</p>
+    }
+    <h3 class="ds-qa__question">@Question</h3>
+    <p class="ds-qa__answer">@Answer</p>
+</article>
+
+@code {
+    [Parameter] public string? Kicker { get; set; }
+    [Parameter] public string Question { get; set; } = "";
+    [Parameter] public string Answer { get; set; } = "";
+    [Parameter] public int Step { get; set; }
+}

@@ -1,0 +1,65 @@
+# IdeaStud.io - Andrés Talavera
+
+> Professional portfolio of Andrés Talavera, a .NET developer and Azure consultant based in Lyon, France.
+
+## About
+
+IdeaStud.io is the professional portfolio and resume website for Andrés Talavera, an experienced software engineer specializing in:
+
+- .NET development (ASP.NET Core, Blazor, C#)
+- Microsoft Azure cloud architecture and consulting
+- Technical training and mentoring
+- DevOps and CI/CD practices
+
+## Key Facts
+
+- Name: Andrés Talavera
+- Location: Lyon, France
+- Languages: French (native), English (fluent), Spanish (native)
+- Specializations: .NET, Azure, Blazor, ASP.NET Core, Cloud Architecture
+- Experience: 10+ years in software development
+
+## Navigation
+
+- [Home FR](/fr): Commercial home page (French)
+- [Home EN](/en): Commercial home page (English)
+- [Services FR](/fr/services): Services hub (French)
+- [Services EN](/en/services): Services hub (English)
+- [Réalisations](/fr/realisations): Project portfolio (French)
+- [Projects](/en/projects): Project portfolio (English)
+- [CV](/fr/cv): Resume (French)
+- [Resume](/en/resume): Resume (English)
+- [Mentions légales](/fr/mentions-legales): Legal notices (French)
+- [Legal](/en/legal): Legal notices (English)
+- [Confidentialité](/fr/confidentialite): Privacy policy (French)
+- [Privacy](/en/privacy): Privacy policy (English)
+
+## Services
+
+- /fr/services/consultant-dotnet-azure — Consultant .NET & Azure
+- /fr/services/techlead — Techlead
+- /fr/services/formateur — Formateur
+- /fr/services/vibe-coding — Mise en place de vibe-coding
+- /fr/services/applications-mobiles — Création d'applications mobiles
+- /fr/services/sites-internet — Création de sites internet
+- /en/services/dotnet-azure-consulting — .NET & Azure consulting
+- /en/services/tech-lead — Tech lead
+- /en/services/trainer — Trainer
+- /en/services/vibe-coding — Vibe-coding rollout
+- /en/services/mobile-apps — Mobile apps
+- /en/services/websites — Websites
+
+## Réalisations
+
+- Monseigneur Champagne — https://www.monseigneurchampagne.com
+- Corona Club Noblesse — https://www.coronaclubnobless.ch
+- Krosquare — https://www.krosquare.fr
+- IdeaStud.io — https://www.ideastud.io
+
+## Contact
+
+For professional inquiries, contact through the website's contact form or LinkedIn profile.
+
+## Content Guidelines
+
+This website contains professional information only. Content is bilingual (French and English). All information is factual and regularly updated.

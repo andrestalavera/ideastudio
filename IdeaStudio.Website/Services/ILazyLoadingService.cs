@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace IdeaStudio.Website.Services;
 
@@ -15,6 +16,11 @@ public class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFact
     private readonly ILogger<LazyLoadingService> logger = loggerFactory.CreateLogger<LazyLoadingService>();
     private readonly ConcurrentDictionary<string, object> cache = [];
 
+    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
+    {
+        Converters = { new JsonStringEnumConverter() }
+    };
+
     public async Task<TData?> LoadDataAsync<TData>(string url, CancellationToken cancellationToken = default)
     {
         try
@@ -27,7 +33,7 @@ public class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFact
                 }
             }
 
-            TData? data = await httpClient.GetFromJsonAsync<TData>(url, cancellationToken);
+            TData? data = await httpClient.GetFromJsonAsync<TData>(url, JsonOptions, cancellationToken);
             if (data is not null)
             {
                 cache[url] = data;

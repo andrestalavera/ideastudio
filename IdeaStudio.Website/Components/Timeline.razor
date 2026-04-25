@@ -1,0 +1,60 @@
+@using IdeaStudio.Website.Models
+
+@* Timeline — CV experiences. Sticky year column on desktop, inline on mobile.
+   Active-year highlighting is added in Phase 1 via IntersectionObserver (JS). *@
+
+<div class="ds-timeline">
+    @if (Experiences is not null)
+    {
+        int i = 0;
+        foreach (Experience exp in Experiences)
+        {
+            <article class="ds-timeline__row" data-reveal style="@($"--reveal-step:{i}")">
+                <div>
+                    <div class="ds-timeline__year">@exp.StartDate.Year.ToString("D4")</div>
+                    <div class="ds-timeline__period">@FormatPeriod(exp)</div>
+                </div>
+                <div>
+                    <h3 class="ds-timeline__role">@exp.Title</h3>
+                    <div class="ds-timeline__company">@exp.Company@(exp.Mode is { Length: > 0 } ? $" · {exp.Mode}" : "")</div>
+                    @if (exp.Description is not null)
+                    {
+                        <div class="ds-timeline__paragraphs">
+                            @foreach (string? p in exp.Description)
+                            {
+                                if (!string.IsNullOrWhiteSpace(p))
+                                {
+                                    <p>@p</p>
+                                }
+                            }
+                        </div>
+                    }
+                    @if (exp.Skills is not null)
+                    {
+                        <div class="ds-timeline__tags">
+                            @foreach (string? skill in exp.Skills)
+                            {
+                                if (!string.IsNullOrWhiteSpace(skill))
+                                {
+                                    <span class="ds-tag">@skill</span>
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+            </article>
+            i++;
+        }
+    }
+</div>
+
+@code {
+    [Parameter] public IEnumerable<Experience>? Experiences { get; set; }
+
+    private static string FormatPeriod(Experience exp)
+    {
+        string start = exp.StartDate.ToString("yyyy.MM");
+        string end = exp.EndDate == DateTime.Today ? "now" : exp.EndDate.ToString("yyyy.MM");
+        return $"{start} → {end}";
+    }
+}

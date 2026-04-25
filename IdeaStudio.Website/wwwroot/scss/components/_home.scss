@@ -1,0 +1,210 @@
+// components/_home.scss — Home-specific layout. The signature hero leads,
+// chapters whisper underneath. Scroll progress is tracked by the top
+// .ds-progress rail; the home page itself stays clean.
+
+@use '../tokens/space' as s;
+@use '../tokens/colors' as c;
+
+.ds-page--home {
+  position: relative;
+}
+
+// Asymmetric Home hero. The signature is a four-area editorial layout
+// instead of a centered column. Variance promised by the design system =
+// variance delivered.
+//   ┌─────────────────────────────────────────┬───┐
+//   │                                         │ K │
+//   │                                         │ I │
+//   │  Andrés Talavera.                       │ C │
+//   │                                         │ K │
+//   │       I turn ideas into software        │ E │
+//   │       that ships.                       │ R │
+//   │                                         │   │
+//   │  [ Meet → ]                             │   │
+//   └─────────────────────────────────────────┴───┘
+//
+// The kicker rotates vertical-rl on the right rail, becoming an orientation
+// marker rather than a label. On tablet/mobile, the layout collapses to a
+// natural top-down stack.
+.ds-hero--home {
+  min-block-size: 100svh;
+  display: flex;
+  align-items: stretch;
+  padding-block: clamp(4rem, 8vh, 8rem);
+
+  .ds-hero__inner {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr auto auto auto;
+    column-gap: clamp(1rem, 2vw, 2rem);
+    row-gap: clamp(1rem, 2.5vh, 1.75rem);
+    align-items: end;
+    gap: 0;
+  }
+
+  .ds-hero__kicker {
+    grid-column: 12;
+    grid-row: 1 / 5;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    align-self: end;
+    justify-self: end;
+    color: c.$fg-muted;
+    white-space: nowrap;
+    margin: 0;
+    padding-block-end: 0;
+  }
+
+  .ds-hero__name {
+    grid-column: 1 / 11;
+    grid-row: 2;
+  }
+
+  .ds-hero__lead {
+    grid-column: 4 / 11;
+    grid-row: 3;
+    max-width: 52ch;
+    margin: 0;
+  }
+
+  .ds-hero__actions {
+    grid-column: 1 / 7;
+    grid-row: 4;
+    margin-block-start: clamp(0.5rem, 2vh, 1.5rem);
+  }
+
+  // Tablet: collapse the rail kicker to inline horizontal, keep the offset
+  // structure but in a narrower column count.
+  @media (max-width: 1023px) {
+    .ds-hero__inner {
+      grid-template-columns: repeat(8, 1fr);
+    }
+    .ds-hero__kicker {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      writing-mode: horizontal-tb;
+      transform: none;
+      justify-self: start;
+      align-self: end;
+    }
+    .ds-hero__name { grid-column: 1 / 8; grid-row: 2; }
+    .ds-hero__lead { grid-column: 2 / 8; grid-row: 3; }
+    .ds-hero__actions { grid-column: 1 / 7; grid-row: 4; }
+  }
+
+  // Phone: pure stack, no offset (variance reduces with viewport).
+  @media (max-width: 767px) {
+    min-block-size: 88vh;
+    .ds-hero__inner {
+      display: flex;
+      flex-direction: column;
+      gap: s.$s-4;
+    }
+    .ds-hero__kicker {
+      writing-mode: horizontal-tb;
+      transform: none;
+    }
+    .ds-hero__lead {
+      max-width: none;
+    }
+  }
+}
+
+// Chapter padding on Home — generously airy.
+.ds-page--home {
+  .ds-section--chapter {
+    padding-block: clamp(7rem, 14vw, 14rem);
+  }
+
+  // Iridescent chapter accent on Home: a short vertical stub at the chapter
+  // break, anchoring each section against its hairline rule.
+  .ds-section--bordered::before {
+    inset-block-start: 0;
+    inset-inline-start: clamp(1rem, 4vw, 4rem);
+    block-size: clamp(40px, 6vw, 80px);
+    inline-size: 1px;
+    background: linear-gradient(180deg, c.$ir-duck, transparent);
+    opacity: 0.7;
+  }
+}
+
+// Project tiles on Home — editorial zig-zag instead of uniform rows.
+// Each tile is a self-contained 2-col composition; even rows flip the
+// composition (text-left, image-right) to break the visual rhythm.
+.ds-home__projects {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 6vw, 5rem);
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.ds-home__projects .ds-tile {
+  width: 100%;
+}
+
+.ds-home__projects .ds-tile__media {
+  aspect-ratio: 16 / 9;
+}
+
+@media (min-width: 1024px) {
+  .ds-home__projects .ds-tile {
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: center;
+  }
+
+  .ds-home__projects .ds-tile__media {
+    grid-row: 1 / span 4;
+    aspect-ratio: 4 / 3;
+  }
+
+  // Zig-zag: even tiles flip — text on the left, image on the right.
+  .ds-home__projects > :nth-child(even) {
+    grid-template-columns: 4fr 5fr;
+  }
+
+  .ds-home__projects > :nth-child(even) .ds-tile__media {
+    grid-column: 2;
+    grid-row: 1 / span 4;
+  }
+
+  .ds-home__projects > :nth-child(even) .ds-tile__meta,
+  .ds-home__projects > :nth-child(even) .ds-tile__title,
+  .ds-home__projects > :nth-child(even) .ds-tile__summary,
+  .ds-home__projects > :nth-child(even) .ds-tile__tags {
+    grid-column: 1;
+  }
+}
+
+// Home FAQ — magazine-style 2-col Q/A on desktop. Question + kicker
+// stack on the left, answer occupies the wider right column. Each Q&A
+// keeps its own hairline separators (from _qa.scss) so chapters still
+// feel structured. On tablet/mobile the layout collapses to the default
+// vertical stack from _qa.scss.
+.ds-page--home .ds-faq-list {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .ds-page--home .ds-faq-list .ds-qa {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    column-gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+  }
+
+  .ds-page--home .ds-faq-list .ds-qa__kicker { grid-column: 1; grid-row: 1; }
+  .ds-page--home .ds-faq-list .ds-qa__question { grid-column: 1; grid-row: 2; }
+  .ds-page--home .ds-faq-list .ds-qa__answer {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+  }
+}
+
+// Kicker tracking is a touch wider on Home for editorial feel.
+.ds-page--home .ds-rhythm > .ds-kicker { letter-spacing: 0.18em; }

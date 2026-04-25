@@ -1,0 +1,41 @@
+// base/_root.scss — mirror SCSS tokens into CSS custom properties so the
+// WebGL passes can read the same palette (via getComputedStyle) and stay
+// in lockstep with SCSS.
+
+@use '../tokens/colors' as c;
+@use '../tokens/type' as t;
+@use '../tokens/motion' as m;
+
+:root {
+  // Palette
+  --bg-void:    #{c.$bg-void};
+  --bg-deep:    #{c.$bg-deep};
+  --bg-surface: #{c.$bg-surface};
+  --bg-raised:  #{c.$bg-raised};
+
+  --fg:       #{c.$fg};
+  --fg-muted: #{c.$fg-muted};
+  --fg-faint: #{c.$fg-faint};
+
+  --ir-duck:  #{c.$ir-duck};
+  --ir-blue:  #{c.$ir-blue};
+  --ir-amber: #{c.$ir-amber};
+  --ir-pink:  #{c.$ir-pink};
+
+  --rule:  #{c.$rule};
+  --ring:  #{c.$ring};
+  --glass: #{c.$glass};
+
+  // Type
+  --font-sans: #{t.$font-sans};
+  --font-mono: #{t.$font-mono};
+
+  // Motion
+  --ease-out:    #{m.$ease-out};
+  --ease-in:     #{m.$ease-in};
+  --ease-smooth: #{m.$ease-smooth};
+  --ease-bounce: #{m.$ease-bounce};
+
+  color-scheme: dark;
+  accent-color: var(--ir-duck);
+}

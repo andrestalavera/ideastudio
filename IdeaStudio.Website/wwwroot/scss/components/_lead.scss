@@ -1,0 +1,26 @@
+// components/_lead.scss — lead paragraph + body copy classes.
+
+@use '../tokens/colors' as c;
+@use '../tokens/type' as t;
+
+.ds-lead {
+  font-family: t.$font-sans;
+  font-size: t.$fs-lead;
+  line-height: 1.5;
+  color: c.$fg;
+  max-width: 58ch;
+  margin: 0;
+}
+
+.ds-body {
+  font-family: t.$font-sans;
+  font-size: t.$fs-body;
+  line-height: t.$lh-body;
+  color: c.$fg-muted;
+  max-width: 68ch;
+  margin: 0;
+
+  strong {
+    color: c.$fg;
+  }
+}

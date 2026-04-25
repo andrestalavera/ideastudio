@@ -1,0 +1,26 @@
+// layout/_stack.scss — vertical flex stack with gap variants.
+
+@use '../tokens/space' as s;
+
+.ds-stack {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-4;
+
+  &--1 { gap: s.$s-1; }
+  &--2 { gap: s.$s-2; }
+  &--3 { gap: s.$s-3; }
+  &--4 { gap: s.$s-4; }
+  &--5 { gap: s.$s-5; }
+  &--6 { gap: s.$s-6; }
+  &--7 { gap: s.$s-7; }
+  &--8 { gap: s.$s-8; }
+}
+
+.ds-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: s.$s-3;
+  flex-wrap: wrap;
+}

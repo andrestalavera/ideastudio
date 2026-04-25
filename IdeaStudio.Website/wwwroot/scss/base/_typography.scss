@@ -1,0 +1,65 @@
+// base/_typography.scss — default element styling. Component classes
+// override specifics; this file sets the baseline.
+
+@use '../tokens/colors' as c;
+@use '../tokens/type' as t;
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/jetbrains-mono.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  font-family: t.$font-sans;
+  font-size: 100%;
+}
+
+body {
+  background-color: c.$bg-deep;
+  color: c.$fg;
+  font-family: t.$font-sans;
+  font-size: t.$fs-body;
+  font-weight: t.$fw-body;
+  line-height: t.$lh-body;
+  letter-spacing: t.$ls-body;
+}
+
+p {
+  max-width: 68ch;
+}
+
+strong, b {
+  font-weight: t.$fw-strong;
+}
+
+code, pre, kbd, samp {
+  font-family: t.$font-mono;
+  font-size: t.$fs-mono;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 150ms var(--ease-out);
+
+  &:hover {
+    color: c.$ir-duck;
+  }
+}
+
+::selection {
+  background: c.$ir-duck;
+  color: c.$bg-void;
+}

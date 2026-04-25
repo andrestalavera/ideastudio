@@ -1,93 +1,86 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 @using IdeaStudio.Website.Services
 @using IdeaStudio.Website.Components
 @inject ICultureService CultureService
 @inject ILocalizationService LocalizationService
+@inject NavigationManager Navigation
+@inject ISceneTheme SceneTheme
 @implements IDisposable
 
 <CascadingValue Value="this">
-    <Loading />
+    <GlCanvas />
+    <a href="#main-content" class="ds-skip-link">@skipToMainContentText</a>
+    <Progress />
+    <Masthead />
 
-    <div id="main-content-container" class="d-flex flex-column min-vh-100">
-        <a href="#main-content"
-            class="skip-link visually-hidden-focusable position-absolute top-0 start-0 z-3 btn btn-primary">
-            @skipToMainContentText
-        </a>
+    <main id="main-content" role="main">
+        @Body
+    </main>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-acrylic bg-opacity-25 sticky-top border-0 border-bottom border-opacity-25 d-print-none"
-            data-bs-spy="scroll" data-bs-target="#navbar-nav" data-bs-offset="70" style="z-index: 4 !important;">
-            <div class="container">
-                <a class="navbar-brand fw-bold d-flex align-items-center" href="/" aria-label="IdeaStudio - Home">
-                    <img src="images/logo-ideastudio-white.svg" alt="IdeaStudio"
-                        class="d-inline-block align-text-top me-2" height="40" width="100" loading="eager">
-                </a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav"
-                    aria-controls="navbar-nav" aria-expanded="false" aria-label="@toggleNavigationText">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbar-nav">
-                    <div class="me-auto">
-                        @if (NavbarContent is not null)
-                        {
-                            @NavbarContent
-                        }
-                    </div>
-
-                    <div class="d-flex gap-2">
-                        <SocialNetworksComponent Size="sm" />
-                        <CultureSelector />
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        <main id="main-content" class="flex-grow-1 text-primary z-3" role="main">
-            @Body
-        </main>
-
-        <FooterSection />
-    </div>
+    @if (showCta)
+    {
+        <CtaBand />
+    }
+    <Footer />
 </CascadingValue>
 
 @code {
-    [Parameter] public RenderFragment? NavbarContent { get; set; }
-
     private string skipToMainContentText = "Skip to main content";
-    private string toggleNavigationText = "Toggle navigation";
+    private bool showCta = true;
+    private bool runtimeInitialized;
 
     protected override async Task OnInitializedAsync()
     {
         CultureService.CultureChanged += OnCultureChanged;
+        Navigation.LocationChanged += OnLocationChanged;
         await LoadLocalizedStringsAsync();
+        UpdateCtaVisibility(Navigation.Uri);
     }
 
-    public void SetNavbarContent(RenderFragment? content)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        NavbarContent = content;
-        StateHasChanged();
+        if (!firstRender || runtimeInitialized) return;
+        runtimeInitialized = true;
+        try { await SceneTheme.InitializeAsync(); }
+        catch (Microsoft.JSInterop.JSDisconnectedException) { /* runtime gone */ }
     }
 
     private async Task LoadLocalizedStringsAsync()
     {
         await LocalizationService.LoadCultureAsync(CultureService.CurrentCulture.Name);
-        LoadTexts();
+        skipToMainContentText = LocalizationService.GetString("SkipToMainContent");
         StateHasChanged();
     }
 
-    private async void OnCultureChanged()
-    => await LoadLocalizedStringsAsync();
+    private void OnCultureChanged() => _ = SafeLoadLocalizedStringsAsync();
 
-    private void LoadTexts()
+    private async Task SafeLoadLocalizedStringsAsync()
     {
-        skipToMainContentText = LocalizationService.GetString("SkipToMainContent");
-        toggleNavigationText = LocalizationService.GetString("ToggleNavigation");
+        try { await LoadLocalizedStringsAsync(); }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[MainLayout] Failed to load culture: {ex.Message}");
+        }
+    }
+
+    private void OnLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        UpdateCtaVisibility(e.Location);
+        StateHasChanged();
+    }
+
+    private void UpdateCtaVisibility(string uri)
+    {
+        Uri absolute = new(uri);
+        string path = absolute.AbsolutePath.ToLowerInvariant();
+        showCta = !(path.Contains("mentions-legales") || path.Contains("/legal")
+                    || path.Contains("confidentialite") || path.Contains("/privacy"));
     }
 
     public void Dispose()
     {
         CultureService.CultureChanged -= OnCultureChanged;
+        Navigation.LocationChanged -= OnLocationChanged;
         GC.SuppressFinalize(this);
     }
 }

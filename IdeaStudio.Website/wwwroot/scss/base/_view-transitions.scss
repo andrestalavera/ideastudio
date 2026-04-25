@@ -1,0 +1,31 @@
+// base/_view-transitions.scss — CSS View Transitions API (Chrome-family today,
+// progressively supported elsewhere). When present, routes cross-fade with a
+// subtle upward lift on new content — matches the editorial rhythm. No JS.
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 420ms;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  ::view-transition-old(root) {
+    animation-name: ds-view-out;
+  }
+  ::view-transition-new(root) {
+    animation-name: ds-view-in;
+  }
+}
+
+@keyframes ds-view-out {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+@keyframes ds-view-in {
+  0%   { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

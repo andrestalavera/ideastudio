@@ -1,0 +1,28 @@
+// tokens/_space.scss — rem-based scale + containers + section rhythm + breakpoints.
+
+$s-1:  0.25rem;
+$s-2:  0.5rem;
+$s-3:  0.75rem;
+$s-4:  1rem;
+$s-5:  1.5rem;
+$s-6:  2rem;
+$s-7:  3rem;
+$s-8:  4rem;
+$s-9:  6rem;
+$s-10: 8rem;
+$s-11: 12rem;
+
+// Container widths
+$container-narrow: 720px;
+$container:        1200px;
+$container-wide:   1440px;
+
+// Section / chapter vertical rhythm (fluid)
+$py-section: clamp(5rem, 10vw, 9rem);
+$py-chapter: clamp(7rem, 14vw, 14rem);
+
+// Breakpoints (container queries preferred; media queries only at page frame)
+$bp-s:  24rem;   // 384px — small phones
+$bp-m:  40rem;   // 640px — tablet portrait
+$bp-l:  64rem;   // 1024px — tablet landscape / small laptop
+$bp-xl: 90rem;   // 1440px — large desktop

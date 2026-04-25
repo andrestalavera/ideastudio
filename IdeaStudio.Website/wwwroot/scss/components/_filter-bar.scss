@@ -1,0 +1,49 @@
+// components/_filter-bar.scss — Realisations chip bar. Horizontal scroll
+// on mobile with scroll-snap so the first chip always stays in view.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: s.$s-2;
+  padding-block: s.$s-4;
+  margin-block-end: s.$s-5;
+  border-block-end: 1px solid c.$rule;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+
+  &__label {
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    color: c.$fg-muted;
+    letter-spacing: t.$ls-kicker;
+    text-transform: uppercase;
+    margin-inline-end: s.$s-2;
+  }
+
+  .ds-tag {
+    scroll-snap-align: start;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 40rem) {
+    flex-wrap: nowrap;
+  }
+
+  &::-webkit-scrollbar { display: none; }
+  scrollbar-width: none;
+}
+
+.ds-empty {
+  padding-block: 4rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}

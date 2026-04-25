@@ -1,0 +1,12 @@
+@* Reveal — thin wrapper that applies [data-reveal] + optional stagger step.
+   JS in interactions/reveals.js adds .is-revealed on intersection. *@
+
+<div data-reveal style="@($"--reveal-step: {Step}")" class="@Class">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public int Step { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

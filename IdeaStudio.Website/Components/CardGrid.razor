@@ -1,0 +1,18 @@
+@* CardGrid — generic 2 or 3 column grid wrapper. *@
+
+<div class="ds-grid @GridClass">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public int Columns { get; set; } = 3;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private string GridClass => Columns switch
+    {
+        2 => "ds-grid--2",
+        3 => "ds-grid--3",
+        4 => "ds-grid--4",
+        _ => "ds-grid--auto"
+    };
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://docs.anthropic.com/hooks-schema.json",
+  "description": "Pre-commit review — build and tests must pass.",
+  "trigger": "Before any git commit",
+  "checklist": [
+    "Run dotnet build IdeaStudio.sln — must succeed",
+    "Run dotnet test IdeaStudio.sln — all tests must pass",
+    "Verify no secrets in staged files",
+    "Get explicit user approval"
+  ]
+}

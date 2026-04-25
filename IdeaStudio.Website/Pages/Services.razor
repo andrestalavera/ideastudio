@@ -1,0 +1,85 @@
+@page "/fr/services"
+@page "/en/services"
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@using ServiceModel = IdeaStudio.Website.Models.Service
+@inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
+@layout MainLayout
+
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         SiteName="IdeaStud.io"
+         StructuredData="@seoStructuredData"
+         SpeakableSelectors="@speakable" />
+
+<Hero Kicker="— Services" Title="@titleText" Lead="@lead" />
+
+<section class="ds-section">
+    <div class="ds-container">
+        <EditorialList Items="@services" />
+    </div>
+</section>
+
+@code {
+    private IReadOnlyList<ServiceModel> services = Array.Empty<ServiceModel>();
+    private string seoTitle = "Services — IdeaStud.io";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/services";
+    private string seoLocale = "fr_FR";
+    private string titleText = "Six façons de collaborer.";
+    private string lead = "";
+    private List<string>? seoStructuredData;
+    private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        services = await Content.GetServicesAsync(CultureService.CurrentCulture.Name);
+        GenerateStructuredData();
+        StateHasChanged();
+    }
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoCanonical = fr ? "https://ideastud.io/fr/services" : "https://ideastud.io/en/services";
+        seoTitle = fr ? "Services — IdeaStud.io" : "Services — IdeaStud.io";
+        titleText = fr ? "Six façons de collaborer." : "Six ways to collaborate.";
+        lead = fr
+            ? "Consultant, techlead, formateur. Choisissez votre angle — chaque service se décline en mission courte, longue ou forfait."
+            : "Consultant, tech lead, trainer. Pick your angle — every service scales from short engagements to long missions.";
+        seoDescription = lead;
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+            (fr ? "Services" : "Services", LocalizedRoute.For("services.hub", cultureCode)));
+
+        SchemaOrg.ListItem[] items = services.Select((s, i) => new SchemaOrg.ListItem(
+            Position: i + 1,
+            Name: s.Title,
+            Item: $"https://ideastud.io{LocalizedRoute.For("services.hub", cultureCode)}/{s.Slug}")).ToArray();
+
+        SchemaOrg.ItemList list = new(
+            Name: fr ? "Services IdeaStud.io" : "IdeaStud.io services",
+            Description: lead,
+            NumberOfItems: items.Length,
+            ItemListElement: items);
+
+        seoStructuredData = new List<string>
+        {
+            SchemaOrg.ToJsonLd(breadcrumb),
+            SchemaOrg.ToJsonLd(list)
+        };
+    }
+}

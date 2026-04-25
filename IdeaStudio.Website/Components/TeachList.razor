@@ -1,0 +1,35 @@
+@using IdeaStudio.Website.Models
+
+@* TeachList — "Where I teach" — grid of training centers.
+   Used on Home §6 and CV § Formations. *@
+
+<div class="ds-grid ds-grid--3">
+    @if (Centers is not null)
+    {
+        int i = 0;
+        foreach (TrainingCenter center in Centers)
+        {
+            <div class="ds-card" data-reveal style="@($"--reveal-step:{i}")">
+                <h3 class="ds-card__title">@center.Name</h3>
+                @if (center.Locations is not null)
+                {
+                    <p class="ds-card__body">@string.Join(" · ", center.Locations)</p>
+                }
+                @if (center.Courses is not null)
+                {
+                    <div class="ds-tile__tags">
+                        @foreach (string course in center.Courses)
+                        {
+                            <span class="ds-tag">@course</span>
+                        }
+                    </div>
+                }
+            </div>
+            i++;
+        }
+    }
+</div>
+
+@code {
+    [Parameter] public IEnumerable<TrainingCenter>? Centers { get; set; }
+}

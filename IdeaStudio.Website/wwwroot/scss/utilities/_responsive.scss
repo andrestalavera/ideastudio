@@ -1,0 +1,10 @@
+// utilities/_responsive.scss — small page-frame helpers. Most responsive work
+// happens via container queries on components; these are the rare cases where
+// viewport-width dictates the layout.
+
+@media (max-width: 40rem) {
+  .ds-hide-mobile { display: none !important; }
+}
+@media (min-width: 40.0625rem) {
+  .ds-show-mobile-only { display: none !important; }
+}

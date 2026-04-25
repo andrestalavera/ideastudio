@@ -1,0 +1,30 @@
+// layout/_section.scss — section + chapter vertical rhythm.
+
+@use '../tokens/space' as s;
+@use '../tokens/colors' as c;
+
+.ds-section {
+  padding-block: s.$py-section;
+  position: relative;
+
+  &--chapter {
+    padding-block: s.$py-chapter;
+  }
+
+  // Chapter rule: a faint horizontal hairline plus a short iridescent
+  // accent on the left so chapters feel anchored and easy to parse.
+  &--bordered {
+    border-block-start: 1px solid c.$rule;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block-start: -1px;
+      inset-inline-start: 0;
+      block-size: 1px;
+      inline-size: clamp(120px, 10vw, 200px);
+      background: linear-gradient(90deg, c.$ir-duck, transparent);
+      opacity: 0.6;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+// components/_title.scss — chapter title ($fs-title).
+
+@use '../tokens/colors' as c;
+@use '../tokens/type' as t;
+
+.ds-title {
+  font-family: t.$font-sans;
+  font-weight: t.$fw-title;
+  font-size: t.$fs-title;
+  line-height: t.$lh-title;
+  letter-spacing: t.$ls-title;
+  color: c.$fg;
+  margin: 0;
+}
+
+.ds-subtitle {
+  font-family: t.$font-sans;
+  font-weight: t.$fw-title;
+  font-size: t.$fs-subtitle;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: c.$fg;
+  margin: 0;
+}

@@ -1,0 +1,40 @@
+// components/_stat.scss — iridescent stat chip (home resume band).
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-stat {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-1;
+  padding: s.$s-4 s.$s-5;
+  border-radius: 12px;
+  background: linear-gradient(c.$bg-surface, c.$bg-surface) padding-box,
+              c.$gradient-iridescent border-box;
+  border: 1px solid transparent;
+
+  &__label {
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    color: c.$fg-muted;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  &__value {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    color: c.$fg;
+    letter-spacing: -0.01em;
+  }
+}
+
+.ds-resume-band__stats {
+  margin-block-start: s.$s-6;
+}
+
+.ds-resume-band__cta {
+  margin-block-start: s.$s-6;
+}

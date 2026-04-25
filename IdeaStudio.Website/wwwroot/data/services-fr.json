@@ -1,0 +1,159 @@
+[
+  {
+    "slug": "consultant-dotnet-azure",
+    "title": "Consultant .NET & Azure",
+    "kicker": "CONSEIL ARCHITECTURE",
+    "tagline": "J'architecture, je conseille et je code sur des plateformes .NET et Azure d'envergure.",
+    "iconId": "consulting",
+    "summary": "Après plus de 15 ans d'expérience en conception logicielle, je vous accompagne sur vos choix d'architecture, la montée en charge de vos plateformes .NET/Azure, et les audits techniques.",
+    "highlights": [
+      "Architecture cloud native (App Service, Functions, Service Bus, Event Grid, Cosmos DB)",
+      "Audit de code et refactoring progressif",
+      "Mise en place de CI/CD robustes (Azure DevOps, GitHub Actions)",
+      "Stratégie d'observabilité (Application Insights, logs structurés)",
+      "Sécurité applicative et gestion des secrets (Key Vault, Managed Identity)"
+    ],
+    "useCases": [
+      {
+        "title": "Audit et refonte d'une plateforme SaaS",
+        "description": "Analyse de l'existant, plan de refactoring par itérations, accompagnement des équipes jusqu'à la mise en production."
+      },
+      {
+        "title": "Conception d'une architecture événementielle",
+        "description": "Pose des fondations pour absorber une croissance × 10 sur le trafic, avec Service Bus, patterns Outbox et projections asynchrones."
+      }
+    ],
+    "faq": [
+      { "question": "Quel est votre TJM ?", "answer": "Sur demande, en fonction de la mission, de la durée et du niveau d'implication." },
+      { "question": "Travaillez-vous à distance ?", "answer": "Oui, en full-remote ou hybride. Je me déplace ponctuellement à Lyon et en région Rhône-Alpes." },
+      { "question": "Intervenez-vous sur du legacy ?", "answer": "Oui. Les audits et les plans de modernisation font partie de mon quotidien." }
+    ],
+    "ctaLabel": null,
+    "order": 1
+  },
+  {
+    "slug": "techlead",
+    "title": "Techlead",
+    "kicker": "LEADERSHIP TECHNIQUE",
+    "tagline": "Je prends la responsabilité technique d'une équipe produit et je la fais grandir.",
+    "iconId": "techlead",
+    "summary": "En tant que techlead, j'aligne vision produit et décisions techniques, je cadre les choix structurants, je fais monter l'équipe en compétences, et je garde le cap sur la qualité.",
+    "highlights": [
+      "Cadrage technique des nouveaux chantiers",
+      "Revues de code et pair programming",
+      "Coaching individuel et collectif",
+      "Lien direct avec Product et Design",
+      "Ownership du delivery et des indicateurs qualité"
+    ],
+    "useCases": [
+      { "title": "Prise de rôle de techlead intérimaire", "description": "Le temps de recruter le profil pérenne, je prends les rênes techniques d'une équipe produit." },
+      { "title": "Accompagnement d'un nouveau techlead", "description": "Binôme pendant 3 à 6 mois pour transmettre pratiques, outillage et posture." }
+    ],
+    "faq": [
+      { "question": "Quelle taille d'équipe ?", "answer": "3 à 10 personnes idéalement, au-delà on discute de la structure." },
+      { "question": "Embauchez-vous ?", "answer": "Je participe aux entretiens techniques, je ne porte pas le recrutement en direct." }
+    ],
+    "ctaLabel": null,
+    "order": 2
+  },
+  {
+    "slug": "formateur",
+    "title": "Formateur",
+    "kicker": "TRANSMISSION",
+    "tagline": "Je forme vos équipes aux fondamentaux et aux pratiques avancées .NET, Azure et web moderne.",
+    "iconId": "training",
+    "summary": "Plus de 3000 heures de formation dispensées auprès de développeurs et techleads. Sessions calibrées à vos besoins, exercices pratiques, suivi post-formation.",
+    "highlights": [
+      "ASP.NET Core et Blazor",
+      "Azure fondamentaux et plateforme (AZ-204, AZ-400)",
+      "Architecture logicielle et patterns pragmatiques",
+      "Tests automatisés et TDD",
+      "DevOps et CI/CD"
+    ],
+    "useCases": [
+      { "title": "Formation inter-entreprise 3 jours", "description": "Sessions catalogue sur Blazor, Azure DevOps ou Clean Architecture." },
+      { "title": "Formation intra sur-mesure", "description": "Programme calibré avec vous sur la base d'un audit de besoins préalable." }
+    ],
+    "faq": [
+      { "question": "Formez-vous à distance ?", "answer": "Oui, en classe virtuelle synchrone, avec exercices en binôme et retours en direct." },
+      { "question": "Êtes-vous certifié ?", "answer": "Oui, Microsoft Certified Trainer et plusieurs certifications Azure." }
+    ],
+    "ctaLabel": null,
+    "order": 3
+  },
+  {
+    "slug": "vibe-coding",
+    "title": "Mise en place de vibe-coding",
+    "kicker": "IA DANS VOTRE IDE",
+    "tagline": "Je fais adopter les outils IA (Claude Code, Copilot) à votre équipe sans perdre en qualité.",
+    "iconId": "vibe",
+    "summary": "L'arrivée des IA de code change le quotidien des développeurs. Je vous aide à cadrer l'usage : quels outils, quels garde-fous, quelles pratiques, comment mesurer le gain.",
+    "highlights": [
+      "Cadrage d'une politique d'usage IA interne",
+      "Mise en place de Claude Code / Copilot / agents",
+      "Définition de workflows et de hooks sécurité",
+      "Coaching des développeurs en binôme avec l'IA",
+      "Mesure d'impact (vélocité, qualité, satisfaction)"
+    ],
+    "useCases": [
+      { "title": "Pilote sur une équipe volontaire", "description": "2 à 3 mois de pilote encadré, restitution et recommandation pour le scale-up." },
+      { "title": "Déploiement à l'échelle", "description": "Généralisation à toute l'organisation avec guide de bonnes pratiques et dispositif de support." }
+    ],
+    "faq": [
+      { "question": "Est-ce que ça marche sur notre stack ?", "answer": "Les outils actuels sont stack-agnostiques. On valide ensemble sur votre base de code." },
+      { "question": "Quid de la confidentialité du code ?", "answer": "On choisit un dispositif compatible avec vos contraintes (SaaS, self-hosted, zero-retention)." }
+    ],
+    "ctaLabel": null,
+    "order": 4
+  },
+  {
+    "slug": "applications-mobiles",
+    "title": "Création d'applications mobiles",
+    "kicker": "MOBILE CROSS-PLATFORM",
+    "tagline": "Je conçois et développe vos applications iOS/Android avec une base technique unique.",
+    "iconId": "mobile",
+    "summary": "Applications mobiles B2B et B2C, cross-platform (.NET MAUI, Flutter selon contexte). De la maquette à la publication sur les stores.",
+    "highlights": [
+      "Audit de faisabilité et choix techno",
+      "UX/UI mobile et prototypage",
+      "Backend et APIs associés",
+      "Publication Apple Store / Play Store",
+      "Maintenance évolutive"
+    ],
+    "useCases": [
+      { "title": "App métier B2B", "description": "Application terrain pour agents, synchronisation offline, intégration SI." },
+      { "title": "App grand public", "description": "MVP rapide, itérations sur les retours utilisateurs, croissance organique." }
+    ],
+    "faq": [
+      { "question": "Vous faites de l'iOS natif ?", "answer": "Oui, si le contexte le justifie. Par défaut je privilégie le cross-platform pour l'économie." },
+      { "question": "Qui gère les comptes Apple/Google ?", "answer": "Vous, je vous accompagne sur la création et les soumissions." }
+    ],
+    "ctaLabel": null,
+    "order": 5
+  },
+  {
+    "slug": "sites-internet",
+    "title": "Création de sites internet",
+    "kicker": "WEB SUR-MESURE",
+    "tagline": "Je conçois et réalise vos sites vitrines, e-commerce, et applications web sur mesure.",
+    "iconId": "web",
+    "summary": "Sites performants, optimisés SEO, accessibles. De la vitrine élégante au site métier complexe, toujours sur des technos modernes et maintenables.",
+    "highlights": [
+      "Conception et design système",
+      "Développement Blazor, ASP.NET Core, ou stack adaptée",
+      "SEO technique et Core Web Vitals",
+      "Hébergement Azure ou équivalent",
+      "Formation à la prise en main"
+    ],
+    "useCases": [
+      { "title": "Site vitrine premium", "description": "Site éditorial, identité forte, performance maximale, parfait pour une marque." },
+      { "title": "Application web métier", "description": "Portail client, back-office, workflows complexes, intégrations SI." }
+    ],
+    "faq": [
+      { "question": "Faites-vous les designs ?", "answer": "Sur des petits projets oui. Sur des projets identitaires, je collabore avec des designers." },
+      { "question": "Maintenance ?", "answer": "Contrat de maintenance ou forfait à la demande, selon vos besoins." }
+    ],
+    "ctaLabel": null,
+    "order": 6
+  }
+]

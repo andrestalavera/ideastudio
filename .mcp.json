@@ -1,0 +1,33 @@
+﻿{
+  "mcpServers": {
+    "datagouv": {
+      "type": "http",
+      "url": "https://mcp.data.gouv.fr/mcp"
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
+    "microsoft-learn": {
+      "type": "http",
+      "url": "https://learn.microsoft.com/api/mcp"
+    },
+    "dotnet": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "dotnet-mcp-server"
+      ],
+      "env": {}
+    },
+    "files": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/andrestalavera/Repos/ideastudio"
+      ],
+      "env": {}
+    }
+  }
+}

@@ -1,0 +1,11 @@
+// tokens/_motion.scss — easings + durations.
+
+$ease-out:    cubic-bezier(0.2, 0.8, 0.2, 1);    // default for UI exits
+$ease-in:     cubic-bezier(0.8, 0.0, 1.0, 0.2);  // entering elements
+$ease-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);    // general transitions
+$ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); // rare, playful
+
+$t-quick:  150ms;  // hover, focus ring
+$t-medium: 320ms;  // fade/slide reveals
+$t-slow:   640ms;  // card entrance, chapter reveal
+$t-grand:  1200ms; // hero morph, thread unfurl

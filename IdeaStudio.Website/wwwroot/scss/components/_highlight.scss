@@ -1,0 +1,40 @@
+// components/_highlight.scss — iridescent bullet list for ServiceDetail.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-highlight-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-4;
+}
+
+.ds-highlight {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: s.$s-4;
+  align-items: baseline;
+  padding-block: s.$s-3;
+  border-block-end: 1px solid c.$rule;
+  color: c.$fg;
+  font-size: t.$fs-lead;
+  line-height: 1.5;
+
+  &__mark {
+    display: inline-block;
+    inline-size: 10px;
+    block-size: 10px;
+    border-radius: 50%;
+    background: c.$gradient-iridescent;
+    transform: translateY(0.35em);
+    box-shadow: 0 0 12px rgba(0, 194, 212, 0.4);
+  }
+
+  &:last-child {
+    border-block-end: 0;
+  }
+}

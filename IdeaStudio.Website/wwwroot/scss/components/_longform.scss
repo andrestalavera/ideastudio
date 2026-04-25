@@ -1,0 +1,41 @@
+// components/_longform.scss — Legal / Privacy body typography.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-longform {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-5;
+  max-width: 68ch;
+
+  p {
+    font-size: t.$fs-body;
+    line-height: t.$lh-body;
+    color: c.$fg-muted;
+    margin: 0;
+  }
+
+  &__h2 {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    letter-spacing: -0.015em;
+    color: c.$fg;
+    margin-block-start: s.$s-4;
+    margin-block-end: s.$s-2;
+    padding-block-start: s.$s-5;
+    border-block-start: 1px solid c.$rule;
+
+    &:first-child {
+      margin-block-start: 0;
+      padding-block-start: 0;
+      border-block-start: 0;
+    }
+  }
+
+  a {
+    color: inherit;
+  }
+}

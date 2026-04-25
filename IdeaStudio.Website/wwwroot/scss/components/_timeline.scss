@@ -1,0 +1,105 @@
+// components/_timeline.scss — CV experiences with sticky year column on desktop.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-timeline {
+  display: flex;
+  flex-direction: column;
+
+  &__row {
+    display: grid;
+    grid-template-columns: minmax(140px, 200px) 1fr;
+    gap: s.$s-7;
+    align-items: flex-start;
+    padding-block: s.$s-8;
+    border-block-end: 1px solid c.$rule;
+    transition: border-color 320ms var(--ease-out);
+
+    &:last-child {
+      border-block-end: 0;
+    }
+
+    &.is-active {
+      border-block-end-color: rgba(0, 194, 212, 0.22);
+    }
+
+    @media (max-width: 64rem) {
+      grid-template-columns: 1fr;
+      gap: s.$s-3;
+      padding-block: s.$s-6;
+    }
+  }
+
+  &__year {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: c.$fg-faint;
+    transition: color 420ms var(--ease-out), text-shadow 420ms var(--ease-out);
+    font-variant-numeric: tabular-nums;
+
+    @media (min-width: 64rem) {
+      position: sticky;
+      inset-block-start: 32vh;
+    }
+  }
+
+  &__row.is-active .ds-timeline__year {
+    color: c.$ir-duck;
+    text-shadow: 0 0 32px rgba(0, 194, 212, 0.35);
+  }
+
+  &__period {
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    color: c.$fg-muted;
+    margin-block-start: s.$s-2;
+  }
+
+  &__role {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-title;
+    line-height: t.$lh-title;
+    letter-spacing: t.$ls-title;
+    color: c.$fg;
+  }
+
+  &__company {
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    color: c.$ir-duck;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-block-start: s.$s-2;
+  }
+
+  &__paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: s.$s-3;
+    color: c.$fg-muted;
+    line-height: t.$lh-body;
+    margin-block-start: s.$s-4;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.$s-1;
+    margin-block-start: s.$s-5;
+
+    .ds-tag {
+      padding-inline: s.$s-2;
+      padding-block: 2px;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: c.$fg-faint;
+      border-color: rgba(234, 244, 242, 0.06);
+    }
+  }
+}

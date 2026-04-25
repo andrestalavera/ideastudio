@@ -1,0 +1,38 @@
+@page "/proto/signature"
+@using IdeaStudio.Website.Components
+@layout MainLayout
+
+<div class="proto-signature">
+    <SignatureName Text="Andrés Talavera" />
+
+    <p class="proto-signature__hint">
+        Bouge la souris. Scrolle. Le nom réagit — il n'est jamais du texte.
+    </p>
+
+    <div style="height: 120vh;"></div>
+
+    <p class="proto-signature__hint" style="text-align:center;">
+        — fin du test. Remonte pour voir le nom se reformer —
+    </p>
+</div>
+
+<style>
+    .proto-signature {
+        min-height: 100vh;
+        padding-block: clamp(4rem, 10vh, 10vh);
+        padding-inline: clamp(1rem, 4vw, 4rem);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2rem;
+    }
+
+    .proto-signature__hint {
+        font-family: var(--font-mono, 'JetBrains Mono', monospace);
+        font-size: 0.8125rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--fg-muted, #8a8578);
+        text-align: center;
+    }
+</style>

@@ -1,0 +1,34 @@
+// components/_card.scss — baseline card primitive for About + Training + misc.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-card {
+  background: c.$bg-surface;
+  border: 1px solid c.$rule;
+  border-radius: 12px;
+  padding: s.$s-6;
+  color: c.$fg;
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-3;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+
+  &__title {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    letter-spacing: -0.015em;
+    color: c.$fg;
+    margin: 0;
+  }
+
+  &__body {
+    font-size: t.$fs-body;
+    line-height: t.$lh-body;
+    color: c.$fg-muted;
+    margin: 0;
+  }
+}

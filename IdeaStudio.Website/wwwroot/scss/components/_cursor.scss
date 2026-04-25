@@ -1,0 +1,28 @@
+// components/_cursor.scss — custom 12px duck-blue dot cursor (desktop only).
+// The cursor element is only appended by JS on (hover: hover) and (pointer: fine).
+
+@use '../tokens/colors' as c;
+
+.ds-cursor {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: c.$ir-duck;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate3d(-50%, -50%, 0);
+  transition: transform 80ms linear;
+  opacity: 0;
+
+  &.is-active {
+    opacity: 1;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .ds-cursor { display: none; }
+}
