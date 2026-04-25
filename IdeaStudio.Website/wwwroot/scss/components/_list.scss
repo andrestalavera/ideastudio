@@ -26,6 +26,23 @@
     }
   }
 
+  // Override global [data-reveal] for list rows: tighter stagger + shorter
+  // travel so 6 dense rows feel like a single wave instead of a slideshow.
+  // GPU-promoted via will-change to keep the transform jitter-free.
+  &__row[data-reveal] {
+    transform: translateY(16px);
+    transition: opacity 460ms var(--ease-out),
+                transform 460ms var(--ease-out),
+                padding-inline-start 240ms var(--ease-out),
+                border-color 240ms var(--ease-out);
+    will-change: opacity, transform;
+  }
+
+  &__row[data-reveal].is-revealed {
+    transform: translateY(0);
+    transition-delay: calc(var(--reveal-step, 0) * 45ms);
+  }
+
   a.ds-list__row {
     cursor: pointer;
     color: inherit;
