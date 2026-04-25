@@ -78,7 +78,7 @@
     <div class="ds-container">
         <ChapterBand Kicker="@chapterFour" Title="@trainTitle" />
         <div style="margin-block-start: 2.5rem;">
-            <TeachList Centers="@resume?.TrainingCenters" />
+            <TeachList Centers="@trainingCenters" />
         </div>
     </div>
 </section>
@@ -125,6 +125,7 @@
 
 @code {
     private Resume? resume;
+    private IReadOnlyList<TrainingCenter>? trainingCenters;
     private string seoTitle = "Andrés Talavera — Parcours";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/cv";
@@ -176,6 +177,7 @@
     {
         string culture = CultureService.CurrentCulture.Name;
         resume = await Content.GetResumeAsync(culture);
+        trainingCenters = await Content.GetTrainingCentersAsync(culture);
         heroText = resume?.PersonalInformation?.Hero ?? (culture.StartsWith("fr") ? "Parcours." : "Resume.");
         introText = resume?.PersonalInformation?.Introduction ?? "";
         seoDescription = introText;

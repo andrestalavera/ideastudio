@@ -199,7 +199,8 @@
         services     = await Content.GetServicesAsync(culture);
         realisations = await Content.GetRealisationsAsync(culture);
         Resume? resume = await Content.GetResumeAsync(culture);
-        trainingCenters = resume?.TrainingCenters?.Take(6).ToArray();
+        IReadOnlyList<TrainingCenter> centers = await Content.GetTrainingCentersAsync(culture);
+        trainingCenters = centers.Take(6).ToArray();
 
         if (resume is not null && resume.Experiences is { Count: > 0 })
         {
