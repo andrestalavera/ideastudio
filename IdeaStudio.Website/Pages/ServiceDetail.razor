@@ -74,6 +74,20 @@ else
         </section>
     }
 
+    @* Training centres (formateur only) — shared editorial block with the CV page *@
+    @if (IsTrainerService(service) && centers.Count > 0)
+    {
+        <section class="ds-section ds-section--chapter ds-section--bordered">
+            <div class="ds-container">
+                <ChapterBand Kicker="@centersKicker" Title="@centersTitle" />
+                <p class="ds-lead" data-reveal style="margin-block-start: 1.5rem;">@centersIntro</p>
+                <div style="margin-block-start: 2rem;">
+                    <TeachList Centers="@centers" />
+                </div>
+            </div>
+        </section>
+    }
+
     @* FAQ — expanded editorial Q&A *@
     @if (service.Faq is { Count: > 0 })
     {
@@ -92,7 +106,7 @@ else
     }
 
     @* Training catalogue (formateur only) *@
-    @if (service.Slug == "formateur" && trainings is { Count: > 0 })
+    @if (IsTrainerService(service) && trainings is { Count: > 0 })
     {
         <section class="ds-section ds-section--chapter ds-section--bordered">
             <div class="ds-container">
@@ -108,18 +122,22 @@ else
 
     private ServiceModel? service;
     private IReadOnlyList<Training> trainings = Array.Empty<Training>();
+    private IReadOnlyList<TrainingCenter> centers = Array.Empty<TrainingCenter>();
     private string seoTitle = "Service — IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/services";
     private string seoLocale = "fr_FR";
-    private string highlightsKicker = "Concrètement";
-    private string highlightsTitle = "Ce que vous obtenez.";
+    private string highlightsKicker = "Le périmètre";
+    private string highlightsTitle = "Ce que la mission couvre.";
     private string useCaseKicker = "Cas d'usage";
-    private string useCaseTitle = "Où ça a fonctionné.";
+    private string useCaseTitle = "Quand on m'appelle.";
     private string faqKicker = "Questions fréquentes";
     private string faqTitle = "Ce que les clients demandent.";
     private string catalogueKicker = "Catalogue";
     private string catalogueTitle = "20 modules pour vos équipes.";
+    private string centersKicker = "Partenaires";
+    private string centersTitle  = "Là où j'ai enseigné.";
+    private string centersIntro  = "Centres de formation et écoles qui m'ont confié leurs sessions, en présentiel comme en distanciel.";
     private string notFoundTitle = "Service introuvable.";
     private string notFoundLead = "Ce service n'existe pas dans ce slug. Retour à la liste des services.";
     private string backText = "Voir les services";
@@ -143,14 +161,19 @@ else
     {
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
-        highlightsKicker = fr ? "Concrètement" : "Concretely";
-        highlightsTitle  = fr ? "Ce que vous obtenez." : "What you get.";
+        highlightsKicker = fr ? "Le périmètre" : "Scope";
+        highlightsTitle  = fr ? "Ce que la mission couvre." : "What the engagement covers.";
         useCaseKicker    = fr ? "Cas d'usage" : "Use cases";
-        useCaseTitle     = fr ? "Où ça a fonctionné." : "Where it worked.";
+        useCaseTitle     = fr ? "Quand on m'appelle." : "When clients reach out.";
         faqKicker        = fr ? "Questions fréquentes" : "Frequent questions";
         faqTitle         = fr ? "Ce que les clients demandent." : "What clients ask.";
         catalogueKicker  = fr ? "Catalogue" : "Catalogue";
         catalogueTitle   = fr ? "20 modules pour vos équipes." : "20 modules for your teams.";
+        centersKicker = fr ? "Partenaires"          : "Partners";
+        centersTitle  = fr ? "Là où j'ai enseigné." : "Where I've taught.";
+        centersIntro  = fr
+            ? "Centres de formation et écoles qui m'ont confié leurs sessions, en présentiel comme en distanciel."
+            : "Training centres and schools that have trusted me with their sessions, on-site and remote.";
         notFoundTitle    = fr ? "Service introuvable." : "Service not found.";
         notFoundLead     = fr ? "Ce service n'existe pas. Retour à la liste." : "That service doesn't exist. Back to the list.";
         backText         = fr ? "Voir les services" : "See all services";
@@ -169,9 +192,10 @@ else
             seoDescription = string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline;
             seoCanonical = $"https://ideastud.io{LocalizedRoute.For("services.hub", fr ? "fr" : "en")}/{service.Slug}";
 
-            if (service.Slug == "formateur")
+            if (IsTrainerService(service))
             {
                 trainings = await Content.GetTrainingsAsync(culture);
+                centers   = await Content.GetTrainingCentersAsync(culture);
             }
         }
     }
@@ -211,7 +235,7 @@ else
                 blocks.Add(SchemaOrg.ToJsonLd(faq));
             }
 
-            if (service.Slug == "formateur" && trainings is { Count: > 0 })
+            if (IsTrainerService(service) && trainings is { Count: > 0 })
             {
                 foreach (Training t in trainings)
                 {
@@ -222,7 +246,7 @@ else
                         CourseCode: t.Slug,
                         EducationalLevel: t.Level,
                         TimeRequired: t.DurationDays is int d ? $"P{d}D" : null,
-                        Url: $"https://ideastud.io{LocalizedRoute.For("services.hub", cultureCode)}/formateur#{t.Slug}");
+                        Url: $"https://ideastud.io{LocalizedRoute.For("services.hub", cultureCode)}/{service.Slug}#{t.Slug}");
                     blocks.Add(SchemaOrg.ToJsonLd(course));
                 }
             }
@@ -239,4 +263,7 @@ else
 
         seoStructuredData = blocks;
     }
+
+    private static bool IsTrainerService(ServiceModel? svc) =>
+        svc is not null && (svc.Slug is "formateur" or "trainer");
 }

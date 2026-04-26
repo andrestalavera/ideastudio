@@ -58,23 +58,36 @@
     "kicker": "KNOWLEDGE TRANSFER",
     "tagline": "I train your teams on .NET, Azure, and modern web fundamentals and advanced practices.",
     "iconId": "training",
-    "summary": "3000+ hours of training delivered to developers and tech leads. Sessions tailored to your needs, hands-on exercises, post-training follow-up. Catalogue of 20 modules below.",
+    "summary": "3,000+ hours of training under my belt, across two decades of Microsoft stack. To junior devs and to tech leads stepping back for perspective alike, in schools (Supinfo, NextFormation) or large centres (ORSYS, IP-Formation, Happly), on-site, virtual classroom or bespoke in-house. Twenty modules in the catalogue below — pick them as-is, or let's recompose them into the program that fits your team.",
     "highlights": [
-      "ASP.NET Core and Blazor",
-      "Azure fundamentals and platform (AZ-204, AZ-400)",
-      "Pragmatic software architecture and patterns",
-      "Automated testing and TDD",
-      "DevOps and CI/CD",
-      "Vibe coding & AI — Claude Code, Copilot, MCP, on-prem AI"
+      "ASP.NET Core 10, Blazor 10 (Server, WASM, Hybrid), Entity Framework Core",
+      "Azure platform and exam prep — AZ-204 (developer) and AZ-400 (DevOps)",
+      "Pragmatic software architecture — Clean Architecture, CQRS, event-driven, DDD-lite",
+      "Automated testing, TDD, snapshot and mutation testing",
+      "DevOps and CI/CD — GitHub Actions, Azure Pipelines, IaC Bicep / Terraform",
+      "Team-grade vibe coding & AI — Claude Code, GitHub Copilot, MCP, on-prem open-weight models",
+      "Custom programs assembled from several official modules"
     ],
     "useCases": [
-      { "title": "Inter-company 3-day training", "description": "Catalog sessions on Blazor, Azure DevOps, or Clean Architecture." },
-      { "title": "Bespoke in-house training", "description": "Program tailored with you after a needs-assessment." }
+      {
+        "title": "Inter-company · 3 days",
+        "description": "Catalogue sessions delivered at ORSYS, IP-Formation or in virtual classroom. Individual sign-ups, mixed audience — Blazor, Azure DevOps, Clean Architecture, AZ-204."
+      },
+      {
+        "title": "Bespoke in-house",
+        "description": "Program tailored with you: needs assessment up front, module selection, depth and examples adjusted to your code base."
+      },
+      {
+        "title": "À-la-carte program",
+        "description": "Start from one official module as the backbone (e.g. AZ-204), add two or three adjacent modules to cover exactly your team's scope — neither too short nor too long."
+      }
     ],
     "faq": [
-      { "question": "What's your training day rate?", "answer": "800 € — day rate × days delivered, or inter / in-house package depending on format." },
-      { "question": "Remote training?", "answer": "Yes, synchronous virtual classroom with pair exercises and live feedback." },
-      { "question": "Certified?", "answer": "Yes, Microsoft Certified Trainer and multiple Azure certifications." }
+      { "question": "What's your training day rate?", "answer": "800 € per day, or inter / in-house package depending on format. Quoted within 24h from a short brief." },
+      { "question": "Remote training?", "answer": "Yes — synchronous virtual classroom, pair exercises, screen-share demos, live feedback. Same rigour as on-site." },
+      { "question": "Certified?", "answer": "Active Microsoft Certified Trainer (MCT) and several Azure certifications (AZ-204, AZ-400 among others). My exam-prep modules are grounded in that experience." },
+      { "question": "How do you build a custom program?", "answer": "We start from a catalogue module that covers the core of your need, identify what's missing and what's superfluous, borrow chapters from adjacent modules, calibrate duration. The brief takes one 30-minute call." },
+      { "question": "What about funding mechanisms?", "answer": "Partner centres (ORSYS, IP-Formation, NextFormation) are Qualiopi-certified: OPCO, CPF entreprise, skills-development plans. For direct in-house, I point you to the right scheme." }
     ],
     "ctaLabel": null,
     "order": 3

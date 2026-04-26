@@ -64,23 +64,36 @@
     "kicker": "TRANSMISSION",
     "tagline": "Je forme vos équipes aux fondamentaux et aux pratiques avancées .NET, Azure et web moderne.",
     "iconId": "training",
-    "summary": "Plus de 3000 heures de formation dispensées auprès de développeurs et techleads. Sessions calibrées à vos besoins, exercices pratiques, suivi post-formation. Catalogue de 20 modules disponible plus bas.",
+    "summary": "Plus de 3 000 heures de formation à mon actif, sur deux décennies de stack Microsoft. Auprès de développeurs juniors comme de techleads en quête de recul, dans des écoles (Supinfo, NextFormation) ou de grands centres (ORSYS, IP-Formation, Happly), en présentiel, classe virtuelle ou intra sur-mesure. Vingt modules au catalogue ci-dessous — à prendre tels quels, ou à recomposer ensemble pour bâtir le programme qui colle à votre équipe.",
     "highlights": [
-      "ASP.NET Core et Blazor",
-      "Azure fondamentaux et plateforme (AZ-204, AZ-400)",
-      "Architecture logicielle et patterns pragmatiques",
-      "Tests automatisés et TDD",
-      "DevOps et CI/CD",
-      "Vibe coding & IA — Claude Code, Copilot, MCP, IA en local"
+      "ASP.NET Core 10, Blazor 10 (Server, WASM, Hybrid), Entity Framework Core",
+      "Azure plateforme et préparation aux examens AZ-204 (développeur) et AZ-400 (DevOps)",
+      "Architecture logicielle pragmatique — Clean Architecture, CQRS, event-driven, DDD-lite",
+      "Tests automatisés, TDD, snapshot et tests de mutation",
+      "DevOps et CI/CD — GitHub Actions, Azure Pipelines, IaC Bicep / Terraform",
+      "Vibe coding & IA en équipe — Claude Code, GitHub Copilot, MCP, modèles open-weight en local",
+      "Programmes sur-mesure assemblés à partir de plusieurs modules officiels"
     ],
     "useCases": [
-      { "title": "Formation inter-entreprise 3 jours", "description": "Sessions catalogue sur Blazor, Azure DevOps ou Clean Architecture." },
-      { "title": "Formation intra sur-mesure", "description": "Programme calibré avec vous sur la base d'un audit de besoins préalable." }
+      {
+        "title": "Inter-entreprise · 3 jours",
+        "description": "Sessions catalogue dispensées chez ORSYS, IP-Formation ou en classe virtuelle. Inscriptions individuelles, groupe mixte d'apprenants — Blazor, Azure DevOps, Clean Architecture, AZ-204."
+      },
+      {
+        "title": "Intra sur-mesure",
+        "description": "Programme calibré avec vous : audit de besoins préalable, choix des modules, profondeur et exemples adaptés à votre code base."
+      },
+      {
+        "title": "Programme à la carte",
+        "description": "Vous partez d'un module officiel comme socle (par exemple AZ-204), on le complète avec deux ou trois modules connexes pour couvrir précisément le périmètre de votre équipe — ni trop court, ni trop long."
+      }
     ],
     "faq": [
-      { "question": "Quel est votre TJM en formation ?", "answer": "800 € — TJM × jours dispensés, ou forfait inter / intra selon le format." },
-      { "question": "Formez-vous à distance ?", "answer": "Oui, en classe virtuelle synchrone, avec exercices en binôme et retours en direct." },
-      { "question": "Êtes-vous certifié ?", "answer": "Oui, Microsoft Certified Trainer et plusieurs certifications Azure." }
+      { "question": "Quel est votre TJM en formation ?", "answer": "800 € par jour, ou forfait inter / intra selon le format. Devis chiffré sous 24 h à partir d'un brief court." },
+      { "question": "Formez-vous à distance ?", "answer": "Oui — classe virtuelle synchrone, exercices en binôme, démos en partage d'écran, retours en direct. La même rigueur qu'en présentiel." },
+      { "question": "Êtes-vous certifié ?", "answer": "Microsoft Certified Trainer (MCT) actif, et plusieurs certifications Azure (AZ-204, AZ-400 entre autres). Mes modules de préparation aux examens reposent sur ce vécu." },
+      { "question": "Comment construire un programme sur-mesure ?", "answer": "On part d'un module catalogue qui couvre le cœur de votre besoin, on identifie ce qui manque et ce qui est superflu, on emprunte des chapitres aux modules connexes, on cale la durée. Le brief tient en un appel de 30 minutes." },
+      { "question": "Quels dispositifs de financement ?", "answer": "Les centres partenaires (ORSYS, IP-Formation, NextFormation) sont Qualiopi : OPCO, CPF entreprise, plan de développement des compétences. En intra direct, je vous oriente vers le dispositif adapté." }
     ],
     "ctaLabel": null,
     "order": 3

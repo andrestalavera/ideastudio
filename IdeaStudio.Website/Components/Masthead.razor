@@ -1,8 +1,9 @@
 @using IdeaStudio.Website.Services
+@using Microsoft.AspNetCore.Components.Web
 @inherits LocalizedComponent
 @inject ILocalizedRoute LocalizedRoute
 
-<header class="ds-masthead ds-print-hidden" aria-label="Primary">
+<header class="ds-masthead ds-print-hidden" aria-label="Primary" @onkeydown="OnKeyDown">
     <nav class="ds-masthead__pill" aria-label="Main">
         <a class="ds-masthead__wordmark" href="@LocalizedRoute.For("home")">
             IdeaStud<span class="ds-masthead__dot">.</span>io
@@ -23,16 +24,35 @@
             @meetText <span aria-hidden="true">↗</span>
         </a>
 
-        <button class="ds-masthead__toggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+        <button class="ds-masthead__toggle" type="button"
+                aria-label="@(isMobileOpen ? closeMenuText : openMenuText)"
+                aria-expanded="@(isMobileOpen ? "true" : "false")"
+                aria-controls="ds-mobile-nav"
+                @onclick="ToggleMobileMenu">
+            @(isMobileOpen ? "✕" : "☰")
+        </button>
     </nav>
+
+    @if (isMobileOpen)
+    {
+        <button class="ds-masthead__backdrop" type="button" aria-hidden="true" @onclick="CloseMobileMenu"></button>
+        <nav id="ds-mobile-nav" class="ds-masthead__mobile" aria-label="Mobile">
+            <a href="@LocalizedRoute.For("services.hub")" @onclick="CloseMobileMenu">@servicesText</a>
+            <a href="@LocalizedRoute.For("realisations")" @onclick="CloseMobileMenu">@realisationsText</a>
+            <a href="@LocalizedRoute.For("cv")" @onclick="CloseMobileMenu">@cvText</a>
+        </nav>
+    }
 </header>
 
 @code {
+    private bool isMobileOpen;
     private string servicesText = "Services";
     private string realisationsText = "Projects";
     private string cvText = "Resume";
     private string meetText = "Meet";
     private string bookCallAriaText = "Book a 30-minute call on Calendly (opens in a new tab)";
+    private string openMenuText = "Open menu";
+    private string closeMenuText = "Close menu";
 
     protected override void LoadTexts()
     {
@@ -40,5 +60,14 @@
         realisationsText = LocalizationService.GetString("Nav.Realisations");
         cvText = LocalizationService.GetString("Nav.Cv");
         meetText = LocalizationService.GetString("Nav.Meet");
+    }
+
+    private void ToggleMobileMenu() => isMobileOpen = !isMobileOpen;
+
+    private void CloseMobileMenu() => isMobileOpen = false;
+
+    private void OnKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Escape") isMobileOpen = false;
     }
 }
