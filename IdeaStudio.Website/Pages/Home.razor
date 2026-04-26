@@ -89,7 +89,7 @@
             <TeachList Centers="@trainingCenters" />
         </div>
         <p class="ds-chapter-gap" data-reveal>
-            <a class="ds-link" href="@LocalizedRoute.For("cv")">
+            <a class="ds-link" href="@($"{LocalizedRoute.For("services.hub")}/{trainerSlug}")">
                 @allTrainings <span class="ds-link__arrow" aria-hidden="true">→</span>
             </a>
         </p>
@@ -128,6 +128,7 @@
     private string teachKicker = "Formations";
     private string teachTitle = "Où j'enseigne.";
     private string allTrainings = "Voir toutes les formations";
+    private string trainerSlug = "formateur";
     private string questionsKicker = "Questions";
     private string questionsTitle = "Les plus demandées.";
     private string yearsValue = "15";
@@ -176,6 +177,7 @@
         teachKicker = fr ? "Formations" : "Trainings";
         teachTitle  = fr ? "Où j'enseigne." : "Where I teach.";
         allTrainings = fr ? "Voir toutes les formations" : "See all trainings";
+        trainerSlug = fr ? "formateur" : "trainer";
 
         questionsKicker = fr ? "Questions" : "Questions";
         questionsTitle  = fr ? "Les plus demandées." : "Most asked.";
