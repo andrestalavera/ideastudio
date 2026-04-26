@@ -77,7 +77,8 @@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@chapterFour" Title="@trainTitle" />
-        <div style="margin-block-start: 2.5rem;">
+        <p class="ds-lead" data-reveal style="margin-block-start: 1.5rem;">@trainIntro</p>
+        <div style="margin-block-start: 2rem;">
             <TeachList Centers="@trainingCenters" />
         </div>
     </div>
@@ -139,6 +140,7 @@
     private string xpTitle = "Ce que j'ai construit.";
     private string trainTitle = "J'apprends, j'enseigne.";
     private string contactTitle = "Parlons de votre projet.";
+    private string trainIntro = "";
     private string heroText = "Parcours.";
     private string introText = "";
     private string bookText = "Prendre rendez-vous";
@@ -168,7 +170,10 @@
 
         aboutTitle   = fr ? "Un parcours, plusieurs angles." : "One path, several angles.";
         xpTitle      = fr ? "Ce que j'ai construit."          : "What I've built.";
-        trainTitle   = fr ? "J'apprends, j'enseigne."         : "I learn, I teach.";
+        trainTitle   = fr ? "Là où j'ai enseigné."            : "Where I've taught.";
+        trainIntro   = fr
+            ? "Centres de formation et écoles qui m'ont confié leurs sessions, en présentiel comme en distanciel. Trois décennies de stack Microsoft, transmises à des publics très variés — de l'étudiant Supinfo au développeur senior en reconversion cloud."
+            : "Training centres and schools that have trusted me with their sessions, on-site and remote. Three decades of Microsoft stack, passed on to wildly different audiences — from Supinfo students to senior devs reskilling on cloud.";
         contactTitle = fr ? "Parlons de votre projet."        : "Let's talk about your project.";
         bookText     = fr ? "Prendre rendez-vous"             : "Book a call";
     }
