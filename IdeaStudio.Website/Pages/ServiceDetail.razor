@@ -74,6 +74,20 @@ else
         </section>
     }
 
+    @* Training centres (formateur only) — shared editorial block with the CV page *@
+    @if (IsTrainerService(service) && centers.Count > 0)
+    {
+        <section class="ds-section ds-section--chapter ds-section--bordered">
+            <div class="ds-container">
+                <ChapterBand Kicker="@centersKicker" Title="@centersTitle" />
+                <p class="ds-lead" data-reveal style="margin-block-start: 1.5rem;">@centersIntro</p>
+                <div style="margin-block-start: 2rem;">
+                    <TeachList Centers="@centers" />
+                </div>
+            </div>
+        </section>
+    }
+
     @* FAQ — expanded editorial Q&A *@
     @if (service.Faq is { Count: > 0 })
     {
@@ -86,20 +100,6 @@ else
                         FaqEntry f = service.Faq[i];
                         <QABlock Kicker="@($"Q {i + 1:D2}")" Question="@f.Question" Answer="@f.Answer" Step="@i" />
                     }
-                </div>
-            </div>
-        </section>
-    }
-
-    @* Training centres (formateur only) — shared editorial block with the CV page *@
-    @if (IsTrainerService(service) && centers.Count > 0)
-    {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
-                <ChapterBand Kicker="@centersKicker" Title="@centersTitle" />
-                <p class="ds-lead" data-reveal style="margin-block-start: 1.5rem;">@centersIntro</p>
-                <div style="margin-block-start: 2rem;">
-                    <TeachList Centers="@centers" />
                 </div>
             </div>
         </section>
