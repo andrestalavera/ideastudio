@@ -5,6 +5,8 @@
 @inject ILocalizationService LocalizationService
 @inject NavigationManager Navigation
 @inject ISceneTheme SceneTheme
+@inject IConsentService Consent
+@inject IAnalyticsService Analytics
 @implements IDisposable
 
 <CascadingValue Value="this">
@@ -22,6 +24,7 @@
         <CtaBand />
     }
     <Footer />
+    <CookieBanner />
 </CascadingValue>
 
 @code {
@@ -35,6 +38,8 @@
         Navigation.LocationChanged += OnLocationChanged;
         await LoadLocalizedStringsAsync();
         UpdateCtaVisibility(Navigation.Uri);
+        await Consent.LoadAsync();
+        Consent.OnChanged += OnConsentChanged;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -43,6 +48,12 @@
         runtimeInitialized = true;
         try { await SceneTheme.InitializeAsync(); }
         catch (Microsoft.JSInterop.JSDisconnectedException) { /* runtime gone */ }
+
+        // The cinema bundle is now loaded; flush the initial consent state to it.
+        if (Consent.HasDecided)
+        {
+            await Analytics.SetConsentAsync(Consent.IsGranted);
+        }
     }
 
     private async Task LoadLocalizedStringsAsync()
@@ -67,6 +78,12 @@
     {
         UpdateCtaVisibility(e.Location);
         StateHasChanged();
+        _ = Analytics.TrackPageViewAsync(e.Location);
+    }
+
+    private void OnConsentChanged()
+    {
+        _ = Analytics.SetConsentAsync(Consent.IsGranted);
     }
 
     private void UpdateCtaVisibility(string uri)
@@ -81,6 +98,7 @@
     {
         CultureService.CultureChanged -= OnCultureChanged;
         Navigation.LocationChanged -= OnLocationChanged;
+        Consent.OnChanged -= OnConsentChanged;
         GC.SuppressFinalize(this);
     }
 }

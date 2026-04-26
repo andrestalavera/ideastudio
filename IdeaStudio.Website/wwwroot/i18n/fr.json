@@ -98,5 +98,12 @@
   "Realisations.TypeApplicationMobile": "Application mobile",
   "Realisations.TypeApiBackend": "API / Backend",
   "Realisations.TypeFormation": "Formation",
-  "Realisations.TypeAutre": "Autre"
+  "Realisations.TypeAutre": "Autre",
+  "Cookies.BannerTitle": "Cookies & mesure d'audience",
+  "Cookies.BannerDescription": "Nous utilisons Google Analytics et Microsoft Clarity pour comprendre comment ce site est utilisé.",
+  "Cookies.BannerLearnMore": "En savoir plus",
+  "Cookies.BannerAccept": "Accepter",
+  "Cookies.BannerDecline": "Refuser",
+  "Cookies.FooterManage": "Gestion des cookies",
+  "Privacy.CookiesTitle": "Cookies & traceurs"
 }

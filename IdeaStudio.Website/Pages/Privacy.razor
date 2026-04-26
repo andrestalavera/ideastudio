@@ -17,8 +17,23 @@
             @if (isFr)
             {
                 <h2 class="ds-longform__h2">Données collectées</h2>
-                <p>Ce site ne collecte aucune donnée personnelle et n'utilise aucun cookie de suivi. Aucun outil
-                   d'analyse tiers (Google Analytics, Plausible, etc.) n'est installé.</p>
+                <p>Ce site n'exige pas de compte et ne collecte aucune donnée d'identification directe.
+                   Une mesure d'audience anonymisée est en place — voir la section
+                   <a class="ds-link" href="#cookies">Cookies & traceurs</a> ci-dessous pour la liste complète.</p>
+
+                <h2 id="cookies" class="ds-longform__h2">@cookiesTitle</h2>
+                <p>Lorsque vous visitez le site pour la première fois, une bannière vous propose d'accepter ou
+                   de refuser ces traceurs. Tant que vous n'avez pas choisi, aucun cookie de mesure n'est déposé
+                   (Google Consent Mode v2). Vous pouvez modifier votre choix à tout moment via le lien
+                   <em>Gestion des cookies</em> dans le pied de page.</p>
+                <ul class="ds-longform__list">
+                    <li><strong>Google Analytics 4</strong> — mesure d'audience anonymisée. Conservation : 14 mois.</li>
+                    <li><strong>Microsoft Clarity</strong> — heatmaps et replays anonymisés. Conservation : 1 an.</li>
+                    <li><strong>Meta Pixel</strong> — mesure de campagnes Meta. Conservation : 13 mois.
+                        Désactivé tant qu'aucun identifiant n'est configuré.</li>
+                </ul>
+                <p>Votre choix est conservé localement (localStorage) pendant 13 mois maximum, conformément
+                   aux recommandations de la CNIL.</p>
 
                 <h2 class="ds-longform__h2">Hébergeur</h2>
                 <p>Les journaux techniques minimaux (adresse IP, user-agent) conservés par Azure Static Web Apps
@@ -36,8 +51,21 @@
             else
             {
                 <h2 class="ds-longform__h2">Data we collect</h2>
-                <p>This site collects no personal data and uses no tracking cookies. No third-party analytics
-                   (Google Analytics, Plausible, etc.) are installed.</p>
+                <p>This site requires no account and collects no directly-identifying data.
+                   Anonymous audience measurement is enabled — see the
+                   <a class="ds-link" href="#cookies">Cookies &amp; trackers</a> section below for the full list.</p>
+
+                <h2 id="cookies" class="ds-longform__h2">@cookiesTitle</h2>
+                <p>On your first visit, a banner lets you accept or decline these trackers. Until you choose,
+                   no measurement cookies are set (Google Consent Mode v2). You can change your decision at any
+                   time via the <em>Cookie settings</em> link in the footer.</p>
+                <ul class="ds-longform__list">
+                    <li><strong>Google Analytics 4</strong> — anonymous audience measurement. Retention: 14 months.</li>
+                    <li><strong>Microsoft Clarity</strong> — anonymous heatmaps and session replays. Retention: 1 year.</li>
+                    <li><strong>Meta Pixel</strong> — Meta campaign measurement. Retention: 13 months.
+                        Disabled until an ID is configured.</li>
+                </ul>
+                <p>Your choice is stored locally (localStorage) for at most 13 months, per CNIL guidance.</p>
 
                 <h2 class="ds-longform__h2">Hosting logs</h2>
                 <p>Minimal technical logs (IP address, user-agent) retained by Azure Static Web Apps for the period
@@ -65,6 +93,7 @@
     private string titleText = "Confidentialité.";
     private string leadText = "";
     private bool isFr = true;
+    private string cookiesTitle = "Cookies & traceurs";
 
     protected override void LoadTexts()
     {
@@ -75,8 +104,9 @@
         kicker       = isFr ? "— Légal" : "— Legal";
         titleText    = isFr ? "Confidentialité." : "Privacy.";
         leadText     = isFr
-            ? "Zéro tracking, zéro cookie tiers. Voici ce que ça implique."
-            : "Zero tracking, zero third-party cookies. Here's what that means.";
+            ? "Mesure d'audience anonymisée, opt-in explicite, choix réversible à tout moment."
+            : "Anonymous audience measurement, explicit opt-in, reversible at any time.";
         seoDescription = leadText;
+        cookiesTitle = LocalizationService.GetString("Privacy.CookiesTitle");
     }
 }

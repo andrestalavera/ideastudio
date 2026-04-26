@@ -14,6 +14,11 @@ builder.Services.AddScoped<ISceneTheme, SceneTheme>();
 builder.Services.AddScoped<ISlugService, SlugService>();
 builder.Services.AddScoped<ISlugTranslator, SlugTranslator>();
 
+// Analytics + consent
+builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddScoped<IConsentService, ConsentService>();
+builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
+
 // Add localization services for Blazor WASM
 builder.Services.AddScoped<ICultureService, CultureService>();
 builder.Services.AddScoped<ILocalizationService, LocalizationService>();
