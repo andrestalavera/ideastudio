@@ -246,7 +246,7 @@ else
                         CourseCode: t.Slug,
                         EducationalLevel: t.Level,
                         TimeRequired: t.DurationDays is int d ? $"P{d}D" : null,
-                        Url: $"https://ideastud.io{LocalizedRoute.For("services.hub", cultureCode)}/formateur#{t.Slug}");
+                        Url: $"https://ideastud.io{LocalizedRoute.For("services.hub", cultureCode)}/{service.Slug}#{t.Slug}");
                     blocks.Add(SchemaOrg.ToJsonLd(course));
                 }
             }
