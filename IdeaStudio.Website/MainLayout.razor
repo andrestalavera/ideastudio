@@ -39,10 +39,6 @@
         await LoadLocalizedStringsAsync();
         UpdateCtaVisibility(Navigation.Uri);
         await Consent.LoadAsync();
-        if (Consent.HasDecided)
-        {
-            await Analytics.SetConsentAsync(Consent.IsGranted);
-        }
         Consent.OnChanged += OnConsentChanged;
     }
 
@@ -52,6 +48,12 @@
         runtimeInitialized = true;
         try { await SceneTheme.InitializeAsync(); }
         catch (Microsoft.JSInterop.JSDisconnectedException) { /* runtime gone */ }
+
+        // The cinema bundle is now loaded; flush the initial consent state to it.
+        if (Consent.HasDecided)
+        {
+            await Analytics.SetConsentAsync(Consent.IsGranted);
+        }
     }
 
     private async Task LoadLocalizedStringsAsync()
