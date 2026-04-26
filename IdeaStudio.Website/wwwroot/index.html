@@ -50,7 +50,17 @@
         gtag('js', new Date());
         gtag('config', 'G-VFWV1QDJFB', { send_page_view: false });
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VFWV1QDJFB"></script>
+    <script>
+        // Skip the gtag.js fetch on localhost so dev sessions never hit third-party endpoints.
+        (function () {
+            var local = ['localhost', '127.0.0.1', '[::1]'].indexOf(location.hostname) !== -1;
+            if (local) return;
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-VFWV1QDJFB';
+            document.head.appendChild(s);
+        })();
+    </script>
 
     <!-- Preload critical static assets -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-variable.woff2" crossorigin />
