@@ -18,6 +18,17 @@
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
 
+@* Always-visible floating CTA so the PDF is never more than one click away. *@
+<a class="ds-btn ds-btn--primary"
+   href="@downloadUrl"
+   target="_blank" rel="noopener"
+   aria-label="@downloadText"
+   style="position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 60;
+          box-shadow: 0 12px 32px -8px rgba(0, 194, 212, 0.45),
+                      0 4px 12px rgba(2, 10, 13, 0.5);">
+    @downloadText <span aria-hidden="true">↓</span>
+</a>
+
 @* 1 · Hero *@
 <Hero Kicker="@chapterOne" Lead="@introText" ThreadAnchor="intro">
     <ChildContent>
@@ -25,6 +36,11 @@
     </ChildContent>
     <Actions>
         <div class="ds-row">
+            <a class="ds-btn ds-btn--primary" href="@downloadUrl" target="_blank" rel="noopener">
+                @downloadText <span aria-hidden="true">↓</span>
+            </a>
+        </div>
+        <div class="ds-row" style="margin-block-start: 1rem;">
             @if (resume?.PersonalInformation?.Languages is not null)
             {
                 foreach (KeyValuePair<string, string> lang in resume.PersonalInformation.Languages)
@@ -144,6 +160,8 @@
     private string heroText = "Parcours.";
     private string introText = "";
     private string bookText = "Prendre rendez-vous";
+    private string downloadText = "Télécharger mon CV";
+    private string downloadUrl = "/cv.pdf";
     private List<string>? seoStructuredData;
     private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
 
@@ -176,6 +194,8 @@
             : "Training centres and schools that have trusted me with their sessions, on-site and remote. Three decades of Microsoft stack, passed on to wildly different audiences — from Supinfo students to senior devs reskilling on cloud.";
         contactTitle = fr ? "Parlons de votre projet."        : "Let's talk about your project.";
         bookText     = fr ? "Prendre rendez-vous"             : "Book a call";
+        downloadText = fr ? "Télécharger mon CV"              : "Download my resume";
+        downloadUrl  = fr ? "/cv.pdf"                          : "/resume.pdf";
     }
 
     private async Task LoadDataAsync()
