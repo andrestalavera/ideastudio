@@ -1,0 +1,66 @@
+# Netlify build + hosting config for ideastud-io.netlify.app
+# Authority: .claude/rules/00-tech-stack.md + agents/dotnet-developer.md.
+
+[build]
+  base    = "."
+  publish = "publish/wwwroot"
+  command = "./scripts/netlify-build.sh"
+
+[build.environment]
+  DOTNET_VERSION              = "10.0.203"
+  DOTNET_NOLOGO               = "1"
+  DOTNET_CLI_TELEMETRY_OPTOUT = "1"
+  NODE_VERSION                = "20"
+  NETLIFY_USE_PNPM            = "false"
+
+# Long-cache the framework + asset bundles (filenames are fingerprinted).
+[[headers]]
+  for = "/_framework/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Hard security defaults across the whole site.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options           = "DENY"
+    X-Content-Type-Options    = "nosniff"
+    Referrer-Policy           = "strict-origin-when-cross-origin"
+    Permissions-Policy        = "geolocation=(), microphone=(), camera=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+# Netlify Functions (TypeScript .mts, ES modules).
+# resume-pdf renders a PDF on demand from wwwroot/data/resume-{culture}.json
+# using puppeteer-core + @sparticuz/chromium. The Chromium binary is too
+# heavy to bundle, so it must stay external.
+[functions]
+  node_bundler        = "esbuild"
+  external_node_modules = ["@sparticuz/chromium"]
+
+# Friendly aliases on top of the default /.netlify/functions/{name} path.
+[[redirects]]
+  from   = "/cv.pdf"
+  to     = "/.netlify/functions/resume-pdf?culture=fr"
+  status = 200
+
+[[redirects]]
+  from   = "/resume.pdf"
+  to     = "/.netlify/functions/resume-pdf?culture=en"
+  status = 200
+
+# Pre-render-friendly: Netlify serves static files first, then falls back
+# to index.html so client-side routes resolve.
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200

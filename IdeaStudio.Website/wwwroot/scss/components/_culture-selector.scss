@@ -1,0 +1,79 @@
+// components/_culture-selector.scss — language switch dropdown.
+// Lives inside the masthead pill; the menu floats below as an absolute
+// panel so it never deforms the parent pill.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-culture-selector {
+  position: relative;
+  display: inline-flex;
+
+  // Trigger inherits .ds-btn--sm look but stays compact in the pill.
+  > .ds-btn {
+    padding-inline: s.$s-3;
+    padding-block: s.$s-2;
+    min-block-size: 2.25rem;
+    font-size: t.$fs-mono;
+    color: c.$fg;
+    border-color: transparent;
+
+    .fa-globe { color: c.$fg-muted; }
+
+    &:hover { background: c.$glass; transform: none; }
+    &[aria-expanded='true'] { background: c.$glass; }
+  }
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: transparent;
+    border: 0;
+    cursor: default;
+    appearance: none;
+  }
+
+  &__menu {
+    position: absolute;
+    inset-block-start: calc(100% + #{s.$s-2});
+    inset-inline-end: 0;
+    z-index: 95;
+    min-inline-size: 9rem;
+    margin: 0;
+    padding: s.$s-2;
+    list-style: none;
+    border-radius: 14px;
+    background: linear-gradient(c.$bg-surface, c.$bg-surface) padding-box,
+                c.$gradient-iridescent border-box;
+    border: 1px solid transparent;
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  }
+
+  &__item {
+    display: block;
+    inline-size: 100%;
+    padding-inline: s.$s-3;
+    padding-block: s.$s-2;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: c.$fg-muted;
+    font-family: t.$font-sans;
+    font-size: t.$fs-small;
+    text-align: start;
+    cursor: pointer;
+    transition: background-color 160ms var(--ease-out),
+                color 160ms var(--ease-out);
+
+    &:hover { background: c.$glass; color: c.$fg; }
+
+    &.is-active {
+      color: c.$ir-duck;
+      font-weight: 600;
+    }
+  }
+}

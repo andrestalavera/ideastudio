@@ -414,3 +414,6 @@ IdeaStudio.Website/wwwroot/js/cinema.bundle.js.map
 
 # Visual Studio language-service per-project cache — shouldn't be committed.
 *.csproj.lscache
+
+# Netlify local folder
+.netlify

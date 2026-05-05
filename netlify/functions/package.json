@@ -1,0 +1,12 @@
+﻿{
+  "name": "ideastudio-netlify-functions",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Netlify Functions for IdeaStudio (PDF resume generation, ...).",
+  "dependencies": {
+    "@netlify/functions": "^5.2.0",
+    "@sparticuz/chromium-min": "^148.0.0",
+    "puppeteer-core": "^24.42.0"
+  }
+}

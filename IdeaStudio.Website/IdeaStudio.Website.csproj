@@ -7,7 +7,6 @@
         <AnalysisLevel>latest</AnalysisLevel>
         <RunAOTCompilation Condition="'$(Configuration)' == 'Release'">true</RunAOTCompilation>
         <BlazorEnableCompression>true</BlazorEnableCompression>
-        <WasmEnableHotReload>false</WasmEnableHotReload>
         <InvariantGlobalization>false</InvariantGlobalization>
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     </PropertyGroup>
