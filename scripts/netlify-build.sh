@@ -6,7 +6,7 @@ set -euo pipefail
 
 DOTNET_VERSION="${DOTNET_VERSION:-10.0.203}"
 DOTNET_INSTALL_DIR="${HOME}/.dotnet"
-PROJECT="src/IdeaStudio.Website/IdeaStudio.Website.csproj"
+PROJECT="IdeaStudio.Website/IdeaStudio.Website.csproj"
 PUBLISH_DIR="publish"
 
 echo "→ Installing .NET ${DOTNET_VERSION} → ${DOTNET_INSTALL_DIR}"
