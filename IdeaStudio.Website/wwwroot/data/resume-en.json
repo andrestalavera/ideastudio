@@ -160,19 +160,39 @@
         "Added unit tests to ensure the reliability and stability of the software.",
         "Implemented new features to enhance functionality and user experience.",
         "Implemented strict security rules to protect sensitive data.",
-        "Integrated with Microsoft Entra ID for secure authentication and authorization."
+        "Integrated with Microsoft Entra ID for secure authentication and authorization.",
+        "Built the Blazor Server interface with responsive Bootstrap UI and custom Razor components, notably for Microsoft Entra ID authentication.",
+        "Ensured GDPR compliance and HDS hosting (French Health Data Hosting certification): data minimization, pseudonymization, access logging, and consent traceability.",
+        "Secured secrets through Azure Key Vault and access through Managed Identities and RBAC, removing any plaintext sensitive information.",
+        "Migrated deployment pipelines from Azure DevOps to GitHub Actions, fully rewriting workflows with reusable templates.",
+        "Industrialized infrastructure as code with Bicep: resource groups, Key Vaults, managed identities, Azure SQL, App Service Plans, and Azure Functions, for reliable multi-environment deployments.",
+        "Implemented health checks and application monitoring (Application Insights) to guarantee portal availability.",
+        "Optimized performance: Azure SQL queries, Blazor-side profiling, and caching strategies for controlled response times.",
+        "FinOps approach: optimized Azure Functions execution time to reduce billing, and ran an App Service Plan vs Containers comparison to pick the most cost-effective hosting."
       ],
       "skills": [
         "ASP.NET Core",
         ".NET 9",
+        "Azure DevOps",
         "GitHub Actions",
         "Continuous Integration and Continuous Delivery (CI/CD)",
+        "Infrastructure as Code (IaC)",
+        "Blazor",
         "Blazor Server",
+        "Bootstrap",
+        "Responsive Design",
+        "Clean Architecture",
         "Azure Web Apps",
         "Bicep",
         "Azure SQL",
         "SQL-Server",
         "Azure Functions",
+        "Azure Key Vault",
+        "Application Insights",
+        "Azure RBAC",
+        "FinOps",
+        "GDPR Compliance",
+        "HDS (Health Data Hosting)",
         "Microsoft Entra ID",
         "Azure Managed Identities"
       ]
@@ -199,7 +219,9 @@
         "Performed analysis of the mobile app to understand its structure and functionality.",
         "Developed Vue3 components, contributing to the modernisation of the application.",
         "Collaborated with the team to troubleshoot and resolve technical issues.",
-        "Participated in code reviews to maintain high-quality code."
+        "Participated in code reviews to maintain high-quality code.",
+        "Built Vue 3 components with Vite and Pinia for state management, as part of a progressive front-end modernization.",
+        "Scoped the migration of the MVC4 application to modern .NET and the move to Azure (WebApp, Functions), preparing the upcoming cut-over."
       ],
       "skills": [
         "Azure DevOps",
@@ -211,6 +233,9 @@
         "Azure Storage",
         "Test-Driven Development",
         "Vue.js",
+        "Vue 3",
+        "Vite",
+        "Pinia",
         "ASP.NET",
         "C#",
         "Azure Service Bus",
@@ -243,18 +268,35 @@
         "Trained developers on new technologies and best practices.",
         "Handled Azure subscription migration and FinOps.",
         "Improved application security and upgraded certain projects to .NET 8.",
-        "Implemented a database migration system to replicate data across different environments."
+        "Implemented a database migration system to replicate data across different environments.",
+        "Cross-stack guidance for the teams: Razor/CSHTML (ASP.NET Framework) with Bootstrap/jQuery, React, Angular, and Blazor — including styling fixes and coaching on Bootstrap, Material, MudBlazor, and custom SCSS.",
+        "Built the Azure Pipelines factory from a single existing pipeline (FTP-based deployments at the start) up to 25 reusable YAML templates and 10 pipelines deploying to 2 environments.",
+        "Migrated on-premise applications to Azure and split/reorganized Git repositories, catching up 5 to 6 years of industrialization debt.",
+        "Azure FinOps: removed orphan resources, optimized database costs, enabled automatic scaling across all resources, and consolidated App Service Plans based on actual needs.",
+        "GDPR compliance: built SQL anonymization scripts on a per-client basis, triggered through Azure Batch and Azure Functions to safely refresh non-production environments.",
+        "Implemented a multi-region availability strategy (Europe) with automatic fallback through Azure Traffic Manager.",
+        "Database migration system combining EF Core Migrations and an in-house tool shipped with the application code to orchestrate schema and data switches across environments.",
+        "Technical lead of two 5-developer teams: attended every daily and Scrum ritual, and ran a bi-weekly tech event dedicated to knowledge sharing."
       ],
       "skills": [
         "Blazor",
         "Azure DevOps",
+        "Azure Pipelines",
         "Entity Framework Core",
         "Microsoft Power Apps",
         "Azure Logic Apps",
         "Domain-Driven Design (DDD)",
         ".NET",
+        ".NET Framework",
+        ".NET 8",
+        "Razor",
         "React.js",
         "Angular",
+        "jQuery",
+        "Bootstrap",
+        "MudBlazor",
+        "Material UI",
+        "SCSS",
         "Cloud Computing",
         "Web Development",
         "ASP.NET Core",
@@ -263,7 +305,10 @@
         "Microsoft Azure",
         "Azure Monitor",
         "Azure Storage",
+        "Azure Traffic Manager",
+        "Azure Batch",
         "FinOps",
+        "GDPR Compliance",
         "Azure Static Web Apps",
         "ASP.NET",
         ".NET Core",
@@ -276,6 +321,7 @@
         "Clean Architecture",
         "Azure Functions",
         "Azure Automation",
+        "Scrum",
         "SQL"
       ]
     },
@@ -299,14 +345,22 @@
         "Developed applications and services for multiple internal products.",
         "Handled migrations from .net core3 to .net6 and performed refactoring.",
         "Managed deployment and provided support.",
-        "Conducted research and development on Azure Managed Identities, Azure RBAC, etc."
+        "Conducted research and development on Azure Managed Identities, Azure RBAC, etc.",
+        "Effectively implemented Azure Managed Identities and Azure RBAC in backend services to remove plaintext secrets and tighten access control to Azure resources.",
+        "Migrated .NET Core 3 projects to .NET 6 across multiple applications, sometimes fully rewriting legacy apps to start fresh on a clean foundation.",
+        "Built Azure DevOps CI/CD pipelines and shared YAML templates, reusing existing perimeter templates to standardize and speed up deployments.",
+        "Optimized the synchronization orchestrator Function: reworked Service Bus access handling and applied disciplined async/await, cutting the main execution time from 7-8 minutes down to 1-2 minutes.",
+        "Strict GDPR compartmentalization: development carried out exclusively on fictitious user datasets, without any access to production data."
       ],
       "skills": [
         "Blazor",
         "Azure DevOps",
+        "Azure Pipelines",
         "Azure Logic Apps",
         "Domain-Driven Design (DDD)",
         ".NET",
+        ".NET Core 3",
+        ".NET 6",
         "Cloud Computing",
         "Web Development",
         "ASP.NET Core",
@@ -315,6 +369,8 @@
         "Microsoft Azure",
         "Azure Monitor",
         "Azure Storage",
+        "Azure Managed Identities",
+        "Azure RBAC",
         "Test-Driven Development",
         "ASP.NET",
         ".NET Core",
@@ -326,7 +382,9 @@
         "API Development",
         "Azure Service Bus",
         "Azure Functions",
+        "async/await",
         "Microservices",
+        "GDPR Compliance",
         "SQL"
       ]
     },
@@ -348,7 +406,11 @@
         "Conducted functional analysis and analysis of existing developments and architectures (onion/hexagonal).",
         "Developed APIs and micro-services.",
         "Developed unit tests and conducted research and development.",
-        "Contributed to the development of a project from scratch (implementation of onion architecture, unit tests, etc.)."
+        "Contributed to the development of a project from scratch (implementation of onion architecture, unit tests, etc.).",
+        "Implemented user interfaces in Vue.js, kept in line with the APIs and microservices built on the backend side.",
+        "Deployed microservices to Azure through the existing CI/CD pipelines, complying with established conventions and standards.",
+        "Secured exchanges through OpenID Connect (OIDC) consumption and centralized secret management for backend services.",
+        "Mandatory Test-Driven Development with a minimum 95% coverage: unit tests, mocking, and progressive promotion across four environments (DEV, INT, UAT, PRD)."
       ],
       "skills": [
         "Domain-Driven Design (DDD)",
@@ -357,11 +419,13 @@
         "Cloud Computing",
         "Web Development",
         "ASP.NET Core",
+        "Vue.js",
         "Azure Key Vault",
         "Microsoft Azure",
         "Azure Monitor",
         "Azure Storage",
         "Test-Driven Development",
+        "Mocking",
         "ASP.NET",
         ".NET Core",
         "C#",
@@ -374,7 +438,9 @@
         "Azure Service Bus",
         "Clean Architecture",
         "Azure Functions",
-        "Microservices"
+        "Microservices",
+        "Multi-tenant",
+        "OpenID Connect (OIDC)"
       ]
     },
     {
@@ -396,11 +462,18 @@
         "Performed functional analysis ",
         "Connected Xamarin.Forms to ONNX files to integrate developed IA",
         "Connected to several Azure services.",
-        "Prepared packages and pipelines for deployment"
+        "Prepared packages and pipelines for deployment",
+        "Built the Xamarin.Forms application using MvvmCross and the Community Toolkit, integrating PyTorch models exported to ONNX.",
+        "Microsoft Entra ID authentication and access to ONNX files in Azure Storage protected by granular RBAC rules, scoped per user and per model.",
+        "ONNX model downloaded at sign-in then stored locally encrypted with a user-specific key, to preserve model confidentiality on the device.",
+        "Industrialized mobile delivery through Azure Pipelines, complemented by App Center for specific tasks (certificates, signing), with internal distribution via Microsoft Intune on the Microsoft Store."
       ],
       "skills": [
         "UWP",
         "Azure DevOps",
+        "Azure Pipelines",
+        "App Center",
+        "Microsoft Intune",
         "Mobile Applications",
         ".NET",
         "Cloud Computing",
@@ -410,6 +483,13 @@
         "Azure Monitor",
         "Azure Storage",
         "Xamarin",
+        "Xamarin.Forms",
+        "MvvmCross",
+        ".NET Community Toolkit",
+        "ONNX",
+        "PyTorch",
+        "Microsoft Entra ID",
+        "Azure RBAC",
         "FinOps",
         ".NET Core",
         "C#",
@@ -440,10 +520,15 @@
         "Realised several Proof of Concepts (PoCs) to validate the feasibility of solutions.",
         "Provided training to teams, enhancing their .NET skills and knowledge.",
         "Made contributions to the Continuous Deployment/Continuous Integration (CD/CI) pipelines, improving the efficiency of the development process.",
-        "Developed unit tests to ensure the reliability and stability of the software."
+        "Developed unit tests to ensure the reliability and stability of the software.",
+        "Built reusable Blazor components plugged into Fluxor for predictable state management and a reactive UI.",
+        "PoCs centered on Fluxor to frame Blazor state-management best practices within the team.",
+        "Optimized application responsiveness by leveraging Blazor fine-grained rendering and Fluxor flows.",
+        "Development carried out within the legal obligations applicable to property management (GDPR, personal data of tenants and owners)."
       ],
       "skills": [
         "Blazor",
+        "Fluxor",
         "Redux",
         "Domain-Driven Design (DDD)",
         ".NET",
@@ -462,7 +547,8 @@
         "Swagger",
         "API Development",
         "Azure Functions",
-        "Microservices"
+        "Microservices",
+        "GDPR Compliance"
       ]
     },
     {
@@ -489,10 +575,15 @@
         "Developed APIs and .NET applications to meet the needs of the projects.",
         "Created NuGet packages for efficient management and distribution of .NET packages.",
         "Developed Azure Functions with an orchestrator to manage the execution of functions.",
-        "Set up Azure Data Factory and Azure EventHubs for data integration and real-time analytics."
+        "Set up Azure Data Factory and Azure EventHubs for data integration and real-time analytics.",
+        "Kept the existing N-Layered architecture and proposed an Onion Architecture target, formalized and shared with the teams to prepare the evolution.",
+        "Built Azure Data Factory pipelines to orchestrate high-volume data flows between the various systems of the perimeter.",
+        "FinOps-driven R&D: studied and implemented cost optimizations on the Azure resources of the perimeter.",
+        "Multi-region design to absorb high volumes, with optimization through partition keys and batching on Azure Event Hubs."
       ],
       "skills": [
         "Azure DevOps",
+        "Azure Pipelines",
         "Azure Logic Apps",
         ".NET",
         "Cloud Computing",
@@ -502,10 +593,11 @@
         "FinOps",
         "ASP.NET",
         ".NET Core",
-        "Azure Kubernetes Service (AKS)",
         "C#",
         "Continuous Integration and Continuous Delivery (CI/CD)",
         "Architecture",
+        "N-Layered Architecture",
+        "Onion Architecture",
         "Swagger",
         "Azure Cosmos DB",
         "Azure Data Factory",
@@ -540,13 +632,24 @@
         "Developed the mobile app, enhancing its functionality and user experience.",
         "Ensured the app is secure and data is protected.",
         "Optimized the performance of the app for a smooth user experience.",
-        "Provided training and support to the team on the new technologies and best practices used in the app."
+        "Provided training and support to the team on the new technologies and best practices used in the app.",
+        "Migrated the native Xamarin mobile app from v3 to v4.8 (Windows Phone target), with route pre-download over the warehouse Wi-Fi for fully offline operation on the field.",
+        "Set up Microsoft Power Automate flows (formerly Power Apps) to automate delivery SMS notifications (\"delivery in X minutes\") and trigger database synchronizations.",
+        "Built a new Blazor administration dashboard, replacing the legacy console.",
+        "Simple and effective hardening: Azure firewall, secret management through Azure Key Vault, and encryption of sensitive data.",
+        "Created several Azure DevOps pipelines to reliably ship the various components (mobile, dashboard, APIs, jobs).",
+        "Database FinOps optimization: auto-scale, auto-shutdown, and rightsizing to keep costs under control.",
+        "Performance optimization: reworked the mobile UI for smoother interactions, improved caching, batching for data import/export, and targeted indexing on SQL Server.",
+        "Researched GraphQL, ultimately not adopted in favor of a 100% SQL Server stack.",
+        "Long-term evolutive maintenance of the solution: only client still actively supported in run mode, with a significant technical refresh delivered recently."
       ],
       "skills": [
         "Blazor",
         "UWP",
         "Azure DevOps",
+        "Azure Pipelines",
         "Microsoft Power Apps",
+        "Microsoft Power Automate",
         "Azure Logic Apps",
         "Mobile Applications",
         ".NET",
@@ -557,7 +660,12 @@
         "Microsoft Azure",
         "Azure Monitor",
         "Azure Storage",
+        "Xamarin",
+        "Xamarin Native",
+        "Windows Phone",
+        "Offline-first",
         "Test-Driven Development",
+        "FinOps",
         "ASP.NET",
         ".NET Core",
         "C#",
@@ -566,8 +674,10 @@
         "Swagger",
         "API Development",
         "GraphQL",
+        "SQL Server",
         "Azure Functions",
-        "Azure Automation"
+        "Azure Automation",
+        "GDPR Compliance"
       ]
     },
     {
@@ -589,10 +699,18 @@
         "I conducted analysis of existing developments and worked closely with the final customer to analyze functional needs. ",
         "I also held meetings with development teams and customers (Renault, Mitsubishi, Nissan, etc.), wrote functional specifications in Azure DevOps.",
         "Validated these with the final customer.",
-        "I configured Azure DevOps, reviewed code of off-shore teams, and documented differences in code and APIs specifications."
+        "I configured Azure DevOps, reviewed code of off-shore teams, and documented differences in code and APIs specifications.",
+        "Backend development (around 30% of the time) on top of the analyst role, supporting offshore teams and unblocking sensitive technical topics.",
+        "Updated the Clio 3 in-vehicle dashboards as part of the vehicle software modernization.",
+        "Embedded data anonymization and protection requirements (GDPR) into the functional specifications.",
+        "Translated and harmonized specifications across the formats specific to Renault, Mitsubishi, and Nissan, to align the three entities on a single functional perimeter.",
+        "Occasional contributions to Azure DevOps pipelines to smooth out delivery."
       ],
       "skills": [
         "Azure DevOps",
+        "Azure Pipelines",
+        "Business Analysis",
+        "Code Review",
         ".NET",
         "Cloud Computing",
         "Techlead",
@@ -600,7 +718,8 @@
         "ASP.NET",
         "C#",
         "Azure Service Bus",
-        "SQL"
+        "SQL",
+        "GDPR Compliance"
       ]
     },
     {
@@ -625,16 +744,24 @@
         "Worked on refactoring & clean code.",
         "Implemented Azure services (Functions, Centralized configuration, App Service, etc.).",
         "Coached about best practices: micro-services, serverless, .NET Core, design patterns (development and cloud).",
-        "Participated in the development of 3 projects: Box, CDA, Stream."
+        "Participated in the development of 3 projects: Box, CDA, Stream.",
+        "Trained the developers on React and C#, with a progressive ramp-up on the modern front-end and back-end stack.",
+        "Built the Azure DevOps pipelines for the 3 projects (Box, CDA, Stream), factorising the shared steps through YAML templates.",
+        "FinOps mindset embedded from the design phase: chose serverless options and Azure tiers matching real consumption, to keep costs under control.",
+        "Multi-region design with a fallback and recovery strategy, to ensure the availability of the Box / CDA / Stream ecosystem.",
+        "Performance optimization: Durable Functions, caching, and centralized configuration for controlled response times across the perimeter.",
+        "Mentored and grew an internal team of 6 to 7 developers (rituals, code reviews, knowledge sharing)."
       ],
       "skills": [
         "Azure DevOps",
+        "Azure Pipelines",
         "Azure Logic Apps",
         "Domain-Driven Design (DDD)",
         ".NET",
         "Cloud Computing",
         "Web Development",
         "ASP.NET Core",
+        "React.js",
         "Azure Key Vault",
         "Techlead",
         "Microsoft Azure",
@@ -650,7 +777,10 @@
         "Azure Service Bus",
         "Clean Architecture",
         "Azure Functions",
+        "Durable Functions",
         "Microservices",
+        "FinOps",
+        "Multi-region",
         "SQL",
         "Behavior-Driven Development (BDD)"
       ]
@@ -675,10 +805,15 @@
         "Realized several Proof of Concepts (PoCs) to validate the feasibility of solutions.",
         "Provided training to teams, enhancing their .NET skills and knowledge.",
         "Made contributions to the Continuous Deployment/Continuous Integration (CD/CI) pipelines, improving the efficiency of the development process.",
-        "Developed unit tests to ensure the reliability and stability of the software."
+        "Developed unit tests to ensure the reliability and stability of the software.",
+        "Front-end development across three complementary stacks: React, Microsoft Power Apps, and Microsoft Dynamics, aligned with the client's business ecosystem.",
+        "Integration PoCs between Microsoft Dynamics and Microsoft 365 Graph, to validate data synchronization and enrichment scenarios.",
+        "Built the Azure DevOps CI/CD pipelines, replacing existing manual steps to make deliveries reliable and fully automated.",
+        "Improved application performance on critical components (queries, data access, front-end rendering)."
       ],
       "skills": [
         "Azure DevOps",
+        "Azure Pipelines",
         "Microsoft Power Apps",
         ".NET",
         "React.js",
@@ -694,7 +829,8 @@
         "Continuous Integration and Continuous Delivery (CI/CD)",
         "API Development",
         "Microservices",
-        "Microsoft Dynamics"
+        "Microsoft Dynamics",
+        "Microsoft Graph"
       ]
     },
     {
@@ -718,11 +854,22 @@
         "Developed unit tests and integration tests using NUnit to ensure the reliability and stability of the software.",
         "Handled both on-premise and cloud deployment of the application.",
         "Managed the project, ensuring it is delivered on time and within budget.",
-        "Managed different providers, coordinating and communicating effectively to ensure smooth operations."
+        "Managed different providers, coordinating and communicating effectively to ensure smooth operations.",
+        "Front-end development with ASP.NET MVC and jQuery, aligned with the business needs of private equity operations.",
+        "Stack built on top of AspNet Boilerplate, with authentication, authorization, GDPR rules, and financial data protection put in place.",
+        "Built dedicated pipelines for the on-premise and cloud components, to reliably ship across both hosting targets.",
+        "FinOps approach on the cloud perimeter: chose appropriate Azure tiers and monitored consumption to keep the bill under control.",
+        "Multi-region strategy with automatic fallback and a recovery plan, securing service continuity.",
+        "End-to-end performance tuning: SQL queries, API design, and asynchronous processing.",
+        "Data provider coordination: integration, interface contract validation (Swagger / Open API), and incident follow-up."
       ],
       "skills": [
         "Azure DevOps",
+        "Azure Pipelines",
         ".NET",
+        "ASP.NET MVC",
+        "jQuery",
+        "ASP.NET Boilerplate",
         "Cloud Computing",
         "Web Development",
         "ASP.NET Core",
@@ -740,6 +887,69 @@
         "API Development",
         "Azure Functions",
         "Microservices",
+        "FinOps",
+        "Multi-region",
+        "GDPR Compliance",
+        "SQL"
+      ]
+    },
+    {
+      "title": ".NET and Azure Techlead",
+      "company": "SPEIG",
+      "mode": "Freelance",
+      "startDate": "2018-01-01",
+      "endDate": "2018-09-01",
+      "locations": [
+        "Greater Paris Metropolitan Region"
+      ],
+      "description": [
+        "A French company, the COLAS group is a global leader in road and rail construction, known for sustainable infrastructure solutions. It is also one of the world's leading recyclers.",
+        "Architected and developed an ASP.NET Core web application to measure, in real time, the use of construction machines (fuel, duration, consumption, ...) leveraging the power of Big Data."
+      ],
+      "responsibilities": [
+        "Conducted a functional analysis to understand the business needs.",
+        "Engaged in research and development activities, focusing on fleet management and cartographic components.",
+        "Performed reverse engineering of an existing application to understand its architecture and functionalities.",
+        "Designed the architecture of the web application, ensuring scalability and performance.",
+        "Developed the MVC web application, APIs, and JavaScript (Bing Maps, Ajax) to meet the project requirements.",
+        "Contributed and participated in the implementation of DevOps processes using Visual Studio Team Services / Azure DevOps.",
+        "Performed Proof of Concepts on Bing Maps, Azure Maps, storage options, etc., to explore the best solutions for the project.",
+        "Mentored developers to improve their skills, fostering a culture of continuous learning and improvement within the team.",
+        "Responsive user interface in Bootstrap and jQuery, with Bing Maps and Ajax integration for real-time cartographic visualization.",
+        "Architecture sized for the volume at hand: 80,000 construction machines emitting every 30 to 600 seconds, i.e. several million events per day to ingest and serve.",
+        "Built the Visual Studio Team Services / Azure DevOps pipelines, sharing steps through templates to make deliveries reliable and faster.",
+        "FinOps and availability optimization in the face of high volume: picked the right Azure services (ingestion, partitioned storage, processing) and a scaling strategy able to absorb peaks.",
+        "Day-to-day mentoring of a 5-developer team: rituals, code reviews, pairing, and technical guidance."
+      ],
+      "skills": [
+        "Azure DevOps",
+        "Azure Pipelines",
+        ".NET",
+        "Cloud Computing",
+        "Web Development",
+        "ASP.NET Core",
+        "Bootstrap",
+        "jQuery",
+        "Bing Maps",
+        "Azure Maps",
+        "Big Data",
+        "Azure Key Vault",
+        "Techlead",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Azure Storage",
+        "Azure Event Hubs",
+        "Azure Stream Analytics",
+        "Test-Driven Development",
+        "ASP.NET",
+        ".NET Core",
+        "C#",
+        "Continuous Integration and Continuous Delivery (CI/CD)",
+        "Swagger",
+        "API Development",
+        "Azure Functions",
+        "Microservices",
+        "FinOps",
         "SQL"
       ]
     },
@@ -758,7 +968,10 @@
         "I conducted functional analysis, engaged in research and development, performed reverse engineering, designed the architecture, developed the WPF application, their User Components and contributed to DevOps processes."
       ],
       "responsibilities": [
-        "Conducted functional analysis to understand the business requirements."
+        "Conducted functional analysis to understand the business requirements.",
+        "Used Telerik WPF components to speed up the development of the Innova UI and offer rich controls (grids, charts, dialogs).",
+        "Secured access through OAuth 2.0 for user authentication and authorization.",
+        "Improved the existing CI/CD pipelines to make deliveries more reliable and faster."
       ],
       "skills": [
         ".NET",
@@ -767,7 +980,11 @@
         "Test-Driven Development",
         "ASP.NET",
         "C#",
-        "WPF"
+        "WPF",
+        "MVVM",
+        "Telerik",
+        "OAuth 2.0",
+        "Continuous Integration and Continuous Delivery (CI/CD)"
       ]
     },
     {
@@ -802,7 +1019,12 @@
         "ASP.NET",
         ".NET Core",
         "C#",
-        "API Development"
+        "API Development",
+        "Bootstrap",
+        "jQuery",
+        "HTML",
+        "CSS",
+        "JavaScript"
       ]
     },
     {
@@ -826,6 +1048,12 @@
         "User experience enhancement"
       ],
       "skills": [
+        ".NET",
+        ".NET Framework",
+        "ASP.NET",
+        "C#",
+        "Mobile Applications",
+        "UWP",
         "Cloud Computing"
       ]
     },
@@ -844,6 +1072,21 @@
         "I focused on delivering high-quality training, sharing my knowledge, and helping developers enhance their skills.",
         "I was involved in the research and development of a web application for displaying promotion codes, enhancing the user experience and driving customer engagement.",
         "I developed the first version of the logistics application for Charl'Antoine, developed an e-commerce site for SIEHR (lecoinsiehr.com), and developed several websites for real estate agencies."
+      ],
+      "skills": [
+        "UWP",
+        "Azure DevOps",
+        "Mobile Applications",
+        ".NET",
+        "Cloud Computing",
+        "Web Development",
+        "Microsoft Azure",
+        "Azure Monitor",
+        "Xamarin",
+        "Test-Driven Development",
+        "ASP.NET",
+        "C#",
+        "API Development"
       ]
     }
   ]
