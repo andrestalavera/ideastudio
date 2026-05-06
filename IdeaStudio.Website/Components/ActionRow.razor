@@ -1,27 +1,28 @@
-@* ActionRow — LinkedIn / GitHub ghost pills + Calendly iridescent CTA.
+﻿@* ActionRow — LinkedIn / GitHub ghost pills + Calendly iridescent CTA.
    Reused in the Home hero and in CtaBand. *@
 
 <div class="ds-row">
     @if (ShowSocials)
     {
-        <a class="ds-btn ds-btn--ghost"
-           href="https://www.linkedin.com/in/andrestalavera/"
-           target="_blank" rel="noopener">
+        <a class="ds-btn ds-btn--ghost" href="https://www.linkedin.com/in/andrestalavera/" target="_blank" rel="noopener">
             <span>01</span> LinkedIn <span aria-hidden="true">↗</span>
         </a>
-        <a class="ds-btn ds-btn--ghost"
-           href="https://github.com/andrestalavera"
-           target="_blank" rel="noopener">
+        <a class="ds-btn ds-btn--ghost" href="https://github.com/andrestalavera" target="_blank" rel="noopener">
             <span>02</span> GitHub <span aria-hidden="true">↗</span>
         </a>
     }
-    <a class="ds-btn ds-btn--primary"
-       href="https://calendly.com/andres-talavera/30min"
-       target="_blank" rel="noopener"
-       aria-label="@AriaLabel">
+    <a class="ds-btn ds-btn--primary" href="@DownloadUrl" target="_blank" rel="noopener" aria-label="@DownloadLabel">
         @if (ShowSocials)
         {
             <span>03</span>
+        }
+        @DownloadLabel <span aria-hidden="true">→</span>
+    </a>
+    <a class="ds-btn ds-btn--primary" href="https://calendly.com/andres-talavera/30min" target="_blank" rel="noopener"
+       aria-label="@AriaLabel">
+        @if (ShowSocials)
+        {
+            <span>04</span>
         }
         @Label <span aria-hidden="true">→</span>
     </a>
@@ -31,4 +32,6 @@
     [Parameter] public bool ShowSocials { get; set; } = true;
     [Parameter] public string Label { get; set; } = "Meet";
     [Parameter] public string AriaLabel { get; set; } = "Book a 30-minute call on Calendly (opens in a new tab)";
+    [Parameter] public string DownloadUrl { get; set; } = "cv.pdf";
+    [Parameter] public string DownloadLabel { get; set; } = "Download resume";
 }
