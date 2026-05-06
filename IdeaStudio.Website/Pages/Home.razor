@@ -1,4 +1,4 @@
-@page "/fr"
+﻿@page "/fr"
 @page "/en"
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Models
@@ -34,7 +34,7 @@
             </RevealChars>
             <p class="ds-lead ds-hero__lead" data-reveal style="--reveal-step: 2">@lead</p>
             <div class="ds-hero__actions" data-reveal style="--reveal-step: 3">
-                <ActionRow Label="@meetLabel" />
+                <ActionRow Label="@meetLabel" DownloadUrl="@downloadUrl" DownloadLabel="@downloadLabel" />
             </div>
         </div>
     </div>
@@ -120,6 +120,8 @@
     private string kicker = "CONSULTANT · TECHLEAD · FORMATEUR";
     private string lead = "Je transforme des idées en logiciels qui marchent.";
     private string meetLabel = "Rencontrer";
+    private string downloadLabel = "Télécharger CV";
+    private string downloadUrl = "cv.pdf";
     private string realisationsKicker = "Réalisations";
     private string realisationsTitle = "Projets récents.";
     private string seeAllRealisations = "Voir toutes les réalisations";
@@ -166,6 +168,8 @@
             : "CONSULTANT · TECH LEAD · TRAINER";
 
         meetLabel = fr ? "Rencontrer" : "Meet";
+        downloadLabel = fr ? "Télécharger CV" : "Download resume";
+        downloadUrl = fr ? "cv.pdf" : "resume.pdf";
 
         realisationsKicker = fr ? "Réalisations" : "Work";
         realisationsTitle  = fr ? "Projets récents." : "Recent projects.";
