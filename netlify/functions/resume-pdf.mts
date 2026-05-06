@@ -18,7 +18,6 @@ export default async (req: Request, _context: Context): Promise<Response> => {
   const cultureParam = url.searchParams.get("culture")?.toLowerCase();
   const culture: Culture = cultureParam === "en" ? "en" : "fr";
 
-  // Resume data lives next to the deployed site, fetched from same origin.
   const baseUrl = `${url.protocol}//${url.host}`;
   const dataUrl = `${baseUrl}/data/resume-${culture}.json`;
 
@@ -44,15 +43,13 @@ export default async (req: Request, _context: Context): Promise<Response> => {
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: "networkidle0", timeout: 20_000 });
     const pdf = await page.pdf({
-      format: "A4",
+      format: "Legal",
       printBackground: true,
       preferCSSPageSize: true,
+      scale: 0.9,
       margin: { top: "0", right: "0", bottom: "0", left: "0" },
     });
 
-    // page.pdf() returns Uint8Array<ArrayBufferLike>, which TypeScript no
-    // longer auto-narrows to BodyInit. Hand a fresh ArrayBuffer to Response
-    // to keep the types honest without a wide cast.
     const body = pdf.buffer.slice(
       pdf.byteOffset,
       pdf.byteOffset + pdf.byteLength,
