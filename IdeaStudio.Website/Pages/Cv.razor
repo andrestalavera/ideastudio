@@ -1,4 +1,4 @@
-@page "/fr/cv"
+﻿@page "/fr/cv"
 @page "/en/resume"
 @page "/fr/resume-andres-talavera"
 @page "/en/resume-andres-talavera"
@@ -186,7 +186,7 @@
         chapterFour  = fr ? "Chapter IV · Formations"     : "Chapter IV · Trainings";
         chapterFive  = fr ? "Chapter V · Contact"         : "Chapter V · Contact";
 
-        aboutTitle   = fr ? "Un parcours, plusieurs angles." : "One path, several angles.";
+        aboutTitle   = fr ? "Un parcours, plusieurs angles."  : "One path, several angles.";
         xpTitle      = fr ? "Ce que j'ai construit."          : "What I've built.";
         trainTitle   = fr ? "Là où j'ai enseigné."            : "Where I've taught.";
         trainIntro   = fr
@@ -195,7 +195,7 @@
         contactTitle = fr ? "Parlons de votre projet."        : "Let's talk about your project.";
         bookText     = fr ? "Prendre rendez-vous"             : "Book a call";
         downloadText = fr ? "Télécharger mon CV"              : "Download my resume";
-        downloadUrl  = fr ? "/cv.pdf"                          : "/resume.pdf";
+        downloadUrl  = fr ? "/cv.pdf?culture=fr"              : "/resume.pdf?culture=en";
     }
 
     private async Task LoadDataAsync()
