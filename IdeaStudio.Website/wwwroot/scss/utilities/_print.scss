@@ -1,9 +1,10 @@
-// utilities/_print.scss — CV print stylesheet.
+﻿// utilities/_print.scss — CV print stylesheet.
 
 @media print {
   html, body {
     background: #fff !important;
     color: #000 !important;
+    font-size: .85rem !important;
   }
 
   #gl-canvas,
@@ -20,6 +21,8 @@
     padding-block: 1.5rem !important;
   }
 }
+
+* { max-width: 100% !important; }
 
 .ds-print-hidden { @media print { display: none !important; } }
 .ds-print-only   { display: none !important; @media print { display: initial !important; } }
