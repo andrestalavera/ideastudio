@@ -46,8 +46,7 @@ export default async (req: Request, _context: Context): Promise<Response> => {
       format: "Legal",
       printBackground: true,
       preferCSSPageSize: true,
-      scale: 0.75,
-      margin: { top: "1cm", right: "0.5cm", bottom: "0.5cm", left: "0.5cm" },
+      margin: { top: "0", right: "0cm", bottom: "0cm", left: "0cm" },
     });
 
     const body = pdf.buffer.slice(
