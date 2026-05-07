@@ -1,4 +1,4 @@
-// utilities/_print.scss — print + resume-PDF styles.
+﻿// utilities/_print.scss — print + resume-PDF styles.
 //
 // Two concerns live here:
 //   1. Site browser-print utilities (.ds-print-hidden / .ds-print-only) used
@@ -192,7 +192,7 @@ body.resume-pdf {
   }
   .about-card__body p {
     font-size: 8pt;
-    line-height: 1.4;
+    line-height: 1.25;
     color: $pdf-body;
     margin-bottom: 2px;
   }
@@ -216,21 +216,20 @@ body.resume-pdf {
     font-size: 13pt;
     font-weight: 600;
     letter-spacing: -0.02em;
-    line-height: 1.1;
   }
   .exp__company {
-    font-size: 8.5pt;
+    font-size: 8pt;
     color: $pdf-label;
     font-weight: 500;
     margin-top: 2px;
   }
-  .exp__index { @include pdf-tag(7pt, $pdf-muted, 0.1em); }
+  .exp__index { @include pdf-tag(6pt, $pdf-muted, 0.1em); }
 
   .exp__meta {
     display: flex;
     flex-wrap: wrap;
-    @include pdf-tag(7pt);
-    margin: 8px 0 10px;
+    @include pdf-tag(6pt);
+    margin: 4px 0 5px;
     border-top: 1px solid $pdf-rule;
     border-bottom: 1px solid $pdf-rule;
     padding: 4px 0;
@@ -242,8 +241,8 @@ body.resume-pdf {
   }
 
   .exp__description p {
-    font-size: 8.5pt;
-    line-height: 1.4;
+    font-size: 8pt;
+    line-height: 1.25;
     color: $pdf-body;
     margin-bottom: 6px;
   }
@@ -261,10 +260,10 @@ body.resume-pdf {
     li {
       position: relative;
       padding-left: 14px;
-      font-size: 8.5pt;
-      line-height: 1.45;
+      font-size: 8pt;
+      line-height: 1.25;
       color: $pdf-body;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
 
       &::before {
         content: "-";
@@ -278,19 +277,18 @@ body.resume-pdf {
 
   .exp__skills {
     margin-top: auto;
-    padding-top: 10px;
+    padding-top: 8px;
   }
   .skill-pill {
     display: inline-block;
-    margin: 0 3px 4px 0;
-    padding: 2px 7px;
+    margin: 0 3px 3px 0;
+    padding: 2px 6px;
     border: 1px solid $pdf-accent-bd;
     border-radius: 999px;
     font-family: $pdf-mono;
-    font-size: 7pt;
+    font-size: 5.5pt;
     color: $pdf-label;
     background: $pdf-accent-bg;
-    letter-spacing: 0.02em;
   }
 
   // Footer signature on each experience page
@@ -301,7 +299,7 @@ body.resume-pdf {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @include pdf-tag(6.5pt, $pdf-muted, 0.15em);
+    @include pdf-tag(5.5pt, $pdf-muted, 0.15em);
 
     &-name { color: $pdf-label; font-weight: 500; }
   }
