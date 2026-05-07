@@ -1,4 +1,13 @@
-﻿// utilities/_print.scss — CV print stylesheet.
+// utilities/_print.scss — print + resume-PDF styles.
+//
+// Two concerns live here:
+//   1. Site browser-print utilities (.ds-print-hidden / .ds-print-only) used
+//      by Razor components (Masthead, Footer, CtaBand…).
+//   2. Resume PDF stylesheet — applied when /css/styles.min.css is loaded
+//      by the standalone HTML produced in netlify/functions/_lib/render.mts.
+//      The body there carries class="resume-pdf" so all rules are scoped
+//      and a named @page (resume) keeps the A4/0-margin sizing from
+//      leaking into normal browser print of site pages.
 
 @media print {
   html, body {
@@ -26,3 +35,274 @@
 
 .ds-print-hidden { @media print { display: none !important; } }
 .ds-print-only   { display: none !important; @media print { display: initial !important; } }
+
+
+// ---- Resume PDF (Puppeteer-rendered standalone HTML) ----------------------
+
+// Local palette and helpers for the resume PDF. Kept private to this file
+// because they only describe the white-background print context.
+$pdf-ink:       #05161a;
+$pdf-body:      #2a3d3a;
+$pdf-muted:     #5e7a77;
+$pdf-link:      #007a86;
+$pdf-label:     #00808a;
+$pdf-accent:    #00c2d4;
+$pdf-accent-bg: rgba(0, 194, 212, 0.05);
+$pdf-accent-bd: rgba(0, 194, 212, 0.4);
+$pdf-rule:      rgba(10, 35, 40, 0.1);
+$pdf-rule-soft: rgba(10, 35, 40, 0.08);
+$pdf-mono:      'JetBrains Mono', monospace;
+
+@mixin pdf-tag($size: 7pt, $color: $pdf-muted, $tracking: 0.12em) {
+  font-family: $pdf-mono;
+  font-size: $size;
+  text-transform: uppercase;
+  letter-spacing: $tracking;
+  color: $color;
+}
+
+@page resume {
+  size: A4;
+  margin: 0;
+}
+
+body.resume-pdf {
+  background: #fff;
+  color: $pdf-ink;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 9pt;
+  line-height: 1.45;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  overflow: visible;
+
+  a { color: $pdf-link; text-decoration: none; }
+
+  .kicker { @include pdf-tag(7pt, $pdf-label, 0.2em); font-weight: 500; }
+
+  .divider {
+    height: 2px;
+    background: linear-gradient(90deg, $pdf-accent 0%, #2d44ff 50%, #ff3670 100%);
+    border: 0;
+  }
+
+  .page {
+    page: resume;
+    page-break-after: always;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 10mm 15mm;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  // Long experiences may span more than one printed page; keep section
+  // blocks together to avoid awkward splits.
+  .exp__section { page-break-inside: avoid; }
+  .exp__head    { page-break-after: avoid; }
+
+  // ---- Cover ----
+  .cover__top {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .cover__photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $pdf-accent;
+  }
+  .cover__name {
+    font-size: 19pt;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .cover__title {
+    font-size: 9pt;
+    color: $pdf-muted;
+    margin-top: 4px;
+  }
+  .cover__hero {
+    font-size: 13pt;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #0a2328;
+    margin: 10px 0 8px;
+  }
+  .cover__intro {
+    font-size: 8.5pt;
+    color: $pdf-body;
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+
+  .cover__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-top: 8px;
+    border-top: 1px solid $pdf-rule;
+  }
+  .cover__lang {
+    display: inline-block;
+    padding: 2px 8px;
+    border: 1px solid $pdf-accent-bd;
+    border-radius: 999px;
+    font-family: $pdf-mono;
+    font-size: 7pt;
+    color: $pdf-label;
+    letter-spacing: 0.04em;
+  }
+  .cover__contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 8pt;
+    color: $pdf-body;
+
+    .label {
+      @include pdf-tag(6.5pt);
+      margin-right: 4px;
+    }
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 14px;
+    margin-top: 10px;
+  }
+  .about-card {
+    border-left: 2px solid $pdf-accent;
+    padding: 1px 0 1px 10px;
+  }
+  .about-card__title {
+    @include pdf-tag(7.5pt, $pdf-label, 0.1em);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .about-card__body p {
+    font-size: 8pt;
+    line-height: 1.4;
+    color: $pdf-body;
+    margin-bottom: 2px;
+  }
+
+  // ---- Experience pages ----
+  .exp__head {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .exp__logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    background: #fff;
+    padding: 3px;
+  }
+  .exp__title {
+    font-size: 13pt;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .exp__company {
+    font-size: 8.5pt;
+    color: $pdf-label;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .exp__index { @include pdf-tag(7pt, $pdf-muted, 0.1em); }
+
+  .exp__meta {
+    display: flex;
+    flex-wrap: wrap;
+    @include pdf-tag(7pt);
+    margin: 8px 0 10px;
+    border-top: 1px solid $pdf-rule;
+    border-bottom: 1px solid $pdf-rule;
+    padding: 4px 0;
+  }
+  .exp__meta-item {
+    margin-right: 14px;
+
+    &::before { content: "-"; color: $pdf-accent; margin-right: 4px; }
+  }
+
+  .exp__description p {
+    font-size: 8.5pt;
+    line-height: 1.4;
+    color: $pdf-body;
+    margin-bottom: 6px;
+  }
+
+  .exp__section { margin-top: 10px; }
+  .exp__section-title {
+    @include pdf-tag(7.5pt, $pdf-label, 0.18em);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .exp__list {
+    list-style: none;
+
+    li {
+      position: relative;
+      padding-left: 14px;
+      font-size: 8.5pt;
+      line-height: 1.45;
+      color: $pdf-body;
+      margin-bottom: 3px;
+
+      &::before {
+        content: "-";
+        position: absolute;
+        left: 0;
+        color: $pdf-accent;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .exp__skills {
+    margin-top: auto;
+    padding-top: 10px;
+  }
+  .skill-pill {
+    display: inline-block;
+    margin: 0 3px 4px 0;
+    padding: 2px 7px;
+    border: 1px solid $pdf-accent-bd;
+    border-radius: 999px;
+    font-family: $pdf-mono;
+    font-size: 7pt;
+    color: $pdf-label;
+    background: $pdf-accent-bg;
+    letter-spacing: 0.02em;
+  }
+
+  // Footer signature on each experience page
+  .page__footer {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid $pdf-rule-soft;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include pdf-tag(6.5pt, $pdf-muted, 0.15em);
+
+    &-name { color: $pdf-label; font-weight: 500; }
+  }
+}
