@@ -54,7 +54,7 @@ a { color: #007a86; text-decoration: none; }
   page-break-after: always;
   width: 210mm;
   min-height: 297mm;
-  padding: 18mm 20mm;
+  padding: 12.7mm 19mm;
   display: flex;
   flex-direction: column;
 }
@@ -97,7 +97,7 @@ a { color: #007a86; text-decoration: none; }
   border: 2px solid #00c2d4;
 }
 .cover__name {
-  font-size: 26pt;
+  font-size: 24pt;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
@@ -109,7 +109,7 @@ a { color: #007a86; text-decoration: none; }
   margin-top: 6px;
 }
 .cover__hero {
-  font-size: 18pt;
+  font-size: 16pt;
   font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -117,7 +117,7 @@ a { color: #007a86; text-decoration: none; }
   margin: 14px 0 12px;
 }
 .cover__intro {
-  font-size: 10.5pt;
+  font-size: 10pt;
   color: #2a3d3a;
   line-height: 1.55;
   margin-bottom: 14px;
@@ -188,7 +188,7 @@ a { color: #007a86; text-decoration: none; }
 .exp__head {
   display: grid;
   grid-template-columns: 70px 1fr auto;
-  gap: 16px;
+  gap: 14px;
   align-items: center;
   margin-bottom: 14px;
 }
@@ -200,21 +200,21 @@ a { color: #007a86; text-decoration: none; }
   padding: 4px;
 }
 .exp__title {
-  font-size: 18pt;
+  font-size: 16pt;
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.1;
   color: #05161a;
 }
 .exp__company {
-  font-size: 12pt;
+  font-size: 10pt;
   color: #00808a;
   font-weight: 500;
   margin-top: 2px;
 }
 .exp__index {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9pt;
+  font-size: 8pt;
   color: #5e7a77;
   letter-spacing: 0.1em;
 }
@@ -224,12 +224,11 @@ a { color: #007a86; text-decoration: none; }
   flex-wrap: wrap;
   gap: 0;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 8.5pt;
+  font-size: 8pt;
   color: #5e7a77;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin: 12px 0 14px;
-  padding: 8px 0;
   border-top: 1px solid rgba(10, 35, 40, 0.1);
   border-bottom: 1px solid rgba(10, 35, 40, 0.1);
 }
@@ -237,14 +236,13 @@ a { color: #007a86; text-decoration: none; }
   margin-right: 16px;
 }
 .exp__meta-item::before {
-  content: "—";
+  content: "-";
   color: #00c2d4;
-  margin-right: 6px;
 }
 
 .exp__description p {
-  font-size: 10.5pt;
-  line-height: 1.55;
+  font-size: 10pt;
+  line-height: 1.4;
   color: #2a3d3a;
   margin-bottom: 8px;
 }
@@ -274,7 +272,7 @@ a { color: #007a86; text-decoration: none; }
   margin-bottom: 5px;
 }
 .exp__list li::before {
-  content: "—";
+  content: "-";
   position: absolute;
   left: 0;
   color: #00c2d4;
@@ -287,11 +285,11 @@ a { color: #007a86; text-decoration: none; }
 }
 .skill-pill {
   display: inline-block;
-  margin: 0 4px 5px 0;
+  margin: 0 3px 5px 0;
   padding: 3px 9px;
   border: 1px solid rgba(0, 194, 212, 0.4);
   border-radius: 999px;
-  font-size: 8.5pt;
+  font-size: 8pt;
   font-family: 'JetBrains Mono', monospace;
   color: #00808a;
   background: rgba(0, 194, 212, 0.05);
