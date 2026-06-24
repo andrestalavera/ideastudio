@@ -73,6 +73,19 @@
     </section>
 }
 
+@* 2c · Testimonials, real recommendations (social proof) *@
+@if (testimonials.Count > 0)
+{
+    <section class="ds-section ds-section--chapter ds-section--bordered">
+        <div class="ds-container">
+            <ChapterBand Kicker="@testimonialsKicker" Title="@testimonialsTitle" />
+            <div class="ds-chapter-gap">
+                <Testimonials Items="@testimonials" />
+            </div>
+        </div>
+    </section>
+}
+
 @* 3 · Latest realisations, editorial zig-zag stack, not uniform rows *@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
@@ -149,6 +162,9 @@
     private List<(string Title, string Body)> benefits = new();
     private List<LogoWall.LogoItem> clients = new();
     private string clientsKicker = "Ils m'ont fait confiance";
+    private IReadOnlyList<Testimonial> testimonials = Array.Empty<Testimonial>();
+    private string testimonialsKicker = "Recommandations";
+    private string testimonialsTitle = "Ce qu'ils disent.";
     private string benefitsKicker = "Pourquoi moi";
     private string benefitsTitle = "Ce que vous y gagnez.";
     private string benefitsLead = "";
@@ -208,6 +224,8 @@
         downloadUrl = fr ? "cv.pdf?culture=fr" : "resume.pdf?culture=en";
 
         clientsKicker  = fr ? "Ils m'ont fait confiance" : "Trusted by";
+        testimonialsKicker = fr ? "Recommandations" : "Recommendations";
+        testimonialsTitle  = fr ? "Ce qu'ils disent." : "What they say.";
         benefitsKicker = fr ? "Pourquoi moi" : "Why me";
         benefitsTitle  = fr ? "Ce que vous y gagnez." : "What you get.";
         benefitsLead   = fr
@@ -254,6 +272,7 @@
         clients = ClientRoster.Build(resume, realisations)
             .Select(c => new LogoWall.LogoItem(c.Name, LogoUrl: null, Url: c.Url))
             .ToList();
+        testimonials = (await Content.GetTestimonialsAsync()).Take(3).ToArray();
     }
 
     private void GenerateStructuredData()

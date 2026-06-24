@@ -62,6 +62,19 @@
     </div>
 </section>
 
+@* 2b · Testimonials *@
+@if (testimonials.Count > 0)
+{
+    <section class="ds-section ds-section--chapter ds-section--bordered">
+        <div class="ds-container">
+            <ChapterBand Kicker="@testimonialsKicker" Title="@testimonialsTitle" />
+            <div class="ds-chapter-gap">
+                <Testimonials Items="@testimonials" />
+            </div>
+        </div>
+    </section>
+}
+
 @* 3 · Explore further, hub links *@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
@@ -94,6 +107,9 @@
     private string exploreTitle = "Aller plus loin.";
     private string servicesLink = "Mes services";
     private string workLink = "Mes réalisations";
+    private IReadOnlyList<Testimonial> testimonials = Array.Empty<Testimonial>();
+    private string testimonialsKicker = "Recommandations";
+    private string testimonialsTitle = "Ce qu'ils disent.";
 
     private List<string>? seoStructuredData;
     private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
@@ -129,6 +145,8 @@
         exploreTitle = fr ? "Aller plus loin." : "Go further.";
         servicesLink = fr ? "Mes services" : "My services";
         workLink = fr ? "Mes réalisations" : "My work";
+        testimonialsKicker = fr ? "Recommandations" : "Recommendations";
+        testimonialsTitle = fr ? "Ce qu'ils disent." : "What they say.";
     }
 
     private async Task LoadDataAsync()
@@ -138,6 +156,7 @@
         resume = await Content.GetResumeAsync(culture);
         heroText = resume?.PersonalInformation?.Hero ?? (fr ? "Andrés Talavera." : "Andrés Talavera.");
         introText = resume?.PersonalInformation?.Introduction ?? "";
+        testimonials = await Content.GetTestimonialsAsync();
         seoDescription = string.IsNullOrWhiteSpace(introText)
             ? (fr ? "Andrés Talavera, consultant .NET & Azure, techlead et formateur. 15 ans d'expérience, Lyon, Paris, Genève, Fribourg ou à distance."
                   : "Andrés Talavera, .NET & Azure consultant, tech lead and trainer. 15 years' experience, Lyon, Paris, Geneva, Fribourg or remote.")
