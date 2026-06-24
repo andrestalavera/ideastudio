@@ -74,10 +74,10 @@
         })();
     </script>
 
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://assets.calendly.com" crossorigin />
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+    <!-- Third-party origins (Calendly, Google Analytics) are consent-gated and load
+         on demand, so we don't eagerly preconnect them — that only wastes connections
+         and competes with the critical same-origin WASM/CSS/font requests. -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
     <!-- Google Consent Mode v2 — defaults to denied. Updated by IdeaStudio
          analytics module (wwwroot/src/cinema/analytics/index.js) once the user
