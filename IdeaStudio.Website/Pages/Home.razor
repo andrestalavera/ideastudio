@@ -29,10 +29,14 @@
 <section class="ds-hero ds-hero-home">
     <div class="mx-auto w-full max-w-wide px-6">
         <div class="ds-hero-inner">
-            <div class="ds-hero-identity" data-reveal style="--reveal-step: 0">
+            <div class="ds-hero-identity flex-wrap" data-reveal style="--reveal-step: 0">
                 <img class="ds-hero-avatar" src="images/andres-talavera.jpeg"
                      alt="@avatarAlt" width="800" height="800" fetchpriority="high" decoding="async" />
                 <p class="ds-kicker ds-hero-kicker">@kicker</p>
+                <span class="ds-availability ml-auto inline-flex items-center gap-2 rounded-full border border-rule px-3 py-1 text-mono uppercase tracking-wide text-muted whitespace-nowrap">
+                    <span class="ds-availability-dot" aria-hidden="true"></span>
+                    @availability
+                </span>
             </div>
             <RevealChars Text="Andrés Talavera" Tag="h1" Class="ds-display ds-hero-name">
                 <span class="ds-display-accent" aria-hidden="true">.</span>
@@ -154,6 +158,7 @@
     private IReadOnlyList<Realisation> realisations = Array.Empty<Realisation>();
 
     private string kicker = "CONSULTANT · TECHLEAD · FORMATEUR";
+    private string availability = "Disponible pour de nouvelles missions";
     private string lead = "Je transforme des idées en logiciels qui marchent.";
     private string avatarAlt = "Andrés Talavera, consultant et développeur .NET & Azure";
     private string meetLabel = "Rencontrer";
@@ -218,6 +223,10 @@
         kicker = fr
             ? "CONSEIL · DÉVELOPPEMENT · FORMATION"
             : "CONSULTING · DEVELOPMENT · TRAINING";
+
+        availability = fr
+            ? "Disponible pour de nouvelles missions"
+            : "Available for new projects";
 
         meetLabel = fr ? "Rencontrer" : "Meet";
         downloadLabel = fr ? "Télécharger CV" : "Download resume";

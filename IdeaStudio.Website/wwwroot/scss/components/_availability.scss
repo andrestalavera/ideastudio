@@ -1,0 +1,32 @@
+// components/_availability.scss — "available for work" status dot.
+// The pill itself is utility-classed in markup; only the pulsing dot needs a
+// keyframe, which utilities can't express. Respects prefers-reduced-motion.
+
+@use '../tokens/colors' as c;
+
+.ds-availability-dot {
+  position: relative;
+  flex: none;
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 999px;
+  background: c.$ir-duck;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: c.$ir-duck;
+    animation: ds-availability-pulse 2s var(--ease-out) infinite;
+  }
+}
+
+@keyframes ds-availability-pulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-availability-dot::after { animation: none; }
+}

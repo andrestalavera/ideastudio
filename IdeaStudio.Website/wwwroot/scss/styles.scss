@@ -48,6 +48,7 @@
 @use 'components/boot';
 @use 'components/signature';
 @use 'components/home';
+@use 'components/availability';
 
 // Utility layer — token-backed, Tailwind-named. Loaded LAST so single-class
 // utilities win over component primitives by source order. u-border precedes
