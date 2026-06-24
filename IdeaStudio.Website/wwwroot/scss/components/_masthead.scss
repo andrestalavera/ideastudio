@@ -188,18 +188,8 @@ html {
   --hero-progress: 0;
 }
 
-// While hero dominates — pill invisible / compressed.
-html[data-hero-state='hero'] .ds-masthead__pill,
-html[data-hero-state='morphing'] .ds-masthead__pill {
-  opacity: calc(var(--hero-progress) * 1.25 - 0.15);
-  transform: translateY(calc((1 - var(--hero-progress)) * -22px))
-             scale(calc(0.88 + var(--hero-progress) * 0.12));
-}
-
-html[data-hero-state='pill'] .ds-masthead__pill {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
+// The navigation pill stays visible at all scroll positions (always-on menu).
+// (Previously it faded in from the hero state via --hero-progress.)
 
 // Container-query compacting.
 @container masthead (max-width: 40rem) {
