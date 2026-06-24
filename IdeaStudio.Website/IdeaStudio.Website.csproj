@@ -8,7 +8,9 @@
         <RunAOTCompilation Condition="'$(Configuration)' == 'Release'">true</RunAOTCompilation>
         <BlazorEnableCompression>true</BlazorEnableCompression>
         <InvariantGlobalization>false</InvariantGlobalization>
-        <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+        <!-- FR/EN/ES are covered by the default (EFIGS) ICU shard; loading ALL
+             globalization data only bloats the WASM payload. -->
+        <BlazorWebAssemblyLoadAllGlobalizationData>false</BlazorWebAssemblyLoadAllGlobalizationData>
     </PropertyGroup>
 
     <ItemGroup>
