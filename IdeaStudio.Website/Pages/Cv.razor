@@ -41,7 +41,7 @@
                 @downloadText <span aria-hidden="true">↓</span>
             </a>
         </div>
-        <div class="flex flex-row items-center gap-3 flex-wrap" style="margin-block-start: 1rem;">
+        <div class="flex flex-row items-center gap-3 flex-wrap mt-4">
             @if (resume?.PersonalInformation?.Languages is not null)
             {
                 foreach (KeyValuePair<string, string> lang in resume.PersonalInformation.Languages)
@@ -57,7 +57,7 @@
 <section class="py-chapter relative section-rule">
     <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@chapterTwo" Title="@aboutTitle" />
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" style="margin-block-start: 3rem;">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
             @if (resume?.AboutSections is not null)
             {
                 int i = 0;
@@ -84,7 +84,7 @@
 <section class="py-chapter relative section-rule">
     <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@chapterThree" Title="@xpTitle" />
-        <div style="margin-block-start: 3rem;">
+        <div class="mt-12">
             <Timeline Experiences="@resume?.Experiences" />
         </div>
     </div>
@@ -107,8 +107,8 @@
 <section class="py-chapter relative section-rule">
     <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@chapterFour" Title="@trainTitle" />
-        <p class="ds-lead" data-reveal style="margin-block-start: 1.5rem;">@trainIntro</p>
-        <div style="margin-block-start: 2rem;">
+        <p class="ds-lead mt-6" data-reveal>@trainIntro</p>
+        <div class="mt-8">
             <TeachList Centers="@trainingCenters" />
         </div>
     </div>
@@ -118,7 +118,7 @@
 <section class="py-chapter relative section-rule">
     <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@chapterFive" Title="@contactTitle" />
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" style="margin-block-start: 2.5rem;">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
             @if (resume?.PersonalInformation is { } pi)
             {
                 @if (!string.IsNullOrWhiteSpace(pi.Email))
