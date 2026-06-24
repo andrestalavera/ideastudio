@@ -8,9 +8,9 @@
         <RunAOTCompilation Condition="'$(Configuration)' == 'Release'">true</RunAOTCompilation>
         <BlazorEnableCompression>true</BlazorEnableCompression>
         <InvariantGlobalization>false</InvariantGlobalization>
-        <!-- FR/EN/ES are covered by the default (EFIGS) ICU shard; loading ALL
-             globalization data only bloats the WASM payload. -->
-        <BlazorWebAssemblyLoadAllGlobalizationData>false</BlazorWebAssemblyLoadAllGlobalizationData>
+        <!-- Required true: the app switches culture (fr-FR / en-US) at runtime, which
+             throws "culture change not supported" without the full globalization data. -->
+        <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     </PropertyGroup>
 
     <ItemGroup>

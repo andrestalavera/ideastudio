@@ -41,6 +41,13 @@ else
   npm --prefix "${FUNCTIONS_DIR}" install
 fi
 
+# Prerender each route to static HTML (real content + per-page <head> for crawlers
+# and instant first paint). Best-effort: a failure must NOT fail the deploy — the
+# SPA still works. Uses puppeteer-core + @sparticuz/chromium-min from the functions
+# package (installed above); the chromium binary is fetched from the pinned pack.
+echo "→ Prerendering routes into ${PUBLISH_DIR}/wwwroot (best-effort)"
+node scripts/prerender.mjs "${PUBLISH_DIR}/wwwroot" || echo "  prerender skipped (non-fatal) — SPA still deploys"
+
 echo "✓ Build complete."
 echo "  Publish dir: ${PUBLISH_DIR}/wwwroot"
 ls -lah "${PUBLISH_DIR}/wwwroot" | head -20
