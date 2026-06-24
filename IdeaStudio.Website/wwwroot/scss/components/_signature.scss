@@ -15,13 +15,6 @@
   }
 }
 
-// In the Home hero, give the signature its own breathing room. The kicker and
-// lead use the existing ds-rhythm spacing — we only need to nudge the canvas
-// out of any default heading rhythm since it isn't an <h1> in the DOM.
-.ds-hero-signature .ds-signature {
-  margin-block: clamp(0.5rem, 2vh, 1.25rem);
-}
-
 .ds-signature-canvas {
   position: absolute;
   inset: 0;

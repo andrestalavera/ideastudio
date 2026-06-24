@@ -29,7 +29,6 @@
 @use 'components/tile';
 @use 'components/case-study';
 @use 'components/timeline';
-@use 'components/rule';
 @use 'components/stat';
 @use 'components/qa';
 @use 'components/testimonial';
@@ -60,6 +59,4 @@
 @use 'utilities/u-border';
 @use 'utilities/u-color';
 
-@use 'utilities/visually-hidden';
-@use 'utilities/responsive';
 @use 'utilities/print';

@@ -108,24 +108,6 @@
   }
 }
 
-// Chapter padding on Home — generously airy.
-.ds-page-home {
-  .ds-section-chapter {
-    padding-block: clamp(7rem, 14vw, 14rem);
-  }
-
-  // Iridescent chapter accent on Home: a short vertical stub at the chapter
-  // break, anchoring each section against its hairline rule.
-  .ds-section-bordered::before {
-    inset-block-start: 0;
-    inset-inline-start: clamp(1rem, 4vw, 4rem);
-    block-size: clamp(40px, 6vw, 80px);
-    inline-size: 1px;
-    background: linear-gradient(180deg, c.$ir-duck, transparent);
-    opacity: 0.7;
-  }
-}
-
 // Project tiles on Home — editorial zig-zag instead of uniform rows.
 // Each tile is a self-contained 2-col composition; even rows flip the
 // composition (text-left, image-right) to break the visual rhythm.

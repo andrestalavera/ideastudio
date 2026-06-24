@@ -15,8 +15,6 @@
   font-size: t.$fs-mono;
   border-block-start: 1px solid c.$rule;
 
-  // (Footer grid + columns are now utilities in the markup.)
-
   &-label {
     color: c.$ir-duck;
     letter-spacing: t.$ls-kicker;
