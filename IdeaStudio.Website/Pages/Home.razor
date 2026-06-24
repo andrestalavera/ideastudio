@@ -139,8 +139,6 @@
 @code {
     private IReadOnlyList<ServiceModel> services = Array.Empty<ServiceModel>();
     private IReadOnlyList<Realisation> realisations = Array.Empty<Realisation>();
-    private IEnumerable<TrainingCenter>? trainingCenters;
-    private List<(string Q, string A)> faq = new();
 
     private string kicker = "CONSULTANT · TECHLEAD · FORMATEUR";
     private string lead = "Je transforme des idées en logiciels qui marchent.";
@@ -165,13 +163,6 @@
     private string servicesKicker = "Services";
     private string servicesTitle = "Sept façons de collaborer.";
     private string seeAllServices = "Voir tous les services";
-    private string teachKicker = "Formations";
-    private string teachTitle = "Où j'enseigne.";
-    private string allTrainings = "Voir toutes les formations";
-    private string trainerSlug = "formateur";
-    private string questionsKicker = "Questions";
-    private string questionsTitle = "Les plus demandées.";
-    private string seeAllFaq = "Voir toutes les questions";
     private string yearsValue = "15+";
 
     private string seoTitle = "IdeaStud.io, Andrés Talavera";
@@ -209,8 +200,8 @@
             : "Andrés Talavera, .NET & Azure consultant and developer";
 
         kicker = fr
-            ? "CONSULTANT · TECHLEAD · FORMATEUR"
-            : "CONSULTANT · TECH LEAD · TRAINER";
+            ? "CONSEIL · DÉVELOPPEMENT · FORMATION"
+            : "CONSULTING · DEVELOPMENT · TRAINING";
 
         meetLabel = fr ? "Rencontrer" : "Meet";
         downloadLabel = fr ? "Télécharger CV" : "Download resume";
@@ -224,16 +215,16 @@
             : "One senior, hands-on point of contact, not a middleman. Here's concretely what that changes for you.";
         benefits = fr
             ? new() {
-                ("Senior et impliqué", "15+ ans à concevoir du logiciel .NET/Azure. Vous avez un architecte qui code encore et porte le résultat, pas un slide deck."),
-                ("Livrer vite, sans dette cachée", "Développement assisté par IA (Claude Code, Copilot), chaque ligne générée relue. De la vitesse qui ne se retourne pas contre vous."),
-                ("Des tarifs clairs, sans surprise", "TJM à partir de 600 €, premier échange de 30 min offert, devis sous 24 h. Vous savez toujours ce que vous payez."),
-                ("Près de vous, ou à distance", "Sur site à Lyon, Paris, Genève et Fribourg, ou full-remote. Facturation simple via portage (EUR, ou CHF côté suisse).")
+                ("Un seul interlocuteur, senior", "15+ ans d'expérience. Vous parlez directement à l'expert qui conçoit et réalise, pas à un commercial relayé à une équipe lointaine."),
+                ("Livré vite, sans surprise", "Un logiciel fiable, livré rapidement et conçu pour durer, sans dette technique qui coûte cher plus tard."),
+                ("Des tarifs clairs", "Tarif à la journée à partir de 600 €, premier échange de 30 min offert, devis sous 24 h. Vous savez toujours ce que vous payez."),
+                ("Près de vous, ou à distance", "Sur site à Lyon, Paris, Genève et Fribourg, ou 100 % à distance. Hébergement en Europe possible : vos données restent en Europe.")
             }
             : new() {
-                ("Senior and hands-on", "15+ years building .NET/Azure software. You get an architect who still writes code and owns the outcome, not a slide deck."),
-                ("Ship faster, no hidden debt", "AI-assisted delivery (Claude Code, Copilot), every generated line reviewed. Speed that doesn't come back to bite you."),
-                ("Clear pricing, no surprises", "Day rate from 600 €, free 30-minute scoping call, quote within 24h. You always know what you're paying for."),
-                ("Where you are, or remote", "On-site in Lyon, Paris, Geneva and Fribourg, or fully remote. Simple invoicing via wage-portage (EUR, or CHF for Swiss work).")
+                ("One senior point of contact", "15+ years of experience. You talk directly to the expert who designs and builds, not a salesperson who hands you to a distant team."),
+                ("Delivered fast, no surprises", "Reliable software, delivered quickly and built to last, without the technical debt that gets expensive later."),
+                ("Clear pricing", "Day rate from 600 €, a free 30-minute intro call, a quote within 24h. You always know what you're paying for."),
+                ("Where you are, or remote", "On-site in Lyon, Paris, Geneva and Fribourg, or fully remote. European hosting available: your data stays in Europe.")
             };
 
         realisationsKicker = fr ? "Réalisations" : "Work";
@@ -252,32 +243,6 @@
         servicesTitle  = fr ? "Sept façons de collaborer." : "Seven ways to collaborate.";
         seeAllServices = fr ? "Voir tous les services" : "See all services";
 
-        teachKicker = fr ? "Formations" : "Trainings";
-        teachTitle  = fr ? "Où j'enseigne." : "Where I teach.";
-        allTrainings = fr ? "Voir toutes les formations" : "See all trainings";
-        trainerSlug = fr ? "formateur" : "trainer";
-
-        questionsKicker = fr ? "Questions" : "Questions";
-        questionsTitle  = fr ? "Les plus demandées." : "Most asked.";
-        seeAllFaq       = fr ? "Voir toutes les questions" : "See all questions";
-
-        faq = fr
-            ? new() {
-                ("Quels projets acceptez-vous ?", "Conseil, techlead, formation, accompagnement IA, ou réalisations sur-mesure, .NET, Azure, mobile, web. Si le cadrage est clair et le délai sain, j'y vais."),
-                ("Quels sont vos tarifs ?", "TJM à partir de 600 € (conseil, techlead) et 800 € (formation, IA). Ajusté selon durée et implication. Premier échange de 30 min offert, devis sous 24 h."),
-                ("Où pouvez-vous intervenir ?", "Lyon, Paris, Genève, Fribourg, sur site, hybride ou full-remote selon votre besoin. Je me déplace pour les kick-offs, les ateliers et les formations."),
-                ("Comment travaille-t-on ensemble ?", "En portage salarial via OpenWork (société française) : un cadre contractuel simple pour vous comme pour moi. Facturation en EUR par défaut, CHF possible côté suisse."),
-                ("Quelles formations dispensez-vous ?", "Vingt modules au catalogue : .NET, Azure, IA & vibe coding, architecture & DevOps. En inter ou en intra sur-mesure. Formateur certifié Microsoft (MCT)."),
-                ("Comment garantissez-vous la qualité avec l'IA ?", "Aucune ligne générée n'est livrée sans relecture. Je raisonne, je vérifie, je corrige, la vitesse de l'IA n'a de valeur que si elle ne crée pas de dette cachée.")
-            }
-            : new() {
-                ("What projects do you take on?", "Consulting, tech-lead, training, AI enablement, or custom delivery, .NET, Azure, mobile, web. If the scope is clear and the timeline sane, I'm in."),
-                ("What are your rates?", "Day rate from 600 € (consulting, tech-lead) and 800 € (training, AI). Adjusted for duration and involvement. First 30-minute call is free, quote within 24h."),
-                ("Where do you work?", "Lyon, Paris, Geneva, Fribourg, on-site, hybrid or fully remote depending on your need. I travel for kick-offs, workshops and training."),
-                ("How do we work together?", "Via French wage-portage company OpenWork: a simple contractual frame for both sides. Default invoicing in EUR, CHF available for Swiss work."),
-                ("What trainings do you deliver?", "Twenty catalogue modules: .NET, Azure, AI & vibe coding, architecture & DevOps. Inter-company or bespoke in-house. Microsoft Certified Trainer (MCT)."),
-                ("How do you keep quality with AI?", "No generated line ships without review. I reason, verify, correct, AI speed is only valuable if it doesn't create hidden debt.")
-            };
     }
 
     private async Task LoadDataAsync()
@@ -289,8 +254,6 @@
             .Where(r => !string.IsNullOrWhiteSpace(r.LiveUrl))
             .Select(r => new LogoWall.LogoItem(r.Client, LogoUrl: null, Url: r.LiveUrl))
             .ToList();
-        IReadOnlyList<TrainingCenter> centers = await Content.GetTrainingCentersAsync(culture);
-        trainingCenters = centers.Take(6).ToArray();
     }
 
     private void GenerateStructuredData()
@@ -349,18 +312,12 @@
             PriceRange: fr ? "TJM 600–800 €" : "Day rate €600–800",
             AvailableLanguage: new[] { "fr", "en", "es" });
 
-        // FAQPage JSON-LD, fed by the 3 Home Q&A.
-        SchemaOrg.FAQPage faqPage = new(
-            faq.Select(x => new SchemaOrg.Question(x.Q, new SchemaOrg.Answer(x.A))).ToArray()
-        );
-
         seoStructuredData = new List<string>
         {
             SchemaOrg.ToJsonLd(person),
             SchemaOrg.ToJsonLd(website),
             SchemaOrg.ToJsonLd(breadcrumb),
-            SchemaOrg.ToJsonLd(professional),
-            SchemaOrg.ToJsonLd(faqPage)
+            SchemaOrg.ToJsonLd(professional)
         };
     }
 }
