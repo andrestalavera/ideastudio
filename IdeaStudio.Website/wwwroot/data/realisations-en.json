@@ -2,8 +2,8 @@
   {
     "slug": "restoplatform",
     "title": "RestoPlatform",
-    "client": "SaaS startup — hospitality",
-    "summary": "Multi-tenant SaaS platform for independent restaurants — QR ordering, pay-at-table, reservations, delivery and analytics, one site per restaurant, zero commission.",
+    "client": "SaaS startup, hospitality",
+    "summary": "Multi-tenant SaaS platform for independent restaurants, QR ordering, pay-at-table, reservations, delivery and analytics, one site per restaurant, zero commission.",
     "imageUrl": "",
     "imageAlt": "",
     "liveUrl": "",
@@ -12,12 +12,12 @@
     "completedOn": "2026-06-01",
     "displayOrder": 0,
     "caseStudy": {
-      "sector": "SaaS · Hospitality — multi-tenant, European data sovereignty",
+      "sector": "SaaS · Hospitality, multi-tenant, European data sovereignty",
       "role": "Sole architect-developer, with a multi-agent AI orchestration",
       "timeline": "Designed and built in a few months · 6 source projects, 150 test files",
-      "challenge": "An independent restaurant owner today juggles a dozen tools — menu, reservations, QR ordering, payment, delivery, analytics — and hands a commission to aggregators on every meal. RestoPlatform brings it all into one platform, one site per restaurant, with zero commission.",
+      "challenge": "An independent restaurant owner today juggles a dozen tools, menu, reservations, QR ordering, payment, delivery, analytics, and hands a commission to aggregators on every meal. RestoPlatform brings it all into one platform, one site per restaurant, with zero commission.",
       "approach": "A multi-tenant SaaS platform in Clean Architecture: a real-time REST API, one public site per restaurant (Blazor SSR, crawlable) and an operations back-office (Blazor Server). All data in one shared PostgreSQL database, isolated per restaurant through defense-in-depth (application filter + PostgreSQL Row-Level Security). Hosted 100% in Europe on Clever Cloud.",
-      "outcome": "A complete, tested, production-ready platform — pay-at-table ordering, menu, reservations, in-house delivery, loyalty, analytics and a staff dashboard — with the first restaurant client going live. A zero-commission model (flat subscription), GDPR-compliant and sovereign by design, backed by around 17,000 lines of code and 18,500 lines of tests.",
+      "outcome": "A complete, tested, production-ready platform, pay-at-table ordering, menu, reservations, in-house delivery, loyalty, analytics and a staff dashboard, with the first restaurant client going live. A zero-commission model (flat subscription), GDPR-compliant and sovereign by design, backed by around 17,000 lines of code and 18,500 lines of tests.",
       "diagramImage": "images/case-restoplatform-architecture.png",
       "diagramAlt": "RestoPlatform Clean Architecture: REST API + SignalR, a Blazor SSR showcase site, a Blazor Server dashboard, a multi-tenant application layer, EF Core 10 / PostgreSQL infrastructure with Row-Level Security on Clever Cloud",
       "stats": [
@@ -29,11 +29,11 @@
         { "value": "13", "label": "Business domains" }
       ],
       "decisions": [
-        { "title": "Multi-tenant on a shared DB + Row-Level Security", "detail": "All restaurants share one PostgreSQL database, but every row is isolated by defense-in-depth: application filter, EF global filter, then PostgreSQL's native Row-Level Security (non-owner role, tenant set per transaction). A cross-tenant access returns 404, never 403 — no existence leak. Every entity passes a cross-tenant denial test before it ships." },
+        { "title": "Multi-tenant on a shared DB + Row-Level Security", "detail": "All restaurants share one PostgreSQL database, but every row is isolated by defense-in-depth: application filter, EF global filter, then PostgreSQL's native Row-Level Security (non-owner role, tenant set per transaction). A cross-tenant access returns 404, never 403, no existence leak. Every entity passes a cross-tenant denial test before it ships." },
         { "title": "European sovereign hosting (Clever Cloud)", "detail": "No hyperscaler: everything runs on Clever Cloud (French PaaS, SecNumCloud/HDS certified). PostgreSQL is a first-class managed database there, the cost floor stays low for a flat-subscription model, and data never leaves Europe. The boundaries (object storage, backplane, observability) stay swappable interfaces." },
-        { "title": "Zero commission: flat subscription", "detail": "The platform never takes a cut of the meal; Stripe and delivery fees are passed through. The tool is aligned with the owner's interest, not with margin extraction — the structural difference versus the aggregators." },
-        { "title": "Allergens can never be hidden", "detail": "As long as a dish is orderable, its allergen warning stays visible — impossible to hide, flag away or theme invisible. On a food product, that's a safety rule built into the design, not a display option." },
-        { "title": "Public render is SSR (never WASM) for SEO", "detail": "Every restaurant site is server-rendered: crawlable, with structured data (Restaurant, Menu) and hreflang automatic. Ordering interactivity uses small JavaScript islands and real-time — no per-guest Blazor circuit, so no heavy server-side state." },
+        { "title": "Zero commission: flat subscription", "detail": "The platform never takes a cut of the meal; Stripe and delivery fees are passed through. The tool is aligned with the owner's interest, not with margin extraction, the structural difference versus the aggregators." },
+        { "title": "Allergens can never be hidden", "detail": "As long as a dish is orderable, its allergen warning stays visible, impossible to hide, flag away or theme invisible. On a food product, that's a safety rule built into the design, not a display option." },
+        { "title": "Public render is SSR (never WASM) for SEO", "detail": "Every restaurant site is server-rendered: crawlable, with structured data (Restaurant, Menu) and hreflang automatic. Ordering interactivity uses small JavaScript islands and real-time, no per-guest Blazor circuit, so no heavy server-side state." },
         { "title": "Stripe Connect: the restaurant is the merchant", "detail": "Each restaurant keeps its own Stripe account, payouts and disputes (direct KYC). Card data never touches us (Stripe Elements/Checkout only), which puts compliance at the lightest PCI tier (SAQ-A); SCA/3DS2 is handled by Stripe." }
       ],
       "sections": [
@@ -42,7 +42,7 @@
           "The rule is enforced by tests: every restaurant-owned entity must pass a cross-tenant denial test, run against a real PostgreSQL (Testcontainers), before any merge."
         ] },
         { "title": "Payment & compliance", "body": [
-          "Stripe Connect (the restaurant is the merchant, PCI SAQ-A), multi-country VAT applied per channel (on-site / takeaway / delivery), and informational multi-currency — the euro is the only charged currency, the rest are display-only via cached exchange rates.",
+          "Stripe Connect (the restaurant is the merchant, PCI SAQ-A), multi-country VAT applied per channel (on-site / takeaway / delivery), and informational multi-currency, the euro is the only charged currency, the rest are display-only via cached exchange rates.",
           "GDPR by design: EU data residency, a separate append-only audit database, data-subject rights (access, export, erasure) and pseudonymisation on erasure."
         ] },
         { "title": "Real-time & async", "body": [
@@ -61,7 +61,7 @@
     "slug": "dpelib",
     "title": "DPELib",
     "client": "DPE platform (PropTech / RegTech)",
-    "summary": "A platform connecting the five audiences of France's energy-performance diagnostic — anonymous by default, secure payment, GDPR/CNIL/PSD2 compliant.",
+    "summary": "A platform connecting the five audiences of France's energy-performance diagnostic, anonymous by default, secure payment, GDPR/CNIL/PSD2 compliant.",
     "imageUrl": "",
     "imageAlt": "",
     "liveUrl": "",
@@ -70,12 +70,12 @@
     "completedOn": "2026-06-01",
     "displayOrder": 0,
     "caseStudy": {
-      "sector": "PropTech · RegTech — Energy Performance Diagnostic (French regulation)",
+      "sector": "PropTech · RegTech, Energy Performance Diagnostic (French regulation)",
       "role": "Sole architect-developer, with AI agents (Claude Code) to speed up delivery",
       "timeline": "~18 months of active development · 1,730+ commits",
-      "challenge": "Connect five audiences that don't naturally trust each other — homeowners, certified diagnosticians, notaries, estate agencies and building professionals — on a single platform. All of it with anonymity by default, secure payment, and a tight regulatory stack: GDPR, CNIL, PSD2/SCA and the official DPE calculation method.",
+      "challenge": "Connect five audiences that don't naturally trust each other, homeowners, certified diagnosticians, notaries, estate agencies and building professionals, on a single platform. All of it with anonymity by default, secure payment, and a tight regulatory stack: GDPR, CNIL, PSD2/SCA and the official DPE calculation method.",
       "approach": "A Clean Architecture platform with four front-ends (REST API, mobile PWA for consumers, a four-role pro dashboard, and an SEO-first SSR showcase) on top of 153 business use cases. Identity is only revealed once an intervention is confirmed; payment is pre-authorized then captured only on confirmation; the public diagnostician registry is imported nightly from data.gouv.fr.",
-      "outcome": "A genuine software trusted-third-party: the client books and pays securely (3DS2 pre-authorization), the diagnostician stays anonymous until confirmation, and money is only captured at the scheduled intervention — otherwise funds are released and a one-click re-booking is offered. GDPR, CNIL, PSD2 and DPE 3CL compliant, deployed serverless with zero stored secrets.",
+      "outcome": "A genuine software trusted-third-party: the client books and pays securely (3DS2 pre-authorization), the diagnostician stays anonymous until confirmation, and money is only captured at the scheduled intervention, otherwise funds are released and a one-click re-booking is offered. GDPR, CNIL, PSD2 and DPE 3CL compliant, deployed serverless with zero stored secrets.",
       "diagramImage": "images/case-dpelib-architecture.png",
       "diagramAlt": "DPELib Clean Architecture: 4 presentation apps, 153 application use cases, EF Core 10 / SQL Server infrastructure with a separate audit database",
       "stats": [
@@ -87,7 +87,7 @@
         { "value": "1,730+", "label": "Commits" }
       ],
       "decisions": [
-        { "title": "Anonymous by default, conditional reveal", "detail": "A diagnostician's identity is only disclosed once an intervention is confirmed; before that, phone numbers are masked via a Twilio proxy. On a matchmaking platform, trust is earned step by step — it isn't presumed." },
+        { "title": "Anonymous by default, conditional reveal", "detail": "A diagnostician's identity is only disclosed once an intervention is confirmed; before that, phone numbers are masked via a Twilio proxy. On a matchmaking platform, trust is earned step by step, it isn't presumed." },
         { "title": "Pre-authorized payment, deferred capture", "detail": "Funds are held at booking (3DS2/SCA) but only captured when the pro confirms. On silence: automatic reminders at D+2 and D+5, then expiry at D+7 with funds released. The client is never charged for an appointment that doesn't happen." },
         { "title": "\"Shadow\" accounts from public data", "detail": "The official registry (data.gouv.fr) is imported nightly and de-duplicated; each diagnostician exists as an account-less profile, created only when a client reaches out (pre-filled magic link). The platform is useful from day one, without waiting for sign-ups." },
         { "title": "Separate audit DB + systematic soft-delete", "detail": "Consents and audit live in a separate database, never in the business transaction; no physical deletion. The right to erasure (< 30 days) and CNIL traceability are guaranteed by the architecture, not by code discipline." },
@@ -101,7 +101,7 @@
         ] },
         { "title": "Integrations", "body": [
           "Six external systems: Stripe (PSD2 payment, idempotent webhooks), data.gouv.fr (daily CSV import via CRON + Polly retry), YOLO/ONNX Runtime (embedded ML inference), BDNB (building enrichment with cache), Twilio (number masking) and Gravatar.",
-          "Each integration is isolated behind an interface — testable, replaceable, and never exposed to the rest of the domain."
+          "Each integration is isolated behind an interface, testable, replaceable, and never exposed to the rest of the domain."
         ] },
         { "title": "DevOps & CI/CD", "body": [
           "Full GitHub Actions pipeline: .NET 10 build, xUnit tests, coverage gate, Bicep template validation, azd deployment and post-release smoke tests on /alive and /health.",
@@ -119,7 +119,7 @@
     "slug": "brasageneva",
     "title": "Brasa Geneva",
     "client": "Brasa Geneva",
-    "summary": "Full platform for a Geneva cigar club — age-gated public showcase, member area, and a secure dashboard that runs the whole business: catalogue, subscriptions, payments and art gallery.",
+    "summary": "Full platform for a Geneva cigar club, age-gated public showcase, member area, and a secure dashboard that runs the whole business: catalogue, subscriptions, payments and art gallery.",
     "imageUrl": "images/www.brasageneva.ch.webp",
     "imageAlt": "Screenshot of the Brasa Geneva platform",
     "liveUrl": "https://www.brasageneva.ch",
@@ -128,10 +128,10 @@
     "completedOn": "2026-04-01",
     "displayOrder": 1,
     "caseStudy": {
-      "sector": "Luxury · regulated e-commerce — premium cigars, artisan humidors and an art gallery for a private Geneva club",
+      "sector": "Luxury · regulated e-commerce, premium cigars, artisan humidors and an art gallery for a private Geneva club",
       "role": "Sole architect-developer running a multi-agent AI orchestration (14-persona council + TDD-first delivery loop)",
       "timeline": "~4.5 months of active development · 687 commits",
-      "challenge": "A private Geneva club wanted a single platform to sell premium cigars, artisan humidors and an art gallery — at once a public showcase, a member area and a back-office. All within one of the strictest legal frames there is: tobacco advertising, a ban on cross-border sales, mandatory age verification, GDPR and strong payment authentication.",
+      "challenge": "A private Geneva club wanted a single platform to sell premium cigars, artisan humidors and an art gallery, at once a public showcase, a member area and a back-office. All within one of the strictest legal frames there is: tobacco advertising, a ban on cross-border sales, mandatory age verification, GDPR and strong payment authentication.",
       "approach": "A single Clean Architecture solution serving three front-ends (age-gated WASM showcase, member area, Blazor Server back-office) and two user types, with the legal guardrails built into the design rather than bolted on afterwards. 100% Swiss hosting (Infomaniak), multi-channel payment, and an isolated audit layer for compliance.",
       "outcome": "A luxury sales platform compliant by design: cigar purchase blocked outside Switzerland, an unavoidable age-gate, data traced in a separate audit database. Delivered in ~4.5 months through orchestrated AI, with test effort exceeding production effort (2.2 : 1 ratio).",
       "diagramImage": "images/case-brasageneva-architecture.png",
@@ -145,11 +145,11 @@
         { "value": "687", "label": "Commits" }
       ],
       "decisions": [
-        { "title": "Legal guardrails by design", "detail": "Cigar sales are blocked outside Switzerland and the age-gate is unavoidable, both coded as domain rules — impossible to bypass via a URL or a UI state. Here, a bypass isn't a bug: it's a legal risk." },
-        { "title": "Physically separate audit DB", "detail": "Entity changes are traced in an append-only database, never in the same transaction as business data. GDPR compliance doesn't depend on the goodwill of application code — it's structural." },
+        { "title": "Legal guardrails by design", "detail": "Cigar sales are blocked outside Switzerland and the age-gate is unavoidable, both coded as domain rules, impossible to bypass via a URL or a UI state. Here, a bypass isn't a bug: it's a legal risk." },
+        { "title": "Physically separate audit DB", "detail": "Entity changes are traced in an append-only database, never in the same transaction as business data. GDPR compliance doesn't depend on the goodwill of application code, it's structural." },
         { "title": "Sovereign hosting (Infomaniak, Switzerland)", "detail": "No managed Azure or AWS service: data sovereignty matches the Geneva luxury positioning, and the Kubernetes (Helm) deployment stays under full control end to end." },
         { "title": "The back-office talks to the API, never the database", "detail": "The Dashboard (Blazor Server) goes through the API via a typed HttpClient: one single door to the data, so one single surface to secure and audit." },
-        { "title": "Embedded CRON over a message bus", "detail": "Background tasks (tenure badges, reorder reminders, Stripe retention) run on an embedded scheduler. The RabbitMQ dependency is scoped but not activated until a transactional need justifies it — no complexity paid up front." },
+        { "title": "Embedded CRON over a message bus", "detail": "Background tasks (tenure badges, reorder reminders, Stripe retention) run on an embedded scheduler. The RabbitMQ dependency is scoped but not activated until a transactional need justifies it, no complexity paid up front." },
         { "title": "Tests first (2.2 : 1 ratio)", "detail": "A test guarantees every use case has its own test class: impossible to add an uncovered business rule without breaking the build. On a regulated domain, quality is what protects the client." }
       ],
       "sections": [
@@ -166,7 +166,7 @@
           "GDPR: separate audit DB, systematic soft-delete, no personal data in clear text in the logs. The art gallery is protected by badge-gating and image protection."
         ] },
         { "title": "i18n & \"light luxury\" design", "body": [
-          "Seven locales handled in .resx files (FR/EN + de-CH, it-CH, es-ES, hu, bg) — every visible string must be translated.",
+          "Seven locales handled in .resx files (FR/EN + de-CH, it-CH, es-ES, hu, bg), every visible string must be translated.",
           "A parchment / ink / ember aesthetic held by multi-persona quality control: Italiana + Cormorant Garamond + Jost type, slow animations, zero glass-morphism."
         ] }
       ],
@@ -177,7 +177,7 @@
     "slug": "krosquare",
     "title": "K-RO SQUARE",
     "client": "K-RO SQUARE",
-    "summary": "Showcase and offer-presentation site for a French brand — pared-back art direction, clear staging of the identity.",
+    "summary": "Showcase and offer-presentation site for a French brand, pared-back art direction, clear staging of the identity.",
     "imageUrl": "images/www.krosquare.fr.webp",
     "imageAlt": "Screenshot of the K-RO SQUARE website",
     "liveUrl": "https://www.krosquare.fr",
@@ -190,7 +190,7 @@
     "slug": "monseigneurchampagne",
     "title": "Monseigneur Champagne",
     "client": "Monseigneur Champagne",
-    "summary": "Showcase site for a champagne house — premium identity, customer journey crafted all the way to first contact.",
+    "summary": "Showcase site for a champagne house, premium identity, customer journey crafted all the way to first contact.",
     "imageUrl": "images/www.monseigneurchampagne.png",
     "imageAlt": "Screenshot of the Monseigneur Champagne website",
     "liveUrl": "https://www.monseigneurchampagne.com",
@@ -203,7 +203,7 @@
     "slug": "coronaclubnobless",
     "title": "Corona Club Noblesse",
     "client": "Corona Club Noblesse",
-    "summary": "Institutional site for a Swiss club — elegant rendering, tri-language navigation, inherited identity brought into focus.",
+    "summary": "Institutional site for a Swiss club, elegant rendering, tri-language navigation, inherited identity brought into focus.",
     "imageUrl": "images/www.coronaclubnobless.ch.webp",
     "imageAlt": "Screenshot of the Corona Club Noblesse website",
     "liveUrl": "https://www.coronaclubnobless.ch",

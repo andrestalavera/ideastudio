@@ -137,7 +137,7 @@
     <div id="blazor-error-ui" class="ds-error-ui" hidden>
         <span>Une erreur est survenue.</span>
         <a href=".">Recharger</a>
-        <a class="dismiss">🗙</a>
+        <button class="dismiss" type="button" aria-label="Fermer" onclick="this.parentElement.style.display='none'">🗙</button>
     </div>
 
     <script src="_framework/blazor.webassembly.js" defer></script>

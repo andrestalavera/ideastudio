@@ -16,7 +16,7 @@
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
 
-<Hero Kicker="— Services" Title="@titleText" Lead="@lead" />
+<Hero Kicker="Services" Title="@titleText" Lead="@lead" />
 
 <section class="ds-section">
     <div class="ds-container">
@@ -26,7 +26,7 @@
 
 @code {
     private IReadOnlyList<ServiceModel> services = Array.Empty<ServiceModel>();
-    private string seoTitle = "Services — IdeaStud.io";
+    private string seoTitle = "Services, IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/services";
     private string seoLocale = "fr_FR";
@@ -48,11 +48,11 @@
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr/services" : "https://ideastud.io/en/services";
-        seoTitle = fr ? "Services — IdeaStud.io" : "Services — IdeaStud.io";
+        seoTitle = fr ? "Services, IdeaStud.io" : "Services, IdeaStud.io";
         titleText = fr ? "Sept façons de collaborer." : "Seven ways to collaborate.";
         lead = fr
-            ? "Consultant, techlead, formateur. Choisissez votre angle — chaque service se décline en mission courte, longue ou forfait."
-            : "Consultant, tech lead, trainer. Pick your angle — every service scales from short engagements to long missions.";
+            ? "Consultant, techlead, formateur. Choisissez votre angle, chaque service se décline en mission courte, longue ou forfait."
+            : "Consultant, tech lead, trainer. Pick your angle, every service scales from short engagements to long missions.";
         seoDescription = lead;
     }
 

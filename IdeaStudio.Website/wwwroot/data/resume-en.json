@@ -258,7 +258,7 @@
         "Handled Azure subscription migration and FinOps.",
         "Improved application security and upgraded certain projects to .NET 8.",
         "Implemented a database migration system to replicate data across different environments.",
-        "Cross-stack guidance for the teams: Razor/CSHTML (ASP.NET Framework) with Bootstrap/jQuery, React, Angular, and Blazor — including styling fixes and coaching on Bootstrap, Material, MudBlazor, and custom SCSS.",
+        "Cross-stack guidance for the teams: Razor/CSHTML (ASP.NET Framework) with Bootstrap/jQuery, React, Angular, and Blazor, including styling fixes and coaching on Bootstrap, Material, MudBlazor, and custom SCSS.",
         "Built the Azure Pipelines factory from a single existing pipeline (FTP-based deployments at the start) up to 25 reusable YAML templates and 10 pipelines deploying to 2 environments.",
         "Migrated on-premise applications to Azure and split/reorganized Git repositories, catching up 5 to 6 years of industrialization debt.",
         "Azure FinOps: removed orphan resources, optimized database costs, enabled automatic scaling across all resources, and consolidated App Service Plans based on actual needs.",

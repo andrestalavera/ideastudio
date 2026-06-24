@@ -18,7 +18,7 @@
 
 @if (realisation?.CaseStudy is { } cs)
 {
-    @* 1 · Hero — leads with the business problem (benefit-first) *@
+    @* 1 · Hero, leads with the business problem (benefit-first) *@
     <Hero Kicker="@caseKicker" Lead="@cs.Challenge">
         <ChildContent>@realisation.Title</ChildContent>
         <Actions>
@@ -41,7 +41,7 @@
         </Actions>
     </Hero>
 
-    @* 2 · Approach + Outcome — plain-language, before the technical depth *@
+    @* 2 · Approach + Outcome, plain-language, before the technical depth *@
     <section class="ds-section ds-section--chapter ds-section--bordered">
         <div class="ds-container">
             <div class="ds-grid ds-grid--2">
@@ -167,12 +167,12 @@ else if (loaded)
     private bool loaded;
     private string? loadedSlug;
 
-    private string seoTitle = "Étude de cas — IdeaStud.io";
+    private string seoTitle = "Étude de cas, IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/realisations";
     private string seoLocale = "fr_FR";
     private Dictionary<string, string>? seoHreflang;
-    private string caseKicker = "— Étude de cas";
+    private string caseKicker = "Étude de cas";
     private string sectorLabel = "Secteur";
     private string roleLabel = "Rôle";
     private string timelineLabel = "Durée";
@@ -207,7 +207,7 @@ else if (loaded)
     protected override async Task OnParametersSetAsync()
     {
         // Re-resolve when navigating directly between case studies (the component
-        // is reused and only the slug changes — OnInitialized won't run again).
+        // is reused and only the slug changes, OnInitialized won't run again).
         if (loadedSlug is not null && loadedSlug != Slug)
         {
             await LoadDataAsync();
@@ -220,7 +220,7 @@ else if (loaded)
     {
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
-        caseKicker = fr ? "— Étude de cas" : "— Case study";
+        caseKicker = fr ? "Étude de cas" : "Case study";
         sectorLabel = fr ? "Secteur" : "Sector";
         roleLabel = fr ? "Rôle" : "Role";
         timelineLabel = fr ? "Durée" : "Timeline";
@@ -235,8 +235,8 @@ else if (loaded)
         decisionsKicker = fr ? "Décisions clés" : "Key decisions";
         decisionsTitle = fr ? "Les choix, et pourquoi." : "The choices, and why.";
         decisionsLead = fr
-            ? "Chaque décision structurante avait une raison — souvent un risque à neutraliser, pas une préférence technique."
-            : "Every structural decision had a reason — usually a risk to neutralise, not a technical preference.";
+            ? "Chaque décision structurante avait une raison, souvent un risque à neutraliser, pas une préférence technique."
+            : "Every structural decision had a reason, usually a risk to neutralise, not a technical preference.";
         detailKicker = fr ? "Dans le détail" : "In detail";
         detailTitle = fr ? "Sous le capot." : "Under the hood.";
         stackKicker = fr ? "Stack" : "Stack";
@@ -260,8 +260,8 @@ else if (loaded)
         if (realisation?.CaseStudy is { } cs)
         {
             seoTitle = fr
-                ? $"{realisation.Title} — Étude de cas | IdeaStud.io"
-                : $"{realisation.Title} — Case study | IdeaStud.io";
+                ? $"{realisation.Title}, Étude de cas | IdeaStud.io"
+                : $"{realisation.Title}, Case study | IdeaStud.io";
             seoDescription = cs.Challenge;
             seoCanonical = $"https://ideastud.io{hub}/{realisation.Slug}";
             string hubFr = LocalizedRoute.For("realisations", "fr");
@@ -275,7 +275,7 @@ else if (loaded)
         }
         else
         {
-            seoTitle = fr ? "Étude de cas — IdeaStud.io" : "Case study — IdeaStud.io";
+            seoTitle = fr ? "Étude de cas, IdeaStud.io" : "Case study, IdeaStud.io";
             seoCanonical = $"https://ideastud.io{hub}";
         }
     }

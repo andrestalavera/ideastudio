@@ -93,7 +93,7 @@
                     }
                 </div>
 
-                @* Honeypot — hidden from humans, tempting to bots. *@
+                @* Honeypot, hidden from humans, tempting to bots. *@
                 <div class="ds-field ds-hp" aria-hidden="true">
                     <label for="cf-website">Website</label>
                     <input id="cf-website" type="text" tabindex="-1" autocomplete="off" @bind="model.Website" @bind:event="oninput" />
@@ -135,7 +135,7 @@
     private readonly Dictionary<string, string> errors = new();
     private Status status = Status.Idle;
 
-    private string seoTitle = "Contact — IdeaStud.io";
+    private string seoTitle = "Contact, IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/contact";
     private string seoLocale = "fr_FR";
@@ -153,7 +153,7 @@
     private string sendingLabel = "Envoi…";
     private string bookLabel = "Ou réserver un appel";
     private string successTitle = "Message envoyé.";
-    private string successBody = "Merci — je vous réponds en général sous 24 h ouvrées.";
+    private string successBody = "Merci, je vous réponds en général sous 24 h ouvrées.";
     private string errorBody = "L'envoi a échoué. Réessayez, ou écrivez-moi directement à andres.talavera@ideastud.io.";
     private string errRequired = "Ce champ est requis.";
     private string errEmail = "Adresse email invalide.";
@@ -170,11 +170,11 @@
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr/contact" : "https://ideastud.io/en/contact";
-        seoTitle = fr ? "Contact — Andrés Talavera | IdeaStud.io" : "Contact — Andrés Talavera | IdeaStud.io";
+        seoTitle = fr ? "Contact, Andrés Talavera | IdeaStud.io" : "Contact, Andrés Talavera | IdeaStud.io";
         heroTitle = fr ? "Parlons de votre projet." : "Let's talk about your project.";
         heroLead = fr
-            ? "Décrivez votre besoin en quelques lignes — je reviens vers vous sous 24 h ouvrées avec une proposition ou des questions."
-            : "Tell me about your need in a few lines — I'll get back to you within one business day with a proposal or questions.";
+            ? "Décrivez votre besoin en quelques lignes, je reviens vers vous sous 24 h ouvrées avec une proposition ou des questions."
+            : "Tell me about your need in a few lines, I'll get back to you within one business day with a proposal or questions.";
         seoDescription = heroLead;
 
         nameLabel = fr ? "Nom" : "Name";
@@ -191,8 +191,8 @@
         bookLabel = fr ? "Ou réserver un appel" : "Or book a call";
         successTitle = fr ? "Message envoyé." : "Message sent.";
         successBody = fr
-            ? "Merci — je vous réponds en général sous 24 h ouvrées."
-            : "Thanks — I usually reply within one business day.";
+            ? "Merci, je vous réponds en général sous 24 h ouvrées."
+            : "Thanks, I usually reply within one business day.";
         errorBody = fr
             ? "L'envoi a échoué. Réessayez, ou écrivez-moi directement à andres.talavera@ideastud.io."
             : "Sending failed. Please try again, or email me directly at andres.talavera@ideastud.io.";
@@ -220,7 +220,7 @@
     {
         status = Status.Idle;
 
-        // Honeypot tripped — silently accept without sending.
+        // Honeypot tripped, silently accept without sending.
         if (!string.IsNullOrWhiteSpace(model.Website))
         {
             status = Status.Success;

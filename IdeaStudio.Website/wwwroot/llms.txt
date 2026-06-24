@@ -1,4 +1,4 @@
-# IdeaStud.io — Andrés Talavera
+# IdeaStud.io, Andrés Talavera
 
 > Andrés Talavera is an independent .NET & Azure consultant, tech lead and Microsoft Certified Trainer (MCT) with 15+ years' experience. He turns ideas into reliable software (web, mobile, cloud) and trains teams. Based around Lyon, Paris, Geneva and Fribourg, or fully remote.
 
@@ -14,44 +14,44 @@ Andrés helps companies and teams:
 
 ## Key facts (citable)
 
-- Name: Andrés Talavera — trading as IdeaStud.io
+- Name: Andrés Talavera, trading as IdeaStud.io
 - Role: Independent .NET & Azure consultant, tech lead, and trainer (MCT)
 - Experience: 15+ years in software design and delivery
 - Day rate: from 600 € (consulting, tech-lead) and 800 € (training, enterprise AI); first 30-minute scoping call is free; quote within 24 h
 - Engagement: works via French wage-portage company OpenWork; invoicing in EUR (CHF for Swiss assignments); no commission
-- Locations: Lyon, Paris (France), Geneva, Fribourg (Switzerland) — on-site, hybrid, or fully remote
+- Locations: Lyon, Paris (France), Geneva, Fribourg (Switzerland), on-site, hybrid, or fully remote
 - Languages: French (native), English (fluent), Spanish (native)
-- Cloud & hosting: Microsoft Azure, plus European sovereign hosting — Clever Cloud, Infomaniak, Scaleway, OVHcloud (GDPR-by-design)
+- Cloud & hosting: Microsoft Azure, plus European sovereign hosting, Clever Cloud, Infomaniak, Scaleway, OVHcloud (GDPR-by-design)
 - Stack: .NET 10, C# 14, Blazor (WASM / Server / SSR), ASP.NET Core, EF Core 10, PostgreSQL & SQL Server, Stripe, .NET Aspire
 
 ## Services
 
-- /fr/services/consultant-dotnet-azure — Consultant .NET & Azure: a platform that scales and stays maintainable (architecture, audits, hands-on code).
-- /fr/services/techlead — Techlead: a product team that ships, levels up and holds the quality line.
-- /fr/services/formateur — Formateur: teams leveled up on .NET, Azure and AI (MCT, 3,000+ hours).
-- /fr/services/vibe-coding — Vibe-coding: developers faster with AI, every generated line reviewed.
-- /fr/services/ia-en-entreprise — AI for the enterprise: AI in-house, under your control, data stays home.
-- /fr/services/applications-mobiles — Mobile apps: iOS + Android from one codebase.
-- /fr/services/sites-internet — Websites: fast, accessible, well-ranked.
+- /fr/services/consultant-dotnet-azure, Consultant .NET & Azure: a platform that scales and stays maintainable (architecture, audits, hands-on code).
+- /fr/services/techlead, Techlead: a product team that ships, levels up and holds the quality line.
+- /fr/services/formateur, Formateur: teams leveled up on .NET, Azure and AI (MCT, 3,000+ hours).
+- /fr/services/vibe-coding, Vibe-coding: developers faster with AI, every generated line reviewed.
+- /fr/services/ia-en-entreprise, AI for the enterprise: AI in-house, under your control, data stays home.
+- /fr/services/applications-mobiles, Mobile apps: iOS + Android from one codebase.
+- /fr/services/sites-internet, Websites: fast, accessible, well-ranked.
 - English equivalents under /en/services/{dotnet-azure-consulting, tech-lead, trainer, vibe-coding, ai-enterprise, mobile-apps, websites}
 
 ## Case studies (real projects, with architecture)
 
-- RestoPlatform (production-ready; first client going live) — /fr/realisations/restoplatform | /en/projects/restoplatform
+- RestoPlatform (production-ready; first client going live), /fr/realisations/restoplatform | /en/projects/restoplatform
   Multi-tenant SaaS for independent restaurants (QR ordering, pay-at-table, reservations, delivery, analytics; one site per restaurant; zero commission). Clean Architecture; one shared PostgreSQL with defense-in-depth multi-tenancy (app filter + PostgreSQL Row-Level Security); Blazor SSR public sites + Blazor Server dashboard; Stripe Connect (PCI SAQ-A); hosted on Clever Cloud (EU sovereign). ~17k lines of code, ~18.5k lines of tests.
-- DPELib — /fr/realisations/dpelib | /en/projects/dpelib
+- DPELib, /fr/realisations/dpelib | /en/projects/dpelib
   RegTech platform connecting five audiences of France's energy-performance diagnostic; anonymous-by-default with conditional identity reveal; pre-authorized payment captured only on confirmation (Stripe 3DS2); nightly data.gouv.fr import. Clean Architecture, 153 use cases, 117 endpoints, SQL Server, Azure Container Apps. GDPR/CNIL/PSD2 compliant.
-- Brasa Geneva — /fr/realisations/brasageneva | /en/projects/brasageneva (live: https://www.brasageneva.ch)
+- Brasa Geneva, /fr/realisations/brasageneva | /en/projects/brasageneva (live: https://www.brasageneva.ch)
   Full platform for a Geneva cigar club (age-gated showcase + member area + secure dashboard running the whole business). Regulated e-commerce (tobacco advertising, cross-border sales ban, age-gate, GDPR). Clean Architecture, 99 use cases, 7 locales, test/code ratio 2.2:1; hosted on Infomaniak (Swiss sovereign).
 - Other client sites: K-RO SQUARE (krosquare.fr), Monseigneur Champagne (monseigneurchampagne.com), Corona Club Noblesse (coronaclubnobless.ch).
 
 ## Frequently asked (quotable answers)
 
 - Rates? From 600 € / day (consulting, tech-lead), 800 € / day (training, AI). First 30-minute call free, quote within 24 h.
-- Where? Lyon, Paris, Geneva, Fribourg — on-site, hybrid or fully remote.
+- Where? Lyon, Paris, Geneva, Fribourg, on-site, hybrid or fully remote.
 - How to engage? Via OpenWork wage-portage; EUR by default, CHF for Swiss work; no commission.
-- AI code quality? No generated line ships without review — reason, verify, correct.
-- Sovereign hosting? Yes — Azure, and EU-sovereign options (Clever Cloud, Infomaniak, Scaleway, OVHcloud).
+- AI code quality? No generated line ships without review, reason, verify, correct.
+- Sovereign hosting? Yes, Azure, and EU-sovereign options (Clever Cloud, Infomaniak, Scaleway, OVHcloud).
 
 ## Navigation
 
@@ -62,7 +62,7 @@ Andrés helps companies and teams:
 - Résumé / CV: /fr/cv | /en/resume
 - FAQ: /fr/faq | /en/faq
 - Contact (form): /fr/contact | /en/contact
-- Legal: /fr/mentions-legales | /en/legal — Privacy: /fr/confidentialite | /en/privacy
+- Legal: /fr/mentions-legales | /en/legal, Privacy: /fr/confidentialite | /en/privacy
 
 ## Contact
 

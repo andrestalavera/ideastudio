@@ -1,7 +1,7 @@
 @using IdeaStudio.Website.Services
 @inherits LocalizedComponent
 
-@* CtaBand — "Travaillons ensemble" band with iridescent Calendly pill.
+@* CtaBand, "Travaillons ensemble" band with iridescent Calendly pill.
    Shown on every page except Legal/Privacy. *@
 
 <section class="ds-section ds-section--bordered ds-print-hidden">
@@ -22,7 +22,7 @@
 </section>
 
 @code {
-    private string kickerText = "— Ensemble";
+    private string kickerText = "Ensemble";
     private string titleText = "Travaillons ensemble.";
     private string leadText = "Un projet, une idée, un coup de main ? Parlons-en.";
     private string ctaText = "Prendre rendez-vous";
@@ -30,7 +30,7 @@
     protected override void LoadTexts()
     {
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        kickerText = fr ? "— Ensemble" : "— Together";
+        kickerText = fr ? "Ensemble" : "Together";
         titleText  = fr ? "Travaillons ensemble." : "Let's work together.";
         leadText   = fr
             ? "Un projet, une idée, un coup de main ? Parlons-en."

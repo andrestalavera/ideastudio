@@ -158,13 +158,13 @@
     private Resume? resume;
     private IReadOnlyList<TrainingCenter>? trainingCenters;
     private List<LogoWall.LogoItem> clients = new();
-    private string clientsKicker = "— Clients";
+    private string clientsKicker = "Clients";
     private string clientsTitle = "Ils m'ont fait confiance.";
-    private string seoTitle = "Andrés Talavera — Parcours";
+    private string seoTitle = "Andrés Talavera, Parcours";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/cv";
     private string seoLocale = "fr_FR";
-    private string chapterOne = "— Chapter I · Introduction";
+    private string chapterOne = "Chapter I · Introduction";
     private string chapterTwo = "Chapter II · About";
     private string chapterThree = "Chapter III · Experiences";
     private string chapterFour = "Chapter IV · Trainings";
@@ -195,9 +195,9 @@
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr/cv" : "https://ideastud.io/en/resume";
-        seoTitle = fr ? "Andrés Talavera — Parcours" : "Andrés Talavera — Resume";
+        seoTitle = fr ? "Andrés Talavera, Parcours" : "Andrés Talavera, Resume";
 
-        chapterOne   = fr ? "— Chapter I · Introduction"  : "— Chapter I · Introduction";
+        chapterOne   = fr ? "Chapter I · Introduction"  : "Chapter I · Introduction";
         chapterTwo   = fr ? "Chapter II · À propos"       : "Chapter II · About";
         chapterThree = fr ? "Chapter III · Expériences"   : "Chapter III · Experiences";
         chapterFour  = fr ? "Chapter IV · Formations"     : "Chapter IV · Trainings";
@@ -207,10 +207,10 @@
         xpTitle      = fr ? "Ce que j'ai construit."          : "What I've built.";
         trainTitle   = fr ? "Là où j'ai enseigné."            : "Where I've taught.";
         trainIntro   = fr
-            ? "Centres de formation et écoles qui m'ont confié leurs sessions, en présentiel comme en distanciel. Trois décennies de stack Microsoft, transmises à des publics très variés — de l'étudiant Supinfo au développeur senior en reconversion cloud."
-            : "Training centres and schools that have trusted me with their sessions, on-site and remote. Three decades of Microsoft stack, passed on to wildly different audiences — from Supinfo students to senior devs reskilling on cloud.";
+            ? "Centres de formation et écoles qui m'ont confié leurs sessions, en présentiel comme en distanciel. Trois décennies de stack Microsoft, transmises à des publics très variés, de l'étudiant Supinfo au développeur senior en reconversion cloud."
+            : "Training centres and schools that have trusted me with their sessions, on-site and remote. Three decades of Microsoft stack, passed on to wildly different audiences, from Supinfo students to senior devs reskilling on cloud.";
         contactTitle = fr ? "Parlons de votre projet."        : "Let's talk about your project.";
-        clientsKicker = fr ? "— Clients"                      : "— Clients";
+        clientsKicker = fr ? "Clients"                      : "Clients";
         clientsTitle  = fr ? "Ils m'ont fait confiance."       : "They put their trust in me.";
         bookText     = fr ? "Prendre rendez-vous"             : "Book a call";
         downloadText = fr ? "Télécharger mon CV"              : "Download my resume";
@@ -223,7 +223,7 @@
         resume = await Content.GetResumeAsync(culture);
         trainingCenters = await Content.GetTrainingCentersAsync(culture);
 
-        // Client logo wall — real client brands (the public sites we shipped).
+        // Client logo wall, real client brands (the public sites we shipped).
         // Drop a LogoUrl per item to swap a wordmark for a real logo image.
         IReadOnlyList<Realisation> projects = await Content.GetRealisationsAsync(culture);
         clients = projects

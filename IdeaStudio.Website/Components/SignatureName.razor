@@ -1,4 +1,4 @@
-@* SignatureName — renders a name as a live WebGL glyph object that emerges
+@* SignatureName, renders a name as a live WebGL glyph object that emerges
    from a mesh, breathes, reacts to cursor and dissolves on scroll. A hidden
    <h1> carries the actual text for search engines and assistive tech. *@
 
@@ -39,7 +39,7 @@
                     emergeMs = EmergeMs
                 });
         }
-        catch (JSDisconnectedException) { /* runtime gone — ignore */ }
+        catch (JSDisconnectedException) { /* runtime gone, ignore */ }
     }
 
     public async ValueTask DisposeAsync()

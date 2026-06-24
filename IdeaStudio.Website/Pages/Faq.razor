@@ -53,14 +53,14 @@
     private sealed record FaqGroup(string Title, IReadOnlyList<(string Q, string A)> Items);
 
     private List<FaqGroup> groups = new();
-    private string seoTitle = "FAQ — IdeaStud.io";
+    private string seoTitle = "FAQ, IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/faq";
     private string seoLocale = "fr_FR";
     private string heroKicker = "FAQ";
     private string heroTitle = "Vos questions, mes réponses.";
     private string heroLead = "";
-    private string stillKicker = "— Encore une question ?";
+    private string stillKicker = "Encore une question ?";
     private string stillTitle = "Écrivez-moi, je réponds vite.";
     private string contactCta = "Me contacter";
     private string bookCta = "Réserver un appel";
@@ -72,14 +72,14 @@
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr/faq" : "https://ideastud.io/en/faq";
-        seoTitle = fr ? "FAQ — Tarifs, missions, formations | IdeaStud.io" : "FAQ — Rates, engagements, training | IdeaStud.io";
+        seoTitle = fr ? "FAQ, Tarifs, missions, formations | IdeaStud.io" : "FAQ, Rates, engagements, training | IdeaStud.io";
         heroTitle = fr ? "Vos questions, mes réponses." : "Your questions, answered.";
         heroLead = fr
-            ? "Tarifs, façon de travailler, formations, IA — l'essentiel pour savoir si on est faits pour collaborer."
-            : "Rates, how I work, training, AI — the essentials to know whether we're a fit.";
+            ? "Tarifs, façon de travailler, formations, IA, l'essentiel pour savoir si on est faits pour collaborer."
+            : "Rates, how I work, training, AI, the essentials to know whether we're a fit.";
         seoDescription = heroLead;
 
-        stillKicker = fr ? "— Encore une question ?" : "— Still have a question?";
+        stillKicker = fr ? "Encore une question ?" : "Still have a question?";
         stillTitle = fr ? "Écrivez-moi, je réponds vite." : "Drop me a message, I reply fast.";
         contactCta = fr ? "Me contacter" : "Contact me";
         bookCta = fr ? "Réserver un appel" : "Book a call";
@@ -92,24 +92,24 @@
     {
         new("Travailler ensemble", new (string, string)[]
         {
-            ("Quels projets acceptez-vous ?", "Conseil, techlead, formation, accompagnement IA, ou réalisations sur-mesure — .NET, Azure, mobile, web. Si le cadrage est clair et le délai sain, j'y vais."),
+            ("Quels projets acceptez-vous ?", "Conseil, techlead, formation, accompagnement IA, ou réalisations sur-mesure, .NET, Azure, mobile, web. Si le cadrage est clair et le délai sain, j'y vais."),
             ("Quels sont vos tarifs ?", "TJM à partir de 600 € (conseil, techlead) et 800 € (formation, IA en entreprise). Ajusté selon la durée, la complexité et le niveau d'implication. Premier échange de 30 minutes offert, devis chiffré sous 24 h."),
-            ("Où pouvez-vous intervenir ?", "Lyon, Paris, Genève, Fribourg — sur site, hybride ou full-remote selon votre besoin. Je me déplace pour les kick-offs, les ateliers techniques et les sessions de formation."),
+            ("Où pouvez-vous intervenir ?", "Lyon, Paris, Genève, Fribourg, sur site, hybride ou full-remote selon votre besoin. Je me déplace pour les kick-offs, les ateliers techniques et les sessions de formation."),
             ("Comment travaille-t-on ensemble ?", "En portage salarial via OpenWork (société française) : un cadre contractuel simple et sécurisé pour vous comme pour moi. Facturation en EUR par défaut, CHF possible pour les missions côté suisse."),
             ("Sous quel délai pouvez-vous démarrer ?", "Un appel de cadrage sous quelques jours, un devis sous 24 h après un brief court. Les missions courtes démarrent généralement sous une à deux semaines selon mon planning."),
-            ("Je préfère écrire plutôt qu'appeler — c'est possible ?", "Oui. Le formulaire de contact suffit pour un premier échange : décrivez votre besoin, je reviens vers vous rapidement avec une proposition ou des questions."),
+            ("Je préfère écrire plutôt qu'appeler, c'est possible ?", "Oui. Le formulaire de contact suffit pour un premier échange : décrivez votre besoin, je reviens vers vous rapidement avec une proposition ou des questions."),
         }),
         new("Formation", new (string, string)[]
         {
             ("Quelles formations dispensez-vous ?", "Vingt modules au catalogue, regroupés en quatre familles : .NET, Azure, IA & vibe coding, architecture & DevOps. Chaque module se décline en inter-entreprise ou en intra sur-mesure."),
-            ("Formez-vous à distance ?", "Oui — classe virtuelle synchrone, exercices en binôme, démos en partage d'écran, retours en direct. La même rigueur qu'en présentiel."),
+            ("Formez-vous à distance ?", "Oui, classe virtuelle synchrone, exercices en binôme, démos en partage d'écran, retours en direct. La même rigueur qu'en présentiel."),
             ("Êtes-vous certifié ? Et le financement ?", "Formateur certifié Microsoft (MCT) et plusieurs certifications Azure. Les centres partenaires (ORSYS, IP-Formation, NextFormation) sont Qualiopi : OPCO, CPF entreprise, plan de développement des compétences."),
         }),
         new("IA & technique", new (string, string)[]
         {
-            ("Comment garantissez-vous la qualité avec l'IA ?", "Aucune ligne générée n'est livrée sans relecture. Je raisonne, je vérifie, je corrige — la vitesse de l'IA n'a de valeur que si elle ne crée pas de dette cachée."),
-            ("Pouvez-vous installer l'IA en interne / créer des serveurs MCP ?", "Oui — modèles open-weight (Llama, Qwen, Mistral) hébergés en local, et serveurs MCP sur-mesure qui exposent votre SI à vos outils IA. Vos données restent chez vous. Voir le service « IA en entreprise »."),
-            ("Pouvez-vous rendre mon site lisible par les IA ?", "Oui : llms.txt et ai.txt, JSON-LD enrichi (Schema.org) et robots.txt IA-aware pour apparaître dans les réponses de Perplexity, ChatGPT et consorts — la même approche que sur ce site."),
+            ("Comment garantissez-vous la qualité avec l'IA ?", "Aucune ligne générée n'est livrée sans relecture. Je raisonne, je vérifie, je corrige, la vitesse de l'IA n'a de valeur que si elle ne crée pas de dette cachée."),
+            ("Pouvez-vous installer l'IA en interne / créer des serveurs MCP ?", "Oui, modèles open-weight (Llama, Qwen, Mistral) hébergés en local, et serveurs MCP sur-mesure qui exposent votre SI à vos outils IA. Vos données restent chez vous. Voir le service « IA en entreprise »."),
+            ("Pouvez-vous rendre mon site lisible par les IA ?", "Oui : llms.txt et ai.txt, JSON-LD enrichi (Schema.org) et robots.txt IA-aware pour apparaître dans les réponses de Perplexity, ChatGPT et consorts, la même approche que sur ce site."),
         }),
     };
 
@@ -117,9 +117,9 @@
     {
         new("Working together", new (string, string)[]
         {
-            ("What projects do you take on?", "Consulting, tech-lead, training, AI enablement, or custom delivery — .NET, Azure, mobile, web. If the scope is clear and the timeline sane, I'm in."),
+            ("What projects do you take on?", "Consulting, tech-lead, training, AI enablement, or custom delivery, .NET, Azure, mobile, web. If the scope is clear and the timeline sane, I'm in."),
             ("What are your rates?", "Day rate from 600 € (consulting, tech-lead) and 800 € (training, enterprise AI). Adjusted for duration, complexity and level of involvement. First 30-minute call is free, a quote within 24h."),
-            ("Where do you work?", "Lyon, Paris, Geneva, Fribourg — on-site, hybrid or fully remote depending on your need. I travel for kick-offs, technical workshops and training sessions."),
+            ("Where do you work?", "Lyon, Paris, Geneva, Fribourg, on-site, hybrid or fully remote depending on your need. I travel for kick-offs, technical workshops and training sessions."),
             ("How do we work together?", "Via French wage-portage company OpenWork: a simple, secure contractual frame for both sides. Default invoicing in EUR, CHF available for Swiss assignments."),
             ("How fast can you start?", "A scoping call within days, a quote within 24h of a short brief. Short engagements typically start within one to two weeks depending on my schedule."),
             ("Can I just message you instead of booking a call?", "Yes. The contact form is enough for a first exchange: describe your need and I'll get back to you quickly with a proposal or questions."),
@@ -127,14 +127,14 @@
         new("Training", new (string, string)[]
         {
             ("What trainings do you deliver?", "Twenty catalogue modules across four families: .NET, Azure, AI & vibe coding, architecture & DevOps. Each runs as inter-company or bespoke in-house."),
-            ("Do you train remotely?", "Yes — synchronous virtual classroom, pair exercises, screen-share demos, live feedback. Same rigour as on-site."),
+            ("Do you train remotely?", "Yes, synchronous virtual classroom, pair exercises, screen-share demos, live feedback. Same rigour as on-site."),
             ("Are you certified? What about funding?", "Microsoft Certified Trainer (MCT) and several Azure certifications. Partner centres (ORSYS, IP-Formation, NextFormation) are Qualiopi-certified: OPCO, CPF entreprise, skills-development plans."),
         }),
         new("AI & technical", new (string, string)[]
         {
-            ("How do you keep quality with AI?", "No generated line ships without review. I reason, verify, correct — AI speed is only valuable if it doesn't create hidden debt."),
-            ("Can you set up in-house AI / build MCP servers?", "Yes — open-weight models (Llama, Qwen, Mistral) self-hosted locally, and custom MCP servers that expose your IT systems to your AI tools. Your data stays home. See the \"AI for the enterprise\" service."),
-            ("Can you make my site readable by AIs?", "Yes: llms.txt and ai.txt, enriched JSON-LD (Schema.org) and an AI-aware robots.txt so you surface in Perplexity, ChatGPT and similar answers — the same approach used on this site."),
+            ("How do you keep quality with AI?", "No generated line ships without review. I reason, verify, correct, AI speed is only valuable if it doesn't create hidden debt."),
+            ("Can you set up in-house AI / build MCP servers?", "Yes, open-weight models (Llama, Qwen, Mistral) self-hosted locally, and custom MCP servers that expose your IT systems to your AI tools. Your data stays home. See the \"AI for the enterprise\" service."),
+            ("Can you make my site readable by AIs?", "Yes: llms.txt and ai.txt, enriched JSON-LD (Schema.org) and an AI-aware robots.txt so you surface in Perplexity, ChatGPT and similar answers, the same approach used on this site."),
         }),
     };
 

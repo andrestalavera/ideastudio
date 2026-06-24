@@ -18,7 +18,7 @@
 
 @if (service is null)
 {
-    <Hero Kicker="— 404" Title="@notFoundTitle" Lead="@notFoundLead">
+    <Hero Kicker="404" Title="@notFoundTitle" Lead="@notFoundLead">
         <Actions>
             <a class="ds-btn ds-btn--primary" href="@LocalizedRoute.For("services.hub")">
                 @backText <span aria-hidden="true">→</span>
@@ -76,7 +76,7 @@ else
         </section>
     }
 
-    @* Training centres (formateur only) — shared editorial block with the CV page *@
+    @* Training centres (formateur only), shared editorial block with the CV page *@
     @if (IsTrainerService(service) && centers.Count > 0)
     {
         <section class="ds-section ds-section--chapter ds-section--bordered">
@@ -90,7 +90,7 @@ else
         </section>
     }
 
-    @* FAQ — expanded editorial Q&A *@
+    @* FAQ, expanded editorial Q&A *@
     @if (service.Faq is { Count: > 0 })
     {
         <section class="ds-section ds-section--chapter ds-section--bordered">
@@ -125,7 +125,7 @@ else
     private ServiceModel? service;
     private IReadOnlyList<Training> trainings = Array.Empty<Training>();
     private IReadOnlyList<TrainingCenter> centers = Array.Empty<TrainingCenter>();
-    private string seoTitle = "Service — IdeaStud.io";
+    private string seoTitle = "Service, IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/services";
     private string seoLocale = "fr_FR";
@@ -191,11 +191,11 @@ else
         if (service is not null)
         {
             bool fr = culture.StartsWith("fr");
-            seoTitle = $"{service.Title} — IdeaStud.io";
+            seoTitle = $"{service.Title}, IdeaStud.io";
             seoDescription = string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline;
             seoCanonical = $"https://ideastud.io{LocalizedRoute.For("services.hub", fr ? "fr" : "en")}/{service.Slug}";
 
-            // Hreflang — service slugs differ per culture, so translate the slug.
+            // Hreflang, service slugs differ per culture, so translate the slug.
             string cur = fr ? "fr" : "en";
             string other = fr ? "en" : "fr";
             string? otherSlug = await SlugTranslator.TranslateServiceSlugAsync(service.Slug, cur, other);

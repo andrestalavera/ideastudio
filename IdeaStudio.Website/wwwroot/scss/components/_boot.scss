@@ -45,7 +45,7 @@
   border-block-start-color: rgba(11, 26, 29, 0.12);
 
   a { color: #007a87; }
-  a.dismiss { color: #4b6366; }
+  .dismiss { color: #4b6366; }
 }
 
 // Blazor error UI — shown if the runtime itself fails.
@@ -66,9 +66,10 @@
   &[hidden] { display: none; }
 
   a { color: #00c2d4; }
-  a.dismiss {
+  .dismiss {
     margin-inline-start: auto;
     cursor: pointer;
     color: #7f9a96;
+    font: inherit;
   }
 }

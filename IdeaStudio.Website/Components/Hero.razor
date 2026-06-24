@@ -1,4 +1,4 @@
-@* Hero — kicker → display → lead → optional action row.
+@* Hero, kicker → display → lead → optional action row.
    Used on every page except Home (Home does its own per-char hero). *@
 
 <section class="ds-hero">
@@ -6,7 +6,7 @@
         <div class="ds-hero__inner ds-rhythm">
             @if (!string.IsNullOrWhiteSpace(Kicker))
             {
-                <p class="ds-kicker" data-reveal style="--reveal-step: 0">— @Kicker</p>
+                <p class="ds-kicker" data-reveal style="--reveal-step: 0">@Kicker</p>
             }
             <h1 class="ds-display" data-reveal style="--reveal-step: 1">
                 @if (ChildContent is not null)

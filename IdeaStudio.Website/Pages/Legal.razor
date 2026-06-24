@@ -24,7 +24,7 @@
                    Email : <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a></p>
 
                 <h2 class="ds-longform__h2">Hébergement</h2>
-                <p>Site hébergé sur Netlify — Netlify, Inc.<br/>
+                <p>Site hébergé par Netlify, Inc.<br/>
                    44 Montgomery Street, Suite 300, San Francisco, CA 94104, États-Unis.</p>
 
                 <h2 class="ds-longform__h2">Mesure d'audience</h2>
@@ -34,7 +34,7 @@
                    <a class="ds-link" href="@LocalizedRoute.For("privacy")">politique de confidentialité</a>.</p>
 
                 <h2 class="ds-longform__h2">Propriété intellectuelle</h2>
-                <p>L'ensemble du site — code source, textes, images, typographie, identité graphique — est protégé
+                <p>L'ensemble du site, code source, textes, images, typographie, identité graphique, est protégé
                    par le droit d'auteur. Toute reproduction sans autorisation est interdite.</p>
 
                 <h2 class="ds-longform__h2">Responsabilité</h2>
@@ -50,7 +50,7 @@
                    Email: <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a></p>
 
                 <h2 class="ds-longform__h2">Hosting</h2>
-                <p>Site hosted on Netlify — Netlify, Inc.<br/>
+                <p>Hosted by Netlify, Inc.<br/>
                    44 Montgomery Street, Suite 300, San Francisco, CA 94104, USA.</p>
 
                 <h2 class="ds-longform__h2">Audience measurement</h2>
@@ -60,7 +60,7 @@
                    <a class="ds-link" href="@LocalizedRoute.For("privacy")">privacy policy</a>.</p>
 
                 <h2 class="ds-longform__h2">Intellectual property</h2>
-                <p>All site content — source code, text, images, typography, graphic identity — is protected by
+                <p>All site content, source code, text, images, typography, graphic identity, is protected by
                    copyright. Reproduction without prior written consent is prohibited.</p>
 
                 <h2 class="ds-longform__h2">Liability</h2>
@@ -76,7 +76,7 @@
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/mentions-legales";
     private string seoLocale = "fr_FR";
-    private string kicker = "— Légal";
+    private string kicker = "Légal";
     private string titleText = "Mentions légales.";
     private string leadText = "";
     private string lastUpdatedText = "Dernière mise à jour : 24 juin 2026.";
@@ -87,8 +87,8 @@
         isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale    = isFr ? "fr_FR" : "en_US";
         seoCanonical = isFr ? "https://ideastud.io/fr/mentions-legales" : "https://ideastud.io/en/legal";
-        seoTitle     = isFr ? "Mentions légales — IdeaStud.io" : "Legal notice — IdeaStud.io";
-        kicker       = isFr ? "— Légal" : "— Legal";
+        seoTitle     = isFr ? "Mentions légales, IdeaStud.io" : "Legal notice, IdeaStud.io";
+        kicker       = isFr ? "Légal" : "Legal";
         titleText    = isFr ? "Mentions légales." : "Legal notice.";
         leadText     = isFr
             ? "Informations sur l'éditeur, l'hébergeur, la mesure d'audience et la propriété intellectuelle."

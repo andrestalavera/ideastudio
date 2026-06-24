@@ -18,7 +18,7 @@
             {
                 <h2 class="ds-longform__h2">Données collectées</h2>
                 <p>Ce site n'exige pas de compte et ne collecte aucune donnée d'identification directe.
-                   Une mesure d'audience anonymisée est en place — voir la section
+                   Une mesure d'audience anonymisée est en place, voir la section
                    <a class="ds-link" href="#cookies">Cookies & traceurs</a> ci-dessous pour la liste complète.</p>
 
                 <h2 id="cookies" class="ds-longform__h2">@cookiesTitle</h2>
@@ -27,9 +27,9 @@
                    (Google Consent Mode v2). Vous pouvez modifier votre choix à tout moment via le lien
                    <em>Gestion des cookies</em> dans le pied de page.</p>
                 <ul class="ds-longform__list">
-                    <li><strong>Google Analytics 4</strong> — mesure d'audience anonymisée. Conservation : 14 mois.</li>
-                    <li><strong>Microsoft Clarity</strong> — heatmaps et replays anonymisés. Conservation : 1 an.</li>
-                    <li><strong>Meta Pixel</strong> — mesure de campagnes Meta. Conservation : 13 mois.
+                    <li><strong>Google Analytics 4</strong>, mesure d'audience anonymisée. Conservation : 14 mois.</li>
+                    <li><strong>Microsoft Clarity</strong>, heatmaps et replays anonymisés. Conservation : 1 an.</li>
+                    <li><strong>Meta Pixel</strong>, mesure de campagnes Meta. Conservation : 13 mois.
                         Désactivé tant qu'aucun identifiant n'est configuré.</li>
                 </ul>
                 <p>Votre choix est conservé localement (localStorage) pendant 13 mois maximum, conformément
@@ -52,7 +52,7 @@
             {
                 <h2 class="ds-longform__h2">Data we collect</h2>
                 <p>This site requires no account and collects no directly-identifying data.
-                   Anonymous audience measurement is enabled — see the
+                   Anonymous audience measurement is enabled, see the
                    <a class="ds-link" href="#cookies">Cookies &amp; trackers</a> section below for the full list.</p>
 
                 <h2 id="cookies" class="ds-longform__h2">@cookiesTitle</h2>
@@ -60,9 +60,9 @@
                    no measurement cookies are set (Google Consent Mode v2). You can change your decision at any
                    time via the <em>Cookie settings</em> link in the footer.</p>
                 <ul class="ds-longform__list">
-                    <li><strong>Google Analytics 4</strong> — anonymous audience measurement. Retention: 14 months.</li>
-                    <li><strong>Microsoft Clarity</strong> — anonymous heatmaps and session replays. Retention: 1 year.</li>
-                    <li><strong>Meta Pixel</strong> — Meta campaign measurement. Retention: 13 months.
+                    <li><strong>Google Analytics 4</strong>, anonymous audience measurement. Retention: 14 months.</li>
+                    <li><strong>Microsoft Clarity</strong>, anonymous heatmaps and session replays. Retention: 1 year.</li>
+                    <li><strong>Meta Pixel</strong>, Meta campaign measurement. Retention: 13 months.
                         Disabled until an ID is configured.</li>
                 </ul>
                 <p>Your choice is stored locally (localStorage) for at most 13 months, per CNIL guidance.</p>
@@ -89,7 +89,7 @@
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/confidentialite";
     private string seoLocale = "fr_FR";
-    private string kicker = "— Légal";
+    private string kicker = "Légal";
     private string titleText = "Confidentialité.";
     private string leadText = "";
     private bool isFr = true;
@@ -100,8 +100,8 @@
         isFr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale    = isFr ? "fr_FR" : "en_US";
         seoCanonical = isFr ? "https://ideastud.io/fr/confidentialite" : "https://ideastud.io/en/privacy";
-        seoTitle     = isFr ? "Confidentialité — IdeaStud.io" : "Privacy — IdeaStud.io";
-        kicker       = isFr ? "— Légal" : "— Legal";
+        seoTitle     = isFr ? "Confidentialité, IdeaStud.io" : "Privacy, IdeaStud.io";
+        kicker       = isFr ? "Légal" : "Legal";
         titleText    = isFr ? "Confidentialité." : "Privacy.";
         leadText     = isFr
             ? "Mesure d'audience anonymisée, opt-in explicite, choix réversible à tout moment."

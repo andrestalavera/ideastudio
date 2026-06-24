@@ -17,7 +17,7 @@
          SiteName="IdeaStud.io"
          StructuredData="@seoStructuredData" />
 
-<Hero Kicker="— Projets" Title="@titleText" Lead="@lead" />
+<Hero Kicker="Projets" Title="@titleText" Lead="@lead" />
 
 <section class="ds-section">
     <div class="ds-container">
@@ -74,7 +74,7 @@
     private IReadOnlyList<string> allTechs = Array.Empty<string>();
     private string? activeTech;
 
-    private string seoTitle = "Réalisations — IdeaStud.io";
+    private string seoTitle = "Réalisations, IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/realisations";
     private string seoLocale = "fr_FR";
@@ -103,11 +103,11 @@
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr/realisations" : "https://ideastud.io/en/projects";
-        seoTitle = fr ? "Réalisations — IdeaStud.io" : "Projects — IdeaStud.io";
+        seoTitle = fr ? "Réalisations, IdeaStud.io" : "Projects, IdeaStud.io";
         titleText = fr ? "Réalisations récentes." : "Recent projects.";
         lead = fr
-            ? "Une sélection de travaux récents — sites, apps, APIs, migrations cloud. Filtrez par technologie."
-            : "A selection of recent work — sites, apps, APIs, cloud migrations. Filter by technology.";
+            ? "Une sélection de travaux récents, sites, apps, APIs, migrations cloud. Filtrez par technologie."
+            : "A selection of recent work, sites, apps, APIs, cloud migrations. Filter by technology.";
         seoDescription = lead;
         filterLabel      = fr ? "Filtrer" : "Filter";
         filterAriaLabel  = fr ? "Filtrer par technologie" : "Filter by technology";

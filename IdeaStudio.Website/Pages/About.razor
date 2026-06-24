@@ -62,7 +62,7 @@
     </div>
 </section>
 
-@* 3 · Explore further — hub links *@
+@* 3 · Explore further, hub links *@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@exploreKicker" Title="@exploreTitle" />
@@ -77,7 +77,7 @@
 @code {
     private Resume? resume;
 
-    private string seoTitle = "À propos — Andrés Talavera | IdeaStud.io";
+    private string seoTitle = "À propos, Andrés Talavera | IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/a-propos";
     private string seoLocale = "fr_FR";
@@ -112,8 +112,8 @@
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr/a-propos" : "https://ideastud.io/en/about";
         seoTitle = fr
-            ? "À propos — Andrés Talavera, consultant .NET & Azure | IdeaStud.io"
-            : "About — Andrés Talavera, .NET & Azure consultant | IdeaStud.io";
+            ? "À propos, Andrés Talavera, consultant .NET & Azure | IdeaStud.io"
+            : "About, Andrés Talavera, .NET & Azure consultant | IdeaStud.io";
 
         heroKicker = fr ? "À propos" : "About";
         bookText = fr ? "Prendre rendez-vous" : "Book a call";
@@ -139,8 +139,8 @@
         heroText = resume?.PersonalInformation?.Hero ?? (fr ? "Andrés Talavera." : "Andrés Talavera.");
         introText = resume?.PersonalInformation?.Introduction ?? "";
         seoDescription = string.IsNullOrWhiteSpace(introText)
-            ? (fr ? "Andrés Talavera — consultant .NET & Azure, techlead et formateur. 15 ans d'expérience, Lyon, Paris, Genève, Fribourg ou à distance."
-                  : "Andrés Talavera — .NET & Azure consultant, tech lead and trainer. 15 years' experience, Lyon, Paris, Geneva, Fribourg or remote.")
+            ? (fr ? "Andrés Talavera, consultant .NET & Azure, techlead et formateur. 15 ans d'expérience, Lyon, Paris, Genève, Fribourg ou à distance."
+                  : "Andrés Talavera, .NET & Azure consultant, tech lead and trainer. 15 years' experience, Lyon, Paris, Geneva, Fribourg or remote.")
             : introText;
     }
 

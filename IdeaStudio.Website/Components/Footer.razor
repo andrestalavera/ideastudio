@@ -3,7 +3,7 @@
 @inject ILocalizedRoute LocalizedRoute
 @inject IConsentService Consent
 
-@* Footer — 4-col mono footer. *@
+@* Footer, 4-col mono footer. *@
 
 <footer class="ds-footer ds-print-hidden">
     <div class="ds-footer__inner">
@@ -38,7 +38,7 @@
 </footer>
 
 @code {
-    private string taglineText = "Lyon · Paris · Genève · Fribourg — remote";
+    private string taglineText = "Lyon · Paris · Genève · Fribourg, remote";
     private string sitemapLabel = "Plan du site";
     private string homeText = "Accueil";
     private string servicesText = "Services";
@@ -56,7 +56,7 @@
     protected override void LoadTexts()
     {
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        taglineText        = fr ? "Lyon · Paris · Genève · Fribourg — remote" : "Lyon · Paris · Geneva · Fribourg — remote";
+        taglineText        = fr ? "Lyon · Paris · Genève · Fribourg, remote" : "Lyon · Paris · Geneva · Fribourg, remote";
         sitemapLabel       = fr ? "Plan du site" : "Sitemap";
         homeText           = fr ? "Accueil" : "Home";
         servicesText       = fr ? "Services" : "Services";
