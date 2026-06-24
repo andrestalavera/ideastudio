@@ -48,7 +48,7 @@ The design ethos: **expensive, intentional, alive.** Every element earns its pla
 - **FG Faint** (`#5e7a77` / `#708789`) — Decorative only. Never body copy.
 
 **Iridescent Accents — used as a single gradient, not four free colors:**
-- **Duck** (`#00c2d4` dark / `#007a87` light) — Primary brand, CTA, focus ring, rail. Default accent in isolation. Darkened in light so it stays AA-readable as link/label text.
+- **Duck** (`#00c2d4` dark / `#00707d` light) — Primary brand, CTA, focus ring, rail. Default accent in isolation. Darkened in light so it clears WCAG AA both as a fill (with light text) and as link/label text on the light surface.
 - **Blue** (`#2d44ff`) — Secondary stop in the gradient. (Vivid in both themes.)
 - **Amber** (`#ff8c1a`) — Tertiary stop.
 - **Pink** (`#ff3670`) — Closing stop.

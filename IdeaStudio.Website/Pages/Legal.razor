@@ -14,6 +14,7 @@
 <section class="ds-section">
     <div class="ds-container ds-container--narrow">
         <div class="ds-longform">
+            <p><em>@lastUpdatedText</em></p>
             @if (isFr)
             {
                 <h2 class="ds-longform__h2">Éditeur</h2>
@@ -23,8 +24,14 @@
                    Email : <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a></p>
 
                 <h2 class="ds-longform__h2">Hébergement</h2>
-                <p>Site hébergé sur Azure Static Web Apps — Microsoft Ireland Operations Ltd.<br/>
-                   One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Irlande.</p>
+                <p>Site hébergé sur Netlify — Netlify, Inc.<br/>
+                   44 Montgomery Street, Suite 300, San Francisco, CA 94104, États-Unis.</p>
+
+                <h2 class="ds-longform__h2">Mesure d'audience</h2>
+                <p>Ce site utilise Google Analytics (Google Ireland Limited) et Microsoft Clarity pour mesurer
+                   son audience. Ces traceurs ne sont activés qu'après votre consentement via la bannière cookies,
+                   modifiable à tout moment. Détails sur la
+                   <a class="ds-link" href="@LocalizedRoute.For("privacy")">politique de confidentialité</a>.</p>
 
                 <h2 class="ds-longform__h2">Propriété intellectuelle</h2>
                 <p>L'ensemble du site — code source, textes, images, typographie, identité graphique — est protégé
@@ -43,8 +50,14 @@
                    Email: <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a></p>
 
                 <h2 class="ds-longform__h2">Hosting</h2>
-                <p>Site hosted on Azure Static Web Apps — Microsoft Ireland Operations Ltd.<br/>
-                   One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Ireland.</p>
+                <p>Site hosted on Netlify — Netlify, Inc.<br/>
+                   44 Montgomery Street, Suite 300, San Francisco, CA 94104, USA.</p>
+
+                <h2 class="ds-longform__h2">Audience measurement</h2>
+                <p>This site uses Google Analytics (Google Ireland Limited) and Microsoft Clarity to measure
+                   audience. These trackers are only enabled after your consent via the cookie banner, which you
+                   can change at any time. Details on the
+                   <a class="ds-link" href="@LocalizedRoute.For("privacy")">privacy policy</a>.</p>
 
                 <h2 class="ds-longform__h2">Intellectual property</h2>
                 <p>All site content — source code, text, images, typography, graphic identity — is protected by
@@ -66,6 +79,7 @@
     private string kicker = "— Légal";
     private string titleText = "Mentions légales.";
     private string leadText = "";
+    private string lastUpdatedText = "Dernière mise à jour : 24 juin 2026.";
     private bool isFr = true;
 
     protected override void LoadTexts()
@@ -77,8 +91,9 @@
         kicker       = isFr ? "— Légal" : "— Legal";
         titleText    = isFr ? "Mentions légales." : "Legal notice.";
         leadText     = isFr
-            ? "Informations sur l'éditeur, l'hébergeur et la propriété intellectuelle."
-            : "Publisher, hosting and intellectual property information.";
+            ? "Informations sur l'éditeur, l'hébergeur, la mesure d'audience et la propriété intellectuelle."
+            : "Publisher, hosting, audience measurement and intellectual property information.";
         seoDescription = leadText;
+        lastUpdatedText = isFr ? "Dernière mise à jour : 24 juin 2026." : "Last updated: 24 June 2026.";
     }
 }

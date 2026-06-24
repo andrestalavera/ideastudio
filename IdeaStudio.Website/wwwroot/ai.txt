@@ -41,7 +41,7 @@
     { "slug": "websites", "lang": "en", "title": "Websites", "url": "https://ideastud.io/en/services/websites" }
   ],
   "caseStudies": [
-    { "name": "RestoPlatform", "status": "in-development", "summary": "Multi-tenant SaaS for restaurants; PostgreSQL Row-Level Security; Blazor SSR + Server; Stripe Connect; Clever Cloud (EU).", "url": "https://ideastud.io/fr/realisations/restoplatform" },
+    { "name": "RestoPlatform", "status": "launching", "summary": "Multi-tenant SaaS for restaurants; PostgreSQL Row-Level Security; Blazor SSR + Server; Stripe Connect; Clever Cloud (EU).", "url": "https://ideastud.io/fr/realisations/restoplatform" },
     { "name": "DPELib", "summary": "RegTech platform; anonymous-by-default; Stripe 3DS2; 153 use cases; Azure; GDPR/CNIL/PSD2.", "url": "https://ideastud.io/fr/realisations/dpelib" },
     { "name": "Brasa Geneva", "summary": "Regulated luxury e-commerce platform; age-gate; 99 use cases; Infomaniak (Swiss).", "url": "https://ideastud.io/fr/realisations/brasageneva", "liveUrl": "https://www.brasageneva.ch" }
   ],

@@ -3,7 +3,7 @@
     "slug": "restoplatform",
     "title": "RestoPlatform",
     "client": "SaaS startup — hospitality",
-    "summary": "Multi-tenant SaaS platform for independent restaurants — QR ordering, pay-at-table, reservations, delivery and analytics, one site per restaurant. In active development.",
+    "summary": "Multi-tenant SaaS platform for independent restaurants — QR ordering, pay-at-table, reservations, delivery and analytics, one site per restaurant, zero commission.",
     "imageUrl": "",
     "imageAlt": "",
     "liveUrl": "",
@@ -14,10 +14,10 @@
     "caseStudy": {
       "sector": "SaaS · Hospitality — multi-tenant, European data sovereignty",
       "role": "Sole architect-developer, with a multi-agent AI orchestration",
-      "timeline": "In active development (~35%) · 6 source projects, 150 test files",
+      "timeline": "Designed and built in a few months · 6 source projects, 150 test files",
       "challenge": "An independent restaurant owner today juggles a dozen tools — menu, reservations, QR ordering, payment, delivery, analytics — and hands a commission to aggregators on every meal. RestoPlatform brings it all into one platform, one site per restaurant, with zero commission.",
       "approach": "A multi-tenant SaaS platform in Clean Architecture: a real-time REST API, one public site per restaurant (Blazor SSR, crawlable) and an operations back-office (Blazor Server). All data in one shared PostgreSQL database, isolated per restaurant through defense-in-depth (application filter + PostgreSQL Row-Level Security). Hosted 100% in Europe on Clever Cloud.",
-      "outcome": "At ~35% complete, the core is already live and tested: pay-at-table ordering, menu, reservations, in-house delivery, loyalty, analytics and a staff dashboard. A zero-commission model (flat subscription), GDPR-compliant and sovereign by design — around 17,000 lines of code covered by 18,500 lines of tests.",
+      "outcome": "A complete, tested, production-ready platform — pay-at-table ordering, menu, reservations, in-house delivery, loyalty, analytics and a staff dashboard — with the first restaurant client going live. A zero-commission model (flat subscription), GDPR-compliant and sovereign by design, backed by around 17,000 lines of code and 18,500 lines of tests.",
       "diagramImage": "images/case-restoplatform-architecture.png",
       "diagramAlt": "RestoPlatform Clean Architecture: REST API + SignalR, a Blazor SSR showcase site, a Blazor Server dashboard, a multi-tenant application layer, EF Core 10 / PostgreSQL infrastructure with Row-Level Security on Clever Cloud",
       "stats": [
@@ -26,7 +26,7 @@
         { "value": "39", "label": "Data entities" },
         { "value": "20+", "label": "Languages (DeepL)" },
         { "value": "150", "label": "Test files" },
-        { "value": "~35%", "label": "Completion" }
+        { "value": "13", "label": "Business domains" }
       ],
       "decisions": [
         { "title": "Multi-tenant on a shared DB + Row-Level Security", "detail": "All restaurants share one PostgreSQL database, but every row is isolated by defense-in-depth: application filter, EF global filter, then PostgreSQL's native Row-Level Security (non-owner role, tenant set per transaction). A cross-tenant access returns 404, never 403 — no existence leak. Every entity passes a cross-tenant denial test before it ships." },

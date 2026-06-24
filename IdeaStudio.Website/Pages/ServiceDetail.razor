@@ -7,10 +7,12 @@
 @inherits LocalizedComponent
 @inject IContentGateway Content
 @inject ILocalizedRoute LocalizedRoute
+@inject ISlugTranslator SlugTranslator
 @layout MainLayout
 
 <SeoHead Title="@seoTitle" Description="@seoDescription"
          CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@seoHreflang"
          SiteName="IdeaStud.io"
          StructuredData="@seoStructuredData" />
 
@@ -127,6 +129,7 @@ else
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/services";
     private string seoLocale = "fr_FR";
+    private Dictionary<string, string>? seoHreflang;
     private string highlightsKicker = "Le périmètre";
     private string highlightsTitle = "Ce que la mission couvre.";
     private string useCaseKicker = "Cas d'usage";
@@ -191,6 +194,24 @@ else
             seoTitle = $"{service.Title} — IdeaStud.io";
             seoDescription = string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline;
             seoCanonical = $"https://ideastud.io{LocalizedRoute.For("services.hub", fr ? "fr" : "en")}/{service.Slug}";
+
+            // Hreflang — service slugs differ per culture, so translate the slug.
+            string cur = fr ? "fr" : "en";
+            string other = fr ? "en" : "fr";
+            string? otherSlug = await SlugTranslator.TranslateServiceSlugAsync(service.Slug, cur, other);
+            if (otherSlug is not null)
+            {
+                string frSlug = fr ? service.Slug : otherSlug;
+                string enSlug = fr ? otherSlug : service.Slug;
+                string frUrl = $"https://ideastud.io{LocalizedRoute.For("services.hub", "fr")}/{frSlug}";
+                string enUrl = $"https://ideastud.io{LocalizedRoute.For("services.hub", "en")}/{enSlug}";
+                seoHreflang = new Dictionary<string, string>
+                {
+                    ["fr"] = frUrl,
+                    ["en"] = enUrl,
+                    ["x-default"] = frUrl,
+                };
+            }
 
             if (IsTrainerService(service))
             {

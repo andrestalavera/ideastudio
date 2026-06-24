@@ -44,14 +44,14 @@ $themes: (
     fg:          #0b1a1d,  // primary text (AAA on page + cards)
     fg-muted:    #4b6366,  // body / captions (AA on page + cards)
     fg-faint:    #708789,  // decorative only, never body copy
-    ir-duck:     #007a87,  // darkened so it passes AA as link/label text
+    ir-duck:     #00707d,  // AA both ways vs the light surface (#e7eeec) — fills + label text
     ir-blue:     #2d44ff,
     ir-amber:    #ff8c1a,
     ir-pink:     #ff3670,
     danger:      #c4133f,
     rule:        rgba(11, 26, 29, 0.12),
     rule-bright: rgba(11, 26, 29, 0.16),
-    ring:        rgba(0, 122, 135, 0.6),
+    ring:        rgba(0, 112, 125, 0.6),
     glass:       rgba(11, 26, 29, 0.05),
     track:       rgba(11, 26, 29, 0.10),
   ),
