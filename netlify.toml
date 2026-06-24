@@ -10,7 +10,7 @@
   DOTNET_VERSION              = "10.0.203"
   DOTNET_NOLOGO               = "1"
   DOTNET_CLI_TELEMETRY_OPTOUT = "1"
-  NODE_VERSION                = "20"
+  NODE_VERSION                = "22"
   NETLIFY_USE_PNPM            = "false"
 
 # Long-cache the framework + asset bundles (filenames are fingerprinted).
