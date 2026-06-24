@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "coder-avec-ia-sans-dette-technique",
+    "title": "Coding with AI without creating technical debt",
+    "summary": "AI coding assistants save real time, as long as you keep a human in the loop. Here's the method I apply on client work.",
+    "date": "2026-06-20",
+    "readingMinutes": 4,
+    "tags": ["AI", "Vibe coding", "Quality"],
+    "body": "Agentic coding tools (Claude Code, GitHub Copilot, Cursor) have changed my day-to-day as a developer. Used well, they save a lot of time. Used badly, they produce invisible technical debt that gets expensive a few months later.\n\n## The promise isn't \"fewer developers\"\n\nIt's \"more effective developers who keep ownership\". AI proposes, the human decides. On my engagements, no generated line ships without review: I diff, I reason, I correct.\n\n## Three simple guardrails\n\n- **Deep review.** Read the diff the way you'd review a colleague's pull request: intent, side effects, edge cases.\n- **Tests first.** An untested feature isn't done. AI also speeds up writing tests, which makes coverage far less painful.\n- **Explicit conventions.** Clear project rules (architecture, naming, security) frame what the assistant is allowed to produce.\n\n## The real win\n\nThe win isn't typing faster. It's spending more time on what matters (design, decisions) and less on the mechanics, as long as you never delegate judgment.\n\nWant to equip your team without sacrificing quality? Let's talk."
+  },
+  {
+    "slug": "cloud-souverain-europe",
+    "title": "Sovereign cloud: hosting in Europe without sacrificing the experience",
+    "summary": "Azure isn't the only option. A tour of European hosts (Clever Cloud, Infomaniak) and when to pick them.",
+    "date": "2026-06-10",
+    "readingMinutes": 5,
+    "tags": ["Cloud", "Sovereignty", "Azure"],
+    "body": "\"Hosting in Europe\" has become a concrete requirement for many of my clients: GDPR compliance, sensitive data, or simply a sovereignty choice. The good news is you no longer have to choose between sovereignty and deployment comfort.\n\n## Azure when the ecosystem justifies it\n\nFor a platform already invested in the Microsoft ecosystem (Entra ID, Service Bus, Functions), Azure remains coherent and powerful. European regions cover most data-residency needs.\n\n## European sovereign hosts have grown up\n\n- **Clever Cloud** (France, SecNumCloud/HDS certified): managed PaaS, first-class PostgreSQL and Redis, git-push deploys. Ideal for a cost-controlled SaaS that wants to stay 100% European.\n- **Infomaniak** (Switzerland): managed Kubernetes and object storage, perfect when the positioning (luxury, health) demands Swiss residency.\n\n## The deciding factor\n\nIt isn't cloud dogma, it's context: business model, regulatory constraints, team skills. The key is to keep the boundaries (storage, database, observability) behind replaceable interfaces, so you're never locked into one provider.\n\nUnsure which hosting fits your project best? That's exactly the kind of scoping I do at the start of an engagement."
+  }
+]

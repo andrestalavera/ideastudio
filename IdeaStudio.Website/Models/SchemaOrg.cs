@@ -329,6 +329,26 @@ public static class SchemaOrg
     }
 
     /// <summary>
+    /// Schema.org BlogPosting for blog articles.
+    /// </summary>
+    public record BlogPosting(
+        string Headline,
+        string Description,
+        string Url,
+        string DatePublished,
+        Person Author,
+        string? Image = null,
+        string[]? Keywords = null,
+        string? InLanguage = null)
+    {
+        [JsonPropertyName("@context")]
+        public string Context => "https://schema.org";
+
+        [JsonPropertyName("@type")]
+        public string Type => "BlogPosting";
+    }
+
+    /// <summary>
     /// Creates a breadcrumb list from path segments.
     /// </summary>
     public static BreadcrumbList CreateBreadcrumb(string baseUrl, params (string name, string path)[] items)

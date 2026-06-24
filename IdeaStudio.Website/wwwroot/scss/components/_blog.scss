@@ -1,0 +1,57 @@
+// components/_blog.scss — blog list + post.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-bloglist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border-block-start: 1px solid c.$rule;
+}
+
+.ds-bloglist-item {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-2;
+  padding-block: s.$s-6;
+  border-block-end: 1px solid c.$rule;
+  color: inherit;
+  text-decoration: none;
+  transition: padding-inline-start 240ms var(--ease-out);
+
+  &:hover {
+    padding-inline-start: s.$s-4;
+    .ds-bloglist-title { color: c.$ir-duck; }
+  }
+}
+
+.ds-bloglist-meta,
+.ds-blogpost-meta {
+  font-family: t.$font-mono;
+  font-size: t.$fs-mono;
+  letter-spacing: 0.04em;
+  color: c.$fg-muted;
+}
+
+.ds-bloglist-title {
+  margin: 0;
+  font-family: t.$font-sans;
+  font-weight: 600;
+  font-size: t.$fs-subtitle;
+  letter-spacing: -0.015em;
+  color: c.$fg;
+  transition: color 240ms var(--ease-out);
+}
+
+.ds-bloglist-summary {
+  margin: 0;
+  max-width: 64ch;
+  color: c.$fg-muted;
+}
+
+.ds-blogpost-meta { margin-block-end: s.$s-4; }
+.ds-blogpost-body { margin-block-start: s.$s-5; }

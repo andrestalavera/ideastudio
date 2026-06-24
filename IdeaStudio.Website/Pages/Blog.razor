@@ -1,0 +1,108 @@
+@page "/fr/blog"
+@page "/en/blog"
+@using System.Globalization
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
+@layout MainLayout
+
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         Author="Andrés Talavera"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@LocalizedRoute.Alternates("blog")"
+         SiteName="IdeaStud.io"
+         OgImage="https://ideastud.io/images/andres-talavera.jpeg" OgImageAlt="Andrés Talavera"
+         StructuredData="@seoStructuredData" />
+
+<Hero Kicker="@kicker" Title="@titleText" Lead="@lead" />
+
+<section class="py-section relative">
+    <div class="mx-auto w-full max-w-narrow px-6">
+        <ul class="ds-bloglist" role="list">
+            @for (int i = 0; i < posts.Count; i++)
+            {
+                BlogPost p = posts[i];
+                <li>
+                    <a class="ds-bloglist-item" href="@($"{LocalizedRoute.For("blog")}/{p.Slug}")"
+                       data-reveal style="@($"--reveal-step:{i}")">
+                        <span class="ds-bloglist-meta">@FormatDate(p.Date) · @p.ReadingMinutes @minLabel</span>
+                        <h2 class="ds-bloglist-title">@p.Title</h2>
+                        <p class="ds-bloglist-summary">@p.Summary</p>
+                        <div class="ds-tile-tags">
+                            @foreach (string tag in p.Tags)
+                            {
+                                <span class="ds-tag">@tag</span>
+                            }
+                        </div>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</section>
+
+@code {
+    private IReadOnlyList<BlogPost> posts = Array.Empty<BlogPost>();
+    private string seoTitle = "Blog — IdeaStud.io";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/blog";
+    private string seoLocale = "fr_FR";
+    private string kicker = "Blog";
+    private string titleText = "Notes & retours d'expérience.";
+    private string lead = "";
+    private string minLabel = "min";
+    private List<string>? seoStructuredData;
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        posts = await Content.GetBlogPostsAsync(CultureService.CurrentCulture.Name);
+        GenerateStructuredData();
+        StateHasChanged();
+    }
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoCanonical = fr ? "https://ideastud.io/fr/blog" : "https://ideastud.io/en/blog";
+        seoTitle = fr ? "Blog — .NET, Azure, IA | IdeaStud.io" : "Blog — .NET, Azure, AI | IdeaStud.io";
+        titleText = fr ? "Notes & retours d'expérience." : "Notes & field reports.";
+        lead = fr
+            ? "Des articles courts et concrets sur .NET, Azure, l'IA dans le code et le cloud souverain."
+            : "Short, concrete articles on .NET, Azure, AI in the code and sovereign cloud.";
+        seoDescription = lead;
+        minLabel = fr ? "min de lecture" : "min read";
+        kicker = "Blog";
+    }
+
+    private string FormatDate(string iso)
+    {
+        if (DateTime.TryParse(iso, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d))
+        {
+            return d.ToString("d MMMM yyyy", CultureService.CurrentCulture);
+        }
+        return iso;
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+            ("Blog", LocalizedRoute.For("blog", cultureCode)));
+
+        SchemaOrg.ListItem[] items = posts.Select((p, i) => new SchemaOrg.ListItem(
+            Position: i + 1,
+            Name: p.Title,
+            Item: $"https://ideastud.io{LocalizedRoute.For("blog", cultureCode)}/{p.Slug}")).ToArray();
+        SchemaOrg.ItemList list = new(fr ? "Articles" : "Articles", lead, items.Length, items);
+
+        seoStructuredData = new List<string> { SchemaOrg.ToJsonLd(breadcrumb), SchemaOrg.ToJsonLd(list) };
+    }
+}

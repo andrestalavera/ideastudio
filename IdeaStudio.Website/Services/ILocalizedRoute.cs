@@ -38,6 +38,8 @@ public sealed class LocalizedRoute(ICultureService cultureService) : ILocalizedR
             [("faq", "en")] = "/en/faq",
             [("contact", "fr")] = "/fr/contact",
             [("contact", "en")] = "/en/contact",
+            [("blog", "fr")] = "/fr/blog",
+            [("blog", "en")] = "/en/blog",
             [("realisations", "fr")] = "/fr/realisations",
             [("realisations", "en")] = "/en/projects",
             [("cv", "fr")] = "/fr/cv",
