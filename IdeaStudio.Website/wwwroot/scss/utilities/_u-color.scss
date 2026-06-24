@@ -1,49 +1,11 @@
 // utilities/_u-color.scss — text / background / border colors.
-// Every value resolves to a themed CSS custom property, so a utility like
-// .bg-surface follows [data-theme] automatically (no per-theme classes).
+// Values resolve to themed CSS custom properties, so they follow [data-theme].
 
 @use '../tokens/colors' as c;
 
-// --- Text color -------------------------------------------------------------
-.text-fg      { color: c.$fg; }
-.text-muted   { color: c.$fg-muted; }
-.text-faint   { color: c.$fg-faint; }
-.text-duck    { color: c.$ir-duck; }
-.text-blue    { color: c.$ir-blue; }
-.text-amber   { color: c.$ir-amber; }
-.text-pink    { color: c.$ir-pink; }
-.text-danger  { color: c.$danger; }
-.text-void    { color: c.$bg-void; }   // on-accent text (e.g. filled pills)
-.text-inherit { color: inherit; }
+.text-fg    { color: c.$fg; }
+.text-muted { color: c.$fg-muted; }
 
-// Iridescent gradient text (signature / display flourishes).
-.text-gradient {
-  background: c.$gradient-iridescent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+.bg-surface { background-color: c.$bg-surface; }
 
-// --- Background -------------------------------------------------------------
-.bg-void        { background-color: c.$bg-void; }
-.bg-deep        { background-color: c.$bg-deep; }
-.bg-surface     { background-color: c.$bg-surface; }
-.bg-raised      { background-color: c.$bg-raised; }
-.bg-duck        { background-color: c.$ir-duck; }
-.bg-danger      { background-color: c.$danger; }
-.bg-glass       { background-color: c.$glass; }
-.bg-track       { background-color: c.$track; }
-.bg-transparent { background-color: transparent; }
-.bg-iridescent  { background: c.$gradient-iridescent; }
-
-// --- Border color -----------------------------------------------------------
-.border-rule        { border-color: c.$rule; }
-.border-rule-bright { border-color: c.$rule-bright; }
-.border-duck        { border-color: c.$ir-duck; }
-.border-transparent { border-color: transparent; }
-
-// --- Interactive variants (the few the design needs) ------------------------
-.hover\:text-duck:hover { color: c.$ir-duck; }
-.hover\:text-fg:hover   { color: c.$fg; }
-.hover\:bg-glass:hover  { background-color: c.$glass; }
-.hover\:border-duck:hover { border-color: c.$ir-duck; }
+.border-rule { border-color: c.$rule; }
