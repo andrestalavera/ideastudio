@@ -1,6 +1,6 @@
-@* CardGrid, generic 2 or 3 column grid wrapper. *@
+@* CardGrid, generic responsive grid wrapper (utility-classed). *@
 
-<div class="ds-grid @GridClass">
+<div class="grid gap-6 @GridClass">
     @ChildContent
 </div>
 
@@ -8,11 +8,12 @@
     [Parameter] public int Columns { get; set; } = 3;
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
+    // Mobile-first column progression: 1 col on phones, then step up.
     private string GridClass => Columns switch
     {
-        2 => "ds-grid--2",
-        3 => "ds-grid--3",
-        4 => "ds-grid--4",
-        _ => "ds-grid--auto"
+        2 => "grid-cols-1 sm:grid-cols-2",
+        3 => "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+        4 => "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+        _ => "grid-cols-auto"
     };
 }

@@ -31,7 +31,7 @@
   }
 
   // Primary — iridescent filled pill.
-  &--primary {
+  &-primary {
     background: c.$ir-duck;
     color: c.$bg-void;
     border-color: c.$ir-duck;
@@ -43,7 +43,7 @@
   }
 
   // Ghost — duck outline, translucent fill on hover.
-  &--ghost {
+  &-ghost {
     border-color: rgba(0, 194, 212, 0.55);
 
     &:hover {
@@ -53,7 +53,7 @@
   }
 
   // Iridescent border pill — gradient border via padding-box trick.
-  &--iridescent {
+  &-iridescent {
     background: linear-gradient(c.$bg-deep, c.$bg-deep) padding-box,
                 c.$gradient-iridescent border-box;
     border: 1px solid transparent;
@@ -63,7 +63,7 @@
     }
   }
 
-  &--sm {
+  &-sm {
     padding-inline: s.$s-4;
     padding-block: s.$s-2;
     font-size: t.$fs-mono;

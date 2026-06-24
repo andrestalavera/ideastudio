@@ -42,8 +42,8 @@
             }
             else
             {
-                if (!wordOpen) { sb.Append("<span class=\"ds-reveal-chars__word\">"); wordOpen = true; }
-                sb.Append($"<span class=\"ds-reveal-chars__char\" style=\"--i:{i}\" aria-hidden=\"true\">");
+                if (!wordOpen) { sb.Append("<span class=\"ds-reveal-chars-word\">"); wordOpen = true; }
+                sb.Append($"<span class=\"ds-reveal-chars-char\" style=\"--i:{i}\" aria-hidden=\"true\">");
                 sb.Append(EscapeChar(c));
                 sb.Append("</span>");
                 i++;

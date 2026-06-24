@@ -5,19 +5,20 @@
 @inject IThemeService ThemeService
 
 <header class="ds-masthead ds-print-hidden" aria-label="Primary" @onkeydown="OnKeyDown">
-    <nav class="ds-masthead__pill" aria-label="Main">
-        <a class="ds-masthead__wordmark" href="@LocalizedRoute.For("home")">
-            IdeaStud<span class="ds-masthead__dot">.</span>io
+    <nav class="ds-masthead-pill" aria-label="Main">
+        <a class="ds-masthead-wordmark" href="@LocalizedRoute.For("home")">
+            IdeaStud<span class="ds-masthead-dot">.</span>io
         </a>
 
-        <div class="ds-masthead__nav" role="menubar">
+        <div class="ds-masthead-nav" role="menubar">
             <a role="menuitem" href="@LocalizedRoute.For("services.hub")">@servicesText</a>
             <a role="menuitem" href="@LocalizedRoute.For("realisations")">@realisationsText</a>
             <a role="menuitem" href="@LocalizedRoute.For("about")">@aboutText</a>
+            <a role="menuitem" href="@LocalizedRoute.For("blog")">@blogText</a>
             <a role="menuitem" href="@LocalizedRoute.For("cv")">@cvText</a>
         </div>
 
-        <button class="ds-masthead__theme" type="button"
+        <button class="ds-masthead-theme" type="button"
                 aria-label="@themeToggleLabel"
                 title="@themeToggleLabel"
                 aria-pressed="@(theme == "light" ? "true" : "false")"
@@ -27,14 +28,14 @@
 
         <CultureSelector />
 
-        <a class="ds-masthead__cta"
+        <a class="ds-masthead-cta"
            href="https://calendly.com/andres-talavera/30min"
            target="_blank" rel="noopener"
            aria-label="@bookCallAriaText">
             @meetText <span aria-hidden="true">↗</span>
         </a>
 
-        <button class="ds-masthead__toggle" type="button"
+        <button class="ds-masthead-toggle" type="button"
                 aria-label="@(isMobileOpen ? closeMenuText : openMenuText)"
                 aria-expanded="@(isMobileOpen ? "true" : "false")"
                 aria-controls="ds-mobile-nav"
@@ -45,13 +46,14 @@
 
     @if (isMobileOpen)
     {
-        <button class="ds-masthead__backdrop" type="button" aria-hidden="true" @onclick="CloseMobileMenu"></button>
-        <nav id="ds-mobile-nav" class="ds-masthead__mobile" aria-label="Mobile">
+        <button class="ds-masthead-backdrop" type="button" aria-hidden="true" @onclick="CloseMobileMenu"></button>
+        <nav id="ds-mobile-nav" class="ds-masthead-mobile" aria-label="Mobile">
             <a href="@LocalizedRoute.For("services.hub")" @onclick="CloseMobileMenu">@servicesText</a>
             <a href="@LocalizedRoute.For("realisations")" @onclick="CloseMobileMenu">@realisationsText</a>
             <a href="@LocalizedRoute.For("about")" @onclick="CloseMobileMenu">@aboutText</a>
+            <a href="@LocalizedRoute.For("blog")" @onclick="CloseMobileMenu">@blogText</a>
             <a href="@LocalizedRoute.For("cv")" @onclick="CloseMobileMenu">@cvText</a>
-            <button class="ds-masthead__mobile-theme" type="button"
+            <button class="ds-masthead-mobile-theme" type="button"
                     aria-pressed="@(theme == "light" ? "true" : "false")"
                     @onclick="ToggleTheme">
                 <span>@themeToggleLabel</span>
@@ -67,6 +69,7 @@
     private string servicesText = "Services";
     private string realisationsText = "Projects";
     private string aboutText = "About";
+    private string blogText = "Blog";
     private string cvText = "Resume";
     private string meetText = "Meet";
     private string bookCallAriaText = "Book a 30-minute call on Calendly (opens in a new tab)";
@@ -82,6 +85,7 @@
         servicesText = LocalizationService.GetString("Nav.Services");
         realisationsText = LocalizationService.GetString("Nav.Realisations");
         aboutText = LocalizationService.GetString("Nav.About");
+        blogText = LocalizationService.GetString("Nav.Blog");
         cvText = LocalizationService.GetString("Nav.Cv");
         meetText = LocalizationService.GetString("Nav.Meet");
         toLightText = LocalizationService.GetString("Theme.ToLight");

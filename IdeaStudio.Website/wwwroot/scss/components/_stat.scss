@@ -14,7 +14,7 @@
               c.$gradient-iridescent border-box;
   border: 1px solid transparent;
 
-  &__label {
+  &-label {
     font-family: t.$font-mono;
     font-size: t.$fs-mono;
     color: c.$fg-muted;
@@ -22,7 +22,7 @@
     text-transform: uppercase;
   }
 
-  &__value {
+  &-value {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-subtitle;
@@ -31,10 +31,7 @@
   }
 }
 
-.ds-resume-band__stats {
-  margin-block-start: s.$s-6;
-}
-
-.ds-resume-band__cta {
+// (.ds-resume-band-stats is now `mt-8`.)
+.ds-resume-band-cta {
   margin-block-start: s.$s-6;
 }

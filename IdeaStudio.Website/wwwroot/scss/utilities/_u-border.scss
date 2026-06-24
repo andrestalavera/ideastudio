@@ -1,0 +1,26 @@
+// utilities/_u-border.scss — border width/style + radius.
+// .border carries a default themed color (var(--rule)); the border-{color}
+// utilities in _u-color load AFTER this file and override it when present.
+
+@use '../tokens/colors' as c;
+
+// All-sides border. Default 1px solid rule — the ubiquitous hairline.
+.border   { border: 1px solid c.$rule; }
+.border-2 { border: 2px solid c.$rule; }
+.border-0 { border-width: 0; }
+
+// Single-side hairlines (logical → LTR/RTL safe). Color overridable via border-*.
+.border-t { border-block-start: 1px solid c.$rule; }
+.border-b { border-block-end: 1px solid c.$rule; }
+.border-l { border-inline-start: 1px solid c.$rule; }
+.border-r { border-inline-end: 1px solid c.$rule; }
+
+// Radius
+.rounded-none { border-radius: 0; }
+.rounded-sm   { border-radius: 0.25rem; }
+.rounded-md   { border-radius: 0.5rem; }
+.rounded-lg   { border-radius: 0.625rem; }
+.rounded-xl   { border-radius: 0.75rem; }   // 12px — cards, panels
+.rounded-2xl  { border-radius: 1rem; }
+.rounded-3xl  { border-radius: 1.5rem; }
+.rounded-full { border-radius: 999px; }      // pills, avatars

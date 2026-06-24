@@ -15,28 +15,9 @@
   font-size: t.$fs-mono;
   border-block-start: 1px solid c.$rule;
 
-  &__inner {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: s.$s-6;
-    max-width: 1200px;
-    margin-inline: auto;
-  }
+  // (Footer grid + columns are now utilities in the markup.)
 
-  @media (max-width: 64rem) {
-    &__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-  @media (max-width: 40rem) {
-    &__inner { grid-template-columns: 1fr; }
-  }
-
-  &__col {
-    display: flex;
-    flex-direction: column;
-    gap: s.$s-2;
-  }
-
-  &__label {
+  &-label {
     color: c.$ir-duck;
     letter-spacing: t.$ls-kicker;
     text-transform: uppercase;
@@ -51,7 +32,7 @@
   }
 }
 
-.ds-footer__link-btn {
+.ds-footer-link-btn {
   appearance: none;
   background: none;
   border: 0;

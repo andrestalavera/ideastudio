@@ -17,7 +17,7 @@
   scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
 
-  &__label {
+  &-label {
     font-family: t.$font-mono;
     font-size: t.$fs-mono;
     color: c.$fg-muted;

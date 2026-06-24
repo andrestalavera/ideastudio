@@ -2,7 +2,7 @@
 // Writes two things on <html>:
 //   - data-hero-state: 'hero' | 'morphing' | 'pill'  (discrete state)
 //   - --hero-progress: 0..1                           (continuous progress)
-// Pure CSS on .ds-hero__inner and .ds-masthead__pill renders the motion.
+// Pure CSS on .ds-hero-inner and .ds-masthead-pill renders the motion.
 
 let rafQueued = false;
 let lastProgress = 0;

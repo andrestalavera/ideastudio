@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
 
-  &__row {
+  &-row {
     display: grid;
     grid-template-columns: minmax(140px, 200px) 1fr;
     gap: s.$s-7;
@@ -32,7 +32,7 @@
     }
   }
 
-  &__year {
+  &-year {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: clamp(2.4rem, 5vw, 4.5rem);
@@ -48,19 +48,19 @@
     }
   }
 
-  &__row.is-active .ds-timeline__year {
+  &-row.is-active .ds-timeline-year {
     color: c.$ir-duck;
     text-shadow: 0 0 32px rgba(0, 194, 212, 0.35);
   }
 
-  &__period {
+  &-period {
     font-family: t.$font-mono;
     font-size: t.$fs-mono;
     color: c.$fg-muted;
     margin-block-start: s.$s-2;
   }
 
-  &__role {
+  &-role {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-title;
@@ -69,7 +69,7 @@
     color: c.$fg;
   }
 
-  &__company {
+  &-company {
     font-family: t.$font-mono;
     font-size: t.$fs-mono;
     color: c.$ir-duck;
@@ -78,7 +78,7 @@
     margin-block-start: s.$s-2;
   }
 
-  &__paragraphs {
+  &-paragraphs {
     display: flex;
     flex-direction: column;
     gap: s.$s-3;
@@ -87,7 +87,7 @@
     margin-block-start: s.$s-4;
   }
 
-  &__tags {
+  &-tags {
     display: flex;
     flex-wrap: wrap;
     gap: s.$s-1;

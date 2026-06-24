@@ -12,7 +12,7 @@
   transition: color 180ms var(--ease-out),
               border-color 180ms var(--ease-out);
 
-  &__arrow {
+  &-arrow {
     display: inline-block;
     transition: transform 180ms var(--ease-out);
   }
@@ -21,7 +21,7 @@
     color: c.$ir-duck;
     border-block-end-color: c.$ir-duck;
 
-    .ds-link__arrow {
+    .ds-link-arrow {
       transform: translateX(0.25em);
     }
   }

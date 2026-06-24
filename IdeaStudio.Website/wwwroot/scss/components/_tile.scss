@@ -10,8 +10,10 @@
   gap: s.$s-3;
   color: c.$fg;
   text-decoration: none;
+  // epic.net-style lively card: the whole tile lifts on hover.
+  transition: transform 320ms var(--ease-out);
 
-  &__media {
+  &-media {
     position: relative;
     aspect-ratio: 16 / 10;
     border-radius: 12px;
@@ -27,7 +29,7 @@
 
     // No screenshot (e.g. private platform) — a branded, text-forward panel
     // instead of an empty box.
-    &--placeholder {
+    &-placeholder {
       display: grid;
       place-items: center;
       background:
@@ -37,7 +39,7 @@
     }
   }
 
-  &__placeholder-mark {
+  &-placeholder-mark {
     font-family: t.$font-mono;
     font-weight: 700;
     font-size: clamp(2.5rem, 6vw, 4rem);
@@ -46,7 +48,7 @@
     opacity: 0.9;
   }
 
-  &__badge {
+  &-badge {
     position: absolute;
     inset-block-start: s.$s-3;
     inset-inline-start: s.$s-3;
@@ -62,7 +64,7 @@
     text-transform: uppercase;
   }
 
-  &__meta {
+  &-meta {
     display: flex;
     gap: s.$s-3;
     font-family: t.$font-mono;
@@ -71,7 +73,7 @@
     letter-spacing: 0.05em;
   }
 
-  &__title {
+  &-title {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-subtitle;
@@ -81,7 +83,7 @@
     transition: color 240ms var(--ease-out);
   }
 
-  &__summary {
+  &-summary {
     font-size: t.$fs-body;
     color: c.$fg-muted;
     margin: 0;
@@ -91,7 +93,7 @@
     overflow: hidden;
   }
 
-  &__tags {
+  &-tags {
     display: flex;
     flex-wrap: wrap;
     gap: s.$s-1;
@@ -99,7 +101,17 @@
   }
 
   &:hover {
-    .ds-tile__media img { transform: scale(1.035); }
-    .ds-tile__title { color: c.$ir-duck; }
+    transform: translateY(-6px);
+
+    .ds-tile-media {
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    }
+    .ds-tile-media img { transform: scale(1.05); }
+    .ds-tile-title { color: c.$ir-duck; }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-tile { transition: none; }
+  .ds-tile:hover { transform: none; }
 }

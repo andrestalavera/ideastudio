@@ -20,7 +20,7 @@
 {
     <Hero Kicker="404" Title="@notFoundTitle" Lead="@notFoundLead">
         <Actions>
-            <a class="ds-btn ds-btn--primary" href="@LocalizedRoute.For("services.hub")">
+            <a class="ds-btn ds-btn-primary" href="@LocalizedRoute.For("services.hub")">
                 @backText <span aria-hidden="true">→</span>
             </a>
         </Actions>
@@ -31,8 +31,8 @@ else
     <Hero Kicker="@service.Kicker" Title="@service.Title" Lead="@service.Tagline" />
 
     @* Summary *@
-    <section class="ds-section">
-        <div class="ds-container ds-container--narrow">
+    <section class="py-section relative">
+        <div class="mx-auto w-full max-w-narrow px-6">
             <p class="ds-lead" data-reveal>@service.Summary</p>
         </div>
     </section>
@@ -40,14 +40,14 @@ else
     @* Highlights *@
     @if (service.Highlights is { Count: > 0 })
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container ds-container--narrow">
+        <section class="py-chapter relative section-rule">
+            <div class="mx-auto w-full max-w-narrow px-6">
                 <ChapterBand Kicker="@highlightsKicker" Title="@highlightsTitle" />
                 <ul class="ds-highlight-list" style="margin-block-start: 2rem;">
                     @for (int i = 0; i < service.Highlights.Count; i++)
                     {
                         <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
-                            <span class="ds-highlight__mark" aria-hidden="true"></span>
+                            <span class="ds-highlight-mark" aria-hidden="true"></span>
                             <span>@service.Highlights[i]</span>
                         </li>
                     }
@@ -59,16 +59,16 @@ else
     @* Use cases *@
     @if (service.UseCases is { Count: > 0 })
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
+        <section class="py-chapter relative section-rule">
+            <div class="mx-auto w-full max-w-content px-6">
                 <ChapterBand Kicker="@useCaseKicker" Title="@useCaseTitle" />
-                <div class="ds-grid ds-grid--2" style="margin-block-start: 2.5rem;">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" style="margin-block-start: 2.5rem;">
                     @for (int i = 0; i < service.UseCases.Count; i++)
                     {
                         UseCase uc = service.UseCases[i];
-                        <div class="ds-card" data-reveal style="@($"--reveal-step:{i}")">
-                            <h3 class="ds-card__title">@uc.Title</h3>
-                            <p class="ds-card__body">@uc.Description</p>
+                        <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
+                            <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@uc.Title</h3>
+                            <p class="text-base leading-relaxed text-muted m-0">@uc.Description</p>
                         </div>
                     }
                 </div>
@@ -79,8 +79,8 @@ else
     @* Training centres (formateur only), shared editorial block with the CV page *@
     @if (IsTrainerService(service) && centers.Count > 0)
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
+        <section class="py-chapter relative section-rule">
+            <div class="mx-auto w-full max-w-content px-6">
                 <ChapterBand Kicker="@centersKicker" Title="@centersTitle" />
                 <p class="ds-lead" data-reveal style="margin-block-start: 1.5rem;">@centersIntro</p>
                 <div style="margin-block-start: 2rem;">
@@ -93,8 +93,8 @@ else
     @* FAQ, expanded editorial Q&A *@
     @if (service.Faq is { Count: > 0 })
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container ds-container--narrow">
+        <section class="py-chapter relative section-rule">
+            <div class="mx-auto w-full max-w-narrow px-6">
                 <ChapterBand Kicker="@faqKicker" Title="@faqTitle" />
                 <div style="margin-block-start: 2.5rem;">
                     @for (int i = 0; i < service.Faq.Count; i++)
@@ -110,8 +110,8 @@ else
     @* Training catalogue (formateur only) *@
     @if (IsTrainerService(service) && trainings is { Count: > 0 })
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
+        <section class="py-chapter relative section-rule">
+            <div class="mx-auto w-full max-w-content px-6">
                 <ChapterBand Kicker="@catalogueKicker" Title="@catalogueTitle" />
                 <TrainingCatalogue Trainings="@trainings" />
             </div>

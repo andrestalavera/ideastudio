@@ -15,7 +15,7 @@
     border-block-start: 1px solid c.$rule;
   }
 
-  &__kicker {
+  &-kicker {
     font-family: t.$font-mono;
     font-size: t.$fs-mono;
     color: c.$ir-duck;
@@ -23,7 +23,7 @@
     text-transform: uppercase;
   }
 
-  &__question {
+  &-question {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-subtitle;
@@ -32,7 +32,7 @@
     margin: 0;
   }
 
-  &__answer {
+  &-answer {
     font-family: t.$font-sans;
     font-size: t.$fs-lead;
     line-height: 1.55;

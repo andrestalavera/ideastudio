@@ -20,7 +20,7 @@
   container-type: inline-size;
   container-name: masthead;
 
-  &__pill {
+  &-pill {
     display: flex;
     align-items: center;
     gap: s.$s-4;
@@ -40,17 +40,17 @@
     transform: none;
   }
 
-  &__wordmark {
+  &-wordmark {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-small;
     letter-spacing: -0.01em;
     color: c.$fg;
 
-    .ds-masthead__dot { color: c.$ir-duck; }
+    .ds-masthead-dot { color: c.$ir-duck; }
   }
 
-  &__nav {
+  &-nav {
     display: flex;
     gap: s.$s-4;
     font-family: t.$font-sans;
@@ -67,7 +67,7 @@
     }
   }
 
-  &__cta {
+  &-cta {
     padding-inline: s.$s-4;
     padding-block: s.$s-2;
     background: c.$ir-duck;
@@ -82,7 +82,7 @@
     }
   }
 
-  &__toggle {
+  &-toggle {
     display: none;
     align-items: center;
     justify-content: center;
@@ -103,7 +103,7 @@
   }
 
   // Light/dark theme toggle — always visible in the pill.
-  &__theme {
+  &-theme {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -126,7 +126,7 @@
     }
   }
 
-  &__backdrop {
+  &-backdrop {
     position: fixed;
     inset: 0;
     z-index: 80;
@@ -139,7 +139,7 @@
     pointer-events: auto;
   }
 
-  &__mobile {
+  &-mobile {
     position: fixed;
     inset-block-start: calc(#{s.$s-4} + 3.5rem);
     inset-inline: s.$s-4;
@@ -193,13 +193,13 @@ html {
 
 // Container-query compacting.
 @container masthead (max-width: 40rem) {
-  .ds-masthead__nav { display: none; }
-  .ds-masthead__theme { display: none; }   // moves into the mobile menu
-  .ds-masthead__toggle { display: inline-flex; }
+  .ds-masthead-nav { display: none; }
+  .ds-masthead-theme { display: none; }   // moves into the mobile menu
+  .ds-masthead-toggle { display: inline-flex; }
 }
 
 // Theme row inside the mobile dropdown — styled like the mobile nav links.
-.ds-masthead__mobile-theme {
+.ds-masthead-mobile-theme {
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -2,8 +2,8 @@
    Used on every page except Home (Home does its own per-char hero). *@
 
 <section class="ds-hero">
-    <div class="ds-container">
-        <div class="ds-hero__inner ds-rhythm">
+    <div class="mx-auto w-full max-w-content px-6">
+        <div class="ds-hero-inner ds-rhythm">
             @if (!string.IsNullOrWhiteSpace(Kicker))
             {
                 <p class="ds-kicker" data-reveal style="--reveal-step: 0">@Kicker</p>
@@ -24,7 +24,7 @@
             }
             @if (Actions is not null)
             {
-                <div class="ds-hero__actions" data-reveal style="--reveal-step: 3">
+                <div class="ds-hero-actions" data-reveal style="--reveal-step: 3">
                     @Actions
                 </div>
             }

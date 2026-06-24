@@ -20,7 +20,7 @@
          SpeakableSelectors="@speakable" />
 
 @* Always-visible floating CTA so the PDF is never more than one click away. *@
-<a class="ds-btn ds-btn--primary"
+<a class="ds-btn ds-btn-primary"
    href="@downloadUrl"
    target="_blank" rel="noopener"
    aria-label="@downloadText"
@@ -36,12 +36,12 @@
         @heroText
     </ChildContent>
     <Actions>
-        <div class="ds-row">
-            <a class="ds-btn ds-btn--primary" href="@downloadUrl" target="_blank" rel="noopener">
+        <div class="flex flex-row items-center gap-3 flex-wrap">
+            <a class="ds-btn ds-btn-primary" href="@downloadUrl" target="_blank" rel="noopener">
                 @downloadText <span aria-hidden="true">↓</span>
             </a>
         </div>
-        <div class="ds-row" style="margin-block-start: 1rem;">
+        <div class="flex flex-row items-center gap-3 flex-wrap" style="margin-block-start: 1rem;">
             @if (resume?.PersonalInformation?.Languages is not null)
             {
                 foreach (KeyValuePair<string, string> lang in resume.PersonalInformation.Languages)
@@ -54,22 +54,22 @@
 </Hero>
 
 @* 2 · About *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
+<section class="py-chapter relative section-rule">
+    <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@chapterTwo" Title="@aboutTitle" />
-        <div class="ds-grid ds-grid--3" style="margin-block-start: 3rem;">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" style="margin-block-start: 3rem;">
             @if (resume?.AboutSections is not null)
             {
                 int i = 0;
                 foreach (AboutSection s in resume.AboutSections)
                 {
-                    <div class="ds-card" data-reveal style="@($"--reveal-step:{i}")">
-                        <h3 class="ds-card__title">@s.Title</h3>
+                    <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
+                        <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@s.Title</h3>
                         @if (s.Paragraphs is not null)
                         {
                             foreach (string p in s.Paragraphs)
                             {
-                                <p class="ds-card__body">@p</p>
+                                <p class="text-base leading-relaxed text-muted m-0">@p</p>
                             }
                         }
                     </div>
@@ -81,8 +81,8 @@
 </section>
 
 @* 3 · Experiences *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
+<section class="py-chapter relative section-rule">
+    <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@chapterThree" Title="@xpTitle" />
         <div style="margin-block-start: 3rem;">
             <Timeline Experiences="@resume?.Experiences" />
@@ -93,10 +93,10 @@
 @* 3b · Clients *@
 @if (clients.Count > 0)
 {
-    <section class="ds-section ds-section--chapter ds-section--bordered">
-        <div class="ds-container">
+    <section class="py-chapter relative section-rule">
+        <div class="mx-auto w-full max-w-content px-6">
             <ChapterBand Kicker="@clientsKicker" Title="@clientsTitle" />
-            <div class="ds-chapter-gap">
+            <div class="mt-chapter">
                 <LogoWall Items="@clients" />
             </div>
         </div>
@@ -104,8 +104,8 @@
 }
 
 @* 4 · Formations *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
+<section class="py-chapter relative section-rule">
+    <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@chapterFour" Title="@trainTitle" />
         <p class="ds-lead" data-reveal style="margin-block-start: 1.5rem;">@trainIntro</p>
         <div style="margin-block-start: 2rem;">
@@ -115,37 +115,37 @@
 </section>
 
 @* 5 · Contact *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
+<section class="py-chapter relative section-rule">
+    <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@chapterFive" Title="@contactTitle" />
-        <div class="ds-grid ds-grid--3" style="margin-block-start: 2.5rem;">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" style="margin-block-start: 2.5rem;">
             @if (resume?.PersonalInformation is { } pi)
             {
                 @if (!string.IsNullOrWhiteSpace(pi.Email))
                 {
-                    <div class="ds-card" data-reveal style="--reveal-step: 0">
-                        <div class="ds-card__title">Email</div>
-                        <a class="ds-link" href="mailto:@pi.Email">@pi.Email <span class="ds-link__arrow">→</span></a>
+                    <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="--reveal-step: 0">
+                        <div class="font-sans font-semibold text-subtitle text-fg m-0">Email</div>
+                        <a class="ds-link" href="mailto:@pi.Email">@pi.Email <span class="ds-link-arrow">→</span></a>
                     </div>
                 }
                 @if (!string.IsNullOrWhiteSpace(pi.LinkedIn))
                 {
-                    <div class="ds-card" data-reveal style="--reveal-step: 1">
-                        <div class="ds-card__title">LinkedIn</div>
-                        <a class="ds-link" href="@($"https://www.linkedin.com/in/{pi.LinkedIn}/")" target="_blank" rel="noopener">@pi.LinkedIn <span class="ds-link__arrow">↗</span></a>
+                    <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="--reveal-step: 1">
+                        <div class="font-sans font-semibold text-subtitle text-fg m-0">LinkedIn</div>
+                        <a class="ds-link" href="@($"https://www.linkedin.com/in/{pi.LinkedIn}/")" target="_blank" rel="noopener">@pi.LinkedIn <span class="ds-link-arrow">↗</span></a>
                     </div>
                 }
                 @if (!string.IsNullOrWhiteSpace(pi.GitHub))
                 {
-                    <div class="ds-card" data-reveal style="--reveal-step: 2">
-                        <div class="ds-card__title">GitHub</div>
-                        <a class="ds-link" href="@($"https://github.com/{pi.GitHub}")" target="_blank" rel="noopener">@pi.GitHub <span class="ds-link__arrow">↗</span></a>
+                    <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="--reveal-step: 2">
+                        <div class="font-sans font-semibold text-subtitle text-fg m-0">GitHub</div>
+                        <a class="ds-link" href="@($"https://github.com/{pi.GitHub}")" target="_blank" rel="noopener">@pi.GitHub <span class="ds-link-arrow">↗</span></a>
                     </div>
                 }
             }
         </div>
-        <div class="ds-contact__cta" data-reveal style="--reveal-step: 3">
-            <a class="ds-btn ds-btn--primary"
+        <div class="ds-contact-cta" data-reveal style="--reveal-step: 3">
+            <a class="ds-btn ds-btn-primary"
                href="https://calendly.com/andres-talavera/30min"
                target="_blank" rel="noopener">
                 @bookText <span aria-hidden="true">→</span>

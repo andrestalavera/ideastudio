@@ -15,7 +15,7 @@
 .ds-faq-item {
   border-block-end: 1px solid c.$rule;
 
-  &__q {
+  &-q {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -35,7 +35,7 @@
   }
 
   // Plus → minus affordance, two bars; the vertical bar collapses when open.
-  &__icon {
+  &-icon {
     position: relative;
     flex: none;
     inline-size: 1rem;
@@ -58,12 +58,12 @@
     &::after { transform: translateY(-50%) rotate(90deg); }
   }
 
-  &[open] &__icon::after {
+  &[open] &-icon::after {
     transform: translateY(-50%) rotate(0deg);
     opacity: 0;
   }
 
-  &__a {
+  &-a {
     padding-block-end: s.$s-5;
 
     p {
@@ -77,7 +77,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .ds-faq-item[open] .ds-faq-item__a {
+  .ds-faq-item[open] .ds-faq-item-a {
     animation: ds-faq-reveal 260ms var(--ease-out) both;
   }
 }

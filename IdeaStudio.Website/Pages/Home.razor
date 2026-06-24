@@ -25,20 +25,20 @@
    at display scale, kicker pinned vertically to the right rail as an
    orientation marker, lead offset right beneath the name. Per-character
    reveal preserved; --hero-progress scroll morph preserved. *@
-<div class="ds-page--home">
-<section class="ds-hero ds-hero--home">
-    <div class="ds-container ds-container--wide">
-        <div class="ds-hero__inner">
-            <div class="ds-hero__identity" data-reveal style="--reveal-step: 0">
-                <img class="ds-hero__avatar" src="images/andres-talavera.jpeg"
+<div class="ds-page-home">
+<section class="ds-hero ds-hero-home">
+    <div class="mx-auto w-full max-w-wide px-6">
+        <div class="ds-hero-inner">
+            <div class="ds-hero-identity" data-reveal style="--reveal-step: 0">
+                <img class="ds-hero-avatar" src="images/andres-talavera.jpeg"
                      alt="@avatarAlt" width="800" height="800" fetchpriority="high" decoding="async" />
-                <p class="ds-kicker ds-hero__kicker">@kicker</p>
+                <p class="ds-kicker ds-hero-kicker">@kicker</p>
             </div>
-            <RevealChars Text="Andrés Talavera" Tag="h1" Class="ds-display ds-hero__name">
-                <span class="ds-display__accent" aria-hidden="true">.</span>
+            <RevealChars Text="Andrés Talavera" Tag="h1" Class="ds-display ds-hero-name">
+                <span class="ds-display-accent" aria-hidden="true">.</span>
             </RevealChars>
-            <p class="ds-lead ds-hero__lead" data-reveal style="--reveal-step: 2">@lead</p>
-            <div class="ds-hero__actions" data-reveal style="--reveal-step: 3">
+            <p class="ds-lead ds-hero-lead" data-reveal style="--reveal-step: 2">@lead</p>
+            <div class="ds-hero-actions" data-reveal style="--reveal-step: 3">
                 <ActionRow Label="@meetLabel" DownloadUrl="@downloadUrl" DownloadLabel="@downloadLabel" />
             </div>
         </div>
@@ -46,16 +46,16 @@
 </section>
 
 @* 2 · Why work with me, concrete, benefit-led value props *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
+<section class="py-chapter relative section-rule">
+    <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@benefitsKicker" Title="@benefitsTitle" Lead="@benefitsLead" />
-        <div class="ds-grid ds-grid--2 ds-chapter-gap">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-chapter">
             @for (int i = 0; i < benefits.Count; i++)
             {
                 (string t, string b) = benefits[i];
-                <div class="ds-card" data-reveal style="@($"--reveal-step:{i}")">
-                    <h3 class="ds-card__title">@t</h3>
-                    <p class="ds-card__body">@b</p>
+                <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
+                    <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@t</h3>
+                    <p class="text-base leading-relaxed text-muted m-0">@b</p>
                 </div>
             }
         </div>
@@ -65,8 +65,8 @@
 @* 2b · Trusted by, client logo strip (social proof) *@
 @if (clients.Count > 0)
 {
-    <section class="ds-section ds-section--bordered">
-        <div class="ds-container">
+    <section class="py-section relative section-rule">
+        <div class="mx-auto w-full max-w-content px-6">
             <p class="ds-kicker" data-reveal style="margin-block-end: 1.5rem;">@clientsKicker</p>
             <LogoWall Items="@clients" />
         </div>
@@ -76,10 +76,10 @@
 @* 2c · Testimonials, real recommendations (social proof) *@
 @if (testimonials.Count > 0)
 {
-    <section class="ds-section ds-section--chapter ds-section--bordered">
-        <div class="ds-container">
+    <section class="py-chapter relative section-rule">
+        <div class="mx-auto w-full max-w-content px-6">
             <ChapterBand Kicker="@testimonialsKicker" Title="@testimonialsTitle" />
-            <div class="ds-chapter-gap">
+            <div class="mt-chapter">
                 <Testimonials Items="@testimonials" />
             </div>
         </div>
@@ -87,10 +87,10 @@
 }
 
 @* 3 · Latest realisations, editorial zig-zag stack, not uniform rows *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
+<section class="py-chapter relative section-rule">
+    <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@realisationsKicker" Title="@realisationsTitle" />
-        <div class="ds-home__projects ds-chapter-gap">
+        <div class="ds-home-projects mt-chapter">
             @if (realisations.Count > 0)
             {
                 foreach (Realisation r in realisations.Take(3))
@@ -107,9 +107,9 @@
                 }
             }
         </div>
-        <p class="ds-chapter-gap" data-reveal>
+        <p class="mt-chapter" data-reveal>
             <a class="ds-link" href="@LocalizedRoute.For("realisations")">
-                @seeAllRealisations <span class="ds-link__arrow" aria-hidden="true">→</span>
+                @seeAllRealisations <span class="ds-link-arrow" aria-hidden="true">→</span>
             </a>
         </p>
     </div>
@@ -121,27 +121,27 @@
             LanguagesValue="FR · EN · ES" />
 
 @* 5 · About teaser, who's behind the work *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
+<section class="py-chapter relative section-rule">
+    <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@aboutKicker" Title="@aboutTitle" Lead="@aboutLead" />
-        <p class="ds-chapter-gap" data-reveal>
+        <p class="mt-chapter" data-reveal>
             <a class="ds-link" href="@LocalizedRoute.For("about")">
-                @aboutCta <span class="ds-link__arrow" aria-hidden="true">→</span>
+                @aboutCta <span class="ds-link-arrow" aria-hidden="true">→</span>
             </a>
         </p>
     </div>
 </section>
 
 @* 6 · Services *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
+<section class="py-chapter relative section-rule">
+    <div class="mx-auto w-full max-w-content px-6">
         <ChapterBand Kicker="@servicesKicker" Title="@servicesTitle" />
-        <div class="ds-chapter-gap" data-reveal>
+        <div class="mt-chapter" data-reveal>
             <EditorialList Items="@services" />
         </div>
-        <p class="ds-chapter-gap" data-reveal>
+        <p class="mt-chapter" data-reveal>
             <a class="ds-link" href="@LocalizedRoute.For("services.hub")">
-                @seeAllServices <span class="ds-link__arrow" aria-hidden="true">→</span>
+                @seeAllServices <span class="ds-link-arrow" aria-hidden="true">→</span>
             </a>
         </p>
     </div>

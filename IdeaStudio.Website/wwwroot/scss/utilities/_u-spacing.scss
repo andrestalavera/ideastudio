@@ -1,0 +1,65 @@
+// utilities/_u-spacing.scss — padding, margin, gap from the $space scale.
+// Logical-property aware: px/py map to padding-inline/-block, mx/my to margin
+// -inline/-block (matches the RTL-safe authoring used across the old system).
+// Responsive variants (sm:/md:/lg:/xl:) are generated for the families layout
+// actually flexes on: gap, padding, vertical margin.
+
+@use 'sass:map';
+@use '../tokens/space' as s;
+
+// Base (all-breakpoint) families.
+@each $k, $v in s.$space {
+  // padding
+  .p-#{$k}  { padding: $v; }
+  .px-#{$k} { padding-inline: $v; }
+  .py-#{$k} { padding-block: $v; }
+  .pt-#{$k} { padding-block-start: $v; }
+  .pb-#{$k} { padding-block-end: $v; }
+  .pl-#{$k} { padding-inline-start: $v; }
+  .pr-#{$k} { padding-inline-end: $v; }
+
+  // margin
+  .m-#{$k}  { margin: $v; }
+  .mx-#{$k} { margin-inline: $v; }
+  .my-#{$k} { margin-block: $v; }
+  .mt-#{$k} { margin-block-start: $v; }
+  .mb-#{$k} { margin-block-end: $v; }
+  .ml-#{$k} { margin-inline-start: $v; }
+  .mr-#{$k} { margin-inline-end: $v; }
+
+  // gap
+  .gap-#{$k}   { gap: $v; }
+  .gap-x-#{$k} { column-gap: $v; }
+  .gap-y-#{$k} { row-gap: $v; }
+}
+
+// Fluid section/chapter rhythm (replace .ds-section padding + .ds-chapter-gap).
+.py-section { padding-block: s.$py-section; }
+.py-chapter { padding-block: s.$py-chapter; }
+.mt-chapter { margin-block-start: clamp(2rem, 4vw, 3rem); }
+
+// Auto margins (centering / pushing) — not part of the numeric scale.
+.m-auto  { margin: auto; }
+.mx-auto { margin-inline: auto; }
+.my-auto { margin-block: auto; }
+.mt-auto { margin-block-start: auto; }
+.mb-auto { margin-block-end: auto; }
+.ml-auto { margin-inline-start: auto; }
+.mr-auto { margin-inline-end: auto; }
+
+// Responsive subset.
+@mixin spacing-responsive($p) {
+  @each $k, $v in s.$space {
+    .#{$p}gap-#{$k} { gap: $v; }
+    .#{$p}p-#{$k}   { padding: $v; }
+    .#{$p}px-#{$k}  { padding-inline: $v; }
+    .#{$p}py-#{$k}  { padding-block: $v; }
+    .#{$p}pt-#{$k}  { padding-block-start: $v; }
+    .#{$p}pb-#{$k}  { padding-block-end: $v; }
+    .#{$p}mt-#{$k}  { margin-block-start: $v; }
+    .#{$p}mb-#{$k}  { margin-block-end: $v; }
+  }
+}
+@each $bp, $min in s.$breakpoints {
+  @media (min-width: $min) { @include spacing-responsive('#{$bp}\\:'); }
+}

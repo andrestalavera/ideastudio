@@ -11,7 +11,7 @@
     string lang = fr ? "fr" : "en";
 }
 
-<div class="ds-grid ds-grid--2 ds-testimonials">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
     @for (int i = 0; i < Items.Count; i++)
     {
         Testimonial t = Items[i];
@@ -19,17 +19,17 @@
         string? context = fr ? t.ContextFr : t.ContextEn;
         bool translated = !string.Equals(t.OriginalLang, lang, StringComparison.OrdinalIgnoreCase);
         <figure class="ds-testimonial" data-reveal style="@($"--reveal-step:{i}")">
-            <blockquote class="ds-testimonial__quote">@quote</blockquote>
+            <blockquote class="ds-testimonial-quote">@quote</blockquote>
             @if (translated)
             {
-                <span class="ds-testimonial__translated">@TranslatedNote(fr, t.OriginalLang)</span>
+                <span class="ds-testimonial-translated">@TranslatedNote(fr, t.OriginalLang)</span>
             }
-            <figcaption class="ds-testimonial__by">
-                <span class="ds-testimonial__name">@t.Name</span>
-                <span class="ds-testimonial__role">@t.Role</span>
+            <figcaption class="ds-testimonial-by">
+                <span class="ds-testimonial-name">@t.Name</span>
+                <span class="ds-testimonial-role">@t.Role</span>
                 @if (!string.IsNullOrWhiteSpace(context))
                 {
-                    <span class="ds-testimonial__context">@context</span>
+                    <span class="ds-testimonial-context">@context</span>
                 }
             </figcaption>
         </figure>

@@ -4,9 +4,7 @@
 @use '../tokens/space' as s;
 @use '../tokens/type' as t;
 
-.ds-testimonials {
-  align-items: start;
-}
+// (.ds-testimonials grid alignment is now `items-start`.)
 
 .ds-testimonial {
   margin: 0;
@@ -27,14 +25,14 @@
     color: c.$ir-duck;
   }
 
-  &__quote {
+  &-quote {
     margin: 0;
     font-size: t.$fs-lead;
     line-height: 1.6;
     color: c.$fg;
   }
 
-  &__by {
+  &-by {
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
@@ -42,26 +40,26 @@
     padding-block-start: s.$s-2;
   }
 
-  &__name {
+  &-name {
     font-family: t.$font-sans;
     font-weight: 600;
     color: c.$fg;
   }
 
-  &__role {
+  &-role {
     font-family: t.$font-mono;
     font-size: t.$fs-mono;
     letter-spacing: 0.04em;
     color: c.$ir-duck;
   }
 
-  &__context {
+  &-context {
     font-size: t.$fs-small;
     color: c.$fg-muted;
   }
 
   // "Translated from …" marker — clarifies a quote isn't in its original language.
-  &__translated {
+  &-translated {
     align-self: flex-start;
     font-family: t.$font-mono;
     font-size: t.$fs-mono;

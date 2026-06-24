@@ -1,0 +1,82 @@
+// utilities/_u-text.scss — typography utilities.
+//
+// The editorial FLUID sizes (display/hero/title/subtitle/lead) bundle their
+// canonical line-height + letter-spacing, because those three always travel
+// together in this design — the same way Tailwind's text-* ships a default
+// leading. They remain single-class utilities (no element/modifier nesting),
+// just opinionated ones, which keeps markup readable and the look intact.
+// Weight stays separate (font-*) since it varies per use.
+
+@use '../tokens/type' as t;
+
+// --- Semantic fluid sizes (replace .ds-display / .ds-title / .ds-lead …) ----
+.text-display  { font-size: t.$fs-display;  line-height: t.$lh-display; letter-spacing: t.$ls-display; }
+.text-hero     { font-size: t.$fs-hero;     line-height: t.$lh-title;   letter-spacing: t.$ls-title; }
+.text-title    { font-size: t.$fs-title;    line-height: t.$lh-title;   letter-spacing: t.$ls-title; }
+.text-subtitle { font-size: t.$fs-subtitle; line-height: t.$lh-title;   letter-spacing: -0.015em; }
+.text-lead     { font-size: t.$fs-lead;     line-height: 1.5; }
+
+// --- Fixed scale (UI text) --------------------------------------------------
+.text-mono  { font-size: t.$fs-mono; }
+.text-xs    { font-size: 0.75rem; }
+.text-sm    { font-size: t.$fs-small; }   // .875rem
+.text-base  { font-size: t.$fs-body; }    // 1rem
+.text-lg    { font-size: 1.125rem; }
+.text-xl    { font-size: 1.25rem; }
+.text-2xl   { font-size: 1.5rem; }
+.text-3xl   { font-size: 1.875rem; }
+.text-4xl   { font-size: 2.25rem; }
+
+// --- Weight -----------------------------------------------------------------
+.font-normal   { font-weight: 400; }
+.font-medium   { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold     { font-weight: 700; }
+
+// --- Family -----------------------------------------------------------------
+.font-sans { font-family: t.$font-sans; }
+.font-mono { font-family: t.$font-mono; }
+
+// --- Line height ------------------------------------------------------------
+.leading-none    { line-height: 1; }
+.leading-display { line-height: t.$lh-display; }
+.leading-tight   { line-height: t.$lh-title; }
+.leading-snug    { line-height: 1.2; }
+.leading-normal  { line-height: 1.45; }
+.leading-relaxed { line-height: t.$lh-body; }
+
+// --- Letter spacing ---------------------------------------------------------
+.tracking-tighter { letter-spacing: t.$ls-display; }
+.tracking-tight   { letter-spacing: t.$ls-title; }
+.tracking-snug    { letter-spacing: -0.015em; }
+.tracking-normal  { letter-spacing: 0; }
+.tracking-wide    { letter-spacing: 0.04em; }
+.tracking-kicker  { letter-spacing: t.$ls-kicker; }
+
+// --- Transform / style ------------------------------------------------------
+.uppercase   { text-transform: uppercase; }
+.lowercase   { text-transform: lowercase; }
+.capitalize  { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+.italic      { font-style: italic; }
+.not-italic  { font-style: normal; }
+
+// --- Decoration -------------------------------------------------------------
+.underline      { text-decoration-line: underline; }
+.no-underline   { text-decoration-line: none; }
+.line-through   { text-decoration-line: line-through; }
+
+// --- Wrapping / overflow ----------------------------------------------------
+.text-balance     { text-wrap: balance; }
+.text-pretty      { text-wrap: pretty; }
+.whitespace-nowrap { white-space: nowrap; }
+.whitespace-normal { white-space: normal; }
+.break-words      { overflow-wrap: anywhere; }
+.truncate         { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+// --- Lists ------------------------------------------------------------------
+.list-none    { list-style: none; }
+.list-disc    { list-style: disc; }
+.list-inside  { list-style-position: inside; }

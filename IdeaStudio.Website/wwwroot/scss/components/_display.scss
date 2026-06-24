@@ -16,7 +16,7 @@
   // breathe to read as "alive" without competing with the per-char reveal.
   // This is the only perpetual loop on the home hero — selective, not
   // pervasive — and obeys prefers-reduced-motion below.
-  .ds-display__accent {
+  .ds-display-accent {
     color: c.$ir-duck;
     display: inline-block;
     transform-origin: 50% 80%;
@@ -31,7 +31,7 @@
 }
 
 // Per-character reveal driven by parent state. The host carries [data-reveal]
-// + aria-label; each .ds-reveal-chars__char transitions opacity + translateY
+// + aria-label; each .ds-reveal-chars-char transitions opacity + translateY
 // with a staggered delay via --i. Reversible: scrolling the host out of view
 // plays the chars OUT in the same wave, so exits mirror entrances.
 .ds-reveal-chars {
@@ -48,11 +48,11 @@
 
   // Word wrapper: keeps a word's per-char inline-blocks bound together so the
   // browser can only wrap on the literal spaces between words.
-  &__word {
+  &-word {
     white-space: nowrap;
   }
 
-  &__char {
+  &-char {
     display: inline-block;
     opacity: 0;
     transform: translateY(0.45em);
@@ -62,20 +62,20 @@
     will-change: opacity, transform;
   }
 
-  &.is-revealed &__char {
+  &.is-revealed &-char {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-reveal-chars__char {
+  .ds-reveal-chars-char {
     transition: none;
     opacity: 1;
     transform: none;
   }
 
-  .ds-display .ds-display__accent {
+  .ds-display .ds-display-accent {
     animation: none;
     transform: none;
   }

@@ -5,7 +5,7 @@
 @use '../tokens/type' as t;
 
 // Hero meta strip — sector / role / timeline.
-.ds-case__meta {
+.ds-case-meta {
   display: flex;
   flex-direction: column;
   gap: s.$s-2;
@@ -31,7 +31,7 @@
 
 // Architecture diagram — light-text PNG always framed on a dark surface so it
 // reads in both site themes (an intentional "technical figure").
-.ds-case__diagram {
+.ds-case-diagram {
   margin: 0;
   padding: clamp(1rem, 3vw, 2.5rem);
   background: #0a2328;
@@ -48,7 +48,7 @@
 }
 
 // Key decisions — each is a choice + its rationale.
-.ds-case__decisions {
+.ds-case-decisions {
   display: grid;
   gap: s.$s-5;
 
@@ -57,7 +57,7 @@
   }
 }
 
-.ds-case__decision {
+.ds-case-decision {
   padding-inline-start: s.$s-5;
   border-inline-start: 2px solid transparent;
   border-image: c.$gradient-iridescent 1;
@@ -81,7 +81,7 @@
 }
 
 // Deeper sections.
-.ds-case__section {
+.ds-case-section {
   display: flex;
   flex-direction: column;
   gap: s.$s-3;
@@ -97,7 +97,7 @@
 }
 
 // Stack chips.
-.ds-case__stack {
+.ds-case-stack {
   display: flex;
   flex-wrap: wrap;
   gap: s.$s-2;

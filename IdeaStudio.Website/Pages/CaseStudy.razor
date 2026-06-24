@@ -13,6 +13,7 @@
          CanonicalUrl="@seoCanonical" Locale="@seoLocale"
          HreflangUrls="@seoHreflang"
          SiteName="IdeaStud.io"
+         OgImage="@seoOgImage" OgImageAlt="@seoOgAlt"
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
 
@@ -22,19 +23,19 @@
     <Hero Kicker="@caseKicker" Lead="@cs.Challenge">
         <ChildContent>@realisation.Title</ChildContent>
         <Actions>
-            <div class="ds-case__meta">
-                <span class="ds-case__meta-item"><span class="ds-case__meta-label">@sectorLabel</span> @cs.Sector</span>
-                <span class="ds-case__meta-item"><span class="ds-case__meta-label">@roleLabel</span> @cs.Role</span>
-                <span class="ds-case__meta-item"><span class="ds-case__meta-label">@timelineLabel</span> @cs.Timeline</span>
+            <div class="ds-case-meta">
+                <span class="ds-case-meta-item"><span class="ds-case-meta-label">@sectorLabel</span> @cs.Sector</span>
+                <span class="ds-case-meta-item"><span class="ds-case-meta-label">@roleLabel</span> @cs.Role</span>
+                <span class="ds-case-meta-item"><span class="ds-case-meta-label">@timelineLabel</span> @cs.Timeline</span>
             </div>
-            <div class="ds-row" style="margin-block-start: 1.5rem;">
+            <div class="flex flex-row items-center gap-3 flex-wrap" style="margin-block-start: 1.5rem;">
                 @if (!string.IsNullOrWhiteSpace(realisation.LiveUrl))
                 {
-                    <a class="ds-btn ds-btn--primary" href="@realisation.LiveUrl" target="_blank" rel="noopener">
+                    <a class="ds-btn ds-btn-primary" href="@realisation.LiveUrl" target="_blank" rel="noopener">
                         @visitLabel <span aria-hidden="true">↗</span>
                     </a>
                 }
-                <a class="ds-btn ds-btn--ghost" href="@LocalizedRoute.For("realisations")">
+                <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("realisations")">
                     @allProjectsLabel <span aria-hidden="true">→</span>
                 </a>
             </div>
@@ -42,9 +43,9 @@
     </Hero>
 
     @* 2 · Approach + Outcome, plain-language, before the technical depth *@
-    <section class="ds-section ds-section--chapter ds-section--bordered">
-        <div class="ds-container">
-            <div class="ds-grid ds-grid--2">
+    <section class="py-chapter relative section-rule">
+        <div class="mx-auto w-full max-w-content px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div class="ds-rhythm" data-reveal>
                     <p class="ds-kicker">@approachLabel</p>
                     <p class="ds-lead">@cs.Approach</p>
@@ -60,10 +61,10 @@
     @* 3 · Architecture diagram *@
     @if (!string.IsNullOrWhiteSpace(cs.DiagramImage))
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
+        <section class="py-chapter relative section-rule">
+            <div class="mx-auto w-full max-w-content px-6">
                 <ChapterBand Kicker="@architectureKicker" Title="@architectureTitle" />
-                <figure class="ds-case__diagram ds-chapter-gap" data-reveal>
+                <figure class="ds-case-diagram mt-chapter" data-reveal>
                     <img src="@cs.DiagramImage" alt="@cs.DiagramAlt" loading="lazy" decoding="async" />
                 </figure>
             </div>
@@ -73,16 +74,16 @@
     @* 4 · By the numbers *@
     @if (cs.Stats.Count > 0)
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
+        <section class="py-chapter relative section-rule">
+            <div class="mx-auto w-full max-w-content px-6">
                 <ChapterBand Kicker="@numbersKicker" Title="@numbersTitle" />
-                <div class="ds-grid ds-grid--3 ds-chapter-gap">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-chapter">
                     @for (int i = 0; i < cs.Stats.Count; i++)
                     {
                         CaseStudyStat s = cs.Stats[i];
                         <div class="ds-stat" data-reveal style="@($"--reveal-step:{i}")">
-                            <div class="ds-stat__value">@s.Value</div>
-                            <div class="ds-stat__label">@s.Label</div>
+                            <div class="ds-stat-value">@s.Value</div>
+                            <div class="ds-stat-label">@s.Label</div>
                         </div>
                     }
                 </div>
@@ -93,16 +94,16 @@
     @* 5 · Key decisions + why *@
     @if (cs.Decisions.Count > 0)
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
+        <section class="py-chapter relative section-rule">
+            <div class="mx-auto w-full max-w-content px-6">
                 <ChapterBand Kicker="@decisionsKicker" Title="@decisionsTitle" Lead="@decisionsLead" />
-                <div class="ds-case__decisions ds-chapter-gap">
+                <div class="ds-case-decisions mt-chapter">
                     @for (int i = 0; i < cs.Decisions.Count; i++)
                     {
                         CaseStudyDecision d = cs.Decisions[i];
-                        <div class="ds-case__decision" data-reveal style="@($"--reveal-step:{i}")">
-                            <h3 class="ds-case__decision-title">@d.Title</h3>
-                            <p class="ds-case__decision-detail">@d.Detail</p>
+                        <div class="ds-case-decision" data-reveal style="@($"--reveal-step:{i}")">
+                            <h3 class="ds-case-decision-title">@d.Title</h3>
+                            <p class="ds-case-decision-detail">@d.Detail</p>
                         </div>
                     }
                 </div>
@@ -113,15 +114,15 @@
     @* 6 · Deeper sections *@
     @if (cs.Sections.Count > 0)
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
+        <section class="py-chapter relative section-rule">
+            <div class="mx-auto w-full max-w-content px-6">
                 <ChapterBand Kicker="@detailKicker" Title="@detailTitle" />
-                <div class="ds-grid ds-grid--2 ds-chapter-gap">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-chapter">
                     @for (int i = 0; i < cs.Sections.Count; i++)
                     {
                         CaseStudySection sec = cs.Sections[i];
-                        <div class="ds-case__section" data-reveal style="@($"--reveal-step:{i}")">
-                            <h3 class="ds-case__section-title">@sec.Title</h3>
+                        <div class="ds-case-section" data-reveal style="@($"--reveal-step:{i}")">
+                            <h3 class="ds-case-section-title">@sec.Title</h3>
                             @foreach (string p in sec.Body)
                             {
                                 <p class="ds-body">@p</p>
@@ -136,10 +137,10 @@
     @* 7 · Stack *@
     @if (cs.Stack.Count > 0)
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
+        <section class="py-chapter relative section-rule">
+            <div class="mx-auto w-full max-w-content px-6">
                 <ChapterBand Kicker="@stackKicker" Title="@stackTitle" />
-                <div class="ds-case__stack ds-chapter-gap" data-reveal>
+                <div class="ds-case-stack mt-chapter" data-reveal>
                     @foreach (string tech in cs.Stack)
                     {
                         <span class="ds-tag">@tech</span>
@@ -153,7 +154,7 @@ else if (loaded)
 {
     <Hero Kicker="@caseKicker" Title="@notFoundTitle" Lead="@notFoundLead">
         <Actions>
-            <a class="ds-btn ds-btn--primary" href="@LocalizedRoute.For("realisations")">
+            <a class="ds-btn ds-btn-primary" href="@LocalizedRoute.For("realisations")">
                 @allProjectsLabel <span aria-hidden="true">→</span>
             </a>
         </Actions>
@@ -172,6 +173,8 @@ else if (loaded)
     private string seoCanonical = "https://ideastud.io/fr/realisations";
     private string seoLocale = "fr_FR";
     private Dictionary<string, string>? seoHreflang;
+    private string seoOgImage = "https://ideastud.io/images/andres-talavera.jpeg";
+    private string seoOgAlt = "Andrés Talavera";
     private string caseKicker = "Étude de cas";
     private string sectorLabel = "Secteur";
     private string roleLabel = "Rôle";
@@ -272,6 +275,10 @@ else if (loaded)
                 ["en"] = $"https://ideastud.io{hubEn}/{realisation.Slug}",
                 ["x-default"] = $"https://ideastud.io{hubFr}/{realisation.Slug}",
             };
+            seoOgImage = string.IsNullOrWhiteSpace(cs.DiagramImage)
+                ? "https://ideastud.io/images/andres-talavera.jpeg"
+                : $"https://ideastud.io/{cs.DiagramImage}";
+            seoOgAlt = cs.DiagramAlt ?? realisation.Title;
         }
         else
         {

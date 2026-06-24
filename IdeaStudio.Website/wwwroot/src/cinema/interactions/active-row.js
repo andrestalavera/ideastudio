@@ -24,7 +24,7 @@ function schedule() {
   scheduled = true;
   requestAnimationFrame(() => {
     scheduled = false;
-    const rows = document.querySelectorAll('.ds-timeline__row');
+    const rows = document.querySelectorAll('.ds-timeline-row');
     if (rows.length > 0) pickActive(rows);
   });
 }

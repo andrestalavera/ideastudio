@@ -16,7 +16,7 @@
   flex-direction: column;
   gap: s.$s-2;
 
-  &__label {
+  &-label {
     font-family: t.$font-mono;
     font-size: t.$fs-mono;
     letter-spacing: 0.08em;
@@ -24,13 +24,13 @@
     color: c.$fg-muted;
   }
 
-  &__optional {
+  &-optional {
     text-transform: none;
     letter-spacing: 0;
     color: c.$fg-faint;
   }
 
-  &__input {
+  &-input {
     inline-size: 100%;
     padding-inline: s.$s-4;
     padding-block: s.$s-3;
@@ -57,18 +57,18 @@
     }
   }
 
-  &__textarea {
+  &-textarea {
     resize: vertical;
     min-block-size: 8rem;
     line-height: 1.6;
   }
 
-  &__error {
+  &-error {
     font-size: t.$fs-small;
     color: c.$danger;
   }
 
-  &__check {
+  &-check {
     display: flex;
     align-items: flex-start;
     gap: s.$s-3;
@@ -87,7 +87,7 @@
   }
 }
 
-.ds-form__actions {
+.ds-form-actions {
   display: flex;
   flex-wrap: wrap;
   gap: s.$s-3;
@@ -108,7 +108,7 @@
   border-radius: 12px;
   border: 1px solid c.$rule;
 
-  &__title {
+  &-title {
     margin: 0 0 0.5rem;
     font-weight: 600;
     font-size: t.$fs-subtitle;
@@ -121,13 +121,13 @@
     color: c.$fg-muted;
   }
 
-  &--ok {
+  &-ok {
     background: linear-gradient(c.$bg-surface, c.$bg-surface) padding-box,
                 c.$gradient-iridescent border-box;
     border: 1px solid transparent;
   }
 
-  &--err {
+  &-err {
     border-color: c.$danger;
     p { color: c.$fg; }
   }

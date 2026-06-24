@@ -12,6 +12,7 @@
          CanonicalUrl="@seoCanonical" Locale="@seoLocale"
          HreflangUrls="@LocalizedRoute.Alternates("faq")"
          SiteName="IdeaStud.io"
+         OgImage="https://ideastud.io/images/andres-talavera.jpeg" OgImageAlt="Andrés Talavera"
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
 
@@ -19,10 +20,10 @@
 
 @foreach (FaqGroup group in groups)
 {
-    <section class="ds-section ds-section--chapter ds-section--bordered">
-        <div class="ds-container ds-container--narrow">
+    <section class="py-chapter relative section-rule">
+        <div class="mx-auto w-full max-w-narrow px-6">
             <ChapterBand Title="@group.Title" />
-            <div class="ds-chapter-gap">
+            <div class="mt-chapter">
                 <FaqAccordion Items="@group.Items" />
             </div>
         </div>
@@ -30,16 +31,16 @@
 }
 
 @* Still have a question? → contact *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container ds-container--narrow">
+<section class="py-chapter relative section-rule">
+    <div class="mx-auto w-full max-w-narrow px-6">
         <div class="ds-rhythm" data-reveal>
             <p class="ds-kicker">@stillKicker</p>
             <h2 class="ds-title">@stillTitle</h2>
-            <div class="ds-row" style="margin-block-start: 2rem;">
-                <a class="ds-btn ds-btn--primary" href="@LocalizedRoute.For("contact")">
+            <div class="flex flex-row items-center gap-3 flex-wrap" style="margin-block-start: 2rem;">
+                <a class="ds-btn ds-btn-primary" href="@LocalizedRoute.For("contact")">
                     @contactCta <span aria-hidden="true">→</span>
                 </a>
-                <a class="ds-btn ds-btn--ghost"
+                <a class="ds-btn ds-btn-ghost"
                    href="https://calendly.com/andres-talavera/30min"
                    target="_blank" rel="noopener">
                     @bookCta <span aria-hidden="true">↗</span>

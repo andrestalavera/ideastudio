@@ -26,6 +26,18 @@
         })();
     </script>
 
+    <!-- Set <html lang> from the URL's culture segment (/en/... → en, else fr) so
+         the document language is correct for crawlers, screen readers and hreflang.
+         Updated on client-side navigation via window.ideastudioLang.apply(). -->
+    <script>
+        (function () {
+            function fromPath() { return location.pathname.split('/')[1] === 'en' ? 'en' : 'fr'; }
+            function apply() { document.documentElement.setAttribute('lang', fromPath()); }
+            apply();
+            window.ideastudioLang = { apply: apply };
+        })();
+    </script>
+
     <!-- Theme bootstrap — runs before first paint to avoid a light/dark flash.
          Resolves: saved choice (localStorage) → OS preference. Exposes
          window.ideastudioTheme { get, preference, set, toggle } and emits an
@@ -119,6 +131,9 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/css/styles.min.css" />
 
+    <!-- Blog RSS feed -->
+    <link rel="alternate" type="application/rss+xml" title="IdeaStud.io — Blog" href="/feed.xml" />
+
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/images/andres-talavera.jpeg" type="image/jpeg" sizes="180x180" />
@@ -129,8 +144,8 @@
 <body>
     <div id="app">
         <div class="ds-boot" aria-live="polite">
-            <span class="ds-boot__dot" aria-hidden="true"></span>
-            <span class="ds-boot__label">Chargement…</span>
+            <span class="ds-boot-dot" aria-hidden="true"></span>
+            <span class="ds-boot-label">Chargement…</span>
         </div>
     </div>
 

@@ -5,7 +5,7 @@
 @use '../tokens/space' as s;
 @use '../tokens/colors' as c;
 
-.ds-page--home {
+.ds-page-home {
   position: relative;
 }
 
@@ -26,13 +26,13 @@
 // The kicker rotates vertical-rl on the right rail, becoming an orientation
 // marker rather than a label. On tablet/mobile, the layout collapses to a
 // natural top-down stack.
-.ds-hero--home {
+.ds-hero-home {
   min-block-size: 100svh;
   display: flex;
   align-items: stretch;
   padding-block: clamp(4rem, 8vh, 8rem);
 
-  .ds-hero__inner {
+  .ds-hero-inner {
     flex: 1;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -45,7 +45,7 @@
   // Identity row — rounded portrait + role kicker as a single grouped unit,
   // sitting just above the name. Pairing the photo with text keeps it from
   // floating; this layout holds at every width.
-  .ds-hero__identity {
+  .ds-hero-identity {
     grid-column: 1 / -1;
     grid-row: 1;
     align-self: end;
@@ -54,7 +54,7 @@
     gap: clamp(0.85rem, 2vw, 1.4rem);
   }
 
-  .ds-hero__avatar {
+  .ds-hero-avatar {
     flex: none;
     inline-size: clamp(84px, 7vw, 124px);
     block-size: clamp(84px, 7vw, 124px);
@@ -65,25 +65,25 @@
     box-shadow: 0 10px 30px rgba(2, 10, 13, 0.4);
   }
 
-  .ds-hero__kicker {
+  .ds-hero-kicker {
     margin: 0;
     color: c.$fg-muted;
     line-height: 1.45;
   }
 
-  .ds-hero__name {
+  .ds-hero-name {
     grid-column: 1 / -1;
     grid-row: 2;
   }
 
-  .ds-hero__lead {
+  .ds-hero-lead {
     grid-column: 1 / 9;
     grid-row: 3;
     max-width: 56ch;
     margin: 0;
   }
 
-  .ds-hero__actions {
+  .ds-hero-actions {
     grid-column: 1 / -1;
     grid-row: 4;
     margin-block-start: clamp(0.5rem, 2vh, 1.25rem);
@@ -91,32 +91,32 @@
 
   // Tablet: lead spans wider as columns tighten.
   @media (max-width: 1023px) {
-    .ds-hero__lead { grid-column: 1 / 11; }
+    .ds-hero-lead { grid-column: 1 / 11; }
   }
 
   // Phone: pure vertical stack; kicker tracking eased so it never clips.
   @media (max-width: 767px) {
     min-block-size: 88svh;
-    .ds-hero__inner {
+    .ds-hero-inner {
       display: flex;
       flex-direction: column;
       gap: s.$s-5;
     }
-    .ds-hero__identity { gap: 0.85rem; }
-    .ds-hero__kicker { letter-spacing: 0.16em; }
-    .ds-hero__lead { max-width: none; }
+    .ds-hero-identity { gap: 0.85rem; }
+    .ds-hero-kicker { letter-spacing: 0.16em; }
+    .ds-hero-lead { max-width: none; }
   }
 }
 
 // Chapter padding on Home — generously airy.
-.ds-page--home {
-  .ds-section--chapter {
+.ds-page-home {
+  .ds-section-chapter {
     padding-block: clamp(7rem, 14vw, 14rem);
   }
 
   // Iridescent chapter accent on Home: a short vertical stub at the chapter
   // break, anchoring each section against its hairline rule.
-  .ds-section--bordered::before {
+  .ds-section-bordered::before {
     inset-block-start: 0;
     inset-inline-start: clamp(1rem, 4vw, 4rem);
     block-size: clamp(40px, 6vw, 80px);
@@ -129,7 +129,7 @@
 // Project tiles on Home — editorial zig-zag instead of uniform rows.
 // Each tile is a self-contained 2-col composition; even rows flip the
 // composition (text-left, image-right) to break the visual rhythm.
-.ds-home__projects {
+.ds-home-projects {
   display: flex;
   flex-direction: column;
   gap: clamp(3rem, 6vw, 5rem);
@@ -137,41 +137,41 @@
   margin-inline: auto;
 }
 
-.ds-home__projects .ds-tile {
+.ds-home-projects .ds-tile {
   width: 100%;
 }
 
-.ds-home__projects .ds-tile__media {
+.ds-home-projects .ds-tile-media {
   aspect-ratio: 16 / 9;
 }
 
 @media (min-width: 1024px) {
-  .ds-home__projects .ds-tile {
+  .ds-home-projects .ds-tile {
     display: grid;
     grid-template-columns: 5fr 4fr;
     gap: clamp(1.5rem, 3vw, 3rem);
     align-items: center;
   }
 
-  .ds-home__projects .ds-tile__media {
+  .ds-home-projects .ds-tile-media {
     grid-row: 1 / span 4;
     aspect-ratio: 4 / 3;
   }
 
   // Zig-zag: even tiles flip — text on the left, image on the right.
-  .ds-home__projects > :nth-child(even) {
+  .ds-home-projects > :nth-child(even) {
     grid-template-columns: 4fr 5fr;
   }
 
-  .ds-home__projects > :nth-child(even) .ds-tile__media {
+  .ds-home-projects > :nth-child(even) .ds-tile-media {
     grid-column: 2;
     grid-row: 1 / span 4;
   }
 
-  .ds-home__projects > :nth-child(even) .ds-tile__meta,
-  .ds-home__projects > :nth-child(even) .ds-tile__title,
-  .ds-home__projects > :nth-child(even) .ds-tile__summary,
-  .ds-home__projects > :nth-child(even) .ds-tile__tags {
+  .ds-home-projects > :nth-child(even) .ds-tile-meta,
+  .ds-home-projects > :nth-child(even) .ds-tile-title,
+  .ds-home-projects > :nth-child(even) .ds-tile-summary,
+  .ds-home-projects > :nth-child(even) .ds-tile-tags {
     grid-column: 1;
   }
 }
@@ -181,22 +181,22 @@
 // keeps its own hairline separators (from _qa.scss) so chapters still
 // feel structured. On tablet/mobile the layout collapses to the default
 // vertical stack from _qa.scss.
-.ds-page--home .ds-faq-list {
+.ds-page-home .ds-faq-list {
   display: flex;
   flex-direction: column;
 }
 
 @media (min-width: 1024px) {
-  .ds-page--home .ds-faq-list .ds-qa {
+  .ds-page-home .ds-faq-list .ds-qa {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
     column-gap: clamp(2rem, 4vw, 4rem);
     align-items: start;
   }
 
-  .ds-page--home .ds-faq-list .ds-qa__kicker { grid-column: 1; grid-row: 1; }
-  .ds-page--home .ds-faq-list .ds-qa__question { grid-column: 1; grid-row: 2; }
-  .ds-page--home .ds-faq-list .ds-qa__answer {
+  .ds-page-home .ds-faq-list .ds-qa-kicker { grid-column: 1; grid-row: 1; }
+  .ds-page-home .ds-faq-list .ds-qa-question { grid-column: 1; grid-row: 2; }
+  .ds-page-home .ds-faq-list .ds-qa-answer {
     grid-column: 2;
     grid-row: 1 / span 2;
     align-self: start;
@@ -204,4 +204,4 @@
 }
 
 // Kicker tracking is a touch wider on Home for editorial feel.
-.ds-page--home .ds-rhythm > .ds-kicker { letter-spacing: 0.18em; }
+.ds-page-home .ds-rhythm > .ds-kicker { letter-spacing: 0.18em; }

@@ -31,7 +31,7 @@
         if (!string.IsNullOrWhiteSpace(item.LogoUrl))
         {
             builder.OpenElement(0, "img");
-            builder.AddAttribute(1, "class", "ds-logo__img");
+            builder.AddAttribute(1, "class", "ds-logo-img");
             builder.AddAttribute(2, "src", item.LogoUrl);
             builder.AddAttribute(3, "alt", item.Name);
             builder.AddAttribute(4, "loading", "lazy");
@@ -41,7 +41,7 @@
         else
         {
             builder.OpenElement(6, "span");
-            builder.AddAttribute(7, "class", "ds-logo__wordmark");
+            builder.AddAttribute(7, "class", "ds-logo-wordmark");
             builder.AddContent(8, item.Name);
             builder.CloseElement();
         }

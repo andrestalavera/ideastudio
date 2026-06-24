@@ -201,7 +201,7 @@ export async function mountSignature(canvas, options) {
   if (!gl) {
     console.warn('[signature] WebGL2 unavailable — fallback <h1> will show.');
     canvas.style.display = 'none';
-    canvas.parentElement?.classList.add('ds-signature--fallback');
+    canvas.parentElement?.classList.add('ds-signature-fallback');
     return { dispose() {} };
   }
 
@@ -209,7 +209,7 @@ export async function mountSignature(canvas, options) {
   const fs = compile(gl, gl.FRAGMENT_SHADER, FRAG);
   if (!vs || !fs) {
     canvas.style.display = 'none';
-    canvas.parentElement?.classList.add('ds-signature--fallback');
+    canvas.parentElement?.classList.add('ds-signature-fallback');
     return { dispose() {} };
   }
 

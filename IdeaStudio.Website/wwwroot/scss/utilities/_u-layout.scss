@@ -1,0 +1,107 @@
+// utilities/_u-layout.scss — display, flexbox, grid, position, z, overflow.
+// Tailwind-compatible names, generated with mobile-first responsive variants
+// (sm:/md:/lg:/xl:) for the layout-critical families. All single-class, so
+// source order (utilities load last) lets them override component primitives.
+
+@use 'sass:map';
+@use '../tokens/space' as s;
+
+// Emits a family of rules; $p is the (already colon-escaped) breakpoint prefix.
+@mixin layout($p: '') {
+  // display
+  .#{$p}block        { display: block; }
+  .#{$p}inline-block { display: inline-block; }
+  .#{$p}inline       { display: inline; }
+  .#{$p}flex         { display: flex; }
+  .#{$p}inline-flex  { display: inline-flex; }
+  .#{$p}grid         { display: grid; }
+  .#{$p}contents     { display: contents; }
+  .#{$p}hidden       { display: none; }
+
+  // flex direction / wrap
+  .#{$p}flex-row     { flex-direction: row; }
+  .#{$p}flex-col     { flex-direction: column; }
+  .#{$p}flex-wrap    { flex-wrap: wrap; }
+  .#{$p}flex-nowrap  { flex-wrap: nowrap; }
+  .#{$p}flex-1       { flex: 1 1 0%; }
+  .#{$p}flex-auto    { flex: 1 1 auto; }
+  .#{$p}flex-none    { flex: none; }
+  .#{$p}grow         { flex-grow: 1; }
+  .#{$p}grow-0       { flex-grow: 0; }
+  .#{$p}shrink       { flex-shrink: 1; }
+  .#{$p}shrink-0     { flex-shrink: 0; }
+
+  // alignment
+  .#{$p}items-start    { align-items: flex-start; }
+  .#{$p}items-center   { align-items: center; }
+  .#{$p}items-end      { align-items: flex-end; }
+  .#{$p}items-stretch  { align-items: stretch; }
+  .#{$p}items-baseline { align-items: baseline; }
+  .#{$p}justify-start   { justify-content: flex-start; }
+  .#{$p}justify-center  { justify-content: center; }
+  .#{$p}justify-end     { justify-content: flex-end; }
+  .#{$p}justify-between { justify-content: space-between; }
+  .#{$p}justify-around  { justify-content: space-around; }
+  .#{$p}self-start   { align-self: flex-start; }
+  .#{$p}self-center  { align-self: center; }
+  .#{$p}self-end     { align-self: flex-end; }
+  .#{$p}self-stretch { align-self: stretch; }
+
+  // grid columns (fixed + auto-fit)
+  .#{$p}grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .#{$p}grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .#{$p}grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .#{$p}grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .#{$p}grid-cols-auto { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+  .#{$p}col-span-2  { grid-column: span 2 / span 2; }
+  .#{$p}col-span-full { grid-column: 1 / -1; }
+
+  // text-align lives with layout so it gets responsive variants too
+  .#{$p}text-left   { text-align: left; }
+  .#{$p}text-center { text-align: center; }
+  .#{$p}text-right  { text-align: right; }
+}
+
+@include layout;
+@each $bp, $min in s.$breakpoints {
+  @media (min-width: $min) { @include layout('#{$bp}\\:'); }
+}
+
+// --- Non-responsive layout (position, z, overflow, object, inset) -----------
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed    { position: fixed; }
+.sticky   { position: sticky; }
+.static   { position: static; }
+
+.inset-0 { inset: 0; }
+.top-0    { top: 0; }
+.right-0  { right: 0; }
+.bottom-0 { bottom: 0; }
+.left-0   { left: 0; }
+
+.z-0    { z-index: 0; }
+.z-10   { z-index: 10; }
+.z-20   { z-index: 20; }
+.z-30   { z-index: 30; }
+.z-40   { z-index: 40; }
+.z-50   { z-index: 50; }
+
+.overflow-hidden  { overflow: hidden; }
+.overflow-visible { overflow: visible; }
+.overflow-auto    { overflow: auto; }
+.overflow-x-hidden { overflow-x: hidden; }
+.overflow-x-auto   { overflow-x: auto; }
+
+.object-cover   { object-fit: cover; }
+.object-contain { object-fit: contain; }
+
+.isolate { isolation: isolate; }
+
+// Centering helper used by page sections (was .ds-container margin-inline:auto).
+.mx-auto { margin-inline: auto; }
+
+// place-* shorthands
+.place-items-center { place-items: center; }
+.place-content-center { place-content: center; }

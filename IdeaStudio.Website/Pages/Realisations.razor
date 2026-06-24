@@ -15,23 +15,24 @@
          CanonicalUrl="@seoCanonical" Locale="@seoLocale"
          HreflangUrls="@LocalizedRoute.Alternates("realisations")"
          SiteName="IdeaStud.io"
+         OgImage="https://ideastud.io/images/andres-talavera.jpeg" OgImageAlt="Andrés Talavera"
          StructuredData="@seoStructuredData" />
 
 <Hero Kicker="Projets" Title="@titleText" Lead="@lead" />
 
-<section class="ds-section">
-    <div class="ds-container">
+<section class="py-section relative">
+    <div class="mx-auto w-full max-w-content px-6">
         @* Filters *@
         @if (allTechs.Count > 0)
         {
             <div class="ds-filter-bar" role="tablist" aria-label="@filterAriaLabel">
-                <span class="ds-filter-bar__label">@filterLabel</span>
-                <button type="button" class="ds-tag @(activeTech is null ? "ds-tag--active" : "")"
+                <span class="ds-filter-bar-label">@filterLabel</span>
+                <button type="button" class="ds-tag @(activeTech is null ? "ds-tag-active" : "")"
                         role="tab" aria-pressed="@(activeTech is null)"
                         @onclick="() => SetTech(null)">@allTechsLabel</button>
                 @foreach (string tech in allTechs)
                 {
-                    <button type="button" class="ds-tag @(activeTech == tech ? "ds-tag--active" : "")"
+                    <button type="button" class="ds-tag @(activeTech == tech ? "ds-tag-active" : "")"
                             role="tab" aria-pressed="@(activeTech == tech)"
                             @onclick="() => SetTech(tech)">@tech</button>
                 }
@@ -43,14 +44,14 @@
         {
             <div class="ds-empty" data-reveal>
                 <p class="ds-lead">@emptyText</p>
-                <a class="ds-btn ds-btn--iridescent" href="@Nav.Uri" @onclick="() => SetTech(null)" @onclick:preventDefault="true">
+                <a class="ds-btn ds-btn-iridescent" href="@Nav.Uri" @onclick="() => SetTech(null)" @onclick:preventDefault="true">
                     @resetText <span aria-hidden="true">→</span>
                 </a>
             </div>
         }
         else
         {
-            <div class="ds-grid ds-grid--auto ds-realisations__grid" style="margin-block-start: 2.5rem;">
+            <div class="grid grid-cols-auto gap-6" style="margin-block-start: 2.5rem;">
                 @foreach (Realisation r in filtered)
                 {
                     bool hasCase = r.CaseStudy is not null;
