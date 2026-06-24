@@ -50,74 +50,66 @@
 </section>
 
 @* 2 · Why work with me, concrete, benefit-led value props *@
-<section class="py-chapter relative section-rule">
-    <div class="mx-auto w-full max-w-content px-6">
-        <ChapterBand Kicker="@benefitsKicker" Title="@benefitsTitle" Lead="@benefitsLead" />
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-chapter">
-            @for (int i = 0; i < benefits.Count; i++)
-            {
-                (string t, string b) = benefits[i];
-                <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
-                    <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@t</h3>
-                    <p class="text-base leading-relaxed text-muted m-0">@b</p>
-                </div>
-            }
-        </div>
+<PageSection>
+    <ChapterBand Kicker="@benefitsKicker" Title="@benefitsTitle" Lead="@benefitsLead" />
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-chapter">
+        @for (int i = 0; i < benefits.Count; i++)
+        {
+            (string t, string b) = benefits[i];
+            <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
+                <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@t</h3>
+                <p class="text-base leading-relaxed text-muted m-0">@b</p>
+            </div>
+        }
     </div>
-</section>
+</PageSection>
 
 @* 2b · Trusted by, client logo strip (social proof) *@
 @if (clients.Count > 0)
 {
-    <section class="py-section relative section-rule">
-        <div class="mx-auto w-full max-w-content px-6">
-            <p class="ds-kicker mb-6" data-reveal>@clientsKicker</p>
-            <LogoWall Items="@clients" />
-        </div>
-    </section>
+    <PageSection Rhythm="section">
+        <p class="ds-kicker mb-6" data-reveal>@clientsKicker</p>
+        <LogoWall Items="@clients" />
+    </PageSection>
 }
 
 @* 2c · Testimonials, real recommendations (social proof) *@
 @if (testimonials.Count > 0)
 {
-    <section class="py-chapter relative section-rule">
-        <div class="mx-auto w-full max-w-content px-6">
-            <ChapterBand Kicker="@testimonialsKicker" Title="@testimonialsTitle" />
-            <div class="mt-chapter">
-                <Testimonials Items="@testimonials" />
-            </div>
+    <PageSection>
+        <ChapterBand Kicker="@testimonialsKicker" Title="@testimonialsTitle" />
+        <div class="mt-chapter">
+            <Testimonials Items="@testimonials" />
         </div>
-    </section>
+    </PageSection>
 }
 
 @* 3 · Latest realisations, editorial zig-zag stack, not uniform rows *@
-<section class="py-chapter relative section-rule">
-    <div class="mx-auto w-full max-w-content px-6">
-        <ChapterBand Kicker="@realisationsKicker" Title="@realisationsTitle" />
-        <div class="ds-home-projects mt-chapter">
-            @if (realisations.Count > 0)
+<PageSection>
+    <ChapterBand Kicker="@realisationsKicker" Title="@realisationsTitle" />
+    <div class="ds-home-projects mt-chapter">
+        @if (realisations.Count > 0)
+        {
+            foreach (Realisation r in realisations.Take(3))
             {
-                foreach (Realisation r in realisations.Take(3))
-                {
-                    bool hasCase = r.CaseStudy is not null;
-                    string href = hasCase ? $"{LocalizedRoute.For("realisations")}/{r.Slug}" : r.LiveUrl;
-                    <ProjectTile Href="@href"
-                                 Target="@(hasCase ? null : "_blank")" Rel="@(hasCase ? null : "noopener")"
-                                 Badge="@(hasCase ? caseBadge : null)"
-                                 ImageUrl="@r.ImageUrl" ImageAlt="@r.ImageAlt"
-                                 Type="@r.Type.ToString()" Year="@r.CompletedOn.Year.ToString()"
-                                 Title="@r.Title" Summary="@r.Summary"
-                                 Tags="@r.Technologies" />
-                }
+                bool hasCase = r.CaseStudy is not null;
+                string href = hasCase ? $"{LocalizedRoute.For("realisations")}/{r.Slug}" : r.LiveUrl;
+                <ProjectTile Href="@href"
+                             Target="@(hasCase ? null : "_blank")" Rel="@(hasCase ? null : "noopener")"
+                             Badge="@(hasCase ? caseBadge : null)"
+                             ImageUrl="@r.ImageUrl" ImageAlt="@r.ImageAlt"
+                             Type="@r.Type.ToString()" Year="@r.CompletedOn.Year.ToString()"
+                             Title="@r.Title" Summary="@r.Summary"
+                             Tags="@r.Technologies" />
             }
-        </div>
-        <p class="mt-chapter" data-reveal>
-            <a class="ds-link" href="@LocalizedRoute.For("realisations")">
-                @seeAllRealisations <span class="ds-link-arrow" aria-hidden="true">→</span>
-            </a>
-        </p>
+        }
     </div>
-</section>
+    <p class="mt-chapter" data-reveal>
+        <a class="ds-link" href="@LocalizedRoute.For("realisations")">
+            @seeAllRealisations <span class="ds-link-arrow" aria-hidden="true">→</span>
+        </a>
+    </p>
+</PageSection>
 
 @* 4 · Go to my resume *@
 <ResumeBand YearsValue="@yearsValue"
@@ -125,31 +117,27 @@
             LanguagesValue="FR · EN · ES" />
 
 @* 5 · About teaser, who's behind the work *@
-<section class="py-chapter relative section-rule">
-    <div class="mx-auto w-full max-w-content px-6">
-        <ChapterBand Kicker="@aboutKicker" Title="@aboutTitle" Lead="@aboutLead" />
-        <p class="mt-chapter" data-reveal>
-            <a class="ds-link" href="@LocalizedRoute.For("about")">
-                @aboutCta <span class="ds-link-arrow" aria-hidden="true">→</span>
-            </a>
-        </p>
-    </div>
-</section>
+<PageSection>
+    <ChapterBand Kicker="@aboutKicker" Title="@aboutTitle" Lead="@aboutLead" />
+    <p class="mt-chapter" data-reveal>
+        <a class="ds-link" href="@LocalizedRoute.For("about")">
+            @aboutCta <span class="ds-link-arrow" aria-hidden="true">→</span>
+        </a>
+    </p>
+</PageSection>
 
 @* 6 · Services *@
-<section class="py-chapter relative section-rule">
-    <div class="mx-auto w-full max-w-content px-6">
-        <ChapterBand Kicker="@servicesKicker" Title="@servicesTitle" />
-        <div class="mt-chapter" data-reveal>
-            <EditorialList Items="@services" />
-        </div>
-        <p class="mt-chapter" data-reveal>
-            <a class="ds-link" href="@LocalizedRoute.For("services.hub")">
-                @seeAllServices <span class="ds-link-arrow" aria-hidden="true">→</span>
-            </a>
-        </p>
+<PageSection>
+    <ChapterBand Kicker="@servicesKicker" Title="@servicesTitle" />
+    <div class="mt-chapter" data-reveal>
+        <EditorialList Items="@services" />
     </div>
-</section>
+    <p class="mt-chapter" data-reveal>
+        <a class="ds-link" href="@LocalizedRoute.For("services.hub")">
+            @seeAllServices <span class="ds-link-arrow" aria-hidden="true">→</span>
+        </a>
+    </p>
+</PageSection>
 
 </div>
 

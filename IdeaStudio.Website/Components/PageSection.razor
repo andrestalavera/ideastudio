@@ -1,0 +1,33 @@
+@* PageSection — a full page section: vertical rhythm + optional chapter rule,
+   wrapping its content in a Container. Replaces the repeated
+   `<section py-… relative section-rule><div container>…` markup. *@
+
+<section class="@SectionClass">
+    <Container Width="@Width">
+        @ChildContent
+    </Container>
+</section>
+
+@code {
+    /// <summary>chapter (taller, default) | section.</summary>
+    [Parameter] public string Rhythm { get; set; } = "chapter";
+    /// <summary>Show the iridescent chapter hairline (default true).</summary>
+    [Parameter] public bool Bordered { get; set; } = true;
+    /// <summary>Container width: content (default) | narrow | wide.</summary>
+    [Parameter] public string Width { get; set; } = "content";
+    /// <summary>Extra classes on the &lt;section&gt; (e.g. ds-print-hidden).</summary>
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private string SectionClass
+    {
+        get
+        {
+            string py = Rhythm == "section" ? "py-section" : "py-chapter";
+            string cls = $"{py} relative";
+            if (Bordered) cls += " section-rule";
+            if (!string.IsNullOrEmpty(Class)) cls += $" {Class}";
+            return cls;
+        }
+    }
+}
