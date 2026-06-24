@@ -95,6 +95,15 @@ export function trackPageView(url) {
   }, 50);
 }
 
+// Conversion / interaction events (CTA clicks, contact submits, downloads).
+export function trackEvent(name, params) {
+  if (isLocalhost || !name) return;
+  gtag('event', name, params || {});
+  if (clarityLoaded && window.clarity) {
+    try { window.clarity('event', name); } catch (e) { /* noop */ }
+  }
+}
+
 if (typeof window !== 'undefined') {
-  window.ideaAnalytics = { setConsent, trackPageView };
+  window.ideaAnalytics = { setConsent, trackPageView, trackEvent };
 }
