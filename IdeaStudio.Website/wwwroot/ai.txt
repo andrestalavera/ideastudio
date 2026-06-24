@@ -2,22 +2,28 @@
   "name": "IdeaStud.io",
   "type": "portfolio",
   "owner": "Andrés Talavera",
-  "description": "Professional portfolio of Andrés Talavera, .NET developer and Azure consultant",
+  "description": "Independent .NET & Azure consultant, tech lead and Microsoft Certified Trainer. Turns ideas into reliable web, mobile and cloud software, and trains teams.",
   "languages": ["en", "fr"],
   "primaryLanguage": "fr",
   "contentType": "professional-services",
+  "spokenLanguages": ["fr", "en", "es"],
+  "experienceYears": 15,
+  "pricing": {
+    "currency": "EUR",
+    "dayRateConsulting": 600,
+    "dayRateTraining": 800,
+    "freeScopingCall": true,
+    "quoteWithinHours": 24,
+    "commission": 0,
+    "engagement": "OpenWork wage-portage (EUR; CHF for Swiss assignments)"
+  },
   "topics": [
-    ".NET development",
-    "Azure cloud architecture",
-    "Blazor",
-    "ASP.NET Core",
-    "software consulting",
-    "technical training",
-    "tech lead",
-    "vibe coding",
-    "mobile apps",
-    "websites"
+    ".NET development", "Azure cloud architecture", "Blazor", "ASP.NET Core",
+    "software consulting", "tech lead", "technical training", "Microsoft Certified Trainer",
+    "vibe coding", "AI in the enterprise", "multi-tenant SaaS", "European sovereign hosting",
+    "mobile apps", "websites"
   ],
+  "hosting": ["Microsoft Azure", "Clever Cloud", "Infomaniak", "Scaleway", "OVHcloud"],
   "services": [
     { "slug": "consultant-dotnet-azure", "lang": "fr", "title": "Consultant .NET & Azure", "url": "https://ideastud.io/fr/services/consultant-dotnet-azure" },
     { "slug": "techlead", "lang": "fr", "title": "Techlead", "url": "https://ideastud.io/fr/services/techlead" },
@@ -34,11 +40,15 @@
     { "slug": "mobile-apps", "lang": "en", "title": "Mobile apps", "url": "https://ideastud.io/en/services/mobile-apps" },
     { "slug": "websites", "lang": "en", "title": "Websites", "url": "https://ideastud.io/en/services/websites" }
   ],
+  "caseStudies": [
+    { "name": "RestoPlatform", "status": "in-development", "summary": "Multi-tenant SaaS for restaurants; PostgreSQL Row-Level Security; Blazor SSR + Server; Stripe Connect; Clever Cloud (EU).", "url": "https://ideastud.io/fr/realisations/restoplatform" },
+    { "name": "DPELib", "summary": "RegTech platform; anonymous-by-default; Stripe 3DS2; 153 use cases; Azure; GDPR/CNIL/PSD2.", "url": "https://ideastud.io/fr/realisations/dpelib" },
+    { "name": "Brasa Geneva", "summary": "Regulated luxury e-commerce platform; age-gate; 99 use cases; Infomaniak (Swiss).", "url": "https://ideastud.io/fr/realisations/brasageneva", "liveUrl": "https://www.brasageneva.ch" }
+  ],
   "realisations": [
+    { "name": "K-RO SQUARE", "url": "https://www.krosquare.fr" },
     { "name": "Monseigneur Champagne", "url": "https://www.monseigneurchampagne.com" },
-    { "name": "Corona Club Noblesse", "url": "https://www.coronaclubnobless.ch" },
-    { "name": "Krosquare", "url": "https://www.krosquare.fr" },
-    { "name": "IdeaStud.io", "url": "https://www.ideastud.io" }
+    { "name": "Corona Club Noblesse", "url": "https://www.coronaclubnobless.ch" }
   ],
   "location": {
     "primary": { "city": "Lyon", "country": "France" },
@@ -58,11 +68,12 @@
   },
   "contact": {
     "method": "website-form",
-    "url": "https://ideastud.io/fr#contact"
+    "url": "https://ideastud.io/fr/contact"
   },
   "social": {
     "twitter": "@imcresus_",
-    "linkedin": "andrestalavera"
+    "linkedin": "andrestalavera",
+    "github": "andrestalavera"
   },
   "llmsTxt": "https://ideastud.io/llms.txt"
 }

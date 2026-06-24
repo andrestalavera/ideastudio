@@ -13,6 +13,7 @@
          Description="@seoDescription"
          Author="Andrés Talavera"
          CanonicalUrl="@seoCanonical"
+         HreflangUrls="@LocalizedRoute.Alternates("home")"
          SiteName="IdeaStud.io"
          Locale="@seoLocale"
          OgImage="https://ideastud.io/images/andres-talavera.jpeg"
@@ -337,7 +338,8 @@
                 new SchemaOrg.Place(new SchemaOrg.PostalAddress(AddressLocality: "Paris", AddressCountry: "FR")),
                 new SchemaOrg.Place(new SchemaOrg.PostalAddress(AddressLocality: fr ? "Genève" : "Geneva", AddressCountry: "CH")),
                 new SchemaOrg.Place(new SchemaOrg.PostalAddress(AddressLocality: "Fribourg", AddressCountry: "CH"))
-            }
+            },
+            KnowsLanguage: new[] { "fr", "en", "es" }
         );
 
         SchemaOrg.WebSite website = new(
@@ -366,7 +368,9 @@
             Url: servicesUrl,
             AreaServed: fr ? "France · Suisse · Europe (remote)" : "France · Switzerland · Europe (remote)",
             Provider: person,
-            Services: svcs);
+            Services: svcs,
+            PriceRange: fr ? "TJM 600–800 €" : "Day rate €600–800",
+            AvailableLanguage: new[] { "fr", "en", "es" });
 
         // FAQPage JSON-LD — fed by the 3 Home Q&A.
         SchemaOrg.FAQPage faqPage = new(

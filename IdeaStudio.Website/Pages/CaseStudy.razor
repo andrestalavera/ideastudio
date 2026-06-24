@@ -11,6 +11,7 @@
 <SeoHead Title="@seoTitle" Description="@seoDescription"
          Author="Andrés Talavera"
          CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@seoHreflang"
          SiteName="IdeaStud.io"
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
@@ -170,6 +171,7 @@ else if (loaded)
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/realisations";
     private string seoLocale = "fr_FR";
+    private Dictionary<string, string>? seoHreflang;
     private string caseKicker = "— Étude de cas";
     private string sectorLabel = "Secteur";
     private string roleLabel = "Rôle";
@@ -262,6 +264,14 @@ else if (loaded)
                 : $"{realisation.Title} — Case study | IdeaStud.io";
             seoDescription = cs.Challenge;
             seoCanonical = $"https://ideastud.io{hub}/{realisation.Slug}";
+            string hubFr = LocalizedRoute.For("realisations", "fr");
+            string hubEn = LocalizedRoute.For("realisations", "en");
+            seoHreflang = new Dictionary<string, string>
+            {
+                ["fr"] = $"https://ideastud.io{hubFr}/{realisation.Slug}",
+                ["en"] = $"https://ideastud.io{hubEn}/{realisation.Slug}",
+                ["x-default"] = $"https://ideastud.io{hubFr}/{realisation.Slug}",
+            };
         }
         else
         {

@@ -37,7 +37,8 @@ public static class SchemaOrg
         Organization? WorksFor = null,
         string? Email = null,
         string? Telephone = null,
-        Place[]? WorkLocation = null)
+        Place[]? WorkLocation = null,
+        string[]? KnowsLanguage = null)
     {
         [JsonPropertyName("@context")]
         public string Context => "https://schema.org";
@@ -273,7 +274,9 @@ public static class SchemaOrg
         string Url,
         string AreaServed,
         Person Provider,
-        IReadOnlyList<Service> Services)
+        IReadOnlyList<Service> Services,
+        string? PriceRange = null,
+        string[]? AvailableLanguage = null)
     {
         [JsonPropertyName("@context")]
         public string Context => "https://schema.org";

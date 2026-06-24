@@ -13,6 +13,11 @@ public interface ILocalizedRoute
 
     /// <summary>Extracts culture code ("fr" or "en") from the first segment of a path, or null if not present.</summary>
     string? ExtractCulture(string path);
+
+    /// <summary>
+    /// Absolute hreflang alternates for a static pageId: { "fr", "en", "x-default" } → full URLs.
+    /// </summary>
+    Dictionary<string, string> Alternates(string pageId);
 }
 
 public sealed class LocalizedRoute(ICultureService cultureService) : ILocalizedRoute
@@ -93,6 +98,20 @@ public sealed class LocalizedRoute(ICultureService cultureService) : ILocalizedR
             }
         }
         return null;
+    }
+
+    private const string Origin = "https://ideastud.io";
+
+    public Dictionary<string, string> Alternates(string pageId)
+    {
+        string fr = Origin + For(pageId, "fr");
+        string en = Origin + For(pageId, "en");
+        return new Dictionary<string, string>
+        {
+            ["fr"] = fr,
+            ["en"] = en,
+            ["x-default"] = fr,
+        };
     }
 
     public string? ExtractCulture(string path)

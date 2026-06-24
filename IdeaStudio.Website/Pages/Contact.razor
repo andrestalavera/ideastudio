@@ -12,6 +12,7 @@
 <SeoHead Title="@seoTitle" Description="@seoDescription"
          Author="Andrés Talavera"
          CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@LocalizedRoute.Alternates("contact")"
          SiteName="IdeaStud.io"
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
@@ -128,7 +129,7 @@
     }
 
     private static readonly Regex EmailRegex =
-        new(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled);
+        new(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
 
     private readonly ContactModel model = new();
     private readonly Dictionary<string, string> errors = new();

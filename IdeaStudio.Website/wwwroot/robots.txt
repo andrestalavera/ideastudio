@@ -22,7 +22,13 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
 User-agent: Anthropic-AI
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: Google-Extended
@@ -32,6 +38,9 @@ User-agent: Bingbot
 Allow: /
 
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Amazonbot
 Allow: /
 
 User-agent: Applebot-Extended
