@@ -226,9 +226,8 @@
         // Client logo wall, real client brands (the public sites we shipped).
         // Drop a LogoUrl per item to swap a wordmark for a real logo image.
         IReadOnlyList<Realisation> projects = await Content.GetRealisationsAsync(culture);
-        clients = projects
-            .Where(r => !string.IsNullOrWhiteSpace(r.LiveUrl))
-            .Select(r => new LogoWall.LogoItem(r.Client, LogoUrl: null, Url: r.LiveUrl))
+        clients = ClientRoster.Build(resume, projects)
+            .Select(c => new LogoWall.LogoItem(c.Name, LogoUrl: null, Url: c.Url))
             .ToList();
         heroText = resume?.PersonalInformation?.Hero ?? (culture.StartsWith("fr") ? "Parcours." : "Resume.");
         introText = resume?.PersonalInformation?.Introduction ?? "";

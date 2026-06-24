@@ -250,9 +250,9 @@
         string culture = CultureService.CurrentCulture.Name;
         services     = await Content.GetServicesAsync(culture);
         realisations = await Content.GetRealisationsAsync(culture);
-        clients = realisations
-            .Where(r => !string.IsNullOrWhiteSpace(r.LiveUrl))
-            .Select(r => new LogoWall.LogoItem(r.Client, LogoUrl: null, Url: r.LiveUrl))
+        Resume? resume = await Content.GetResumeAsync(culture);
+        clients = ClientRoster.Build(resume, realisations)
+            .Select(c => new LogoWall.LogoItem(c.Name, LogoUrl: null, Url: c.Url))
             .ToList();
     }
 
