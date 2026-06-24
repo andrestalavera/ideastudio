@@ -42,7 +42,7 @@
         @* Grid *@
         @if (filtered.Count == 0)
         {
-            <div class="ds-empty" data-reveal>
+            <div class="py-16 text-center flex flex-col items-center gap-6" data-reveal>
                 <p class="ds-lead">@emptyText</p>
                 <a class="ds-btn ds-btn-iridescent" href="@Nav.Uri" @onclick="() => SetTech(null)" @onclick:preventDefault="true">
                     @resetText <span aria-hidden="true">→</span>

@@ -21,6 +21,7 @@
 .mt-chapter { margin-block-start: clamp(2rem, 4vw, 3rem); }
 
 .p-8  { padding: s.$s-6; }          // 2rem
+.py-16 { padding-block: s.$s-8; }   // 4rem
 .px-3 { padding-inline: s.$s-3; }   // .75rem
 .px-6 { padding-inline: s.$s-5; }   // 1.5rem
 .py-1 { padding-block: s.$s-1; }    // .25rem
