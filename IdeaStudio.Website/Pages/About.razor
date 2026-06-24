@@ -36,56 +36,50 @@
 </Hero>
 
 @* 2 · Several angles (about cards) *@
-<section class="py-chapter relative section-rule">
-    <div class="mx-auto w-full max-w-content px-6">
-        <ChapterBand Kicker="@anglesKicker" Title="@anglesTitle" Lead="@anglesLead" />
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-chapter">
-            @if (resume?.AboutSections is not null)
+<PageSection>
+    <ChapterBand Kicker="@anglesKicker" Title="@anglesTitle" Lead="@anglesLead" />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-chapter">
+        @if (resume?.AboutSections is not null)
+        {
+            int i = 0;
+            foreach (AboutSection s in resume.AboutSections)
             {
-                int i = 0;
-                foreach (AboutSection s in resume.AboutSections)
-                {
-                    <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
-                        <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@s.Title</h3>
-                        @if (s.Paragraphs is not null)
+                <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
+                    <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@s.Title</h3>
+                    @if (s.Paragraphs is not null)
+                    {
+                        foreach (string p in s.Paragraphs)
                         {
-                            foreach (string p in s.Paragraphs)
-                            {
-                                <p class="text-base leading-relaxed text-muted m-0">@p</p>
-                            }
+                            <p class="text-base leading-relaxed text-muted m-0">@p</p>
                         }
-                    </div>
-                    i++;
-                }
+                    }
+                </div>
+                i++;
             }
-        </div>
+        }
     </div>
-</section>
+</PageSection>
 
 @* 2b · Testimonials *@
 @if (testimonials.Count > 0)
 {
-    <section class="py-chapter relative section-rule">
-        <div class="mx-auto w-full max-w-content px-6">
-            <ChapterBand Kicker="@testimonialsKicker" Title="@testimonialsTitle" />
-            <div class="mt-chapter">
-                <Testimonials Items="@testimonials" />
-            </div>
+    <PageSection>
+        <ChapterBand Kicker="@testimonialsKicker" Title="@testimonialsTitle" />
+        <div class="mt-chapter">
+            <Testimonials Items="@testimonials" />
         </div>
-    </section>
+    </PageSection>
 }
 
 @* 3 · Explore further, hub links *@
-<section class="py-chapter relative section-rule">
-    <div class="mx-auto w-full max-w-content px-6">
-        <ChapterBand Kicker="@exploreKicker" Title="@exploreTitle" />
-        <div class="flex flex-row items-center gap-3 flex-wrap mt-chapter" data-reveal>
-            <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("services.hub")">@servicesLink <span aria-hidden="true">→</span></a>
-            <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("realisations")">@workLink <span aria-hidden="true">→</span></a>
-            <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("cv")">@resumeText <span aria-hidden="true">→</span></a>
-        </div>
+<PageSection>
+    <ChapterBand Kicker="@exploreKicker" Title="@exploreTitle" />
+    <div class="flex flex-row items-center gap-3 flex-wrap mt-chapter" data-reveal>
+        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("services.hub")">@servicesLink <span aria-hidden="true">→</span></a>
+        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("realisations")">@workLink <span aria-hidden="true">→</span></a>
+        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("cv")">@resumeText <span aria-hidden="true">→</span></a>
     </div>
-</section>
+</PageSection>
 
 @code {
     private Resume? resume;

@@ -19,11 +19,9 @@
 
 <Hero Kicker="Services" Title="@titleText" Lead="@lead" />
 
-<section class="py-section relative">
-    <div class="mx-auto w-full max-w-content px-6">
-        <EditorialList Items="@services" />
-    </div>
-</section>
+<PageSection Rhythm="section" Bordered="false">
+    <EditorialList Items="@services" />
+</PageSection>
 
 @code {
     private IReadOnlyList<ServiceModel> services = Array.Empty<ServiceModel>();

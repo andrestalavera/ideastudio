@@ -11,78 +11,76 @@
 
 <Hero Kicker="@kicker" Title="@titleText" Lead="@leadText" />
 
-<section class="py-section relative">
-    <div class="mx-auto w-full max-w-narrow px-6">
-        <div class="ds-longform">
-            @if (isFr)
-            {
-                <h2 class="ds-longform-h2">Données collectées</h2>
-                <p>Ce site n'exige pas de compte et ne collecte aucune donnée d'identification directe.
-                   Une mesure d'audience anonymisée est en place, voir la section
-                   <a class="ds-link" href="#cookies">Cookies & traceurs</a> ci-dessous pour la liste complète.</p>
+<PageSection Rhythm="section" Bordered="false" Width="narrow">
+    <div class="ds-longform">
+        @if (isFr)
+        {
+            <h2 class="ds-longform-h2">Données collectées</h2>
+            <p>Ce site n'exige pas de compte et ne collecte aucune donnée d'identification directe.
+               Une mesure d'audience anonymisée est en place, voir la section
+               <a class="ds-link" href="#cookies">Cookies & traceurs</a> ci-dessous pour la liste complète.</p>
 
-                <h2 id="cookies" class="ds-longform-h2">@cookiesTitle</h2>
-                <p>Lorsque vous visitez le site pour la première fois, une bannière vous propose d'accepter ou
-                   de refuser ces traceurs. Tant que vous n'avez pas choisi, aucun cookie de mesure n'est déposé
-                   (Google Consent Mode v2). Vous pouvez modifier votre choix à tout moment via le lien
-                   <em>Gestion des cookies</em> dans le pied de page.</p>
-                <ul class="ds-longform-list">
-                    <li><strong>Google Analytics 4</strong>, mesure d'audience anonymisée. Conservation : 14 mois.</li>
-                    <li><strong>Microsoft Clarity</strong>, heatmaps et replays anonymisés. Conservation : 1 an.</li>
-                    <li><strong>Meta Pixel</strong>, mesure de campagnes Meta. Conservation : 13 mois.
-                        Désactivé tant qu'aucun identifiant n'est configuré.</li>
-                </ul>
-                <p>Votre choix est conservé localement (localStorage) pendant 13 mois maximum, conformément
-                   aux recommandations de la CNIL.</p>
+            <h2 id="cookies" class="ds-longform-h2">@cookiesTitle</h2>
+            <p>Lorsque vous visitez le site pour la première fois, une bannière vous propose d'accepter ou
+               de refuser ces traceurs. Tant que vous n'avez pas choisi, aucun cookie de mesure n'est déposé
+               (Google Consent Mode v2). Vous pouvez modifier votre choix à tout moment via le lien
+               <em>Gestion des cookies</em> dans le pied de page.</p>
+            <ul class="ds-longform-list">
+                <li><strong>Google Analytics 4</strong>, mesure d'audience anonymisée. Conservation : 14 mois.</li>
+                <li><strong>Microsoft Clarity</strong>, heatmaps et replays anonymisés. Conservation : 1 an.</li>
+                <li><strong>Meta Pixel</strong>, mesure de campagnes Meta. Conservation : 13 mois.
+                    Désactivé tant qu'aucun identifiant n'est configuré.</li>
+            </ul>
+            <p>Votre choix est conservé localement (localStorage) pendant 13 mois maximum, conformément
+               aux recommandations de la CNIL.</p>
 
-                <h2 class="ds-longform-h2">Hébergeur</h2>
-                <p>Les journaux techniques minimaux (adresse IP, user-agent) conservés par Azure Static Web Apps
-                   peuvent l'être pendant la durée définie par Microsoft à des fins de sécurité et de lutte contre
-                   les abus. Ces journaux ne sont pas exploités par l'éditeur.</p>
+            <h2 class="ds-longform-h2">Hébergeur</h2>
+            <p>Les journaux techniques minimaux (adresse IP, user-agent) conservés par Azure Static Web Apps
+               peuvent l'être pendant la durée définie par Microsoft à des fins de sécurité et de lutte contre
+               les abus. Ces journaux ne sont pas exploités par l'éditeur.</p>
 
-                <h2 class="ds-longform-h2">Prise de rendez-vous</h2>
-                <p>Le bouton de prise de rendez-vous redirige vers Calendly. Les données saisies sur Calendly sont
-                   régies par <a class="ds-link" href="https://calendly.com/privacy">la politique de confidentialité de Calendly</a>.</p>
+            <h2 class="ds-longform-h2">Prise de rendez-vous</h2>
+            <p>Le bouton de prise de rendez-vous redirige vers Calendly. Les données saisies sur Calendly sont
+               régies par <a class="ds-link" href="https://calendly.com/privacy">la politique de confidentialité de Calendly</a>.</p>
 
-                <h2 class="ds-longform-h2">Vos droits</h2>
-                <p>Conformément au RGPD, vous pouvez exercer vos droits d'accès, de rectification et d'effacement
-                   par email : <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a>.</p>
-            }
-            else
-            {
-                <h2 class="ds-longform-h2">Data we collect</h2>
-                <p>This site requires no account and collects no directly-identifying data.
-                   Anonymous audience measurement is enabled, see the
-                   <a class="ds-link" href="#cookies">Cookies &amp; trackers</a> section below for the full list.</p>
+            <h2 class="ds-longform-h2">Vos droits</h2>
+            <p>Conformément au RGPD, vous pouvez exercer vos droits d'accès, de rectification et d'effacement
+               par email : <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a>.</p>
+        }
+        else
+        {
+            <h2 class="ds-longform-h2">Data we collect</h2>
+            <p>This site requires no account and collects no directly-identifying data.
+               Anonymous audience measurement is enabled, see the
+               <a class="ds-link" href="#cookies">Cookies &amp; trackers</a> section below for the full list.</p>
 
-                <h2 id="cookies" class="ds-longform-h2">@cookiesTitle</h2>
-                <p>On your first visit, a banner lets you accept or decline these trackers. Until you choose,
-                   no measurement cookies are set (Google Consent Mode v2). You can change your decision at any
-                   time via the <em>Cookie settings</em> link in the footer.</p>
-                <ul class="ds-longform-list">
-                    <li><strong>Google Analytics 4</strong>, anonymous audience measurement. Retention: 14 months.</li>
-                    <li><strong>Microsoft Clarity</strong>, anonymous heatmaps and session replays. Retention: 1 year.</li>
-                    <li><strong>Meta Pixel</strong>, Meta campaign measurement. Retention: 13 months.
-                        Disabled until an ID is configured.</li>
-                </ul>
-                <p>Your choice is stored locally (localStorage) for at most 13 months, per CNIL guidance.</p>
+            <h2 id="cookies" class="ds-longform-h2">@cookiesTitle</h2>
+            <p>On your first visit, a banner lets you accept or decline these trackers. Until you choose,
+               no measurement cookies are set (Google Consent Mode v2). You can change your decision at any
+               time via the <em>Cookie settings</em> link in the footer.</p>
+            <ul class="ds-longform-list">
+                <li><strong>Google Analytics 4</strong>, anonymous audience measurement. Retention: 14 months.</li>
+                <li><strong>Microsoft Clarity</strong>, anonymous heatmaps and session replays. Retention: 1 year.</li>
+                <li><strong>Meta Pixel</strong>, Meta campaign measurement. Retention: 13 months.
+                    Disabled until an ID is configured.</li>
+            </ul>
+            <p>Your choice is stored locally (localStorage) for at most 13 months, per CNIL guidance.</p>
 
-                <h2 class="ds-longform-h2">Hosting logs</h2>
-                <p>Minimal technical logs (IP address, user-agent) retained by Azure Static Web Apps for the period
-                   defined by Microsoft, for security and abuse-prevention purposes. These logs are not exploited
-                   by the publisher.</p>
+            <h2 class="ds-longform-h2">Hosting logs</h2>
+            <p>Minimal technical logs (IP address, user-agent) retained by Azure Static Web Apps for the period
+               defined by Microsoft, for security and abuse-prevention purposes. These logs are not exploited
+               by the publisher.</p>
 
-                <h2 class="ds-longform-h2">Scheduling</h2>
-                <p>The "book a call" button redirects to Calendly. Data entered on Calendly is governed by
-                   <a class="ds-link" href="https://calendly.com/privacy">Calendly's privacy policy</a>.</p>
+            <h2 class="ds-longform-h2">Scheduling</h2>
+            <p>The "book a call" button redirects to Calendly. Data entered on Calendly is governed by
+               <a class="ds-link" href="https://calendly.com/privacy">Calendly's privacy policy</a>.</p>
 
-                <h2 class="ds-longform-h2">Your rights</h2>
-                <p>Under GDPR, you can exercise your access, rectification and erasure rights by email:
-                   <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a>.</p>
-            }
-        </div>
+            <h2 class="ds-longform-h2">Your rights</h2>
+            <p>Under GDPR, you can exercise your access, rectification and erasure rights by email:
+               <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a>.</p>
+        }
     </div>
-</section>
+</PageSection>
 
 @code {
     private string seoTitle = "Confidentialité";

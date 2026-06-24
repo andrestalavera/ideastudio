@@ -19,30 +19,28 @@
 
 <Hero Kicker="@kicker" Title="@titleText" Lead="@lead" />
 
-<section class="py-section relative">
-    <div class="mx-auto w-full max-w-narrow px-6">
-        <ul class="ds-bloglist" role="list">
-            @for (int i = 0; i < posts.Count; i++)
-            {
-                BlogPost p = posts[i];
-                <li>
-                    <a class="ds-bloglist-item" href="@($"{LocalizedRoute.For("blog")}/{p.Slug}")"
-                       data-reveal style="@($"--reveal-step:{i}")">
-                        <span class="ds-bloglist-meta">@FormatDate(p.Date) · @p.ReadingMinutes @minLabel</span>
-                        <h2 class="ds-bloglist-title">@p.Title</h2>
-                        <p class="ds-bloglist-summary">@p.Summary</p>
-                        <div class="ds-tile-tags">
-                            @foreach (string tag in p.Tags)
-                            {
-                                <span class="ds-tag">@tag</span>
-                            }
-                        </div>
-                    </a>
-                </li>
-            }
-        </ul>
-    </div>
-</section>
+<PageSection Rhythm="section" Bordered="false" Width="narrow">
+    <ul class="ds-bloglist" role="list">
+        @for (int i = 0; i < posts.Count; i++)
+        {
+            BlogPost p = posts[i];
+            <li>
+                <a class="ds-bloglist-item" href="@($"{LocalizedRoute.For("blog")}/{p.Slug}")"
+                   data-reveal style="@($"--reveal-step:{i}")">
+                    <span class="ds-bloglist-meta">@FormatDate(p.Date) · @p.ReadingMinutes @minLabel</span>
+                    <h2 class="ds-bloglist-title">@p.Title</h2>
+                    <p class="ds-bloglist-summary">@p.Summary</p>
+                    <div class="ds-tile-tags">
+                        @foreach (string tag in p.Tags)
+                        {
+                            <span class="ds-tag">@tag</span>
+                        }
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
+</PageSection>
 
 @code {
     private IReadOnlyList<BlogPost> posts = Array.Empty<BlogPost>();

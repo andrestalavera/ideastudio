@@ -31,91 +31,79 @@ else
     <Hero Kicker="@service.Kicker" Title="@service.Title" Lead="@service.Tagline" />
 
     @* Summary *@
-    <section class="py-section relative">
-        <div class="mx-auto w-full max-w-narrow px-6">
-            <p class="ds-lead" data-reveal>@service.Summary</p>
-        </div>
-    </section>
+    <PageSection Rhythm="section" Bordered="false" Width="narrow">
+        <p class="ds-lead" data-reveal>@service.Summary</p>
+    </PageSection>
 
     @* Highlights *@
     @if (service.Highlights is { Count: > 0 })
     {
-        <section class="py-chapter relative section-rule">
-            <div class="mx-auto w-full max-w-narrow px-6">
-                <ChapterBand Kicker="@highlightsKicker" Title="@highlightsTitle" />
-                <ul class="ds-highlight-list mt-8">
-                    @for (int i = 0; i < service.Highlights.Count; i++)
-                    {
-                        <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
-                            <span class="ds-highlight-mark" aria-hidden="true"></span>
-                            <span>@service.Highlights[i]</span>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </section>
+        <PageSection Width="narrow">
+            <ChapterBand Kicker="@highlightsKicker" Title="@highlightsTitle" />
+            <ul class="ds-highlight-list mt-8">
+                @for (int i = 0; i < service.Highlights.Count; i++)
+                {
+                    <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
+                        <span class="ds-highlight-mark" aria-hidden="true"></span>
+                        <span>@service.Highlights[i]</span>
+                    </li>
+                }
+            </ul>
+        </PageSection>
     }
 
     @* Use cases *@
     @if (service.UseCases is { Count: > 0 })
     {
-        <section class="py-chapter relative section-rule">
-            <div class="mx-auto w-full max-w-content px-6">
-                <ChapterBand Kicker="@useCaseKicker" Title="@useCaseTitle" />
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
-                    @for (int i = 0; i < service.UseCases.Count; i++)
-                    {
-                        UseCase uc = service.UseCases[i];
-                        <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
-                            <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@uc.Title</h3>
-                            <p class="text-base leading-relaxed text-muted m-0">@uc.Description</p>
-                        </div>
-                    }
-                </div>
+        <PageSection>
+            <ChapterBand Kicker="@useCaseKicker" Title="@useCaseTitle" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
+                @for (int i = 0; i < service.UseCases.Count; i++)
+                {
+                    UseCase uc = service.UseCases[i];
+                    <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
+                        <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@uc.Title</h3>
+                        <p class="text-base leading-relaxed text-muted m-0">@uc.Description</p>
+                    </div>
+                }
             </div>
-        </section>
+        </PageSection>
     }
 
     @* Training centres (formateur only), shared editorial block with the CV page *@
     @if (IsTrainerService(service) && centers.Count > 0)
     {
-        <section class="py-chapter relative section-rule">
-            <div class="mx-auto w-full max-w-content px-6">
-                <ChapterBand Kicker="@centersKicker" Title="@centersTitle" />
-                <p class="ds-lead mt-6" data-reveal>@centersIntro</p>
-                <div class="mt-8">
-                    <TeachList Centers="@centers" />
-                </div>
+        <PageSection>
+            <ChapterBand Kicker="@centersKicker" Title="@centersTitle" />
+            <p class="ds-lead mt-6" data-reveal>@centersIntro</p>
+            <div class="mt-8">
+                <TeachList Centers="@centers" />
             </div>
-        </section>
+        </PageSection>
     }
 
     @* FAQ, expanded editorial Q&A *@
     @if (service.Faq is { Count: > 0 })
     {
-        <section class="py-chapter relative section-rule">
-            <div class="mx-auto w-full max-w-narrow px-6">
-                <ChapterBand Kicker="@faqKicker" Title="@faqTitle" />
-                <div class="mt-10">
-                    @for (int i = 0; i < service.Faq.Count; i++)
-                    {
-                        FaqEntry f = service.Faq[i];
-                        <QABlock Kicker="@($"Q {i + 1:D2}")" Question="@f.Question" Answer="@f.Answer" Step="@i" />
-                    }
-                </div>
+        <PageSection Width="narrow">
+            <ChapterBand Kicker="@faqKicker" Title="@faqTitle" />
+            <div class="mt-10">
+                @for (int i = 0; i < service.Faq.Count; i++)
+                {
+                    FaqEntry f = service.Faq[i];
+                    <QABlock Kicker="@($"Q {i + 1:D2}")" Question="@f.Question" Answer="@f.Answer" Step="@i" />
+                }
             </div>
-        </section>
+        </PageSection>
     }
 
     @* Training catalogue (formateur only) *@
     @if (IsTrainerService(service) && trainings is { Count: > 0 })
     {
-        <section class="py-chapter relative section-rule">
-            <div class="mx-auto w-full max-w-content px-6">
-                <ChapterBand Kicker="@catalogueKicker" Title="@catalogueTitle" />
-                <TrainingCatalogue Trainings="@trainings" />
-            </div>
-        </section>
+        <PageSection>
+            <ChapterBand Kicker="@catalogueKicker" Title="@catalogueTitle" />
+            <TrainingCatalogue Trainings="@trainings" />
+        </PageSection>
     }
 }
 

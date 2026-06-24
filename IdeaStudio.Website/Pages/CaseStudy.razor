@@ -43,111 +43,99 @@
     </Hero>
 
     @* 2 · Approach + Outcome, plain-language, before the technical depth *@
-    <section class="py-chapter relative section-rule">
-        <div class="mx-auto w-full max-w-content px-6">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div class="ds-rhythm" data-reveal>
-                    <p class="ds-kicker">@approachLabel</p>
-                    <p class="ds-lead">@cs.Approach</p>
-                </div>
-                <div class="ds-rhythm" data-reveal style="--reveal-step: 1">
-                    <p class="ds-kicker">@outcomeLabel</p>
-                    <p class="ds-lead">@cs.Outcome</p>
-                </div>
+    <PageSection>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="ds-rhythm" data-reveal>
+                <p class="ds-kicker">@approachLabel</p>
+                <p class="ds-lead">@cs.Approach</p>
+            </div>
+            <div class="ds-rhythm" data-reveal style="--reveal-step: 1">
+                <p class="ds-kicker">@outcomeLabel</p>
+                <p class="ds-lead">@cs.Outcome</p>
             </div>
         </div>
-    </section>
+    </PageSection>
 
     @* 3 · Architecture diagram *@
     @if (!string.IsNullOrWhiteSpace(cs.DiagramImage))
     {
-        <section class="py-chapter relative section-rule">
-            <div class="mx-auto w-full max-w-content px-6">
-                <ChapterBand Kicker="@architectureKicker" Title="@architectureTitle" />
-                <figure class="ds-case-diagram mt-chapter" data-reveal>
-                    <img src="@cs.DiagramImage" alt="@cs.DiagramAlt" loading="lazy" decoding="async" />
-                </figure>
-            </div>
-        </section>
+        <PageSection>
+            <ChapterBand Kicker="@architectureKicker" Title="@architectureTitle" />
+            <figure class="ds-case-diagram mt-chapter" data-reveal>
+                <img src="@cs.DiagramImage" alt="@cs.DiagramAlt" loading="lazy" decoding="async" />
+            </figure>
+        </PageSection>
     }
 
     @* 4 · By the numbers *@
     @if (cs.Stats.Count > 0)
     {
-        <section class="py-chapter relative section-rule">
-            <div class="mx-auto w-full max-w-content px-6">
-                <ChapterBand Kicker="@numbersKicker" Title="@numbersTitle" />
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-chapter">
-                    @for (int i = 0; i < cs.Stats.Count; i++)
-                    {
-                        CaseStudyStat s = cs.Stats[i];
-                        <div class="ds-stat" data-reveal style="@($"--reveal-step:{i}")">
-                            <div class="ds-stat-value">@s.Value</div>
-                            <div class="ds-stat-label">@s.Label</div>
-                        </div>
-                    }
-                </div>
+        <PageSection>
+            <ChapterBand Kicker="@numbersKicker" Title="@numbersTitle" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-chapter">
+                @for (int i = 0; i < cs.Stats.Count; i++)
+                {
+                    CaseStudyStat s = cs.Stats[i];
+                    <div class="ds-stat" data-reveal style="@($"--reveal-step:{i}")">
+                        <div class="ds-stat-value">@s.Value</div>
+                        <div class="ds-stat-label">@s.Label</div>
+                    </div>
+                }
             </div>
-        </section>
+        </PageSection>
     }
 
     @* 5 · Key decisions + why *@
     @if (cs.Decisions.Count > 0)
     {
-        <section class="py-chapter relative section-rule">
-            <div class="mx-auto w-full max-w-content px-6">
-                <ChapterBand Kicker="@decisionsKicker" Title="@decisionsTitle" Lead="@decisionsLead" />
-                <div class="ds-case-decisions mt-chapter">
-                    @for (int i = 0; i < cs.Decisions.Count; i++)
-                    {
-                        CaseStudyDecision d = cs.Decisions[i];
-                        <div class="ds-case-decision" data-reveal style="@($"--reveal-step:{i}")">
-                            <h3 class="ds-case-decision-title">@d.Title</h3>
-                            <p class="ds-case-decision-detail">@d.Detail</p>
-                        </div>
-                    }
-                </div>
+        <PageSection>
+            <ChapterBand Kicker="@decisionsKicker" Title="@decisionsTitle" Lead="@decisionsLead" />
+            <div class="ds-case-decisions mt-chapter">
+                @for (int i = 0; i < cs.Decisions.Count; i++)
+                {
+                    CaseStudyDecision d = cs.Decisions[i];
+                    <div class="ds-case-decision" data-reveal style="@($"--reveal-step:{i}")">
+                        <h3 class="ds-case-decision-title">@d.Title</h3>
+                        <p class="ds-case-decision-detail">@d.Detail</p>
+                    </div>
+                }
             </div>
-        </section>
+        </PageSection>
     }
 
     @* 6 · Deeper sections *@
     @if (cs.Sections.Count > 0)
     {
-        <section class="py-chapter relative section-rule">
-            <div class="mx-auto w-full max-w-content px-6">
-                <ChapterBand Kicker="@detailKicker" Title="@detailTitle" />
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-chapter">
-                    @for (int i = 0; i < cs.Sections.Count; i++)
-                    {
-                        CaseStudySection sec = cs.Sections[i];
-                        <div class="ds-case-section" data-reveal style="@($"--reveal-step:{i}")">
-                            <h3 class="ds-case-section-title">@sec.Title</h3>
-                            @foreach (string p in sec.Body)
-                            {
-                                <p class="ds-body">@p</p>
-                            }
-                        </div>
-                    }
-                </div>
+        <PageSection>
+            <ChapterBand Kicker="@detailKicker" Title="@detailTitle" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-chapter">
+                @for (int i = 0; i < cs.Sections.Count; i++)
+                {
+                    CaseStudySection sec = cs.Sections[i];
+                    <div class="ds-case-section" data-reveal style="@($"--reveal-step:{i}")">
+                        <h3 class="ds-case-section-title">@sec.Title</h3>
+                        @foreach (string p in sec.Body)
+                        {
+                            <p class="ds-body">@p</p>
+                        }
+                    </div>
+                }
             </div>
-        </section>
+        </PageSection>
     }
 
     @* 7 · Stack *@
     @if (cs.Stack.Count > 0)
     {
-        <section class="py-chapter relative section-rule">
-            <div class="mx-auto w-full max-w-content px-6">
-                <ChapterBand Kicker="@stackKicker" Title="@stackTitle" />
-                <div class="ds-case-stack mt-chapter" data-reveal>
-                    @foreach (string tech in cs.Stack)
-                    {
-                        <span class="ds-tag">@tech</span>
-                    }
-                </div>
+        <PageSection>
+            <ChapterBand Kicker="@stackKicker" Title="@stackTitle" />
+            <div class="ds-case-stack mt-chapter" data-reveal>
+                @foreach (string tech in cs.Stack)
+                {
+                    <span class="ds-tag">@tech</span>
+                }
             </div>
-        </section>
+        </PageSection>
     }
 }
 else if (loaded)

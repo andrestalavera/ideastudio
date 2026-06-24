@@ -25,23 +25,21 @@
         <ChildContent>@post.Title</ChildContent>
     </Hero>
 
-    <section class="py-section relative">
-        <div class="mx-auto w-full max-w-narrow px-6">
-            <p class="ds-blogpost-meta" data-reveal>@FormatDate(post.Date) · @post.ReadingMinutes @minLabel</p>
-            <article class="ds-longform ds-blogpost-body" data-reveal>@bodyHtml</article>
-            <div class="ds-tile-tags mt-chapter">
-                @foreach (string tag in post.Tags)
-                {
-                    <span class="ds-tag">@tag</span>
-                }
-            </div>
-            <p class="mt-chapter" data-reveal>
-                <a class="ds-link" href="@LocalizedRoute.For("blog")">
-                    @backLabel <span class="ds-link-arrow" aria-hidden="true">→</span>
-                </a>
-            </p>
+    <PageSection Rhythm="section" Bordered="false" Width="narrow">
+        <p class="ds-blogpost-meta" data-reveal>@FormatDate(post.Date) · @post.ReadingMinutes @minLabel</p>
+        <article class="ds-longform ds-blogpost-body" data-reveal>@bodyHtml</article>
+        <div class="ds-tile-tags mt-chapter">
+            @foreach (string tag in post.Tags)
+            {
+                <span class="ds-tag">@tag</span>
+            }
         </div>
-    </section>
+        <p class="mt-chapter" data-reveal>
+            <a class="ds-link" href="@LocalizedRoute.For("blog")">
+                @backLabel <span class="ds-link-arrow" aria-hidden="true">→</span>
+            </a>
+        </p>
+    </PageSection>
 }
 else if (loaded)
 {

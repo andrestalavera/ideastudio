@@ -21,101 +21,99 @@
 
 <Hero Kicker="@heroKicker" Title="@heroTitle" Lead="@heroLead" />
 
-<section class="py-chapter relative section-rule">
-    <div class="mx-auto w-full max-w-narrow px-6">
-        @if (status == Status.Success)
+<PageSection Width="narrow">
+    @if (status == Status.Success)
+    {
+        <div class="ds-form-status ds-form-status-ok" role="alert" data-reveal>
+            <p class="ds-form-status-title">@successTitle</p>
+            <p>@successBody</p>
+        </div>
+    }
+    else
+    {
+        @if (status == Status.Error)
         {
-            <div class="ds-form-status ds-form-status-ok" role="alert" data-reveal>
-                <p class="ds-form-status-title">@successTitle</p>
-                <p>@successBody</p>
+            <div class="ds-form-status ds-form-status-err" role="alert">
+                <p>@errorBody</p>
             </div>
         }
-        else
-        {
-            @if (status == Status.Error)
-            {
-                <div class="ds-form-status ds-form-status-err" role="alert">
-                    <p>@errorBody</p>
-                </div>
-            }
 
-            <form class="ds-form" @onsubmit="HandleSubmit" @onsubmit:preventDefault novalidate>
-                <div class="ds-field">
-                    <label class="ds-field-label" for="cf-name">@nameLabel</label>
-                    <input class="ds-field-input" id="cf-name" type="text" autocomplete="name"
-                           @bind="model.Name" @bind:event="oninput"
-                           aria-invalid="@Invalid(nameof(model.Name))"
-                           aria-describedby="@(HasError(nameof(model.Name)) ? "cf-name-err" : null)" />
-                    @if (HasError(nameof(model.Name)))
-                    {
-                        <span class="ds-field-error" id="cf-name-err">@errors[nameof(model.Name)]</span>
-                    }
-                </div>
+        <form class="ds-form" @onsubmit="HandleSubmit" @onsubmit:preventDefault novalidate>
+            <div class="ds-field">
+                <label class="ds-field-label" for="cf-name">@nameLabel</label>
+                <input class="ds-field-input" id="cf-name" type="text" autocomplete="name"
+                       @bind="model.Name" @bind:event="oninput"
+                       aria-invalid="@Invalid(nameof(model.Name))"
+                       aria-describedby="@(HasError(nameof(model.Name)) ? "cf-name-err" : null)" />
+                @if (HasError(nameof(model.Name)))
+                {
+                    <span class="ds-field-error" id="cf-name-err">@errors[nameof(model.Name)]</span>
+                }
+            </div>
 
-                <div class="ds-field">
-                    <label class="ds-field-label" for="cf-email">@emailLabel</label>
-                    <input class="ds-field-input" id="cf-email" type="email" autocomplete="email"
-                           @bind="model.Email" @bind:event="oninput"
-                           aria-invalid="@Invalid(nameof(model.Email))"
-                           aria-describedby="@(HasError(nameof(model.Email)) ? "cf-email-err" : null)" />
-                    @if (HasError(nameof(model.Email)))
-                    {
-                        <span class="ds-field-error" id="cf-email-err">@errors[nameof(model.Email)]</span>
-                    }
-                </div>
+            <div class="ds-field">
+                <label class="ds-field-label" for="cf-email">@emailLabel</label>
+                <input class="ds-field-input" id="cf-email" type="email" autocomplete="email"
+                       @bind="model.Email" @bind:event="oninput"
+                       aria-invalid="@Invalid(nameof(model.Email))"
+                       aria-describedby="@(HasError(nameof(model.Email)) ? "cf-email-err" : null)" />
+                @if (HasError(nameof(model.Email)))
+                {
+                    <span class="ds-field-error" id="cf-email-err">@errors[nameof(model.Email)]</span>
+                }
+            </div>
 
-                <div class="ds-field">
-                    <label class="ds-field-label" for="cf-subject">@subjectLabel <span class="ds-field-optional">@optionalLabel</span></label>
-                    <input class="ds-field-input" id="cf-subject" type="text"
-                           @bind="model.Subject" @bind:event="oninput" />
-                </div>
+            <div class="ds-field">
+                <label class="ds-field-label" for="cf-subject">@subjectLabel <span class="ds-field-optional">@optionalLabel</span></label>
+                <input class="ds-field-input" id="cf-subject" type="text"
+                       @bind="model.Subject" @bind:event="oninput" />
+            </div>
 
-                <div class="ds-field">
-                    <label class="ds-field-label" for="cf-message">@messageLabel</label>
-                    <textarea class="ds-field-input ds-field-textarea" id="cf-message" rows="6"
-                              @bind="model.Message" @bind:event="oninput"
-                              aria-invalid="@Invalid(nameof(model.Message))"
-                              aria-describedby="@(HasError(nameof(model.Message)) ? "cf-message-err" : null)"></textarea>
-                    @if (HasError(nameof(model.Message)))
-                    {
-                        <span class="ds-field-error" id="cf-message-err">@errors[nameof(model.Message)]</span>
-                    }
-                </div>
+            <div class="ds-field">
+                <label class="ds-field-label" for="cf-message">@messageLabel</label>
+                <textarea class="ds-field-input ds-field-textarea" id="cf-message" rows="6"
+                          @bind="model.Message" @bind:event="oninput"
+                          aria-invalid="@Invalid(nameof(model.Message))"
+                          aria-describedby="@(HasError(nameof(model.Message)) ? "cf-message-err" : null)"></textarea>
+                @if (HasError(nameof(model.Message)))
+                {
+                    <span class="ds-field-error" id="cf-message-err">@errors[nameof(model.Message)]</span>
+                }
+            </div>
 
-                <div class="ds-field ds-field-check">
-                    <label class="ds-field-check">
-                        <input type="checkbox" @bind="model.Consent"
-                               aria-invalid="@Invalid(nameof(model.Consent))"
-                               aria-describedby="@(HasError(nameof(model.Consent)) ? "cf-consent-err" : null)" />
-                        <span>@consentLabel <a class="ds-link" href="@LocalizedRoute.For("privacy")">@privacyLinkLabel</a>.</span>
-                    </label>
-                    @if (HasError(nameof(model.Consent)))
-                    {
-                        <span class="ds-field-error" id="cf-consent-err">@errors[nameof(model.Consent)]</span>
-                    }
-                </div>
+            <div class="ds-field ds-field-check">
+                <label class="ds-field-check">
+                    <input type="checkbox" @bind="model.Consent"
+                           aria-invalid="@Invalid(nameof(model.Consent))"
+                           aria-describedby="@(HasError(nameof(model.Consent)) ? "cf-consent-err" : null)" />
+                    <span>@consentLabel <a class="ds-link" href="@LocalizedRoute.For("privacy")">@privacyLinkLabel</a>.</span>
+                </label>
+                @if (HasError(nameof(model.Consent)))
+                {
+                    <span class="ds-field-error" id="cf-consent-err">@errors[nameof(model.Consent)]</span>
+                }
+            </div>
 
-                @* Honeypot, hidden from humans, tempting to bots. *@
-                <div class="ds-field ds-hp" aria-hidden="true">
-                    <label for="cf-website">Website</label>
-                    <input id="cf-website" type="text" tabindex="-1" autocomplete="off" @bind="model.Website" @bind:event="oninput" />
-                </div>
+            @* Honeypot, hidden from humans, tempting to bots. *@
+            <div class="ds-field ds-hp" aria-hidden="true">
+                <label for="cf-website">Website</label>
+                <input id="cf-website" type="text" tabindex="-1" autocomplete="off" @bind="model.Website" @bind:event="oninput" />
+            </div>
 
-                <div class="ds-form-actions">
-                    <button class="ds-btn ds-btn-primary" type="submit" disabled="@(status == Status.Sending)">
-                        @(status == Status.Sending ? sendingLabel : submitLabel)
-                        <span aria-hidden="true">→</span>
-                    </button>
-                    <a class="ds-btn ds-btn-ghost"
-                       href="https://calendly.com/andres-talavera/30min"
-                       target="_blank" rel="noopener">
-                        @bookLabel <span aria-hidden="true">↗</span>
-                    </a>
-                </div>
-            </form>
-        }
-    </div>
-</section>
+            <div class="ds-form-actions">
+                <button class="ds-btn ds-btn-primary" type="submit" disabled="@(status == Status.Sending)">
+                    @(status == Status.Sending ? sendingLabel : submitLabel)
+                    <span aria-hidden="true">→</span>
+                </button>
+                <a class="ds-btn ds-btn-ghost"
+                   href="https://calendly.com/andres-talavera/30min"
+                   target="_blank" rel="noopener">
+                    @bookLabel <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+        </form>
+    }
+</PageSection>
 
 @code {
     private enum Status { Idle, Sending, Success, Error }
