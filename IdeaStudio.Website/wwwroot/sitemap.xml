@@ -4,6 +4,7 @@
   <!-- Home -->
   <url>
     <loc>https://ideastud.io/fr</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr" />
@@ -12,6 +13,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr" />
@@ -22,6 +24,7 @@
   <!-- Services hub -->
   <url>
     <loc>https://ideastud.io/fr/services</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services" />
@@ -30,6 +33,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/services</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services" />
@@ -40,6 +44,7 @@
   <!-- Services: Consultant .NET & Azure -->
   <url>
     <loc>https://ideastud.io/fr/services/consultant-dotnet-azure</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/consultant-dotnet-azure" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/dotnet-azure-consulting" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/consultant-dotnet-azure" />
@@ -48,6 +53,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/services/dotnet-azure-consulting</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/consultant-dotnet-azure" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/dotnet-azure-consulting" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/consultant-dotnet-azure" />
@@ -58,6 +64,7 @@
   <!-- Services: Techlead -->
   <url>
     <loc>https://ideastud.io/fr/services/techlead</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/techlead" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/tech-lead" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/techlead" />
@@ -66,6 +73,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/services/tech-lead</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/techlead" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/tech-lead" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/techlead" />
@@ -76,6 +84,7 @@
   <!-- Services: Formateur / Trainer -->
   <url>
     <loc>https://ideastud.io/fr/services/formateur</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/formateur" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/trainer" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/formateur" />
@@ -84,6 +93,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/services/trainer</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/formateur" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/trainer" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/formateur" />
@@ -94,6 +104,7 @@
   <!-- Services: Vibe coding -->
   <url>
     <loc>https://ideastud.io/fr/services/vibe-coding</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/vibe-coding" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/vibe-coding" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/vibe-coding" />
@@ -102,6 +113,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/services/vibe-coding</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/vibe-coding" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/vibe-coding" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/vibe-coding" />
@@ -112,6 +124,7 @@
   <!-- Services: Applications mobiles / Mobile apps -->
   <url>
     <loc>https://ideastud.io/fr/services/applications-mobiles</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/applications-mobiles" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/mobile-apps" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/applications-mobiles" />
@@ -120,6 +133,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/services/mobile-apps</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/applications-mobiles" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/mobile-apps" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/applications-mobiles" />
@@ -130,6 +144,7 @@
   <!-- Services: Sites internet / Websites -->
   <url>
     <loc>https://ideastud.io/fr/services/sites-internet</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/sites-internet" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/websites" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/sites-internet" />
@@ -138,6 +153,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/services/websites</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/sites-internet" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/websites" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/sites-internet" />
@@ -148,6 +164,7 @@
   <!-- Realisations / Projects -->
   <url>
     <loc>https://ideastud.io/fr/realisations</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations" />
@@ -156,6 +173,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/projects</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations" />
@@ -166,6 +184,7 @@
   <!-- Case studies -->
   <url>
     <loc>https://ideastud.io/fr/realisations/restoplatform</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/restoplatform" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/restoplatform" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/restoplatform" />
@@ -174,6 +193,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/projects/restoplatform</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/restoplatform" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/restoplatform" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/restoplatform" />
@@ -182,6 +202,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/realisations/dpelib</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/dpelib" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/dpelib" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/dpelib" />
@@ -190,6 +211,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/projects/dpelib</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/dpelib" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/dpelib" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/dpelib" />
@@ -198,6 +220,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/realisations/brasageneva</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/brasageneva" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/brasageneva" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/brasageneva" />
@@ -206,6 +229,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/projects/brasageneva</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/brasageneva" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/brasageneva" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/brasageneva" />
@@ -216,6 +240,7 @@
   <!-- CV / Resume -->
   <url>
     <loc>https://ideastud.io/fr/cv</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/cv" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/resume" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/cv" />
@@ -224,6 +249,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/resume</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/cv" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/resume" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/cv" />
@@ -234,6 +260,7 @@
   <!-- About / À propos -->
   <url>
     <loc>https://ideastud.io/fr/a-propos</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/a-propos" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/a-propos" />
@@ -242,6 +269,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/about</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/a-propos" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/a-propos" />
@@ -252,6 +280,7 @@
   <!-- FAQ -->
   <url>
     <loc>https://ideastud.io/fr/faq</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/faq" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/faq" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/faq" />
@@ -260,6 +289,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/faq</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/faq" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/faq" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/faq" />
@@ -270,6 +300,7 @@
   <!-- Contact -->
   <url>
     <loc>https://ideastud.io/fr/contact</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/contact" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/contact" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/contact" />
@@ -278,6 +309,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/contact</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/contact" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/contact" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/contact" />
@@ -285,9 +317,66 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog -->
+  <url>
+    <loc>https://ideastud.io/fr/blog</loc>
+    <lastmod>2026-06-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/blog" />
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/blog</loc>
+    <lastmod>2026-06-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/blog" />
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique</loc>
+    <lastmod>2026-06-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/blog/coder-avec-ia-sans-dette-technique" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/blog/coder-avec-ia-sans-dette-technique</loc>
+    <lastmod>2026-06-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/blog/coder-avec-ia-sans-dette-technique" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/blog/cloud-souverain-europe</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/blog/cloud-souverain-europe" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/blog/cloud-souverain-europe" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/blog/cloud-souverain-europe" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/blog/cloud-souverain-europe</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/blog/cloud-souverain-europe" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/blog/cloud-souverain-europe" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/blog/cloud-souverain-europe" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Legal -->
   <url>
     <loc>https://ideastud.io/fr/mentions-legales</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/mentions-legales" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/legal" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/mentions-legales" />
@@ -296,6 +385,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/legal</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/mentions-legales" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/legal" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/mentions-legales" />
@@ -306,6 +396,7 @@
   <!-- Privacy -->
   <url>
     <loc>https://ideastud.io/fr/confidentialite</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/confidentialite" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/privacy" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/confidentialite" />
@@ -314,6 +405,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/privacy</loc>
+    <lastmod>2026-06-24</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/confidentialite" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/privacy" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/confidentialite" />
