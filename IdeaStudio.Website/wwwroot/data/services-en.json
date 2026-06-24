@@ -3,7 +3,7 @@
     "slug": "dotnet-azure-consulting",
     "title": ".NET & Azure Consulting",
     "kicker": "ARCHITECTURE CONSULTING",
-    "tagline": "Architecture, hands-on guidance, and code on high-stakes .NET and Azure platforms.",
+    "tagline": "A .NET/Azure platform that scales and stays maintainable — architecture, audits and hands-on code, from someone who still ships code.",
     "iconId": "consulting",
     "summary": "With 15+ years in software design, I help you make the right architecture calls, scale your .NET/Azure platforms, and run technical audits.",
     "highlights": [
@@ -30,7 +30,7 @@
     "slug": "tech-lead",
     "title": "Tech Lead",
     "kicker": "TECHNICAL LEADERSHIP",
-    "tagline": "I own the technical direction of a product team and help it grow.",
+    "tagline": "A product team that ships, levels up and holds the quality line — I take technical ownership.",
     "iconId": "techlead",
     "summary": "As a tech lead, I align product vision with technical decisions, frame structural choices, grow the team's skills, and keep quality on course.",
     "highlights": [
@@ -56,7 +56,7 @@
     "slug": "trainer",
     "title": "Trainer",
     "kicker": "KNOWLEDGE TRANSFER",
-    "tagline": "I train your teams on .NET, Azure, and modern web fundamentals and advanced practices.",
+    "tagline": "Your teams leveled up on .NET, Azure and AI — 3,000+ hours taught, Microsoft Certified Trainer (MCT).",
     "iconId": "training",
     "summary": "3,000+ hours of training under my belt, across two decades of Microsoft stack. To junior devs and to tech leads stepping back for perspective alike, in schools (Supinfo, NextFormation) or large centres (ORSYS, IP-Formation, Happly), on-site, virtual classroom or bespoke in-house. Twenty modules in the catalogue below — pick them as-is, or let's recompose them into the program that fits your team.",
     "highlights": [
@@ -96,7 +96,7 @@
     "slug": "vibe-coding",
     "title": "Vibe-coding rollout",
     "kicker": "AI IN YOUR IDE",
-    "tagline": "I help your team adopt Claude Code, Copilot, Cursor, Antigravity — without blind trust in generated code.",
+    "tagline": "Your developers faster with AI (Claude Code, Copilot, Cursor) — no blind trust: every line gets reviewed.",
     "iconId": "vibe",
     "summary": "AI coding tools are reshaping developer workflows. I help you frame usage: which tools, which guardrails, which practices, how to measure gains — and most importantly, how to keep ownership of generated code quality.",
     "highlights": [
@@ -126,7 +126,7 @@
     "slug": "ai-enterprise",
     "title": "AI for the enterprise",
     "kicker": "SOVEREIGN & MEASURABLE AI",
-    "tagline": "I bring AI in-house: local models, custom MCP servers, LLM-readable site, multi-platform analytics.",
+    "tagline": "AI inside your company, under your control — locally-hosted models, custom integrations, your data stays home.",
     "iconId": "ai-enterprise",
     "summary": "Generative AI is reaching the enterprise. Stay sovereign with your data, build custom integrations, measure the impact. I cover four angles: on-prem AI (Ollama, vLLM, open-weight models), custom MCP servers, sites optimized for LLM consumption (llms.txt, structured data), and AI-aware analytics (Google, Bing, Meta).",
     "highlights": [
@@ -157,7 +157,7 @@
     "slug": "mobile-apps",
     "title": "Mobile app development",
     "kicker": "CROSS-PLATFORM MOBILE",
-    "tagline": "I design and build your iOS/Android apps with a single technical base.",
+    "tagline": "Your iOS and Android app from a single codebase — from mockup to store launch.",
     "iconId": "mobile",
     "summary": "B2B and B2C mobile apps, cross-platform (.NET MAUI, Flutter depending on context). From mockup to store publishing.",
     "highlights": [
@@ -183,7 +183,7 @@
     "slug": "websites",
     "title": "Website development",
     "kicker": "BESPOKE WEB",
-    "tagline": "I design and build your showcase sites, e-commerce, and custom web apps.",
+    "tagline": "A fast, accessible, well-ranked website — from elegant showcase to custom business app.",
     "iconId": "web",
     "summary": "High-performance, SEO-optimized, accessible websites. From elegant showcase to complex business web apps, always on modern, maintainable tech.",
     "highlights": [

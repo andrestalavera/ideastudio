@@ -28,7 +28,11 @@
 <section class="ds-hero ds-hero--home">
     <div class="ds-container ds-container--wide">
         <div class="ds-hero__inner">
-            <p class="ds-kicker ds-hero__kicker" data-reveal style="--reveal-step: 0">@kicker</p>
+            <div class="ds-hero__identity" data-reveal style="--reveal-step: 0">
+                <img class="ds-hero__avatar" src="images/andres-talavera.jpeg"
+                     alt="@avatarAlt" width="800" height="800" fetchpriority="high" decoding="async" />
+                <p class="ds-kicker ds-hero__kicker">@kicker</p>
+            </div>
             <RevealChars Text="Andrés Talavera" Tag="h1" Class="ds-display ds-hero__name">
                 <span class="ds-display__accent" aria-hidden="true">.</span>
             </RevealChars>
@@ -40,7 +44,24 @@
     </div>
 </section>
 
-@* 2 · Latest realisations — editorial zig-zag stack, not uniform rows *@
+@* 2 · Why work with me — concrete, benefit-led value props *@
+<section class="ds-section ds-section--chapter ds-section--bordered">
+    <div class="ds-container">
+        <ChapterBand Kicker="@benefitsKicker" Title="@benefitsTitle" Lead="@benefitsLead" />
+        <div class="ds-grid ds-grid--2 ds-chapter-gap">
+            @for (int i = 0; i < benefits.Count; i++)
+            {
+                (string t, string b) = benefits[i];
+                <div class="ds-card" data-reveal style="@($"--reveal-step:{i}")">
+                    <h3 class="ds-card__title">@t</h3>
+                    <p class="ds-card__body">@b</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@* 3 · Latest realisations — editorial zig-zag stack, not uniform rows *@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@realisationsKicker" Title="@realisationsTitle" />
@@ -49,8 +70,11 @@
             {
                 foreach (Realisation r in realisations.Take(3))
                 {
-                    <ProjectTile Href="@r.LiveUrl"
-                                 Target="_blank" Rel="noopener"
+                    bool hasCase = r.CaseStudy is not null;
+                    string href = hasCase ? $"{LocalizedRoute.For("realisations")}/{r.Slug}" : r.LiveUrl;
+                    <ProjectTile Href="@href"
+                                 Target="@(hasCase ? null : "_blank")" Rel="@(hasCase ? null : "noopener")"
+                                 Badge="@(hasCase ? caseBadge : null)"
                                  ImageUrl="@r.ImageUrl" ImageAlt="@r.ImageAlt"
                                  Type="@r.Type.ToString()" Year="@r.CompletedOn.Year.ToString()"
                                  Title="@r.Title" Summary="@r.Summary"
@@ -66,22 +90,39 @@
     </div>
 </section>
 
-@* 3 · Go to my resume *@
+@* 4 · Go to my resume *@
 <ResumeBand YearsValue="@yearsValue"
             StackValue=".NET · Azure · Mobile"
             LanguagesValue="FR · EN · ES" />
 
-@* 4 · Services *@
+@* 5 · About teaser — who's behind the work *@
+<section class="ds-section ds-section--chapter ds-section--bordered">
+    <div class="ds-container">
+        <ChapterBand Kicker="@aboutKicker" Title="@aboutTitle" Lead="@aboutLead" />
+        <p class="ds-chapter-gap" data-reveal>
+            <a class="ds-link" href="@LocalizedRoute.For("about")">
+                @aboutCta <span class="ds-link__arrow" aria-hidden="true">→</span>
+            </a>
+        </p>
+    </div>
+</section>
+
+@* 6 · Services *@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@servicesKicker" Title="@servicesTitle" />
         <div class="ds-chapter-gap" data-reveal>
             <EditorialList Items="@services" />
         </div>
+        <p class="ds-chapter-gap" data-reveal>
+            <a class="ds-link" href="@LocalizedRoute.For("services.hub")">
+                @seeAllServices <span class="ds-link__arrow" aria-hidden="true">→</span>
+            </a>
+        </p>
     </div>
 </section>
 
-@* 5 · Where I teach *@
+@* 7 · Where I teach *@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@teachKicker" Title="@teachTitle" />
@@ -96,7 +137,7 @@
     </div>
 </section>
 
-@* 6 · Questions (expanded Q&A — magazine-style 2-col Q/A layout on desktop) *@
+@* 8 · Questions (expanded Q&A — magazine-style 2-col Q/A layout on desktop) *@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
         <ChapterBand Kicker="@questionsKicker" Title="@questionsTitle" />
@@ -107,6 +148,11 @@
                 <QABlock Kicker="@($"Q {i + 1:D2}")" Question="@q" Answer="@a" Step="@i" />
             }
         </div>
+        <p class="ds-chapter-gap" data-reveal>
+            <a class="ds-link" href="@LocalizedRoute.For("faq")">
+                @seeAllFaq <span class="ds-link__arrow" aria-hidden="true">→</span>
+            </a>
+        </p>
     </div>
 </section>
 </div>
@@ -119,20 +165,32 @@
 
     private string kicker = "CONSULTANT · TECHLEAD · FORMATEUR";
     private string lead = "Je transforme des idées en logiciels qui marchent.";
+    private string avatarAlt = "Andrés Talavera, consultant et développeur .NET & Azure";
     private string meetLabel = "Rencontrer";
     private string downloadLabel = "Télécharger CV";
     private string downloadUrl = "cv.pdf";
+    private List<(string Title, string Body)> benefits = new();
+    private string benefitsKicker = "Pourquoi moi";
+    private string benefitsTitle = "Ce que vous y gagnez.";
+    private string benefitsLead = "";
     private string realisationsKicker = "Réalisations";
     private string realisationsTitle = "Projets récents.";
     private string seeAllRealisations = "Voir toutes les réalisations";
+    private string caseBadge = "Étude de cas";
+    private string aboutKicker = "À propos";
+    private string aboutTitle = "Qui se cache derrière le code.";
+    private string aboutLead = "";
+    private string aboutCta = "En savoir plus sur moi";
     private string servicesKicker = "Services";
     private string servicesTitle = "Sept façons de collaborer.";
+    private string seeAllServices = "Voir tous les services";
     private string teachKicker = "Formations";
     private string teachTitle = "Où j'enseigne.";
     private string allTrainings = "Voir toutes les formations";
     private string trainerSlug = "formateur";
     private string questionsKicker = "Questions";
     private string questionsTitle = "Les plus demandées.";
+    private string seeAllFaq = "Voir toutes les questions";
     private string yearsValue = "15";
 
     private string seoTitle = "IdeaStud.io — Andrés Talavera";
@@ -159,9 +217,15 @@
             ? "Andrés Talavera — Consultant .NET & Azure, Techlead, Formateur | IdeaStud.io"
             : "Andrés Talavera — .NET & Azure Consultant, Tech Lead, Trainer | IdeaStud.io";
         lead = fr
-            ? "Je transforme des idées en logiciels qui marchent. .NET, Azure, mobile, web — Lyon · Paris · Genève · Fribourg ou full-remote."
-            : "I turn ideas into software that ships. .NET, Azure, mobile, web — Lyon · Paris · Geneva · Fribourg or fully remote.";
-        seoDescription = lead;
+            ? "Je vous aide à transformer une idée en logiciel que vos clients utilisent vraiment — et sur lequel votre équipe peut continuer à bâtir. Autour de Lyon, Paris, Genève et Fribourg, ou en full-remote."
+            : "I help you turn an idea into software your customers actually use — and your team can keep building on. Around Lyon, Paris, Geneva and Fribourg, or fully remote.";
+        // SEO description stays keyword-rich even though the visible lead is warmer.
+        seoDescription = fr
+            ? "Andrés Talavera — consultant .NET & Azure, techlead et formateur. Je transforme vos idées en logiciels fiables (web, mobile, cloud). Lyon · Paris · Genève · Fribourg ou à distance."
+            : "Andrés Talavera — .NET & Azure consultant, tech lead and trainer. I turn your ideas into reliable software (web, mobile, cloud). Lyon · Paris · Geneva · Fribourg or remote.";
+        avatarAlt = fr
+            ? "Andrés Talavera, consultant et développeur .NET & Azure"
+            : "Andrés Talavera, .NET & Azure consultant and developer";
 
         kicker = fr
             ? "CONSULTANT · TECHLEAD · FORMATEUR"
@@ -171,12 +235,40 @@
         downloadLabel = fr ? "Télécharger CV" : "Download resume";
         downloadUrl = fr ? "cv.pdf?culture=fr" : "resume.pdf?culture=en";
 
+        benefitsKicker = fr ? "Pourquoi moi" : "Why me";
+        benefitsTitle  = fr ? "Ce que vous y gagnez." : "What you get.";
+        benefitsLead   = fr
+            ? "Un interlocuteur unique, senior et impliqué — pas un intermédiaire. Voici concrètement ce que ça change pour vous."
+            : "One senior, hands-on point of contact — not a middleman. Here's concretely what that changes for you.";
+        benefits = fr
+            ? new() {
+                ("Senior et impliqué", "15+ ans à concevoir du logiciel .NET/Azure. Vous avez un architecte qui code encore et porte le résultat — pas un slide deck."),
+                ("Livrer vite, sans dette cachée", "Développement assisté par IA (Claude Code, Copilot), chaque ligne générée relue. De la vitesse qui ne se retourne pas contre vous."),
+                ("Des tarifs clairs, sans surprise", "TJM à partir de 600 €, premier échange de 30 min offert, devis sous 24 h. Vous savez toujours ce que vous payez."),
+                ("Près de vous, ou à distance", "Sur site à Lyon, Paris, Genève et Fribourg, ou full-remote. Facturation simple via portage (EUR, ou CHF côté suisse).")
+            }
+            : new() {
+                ("Senior and hands-on", "15+ years building .NET/Azure software. You get an architect who still writes code and owns the outcome — not a slide deck."),
+                ("Ship faster, no hidden debt", "AI-assisted delivery (Claude Code, Copilot), every generated line reviewed. Speed that doesn't come back to bite you."),
+                ("Clear pricing, no surprises", "Day rate from 600 €, free 30-minute scoping call, quote within 24h. You always know what you're paying for."),
+                ("Where you are, or remote", "On-site in Lyon, Paris, Geneva and Fribourg, or fully remote. Simple invoicing via wage-portage (EUR, or CHF for Swiss work).")
+            };
+
         realisationsKicker = fr ? "Réalisations" : "Work";
         realisationsTitle  = fr ? "Projets récents." : "Recent projects.";
         seeAllRealisations = fr ? "Voir toutes les réalisations" : "See all projects";
+        caseBadge          = fr ? "Étude de cas" : "Case study";
+
+        aboutKicker = fr ? "À propos" : "About";
+        aboutTitle  = fr ? "Qui se cache derrière le code." : "The person behind the code.";
+        aboutLead   = fr
+            ? "Consultant, techlead et formateur indépendant. Un même fil rouge depuis 15 ans : transformer des idées en logiciels qui marchent."
+            : "Independent consultant, tech lead and trainer. One thread for 15 years: turning ideas into software that ships.";
+        aboutCta    = fr ? "En savoir plus sur moi" : "More about me";
 
         servicesKicker = fr ? "Services" : "Services";
         servicesTitle  = fr ? "Sept façons de collaborer." : "Seven ways to collaborate.";
+        seeAllServices = fr ? "Voir tous les services" : "See all services";
 
         teachKicker = fr ? "Formations" : "Trainings";
         teachTitle  = fr ? "Où j'enseigne." : "Where I teach.";
@@ -185,35 +277,24 @@
 
         questionsKicker = fr ? "Questions" : "Questions";
         questionsTitle  = fr ? "Les plus demandées." : "Most asked.";
+        seeAllFaq       = fr ? "Voir toutes les questions" : "See all questions";
 
         faq = fr
             ? new() {
-                ("Quels projets acceptez-vous ?", "Des missions de consulting, techlead, formation, vibe coding, IA en entreprise, ou des réalisations sur-mesure — .NET, Azure, mobile, web. Si le cadrage est clair et le délai sain, j'y vais."),
-                ("Quels sont vos tarifs ?", "TJM 600 € en consulting et techlead, 800 € en formation, vibe coding et IA entreprise. Ajusté selon durée, complexité et niveau d'implication. Cadrage initial gratuit."),
-                ("Où pouvez-vous intervenir ?", "Lyon, Paris, Genève, Fribourg — sur site, hybride ou full-remote selon votre besoin. Je me déplace volontiers pour les kick-offs, les ateliers techniques et les sessions de formation."),
-                ("Comment me commander une mission ?", "Je travaille en portage salarial via OpenWork (société française). Facturation en EUR par défaut ; CHF possible pour les missions côté suisse. Pas de prestation directe — le portage simplifie le contractuel pour vous comme pour moi."),
-                ("Quelles formations dispensez-vous ?", "Vingt modules au catalogue, regroupés en quatre familles : .NET, Azure, vibe coding & IA, architecture & DevOps. Chaque module se décline en inter ou intra. Détail sur la fiche Formateur."),
-                ("Vous installez de l'IA en interne chez nous ?", "Oui — modèles open-weight (Llama, Qwen, Mistral) hébergés localement avec Ollama ou vLLM, intégrés à vos outils existants. Détail sur la fiche IA en entreprise."),
-                ("Vous savez créer des serveurs MCP ?", "Oui — c'est un livrable courant des missions IA en entreprise. Un serveur MCP custom expose votre SI ou votre base de connaissance aux IA des dev (Claude Code, Cursor, Copilot)."),
-                ("Quels outils IA utilisez-vous au quotidien ?", "Claude Code en orchestrateur principal, Cursor pour le pair-programming au plus près du code, GitHub Copilot pour l'autocomplétion fine, Antigravity + Gemini quand un browser-side agent est utile. Le choix dépend du contexte client."),
-                ("Comment garantissez-vous la qualité du code généré par IA ?", "Aucune ligne générée n'est mergée sans relecture. Je diffe, je raisonne, je corrige — la productivité IA n'est utile que si elle ne crée pas de dette cachée. Cette méthodologie est au cœur de mes missions vibe-coding."),
-                ("Vous configurez des analytics multi-régies ?", "Oui — Google Analytics 4, Bing Webmaster, Meta Pixel, en respectant la conformité RGPD (consentement, anonymisation, durées de rétention). On peut aussi intégrer des KPI IA-aware si vous mesurez des trafics venant des assistants conversationnels."),
-                ("Mon site doit être lisible par les IA — vous savez faire ?", "Oui. Trois leviers : llms.txt et ai.txt pour exposer votre contenu aux crawlers IA, JSON-LD enrichi (Schema.org) pour structurer la sémantique, et un robots.txt IA-aware pour gérer ce que vous autorisez. Approche identique à celle qui rend ce site indexable par Perplexity et ChatGPT."),
-                ("Sur quelles plateformes déployez-vous ?", "Azure en priorité, mais aussi Netlify, Vercel, Scaleway, CleverCloud, Infomaniak et OVHCloud selon le contexte — souveraineté européenne, edge functions, jamstack, contraintes RGPD. Le choix dépend du projet, pas d'un dogme cloud.")
+                ("Quels projets acceptez-vous ?", "Conseil, techlead, formation, accompagnement IA, ou réalisations sur-mesure — .NET, Azure, mobile, web. Si le cadrage est clair et le délai sain, j'y vais."),
+                ("Quels sont vos tarifs ?", "TJM à partir de 600 € (conseil, techlead) et 800 € (formation, IA). Ajusté selon durée et implication. Premier échange de 30 min offert, devis sous 24 h."),
+                ("Où pouvez-vous intervenir ?", "Lyon, Paris, Genève, Fribourg — sur site, hybride ou full-remote selon votre besoin. Je me déplace pour les kick-offs, les ateliers et les formations."),
+                ("Comment travaille-t-on ensemble ?", "En portage salarial via OpenWork (société française) : un cadre contractuel simple pour vous comme pour moi. Facturation en EUR par défaut, CHF possible côté suisse."),
+                ("Quelles formations dispensez-vous ?", "Vingt modules au catalogue : .NET, Azure, IA & vibe coding, architecture & DevOps. En inter ou en intra sur-mesure. Formateur certifié Microsoft (MCT)."),
+                ("Comment garantissez-vous la qualité avec l'IA ?", "Aucune ligne générée n'est livrée sans relecture. Je raisonne, je vérifie, je corrige — la vitesse de l'IA n'a de valeur que si elle ne crée pas de dette cachée.")
             }
             : new() {
-                ("What projects do you take on?", "Consulting, tech-lead, training, vibe coding, enterprise AI, or custom delivery — .NET, Azure, mobile, web. If the scope is clear and the timeline sane, I'm in."),
-                ("What are your rates?", "Day rate: 600 € for consulting & tech-lead, 800 € for training, vibe coding and enterprise AI. Adjusted for duration, complexity and engagement level. First scoping call is free."),
-                ("Where do you work?", "Lyon, Paris, Geneva, Fribourg — on-site, hybrid or fully remote depending on your need. I travel for kick-offs, technical workshops and training sessions."),
-                ("How do I engage you?", "I work via French wage-portage company OpenWork. Default invoicing in EUR; CHF available for Swiss assignments. No direct freelance billing — portage keeps the contract simple for both sides."),
-                ("What trainings do you deliver?", "Twenty catalogue modules across four families: .NET, Azure, vibe coding & AI, architecture & DevOps. Each module runs as inter-company or in-house. Full details on the Trainer page."),
-                ("Can you set up AI in-house?", "Yes — open-weight models (Llama, Qwen, Mistral) self-hosted with Ollama or vLLM, integrated with your existing tooling. Full details on the Enterprise AI page."),
-                ("Can you build MCP servers?", "Yes — it's a regular deliverable on enterprise AI engagements. A custom MCP server exposes your IT systems or knowledge base to dev-team AI (Claude Code, Cursor, Copilot)."),
-                ("What AI tools do you use day-to-day?", "Claude Code as the main orchestrator, Cursor for close-quarters pair programming, GitHub Copilot for fine-grained autocomplete, Antigravity + Gemini when a browser-side agent is useful. The choice depends on the client's context."),
-                ("How do you guarantee AI-generated code quality?", "No AI-generated line gets merged without review. I diff, reason, correct — AI productivity is only valuable if it doesn't create hidden debt. This methodology is central to my vibe-coding engagements."),
-                ("Do you configure multi-platform analytics?", "Yes — Google Analytics 4, Bing Webmaster, Meta Pixel, with GDPR compliance (consent, anonymization, retention). I can also wire AI-aware KPIs if you want to measure traffic from conversational assistants."),
-                ("Can you make a site readable by AIs?", "Yes. Three levers: llms.txt and ai.txt to expose content to AI crawlers, enriched JSON-LD (Schema.org) for semantic structure, and an AI-aware robots.txt to control what you allow. Same approach used on this site to make it indexable by Perplexity and ChatGPT."),
-                ("What platforms do you deploy on?", "Azure primarily, but also Netlify, Vercel, Scaleway, CleverCloud, Infomaniak and OVHCloud depending on context — European sovereignty, edge functions, jamstack, GDPR constraints. The choice depends on the project, not on cloud dogma.")
+                ("What projects do you take on?", "Consulting, tech-lead, training, AI enablement, or custom delivery — .NET, Azure, mobile, web. If the scope is clear and the timeline sane, I'm in."),
+                ("What are your rates?", "Day rate from 600 € (consulting, tech-lead) and 800 € (training, AI). Adjusted for duration and involvement. First 30-minute call is free, quote within 24h."),
+                ("Where do you work?", "Lyon, Paris, Geneva, Fribourg — on-site, hybrid or fully remote depending on your need. I travel for kick-offs, workshops and training."),
+                ("How do we work together?", "Via French wage-portage company OpenWork: a simple contractual frame for both sides. Default invoicing in EUR, CHF available for Swiss work."),
+                ("What trainings do you deliver?", "Twenty catalogue modules: .NET, Azure, AI & vibe coding, architecture & DevOps. Inter-company or bespoke in-house. Microsoft Certified Trainer (MCT)."),
+                ("How do you keep quality with AI?", "No generated line ships without review. I reason, verify, correct — AI speed is only valuable if it doesn't create hidden debt.")
             };
     }
 

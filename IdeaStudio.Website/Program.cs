@@ -11,6 +11,8 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<ILazyLoadingService, LazyLoadingService>();
 builder.Services.AddScoped<IContentGateway, JsonContentGateway>();
 builder.Services.AddScoped<ISceneTheme, SceneTheme>();
+builder.Services.AddScoped<IThemeService, ThemeService>();
+builder.Services.AddScoped<IContactService, NetlifyEmailContactService>();
 builder.Services.AddScoped<ISlugService, SlugService>();
 builder.Services.AddScoped<ISlugTranslator, SlugTranslator>();
 

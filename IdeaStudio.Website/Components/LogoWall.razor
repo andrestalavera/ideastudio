@@ -1,0 +1,49 @@
+@* LogoWall — clients / partners as a restrained logo strip. Renders a real logo
+   image when a LogoUrl is supplied, otherwise an elegant text wordmark, so it
+   works today and upgrades the moment logo files are dropped in. *@
+
+<ul class="ds-logo-wall" role="list">
+    @for (int i = 0; i < Items.Count; i++)
+    {
+        LogoItem item = Items[i];
+        <li class="ds-logo" data-reveal style="@($"--reveal-step:{i}")">
+            @if (!string.IsNullOrWhiteSpace(item.Url))
+            {
+                <a href="@item.Url" target="_blank" rel="noopener" aria-label="@item.Name">
+                    @LogoContent(item)
+                </a>
+            }
+            else
+            {
+                @LogoContent(item)
+            }
+        </li>
+    }
+</ul>
+
+@code {
+    [Parameter] public IReadOnlyList<LogoItem> Items { get; set; } = Array.Empty<LogoItem>();
+
+    public sealed record LogoItem(string Name, string? LogoUrl = null, string? Url = null);
+
+    private RenderFragment LogoContent(LogoItem item) => builder =>
+    {
+        if (!string.IsNullOrWhiteSpace(item.LogoUrl))
+        {
+            builder.OpenElement(0, "img");
+            builder.AddAttribute(1, "class", "ds-logo__img");
+            builder.AddAttribute(2, "src", item.LogoUrl);
+            builder.AddAttribute(3, "alt", item.Name);
+            builder.AddAttribute(4, "loading", "lazy");
+            builder.AddAttribute(5, "decoding", "async");
+            builder.CloseElement();
+        }
+        else
+        {
+            builder.OpenElement(6, "span");
+            builder.AddAttribute(7, "class", "ds-logo__wordmark");
+            builder.AddContent(8, item.Name);
+            builder.CloseElement();
+        }
+    };
+}

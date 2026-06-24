@@ -1,0 +1,46 @@
+// components/_logo-wall.scss — clients / partners strip (wordmarks or images).
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-logo-wall {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(1.25rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3.5rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ds-logo {
+  display: inline-flex;
+  align-items: center;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  &__wordmark {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: clamp(1.05rem, 2.2vw, 1.5rem);
+    letter-spacing: -0.01em;
+    color: c.$fg-faint;
+    white-space: nowrap;
+    transition: color 200ms var(--ease-out);
+  }
+
+  &__img {
+    block-size: clamp(2rem, 4vw, 2.75rem);
+    inline-size: auto;
+    opacity: 0.8;
+    transition: opacity 200ms var(--ease-out);
+  }
+
+  &:hover &__wordmark { color: c.$fg; }
+  &:hover &__img { opacity: 1; }
+}

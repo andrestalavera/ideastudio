@@ -65,7 +65,14 @@ export async function initialize() {
     const c = ctx();
     mesh?.render(t, c);
   });
-  clock.start();
+
+  // The mesh is a dark-mode signature; light theme stays static (CSS hides the
+  // canvas). Don't burn GPU/battery rendering a hidden canvas in light.
+  if (document.documentElement.getAttribute('data-theme') === 'light') {
+    pause('theme');
+  } else {
+    clock.start();
+  }
 
   document.addEventListener('visibilitychange', () => {
     document.hidden ? pause('hidden') : resume('hidden');
@@ -105,4 +112,13 @@ export function dispose() {
 
 if (typeof window !== 'undefined') {
   window.ideastudioCinema = { initialize, applyTheme, dispose };
+
+  // React to runtime theme switches: pause the backdrop in light, resume +
+  // resync the palette in dark. Safe before initialize() (clock/mesh null).
+  window.addEventListener('ideastudio:themechanged', (e) => {
+    const light = e && e.detail && e.detail.theme === 'light';
+    if (light) pause('theme');
+    else resume('theme');
+    mesh?.refreshPalette?.();
+  });
 }

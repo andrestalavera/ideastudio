@@ -34,6 +34,20 @@
   50%      { transform: scale(1.15); opacity: 1; }
 }
 
+// Light theme: the boot/error splash follow the light surface once CSS loads.
+// (The inlined fallback values above keep it readable even if CSS never does.)
+:root[data-theme='light'] .ds-boot,
+:root[data-theme='light'] .ds-error-ui {
+  background: #f5f8f7;
+  color: #0b1a1d;
+}
+:root[data-theme='light'] .ds-error-ui {
+  border-block-start-color: rgba(11, 26, 29, 0.12);
+
+  a { color: #007a87; }
+  a.dismiss { color: #4b6366; }
+}
+
 // Blazor error UI — shown if the runtime itself fails.
 .ds-error-ui {
   position: fixed;

@@ -1,0 +1,174 @@
+@page "/fr/a-propos"
+@page "/en/about"
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
+@layout MainLayout
+
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         Author="Andrés Talavera"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         SiteName="IdeaStud.io"
+         OgImage="https://ideastud.io/images/andres-talavera.jpeg"
+         OgImageAlt="Andrés Talavera - .NET & Azure"
+         StructuredData="@seoStructuredData"
+         SpeakableSelectors="@speakable" />
+
+@* 1 · Hero *@
+<Hero Kicker="@heroKicker" Lead="@introText">
+    <ChildContent>@heroText</ChildContent>
+    <Actions>
+        <div class="ds-row">
+            <a class="ds-btn ds-btn--primary"
+               href="https://calendly.com/andres-talavera/30min"
+               target="_blank" rel="noopener">
+                @bookText <span aria-hidden="true">→</span>
+            </a>
+            <a class="ds-btn ds-btn--ghost" href="@LocalizedRoute.For("cv")">
+                @resumeText <span aria-hidden="true">→</span>
+            </a>
+        </div>
+    </Actions>
+</Hero>
+
+@* 2 · Several angles (about cards) *@
+<section class="ds-section ds-section--chapter ds-section--bordered">
+    <div class="ds-container">
+        <ChapterBand Kicker="@anglesKicker" Title="@anglesTitle" Lead="@anglesLead" />
+        <div class="ds-grid ds-grid--3 ds-chapter-gap">
+            @if (resume?.AboutSections is not null)
+            {
+                int i = 0;
+                foreach (AboutSection s in resume.AboutSections)
+                {
+                    <div class="ds-card" data-reveal style="@($"--reveal-step:{i}")">
+                        <h3 class="ds-card__title">@s.Title</h3>
+                        @if (s.Paragraphs is not null)
+                        {
+                            foreach (string p in s.Paragraphs)
+                            {
+                                <p class="ds-card__body">@p</p>
+                            }
+                        }
+                    </div>
+                    i++;
+                }
+            }
+        </div>
+    </div>
+</section>
+
+@* 3 · Explore further — hub links *@
+<section class="ds-section ds-section--chapter ds-section--bordered">
+    <div class="ds-container">
+        <ChapterBand Kicker="@exploreKicker" Title="@exploreTitle" />
+        <div class="ds-row ds-chapter-gap" data-reveal>
+            <a class="ds-btn ds-btn--ghost" href="@LocalizedRoute.For("services.hub")">@servicesLink <span aria-hidden="true">→</span></a>
+            <a class="ds-btn ds-btn--ghost" href="@LocalizedRoute.For("realisations")">@workLink <span aria-hidden="true">→</span></a>
+            <a class="ds-btn ds-btn--ghost" href="@LocalizedRoute.For("cv")">@resumeText <span aria-hidden="true">→</span></a>
+        </div>
+    </div>
+</section>
+
+@code {
+    private Resume? resume;
+
+    private string seoTitle = "À propos — Andrés Talavera | IdeaStud.io";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/a-propos";
+    private string seoLocale = "fr_FR";
+
+    private string heroKicker = "À propos";
+    private string heroText = "Andrés Talavera.";
+    private string introText = "";
+    private string bookText = "Prendre rendez-vous";
+    private string resumeText = "Voir mon parcours";
+    private string anglesKicker = "Plusieurs angles";
+    private string anglesTitle = "Consultant, techlead, formateur.";
+    private string anglesLead = "";
+    private string exploreKicker = "Explorer";
+    private string exploreTitle = "Aller plus loin.";
+    private string servicesLink = "Mes services";
+    private string workLink = "Mes réalisations";
+
+    private List<string>? seoStructuredData;
+    private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        await LoadDataAsync();
+        GenerateStructuredData();
+        StateHasChanged();
+    }
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoCanonical = fr ? "https://ideastud.io/fr/a-propos" : "https://ideastud.io/en/about";
+        seoTitle = fr
+            ? "À propos — Andrés Talavera, consultant .NET & Azure | IdeaStud.io"
+            : "About — Andrés Talavera, .NET & Azure consultant | IdeaStud.io";
+
+        heroKicker = fr ? "À propos" : "About";
+        bookText = fr ? "Prendre rendez-vous" : "Book a call";
+        resumeText = fr ? "Voir mon parcours" : "See my résumé";
+
+        anglesKicker = fr ? "Plusieurs angles" : "Several angles";
+        anglesTitle = fr ? "Consultant, techlead, formateur." : "Consultant, tech lead, trainer.";
+        anglesLead = fr
+            ? "Un même fil rouge depuis 15 ans : transformer des idées en logiciels qui marchent, et transmettre ce que j'apprends en chemin."
+            : "One thread for 15 years: turning ideas into software that ships, and passing on what I learn along the way.";
+
+        exploreKicker = fr ? "Explorer" : "Explore";
+        exploreTitle = fr ? "Aller plus loin." : "Go further.";
+        servicesLink = fr ? "Mes services" : "My services";
+        workLink = fr ? "Mes réalisations" : "My work";
+    }
+
+    private async Task LoadDataAsync()
+    {
+        string culture = CultureService.CurrentCulture.Name;
+        bool fr = culture.StartsWith("fr");
+        resume = await Content.GetResumeAsync(culture);
+        heroText = resume?.PersonalInformation?.Hero ?? (fr ? "Andrés Talavera." : "Andrés Talavera.");
+        introText = resume?.PersonalInformation?.Introduction ?? "";
+        seoDescription = string.IsNullOrWhiteSpace(introText)
+            ? (fr ? "Andrés Talavera — consultant .NET & Azure, techlead et formateur. 15 ans d'expérience, Lyon, Paris, Genève, Fribourg ou à distance."
+                  : "Andrés Talavera — .NET & Azure consultant, tech lead and trainer. 15 years' experience, Lyon, Paris, Geneva, Fribourg or remote.")
+            : introText;
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+        PersonalInformation? pi = resume?.PersonalInformation;
+
+        SchemaOrg.Person person = new(
+            Name: pi?.Name ?? "Andrés Talavera",
+            JobTitle: pi?.Title ?? (fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer"),
+            Description: seoDescription,
+            Url: "https://ideastud.io",
+            Image: "https://ideastud.io/images/andres-talavera.jpeg",
+            SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
+            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "ASP.NET Core", "Cloud Architecture", "Software Training" },
+            Address: new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressRegion: "Auvergne-Rhône-Alpes", AddressCountry: "FR"),
+            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io"));
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+            (fr ? "À propos" : "About", LocalizedRoute.For("about", cultureCode)));
+
+        seoStructuredData = new List<string>
+        {
+            SchemaOrg.ToJsonLd(person),
+            SchemaOrg.ToJsonLd(breadcrumb)
+        };
+    }
+}

@@ -27,6 +27,12 @@ public sealed class LocalizedRoute(ICultureService cultureService) : ILocalizedR
             [("home", "en")] = "/en",
             [("services.hub", "fr")] = "/fr/services",
             [("services.hub", "en")] = "/en/services",
+            [("about", "fr")] = "/fr/a-propos",
+            [("about", "en")] = "/en/about",
+            [("faq", "fr")] = "/fr/faq",
+            [("faq", "en")] = "/en/faq",
+            [("contact", "fr")] = "/fr/contact",
+            [("contact", "en")] = "/en/contact",
             [("realisations", "fr")] = "/fr/realisations",
             [("realisations", "en")] = "/en/projects",
             [("cv", "fr")] = "/fr/cv",
@@ -64,6 +70,16 @@ public sealed class LocalizedRoute(ICultureService cultureService) : ILocalizedR
         {
             return For(pageId, targetCulture);
         }
+
+        // Realisation case-study detail: /fr/realisations/{slug} <-> /en/projects/{slug}.
+        // Slugs are brand names, identical across cultures, so just swap the hub.
+        string sourceHub = For("realisations", sourceCulture);
+        if (currentPath.StartsWith(sourceHub + "/", StringComparison.OrdinalIgnoreCase))
+        {
+            string slug = currentPath[(sourceHub.Length + 1)..];
+            return $"{For("realisations", targetCulture)}/{slug}";
+        }
+
         return For("home", targetCulture);
     }
 

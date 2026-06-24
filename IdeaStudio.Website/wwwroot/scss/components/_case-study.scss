@@ -1,0 +1,104 @@
+// components/_case-study.scss — long-form project story page.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+// Hero meta strip — sector / role / timeline.
+.ds-case__meta {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-2;
+  margin-block-start: s.$s-3;
+  max-width: 60ch;
+
+  &-item {
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    line-height: 1.5;
+    color: c.$fg-muted;
+  }
+
+  &-label {
+    display: inline-block;
+    min-inline-size: 5.5rem;
+    margin-inline-end: s.$s-2;
+    color: c.$ir-duck;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+}
+
+// Architecture diagram — light-text PNG always framed on a dark surface so it
+// reads in both site themes (an intentional "technical figure").
+.ds-case__diagram {
+  margin: 0;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  background: #0a2328;
+  border: 1px solid rgba(0, 194, 212, 0.25);
+  border-radius: 16px;
+  overflow-x: auto;
+  text-align: center;
+
+  img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+// Key decisions — each is a choice + its rationale.
+.ds-case__decisions {
+  display: grid;
+  gap: s.$s-5;
+
+  @media (min-width: 48rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ds-case__decision {
+  padding-inline-start: s.$s-5;
+  border-inline-start: 2px solid transparent;
+  border-image: c.$gradient-iridescent 1;
+
+  &-title {
+    margin: 0 0 s.$s-2;
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    letter-spacing: -0.015em;
+    color: c.$fg;
+  }
+
+  &-detail {
+    margin: 0;
+    font-size: t.$fs-body;
+    line-height: t.$lh-body;
+    color: c.$fg-muted;
+    max-width: 60ch;
+  }
+}
+
+// Deeper sections.
+.ds-case__section {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-3;
+
+  &-title {
+    margin: 0;
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    letter-spacing: -0.015em;
+    color: c.$fg;
+  }
+}
+
+// Stack chips.
+.ds-case__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: s.$s-2;
+}

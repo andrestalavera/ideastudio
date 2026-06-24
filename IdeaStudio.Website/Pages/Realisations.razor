@@ -52,7 +52,11 @@
             <div class="ds-grid ds-grid--auto ds-realisations__grid" style="margin-block-start: 2.5rem;">
                 @foreach (Realisation r in filtered)
                 {
-                    <ProjectTile Href="@r.LiveUrl" Target="_blank" Rel="noopener"
+                    bool hasCase = r.CaseStudy is not null;
+                    string href = hasCase ? $"{LocalizedRoute.For("realisations")}/{r.Slug}" : r.LiveUrl;
+                    <ProjectTile Href="@href"
+                                 Target="@(hasCase ? null : "_blank")" Rel="@(hasCase ? null : "noopener")"
+                                 Badge="@(hasCase ? caseBadge : null)"
                                  ImageUrl="@r.ImageUrl" ImageAlt="@r.ImageAlt"
                                  Type="@r.Type.ToString()" Year="@r.CompletedOn.Year.ToString()"
                                  Title="@r.Title" Summary="@r.Summary"
@@ -80,6 +84,7 @@
     private string allTechsLabel = "Toutes";
     private string emptyText = "Rien ne correspond à ce filtre.";
     private string resetText = "Voir tous les projets";
+    private string caseBadge = "Étude de cas";
     private List<string>? seoStructuredData;
 
     protected override async Task LoadLocalizedStringsAsync()
@@ -108,6 +113,7 @@
         allTechsLabel    = fr ? "Toutes" : "All";
         emptyText        = fr ? "Rien ne correspond à ce filtre." : "Nothing matches this filter.";
         resetText        = fr ? "Voir tous les projets" : "See all projects";
+        caseBadge        = fr ? "Étude de cas" : "Case study";
     }
 
     private void SetTech(string? tech)

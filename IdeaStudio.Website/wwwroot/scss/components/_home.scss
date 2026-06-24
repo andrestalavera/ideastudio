@@ -38,76 +38,73 @@
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 1fr auto auto auto;
     column-gap: clamp(1rem, 2vw, 2rem);
-    row-gap: clamp(1rem, 2.5vh, 1.75rem);
+    row-gap: clamp(1.25rem, 3vh, 2rem);
     align-items: end;
-    gap: 0;
+  }
+
+  // Identity row — rounded portrait + role kicker as a single grouped unit,
+  // sitting just above the name. Pairing the photo with text keeps it from
+  // floating; this layout holds at every width.
+  .ds-hero__identity {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    align-self: end;
+    display: flex;
+    align-items: center;
+    gap: clamp(0.85rem, 2vw, 1.4rem);
+  }
+
+  .ds-hero__avatar {
+    flex: none;
+    inline-size: clamp(84px, 7vw, 124px);
+    block-size: clamp(84px, 7vw, 124px);
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 3px;
+    background: c.$gradient-iridescent;
+    box-shadow: 0 10px 30px rgba(2, 10, 13, 0.4);
   }
 
   .ds-hero__kicker {
-    grid-column: 12;
-    grid-row: 1 / 5;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    align-self: end;
-    justify-self: end;
-    color: c.$fg-muted;
-    white-space: nowrap;
     margin: 0;
-    padding-block-end: 0;
+    color: c.$fg-muted;
+    line-height: 1.45;
   }
 
   .ds-hero__name {
-    grid-column: 1 / 11;
+    grid-column: 1 / -1;
     grid-row: 2;
   }
 
   .ds-hero__lead {
-    grid-column: 4 / 11;
+    grid-column: 1 / 9;
     grid-row: 3;
-    max-width: 52ch;
+    max-width: 56ch;
     margin: 0;
   }
 
   .ds-hero__actions {
-    grid-column: 1 / 7;
+    grid-column: 1 / -1;
     grid-row: 4;
-    margin-block-start: clamp(0.5rem, 2vh, 1.5rem);
+    margin-block-start: clamp(0.5rem, 2vh, 1.25rem);
   }
 
-  // Tablet: collapse the rail kicker to inline horizontal, keep the offset
-  // structure but in a narrower column count.
+  // Tablet: lead spans wider as columns tighten.
   @media (max-width: 1023px) {
-    .ds-hero__inner {
-      grid-template-columns: repeat(8, 1fr);
-    }
-    .ds-hero__kicker {
-      grid-column: 1 / -1;
-      grid-row: 1;
-      writing-mode: horizontal-tb;
-      transform: none;
-      justify-self: start;
-      align-self: end;
-    }
-    .ds-hero__name { grid-column: 1 / 8; grid-row: 2; }
-    .ds-hero__lead { grid-column: 2 / 8; grid-row: 3; }
-    .ds-hero__actions { grid-column: 1 / 7; grid-row: 4; }
+    .ds-hero__lead { grid-column: 1 / 11; }
   }
 
-  // Phone: pure stack, no offset (variance reduces with viewport).
+  // Phone: pure vertical stack; kicker tracking eased so it never clips.
   @media (max-width: 767px) {
-    min-block-size: 88vh;
+    min-block-size: 88svh;
     .ds-hero__inner {
       display: flex;
       flex-direction: column;
-      gap: s.$s-4;
+      gap: s.$s-5;
     }
-    .ds-hero__kicker {
-      writing-mode: horizontal-tb;
-      transform: none;
-    }
-    .ds-hero__lead {
-      max-width: none;
-    }
+    .ds-hero__identity { gap: 0.85rem; }
+    .ds-hero__kicker { letter-spacing: 0.16em; }
+    .ds-hero__lead { max-width: none; }
   }
 }
 

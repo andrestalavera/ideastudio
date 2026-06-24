@@ -1,12 +1,21 @@
 @using IdeaStudio.Website.Models
 
-@* ProjectTile — image + meta + title + summary + tech tags. *@
+@* ProjectTile — image (or branded placeholder) + meta + title + summary + tags.
+   Deep-links to a case study when one exists, otherwise to the live site. *@
 
 <a class="ds-tile" href="@Href" target="@Target" rel="@Rel" data-reveal>
-    <div class="ds-tile__media">
+    <div class="ds-tile__media @(string.IsNullOrWhiteSpace(ImageUrl) ? "ds-tile__media--placeholder" : null)">
         @if (!string.IsNullOrWhiteSpace(ImageUrl))
         {
             <img src="@ImageUrl" alt="@ImageAlt" loading="lazy" decoding="async" width="960" height="600" />
+        }
+        else
+        {
+            <span class="ds-tile__placeholder-mark" aria-hidden="true">@Initials(Title)</span>
+        }
+        @if (!string.IsNullOrWhiteSpace(Badge))
+        {
+            <span class="ds-tile__badge">@Badge</span>
         }
     </div>
     <div class="ds-tile__meta">
@@ -45,5 +54,15 @@
     [Parameter] public string? Year { get; set; }
     [Parameter] public string? Title { get; set; }
     [Parameter] public string? Summary { get; set; }
+    [Parameter] public string? Badge { get; set; }
     [Parameter] public IReadOnlyList<string>? Tags { get; set; }
+
+    private static string Initials(string? title)
+    {
+        if (string.IsNullOrWhiteSpace(title)) return "·";
+        string[] parts = title.Split(new[] { ' ', '-', '·' }, StringSplitOptions.RemoveEmptyEntries);
+        string first = parts.Length > 0 ? parts[0][..1] : "";
+        string second = parts.Length > 1 ? parts[1][..1] : "";
+        return (first + second).ToUpperInvariant();
+    }
 }

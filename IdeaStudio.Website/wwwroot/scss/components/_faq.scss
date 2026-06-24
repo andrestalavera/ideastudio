@@ -1,0 +1,88 @@
+// components/_faq.scss — accessible accordion built on native <details>/<summary>.
+// Keyboard + screen-reader behaviour is native; only the marker and the
+// open/close affordance are styled here. Motion respects prefers-reduced-motion.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-faq-accordion {
+  display: flex;
+  flex-direction: column;
+  border-block-start: 1px solid c.$rule;
+}
+
+.ds-faq-item {
+  border-block-end: 1px solid c.$rule;
+
+  &__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: s.$s-4;
+    padding-block: s.$s-5;
+    cursor: pointer;
+    list-style: none;
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    letter-spacing: -0.015em;
+    color: c.$fg;
+    transition: color 160ms var(--ease-out);
+
+    &::-webkit-details-marker { display: none; }
+    &:hover { color: c.$ir-duck; }
+  }
+
+  // Plus → minus affordance, two bars; the vertical bar collapses when open.
+  &__icon {
+    position: relative;
+    flex: none;
+    inline-size: 1rem;
+    block-size: 1rem;
+    align-self: start;
+    margin-block-start: 0.4em;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      inset-block-start: 50%;
+      inset-inline-start: 0;
+      inline-size: 1rem;
+      block-size: 2px;
+      background: c.$ir-duck;
+      transform: translateY(-50%);
+      transition: transform 240ms var(--ease-out), opacity 240ms var(--ease-out);
+    }
+    &::after { transform: translateY(-50%) rotate(90deg); }
+  }
+
+  &[open] &__icon::after {
+    transform: translateY(-50%) rotate(0deg);
+    opacity: 0;
+  }
+
+  &__a {
+    padding-block-end: s.$s-5;
+
+    p {
+      margin: 0;
+      max-width: 64ch;
+      font-size: t.$fs-lead;
+      line-height: 1.6;
+      color: c.$fg-muted;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ds-faq-item[open] .ds-faq-item__a {
+    animation: ds-faq-reveal 260ms var(--ease-out) both;
+  }
+}
+
+@keyframes ds-faq-reveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

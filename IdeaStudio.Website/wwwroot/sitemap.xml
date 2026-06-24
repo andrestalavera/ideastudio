@@ -163,6 +163,56 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Case studies -->
+  <url>
+    <loc>https://ideastud.io/fr/realisations/restoplatform</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/restoplatform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/restoplatform" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/restoplatform" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/projects/restoplatform</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/restoplatform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/restoplatform" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/restoplatform" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/realisations/dpelib</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/dpelib" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/dpelib" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/dpelib" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/projects/dpelib</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/dpelib" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/dpelib" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/dpelib" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/realisations/brasageneva</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/brasageneva" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/brasageneva" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/brasageneva" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/projects/brasageneva</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/realisations/brasageneva" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/projects/brasageneva" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/realisations/brasageneva" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- CV / Resume -->
   <url>
     <loc>https://ideastud.io/fr/cv</loc>
@@ -179,6 +229,60 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/cv" />
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- About / À propos -->
+  <url>
+    <loc>https://ideastud.io/fr/a-propos</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/a-propos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/a-propos" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/a-propos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/a-propos" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- FAQ -->
+  <url>
+    <loc>https://ideastud.io/fr/faq</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/faq" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/faq</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/faq" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://ideastud.io/fr/contact</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/contact" />
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/contact" />
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- Legal -->

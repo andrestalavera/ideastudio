@@ -1,0 +1,293 @@
+@page "/fr/realisations/{slug}"
+@page "/en/projects/{slug}"
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
+@layout MainLayout
+
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         Author="Andrés Talavera"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         SiteName="IdeaStud.io"
+         StructuredData="@seoStructuredData"
+         SpeakableSelectors="@speakable" />
+
+@if (realisation?.CaseStudy is { } cs)
+{
+    @* 1 · Hero — leads with the business problem (benefit-first) *@
+    <Hero Kicker="@caseKicker" Lead="@cs.Challenge">
+        <ChildContent>@realisation.Title</ChildContent>
+        <Actions>
+            <div class="ds-case__meta">
+                <span class="ds-case__meta-item"><span class="ds-case__meta-label">@sectorLabel</span> @cs.Sector</span>
+                <span class="ds-case__meta-item"><span class="ds-case__meta-label">@roleLabel</span> @cs.Role</span>
+                <span class="ds-case__meta-item"><span class="ds-case__meta-label">@timelineLabel</span> @cs.Timeline</span>
+            </div>
+            <div class="ds-row" style="margin-block-start: 1.5rem;">
+                @if (!string.IsNullOrWhiteSpace(realisation.LiveUrl))
+                {
+                    <a class="ds-btn ds-btn--primary" href="@realisation.LiveUrl" target="_blank" rel="noopener">
+                        @visitLabel <span aria-hidden="true">↗</span>
+                    </a>
+                }
+                <a class="ds-btn ds-btn--ghost" href="@LocalizedRoute.For("realisations")">
+                    @allProjectsLabel <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </Actions>
+    </Hero>
+
+    @* 2 · Approach + Outcome — plain-language, before the technical depth *@
+    <section class="ds-section ds-section--chapter ds-section--bordered">
+        <div class="ds-container">
+            <div class="ds-grid ds-grid--2">
+                <div class="ds-rhythm" data-reveal>
+                    <p class="ds-kicker">@approachLabel</p>
+                    <p class="ds-lead">@cs.Approach</p>
+                </div>
+                <div class="ds-rhythm" data-reveal style="--reveal-step: 1">
+                    <p class="ds-kicker">@outcomeLabel</p>
+                    <p class="ds-lead">@cs.Outcome</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* 3 · Architecture diagram *@
+    @if (!string.IsNullOrWhiteSpace(cs.DiagramImage))
+    {
+        <section class="ds-section ds-section--chapter ds-section--bordered">
+            <div class="ds-container">
+                <ChapterBand Kicker="@architectureKicker" Title="@architectureTitle" />
+                <figure class="ds-case__diagram ds-chapter-gap" data-reveal>
+                    <img src="@cs.DiagramImage" alt="@cs.DiagramAlt" loading="lazy" decoding="async" />
+                </figure>
+            </div>
+        </section>
+    }
+
+    @* 4 · By the numbers *@
+    @if (cs.Stats.Count > 0)
+    {
+        <section class="ds-section ds-section--chapter ds-section--bordered">
+            <div class="ds-container">
+                <ChapterBand Kicker="@numbersKicker" Title="@numbersTitle" />
+                <div class="ds-grid ds-grid--3 ds-chapter-gap">
+                    @for (int i = 0; i < cs.Stats.Count; i++)
+                    {
+                        CaseStudyStat s = cs.Stats[i];
+                        <div class="ds-stat" data-reveal style="@($"--reveal-step:{i}")">
+                            <div class="ds-stat__value">@s.Value</div>
+                            <div class="ds-stat__label">@s.Label</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+
+    @* 5 · Key decisions + why *@
+    @if (cs.Decisions.Count > 0)
+    {
+        <section class="ds-section ds-section--chapter ds-section--bordered">
+            <div class="ds-container">
+                <ChapterBand Kicker="@decisionsKicker" Title="@decisionsTitle" Lead="@decisionsLead" />
+                <div class="ds-case__decisions ds-chapter-gap">
+                    @for (int i = 0; i < cs.Decisions.Count; i++)
+                    {
+                        CaseStudyDecision d = cs.Decisions[i];
+                        <div class="ds-case__decision" data-reveal style="@($"--reveal-step:{i}")">
+                            <h3 class="ds-case__decision-title">@d.Title</h3>
+                            <p class="ds-case__decision-detail">@d.Detail</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+
+    @* 6 · Deeper sections *@
+    @if (cs.Sections.Count > 0)
+    {
+        <section class="ds-section ds-section--chapter ds-section--bordered">
+            <div class="ds-container">
+                <ChapterBand Kicker="@detailKicker" Title="@detailTitle" />
+                <div class="ds-grid ds-grid--2 ds-chapter-gap">
+                    @for (int i = 0; i < cs.Sections.Count; i++)
+                    {
+                        CaseStudySection sec = cs.Sections[i];
+                        <div class="ds-case__section" data-reveal style="@($"--reveal-step:{i}")">
+                            <h3 class="ds-case__section-title">@sec.Title</h3>
+                            @foreach (string p in sec.Body)
+                            {
+                                <p class="ds-body">@p</p>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+
+    @* 7 · Stack *@
+    @if (cs.Stack.Count > 0)
+    {
+        <section class="ds-section ds-section--chapter ds-section--bordered">
+            <div class="ds-container">
+                <ChapterBand Kicker="@stackKicker" Title="@stackTitle" />
+                <div class="ds-case__stack ds-chapter-gap" data-reveal>
+                    @foreach (string tech in cs.Stack)
+                    {
+                        <span class="ds-tag">@tech</span>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+}
+else if (loaded)
+{
+    <Hero Kicker="@caseKicker" Title="@notFoundTitle" Lead="@notFoundLead">
+        <Actions>
+            <a class="ds-btn ds-btn--primary" href="@LocalizedRoute.For("realisations")">
+                @allProjectsLabel <span aria-hidden="true">→</span>
+            </a>
+        </Actions>
+    </Hero>
+}
+
+@code {
+    [Parameter] public string Slug { get; set; } = "";
+
+    private Realisation? realisation;
+    private bool loaded;
+    private string? loadedSlug;
+
+    private string seoTitle = "Étude de cas — IdeaStud.io";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/realisations";
+    private string seoLocale = "fr_FR";
+    private string caseKicker = "— Étude de cas";
+    private string sectorLabel = "Secteur";
+    private string roleLabel = "Rôle";
+    private string timelineLabel = "Durée";
+    private string visitLabel = "Voir le site";
+    private string allProjectsLabel = "Toutes les réalisations";
+    private string approachLabel = "L'approche";
+    private string outcomeLabel = "Le résultat";
+    private string architectureKicker = "Architecture";
+    private string architectureTitle = "Comment c'est construit.";
+    private string numbersKicker = "En chiffres";
+    private string numbersTitle = "L'ampleur du projet.";
+    private string decisionsKicker = "Décisions clés";
+    private string decisionsTitle = "Les choix, et pourquoi.";
+    private string decisionsLead = "";
+    private string detailKicker = "Dans le détail";
+    private string detailTitle = "Sous le capot.";
+    private string stackKicker = "Stack";
+    private string stackTitle = "La pile technique.";
+    private string notFoundTitle = "Étude de cas introuvable.";
+    private string notFoundLead = "";
+    private List<string>? seoStructuredData;
+    private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        await LoadDataAsync();
+        GenerateStructuredData();
+        StateHasChanged();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        // Re-resolve when navigating directly between case studies (the component
+        // is reused and only the slug changes — OnInitialized won't run again).
+        if (loadedSlug is not null && loadedSlug != Slug)
+        {
+            await LoadDataAsync();
+            GenerateStructuredData();
+            StateHasChanged();
+        }
+    }
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        caseKicker = fr ? "— Étude de cas" : "— Case study";
+        sectorLabel = fr ? "Secteur" : "Sector";
+        roleLabel = fr ? "Rôle" : "Role";
+        timelineLabel = fr ? "Durée" : "Timeline";
+        visitLabel = fr ? "Voir le site" : "Visit the site";
+        allProjectsLabel = fr ? "Toutes les réalisations" : "All projects";
+        approachLabel = fr ? "L'approche" : "The approach";
+        outcomeLabel = fr ? "Le résultat" : "The outcome";
+        architectureKicker = fr ? "Architecture" : "Architecture";
+        architectureTitle = fr ? "Comment c'est construit." : "How it's built.";
+        numbersKicker = fr ? "En chiffres" : "By the numbers";
+        numbersTitle = fr ? "L'ampleur du projet." : "The scale of it.";
+        decisionsKicker = fr ? "Décisions clés" : "Key decisions";
+        decisionsTitle = fr ? "Les choix, et pourquoi." : "The choices, and why.";
+        decisionsLead = fr
+            ? "Chaque décision structurante avait une raison — souvent un risque à neutraliser, pas une préférence technique."
+            : "Every structural decision had a reason — usually a risk to neutralise, not a technical preference.";
+        detailKicker = fr ? "Dans le détail" : "In detail";
+        detailTitle = fr ? "Sous le capot." : "Under the hood.";
+        stackKicker = fr ? "Stack" : "Stack";
+        stackTitle = fr ? "La pile technique." : "The tech stack.";
+        notFoundTitle = fr ? "Étude de cas introuvable." : "Case study not found.";
+        notFoundLead = fr
+            ? "Ce projet n'a pas (encore) d'étude de cas détaillée."
+            : "This project doesn't have a detailed case study (yet).";
+    }
+
+    private async Task LoadDataAsync()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+        IReadOnlyList<Realisation> all = await Content.GetRealisationsAsync(CultureService.CurrentCulture.Name);
+        realisation = all.FirstOrDefault(r => string.Equals(r.Slug, Slug, StringComparison.OrdinalIgnoreCase));
+        loaded = true;
+        loadedSlug = Slug;
+
+        string hub = LocalizedRoute.For("realisations", cultureCode);
+        if (realisation?.CaseStudy is { } cs)
+        {
+            seoTitle = fr
+                ? $"{realisation.Title} — Étude de cas | IdeaStud.io"
+                : $"{realisation.Title} — Case study | IdeaStud.io";
+            seoDescription = cs.Challenge;
+            seoCanonical = $"https://ideastud.io{hub}/{realisation.Slug}";
+        }
+        else
+        {
+            seoTitle = fr ? "Étude de cas — IdeaStud.io" : "Case study — IdeaStud.io";
+            seoCanonical = $"https://ideastud.io{hub}";
+        }
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+        string hub = LocalizedRoute.For("realisations", cultureCode);
+
+        if (realisation?.CaseStudy is null)
+        {
+            seoStructuredData = null;
+            return;
+        }
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+            (fr ? "Réalisations" : "Projects", hub),
+            (realisation.Title, $"{hub}/{realisation.Slug}"));
+
+        seoStructuredData = new List<string> { SchemaOrg.ToJsonLd(breadcrumb) };
+    }
+}

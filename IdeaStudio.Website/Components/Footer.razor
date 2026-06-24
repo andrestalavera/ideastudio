@@ -17,10 +17,13 @@
             <a href="@LocalizedRoute.For("home")">@homeText</a>
             <a href="@LocalizedRoute.For("services.hub")">@servicesText</a>
             <a href="@LocalizedRoute.For("realisations")">@realisationsText</a>
+            <a href="@LocalizedRoute.For("about")">@aboutText</a>
             <a href="@LocalizedRoute.For("cv")">@cvText</a>
+            <a href="@LocalizedRoute.For("faq")">@faqText</a>
         </div>
         <div class="ds-footer__col">
             <div class="ds-footer__label">@contactLabel</div>
+            <a href="@LocalizedRoute.For("contact")">@contactPageText</a>
             <a href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a>
             <a href="https://www.linkedin.com/in/andrestalavera/" target="_blank" rel="noopener">LinkedIn ↗</a>
             <a href="https://github.com/andrestalavera" target="_blank" rel="noopener">GitHub ↗</a>
@@ -40,8 +43,11 @@
     private string homeText = "Accueil";
     private string servicesText = "Services";
     private string realisationsText = "Réalisations";
+    private string aboutText = "À propos";
     private string cvText = "Parcours";
+    private string faqText = "FAQ";
     private string contactLabel = "Contact";
+    private string contactPageText = "Me contacter";
     private string legalLabel = "Légal";
     private string legalText = "Mentions légales";
     private string privacyText = "Confidentialité";
@@ -55,8 +61,11 @@
         homeText           = fr ? "Accueil" : "Home";
         servicesText       = fr ? "Services" : "Services";
         realisationsText   = fr ? "Réalisations" : "Projects";
+        aboutText          = fr ? "À propos" : "About";
         cvText             = fr ? "Parcours" : "Resume";
+        faqText            = fr ? "FAQ" : "FAQ";
         contactLabel       = fr ? "Contact" : "Contact";
+        contactPageText    = fr ? "Me contacter" : "Contact me";
         legalLabel         = fr ? "Légal" : "Legal";
         legalText          = fr ? "Mentions légales" : "Legal";
         privacyText        = fr ? "Confidentialité" : "Privacy";

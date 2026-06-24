@@ -26,33 +26,45 @@ The design ethos: **expensive, intentional, alive.** Every element earns its pla
 
 ## 2. Color Palette & Roles
 
-**Surfaces (dark-first — light mode is not a target):**
-- **Void** (`#020a0d`) — Far body, under the WebGL canvas. Effectively off-black; pure `#000` is BANNED.
-- **Deep** (`#05161a`) — Primary page background.
-- **Surface** (`#0a2328`) — Masthead pill, chapter bands.
-- **Raised** (`#0e2d33`) — Cards, stat chips.
+> **Dual-theme (V3.1).** Colors are now **role tokens that follow the active
+> `[data-theme]`**. The SCSS tokens in `tokens/_colors.scss` resolve to CSS
+> custom properties (`$fg → var(--fg)`, etc.), and `base/_root.scss` emits one
+> palette block per theme from the `$themes` map. Components keep writing
+> `c.$fg` / `c.$bg-deep` / `c.$ir-duck` — they automatically theme. Dark is the
+> signature look; light is a calm, warm-neutral counterpart. The visitor's OS
+> preference is the default (a no-flash script in `index.html` sets `data-theme`
+> before first paint); a masthead toggle persists an explicit choice in
+> `localStorage`. Both themes must meet WCAG AA.
 
-**Foreground:**
-- **FG** (`#eaf4f2`) — Primary text on Deep. AAA contrast.
-- **FG Muted** (`#a8bfbb`) — Captions, meta, body copy. AA on Deep.
-- **FG Faint** (`#5e7a77`) — Decorative only. Never body copy.
+**Surfaces** (dark / light):
+- **Void** (`#020a0d` / `#e7eeec`) — Far body / footer panel. Pure `#000` is BANNED.
+- **Deep** (`#05161a` / `#f5f8f7`) — Primary page background.
+- **Surface** (`#0a2328` / `#ffffff`) — Masthead pill, chapter bands, menus.
+- **Raised** (`#0e2d33` / `#ffffff`) — Cards, stat chips (separated by Rule in light).
+
+**Foreground** (dark / light):
+- **FG** (`#eaf4f2` / `#0b1a1d`) — Primary text. AAA contrast.
+- **FG Muted** (`#a8bfbb` / `#4b6366`) — Captions, meta, body copy. AA.
+- **FG Faint** (`#5e7a77` / `#708789`) — Decorative only. Never body copy.
 
 **Iridescent Accents — used as a single gradient, not four free colors:**
-- **Duck** (`#00c2d4`) — Primary brand, CTA, focus ring, rail. Default accent in isolation.
-- **Blue** (`#2d44ff`) — Secondary stop in the gradient.
+- **Duck** (`#00c2d4` dark / `#007a87` light) — Primary brand, CTA, focus ring, rail. Default accent in isolation. Darkened in light so it stays AA-readable as link/label text.
+- **Blue** (`#2d44ff`) — Secondary stop in the gradient. (Vivid in both themes.)
 - **Amber** (`#ff8c1a`) — Tertiary stop.
 - **Pink** (`#ff3670`) — Closing stop.
 
 These four are members of `$gradient-iridescent` (a 140°-rotated conic). They appear together inside that gradient — in CTA borders, text-clip accents, hairlines, and the WebGL shader. They do **not** appear as independent button fills, badge backgrounds, or status colors. Outside the gradient, the only accent is **Duck**.
 
-**Derived:**
-- **Rule** (`rgba(234,244,242,0.08)`) — Hairlines, dividers.
-- **Ring** (`rgba(0,194,212,0.6)`) — Focus rings.
-- **Glass** (`rgba(234,244,242,0.06)`) — Frosted glass overlays.
+**Derived** (dark / light):
+- **Rule** (`rgba(234,244,242,0.08)` / `rgba(11,26,29,0.12)`) — Hairlines, dividers.
+- **Rule Bright** (`rgba(234,244,242,0.18)` / `rgba(11,26,29,0.16)`) — Emphasized divider.
+- **Ring** (`rgba(0,194,212,0.6)` / `rgba(0,122,135,0.6)`) — Focus rings.
+- **Glass** (`rgba(234,244,242,0.06)` / `rgba(11,26,29,0.05)`) — Frosted overlays / hover tints.
+- **Track** (`rgba(234,244,242,0.08)` / `rgba(11,26,29,0.10)`) — Progress / scrollbar tracks.
 
 ### Deliberate divergence from the skill template
 - The template's "max 1 accent at <80% saturation" rule is overridden: the iridescent gradient *is* the brand. The discipline is preserved by gating the four colors behind a single shared gradient — they never appear as standalone fills.
-- The template's "Canvas White" base is rejected: this product is dark-first.
+- Dark is the **signature** theme and the no-JS default; light is a first-class calm counterpart (the WebGL cinema is hidden in light, replaced by a subtle static gradient — quieter, less "techy").
 
 ### Banned
 - Pure black (`#000000`) — use Void.

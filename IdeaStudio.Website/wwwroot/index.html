@@ -26,6 +26,54 @@
         })();
     </script>
 
+    <!-- Theme bootstrap — runs before first paint to avoid a light/dark flash.
+         Resolves: saved choice (localStorage) → OS preference. Exposes
+         window.ideastudioTheme { get, preference, set, toggle } and emits an
+         'ideastudio:themechanged' event the cinema runtime listens to. -->
+    <script>
+        (function () {
+            var KEY = 'ideastudio-theme';
+            var root = document.documentElement;
+            function systemTheme() {
+                return (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            function saved() {
+                try { var s = localStorage.getItem(KEY); return (s === 'light' || s === 'dark') ? s : null; }
+                catch (e) { return null; }
+            }
+            function resolve() { return saved() || systemTheme(); }
+            function applyMeta(theme) {
+                var tc = document.querySelector('meta[name="theme-color"]');
+                if (tc) tc.setAttribute('content', theme === 'light' ? '#f5f8f7' : '#05161a');
+                var cs = document.querySelector('meta[name="color-scheme"]');
+                if (cs) cs.setAttribute('content', theme);
+            }
+            function apply(theme) {
+                root.setAttribute('data-theme', theme);
+                applyMeta(theme);
+                try { if (window.ideastudioCinema && window.ideastudioCinema.applyTheme) window.ideastudioCinema.applyTheme(); } catch (e) {}
+                try { window.dispatchEvent(new CustomEvent('ideastudio:themechanged', { detail: { theme: theme } })); } catch (e) {}
+            }
+            function set(theme) {
+                if (theme !== 'light' && theme !== 'dark') return;
+                try { localStorage.setItem(KEY, theme); } catch (e) {}
+                apply(theme);
+            }
+            apply(resolve());
+            if (window.matchMedia) {
+                window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function () {
+                    if (!saved()) apply(systemTheme());
+                });
+            }
+            window.ideastudioTheme = {
+                get: function () { return root.getAttribute('data-theme') || resolve(); },
+                preference: function () { return saved() || 'system'; },
+                set: set,
+                toggle: function () { set(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'); return root.getAttribute('data-theme'); }
+            };
+        })();
+    </script>
+
     <!-- Preconnect -->
     <link rel="preconnect" href="https://assets.calendly.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />

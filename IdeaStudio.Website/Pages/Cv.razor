@@ -89,6 +89,19 @@
     </div>
 </section>
 
+@* 3b · Clients *@
+@if (clients.Count > 0)
+{
+    <section class="ds-section ds-section--chapter ds-section--bordered">
+        <div class="ds-container">
+            <ChapterBand Kicker="@clientsKicker" Title="@clientsTitle" />
+            <div class="ds-chapter-gap">
+                <LogoWall Items="@clients" />
+            </div>
+        </div>
+    </section>
+}
+
 @* 4 · Formations *@
 <section class="ds-section ds-section--chapter ds-section--bordered">
     <div class="ds-container">
@@ -143,6 +156,9 @@
 @code {
     private Resume? resume;
     private IReadOnlyList<TrainingCenter>? trainingCenters;
+    private List<LogoWall.LogoItem> clients = new();
+    private string clientsKicker = "— Clients";
+    private string clientsTitle = "Ils m'ont fait confiance.";
     private string seoTitle = "Andrés Talavera — Parcours";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/cv";
@@ -193,6 +209,8 @@
             ? "Centres de formation et écoles qui m'ont confié leurs sessions, en présentiel comme en distanciel. Trois décennies de stack Microsoft, transmises à des publics très variés — de l'étudiant Supinfo au développeur senior en reconversion cloud."
             : "Training centres and schools that have trusted me with their sessions, on-site and remote. Three decades of Microsoft stack, passed on to wildly different audiences — from Supinfo students to senior devs reskilling on cloud.";
         contactTitle = fr ? "Parlons de votre projet."        : "Let's talk about your project.";
+        clientsKicker = fr ? "— Clients"                      : "— Clients";
+        clientsTitle  = fr ? "Ils m'ont fait confiance."       : "They put their trust in me.";
         bookText     = fr ? "Prendre rendez-vous"             : "Book a call";
         downloadText = fr ? "Télécharger mon CV"              : "Download my resume";
         downloadUrl  = fr ? "/cv.pdf?culture=fr"              : "/resume.pdf?culture=en";
@@ -203,6 +221,14 @@
         string culture = CultureService.CurrentCulture.Name;
         resume = await Content.GetResumeAsync(culture);
         trainingCenters = await Content.GetTrainingCentersAsync(culture);
+
+        // Client logo wall — real client brands (the public sites we shipped).
+        // Drop a LogoUrl per item to swap a wordmark for a real logo image.
+        IReadOnlyList<Realisation> projects = await Content.GetRealisationsAsync(culture);
+        clients = projects
+            .Where(r => !string.IsNullOrWhiteSpace(r.LiveUrl))
+            .Select(r => new LogoWall.LogoItem(r.Client, LogoUrl: null, Url: r.LiveUrl))
+            .ToList();
         heroText = resume?.PersonalInformation?.Hero ?? (culture.StartsWith("fr") ? "Parcours." : "Resume.");
         introText = resume?.PersonalInformation?.Introduction ?? "";
         seoDescription = introText;
