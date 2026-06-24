@@ -26,26 +26,26 @@
    orientation marker, lead offset right beneath the name. Per-character
    reveal preserved; --hero-progress scroll morph preserved. *@
 <div class="ds-page-home">
-<section class="ds-hero ds-hero-home">
+<section class="ds-hero">
     <Container Width="wide">
-    <div class="ds-hero-inner">
-        <div class="ds-hero-identity flex-wrap" data-reveal style="--reveal-step: 0">
-            <img class="ds-hero-avatar" src="images/andres-talavera.jpeg"
-                 alt="@avatarAlt" width="800" height="800" fetchpriority="high" decoding="async" />
-            <p class="ds-kicker ds-hero-kicker">@kicker</p>
-            <span class="ds-availability ml-auto inline-flex items-center gap-2 rounded-full border border-rule px-3 py-1 text-mono uppercase tracking-wide text-muted whitespace-nowrap">
-                <span class="ds-availability-dot" aria-hidden="true"></span>
-                @availability
-            </span>
+        <div class="ds-hero-inner">
+            <div class="flex items-center gap-4 flex-wrap" data-reveal style="--reveal-step: 0">
+                <img class="ds-hero-avatar" src="images/andres-talavera.jpeg"
+                     alt="@avatarAlt" width="800" height="800" fetchpriority="high" decoding="async" />
+                <p class="ds-kicker text-muted leading-normal">@kicker</p>
+                <span class="ds-availability ml-auto inline-flex items-center gap-2 rounded-full border border-rule px-3 py-1 text-mono uppercase tracking-wide text-muted whitespace-nowrap">
+                    <span class="ds-availability-dot" aria-hidden="true"></span>
+                    @availability
+                </span>
+            </div>
+            <RevealChars Text="Andrés Talavera" Tag="h1" Class="ds-display">
+                <span class="ds-display-accent" aria-hidden="true">.</span>
+            </RevealChars>
+            <p class="ds-lead" data-reveal style="--reveal-step: 2">@lead</p>
+            <div class="mt-4" data-reveal style="--reveal-step: 3">
+                <ActionRow Label="@meetLabel" DownloadUrl="@downloadUrl" DownloadLabel="@downloadLabel" />
+            </div>
         </div>
-        <RevealChars Text="Andrés Talavera" Tag="h1" Class="ds-display ds-hero-name">
-            <span class="ds-display-accent" aria-hidden="true">.</span>
-        </RevealChars>
-        <p class="ds-lead ds-hero-lead" data-reveal style="--reveal-step: 2">@lead</p>
-        <div class="ds-hero-actions" data-reveal style="--reveal-step: 3">
-            <ActionRow Label="@meetLabel" DownloadUrl="@downloadUrl" DownloadLabel="@downloadLabel" />
-        </div>
-    </div>
     </Container>
 </section>
 

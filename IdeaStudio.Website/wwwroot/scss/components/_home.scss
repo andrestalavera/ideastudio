@@ -9,103 +9,18 @@
   position: relative;
 }
 
-// Asymmetric Home hero. The signature is a four-area editorial layout
-// instead of a centered column. Variance promised by the design system =
-// variance delivered.
-//   ┌─────────────────────────────────────────┬───┐
-//   │                                         │ K │
-//   │                                         │ I │
-//   │  Andrés Talavera.                       │ C │
-//   │                                         │ K │
-//   │       I turn ideas into software        │ E │
-//   │       that ships.                       │ R │
-//   │                                         │   │
-//   │  [ Meet → ]                             │   │
-//   └─────────────────────────────────────────┴───┘
-//
-// The kicker rotates vertical-rl on the right rail, becoming an orientation
-// marker rather than a label. On tablet/mobile, the layout collapses to a
-// natural top-down stack.
-.ds-hero-home {
-  min-block-size: 100svh;
-  display: flex;
-  align-items: stretch;
-  padding-block: clamp(4rem, 8vh, 8rem);
-
-  .ds-hero-inner {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 1fr auto auto auto;
-    column-gap: clamp(1rem, 2vw, 2rem);
-    row-gap: clamp(1.25rem, 3vh, 2rem);
-    align-items: end;
-  }
-
-  // Identity row — rounded portrait + role kicker as a single grouped unit,
-  // sitting just above the name. Pairing the photo with text keeps it from
-  // floating; this layout holds at every width.
-  .ds-hero-identity {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    align-self: end;
-    display: flex;
-    align-items: center;
-    gap: clamp(0.85rem, 2vw, 1.4rem);
-  }
-
-  .ds-hero-avatar {
-    flex: none;
-    inline-size: clamp(84px, 7vw, 124px);
-    block-size: clamp(84px, 7vw, 124px);
-    border-radius: 50%;
-    object-fit: cover;
-    padding: 3px;
-    background: c.$gradient-iridescent;
-    box-shadow: 0 10px 30px rgba(2, 10, 13, 0.4);
-  }
-
-  .ds-hero-kicker {
-    margin: 0;
-    color: c.$fg-muted;
-    line-height: 1.45;
-  }
-
-  .ds-hero-name {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-
-  .ds-hero-lead {
-    grid-column: 1 / 9;
-    grid-row: 3;
-    max-width: 56ch;
-    margin: 0;
-  }
-
-  .ds-hero-actions {
-    grid-column: 1 / -1;
-    grid-row: 4;
-    margin-block-start: clamp(0.5rem, 2vh, 1.25rem);
-  }
-
-  // Tablet: lead spans wider as columns tighten.
-  @media (max-width: 1023px) {
-    .ds-hero-lead { grid-column: 1 / 11; }
-  }
-
-  // Phone: pure vertical stack; kicker tracking eased so it never clips.
-  @media (max-width: 767px) {
-    min-block-size: 88svh;
-    .ds-hero-inner {
-      display: flex;
-      flex-direction: column;
-      gap: s.$s-5;
-    }
-    .ds-hero-identity { gap: 0.85rem; }
-    .ds-hero-kicker { letter-spacing: 0.16em; }
-    .ds-hero-lead { max-width: none; }
-  }
+// Iridescent-ring portrait in the hero identity row. The gradient border +
+// soft shadow can't be utilities, so it stays a small primitive. Hero layout
+// itself is utilities + the shared .ds-hero / .ds-hero-inner (scroll-morph).
+.ds-hero-avatar {
+  flex: none;
+  inline-size: clamp(84px, 7vw, 124px);
+  block-size: clamp(84px, 7vw, 124px);
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 3px;
+  background: c.$gradient-iridescent;
+  box-shadow: 0 10px 30px rgba(2, 10, 13, 0.4);
 }
 
 // Project tiles on Home — editorial zig-zag instead of uniform rows.
