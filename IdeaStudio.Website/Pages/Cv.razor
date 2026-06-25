@@ -37,9 +37,7 @@
     </ChildContent>
     <Actions>
         <div class="flex flex-row items-center gap-3 flex-wrap">
-            <a class="ds-btn ds-btn-primary" href="@downloadUrl" target="_blank" rel="noopener">
-                @downloadText <span aria-hidden="true">↓</span>
-            </a>
+            <ButtonLink Href="@downloadUrl" Variant="primary" External="true" Arrow="↓" Label="@downloadText" />
         </div>
         <div class="flex flex-row items-center gap-3 flex-wrap mt-4">
             @if (resume?.PersonalInformation?.Languages is not null)
@@ -62,7 +60,7 @@
             int i = 0;
             foreach (AboutSection s in resume.AboutSections)
             {
-                <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
+                <Card data-reveal style="@($"--reveal-step:{i}")">
                     <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@s.Title</h3>
                     @if (s.Paragraphs is not null)
                     {
@@ -71,7 +69,7 @@
                             <p class="text-base leading-relaxed text-muted m-0">@p</p>
                         }
                     }
-                </div>
+                </Card>
                 i++;
             }
         }
@@ -114,33 +112,29 @@
         {
             @if (!string.IsNullOrWhiteSpace(pi.Email))
             {
-                <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="--reveal-step: 0">
+                <Card data-reveal style="--reveal-step: 0">
                     <div class="font-sans font-semibold text-subtitle text-fg m-0">Email</div>
                     <a class="ds-link" href="mailto:@pi.Email">@pi.Email <span class="ds-link-arrow">→</span></a>
-                </div>
+                </Card>
             }
             @if (!string.IsNullOrWhiteSpace(pi.LinkedIn))
             {
-                <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="--reveal-step: 1">
+                <Card data-reveal style="--reveal-step: 1">
                     <div class="font-sans font-semibold text-subtitle text-fg m-0">LinkedIn</div>
                     <a class="ds-link" href="@($"https://www.linkedin.com/in/{pi.LinkedIn}/")" target="_blank" rel="noopener">@pi.LinkedIn <span class="ds-link-arrow">↗</span></a>
-                </div>
+                </Card>
             }
             @if (!string.IsNullOrWhiteSpace(pi.GitHub))
             {
-                <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="--reveal-step: 2">
+                <Card data-reveal style="--reveal-step: 2">
                     <div class="font-sans font-semibold text-subtitle text-fg m-0">GitHub</div>
                     <a class="ds-link" href="@($"https://github.com/{pi.GitHub}")" target="_blank" rel="noopener">@pi.GitHub <span class="ds-link-arrow">↗</span></a>
-                </div>
+                </Card>
             }
         }
     </div>
     <div class="ds-contact-cta" data-reveal style="--reveal-step: 3">
-        <a class="ds-btn ds-btn-primary"
-           href="https://calendly.com/andres-talavera/30min"
-           target="_blank" rel="noopener">
-            @bookText <span aria-hidden="true">→</span>
-        </a>
+        <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary" External="true" Arrow="→" Label="@bookText" />
     </div>
 </PageSection>
 

@@ -20,9 +20,7 @@
 {
     <Hero Kicker="404" Title="@notFoundTitle" Lead="@notFoundLead">
         <Actions>
-            <a class="ds-btn ds-btn-primary" href="@LocalizedRoute.For("services.hub")">
-                @backText <span aria-hidden="true">→</span>
-            </a>
+            <ButtonLink Href="@LocalizedRoute.For("services.hub")" Variant="primary" Label="@backText" />
         </Actions>
     </Hero>
 }
@@ -61,10 +59,10 @@ else
                 @for (int i = 0; i < service.UseCases.Count; i++)
                 {
                     UseCase uc = service.UseCases[i];
-                    <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
+                    <Card data-reveal style="@($"--reveal-step:{i}")">
                         <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@uc.Title</h3>
                         <p class="text-base leading-relaxed text-muted m-0">@uc.Description</p>
-                    </div>
+                    </Card>
                 }
             </div>
         </PageSection>

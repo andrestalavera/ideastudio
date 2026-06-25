@@ -1,0 +1,51 @@
+@* ButtonLink — a button-styled anchor CTA. Mutualizes the ds-btn link pattern
+   used across pages. External links get target/rel + a ↗ glyph; internal get →.
+   Use ChildContent for custom inner markup (e.g. numbered prefixes). *@
+
+<a class="@CssClass" href="@Href"
+   target="@(External ? "_blank" : null)"
+   rel="@(External ? "noopener" : null)"
+   aria-label="@AriaLabel"
+   @attributes="Extra">
+    @if (ChildContent is not null)
+    {
+        @ChildContent
+    }
+    else
+    {
+        @Label
+    }
+    @if (ShowArrow)
+    {
+        <span> </span><span aria-hidden="true">@ArrowGlyph</span>
+    }
+</a>
+
+@code {
+    [Parameter, EditorRequired] public string Href { get; set; } = "#";
+    /// <summary>ghost (default) | primary | iridescent.</summary>
+    [Parameter] public string Variant { get; set; } = "ghost";
+    [Parameter] public bool Small { get; set; }
+    [Parameter] public bool External { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public string? AriaLabel { get; set; }
+    [Parameter] public bool ShowArrow { get; set; } = true;
+    /// <summary>Override the trailing glyph (defaults to ↗ external / → internal).</summary>
+    [Parameter] public string? Arrow { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? Extra { get; set; }
+
+    private string ArrowGlyph => Arrow ?? (External ? "↗" : "→");
+
+    private string CssClass
+    {
+        get
+        {
+            string c = $"ds-btn ds-btn-{Variant}";
+            if (Small) c += " ds-btn-sm";
+            if (!string.IsNullOrEmpty(Class)) c += $" {Class}";
+            return c;
+        }
+    }
+}

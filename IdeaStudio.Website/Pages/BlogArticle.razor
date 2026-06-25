@@ -45,7 +45,7 @@ else if (loaded)
 {
     <Hero Kicker="Blog" Title="@notFoundTitle" Lead="@notFoundLead">
         <Actions>
-            <a class="ds-btn ds-btn-primary" href="@LocalizedRoute.For("blog")">@backLabel <span aria-hidden="true">→</span></a>
+            <ButtonLink Href="@LocalizedRoute.For("blog")" Variant="primary" Label="@backLabel" />
         </Actions>
     </Hero>
 }

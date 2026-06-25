@@ -56,10 +56,10 @@
         @for (int i = 0; i < benefits.Count; i++)
         {
             (string t, string b) = benefits[i];
-            <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
+            <Card data-reveal style="@($"--reveal-step:{i}")">
                 <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@t</h3>
                 <p class="text-base leading-relaxed text-muted m-0">@b</p>
-            </div>
+            </Card>
         }
     </div>
 </PageSection>
@@ -72,19 +72,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-chapter">
             @foreach (BlogPost post in latestPosts)
             {
-                <a class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words"
-                   href="@($"{LocalizedRoute.For("blog")}/{post.Slug}")" data-reveal>
-                    <p class="text-mono text-muted uppercase tracking-wide m-0">@post.Date · @post.ReadingMinutes @readMinutes</p>
-                    <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@post.Title</h3>
-                    <p class="text-base leading-relaxed text-muted m-0">@post.Summary</p>
-                    <span class="ds-link mt-4">@blogReadCta <span class="ds-link-arrow" aria-hidden="true">→</span></span>
-                </a>
+                <BlogCard Post="@post" />
             }
         </div>
         <div class="mt-chapter" data-reveal>
-            <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("blog")">
-                @blogAllCta <span aria-hidden="true">→</span>
-            </a>
+            <ButtonLink Href="@LocalizedRoute.For("blog")" Label="@blogAllCta" />
         </div>
     </PageSection>
 }
@@ -107,10 +99,8 @@
             <Testimonials Items="@testimonials" />
         </div>
         <div class="mt-chapter" data-reveal>
-            <a class="ds-btn ds-btn-ghost" href="https://www.linkedin.com/in/andrestalavera/details/recommendations/"
-               target="_blank" rel="noopener">
-                @moreTestimonials <span aria-hidden="true">↗</span>
-            </a>
+            <ButtonLink Href="https://www.linkedin.com/in/andrestalavera/details/recommendations/"
+                        Label="@moreTestimonials" External="true" />
         </div>
     </PageSection>
 }
@@ -136,9 +126,7 @@
         }
     </div>
     <div class="mt-chapter" data-reveal>
-        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("realisations")">
-            @seeAllRealisations <span aria-hidden="true">→</span>
-        </a>
+        <ButtonLink Href="@LocalizedRoute.For("realisations")" Label="@seeAllRealisations" />
     </div>
 </PageSection>
 
@@ -151,9 +139,7 @@
 <PageSection>
     <ChapterBand Kicker="@aboutKicker" Title="@aboutTitle" Lead="@aboutLead" />
     <div class="mt-chapter" data-reveal>
-        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("about")">
-            @aboutCta <span aria-hidden="true">→</span>
-        </a>
+        <ButtonLink Href="@LocalizedRoute.For("about")" Label="@aboutCta" />
     </div>
 </PageSection>
 
@@ -164,9 +150,7 @@
         <EditorialList Items="@(services.Take(2).ToList())" />
     </div>
     <div class="mt-chapter" data-reveal>
-        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("services.hub")">
-            @seeAllServices <span aria-hidden="true">→</span>
-        </a>
+        <ButtonLink Href="@LocalizedRoute.For("services.hub")" Label="@seeAllServices" />
     </div>
 </PageSection>
 
@@ -209,9 +193,7 @@
     private IReadOnlyList<BlogPost> latestPosts = Array.Empty<BlogPost>();
     private string blogKicker = "Blog";
     private string blogTitle = "À lire aussi.";
-    private string blogReadCta = "Lire l'article";
     private string blogAllCta = "Voir le blog";
-    private string readMinutes = "min de lecture";
 
     private string seoTitle = "IdeaStud.io, Andrés Talavera";
     private string seoDescription = "";
@@ -299,9 +281,7 @@
 
         blogKicker  = fr ? "Blog" : "Blog";
         blogTitle   = fr ? "À lire aussi." : "Worth a read.";
-        blogReadCta = fr ? "Lire l'article" : "Read the article";
         blogAllCta  = fr ? "Voir tous les articles" : "See all articles";
-        readMinutes = fr ? "min de lecture" : "min read";
         moreTestimonials = fr ? "Plus de recommandations" : "More recommendations";
     }
 

@@ -23,14 +23,8 @@
     <ChildContent>@heroText</ChildContent>
     <Actions>
         <div class="flex flex-row items-center gap-3 flex-wrap">
-            <a class="ds-btn ds-btn-primary"
-               href="https://calendly.com/andres-talavera/30min"
-               target="_blank" rel="noopener">
-                @bookText <span aria-hidden="true">→</span>
-            </a>
-            <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("cv")">
-                @resumeText <span aria-hidden="true">→</span>
-            </a>
+            <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary" External="true" Arrow="→" Label="@bookText" />
+            <ButtonLink Href="@LocalizedRoute.For("cv")" Label="@resumeText" />
         </div>
     </Actions>
 </Hero>
@@ -44,7 +38,7 @@
             int i = 0;
             foreach (AboutSection s in resume.AboutSections)
             {
-                <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
+                <Card data-reveal style="@($"--reveal-step:{i}")">
                     <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@s.Title</h3>
                     @if (s.Paragraphs is not null)
                     {
@@ -53,7 +47,7 @@
                             <p class="text-base leading-relaxed text-muted m-0">@p</p>
                         }
                     }
-                </div>
+                </Card>
                 i++;
             }
         }
@@ -75,9 +69,9 @@
 <PageSection>
     <ChapterBand Kicker="@exploreKicker" Title="@exploreTitle" />
     <div class="flex flex-row items-center gap-3 flex-wrap mt-chapter" data-reveal>
-        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("services.hub")">@servicesLink <span aria-hidden="true">→</span></a>
-        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("realisations")">@workLink <span aria-hidden="true">→</span></a>
-        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("cv")">@resumeText <span aria-hidden="true">→</span></a>
+        <ButtonLink Href="@LocalizedRoute.For("services.hub")" Label="@servicesLink" />
+        <ButtonLink Href="@LocalizedRoute.For("realisations")" Label="@workLink" />
+        <ButtonLink Href="@LocalizedRoute.For("cv")" Label="@resumeText" />
     </div>
 </PageSection>
 

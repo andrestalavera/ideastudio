@@ -7,9 +7,9 @@
 <Hero Kicker="404" Title="@titleText" Lead="@lead">
     <Actions>
         <div class="flex flex-row items-center gap-3 flex-wrap">
-            <a class="ds-btn ds-btn-primary" href="@LocalizedRoute.For("home")">@homeText <span aria-hidden="true">→</span></a>
-            <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("services.hub")">@servicesText <span aria-hidden="true">→</span></a>
-            <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("realisations")">@workText <span aria-hidden="true">→</span></a>
+            <ButtonLink Href="@LocalizedRoute.For("home")" Variant="primary" Label="@homeText" />
+            <ButtonLink Href="@LocalizedRoute.For("services.hub")" Label="@servicesText" />
+            <ButtonLink Href="@LocalizedRoute.For("realisations")" Label="@workText" />
         </div>
     </Actions>
 </Hero>

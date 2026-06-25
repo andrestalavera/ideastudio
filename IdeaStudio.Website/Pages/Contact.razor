@@ -105,11 +105,7 @@
                     @(status == Status.Sending ? sendingLabel : submitLabel)
                     <span aria-hidden="true">→</span>
                 </button>
-                <a class="ds-btn ds-btn-ghost"
-                   href="https://calendly.com/andres-talavera/30min"
-                   target="_blank" rel="noopener">
-                    @bookLabel <span aria-hidden="true">↗</span>
-                </a>
+                <ButtonLink Href="https://calendly.com/andres-talavera/30min" External="true" Label="@bookLabel" />
             </div>
         </form>
     }

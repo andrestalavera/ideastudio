@@ -9,7 +9,7 @@
         int i = 0;
         foreach (TrainingCenter center in Centers)
         {
-            <div class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words" data-reveal style="@($"--reveal-step:{i}")">
+            <Card data-reveal style="@($"--reveal-step:{i}")">
                 <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@center.Name</h3>
                 @if (center.Locations is not null)
                 {
@@ -24,7 +24,7 @@
                         }
                     </div>
                 }
-            </div>
+            </Card>
             i++;
         }
     }

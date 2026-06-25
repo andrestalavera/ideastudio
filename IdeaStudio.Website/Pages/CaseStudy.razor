@@ -31,13 +31,9 @@
             <div class="flex flex-row items-center gap-3 flex-wrap mt-6">
                 @if (!string.IsNullOrWhiteSpace(realisation.LiveUrl))
                 {
-                    <a class="ds-btn ds-btn-primary" href="@realisation.LiveUrl" target="_blank" rel="noopener">
-                        @visitLabel <span aria-hidden="true">↗</span>
-                    </a>
+                    <ButtonLink Href="@realisation.LiveUrl" Variant="primary" External="true" Label="@visitLabel" />
                 }
-                <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("realisations")">
-                    @allProjectsLabel <span aria-hidden="true">→</span>
-                </a>
+                <ButtonLink Href="@LocalizedRoute.For("realisations")" Label="@allProjectsLabel" />
             </div>
         </Actions>
     </Hero>
@@ -142,9 +138,7 @@ else if (loaded)
 {
     <Hero Kicker="@caseKicker" Title="@notFoundTitle" Lead="@notFoundLead">
         <Actions>
-            <a class="ds-btn ds-btn-primary" href="@LocalizedRoute.For("realisations")">
-                @allProjectsLabel <span aria-hidden="true">→</span>
-            </a>
+            <ButtonLink Href="@LocalizedRoute.For("realisations")" Variant="primary" Label="@allProjectsLabel" />
         </Actions>
     </Hero>
 }
