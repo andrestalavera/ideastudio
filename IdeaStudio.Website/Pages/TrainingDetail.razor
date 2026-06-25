@@ -38,7 +38,7 @@ else
             @foreach ((string label, string value) in Facts())
             {
                 <Card data-reveal style="@($"--reveal-step:{step++}")">
-                    <div class="text-mono text-muted uppercase tracking-wide">@label</div>
+                    <div class="label-mono">@label</div>
                     <div class="card-title">@value</div>
                 </Card>
             }

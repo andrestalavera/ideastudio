@@ -15,15 +15,7 @@
                 {
                     <p class="card-text">@string.Join(" · ", center.Locations)</p>
                 }
-                @if (center.Courses is not null)
-                {
-                    <div class="ds-tile-tags">
-                        @foreach (string course in center.Courses)
-                        {
-                            <span class="ds-tag">@course</span>
-                        }
-                    </div>
-                }
+                <TagList Tags="@center.Courses" />
             </Card>
             i++;
         }

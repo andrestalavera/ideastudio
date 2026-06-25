@@ -22,6 +22,13 @@
   color: c.$fg-muted;
   margin: 0;
 }
+// Mono meta label (dates, key-facts labels, the availability pill).
+.label-mono {
+  font-size: t.$fs-mono;
+  color: c.$fg-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
 
 .text-base     { font-size: t.$fs-body; }
 .text-mono     { font-size: t.$fs-mono; }

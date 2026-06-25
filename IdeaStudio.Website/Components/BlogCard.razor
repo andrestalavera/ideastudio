@@ -7,7 +7,7 @@
    the Blog list so they never drift. Heading level is caller-controlled. *@
 
 <Card Href="@($"{LocalizedRoute.For("blog")}/{Post.Slug}")" data-reveal>
-    <p class="text-mono text-muted uppercase tracking-wide m-0">@Post.Date · @Post.ReadingMinutes @minLabel</p>
+    <p class="label-mono m-0">@Post.Date · @Post.ReadingMinutes @minLabel</p>
     @if (Heading == "h2")
     {
         <h2 class="card-title">@Post.Title</h2>
