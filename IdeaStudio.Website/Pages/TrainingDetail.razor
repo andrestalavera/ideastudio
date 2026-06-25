@@ -39,7 +39,7 @@ else
             {
                 <Card data-reveal style="@($"--reveal-step:{step++}")">
                     <div class="text-mono text-muted uppercase tracking-wide">@label</div>
-                    <div class="font-sans font-semibold text-subtitle text-fg m-0">@value</div>
+                    <div class="card-title">@value</div>
                 </Card>
             }
         </div>
@@ -65,7 +65,7 @@ else
     @* CTA *@
     <PageSection Rhythm="section">
         <ChapterBand Kicker="@ctaKicker" Title="@ctaTitle" Lead="@ctaLead" />
-        <div class="flex flex-row items-center gap-3 flex-wrap mt-chapter" data-reveal>
+        <div class="row mt-chapter" data-reveal>
             <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary" External="true" Label="@bookLabel" />
             <ButtonLink Href="@LocalizedRoute.For("contact")" Label="@contactLabel" />
         </div>

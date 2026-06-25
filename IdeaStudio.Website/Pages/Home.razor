@@ -57,8 +57,8 @@
         {
             (string t, string b) = benefits[i];
             <Card data-reveal style="@($"--reveal-step:{i}")">
-                <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@t</h3>
-                <p class="text-base leading-relaxed text-muted m-0">@b</p>
+                <h3 class="card-title">@t</h3>
+                <p class="card-text">@b</p>
             </Card>
         }
     </div>

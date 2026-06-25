@@ -1,8 +1,7 @@
 ﻿// utilities/_print.scss — print + resume-PDF styles.
 //
 // Two concerns live here:
-//   1. Site browser-print utilities (.ds-print-hidden / .ds-print-only) used
-//      by Razor components (Masthead, Footer, CtaBand…).
+//   1. The .ds-print-hidden utility (Masthead, Footer, CtaBand…).
 //   2. Resume PDF stylesheet — applied when /css/styles.min.css is loaded
 //      by the standalone HTML produced in netlify/functions/_lib/render.mts.
 //      The body there carries class="resume-pdf" so all rules are scoped
@@ -36,7 +35,6 @@
 }
 
 .ds-print-hidden { @media print { display: none !important; } }
-.ds-print-only   { display: none !important; @media print { display: initial !important; } }
 
 
 // ---- Resume PDF (Puppeteer-rendered standalone HTML) ----------------------

@@ -36,10 +36,10 @@
         @heroText
     </ChildContent>
     <Actions>
-        <div class="flex flex-row items-center gap-3 flex-wrap">
+        <div class="row">
             <ButtonLink Href="@downloadUrl" Variant="primary" External="true" Arrow="↓" Label="@downloadText" />
         </div>
-        <div class="flex flex-row items-center gap-3 flex-wrap mt-4">
+        <div class="row mt-4">
             @if (resume?.PersonalInformation?.Languages is not null)
             {
                 foreach (KeyValuePair<string, string> lang in resume.PersonalInformation.Languages)
@@ -61,12 +61,12 @@
             foreach (AboutSection s in resume.AboutSections)
             {
                 <Card data-reveal style="@($"--reveal-step:{i}")">
-                    <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@s.Title</h3>
+                    <h3 class="card-title">@s.Title</h3>
                     @if (s.Paragraphs is not null)
                     {
                         foreach (string p in s.Paragraphs)
                         {
-                            <p class="text-base leading-relaxed text-muted m-0">@p</p>
+                            <p class="card-text">@p</p>
                         }
                     }
                 </Card>
@@ -113,21 +113,21 @@
             @if (!string.IsNullOrWhiteSpace(pi.Email))
             {
                 <Card data-reveal style="--reveal-step: 0">
-                    <div class="font-sans font-semibold text-subtitle text-fg m-0">Email</div>
+                    <div class="card-title">Email</div>
                     <ArrowLink Href="@($"mailto:{pi.Email}")" Text="@pi.Email" />
                 </Card>
             }
             @if (!string.IsNullOrWhiteSpace(pi.LinkedIn))
             {
                 <Card data-reveal style="--reveal-step: 1">
-                    <div class="font-sans font-semibold text-subtitle text-fg m-0">LinkedIn</div>
+                    <div class="card-title">LinkedIn</div>
                     <ArrowLink Href="@($"https://www.linkedin.com/in/{pi.LinkedIn}/")" Text="@pi.LinkedIn" External="true" />
                 </Card>
             }
             @if (!string.IsNullOrWhiteSpace(pi.GitHub))
             {
                 <Card data-reveal style="--reveal-step: 2">
-                    <div class="font-sans font-semibold text-subtitle text-fg m-0">GitHub</div>
+                    <div class="card-title">GitHub</div>
                     <ArrowLink Href="@($"https://github.com/{pi.GitHub}")" Text="@pi.GitHub" External="true" />
                 </Card>
             }

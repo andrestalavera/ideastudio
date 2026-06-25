@@ -3,6 +3,25 @@
 // size always travels with them).
 
 @use '../tokens/type' as t;
+@use '../tokens/colors' as c;
+
+// Smart composites: the card heading + body roles, repeated on every card.
+// One class each instead of five atoms.
+.card-title {
+  font-family: t.$font-sans;
+  font-weight: 600;
+  font-size: t.$fs-subtitle;
+  line-height: t.$lh-title;
+  letter-spacing: -0.015em;
+  color: c.$fg;
+  margin: 0;
+}
+.card-text {
+  font-size: t.$fs-body;
+  line-height: t.$lh-body;
+  color: c.$fg-muted;
+  margin: 0;
+}
 
 .text-base     { font-size: t.$fs-body; }
 .text-mono     { font-size: t.$fs-mono; }

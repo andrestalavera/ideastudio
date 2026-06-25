@@ -60,8 +60,8 @@ else
                 {
                     UseCase uc = service.UseCases[i];
                     <Card data-reveal style="@($"--reveal-step:{i}")">
-                        <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@uc.Title</h3>
-                        <p class="text-base leading-relaxed text-muted m-0">@uc.Description</p>
+                        <h3 class="card-title">@uc.Title</h3>
+                        <p class="card-text">@uc.Description</p>
                     </Card>
                 }
             </div>
