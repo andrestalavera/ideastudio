@@ -61,6 +61,24 @@
   to     = "/.netlify/functions/resume-pdf?culture=en"
   status = 200
 
+# Legacy / canonical 301s (ported from the old Azure SWA config; Netlify-only now).
+[[redirects]]
+  from   = "/"
+  to     = "/fr"
+  status = 301
+[[redirects]]
+  from   = "/andres-talavera-resume"
+  to     = "/fr/cv"
+  status = 301
+[[redirects]]
+  from   = "/privacy"
+  to     = "/fr/confidentialite"
+  status = 301
+[[redirects]]
+  from   = "/legal"
+  to     = "/fr/mentions-legales"
+  status = 301
+
 # Pre-render-friendly: Netlify serves static files first, then falls back
 # to index.html so client-side routes resolve.
 [[redirects]]

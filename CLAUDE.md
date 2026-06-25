@@ -82,14 +82,13 @@ IdeaStudio.sln
 │   │   ├── i18n/                       # en.json, fr.json (UI strings)
 │   │   ├── fonts/                      # Inter Variable, JetBrains Mono — self-hosted
 │   │   ├── images/, *.pdf
-│   │   ├── index.html, llms.txt, ai.txt, robots.txt, sitemap.xml
-│   │   └── staticwebapp.config.json    # Azure SWA routing + 301 redirects
+│   │   └── index.html, llms.txt, ai.txt, robots.txt, sitemap.xml
 │   ├── scripts/copy-fonts.mjs          # Copies font assets out of node_modules
 │   ├── App.razor, MainLayout.razor, _Imports.razor
 │   ├── LoggerExtensions.cs             # [LoggerMessage] source-generated logging
 │   ├── Program.cs
 │   ├── package.json                    # esbuild + sass build pipeline
-│   └── fly.toml                        # Fly.io deploy (staged; SWA is currently live)
+│   └── fly.toml                        # Fly.io deploy (staged; Netlify is currently live)
 ├── IdeaStudio.Website.Tests/           # xUnit + Moq + Coverlet
 │   ├── BundleBudgetTests.cs            #   cinema.bundle.js gzipped ≤ 50 KB
 │   ├── HardcodedPathsTests.cs
