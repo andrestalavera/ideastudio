@@ -90,7 +90,7 @@
     <div class="ds-home-projects mt-chapter">
         @if (realisations.Count > 0)
         {
-            foreach (Realisation r in realisations.Take(3))
+            foreach (Realisation r in realisations.OrderByDescending(r => r.CompletedOn).Take(1))
             {
                 bool hasCase = r.CaseStudy is not null;
                 string href = hasCase ? $"{LocalizedRoute.For("realisations")}/{r.Slug}" : r.LiveUrl;
@@ -104,11 +104,11 @@
             }
         }
     </div>
-    <p class="mt-chapter" data-reveal>
-        <a class="ds-link" href="@LocalizedRoute.For("realisations")">
-            @seeAllRealisations <span class="ds-link-arrow" aria-hidden="true">→</span>
+    <div class="mt-chapter" data-reveal>
+        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("realisations")">
+            @seeAllRealisations <span aria-hidden="true">→</span>
         </a>
-    </p>
+    </div>
 </PageSection>
 
 @* 4 · Go to my resume *@
@@ -119,11 +119,11 @@
 @* 5 · About teaser, who's behind the work *@
 <PageSection>
     <ChapterBand Kicker="@aboutKicker" Title="@aboutTitle" Lead="@aboutLead" />
-    <p class="mt-chapter" data-reveal>
-        <a class="ds-link" href="@LocalizedRoute.For("about")">
-            @aboutCta <span class="ds-link-arrow" aria-hidden="true">→</span>
+    <div class="mt-chapter" data-reveal>
+        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("about")">
+            @aboutCta <span aria-hidden="true">→</span>
         </a>
-    </p>
+    </div>
 </PageSection>
 
 @* 6 · Services *@
@@ -132,12 +132,32 @@
     <div class="mt-chapter" data-reveal>
         <EditorialList Items="@services" />
     </div>
-    <p class="mt-chapter" data-reveal>
-        <a class="ds-link" href="@LocalizedRoute.For("services.hub")">
-            @seeAllServices <span class="ds-link-arrow" aria-hidden="true">→</span>
+    <div class="mt-chapter" data-reveal>
+        <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("services.hub")">
+            @seeAllServices <span aria-hidden="true">→</span>
         </a>
-    </p>
+    </div>
 </PageSection>
+
+@* 7 · Latest from the blog *@
+@if (latestPost is not null)
+{
+    <PageSection>
+        <ChapterBand Kicker="@blogKicker" Title="@blogTitle" />
+        <a class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words mt-chapter"
+           href="@($"{LocalizedRoute.For("blog")}/{latestPost.Slug}")" data-reveal>
+            <p class="text-mono text-muted uppercase tracking-wide m-0">@latestPost.Date · @latestPost.ReadingMinutes @readMinutes</p>
+            <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@latestPost.Title</h3>
+            <p class="text-base leading-relaxed text-muted m-0">@latestPost.Summary</p>
+            <span class="ds-link mt-4">@blogReadCta <span class="ds-link-arrow" aria-hidden="true">→</span></span>
+        </a>
+        <div class="mt-chapter" data-reveal>
+            <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("blog")">
+                @blogAllCta <span aria-hidden="true">→</span>
+            </a>
+        </div>
+    </PageSection>
+}
 
 </div>
 
@@ -173,6 +193,13 @@
     private string servicesTitle = "Sept façons de collaborer.";
     private string seeAllServices = "Voir tous les services";
     private string yearsValue = "15+";
+
+    private BlogPost? latestPost;
+    private string blogKicker = "Blog";
+    private string blogTitle = "Derniers articles.";
+    private string blogReadCta = "Lire l'article";
+    private string blogAllCta = "Voir le blog";
+    private string readMinutes = "min de lecture";
 
     private string seoTitle = "IdeaStud.io, Andrés Talavera";
     private string seoDescription = "";
@@ -258,6 +285,11 @@
         servicesTitle  = fr ? "Sept façons de collaborer." : "Seven ways to collaborate.";
         seeAllServices = fr ? "Voir tous les services" : "See all services";
 
+        blogKicker  = fr ? "Blog" : "Blog";
+        blogTitle   = fr ? "Le dernier article." : "Latest article.";
+        blogReadCta = fr ? "Lire l'article" : "Read the article";
+        blogAllCta  = fr ? "Voir le blog" : "Read the blog";
+        readMinutes = fr ? "min de lecture" : "min read";
     }
 
     private async Task LoadDataAsync()
@@ -269,7 +301,8 @@
         clients = ClientRoster.Build(resume, realisations)
             .Select(c => new LogoWall.LogoItem(c.Name, LogoUrl: null, Url: c.Url))
             .ToList();
-        testimonials = (await Content.GetTestimonialsAsync()).Take(3).ToArray();
+        testimonials = (await Content.GetTestimonialsAsync()).Take(2).ToArray();
+        latestPost = (await Content.GetBlogPostsAsync(culture)).FirstOrDefault();
     }
 
     private void GenerateStructuredData()
