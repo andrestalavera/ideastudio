@@ -64,7 +64,32 @@
     </div>
 </PageSection>
 
-@* 2b · Trusted by, client logo strip (social proof) *@
+@* 2b · Latest articles, surfaced high for visibility *@
+@if (latestPosts.Count > 0)
+{
+    <PageSection>
+        <ChapterBand Kicker="@blogKicker" Title="@blogTitle" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-chapter">
+            @foreach (BlogPost post in latestPosts)
+            {
+                <a class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words"
+                   href="@($"{LocalizedRoute.For("blog")}/{post.Slug}")" data-reveal>
+                    <p class="text-mono text-muted uppercase tracking-wide m-0">@post.Date · @post.ReadingMinutes @readMinutes</p>
+                    <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@post.Title</h3>
+                    <p class="text-base leading-relaxed text-muted m-0">@post.Summary</p>
+                    <span class="ds-link mt-4">@blogReadCta <span class="ds-link-arrow" aria-hidden="true">→</span></span>
+                </a>
+            }
+        </div>
+        <div class="mt-chapter" data-reveal>
+            <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("blog")">
+                @blogAllCta <span aria-hidden="true">→</span>
+            </a>
+        </div>
+    </PageSection>
+}
+
+@* 2c · Trusted by, client logo strip (social proof) *@
 @if (clients.Count > 0)
 {
     <PageSection Rhythm="section">
@@ -81,6 +106,12 @@
         <div class="mt-chapter">
             <Testimonials Items="@testimonials" />
         </div>
+        <div class="mt-chapter" data-reveal>
+            <a class="ds-btn ds-btn-ghost" href="https://www.linkedin.com/in/andrestalavera/details/recommendations/"
+               target="_blank" rel="noopener">
+                @moreTestimonials <span aria-hidden="true">↗</span>
+            </a>
+        </div>
     </PageSection>
 }
 
@@ -90,7 +121,7 @@
     <div class="ds-home-projects mt-chapter">
         @if (realisations.Count > 0)
         {
-            foreach (Realisation r in realisations.OrderByDescending(r => r.CompletedOn).Take(1))
+            foreach (Realisation r in realisations.OrderByDescending(r => r.CompletedOn).Take(2))
             {
                 bool hasCase = r.CaseStudy is not null;
                 string href = hasCase ? $"{LocalizedRoute.For("realisations")}/{r.Slug}" : r.LiveUrl;
@@ -130,7 +161,7 @@
 <PageSection>
     <ChapterBand Kicker="@servicesKicker" Title="@servicesTitle" />
     <div class="mt-chapter" data-reveal>
-        <EditorialList Items="@services" />
+        <EditorialList Items="@(services.Take(2).ToList())" />
     </div>
     <div class="mt-chapter" data-reveal>
         <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("services.hub")">
@@ -138,26 +169,6 @@
         </a>
     </div>
 </PageSection>
-
-@* 7 · Latest from the blog *@
-@if (latestPost is not null)
-{
-    <PageSection>
-        <ChapterBand Kicker="@blogKicker" Title="@blogTitle" />
-        <a class="flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words mt-chapter"
-           href="@($"{LocalizedRoute.For("blog")}/{latestPost.Slug}")" data-reveal>
-            <p class="text-mono text-muted uppercase tracking-wide m-0">@latestPost.Date · @latestPost.ReadingMinutes @readMinutes</p>
-            <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@latestPost.Title</h3>
-            <p class="text-base leading-relaxed text-muted m-0">@latestPost.Summary</p>
-            <span class="ds-link mt-4">@blogReadCta <span class="ds-link-arrow" aria-hidden="true">→</span></span>
-        </a>
-        <div class="mt-chapter" data-reveal>
-            <a class="ds-btn ds-btn-ghost" href="@LocalizedRoute.For("blog")">
-                @blogAllCta <span aria-hidden="true">→</span>
-            </a>
-        </div>
-    </PageSection>
-}
 
 </div>
 
@@ -178,6 +189,7 @@
     private IReadOnlyList<Testimonial> testimonials = Array.Empty<Testimonial>();
     private string testimonialsKicker = "Recommandations";
     private string testimonialsTitle = "Ce qu'ils disent.";
+    private string moreTestimonials = "Plus de recommandations";
     private string benefitsKicker = "Pourquoi moi";
     private string benefitsTitle = "Ce que vous y gagnez.";
     private string benefitsLead = "";
@@ -194,7 +206,7 @@
     private string seeAllServices = "Voir tous les services";
     private string yearsValue = "15+";
 
-    private BlogPost? latestPost;
+    private IReadOnlyList<BlogPost> latestPosts = Array.Empty<BlogPost>();
     private string blogKicker = "Blog";
     private string blogTitle = "Derniers articles.";
     private string blogReadCta = "Lire l'article";
@@ -282,14 +294,15 @@
         aboutCta    = fr ? "En savoir plus sur moi" : "More about me";
 
         servicesKicker = fr ? "Services" : "Services";
-        servicesTitle  = fr ? "Sept façons de collaborer." : "Seven ways to collaborate.";
+        servicesTitle  = fr ? "Comment je peux vous aider." : "How I can help.";
         seeAllServices = fr ? "Voir tous les services" : "See all services";
 
         blogKicker  = fr ? "Blog" : "Blog";
-        blogTitle   = fr ? "Le dernier article." : "Latest article.";
+        blogTitle   = fr ? "À lire aussi." : "Worth a read.";
         blogReadCta = fr ? "Lire l'article" : "Read the article";
-        blogAllCta  = fr ? "Voir le blog" : "Read the blog";
+        blogAllCta  = fr ? "Voir tous les articles" : "See all articles";
         readMinutes = fr ? "min de lecture" : "min read";
+        moreTestimonials = fr ? "Plus de recommandations" : "More recommendations";
     }
 
     private async Task LoadDataAsync()
@@ -302,7 +315,7 @@
             .Select(c => new LogoWall.LogoItem(c.Name, LogoUrl: null, Url: c.Url))
             .ToList();
         testimonials = (await Content.GetTestimonialsAsync()).Take(2).ToArray();
-        latestPost = (await Content.GetBlogPostsAsync(culture)).FirstOrDefault();
+        latestPosts = (await Content.GetBlogPostsAsync(culture)).Take(2).ToArray();
     }
 
     private void GenerateStructuredData()
