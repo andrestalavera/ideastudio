@@ -1,9 +1,9 @@
 ﻿{
   "personalInformation": {
     "name": "Andrés Talavera",
-    "title": "Techlead et formateur .NET indépendant",
+    "title": "Consultant .NET & Azure, techlead et formateur",
     "hero": "Donnons vie à l'avenir de votre entreprise ensemble.",
-    "introduction": "Développeur .NET expérimenté et consultant Azure avec plus de 10 ans d'expertise dans la création d'applications web modernes et de solutions cloud.",
+    "introduction": "Développeur .NET expérimenté et consultant Azure avec plus de 15 ans d'expertise dans la création d'applications web modernes et de solutions cloud.",
     "languages": {
       "EN": "English",
       "FR": "Français",
@@ -138,7 +138,7 @@
       "description": [
         "Medtech et Ceesa sont des entreprises spécialisées dans les solutions technologiques pour le secteur de la santé, qui fournissent des services de gestion et d'analyse de données aux laboratoires.",
         "J'ai participé au développement de plusieurs portails pour diverses entités afin de collecter des données auprès des laboratoires et de publier des statistiques.",
-        "J'ai effectué des analyses, conçu l'architecture, mis en œuvre des tests unitaires, développé de nouvelles fonctionnalités et intégré Azure Entra pour renforcer la sécurité."
+        "J'ai effectué des analyses, conçu l'architecture, mis en œuvre des tests unitaires, développé de nouvelles fonctionnalités et intégré Microsoft Entra ID pour renforcer la sécurité."
       ],
       "responsibilities": [
         "Développement d'un nouveau projet à partir de zéro, en garantissant l'évolutivité et les performances.",
@@ -147,8 +147,8 @@
         "Ajout de tests unitaires pour garantir la fiabilité et la stabilité du logiciel.",
         "Mise en œuvre de nouvelles fonctionnalités pour améliorer les fonctionnalités et l'expérience utilisateur.",
         "Mise en œuvre de règles de sécurité strictes pour protéger les données sensibles.",
-        "Intégration avec Azure Entra pour une authentification et une autorisation sécurisées.",
-        "Développement de l'interface Blazor Server avec UI Bootstrap responsive et composants Razor custom, notamment pour l'authentification via Azure Entra ID.",
+        "Intégration avec Microsoft Entra ID pour une authentification et une autorisation sécurisées.",
+        "Développement de l'interface Blazor Server avec UI Bootstrap responsive et composants Razor custom, notamment pour l'authentification via Microsoft Entra ID.",
         "Mise en conformité RGPD et hébergement HDS (Hébergement de Données de Santé) : minimisation des données, pseudonymisation, journalisation des accès et traçabilité des consentements.",
         "Sécurisation des secrets via Azure Key Vault et des accès via Managed Identities et RBAC, pour supprimer toute information sensible en clair.",
         "Migration des pipelines Azure DevOps vers GitHub Actions, avec réécriture complète des workflows de déploiement et templates réutilisables.",
@@ -508,7 +508,7 @@
         "Connexion à plusieurs services Azure.",
         "Préparation des paquets et des pipelines pour le déploiement",
         "Développement de l'application Xamarin.Forms en MvvmCross, avec utilisation du Community Toolkit et intégration des modèles PyTorch exportés au format ONNX.",
-        "Authentification Azure Entra ID et accès aux fichiers ONNX en Azure Storage protégés par des règles RBAC granulaires, propres à chaque utilisateur et chaque modèle.",
+        "Authentification Microsoft Entra ID et accès aux fichiers ONNX en Azure Storage protégés par des règles RBAC granulaires, propres à chaque utilisateur et chaque modèle.",
         "Téléchargement du modèle ONNX à la connexion puis stockage local chiffré avec une clé dédiée à l'utilisateur, pour préserver la confidentialité du modèle sur l'appareil.",
         "Industrialisation des livraisons mobiles via Azure Pipelines, complétée par App Center pour les opérations spécifiques (certificats, signatures), avec distribution interne via Microsoft Intune sur le Microsoft Store."
       ],

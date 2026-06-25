@@ -18,7 +18,7 @@
          OgImage="https://ideastud.io/images/andres-talavera.jpeg" OgImageAlt="Andrés Talavera"
          StructuredData="@seoStructuredData" />
 
-<Hero Kicker="Projets" Title="@titleText" Lead="@lead" />
+<Hero Kicker="@kickerText" Title="@titleText" Lead="@lead" />
 
 <PageSection Rhythm="section" Bordered="false">
     @* Filters *@
@@ -77,6 +77,7 @@
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/realisations";
     private string seoLocale = "fr_FR";
+    private string kickerText = "Projets";
     private string titleText = "Réalisations récentes.";
     private string lead = "";
     private string filterLabel = "Filtrer";
@@ -103,6 +104,7 @@
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr/realisations" : "https://ideastud.io/en/projects";
         seoTitle = fr ? "Réalisations, IdeaStud.io" : "Projects, IdeaStud.io";
+        kickerText = fr ? "Projets" : "Projects";
         titleText = fr ? "Réalisations récentes." : "Recent projects.";
         lead = fr
             ? "Une sélection de travaux récents, sites, apps, APIs, migrations cloud. Filtrez par technologie."

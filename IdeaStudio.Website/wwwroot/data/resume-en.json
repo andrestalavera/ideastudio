@@ -1,9 +1,9 @@
 ﻿{
   "personalInformation": {
     "name": "Andrés Talavera",
-    "title": "Expert .NET Developer & Azure Consultant",
+    "title": ".NET & Azure consultant, tech lead and trainer",
     "hero": "Let's shape the future of your business together.",
-    "introduction": "Experienced .NET developer and Azure consultant with 10+ years of expertise in building modern web applications and cloud solutions.",
+    "introduction": "Experienced .NET developer and Azure consultant with 15+ years of expertise in building modern web applications and cloud solutions.",
     "languages": {
       "EN": "English",
       "FR": "Français",
@@ -34,7 +34,7 @@
       "title": "Your Trainer",
       "paragraphs": [
         "Experienced .NET and Azure trainer for developers and companies. ",
-        "LinkedIn Learning paragraphs creator focusing on Microsoft technologies.",
+        "LinkedIn Learning content creator focusing on Microsoft technologies.",
         "Proven track record training teams in France, Belgium, and Luxembourg.",
         "Expert in .NET 9, Blazor Server, and Azure cloud solutions."
       ],
@@ -44,7 +44,7 @@
       "link": "#training"
     },
     {
-      "title": "Passionnated",
+      "title": "Passionate",
       "paragraphs": [
         "Dedicated Microsoft technology expert staying current with latest trends.",
         "Committed to delivering innovative .NET solutions meeting client needs.",
@@ -191,7 +191,7 @@
       "company": "TRIGO",
       "mode": "Freelance",
       "startDate": "2024-02-01",
-      "endDate": "2024-07-01",
+      "endDate": "2024-06-01",
       "locations": [
         "Lyon, France",
         "Remote"
@@ -318,7 +318,7 @@
       "title": "Founder - freelance .NET developer, techlead and trainer",
       "company": "IdeaStudio",
       "mode": "Self-employed",
-      "startDate": "2015-07-01",
+      "startDate": "2017-05-01",
       "endDate": "2023-07-01",
       "locations": [
         "France",
