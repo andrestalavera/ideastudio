@@ -128,12 +128,12 @@
     },
     {
       "title": ".NET Developer",
-      "company": "Medtech/CEESA",
+      "company": "MedTech/CEESA",
       "mode": "Freelance",
       "startDate": "2024-09-01",
       "endDate": "2025-05-01",
       "locations": [
-        "Bruxelles, Belgium",
+        "Brussels, Belgium",
         "Paris, France",
         "Remote"
       ],
@@ -240,7 +240,7 @@
       "endDate": "2024-02-01",
       "locations": [
         "Boulogne-Billancourt, France",
-        "Remote"
+        "Hybrid"
       ],
       "description": [
         "Active Assurances is a leading provider of automobile insurance products and services in France. They were looking to improve internal processes and redesign some projects performing .NET migrations, security updates, or some automations.",
@@ -772,8 +772,8 @@
       "startDate": "2019-08-01",
       "endDate": "2019-12-01",
       "locations": [
-        "Reuil-Malmaison, France",
-        "Remote"
+        "Rueil-Malmaison, France",
+        "Hybrid"
       ],
       "description": [
         "Cegid is a leading provider of cloud business management solutions for finance, human resources, CPAs, and the retail and entrepreneurial sectors.",
@@ -1110,11 +1110,11 @@
         "France"
       ],
       "description": [
-        "Andrés Talavera is my personal brand, where I offer freelance .NET development and training services.",
-        "I provided my first training sessions on .NET, C#, and Azure at institutions like Supinfo and NextFormation.",
-        "I focused on delivering high-quality training, sharing my knowledge, and helping developers enhance their skills.",
-        "I was involved in the research and development of a web application for displaying promotion codes, enhancing the user experience and driving customer engagement.",
-        "I developed the first version of the logistics application for Charl'Antoine, developed an e-commerce site for SIEHR (lecoinsiehr.com), and developed several websites for real estate agencies."
+        "Andrés Talavera is my personal brand: freelance .NET development and training.",
+        "My first .NET, C# and Azure training sessions, in schools and centres (Supinfo, NextFormation).",
+        "Mobile apps: a logistics / kitchen-delivery app for Charl'Antoine (with Novatech).",
+        "Web: a promo-code app (R&D), a dating site (astro-privée), a social network (check.fm), the SIEHR e-commerce site (lecoinsiehr.com), and sites for SMEs and real-estate agencies (Aubade).",
+        "Technologies: Windows Phone / Windows 10 Mobile, ASP.NET, HTML."
       ],
       "skills": [
         "UWP",
