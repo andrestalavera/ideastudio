@@ -1,0 +1,14 @@
+@* SectionCta — the standard "section footer" call to action: a chapter-spaced,
+   reveal-animated ButtonLink. Mutualizes the repeated mt-chapter wrapper. *@
+
+<div class="mt-chapter" data-reveal>
+    <ButtonLink Href="@Href" Variant="@Variant" External="@External" Label="@Label" AriaLabel="@AriaLabel" />
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Href { get; set; } = "#";
+    [Parameter] public string Variant { get; set; } = "ghost";
+    [Parameter] public bool External { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public string? AriaLabel { get; set; }
+}

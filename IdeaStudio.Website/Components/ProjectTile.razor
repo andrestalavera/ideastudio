@@ -33,15 +33,7 @@
     {
         <p class="ds-tile-summary">@Summary</p>
     }
-    @if (Tags is not null && Tags.Count > 0)
-    {
-        <div class="ds-tile-tags">
-            @foreach (string tag in Tags)
-            {
-                <span class="ds-tag">@tag</span>
-            }
-        </div>
-    }
+    <TagList Tags="@Tags" />
 </a>
 
 @code {

@@ -17,14 +17,9 @@
         <h3 class="font-sans font-semibold text-subtitle text-fg m-0">@Post.Title</h3>
     }
     <p class="text-base leading-relaxed text-muted m-0">@Post.Summary</p>
-    @if (ShowTags && Post.Tags.Count > 0)
+    @if (ShowTags)
     {
-        <div class="ds-tile-tags">
-            @foreach (string tag in Post.Tags)
-            {
-                <span class="ds-tag">@tag</span>
-            }
-        </div>
+        <TagList Tags="@Post.Tags" />
     }
     <span class="ds-link mt-4">@readLabel <span class="ds-link-arrow" aria-hidden="true">→</span></span>
 </Card>

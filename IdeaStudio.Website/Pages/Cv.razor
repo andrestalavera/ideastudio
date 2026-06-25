@@ -114,21 +114,21 @@
             {
                 <Card data-reveal style="--reveal-step: 0">
                     <div class="font-sans font-semibold text-subtitle text-fg m-0">Email</div>
-                    <a class="ds-link" href="mailto:@pi.Email">@pi.Email <span class="ds-link-arrow">→</span></a>
+                    <ArrowLink Href="@($"mailto:{pi.Email}")" Text="@pi.Email" />
                 </Card>
             }
             @if (!string.IsNullOrWhiteSpace(pi.LinkedIn))
             {
                 <Card data-reveal style="--reveal-step: 1">
                     <div class="font-sans font-semibold text-subtitle text-fg m-0">LinkedIn</div>
-                    <a class="ds-link" href="@($"https://www.linkedin.com/in/{pi.LinkedIn}/")" target="_blank" rel="noopener">@pi.LinkedIn <span class="ds-link-arrow">↗</span></a>
+                    <ArrowLink Href="@($"https://www.linkedin.com/in/{pi.LinkedIn}/")" Text="@pi.LinkedIn" External="true" />
                 </Card>
             }
             @if (!string.IsNullOrWhiteSpace(pi.GitHub))
             {
                 <Card data-reveal style="--reveal-step: 2">
                     <div class="font-sans font-semibold text-subtitle text-fg m-0">GitHub</div>
-                    <a class="ds-link" href="@($"https://github.com/{pi.GitHub}")" target="_blank" rel="noopener">@pi.GitHub <span class="ds-link-arrow">↗</span></a>
+                    <ArrowLink Href="@($"https://github.com/{pi.GitHub}")" Text="@pi.GitHub" External="true" />
                 </Card>
             }
         }

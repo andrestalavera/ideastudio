@@ -1,0 +1,14 @@
+@* ArrowLink — an inline text link with a trailing sliding arrow (the .ds-link
+   pattern). External links open in a new tab and use ↗ instead of →. *@
+
+<a class="ds-link" href="@Href"
+   target="@(External ? "_blank" : null)"
+   rel="@(External ? "noopener" : null)">
+    @Text <span class="ds-link-arrow" aria-hidden="true">@(External ? "↗" : "→")</span>
+</a>
+
+@code {
+    [Parameter, EditorRequired] public string Href { get; set; } = "#";
+    [Parameter] public string? Text { get; set; }
+    [Parameter] public bool External { get; set; }
+}

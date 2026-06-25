@@ -1,0 +1,17 @@
+@* TagList — the mono tag-chip row used by tiles, blog cards, case studies and
+   the article page. Mutualizes the ds-tag foreach. *@
+
+@if (Tags is { Count: > 0 })
+{
+    <div class="ds-tile-tags@(Class is null ? "" : " " + Class)">
+        @foreach (string tag in Tags)
+        {
+            <span class="ds-tag">@tag</span>
+        }
+    </div>
+}
+
+@code {
+    [Parameter] public IReadOnlyList<string>? Tags { get; set; }
+    [Parameter] public string? Class { get; set; }
+}

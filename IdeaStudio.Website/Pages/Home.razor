@@ -75,9 +75,7 @@
                 <BlogCard Post="@post" />
             }
         </div>
-        <div class="mt-chapter" data-reveal>
-            <ButtonLink Href="@LocalizedRoute.For("blog")" Label="@blogAllCta" />
-        </div>
+        <SectionCta Href="@LocalizedRoute.For("blog")" Label="@blogAllCta" />
     </PageSection>
 }
 
@@ -98,10 +96,8 @@
         <div class="mt-chapter">
             <Testimonials Items="@testimonials" />
         </div>
-        <div class="mt-chapter" data-reveal>
-            <ButtonLink Href="https://www.linkedin.com/in/andrestalavera/details/recommendations/"
-                        Label="@moreTestimonials" External="true" />
-        </div>
+        <SectionCta Href="https://www.linkedin.com/in/andrestalavera/details/recommendations/"
+                    Label="@moreTestimonials" External="true" />
     </PageSection>
 }
 
@@ -125,9 +121,7 @@
             }
         }
     </div>
-    <div class="mt-chapter" data-reveal>
-        <ButtonLink Href="@LocalizedRoute.For("realisations")" Label="@seeAllRealisations" />
-    </div>
+    <SectionCta Href="@LocalizedRoute.For("realisations")" Label="@seeAllRealisations" />
 </PageSection>
 
 @* 4 · Go to my resume *@
@@ -138,9 +132,7 @@
 @* 5 · About teaser, who's behind the work *@
 <PageSection>
     <ChapterBand Kicker="@aboutKicker" Title="@aboutTitle" Lead="@aboutLead" />
-    <div class="mt-chapter" data-reveal>
-        <ButtonLink Href="@LocalizedRoute.For("about")" Label="@aboutCta" />
-    </div>
+    <SectionCta Href="@LocalizedRoute.For("about")" Label="@aboutCta" />
 </PageSection>
 
 @* 6 · Services *@
@@ -149,9 +141,7 @@
     <div class="mt-chapter" data-reveal>
         <EditorialList Items="@(services.Take(2).ToList())" />
     </div>
-    <div class="mt-chapter" data-reveal>
-        <ButtonLink Href="@LocalizedRoute.For("services.hub")" Label="@seeAllServices" />
-    </div>
+    <SectionCta Href="@LocalizedRoute.For("services.hub")" Label="@seeAllServices" />
 </PageSection>
 
 </div>
