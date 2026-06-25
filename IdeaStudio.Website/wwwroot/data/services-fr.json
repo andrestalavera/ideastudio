@@ -62,7 +62,7 @@
     "slug": "formateur",
     "title": "Formateur",
     "kicker": "TRANSMISSION",
-    "tagline": "Vos équipes montées en compétence sur .NET, Azure et l'IA, 3 000+ heures dispensées, formateur certifié Microsoft (MCT).",
+    "tagline": "Vos équipes montées en compétence sur .NET, Azure et l'IA, 3 000+ heures dispensées, par un consultant qui code au quotidien.",
     "iconId": "training",
     "summary": "Plus de 3 000 heures de formation à mon actif, sur deux décennies de stack Microsoft. Auprès de développeurs juniors comme de techleads en quête de recul, dans des écoles (Supinfo, NextFormation) ou de grands centres (ORSYS, IP-Formation, Happly), en présentiel, classe virtuelle ou intra sur-mesure. Vingt modules au catalogue ci-dessous, à prendre tels quels, ou à recomposer ensemble pour bâtir le programme qui colle à votre équipe.",
     "highlights": [
@@ -91,7 +91,7 @@
     "faq": [
       { "question": "Quel est votre TJM en formation ?", "answer": "800 € par jour, ou forfait inter / intra selon le format. Devis chiffré sous 24 h à partir d'un brief court." },
       { "question": "Formez-vous à distance ?", "answer": "Oui, classe virtuelle synchrone, exercices en binôme, démos en partage d'écran, retours en direct. La même rigueur qu'en présentiel." },
-      { "question": "Êtes-vous certifié ?", "answer": "Microsoft Certified Trainer (MCT) actif, et plusieurs certifications Azure (AZ-204, AZ-400 entre autres). Mes modules de préparation aux examens reposent sur ce vécu." },
+      { "question": "Êtes-vous certifié ?", "answer": "Pas de certification Microsoft : ce que j'apporte, c'est 15+ ans de pratique .NET/Azure en production et 3 000+ heures de formation. Mes modules de préparation aux examens (AZ-204, AZ-400) s'appuient sur ce vécu terrain." },
       { "question": "Comment construire un programme sur-mesure ?", "answer": "On part d'un module catalogue qui couvre le cœur de votre besoin, on identifie ce qui manque et ce qui est superflu, on emprunte des chapitres aux modules connexes, on cale la durée. Le brief tient en un appel de 30 minutes." },
       { "question": "Quels dispositifs de financement ?", "answer": "Les centres partenaires (ORSYS, IP-Formation, NextFormation) sont Qualiopi : OPCO, CPF entreprise, plan de développement des compétences. En intra direct, je vous oriente vers le dispositif adapté." }
     ],

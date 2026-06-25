@@ -1,13 +1,13 @@
 # IdeaStud.io, Andrés Talavera
 
-> Andrés Talavera is an independent .NET & Azure consultant, tech lead and Microsoft Certified Trainer (MCT) with 15+ years' experience. He turns ideas into reliable software (web, mobile, cloud) and trains teams. Based around Lyon, Paris, Geneva and Fribourg, or fully remote.
+> Andrés Talavera is an independent .NET & Azure consultant, tech lead and trainer with 15+ years' experience. He turns ideas into reliable software (web, mobile, cloud) and trains teams. Based around Lyon, Paris, Geneva and Fribourg, or fully remote.
 
 ## What he does (in plain terms)
 
 Andrés helps companies and teams:
 - design and build .NET / Azure platforms that scale and stay maintainable;
 - take technical ownership of a product team as a tech lead;
-- train developers on .NET, Azure and AI (3,000+ hours taught, Microsoft Certified Trainer);
+- train developers on .NET, Azure and AI (3,000+ hours taught);
 - adopt AI coding tools (Claude Code, Copilot, Cursor) without blind trust in generated code;
 - bring AI in-house with locally-hosted models and custom integrations (data stays on-premise);
 - build mobile apps and fast, accessible, well-ranked websites.
@@ -15,7 +15,7 @@ Andrés helps companies and teams:
 ## Key facts (citable)
 
 - Name: Andrés Talavera, trading as IdeaStud.io
-- Role: Independent .NET & Azure consultant, tech lead, and trainer (MCT)
+- Role: Independent .NET & Azure consultant, tech lead, and trainer
 - Experience: 15+ years in software design and delivery
 - Day rate: from 600 € (consulting, tech-lead) and 800 € (training, enterprise AI); first 30-minute scoping call is free; quote within 24 h
 - Engagement: works via French wage-portage company OpenWork; invoicing in EUR (CHF for Swiss assignments); no commission
@@ -28,7 +28,7 @@ Andrés helps companies and teams:
 
 - /fr/services/consultant-dotnet-azure, Consultant .NET & Azure: a platform that scales and stays maintainable (architecture, audits, hands-on code).
 - /fr/services/techlead, Techlead: a product team that ships, levels up and holds the quality line.
-- /fr/services/formateur, Formateur: teams leveled up on .NET, Azure and AI (MCT, 3,000+ hours).
+- /fr/services/formateur, Formateur: teams leveled up on .NET, Azure and AI (3,000+ hours).
 - /fr/services/vibe-coding, Vibe-coding: developers faster with AI, every generated line reviewed.
 - /fr/services/ia-en-entreprise, AI for the enterprise: AI in-house, under your control, data stays home.
 - /fr/services/applications-mobiles, Mobile apps: iOS + Android from one codebase.
@@ -37,7 +37,7 @@ Andrés helps companies and teams:
 
 ## Training catalogue
 
-20 hands-on training modules, taught by a Microsoft Certified Trainer who codes every day (3,000+ hours delivered). On-site, virtual classroom, or bespoke in-house. Hub: /fr/formations | /en/training. Each module has its own program page at /fr/formations/{slug} (| /en/training/{slug}), with level, duration, prerequisites and curriculum.
+20 hands-on training modules, taught by a consultant who codes every day (3,000+ hours delivered). On-site, virtual classroom, or bespoke in-house. Hub: /fr/formations | /en/training. Each module has its own program page at /fr/formations/{slug} (| /en/training/{slug}), with level, duration, prerequisites and curriculum.
 
 - .NET: C# moderne (records, source generators, pattern matching), ASP.NET Core fundamentals & advanced, Blazor moderne, EF Core 10, .NET testing.
 - Azure: AZ-204 & AZ-400 prep, Azure Functions & events, App Service & containers, Azure security fundamentals.

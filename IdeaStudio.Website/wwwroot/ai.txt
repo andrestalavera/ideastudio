@@ -2,7 +2,7 @@
   "name": "IdeaStud.io",
   "type": "portfolio",
   "owner": "Andrés Talavera",
-  "description": "Independent .NET & Azure consultant, tech lead and Microsoft Certified Trainer. Turns ideas into reliable web, mobile and cloud software, and trains teams.",
+  "description": "Independent .NET & Azure consultant, tech lead and trainer. Turns ideas into reliable web, mobile and cloud software, and trains teams.",
   "languages": ["en", "fr"],
   "primaryLanguage": "fr",
   "contentType": "professional-services",
@@ -19,7 +19,7 @@
   },
   "topics": [
     ".NET development", "Azure cloud architecture", "Blazor", "ASP.NET Core",
-    "software consulting", "tech lead", "technical training", "Microsoft Certified Trainer",
+    "software consulting", "tech lead", "technical training",
     "vibe coding", "AI in the enterprise", "multi-tenant SaaS", "European sovereign hosting",
     "mobile apps", "websites"
   ],

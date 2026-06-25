@@ -56,7 +56,7 @@
     "slug": "trainer",
     "title": "Trainer",
     "kicker": "KNOWLEDGE TRANSFER",
-    "tagline": "Your teams leveled up on .NET, Azure and AI, 3,000+ hours taught, Microsoft Certified Trainer (MCT).",
+    "tagline": "Your teams leveled up on .NET, Azure and AI, 3,000+ hours taught, by a consultant who codes every day.",
     "iconId": "training",
     "summary": "3,000+ hours of training under my belt, across two decades of Microsoft stack. To junior devs and to tech leads stepping back for perspective alike, in schools (Supinfo, NextFormation) or large centres (ORSYS, IP-Formation, Happly), on-site, virtual classroom or bespoke in-house. Twenty modules in the catalogue below, pick them as-is, or let's recompose them into the program that fits your team.",
     "highlights": [
@@ -85,7 +85,7 @@
     "faq": [
       { "question": "What's your training day rate?", "answer": "800 € per day, or inter / in-house package depending on format. Quoted within 24h from a short brief." },
       { "question": "Remote training?", "answer": "Yes, synchronous virtual classroom, pair exercises, screen-share demos, live feedback. Same rigour as on-site." },
-      { "question": "Certified?", "answer": "Active Microsoft Certified Trainer (MCT) and several Azure certifications (AZ-204, AZ-400 among others). My exam-prep modules are grounded in that experience." },
+      { "question": "Certified?", "answer": "No Microsoft certification: what I bring is 15+ years of hands-on .NET/Azure in production and 3,000+ hours of training. My exam-prep modules (AZ-204, AZ-400) are grounded in that real-world experience." },
       { "question": "How do you build a custom program?", "answer": "We start from a catalogue module that covers the core of your need, identify what's missing and what's superfluous, borrow chapters from adjacent modules, calibrate duration. The brief takes one 30-minute call." },
       { "question": "What about funding mechanisms?", "answer": "Partner centres (ORSYS, IP-Formation, NextFormation) are Qualiopi-certified: OPCO, CPF entreprise, skills-development plans. For direct in-house, I point you to the right scheme." }
     ],
