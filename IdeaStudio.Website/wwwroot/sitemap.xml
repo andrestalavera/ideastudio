@@ -412,4 +412,383 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <!-- Training -->
+  <url>
+    <loc>https://ideastud.io/fr/formations</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/csharp-modern</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/csharp-modern" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/csharp-modern" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/csharp-modern" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/csharp-modern</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/csharp-modern" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/csharp-modern" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/csharp-modern" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/aspnet-core-fundamentals</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/aspnet-core-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/aspnet-core-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/aspnet-core-fundamentals" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/aspnet-core-fundamentals</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/aspnet-core-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/aspnet-core-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/aspnet-core-fundamentals" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/aspnet-core-advanced</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/aspnet-core-advanced" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/aspnet-core-advanced" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/aspnet-core-advanced" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/aspnet-core-advanced</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/aspnet-core-advanced" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/aspnet-core-advanced" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/aspnet-core-advanced" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/blazor-modern</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/blazor-modern" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/blazor-modern" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/blazor-modern" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/blazor-modern</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/blazor-modern" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/blazor-modern" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/blazor-modern" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/ef-core-10</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ef-core-10" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ef-core-10" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ef-core-10" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/ef-core-10</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ef-core-10" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ef-core-10" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ef-core-10" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/dotnet-testing</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-testing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-testing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-testing" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/dotnet-testing</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-testing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-testing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-testing" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/azure-az204-prep</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-az204-prep" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-az204-prep" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-az204-prep" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/azure-az204-prep</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-az204-prep" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-az204-prep" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-az204-prep" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/azure-az400-prep</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-az400-prep" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-az400-prep" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-az400-prep" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/azure-az400-prep</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-az400-prep" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-az400-prep" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-az400-prep" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/azure-functions-events</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-functions-events" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-functions-events" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-functions-events" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/azure-functions-events</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-functions-events" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-functions-events" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-functions-events" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/azure-app-service-containers</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-app-service-containers" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-app-service-containers" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-app-service-containers" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/azure-app-service-containers</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-app-service-containers" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-app-service-containers" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-app-service-containers" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/azure-security-fundamentals</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-security-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-security-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-security-fundamentals" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/azure-security-fundamentals</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-security-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-security-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-security-fundamentals" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/claude-code-team</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/claude-code-team" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/claude-code-team" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/claude-code-team" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/claude-code-team</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/claude-code-team" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/claude-code-team" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/claude-code-team" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/copilot-advanced</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/copilot-advanced" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/copilot-advanced" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/copilot-advanced" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/copilot-advanced</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/copilot-advanced" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/copilot-advanced" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/copilot-advanced" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/mcp-server-design</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/mcp-server-design" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/mcp-server-design" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/mcp-server-design" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/mcp-server-design</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/mcp-server-design" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/mcp-server-design" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/mcp-server-design" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/ai-on-premise</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ai-on-premise" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ai-on-premise" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ai-on-premise" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/ai-on-premise</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ai-on-premise" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ai-on-premise" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ai-on-premise" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/clean-architecture-dotnet</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/clean-architecture-dotnet" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/clean-architecture-dotnet" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/clean-architecture-dotnet" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/clean-architecture-dotnet</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/clean-architecture-dotnet" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/clean-architecture-dotnet" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/clean-architecture-dotnet" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/event-driven-cqrs</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/event-driven-cqrs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/event-driven-cqrs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/event-driven-cqrs" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/event-driven-cqrs</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/event-driven-cqrs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/event-driven-cqrs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/event-driven-cqrs" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/observability-otel</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/observability-otel" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/observability-otel" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/observability-otel" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/observability-otel</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/observability-otel" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/observability-otel" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/observability-otel" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/dotnet-performance</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-performance" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-performance" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-performance" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/dotnet-performance</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-performance" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-performance" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-performance" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/cicd-github-actions</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/cicd-github-actions" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/cicd-github-actions" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/cicd-github-actions" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/cicd-github-actions</loc>
+    <lastmod>2026-06-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/cicd-github-actions" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/cicd-github-actions" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/cicd-github-actions" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

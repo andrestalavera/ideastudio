@@ -32,6 +32,8 @@ public sealed class LocalizedRoute(ICultureService cultureService) : ILocalizedR
             [("home", "en")] = "/en",
             [("services.hub", "fr")] = "/fr/services",
             [("services.hub", "en")] = "/en/services",
+            [("training", "fr")] = "/fr/formations",
+            [("training", "en")] = "/en/training",
             [("about", "fr")] = "/fr/a-propos",
             [("about", "en")] = "/en/about",
             [("faq", "fr")] = "/fr/faq",
@@ -85,6 +87,14 @@ public sealed class LocalizedRoute(ICultureService cultureService) : ILocalizedR
         {
             string slug = currentPath[(sourceHub.Length + 1)..];
             return $"{For("realisations", targetCulture)}/{slug}";
+        }
+
+        // Training detail: /fr/formations/{slug} <-> /en/training/{slug}. Slugs identical.
+        string trainingHub = For("training", sourceCulture);
+        if (currentPath.StartsWith(trainingHub + "/", StringComparison.OrdinalIgnoreCase))
+        {
+            string slug = currentPath[(trainingHub.Length + 1)..];
+            return $"{For("training", targetCulture)}/{slug}";
         }
 
         return For("home", targetCulture);

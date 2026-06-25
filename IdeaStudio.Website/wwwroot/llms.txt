@@ -35,6 +35,15 @@ Andrés helps companies and teams:
 - /fr/services/sites-internet, Websites: fast, accessible, well-ranked.
 - English equivalents under /en/services/{dotnet-azure-consulting, tech-lead, trainer, vibe-coding, ai-enterprise, mobile-apps, websites}
 
+## Training catalogue
+
+20 hands-on training modules, taught by a Microsoft Certified Trainer who codes every day (3,000+ hours delivered). On-site, virtual classroom, or bespoke in-house. Hub: /fr/formations | /en/training. Each module has its own program page at /fr/formations/{slug} (| /en/training/{slug}), with level, duration, prerequisites and curriculum.
+
+- .NET: C# moderne (records, source generators, pattern matching), ASP.NET Core fundamentals & advanced, Blazor moderne, EF Core 10, .NET testing.
+- Azure: AZ-204 & AZ-400 prep, Azure Functions & events, App Service & containers, Azure security fundamentals.
+- AI & assisted development: Claude Code for teams, advanced Copilot, MCP server design, on-premise AI.
+- Architecture & DevOps: Clean Architecture for .NET, event-driven & CQRS, observability (OpenTelemetry), .NET performance, CI/CD with GitHub Actions.
+
 ## Case studies (real projects, with architecture)
 
 - RestoPlatform (production-ready; first client going live), /fr/realisations/restoplatform | /en/projects/restoplatform
@@ -57,6 +66,7 @@ Andrés helps companies and teams:
 
 - Home: /fr | /en
 - Services: /fr/services | /en/services
+- Training: /fr/formations | /en/training
 - Projects / case studies: /fr/realisations | /en/projects
 - About: /fr/a-propos | /en/about
 - Résumé / CV: /fr/cv | /en/resume

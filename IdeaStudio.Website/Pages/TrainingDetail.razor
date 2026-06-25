@@ -1,0 +1,215 @@
+@page "/fr/formations/{Slug}"
+@page "/en/training/{Slug}"
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
+@layout MainLayout
+
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@seoHreflang"
+         SiteName="IdeaStud.io"
+         StructuredData="@seoStructuredData" />
+
+@if (training is null)
+{
+    <Hero Kicker="404" Title="@notFoundTitle" Lead="@notFoundLead">
+        <Actions>
+            <ButtonLink Href="@LocalizedRoute.For("training")" Variant="primary" Label="@backLabel" />
+        </Actions>
+    </Hero>
+}
+else
+{
+    <Hero Kicker="@training.Category" Title="@training.Title" Lead="@training.Summary">
+        <Actions>
+            <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary" External="true" Label="@bookLabel" />
+            <ButtonLink Href="@LocalizedRoute.For("training")" Label="@backLabel" />
+        </Actions>
+    </Hero>
+
+    @* Key facts *@
+    <PageSection Rhythm="section" Bordered="false">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @{ int step = 0; }
+            @foreach ((string label, string value) in Facts())
+            {
+                <Card data-reveal style="@($"--reveal-step:{step++}")">
+                    <div class="text-mono text-muted uppercase tracking-wide">@label</div>
+                    <div class="font-sans font-semibold text-subtitle text-fg m-0">@value</div>
+                </Card>
+            }
+        </div>
+    </PageSection>
+
+    @* Agenda *@
+    @if (training.Outline is { Count: > 0 })
+    {
+        <PageSection Width="narrow">
+            <ChapterBand Kicker="@agendaKicker" Title="@agendaTitle" />
+            <ul class="ds-highlight-list mt-8">
+                @for (int i = 0; i < training.Outline.Count; i++)
+                {
+                    <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
+                        <span class="ds-highlight-mark" aria-hidden="true"></span>
+                        <span>@training.Outline[i]</span>
+                    </li>
+                }
+            </ul>
+        </PageSection>
+    }
+
+    @* CTA *@
+    <PageSection Rhythm="section">
+        <ChapterBand Kicker="@ctaKicker" Title="@ctaTitle" Lead="@ctaLead" />
+        <div class="flex flex-row items-center gap-3 flex-wrap mt-chapter" data-reveal>
+            <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary" External="true" Label="@bookLabel" />
+            <ButtonLink Href="@LocalizedRoute.For("contact")" Label="@contactLabel" />
+        </div>
+    </PageSection>
+}
+
+@code {
+    [Parameter] public string? Slug { get; set; }
+
+    private Training? training;
+    private string seoTitle = "Formation, IdeaStud.io";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/formations";
+    private string seoLocale = "fr_FR";
+    private Dictionary<string, string>? seoHreflang;
+    private List<string>? seoStructuredData;
+
+    private string agendaKicker = "Au programme";
+    private string agendaTitle = "Ce que vous couvrez.";
+    private string ctaKicker = "Sur-mesure";
+    private string ctaTitle = "Cette formation pour votre équipe ?";
+    private string ctaLead = "";
+    private string bookLabel = "Réserver un échange";
+    private string contactLabel = "Me contacter";
+    private string backLabel = "Toutes les formations";
+    private string notFoundTitle = "Formation introuvable.";
+    private string notFoundLead = "Cette formation n'existe pas. Retour au catalogue.";
+
+    // Fact labels
+    private string levelLabel = "Niveau";
+    private string durationLabel = "Durée";
+    private string audienceLabel = "Public";
+    private string prereqLabel = "Prérequis";
+    private string certLabel = "Certification";
+
+    private bool Fr => CultureService.CurrentCulture.Name.StartsWith("fr");
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        await LoadAsync();
+        GenerateStructuredData();
+        StateHasChanged();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadAsync();
+        GenerateStructuredData();
+    }
+
+    protected override void LoadTexts()
+    {
+        bool fr = Fr;
+        seoLocale = fr ? "fr_FR" : "en_US";
+        agendaKicker = fr ? "Au programme" : "Curriculum";
+        agendaTitle  = fr ? "Ce que vous couvrez." : "What you'll cover.";
+        ctaKicker = fr ? "Sur-mesure" : "Bespoke";
+        ctaTitle  = fr ? "Cette formation pour votre équipe ?" : "This training for your team?";
+        ctaLead   = fr
+            ? "En présentiel, classe virtuelle ou intra sur-mesure. Parlons de votre contexte et de votre calendrier."
+            : "On-site, virtual classroom or bespoke in-house. Let's talk about your context and timeline.";
+        bookLabel    = fr ? "Réserver un échange" : "Book a call";
+        contactLabel = fr ? "Me contacter" : "Contact me";
+        backLabel    = fr ? "Toutes les formations" : "All training";
+        notFoundTitle = fr ? "Formation introuvable." : "Training not found.";
+        notFoundLead  = fr ? "Cette formation n'existe pas. Retour au catalogue." : "That training doesn't exist. Back to the catalogue.";
+        levelLabel    = fr ? "Niveau" : "Level";
+        durationLabel = fr ? "Durée" : "Duration";
+        audienceLabel = fr ? "Public" : "Audience";
+        prereqLabel   = fr ? "Prérequis" : "Prerequisites";
+        certLabel     = fr ? "Certification" : "Certification";
+    }
+
+    private async Task LoadAsync()
+    {
+        if (string.IsNullOrWhiteSpace(Slug)) { training = null; return; }
+        bool fr = Fr;
+        IReadOnlyList<Training> all = await Content.GetTrainingsAsync(CultureService.CurrentCulture.Name);
+        training = all.FirstOrDefault(t => string.Equals(t.Slug, Slug, StringComparison.OrdinalIgnoreCase));
+        if (training is not null)
+        {
+            seoTitle = $"{training.Title} | {(fr ? "Formation" : "Training")} | IdeaStud.io";
+            seoDescription = training.Summary;
+            string slug = training.Slug;
+            seoCanonical = $"https://ideastud.io{LocalizedRoute.For("training", fr ? "fr" : "en")}/{slug}";
+            string frUrl = $"https://ideastud.io{LocalizedRoute.For("training", "fr")}/{slug}";
+            string enUrl = $"https://ideastud.io{LocalizedRoute.For("training", "en")}/{slug}";
+            seoHreflang = new Dictionary<string, string> { ["fr"] = frUrl, ["en"] = enUrl, ["x-default"] = frUrl };
+        }
+    }
+
+    private IEnumerable<(string, string)> Facts()
+    {
+        if (training is null) { yield break; }
+        if (!string.IsNullOrWhiteSpace(training.Level)) { yield return (levelLabel, LevelLabel(training.Level!)); }
+        if (training.DurationDays is int d) { yield return (durationLabel, Fr ? $"{d} jour{(d > 1 ? "s" : "")}" : $"{d} day{(d > 1 ? "s" : "")}"); }
+        if (!string.IsNullOrWhiteSpace(training.Audience)) { yield return (audienceLabel, training.Audience!); }
+        if (!string.IsNullOrWhiteSpace(training.Prerequisites)) { yield return (prereqLabel, training.Prerequisites!); }
+        if (!string.IsNullOrWhiteSpace(training.Certification)) { yield return (certLabel, training.Certification!); }
+    }
+
+    private string LevelLabel(string level) => level.ToLowerInvariant() switch
+    {
+        "foundation" => Fr ? "Fondamentaux" : "Foundation",
+        "intermediate" => Fr ? "Intermédiaire" : "Intermediate",
+        "advanced" => Fr ? "Avancé" : "Advanced",
+        _ => level,
+    };
+
+    private void GenerateStructuredData()
+    {
+        if (training is null) { seoStructuredData = null; return; }
+        bool fr = Fr;
+        string cultureCode = fr ? "fr" : "en";
+
+        SchemaOrg.Person person = new(
+            Name: "Andrés Talavera",
+            JobTitle: fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
+            Description: seoDescription,
+            Url: "https://ideastud.io",
+            Image: "https://ideastud.io/images/andres-talavera.jpeg",
+            SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
+            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "Software Training" },
+            Address: null,
+            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io"));
+
+        SchemaOrg.Course course = new(
+            Name: training.Title,
+            Description: training.Summary,
+            Provider: person,
+            CourseCode: training.Slug,
+            EducationalLevel: training.Level,
+            TimeRequired: training.DurationDays is int d ? $"P{d}D" : null,
+            Url: seoCanonical);
+
+        seoStructuredData = new List<string>
+        {
+            SchemaOrg.ToJsonLd(course),
+            SchemaOrg.ToJsonLd(SchemaOrg.CreateBreadcrumb(
+                "https://ideastud.io",
+                (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+                (fr ? "Formations" : "Training", LocalizedRoute.For("training", cultureCode)),
+                (training.Title, $"{LocalizedRoute.For("training", cultureCode)}/{training.Slug}"))),
+        };
+    }
+}

@@ -57,6 +57,8 @@ IdeaStudio.sln
 │   │   ├── Cv.razor                    #   /fr/cv  /en/resume (+ legacy aliases)
 │   │   ├── Services.razor              #   /fr/services  /en/services
 │   │   ├── ServiceDetail.razor         #   /{culture}/services/{slug}
+│   │   ├── Trainings.razor             #   /fr/formations  /en/training (catalogue hub)
+│   │   ├── TrainingDetail.razor        #   /{culture}/formations|training/{slug}
 │   │   ├── Realisations.razor          #   /fr/realisations  /en/projects (+ /portfolio aliases)
 │   │   ├── Privacy.razor               #   /fr/confidentialite  /en/privacy
 │   │   ├── Legal.razor                 #   /fr/mentions-legales  /en/legal
