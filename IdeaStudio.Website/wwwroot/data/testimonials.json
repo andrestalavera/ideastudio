@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Pierre-Eric Tessa",
+    "role": "Architecte & consultant .NET / Azure",
+    "originalLang": "fr",
+    "contextFr": "A travaillé avec Andrés",
+    "contextEn": "Worked with Andrés",
+    "quoteFr": "Andrés est un leader technique exceptionnel qui excelle dans la gestion d'équipes de développement. Sa capacité à concevoir des architectures robustes et à guider son équipe vers l'excellence technique est remarquable. Son dévouement envers la qualité du code et sa capacité à résoudre des problèmes complexes font de lui un choix idéal pour le rôle de Tech Lead. Andrés est non seulement compétent techniquement, mais il sait également inspirer et motiver son équipe pour atteindre des résultats exceptionnels.",
+    "quoteEn": "Andrés is an exceptional technical leader who excels at managing development teams. His ability to design robust architectures and guide his team toward technical excellence is remarkable. His dedication to code quality and his ability to solve complex problems make him an ideal choice for a Tech Lead role. Andrés is not only technically skilled, he also knows how to inspire and motivate his team to achieve exceptional results.",
+    "displayOrder": 1
+  },
+  {
+    "name": "Antoine Jéhanno",
+    "role": "CTO, Product & Engineering Leader",
+    "originalLang": "fr",
+    "contextFr": "A reporté directement à Andrés chez Active Assurances",
+    "contextEn": "Reported directly to Andrés at Active Assurances",
+    "quoteFr": "J'ai travaillé avec Andrés pendant plusieurs mois au sein d'Active Assurances. Andrés a pris le rôle de Lead dans une équipe de développement et a permis d'avancer sur des sujets variés aussi bien au niveau tech (backend C# / Azure) qu'au niveau organisationnel (agilité, coordonner l'équipe). Andrés est un passionné enthousiaste qui prend également plaisir à partager ses larges connaissances techniques. Cela a été un plaisir de travailler avec lui.",
+    "quoteEn": "I worked with Andrés for several months at Active Assurances. Andrés took on the Lead role in a development team and helped move forward on a wide range of topics, both technically (C# / Azure backend) and organizationally (agile practices, coordinating the team). Andrés is an enthusiastic, passionate person who also enjoys sharing his broad technical knowledge. It was a pleasure to work with him.",
+    "displayOrder": 2
+  },
+  {
+    "name": "Romain Tourrel",
+    "role": "Software Architect, C# / .NET / Azure",
+    "originalLang": "fr",
+    "contextFr": "A travaillé avec Andrés dans la même équipe",
+    "contextEn": "Worked with Andrés on the same team",
+    "quoteFr": "Andrés est très bon techniquement. Vous pouvez lui faire confiance sur toutes les nouvelles technologies Microsoft, il a un puits de connaissance qu'il pourra mettre en application lors de vos projets. Dans un environnement encadré, agile et avec des spécifications définies, il saura embellir votre code et vous éviter la dette technique.",
+    "quoteEn": "Andrés is very strong technically. You can trust him on all the latest Microsoft technologies; he has a wealth of knowledge he can bring to your projects. In a structured, agile environment with well-defined specifications, he'll polish your code and spare you technical debt.",
+    "displayOrder": 3
+  },
+  {
+    "name": "David Poulin",
+    "role": "Leader Technique",
+    "originalLang": "fr",
+    "contextFr": "A été le mentor d'Andrés",
+    "contextEn": "Was Andrés's mentor",
+    "quoteFr": "J'ai eu la joie d'accompagner Andrés pendant de très longues années sur plusieurs projets, et j'ai été agréablement surpris de voir à quel point il s'est émancipé techniquement. Très réceptif, il a su très rapidement démontrer qu'il est capable d'appréhender de nouvelles technologies, de se les approprier et même d'en écrire un livre. Il aime chercher, a de très bonnes idées et n'hésite pas à s'engager. Si nous devions collaborer de nouveau ensemble, je n'hésiterai absolument pas à le contacter. Une valeur sûre.",
+    "quoteEn": "I had the joy of mentoring Andrés over many years across several projects, and I was pleasantly surprised to see how far he has grown technically. Very receptive, he quickly proved he could grasp new technologies, make them his own, and even write a book about them. He likes to dig deep, has great ideas, and isn't afraid to commit. If we were to work together again, I wouldn't hesitate for a second to reach out to him. A safe bet.",
+    "displayOrder": 4
+  },
+  {
+    "name": "Nicolas G.",
+    "role": "Freelance Consultant, Microsoft Technologies Expert",
+    "originalLang": "en",
+    "contextFr": "A travaillé avec Andrés dans la même équipe",
+    "contextEn": "Worked with Andrés on the same team",
+    "quoteFr": "Andrés possède une large connaissance des technologies Microsoft et se tient toujours à jour. C'est un bon pédagogue et un membre d'équipe agréable. Je le recommande pour des projets mobiles et des sessions de formation.",
+    "quoteEn": "Andrés has a wide knowledge on Microsoft technologies and is always up-to-date. He is a good teacher and a nice team member. I would recommend him for mobile projects and training sessions.",
+    "displayOrder": 5
+  }
+]

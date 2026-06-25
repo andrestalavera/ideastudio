@@ -1,0 +1,67 @@
+// components/_testimonial.scss — recommendation quote cards.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-testimonial {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-4;
+  padding: s.$s-6;
+  background: c.$bg-surface;
+  border: 1px solid c.$rule;
+  border-radius: 16px;
+
+  // Decorative opening quote mark (full-contrast duck so it clears AA).
+  &::before {
+    content: "\201C";
+    font-family: t.$font-sans;
+    font-size: 2.5rem;
+    line-height: 0.5;
+    color: c.$ir-duck;
+  }
+
+  &-quote {
+    margin: 0;
+    font-size: t.$fs-lead;
+    line-height: 1.6;
+    color: c.$fg;
+  }
+
+  &-by {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-block-start: auto;
+    padding-block-start: s.$s-2;
+  }
+
+  &-name {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    color: c.$fg;
+  }
+
+  &-role {
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    letter-spacing: 0.04em;
+    color: c.$ir-duck;
+  }
+
+  &-context {
+    font-size: t.$fs-small;
+    color: c.$fg-muted;
+  }
+
+  // "Translated from …" marker — clarifies a quote isn't in its original language.
+  &-translated {
+    align-self: flex-start;
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    font-style: italic;
+    color: c.$fg-muted;
+  }
+}

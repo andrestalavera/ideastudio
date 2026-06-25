@@ -1,0 +1,11 @@
+// utilities/_u-color.scss — text / background / border colors.
+// Values resolve to themed CSS custom properties, so they follow [data-theme].
+
+@use '../tokens/colors' as c;
+
+.text-fg    { color: c.$fg; }
+.text-muted { color: c.$fg-muted; }
+
+.bg-surface { background-color: c.$bg-surface; }
+
+.border-rule { border-color: c.$rule; }

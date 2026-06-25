@@ -11,6 +11,9 @@ public interface IAnalyticsService
 
     /// <summary>Sends a <c>page_view</c> event to all loaded trackers.</summary>
     Task TrackPageViewAsync(string url);
+
+    /// <summary>Sends a custom conversion/interaction event (e.g. contact_submit, book_call).</summary>
+    Task TrackEventAsync(string name);
 }
 
 public sealed class AnalyticsService(IJSRuntime js) : IAnalyticsService
@@ -30,4 +33,12 @@ public sealed class AnalyticsService(IJSRuntime js) : IAnalyticsService
         catch (JSException) { /* runtime not yet present */ }
         catch (JSDisconnectedException) { /* circuit gone */ }
     }
+
+    public async Task TrackEventAsync(string name)
+    {
+        try { await js.InvokeVoidAsync("ideaAnalytics.trackEvent", name); }
+        catch (JSException) { /* runtime not yet present */ }
+        catch (JSDisconnectedException) { /* circuit gone */ }
+    }
 }
+

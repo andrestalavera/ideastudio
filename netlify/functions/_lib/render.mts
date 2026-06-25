@@ -51,15 +51,15 @@ function renderCover(resume: Resume, baseUrl: string, culture: Culture): string 
   const photoUrl = `${baseUrl}/images/andres-talavera.jpeg`;
 
   const langs = Object.entries(pi.languages ?? {})
-    .map(([code, label]) => `<span class="cover__lang">${escape(code)} · ${escape(label)}</span>`)
+    .map(([code, label]) => `<span class="cover-lang">${escape(code)} · ${escape(label)}</span>`)
     .join("");
 
   const aboutCards = (resume.aboutSections ?? [])
     .map(
       (s: AboutSection) => `
       <div class="about-card">
-        <div class="about-card__title">${escape(s.title)}</div>
-        <div class="about-card__body">
+        <div class="about-card-title">${escape(s.title)}</div>
+        <div class="about-card-body">
           ${(s.paragraphs ?? []).map((p) => `<p>${escape(p)}</p>`).join("")}
         </div>
       </div>`,
@@ -77,21 +77,21 @@ function renderCover(resume: Resume, baseUrl: string, culture: Culture): string 
 
   return `
   <section class="page">
-    <div class="cover__top">
-      <img class="cover__photo" src="${photoUrl}" alt="${escape(pi.name)}" />
+    <div class="cover-top">
+      <img class="cover-photo" src="${photoUrl}" alt="${escape(pi.name)}" />
       <div>
         <div class="kicker">— ${T[culture].title}</div>
-        <div class="cover__name">${escape(pi.name)}</div>
-        <div class="cover__title">${escape(pi.title)}</div>
+        <div class="cover-name">${escape(pi.name)}</div>
+        <div class="cover-title">${escape(pi.title)}</div>
       </div>
     </div>
     <hr class="divider" />
-    <div class="cover__hero">${escape(pi.hero)}</div>
-    <p class="cover__intro">${escape(pi.introduction)}</p>
+    <div class="cover-hero">${escape(pi.hero)}</div>
+    <p class="cover-intro">${escape(pi.introduction)}</p>
 
-    <div class="cover__meta">${langs}</div>
+    <div class="cover-meta">${langs}</div>
 
-    <div class="cover__contact">${contacts}</div>
+    <div class="cover-contact">${contacts}</div>
 
     <div class="about-grid">${aboutCards}</div>
   </section>`;
@@ -128,27 +128,27 @@ function renderExperience(
 
   const section = (title: string, body: string, tag = "div") =>
     body
-      ? `<div class="exp__section">
-           <div class="exp__section-title">${title}</div>
-           <${tag} class="exp__${tag === "ul" ? "list" : "description"}">${body}</${tag}>
+      ? `<div class="exp-section">
+           <div class="exp-section-title">${title}</div>
+           <${tag} class="exp-${tag === "ul" ? "list" : "description"}">${body}</${tag}>
          </div>`
       : "";
 
   return `
   <section class="page">
-    <div class="exp__head">
-      <img class="exp__logo" src="${logoUrl(exp.company, baseUrl)}" alt="${escape(exp.company)}" />
+    <div class="exp-head">
+      <img class="exp-logo" src="${logoUrl(exp.company, baseUrl)}" alt="${escape(exp.company)}" />
       <div>
-        <div class="exp__title">${escape(exp.title)}</div>
-        <div class="exp__company">${escape(exp.company)}</div>
+        <div class="exp-title">${escape(exp.title)}</div>
+        <div class="exp-company">${escape(exp.company)}</div>
       </div>
-      <div class="exp__index">${indexLabel}</div>
+      <div class="exp-index">${indexLabel}</div>
     </div>
 
-    <div class="exp__meta">
-      ${exp.mode ? `<span class="exp__meta-item">${escape(exp.mode)}</span>` : ""}
-      <span class="exp__meta-item">${escape(period)}</span>
-      ${locations ? `<span class="exp__meta-item">${escape(locations)}</span>` : ""}
+    <div class="exp-meta">
+      ${exp.mode ? `<span class="exp-meta-item">${escape(exp.mode)}</span>` : ""}
+      <span class="exp-meta-item">${escape(period)}</span>
+      ${locations ? `<span class="exp-meta-item">${escape(locations)}</span>` : ""}
     </div>
 
     ${section(t.overview, description)}
@@ -156,15 +156,15 @@ function renderExperience(
 
     ${
       skills
-        ? `<div class="exp__skills">
-             <div class="exp__section-title">${t.skills}</div>
+        ? `<div class="exp-skills">
+             <div class="exp-section-title">${t.skills}</div>
              <div>${skills}</div>
            </div>`
         : ""
     }
 
-    <div class="page__footer">
-      <span class="page__footer-name">${escape(authorName)}</span>
+    <div class="page-footer">
+      <span class="page-footer-name">${escape(authorName)}</span>
       <span>${escape(exp.company)} · ${escape(period)}</span>
     </div>
   </section>`;

@@ -25,7 +25,7 @@
     color: c.$fg;
   }
 
-  &--active,
+  &-active,
   &[aria-pressed='true'] {
     background: c.$ir-duck;
     color: c.$bg-void;

@@ -1,37 +1,84 @@
-// tokens/_colors.scss — techno-iridescent palette (V3)
-// Single source of truth for colors. Mirrored into CSS custom properties
-// in base/_root.scss and sampled by the WebGL shaders via getComputedStyle.
+// tokens/_colors.scss — techno-iridescent palette (V3), now DUAL-THEME.
+//
+// Source of truth for colors. The raw per-theme values live in the $themes
+// map below and are emitted as CSS custom properties in base/_root.scss
+// (one block per [data-theme]). The PUBLIC SCSS tokens further down resolve to
+// those custom properties via var(), so every component that writes
+// `c.$fg` / `c.$bg-deep` / `c.$ir-duck` automatically follows the active theme
+// with zero per-component changes. The WebGL passes also sample the same
+// custom properties (--ir-*, --bg-deep) via getComputedStyle, so the backdrop
+// stays in lockstep too.
+//
+// Theme strategy: dark is the signature look (unchanged). Light is a calm,
+// warm-neutral counterpart. The iridescent accents stay vivid in both themes
+// except DUCK, which is darkened in light so it remains AA-readable as text
+// (it is used for links, kickers, labels — not just fills).
 
-// Surfaces
-$bg-void:    #020a0d;   // far body, under canvas
-$bg-deep:    #05161a;   // primary page background
-$bg-surface: #0a2328;   // masthead pill, chapter bands
-$bg-raised:  #0e2d33;   // cards, stat chips
+@use 'sass:map';
 
-// Foreground
-$fg:       #eaf4f2;  // primary text on $bg-deep (AAA)
-$fg-muted: #a8bfbb;  // captions / meta / body copy (AA on $bg-deep)
-$fg-faint: #5e7a77;  // decorative, never body copy
-
-// Iridescent accents
-$ir-duck:  #00c2d4;  // primary brand / CTA / focus / rail
-$ir-blue:  #2d44ff;  // secondary accent
-$ir-amber: #ff8c1a;
-$ir-pink:  #ff3670;
-
-// Derived
-$rule:  rgba(234, 244, 242, 0.08);
-$ring:  rgba(0, 194, 212, 0.6);
-$glass: rgba(234, 244, 242, 0.06);
-
-// The one iridescent gradient. Reused by:
-//   - SCSS: CTA borders, text-clip accents, thin rules
-//   - WebGL: mesh + thread pass (sampled via CSS custom properties)
-$gradient-iridescent: conic-gradient(
-  from 140deg at 50% 50%,
-  $ir-duck,
-  $ir-blue,
-  $ir-amber,
-  $ir-pink,
-  $ir-duck
+$themes: (
+  dark: (
+    bg-void:     #020a0d,
+    bg-deep:     #05161a,
+    bg-surface:  #0a2328,
+    bg-raised:   #0e2d33,
+    fg:          #eaf4f2,
+    fg-muted:    #a8bfbb,
+    fg-faint:    #5e7a77,
+    ir-duck:     #00c2d4,
+    ir-blue:     #2d44ff,
+    ir-amber:    #ff8c1a,
+    ir-pink:     #ff3670,
+    danger:      #ff6b8a,
+    rule:        rgba(234, 244, 242, 0.08),
+    rule-bright: rgba(234, 244, 242, 0.18),
+    ring:        rgba(0, 194, 212, 0.6),
+    glass:       rgba(234, 244, 242, 0.06),
+    track:       rgba(234, 244, 242, 0.08),
+  ),
+  light: (
+    bg-void:     #e7eeec,  // footer / far-back panel — darkest light surface
+    bg-deep:     #f5f8f7,  // primary page background
+    bg-surface:  #ffffff,  // pills, bands, menus
+    bg-raised:   #ffffff,  // cards (separated from page by --rule)
+    fg:          #0b1a1d,  // primary text (AAA on page + cards)
+    fg-muted:    #4b6366,  // body / captions (AA on page + cards)
+    fg-faint:    #708789,  // decorative only, never body copy
+    ir-duck:     #00707d,  // AA both ways vs the light surface (#e7eeec) — fills + label text
+    ir-blue:     #2d44ff,
+    ir-amber:    #ff8c1a,
+    ir-pink:     #ff3670,
+    danger:      #c4133f,
+    rule:        rgba(11, 26, 29, 0.12),
+    rule-bright: rgba(11, 26, 29, 0.16),
+    ring:        rgba(0, 112, 125, 0.6),
+    glass:       rgba(11, 26, 29, 0.05),
+    track:       rgba(11, 26, 29, 0.10),
+  ),
 );
+
+// --- Public tokens: resolve to the active theme's custom property. ----------
+$bg-void:    var(--bg-void);
+$bg-deep:    var(--bg-deep);
+$bg-surface: var(--bg-surface);
+$bg-raised:  var(--bg-raised);
+
+$fg:       var(--fg);
+$fg-muted: var(--fg-muted);
+$fg-faint: var(--fg-faint);
+
+$ir-duck:  var(--ir-duck);
+$ir-blue:  var(--ir-blue);
+$ir-amber: var(--ir-amber);
+$ir-pink:  var(--ir-pink);
+
+$danger:      var(--danger);
+$rule:        var(--rule);
+$rule-bright: var(--rule-bright);
+$ring:        var(--ring);
+$glass:       var(--glass);
+$track:       var(--track);
+
+// The one iridescent gradient. Built once in :root from the themed accents
+// (see base/_root.scss) and reused as a single object across SCSS + WebGL.
+$gradient-iridescent: var(--gradient-iridescent);

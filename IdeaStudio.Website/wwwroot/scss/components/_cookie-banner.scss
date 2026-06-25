@@ -19,7 +19,7 @@
   }
 }
 
-.ds-cookie-banner__inner {
+.ds-cookie-banner-inner {
   pointer-events: auto;
   inline-size: 100%;
   max-inline-size: 640px;
@@ -27,7 +27,8 @@
   display: flex;
   flex-direction: column;
   gap: s.$s-4;
-  background: rgba(5, 22, 26, 0.92);
+  // Theme-aware surface so text (--fg / --fg-muted) stays readable in both themes.
+  background: c.$bg-surface;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid c.$rule;
@@ -36,21 +37,21 @@
 }
 
 @media (min-width: 32rem) {
-  .ds-cookie-banner__inner {
+  .ds-cookie-banner-inner {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
 }
 
-.ds-cookie-banner__copy {
+.ds-cookie-banner-copy {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   gap: s.$s-2;
 }
 
-.ds-cookie-banner__title {
+.ds-cookie-banner-title {
   margin: 0;
   font-family: t.$font-sans;
   font-size: t.$fs-small;
@@ -59,7 +60,7 @@
   color: c.$fg;
 }
 
-.ds-cookie-banner__desc {
+.ds-cookie-banner-desc {
   margin: 0;
   font-family: t.$font-sans;
   font-size: t.$fs-small;
@@ -67,7 +68,7 @@
   color: c.$fg-muted;
 }
 
-.ds-cookie-banner__actions {
+.ds-cookie-banner-actions {
   display: flex;
   gap: s.$s-2;
   flex-shrink: 0;

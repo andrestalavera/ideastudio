@@ -1,0 +1,38 @@
+@* Card — the surface panel used across the site (benefits, services, blog,
+   training, about). When Href is set it renders as a clickable link-card that
+   lifts on hover. Pass-through attributes (data-reveal, style=…) are forwarded. *@
+
+@if (!string.IsNullOrEmpty(Href))
+{
+    <a class="@CssClass" href="@Href" target="@Target" rel="@Rel" @attributes="Extra">
+        @ChildContent
+    </a>
+}
+else
+{
+    <div class="@CssClass" @attributes="Extra">
+        @ChildContent
+    </div>
+}
+
+@code {
+    [Parameter] public string? Href { get; set; }
+    [Parameter] public string? Target { get; set; }
+    [Parameter] public string? Rel { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? Extra { get; set; }
+
+    private const string Base = "flex flex-col gap-3 bg-surface border rounded-xl p-8 text-fg min-w-0 break-words";
+
+    private string CssClass
+    {
+        get
+        {
+            string c = Base;
+            if (!string.IsNullOrEmpty(Href)) c += " ds-card-link";
+            if (!string.IsNullOrEmpty(Class)) c += $" {Class}";
+            return c;
+        }
+    }
+}

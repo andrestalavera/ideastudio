@@ -1,0 +1,29 @@
+@* Container — centered, padded content column at one of the named widths.
+   Replaces the repeated `mx-auto w-full max-w-* px-6` utility string. *@
+
+<div class="@ContainerClass">
+    @ChildContent
+</div>
+
+@code {
+    /// <summary>content (1200, default) | narrow (720) | wide (1200).</summary>
+    [Parameter] public string Width { get; set; } = "content";
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private string ContainerClass
+    {
+        get
+        {
+            string maxw = Width switch
+            {
+                "narrow" => "max-w-narrow",
+                "wide"   => "max-w-wide",
+                _        => "max-w-content"
+            };
+            string cls = $"mx-auto w-full {maxw} px-6";
+            if (!string.IsNullOrEmpty(Class)) cls += $" {Class}";
+            return cls;
+        }
+    }
+}

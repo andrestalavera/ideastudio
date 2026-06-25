@@ -10,13 +10,13 @@
   gap: s.$s-8;
   margin-block-start: s.$s-7;
 
-  &__group {
+  &-group {
     display: flex;
     flex-direction: column;
     gap: s.$s-5;
   }
 
-  &__category {
+  &-category {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-subtitle;
@@ -27,7 +27,7 @@
     border-block-end: 1px solid c.$rule;
   }
 
-  &__list {
+  &-list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -51,13 +51,13 @@
   min-inline-size: 0;
   overflow-wrap: anywhere;
 
-  &__head {
+  &-head {
     display: flex;
     flex-direction: column;
     gap: s.$s-2;
   }
 
-  &__title {
+  &-title {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-subtitle;
@@ -66,13 +66,13 @@
     margin: 0;
   }
 
-  &__pills {
+  &-pills {
     display: flex;
     flex-wrap: wrap;
     gap: s.$s-2;
   }
 
-  &__pill {
+  &-pill {
     display: inline-flex;
     align-items: center;
     padding: 0.125rem s.$s-3;
@@ -84,20 +84,20 @@
     border: 1px solid c.$rule;
     border-radius: 999px;
 
-    &--cert {
+    &-cert {
       color: c.$ir-duck;
       border-color: c.$ir-duck;
     }
   }
 
-  &__summary {
+  &-summary {
     font-size: t.$fs-body;
     line-height: 1.55;
     color: c.$fg-muted;
     margin: 0;
   }
 
-  &__outline {
+  &-outline {
     margin: 0;
     padding-inline-start: s.$s-5;
     font-size: t.$fs-small;
@@ -108,7 +108,7 @@
     }
   }
 
-  &__prereq {
+  &-prereq {
     font-size: t.$fs-small;
     color: c.$fg-faint;
     margin: 0;
@@ -116,7 +116,7 @@
     border-block-start: 1px dashed c.$rule;
   }
 
-  &__prereq-label {
+  &-prereq-label {
     font-weight: 600;
     color: c.$fg-muted;
   }

@@ -12,33 +12,33 @@
 <div class="ds-training-catalogue">
     @foreach (var group in grouped)
     {
-        <section class="ds-training-catalogue__group" data-reveal>
-            <h3 class="ds-training-catalogue__category">@group.Category</h3>
-            <ul class="ds-training-catalogue__list">
+        <section class="ds-training-catalogue-group" data-reveal>
+            <h3 class="ds-training-catalogue-category">@group.Category</h3>
+            <ul class="ds-training-catalogue-list">
                 @foreach (Training t in group.Items)
                 {
                     <li class="ds-training-card" id="@t.Slug">
-                        <header class="ds-training-card__head">
-                            <h4 class="ds-training-card__title">@t.Title</h4>
-                            <div class="ds-training-card__pills">
+                        <header class="ds-training-card-head">
+                            <h4 class="ds-training-card-title">@t.Title</h4>
+                            <div class="ds-training-card-pills">
                                 @if (t.DurationDays is int days)
                                 {
-                                    <span class="ds-training-card__pill">@days@durationSuffix</span>
+                                    <span class="ds-training-card-pill">@days@durationSuffix</span>
                                 }
                                 @if (!string.IsNullOrWhiteSpace(t.Level))
                                 {
-                                    <span class="ds-training-card__pill">@FormatLevel(t.Level)</span>
+                                    <span class="ds-training-card-pill">@FormatLevel(t.Level)</span>
                                 }
                                 @if (!string.IsNullOrWhiteSpace(t.Certification))
                                 {
-                                    <span class="ds-training-card__pill ds-training-card__pill--cert">@t.Certification</span>
+                                    <span class="ds-training-card-pill ds-training-card-pill-cert">@t.Certification</span>
                                 }
                             </div>
                         </header>
-                        <p class="ds-training-card__summary">@t.Summary</p>
+                        <p class="ds-training-card-summary">@t.Summary</p>
                         @if (t.Outline is { Count: > 0 })
                         {
-                            <ul class="ds-training-card__outline">
+                            <ul class="ds-training-card-outline">
                                 @foreach (string item in t.Outline)
                                 {
                                     <li>@item</li>
@@ -47,8 +47,8 @@
                         }
                         @if (!string.IsNullOrWhiteSpace(t.Prerequisites))
                         {
-                            <p class="ds-training-card__prereq">
-                                <span class="ds-training-card__prereq-label">@prereqLabel</span> @t.Prerequisites
+                            <p class="ds-training-card-prereq">
+                                <span class="ds-training-card-prereq-label">@prereqLabel</span> @t.Prerequisites
                             </p>
                         }
                     </li>

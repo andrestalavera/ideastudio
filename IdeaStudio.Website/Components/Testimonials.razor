@@ -1,0 +1,45 @@
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inject ICultureService CultureService
+
+@* Testimonials — verbatim recommendations. Shown in the visitor's language; when
+   that isn't the language the recommendation was written in, it's marked as a
+   translation. *@
+
+@{
+    bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+    string lang = fr ? "fr" : "en";
+}
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
+    @for (int i = 0; i < Items.Count; i++)
+    {
+        Testimonial t = Items[i];
+        string quote = fr ? t.QuoteFr : t.QuoteEn;
+        string? context = fr ? t.ContextFr : t.ContextEn;
+        bool translated = !string.Equals(t.OriginalLang, lang, StringComparison.OrdinalIgnoreCase);
+        <figure class="ds-testimonial" data-reveal style="@($"--reveal-step:{i}")">
+            <blockquote class="ds-testimonial-quote">@quote</blockquote>
+            @if (translated)
+            {
+                <span class="ds-testimonial-translated">@TranslatedNote(fr, t.OriginalLang)</span>
+            }
+            <figcaption class="ds-testimonial-by">
+                <span class="ds-testimonial-name">@t.Name</span>
+                <span class="ds-testimonial-role">@t.Role</span>
+                @if (!string.IsNullOrWhiteSpace(context))
+                {
+                    <span class="ds-testimonial-context">@context</span>
+                }
+            </figcaption>
+        </figure>
+    }
+</div>
+
+@code {
+    [Parameter] public IReadOnlyList<Testimonial> Items { get; set; } = Array.Empty<Testimonial>();
+
+    private static string TranslatedNote(bool fr, string originalLang) => fr
+        ? (originalLang.Equals("en", StringComparison.OrdinalIgnoreCase) ? "Traduit de l'anglais" : "Traduit")
+        : (originalLang.Equals("fr", StringComparison.OrdinalIgnoreCase) ? "Translated from French" : "Translated");
+}

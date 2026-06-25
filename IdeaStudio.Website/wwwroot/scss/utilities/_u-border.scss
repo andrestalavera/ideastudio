@@ -1,0 +1,10 @@
+// utilities/_u-border.scss — border + radius.
+// .border carries the default themed hairline; .border-rule (in u-color, loaded
+// after) can override the colour where needed.
+
+@use '../tokens/colors' as c;
+
+.border { border: 1px solid c.$rule; }
+
+.rounded-xl   { border-radius: 0.75rem; } // 12px — cards, panels
+.rounded-full { border-radius: 999px; }   // pills, avatars

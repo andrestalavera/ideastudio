@@ -1,35 +1,35 @@
-@* Hero — kicker → display → lead → optional action row.
+@* Hero, kicker → display → lead → optional action row.
    Used on every page except Home (Home does its own per-char hero). *@
 
 <section class="ds-hero">
-    <div class="ds-container">
-        <div class="ds-hero__inner ds-rhythm">
-            @if (!string.IsNullOrWhiteSpace(Kicker))
+    <Container>
+    <div class="ds-hero-inner ds-rhythm">
+        @if (!string.IsNullOrWhiteSpace(Kicker))
+        {
+            <p class="ds-kicker" data-reveal style="--reveal-step: 0">@Kicker</p>
+        }
+        <h1 class="ds-display" data-reveal style="--reveal-step: 1">
+            @if (ChildContent is not null)
             {
-                <p class="ds-kicker" data-reveal style="--reveal-step: 0">— @Kicker</p>
+                @ChildContent
             }
-            <h1 class="ds-display" data-reveal style="--reveal-step: 1">
-                @if (ChildContent is not null)
-                {
-                    @ChildContent
-                }
-                else
-                {
-                    @Title
-                }
-            </h1>
-            @if (!string.IsNullOrWhiteSpace(Lead))
+            else
             {
-                <p class="ds-lead" data-reveal style="--reveal-step: 2">@Lead</p>
+                @Title
             }
-            @if (Actions is not null)
-            {
-                <div class="ds-hero__actions" data-reveal style="--reveal-step: 3">
-                    @Actions
-                </div>
-            }
-        </div>
+        </h1>
+        @if (!string.IsNullOrWhiteSpace(Lead))
+        {
+            <p class="ds-lead" data-reveal style="--reveal-step: 2">@Lead</p>
+        }
+        @if (Actions is not null)
+        {
+            <div class="ds-hero-actions" data-reveal style="--reveal-step: 3">
+                @Actions
+            </div>
+        }
     </div>
+    </Container>
 </section>
 
 @code {

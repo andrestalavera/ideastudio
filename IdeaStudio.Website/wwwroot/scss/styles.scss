@@ -11,10 +11,7 @@
 @use 'base/canvas';
 @use 'base/view-transitions';
 
-@use 'layout/container';
 @use 'layout/section';
-@use 'layout/stack';
-@use 'layout/grid';
 @use 'layout/rhythm';
 
 @use 'components/masthead';
@@ -25,20 +22,25 @@
 @use 'components/title';
 @use 'components/lead';
 @use 'components/button';
+@use 'components/card';
 @use 'components/link';
 @use 'components/list';
 @use 'components/tag';
 @use 'components/filter-bar';
-@use 'components/card';
 @use 'components/tile';
+@use 'components/case-study';
 @use 'components/timeline';
-@use 'components/rule';
 @use 'components/stat';
 @use 'components/qa';
+@use 'components/testimonial';
+@use 'components/faq';
+@use 'components/form';
 @use 'components/highlight';
 @use 'components/training-catalogue';
 @use 'components/longform';
+@use 'components/blog';
 @use 'components/footer';
+@use 'components/logo-wall';
 @use 'components/cookie-banner';
 @use 'components/reveal';
 @use 'components/cursor';
@@ -46,7 +48,16 @@
 @use 'components/boot';
 @use 'components/signature';
 @use 'components/home';
+@use 'components/availability';
 
-@use 'utilities/visually-hidden';
-@use 'utilities/responsive';
+// Utility layer — token-backed, Tailwind-named. Loaded LAST so single-class
+// utilities win over component primitives by source order. u-border precedes
+// u-color so the border-{color} utilities override .border's default hairline.
+@use 'utilities/u-layout';
+@use 'utilities/u-spacing';
+@use 'utilities/u-sizing';
+@use 'utilities/u-text';
+@use 'utilities/u-border';
+@use 'utilities/u-color';
+
 @use 'utilities/print';

@@ -1,0 +1,292 @@
+@page "/fr/realisations/{slug}"
+@page "/en/projects/{slug}"
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
+@layout MainLayout
+
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         Author="Andrés Talavera"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@seoHreflang"
+         SiteName="IdeaStud.io"
+         OgImage="@seoOgImage" OgImageAlt="@seoOgAlt"
+         StructuredData="@seoStructuredData"
+         SpeakableSelectors="@speakable" />
+
+@if (realisation?.CaseStudy is { } cs)
+{
+    @* 1 · Hero, leads with the business problem (benefit-first) *@
+    <Hero Kicker="@caseKicker" Lead="@cs.Challenge">
+        <ChildContent>@realisation.Title</ChildContent>
+        <Actions>
+            <div class="ds-case-meta">
+                <span class="ds-case-meta-item"><span class="ds-case-meta-label">@sectorLabel</span> @cs.Sector</span>
+                <span class="ds-case-meta-item"><span class="ds-case-meta-label">@roleLabel</span> @cs.Role</span>
+                <span class="ds-case-meta-item"><span class="ds-case-meta-label">@timelineLabel</span> @cs.Timeline</span>
+            </div>
+            <div class="row mt-6">
+                @if (!string.IsNullOrWhiteSpace(realisation.LiveUrl))
+                {
+                    <ButtonLink Href="@realisation.LiveUrl" Variant="primary" External="true" Label="@visitLabel" />
+                }
+                <ButtonLink Href="@LocalizedRoute.For("realisations")" Label="@allProjectsLabel" />
+            </div>
+        </Actions>
+    </Hero>
+
+    @* 2 · Approach + Outcome, plain-language, before the technical depth *@
+    <PageSection>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="ds-rhythm" data-reveal>
+                <p class="ds-kicker">@approachLabel</p>
+                <p class="ds-lead">@cs.Approach</p>
+            </div>
+            <div class="ds-rhythm" data-reveal style="--reveal-step: 1">
+                <p class="ds-kicker">@outcomeLabel</p>
+                <p class="ds-lead">@cs.Outcome</p>
+            </div>
+        </div>
+    </PageSection>
+
+    @* 3 · Architecture diagram *@
+    @if (!string.IsNullOrWhiteSpace(cs.DiagramImage))
+    {
+        <PageSection>
+            <ChapterBand Kicker="@architectureKicker" Title="@architectureTitle" />
+            <figure class="ds-case-diagram mt-chapter" data-reveal>
+                <img src="@cs.DiagramImage" alt="@cs.DiagramAlt" loading="lazy" decoding="async" />
+            </figure>
+        </PageSection>
+    }
+
+    @* 4 · By the numbers *@
+    @if (cs.Stats.Count > 0)
+    {
+        <PageSection>
+            <ChapterBand Kicker="@numbersKicker" Title="@numbersTitle" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-chapter">
+                @for (int i = 0; i < cs.Stats.Count; i++)
+                {
+                    CaseStudyStat s = cs.Stats[i];
+                    <div class="ds-stat" data-reveal style="@($"--reveal-step:{i}")">
+                        <div class="ds-stat-value">@s.Value</div>
+                        <div class="ds-stat-label">@s.Label</div>
+                    </div>
+                }
+            </div>
+        </PageSection>
+    }
+
+    @* 5 · Key decisions + why *@
+    @if (cs.Decisions.Count > 0)
+    {
+        <PageSection>
+            <ChapterBand Kicker="@decisionsKicker" Title="@decisionsTitle" Lead="@decisionsLead" />
+            <div class="ds-case-decisions mt-chapter">
+                @for (int i = 0; i < cs.Decisions.Count; i++)
+                {
+                    CaseStudyDecision d = cs.Decisions[i];
+                    <div class="ds-case-decision" data-reveal style="@($"--reveal-step:{i}")">
+                        <h3 class="ds-case-decision-title">@d.Title</h3>
+                        <p class="ds-case-decision-detail">@d.Detail</p>
+                    </div>
+                }
+            </div>
+        </PageSection>
+    }
+
+    @* 6 · Deeper sections *@
+    @if (cs.Sections.Count > 0)
+    {
+        <PageSection>
+            <ChapterBand Kicker="@detailKicker" Title="@detailTitle" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-chapter">
+                @for (int i = 0; i < cs.Sections.Count; i++)
+                {
+                    CaseStudySection sec = cs.Sections[i];
+                    <div class="ds-case-section" data-reveal style="@($"--reveal-step:{i}")">
+                        <h3 class="ds-case-section-title">@sec.Title</h3>
+                        @foreach (string p in sec.Body)
+                        {
+                            <p class="ds-body">@p</p>
+                        }
+                    </div>
+                }
+            </div>
+        </PageSection>
+    }
+
+    @* 7 · Stack *@
+    @if (cs.Stack.Count > 0)
+    {
+        <PageSection>
+            <ChapterBand Kicker="@stackKicker" Title="@stackTitle" />
+            <div class="ds-case-stack mt-chapter" data-reveal>
+                @foreach (string tech in cs.Stack)
+                {
+                    <span class="ds-tag">@tech</span>
+                }
+            </div>
+        </PageSection>
+    }
+}
+else if (loaded)
+{
+    <Hero Kicker="@caseKicker" Title="@notFoundTitle" Lead="@notFoundLead">
+        <Actions>
+            <ButtonLink Href="@LocalizedRoute.For("realisations")" Variant="primary" Label="@allProjectsLabel" />
+        </Actions>
+    </Hero>
+}
+
+@code {
+    [Parameter] public string Slug { get; set; } = "";
+
+    private Realisation? realisation;
+    private bool loaded;
+    private string? loadedSlug;
+
+    private string seoTitle = "Étude de cas, IdeaStud.io";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/realisations";
+    private string seoLocale = "fr_FR";
+    private Dictionary<string, string>? seoHreflang;
+    private string seoOgImage = "https://ideastud.io/images/andres-talavera.jpeg";
+    private string seoOgAlt = "Andrés Talavera";
+    private string caseKicker = "Étude de cas";
+    private string sectorLabel = "Secteur";
+    private string roleLabel = "Rôle";
+    private string timelineLabel = "Durée";
+    private string visitLabel = "Voir le site";
+    private string allProjectsLabel = "Toutes les réalisations";
+    private string approachLabel = "L'approche";
+    private string outcomeLabel = "Le résultat";
+    private string architectureKicker = "Architecture";
+    private string architectureTitle = "Comment c'est construit.";
+    private string numbersKicker = "En chiffres";
+    private string numbersTitle = "L'ampleur du projet.";
+    private string decisionsKicker = "Décisions clés";
+    private string decisionsTitle = "Les choix, et pourquoi.";
+    private string decisionsLead = "";
+    private string detailKicker = "Dans le détail";
+    private string detailTitle = "Sous le capot.";
+    private string stackKicker = "Stack";
+    private string stackTitle = "La pile technique.";
+    private string notFoundTitle = "Étude de cas introuvable.";
+    private string notFoundLead = "";
+    private List<string>? seoStructuredData;
+    private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        await LoadDataAsync();
+        GenerateStructuredData();
+        StateHasChanged();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        // Re-resolve when navigating directly between case studies (the component
+        // is reused and only the slug changes, OnInitialized won't run again).
+        if (loadedSlug is not null && loadedSlug != Slug)
+        {
+            await LoadDataAsync();
+            GenerateStructuredData();
+            StateHasChanged();
+        }
+    }
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        caseKicker = fr ? "Étude de cas" : "Case study";
+        sectorLabel = fr ? "Secteur" : "Sector";
+        roleLabel = fr ? "Rôle" : "Role";
+        timelineLabel = fr ? "Durée" : "Timeline";
+        visitLabel = fr ? "Voir le site" : "Visit the site";
+        allProjectsLabel = fr ? "Toutes les réalisations" : "All projects";
+        approachLabel = fr ? "L'approche" : "The approach";
+        outcomeLabel = fr ? "Le résultat" : "The outcome";
+        architectureKicker = fr ? "Architecture" : "Architecture";
+        architectureTitle = fr ? "Comment c'est construit." : "How it's built.";
+        numbersKicker = fr ? "En chiffres" : "By the numbers";
+        numbersTitle = fr ? "L'ampleur du projet." : "The scale of it.";
+        decisionsKicker = fr ? "Décisions clés" : "Key decisions";
+        decisionsTitle = fr ? "Les choix, et pourquoi." : "The choices, and why.";
+        decisionsLead = fr
+            ? "Chaque décision structurante avait une raison, souvent un risque à neutraliser, pas une préférence technique."
+            : "Every structural decision had a reason, usually a risk to neutralise, not a technical preference.";
+        detailKicker = fr ? "Dans le détail" : "In detail";
+        detailTitle = fr ? "Sous le capot." : "Under the hood.";
+        stackKicker = fr ? "Stack" : "Stack";
+        stackTitle = fr ? "La pile technique." : "The tech stack.";
+        notFoundTitle = fr ? "Étude de cas introuvable." : "Case study not found.";
+        notFoundLead = fr
+            ? "Ce projet n'a pas (encore) d'étude de cas détaillée."
+            : "This project doesn't have a detailed case study (yet).";
+    }
+
+    private async Task LoadDataAsync()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+        IReadOnlyList<Realisation> all = await Content.GetRealisationsAsync(CultureService.CurrentCulture.Name);
+        realisation = all.FirstOrDefault(r => string.Equals(r.Slug, Slug, StringComparison.OrdinalIgnoreCase));
+        loaded = true;
+        loadedSlug = Slug;
+
+        string hub = LocalizedRoute.For("realisations", cultureCode);
+        if (realisation?.CaseStudy is { } cs)
+        {
+            seoTitle = fr
+                ? $"{realisation.Title}, Étude de cas | IdeaStud.io"
+                : $"{realisation.Title}, Case study | IdeaStud.io";
+            seoDescription = cs.Challenge;
+            seoCanonical = $"https://ideastud.io{hub}/{realisation.Slug}";
+            string hubFr = LocalizedRoute.For("realisations", "fr");
+            string hubEn = LocalizedRoute.For("realisations", "en");
+            seoHreflang = new Dictionary<string, string>
+            {
+                ["fr"] = $"https://ideastud.io{hubFr}/{realisation.Slug}",
+                ["en"] = $"https://ideastud.io{hubEn}/{realisation.Slug}",
+                ["x-default"] = $"https://ideastud.io{hubFr}/{realisation.Slug}",
+            };
+            seoOgImage = string.IsNullOrWhiteSpace(cs.DiagramImage)
+                ? "https://ideastud.io/images/andres-talavera.jpeg"
+                : $"https://ideastud.io/{cs.DiagramImage}";
+            seoOgAlt = cs.DiagramAlt ?? realisation.Title;
+        }
+        else
+        {
+            seoTitle = fr ? "Étude de cas, IdeaStud.io" : "Case study, IdeaStud.io";
+            seoCanonical = $"https://ideastud.io{hub}";
+        }
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+        string hub = LocalizedRoute.For("realisations", cultureCode);
+
+        if (realisation?.CaseStudy is null)
+        {
+            seoStructuredData = null;
+            return;
+        }
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+            (fr ? "Réalisations" : "Projects", hub),
+            (realisation.Title, $"{hub}/{realisation.Slug}"));
+
+        seoStructuredData = new List<string> { SchemaOrg.ToJsonLd(breadcrumb) };
+    }
+}

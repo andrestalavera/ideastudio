@@ -13,55 +13,59 @@
 
 <SeoHead Title="@seoTitle" Description="@seoDescription"
          CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@LocalizedRoute.Alternates("realisations")"
          SiteName="IdeaStud.io"
+         OgImage="https://ideastud.io/images/andres-talavera.jpeg" OgImageAlt="Andrés Talavera"
          StructuredData="@seoStructuredData" />
 
-<Hero Kicker="— Projets" Title="@titleText" Lead="@lead" />
+<Hero Kicker="@kickerText" Title="@titleText" Lead="@lead" />
 
-<section class="ds-section">
-    <div class="ds-container">
-        @* Filters *@
-        @if (allTechs.Count > 0)
-        {
-            <div class="ds-filter-bar" role="tablist" aria-label="@filterAriaLabel">
-                <span class="ds-filter-bar__label">@filterLabel</span>
-                <button type="button" class="ds-tag @(activeTech is null ? "ds-tag--active" : "")"
-                        role="tab" aria-pressed="@(activeTech is null)"
-                        @onclick="() => SetTech(null)">@allTechsLabel</button>
-                @foreach (string tech in allTechs)
-                {
-                    <button type="button" class="ds-tag @(activeTech == tech ? "ds-tag--active" : "")"
-                            role="tab" aria-pressed="@(activeTech == tech)"
-                            @onclick="() => SetTech(tech)">@tech</button>
-                }
-            </div>
-        }
+<PageSection Rhythm="section" Bordered="false">
+    @* Filters *@
+    @if (allTechs.Count > 0)
+    {
+        <div class="ds-filter-bar" role="tablist" aria-label="@filterAriaLabel">
+            <span class="ds-filter-bar-label">@filterLabel</span>
+            <button type="button" class="ds-tag @(activeTech is null ? "ds-tag-active" : "")"
+                    role="tab" aria-pressed="@(activeTech is null)"
+                    @onclick="() => SetTech(null)">@allTechsLabel</button>
+            @foreach (string tech in allTechs)
+            {
+                <button type="button" class="ds-tag @(activeTech == tech ? "ds-tag-active" : "")"
+                        role="tab" aria-pressed="@(activeTech == tech)"
+                        @onclick="() => SetTech(tech)">@tech</button>
+            }
+        </div>
+    }
 
-        @* Grid *@
-        @if (filtered.Count == 0)
-        {
-            <div class="ds-empty" data-reveal>
-                <p class="ds-lead">@emptyText</p>
-                <a class="ds-btn ds-btn--iridescent" href="@Nav.Uri" @onclick="() => SetTech(null)" @onclick:preventDefault="true">
-                    @resetText <span aria-hidden="true">→</span>
-                </a>
-            </div>
-        }
-        else
-        {
-            <div class="ds-grid ds-grid--auto ds-realisations__grid" style="margin-block-start: 2.5rem;">
-                @foreach (Realisation r in filtered)
-                {
-                    <ProjectTile Href="@r.LiveUrl" Target="_blank" Rel="noopener"
-                                 ImageUrl="@r.ImageUrl" ImageAlt="@r.ImageAlt"
-                                 Type="@r.Type.ToString()" Year="@r.CompletedOn.Year.ToString()"
-                                 Title="@r.Title" Summary="@r.Summary"
-                                 Tags="@r.Technologies" />
-                }
-            </div>
-        }
-    </div>
-</section>
+    @* Grid *@
+    @if (filtered.Count == 0)
+    {
+        <div class="py-16 text-center flex flex-col items-center gap-6" data-reveal>
+            <p class="ds-lead">@emptyText</p>
+            <a class="ds-btn ds-btn-iridescent" href="@Nav.Uri" @onclick="() => SetTech(null)" @onclick:preventDefault="true">
+                @resetText <span aria-hidden="true">→</span>
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="grid grid-cols-auto gap-6 mt-10">
+            @foreach (Realisation r in filtered)
+            {
+                bool hasCase = r.CaseStudy is not null;
+                string href = hasCase ? $"{LocalizedRoute.For("realisations")}/{r.Slug}" : r.LiveUrl;
+                <ProjectTile Href="@href"
+                             Target="@(hasCase ? null : "_blank")" Rel="@(hasCase ? null : "noopener")"
+                             Badge="@(hasCase ? caseBadge : null)"
+                             ImageUrl="@r.ImageUrl" ImageAlt="@r.ImageAlt"
+                             Type="@r.Type.ToString()" Year="@r.CompletedOn.Year.ToString()"
+                             Title="@r.Title" Summary="@r.Summary"
+                             Tags="@r.Technologies" />
+            }
+        </div>
+    }
+</PageSection>
 
 @code {
     private IReadOnlyList<Realisation> all = Array.Empty<Realisation>();
@@ -69,10 +73,11 @@
     private IReadOnlyList<string> allTechs = Array.Empty<string>();
     private string? activeTech;
 
-    private string seoTitle = "Réalisations — IdeaStud.io";
+    private string seoTitle = "Réalisations, IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/realisations";
     private string seoLocale = "fr_FR";
+    private string kickerText = "Projets";
     private string titleText = "Réalisations récentes.";
     private string lead = "";
     private string filterLabel = "Filtrer";
@@ -80,6 +85,7 @@
     private string allTechsLabel = "Toutes";
     private string emptyText = "Rien ne correspond à ce filtre.";
     private string resetText = "Voir tous les projets";
+    private string caseBadge = "Étude de cas";
     private List<string>? seoStructuredData;
 
     protected override async Task LoadLocalizedStringsAsync()
@@ -97,17 +103,19 @@
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr/realisations" : "https://ideastud.io/en/projects";
-        seoTitle = fr ? "Réalisations — IdeaStud.io" : "Projects — IdeaStud.io";
+        seoTitle = fr ? "Réalisations, IdeaStud.io" : "Projects, IdeaStud.io";
+        kickerText = fr ? "Projets" : "Projects";
         titleText = fr ? "Réalisations récentes." : "Recent projects.";
         lead = fr
-            ? "Une sélection de travaux récents — sites, apps, APIs, migrations cloud. Filtrez par technologie."
-            : "A selection of recent work — sites, apps, APIs, cloud migrations. Filter by technology.";
+            ? "Une sélection de travaux récents, sites, apps, APIs, migrations cloud. Filtrez par technologie."
+            : "A selection of recent work, sites, apps, APIs, cloud migrations. Filter by technology.";
         seoDescription = lead;
         filterLabel      = fr ? "Filtrer" : "Filter";
         filterAriaLabel  = fr ? "Filtrer par technologie" : "Filter by technology";
         allTechsLabel    = fr ? "Toutes" : "All";
         emptyText        = fr ? "Rien ne correspond à ce filtre." : "Nothing matches this filter.";
         resetText        = fr ? "Voir tous les projets" : "See all projects";
+        caseBadge        = fr ? "Étude de cas" : "Case study";
     }
 
     private void SetTech(string? tech)

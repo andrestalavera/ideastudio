@@ -18,7 +18,7 @@
   will-change: transform, opacity;
 
   // Apply the morph to inner so the backdrop underneath stays static.
-  &__inner {
+  &-inner {
     display: flex;
     flex-direction: column;
     gap: s.$s-4;
@@ -30,7 +30,7 @@
     transition: transform 120ms linear, opacity 120ms linear;
   }
 
-  &__actions {
+  &-actions {
     display: flex;
     flex-wrap: wrap;
     gap: s.$s-3;
@@ -40,7 +40,7 @@
 
 // Reduced motion: freeze the hero at progress 0.
 @media (prefers-reduced-motion: reduce) {
-  .ds-hero__inner {
+  .ds-hero-inner {
     transform: none !important;
     opacity: 1 !important;
   }

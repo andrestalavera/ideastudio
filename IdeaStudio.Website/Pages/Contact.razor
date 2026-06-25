@@ -1,0 +1,250 @@
+@page "/fr/contact"
+@page "/en/contact"
+@using System.Text.RegularExpressions
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject IContactService ContactService
+@inject IAnalyticsService Analytics
+@inject ILocalizedRoute LocalizedRoute
+@layout MainLayout
+
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         Author="Andrés Talavera"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@LocalizedRoute.Alternates("contact")"
+         SiteName="IdeaStud.io"
+         OgImage="https://ideastud.io/images/andres-talavera.jpeg" OgImageAlt="Andrés Talavera"
+         StructuredData="@seoStructuredData"
+         SpeakableSelectors="@speakable" />
+
+<Hero Kicker="@heroKicker" Title="@heroTitle" Lead="@heroLead" />
+
+<PageSection Width="narrow">
+    @if (status == Status.Success)
+    {
+        <div class="ds-form-status ds-form-status-ok" role="alert" data-reveal>
+            <p class="ds-form-status-title">@successTitle</p>
+            <p>@successBody</p>
+        </div>
+    }
+    else
+    {
+        @if (status == Status.Error)
+        {
+            <div class="ds-form-status ds-form-status-err" role="alert">
+                <p>@errorBody</p>
+            </div>
+        }
+
+        <form class="ds-form" @onsubmit="HandleSubmit" @onsubmit:preventDefault novalidate>
+            <div class="ds-field">
+                <label class="ds-field-label" for="cf-name">@nameLabel</label>
+                <input class="ds-field-input" id="cf-name" type="text" autocomplete="name"
+                       @bind="model.Name" @bind:event="oninput"
+                       aria-invalid="@Invalid(nameof(model.Name))"
+                       aria-describedby="@(HasError(nameof(model.Name)) ? "cf-name-err" : null)" />
+                @if (HasError(nameof(model.Name)))
+                {
+                    <span class="ds-field-error" id="cf-name-err">@errors[nameof(model.Name)]</span>
+                }
+            </div>
+
+            <div class="ds-field">
+                <label class="ds-field-label" for="cf-email">@emailLabel</label>
+                <input class="ds-field-input" id="cf-email" type="email" autocomplete="email"
+                       @bind="model.Email" @bind:event="oninput"
+                       aria-invalid="@Invalid(nameof(model.Email))"
+                       aria-describedby="@(HasError(nameof(model.Email)) ? "cf-email-err" : null)" />
+                @if (HasError(nameof(model.Email)))
+                {
+                    <span class="ds-field-error" id="cf-email-err">@errors[nameof(model.Email)]</span>
+                }
+            </div>
+
+            <div class="ds-field">
+                <label class="ds-field-label" for="cf-subject">@subjectLabel <span class="ds-field-optional">@optionalLabel</span></label>
+                <input class="ds-field-input" id="cf-subject" type="text"
+                       @bind="model.Subject" @bind:event="oninput" />
+            </div>
+
+            <div class="ds-field">
+                <label class="ds-field-label" for="cf-message">@messageLabel</label>
+                <textarea class="ds-field-input ds-field-textarea" id="cf-message" rows="6"
+                          @bind="model.Message" @bind:event="oninput"
+                          aria-invalid="@Invalid(nameof(model.Message))"
+                          aria-describedby="@(HasError(nameof(model.Message)) ? "cf-message-err" : null)"></textarea>
+                @if (HasError(nameof(model.Message)))
+                {
+                    <span class="ds-field-error" id="cf-message-err">@errors[nameof(model.Message)]</span>
+                }
+            </div>
+
+            <div class="ds-field ds-field-check">
+                <label class="ds-field-check">
+                    <input type="checkbox" @bind="model.Consent"
+                           aria-invalid="@Invalid(nameof(model.Consent))"
+                           aria-describedby="@(HasError(nameof(model.Consent)) ? "cf-consent-err" : null)" />
+                    <span>@consentLabel <a class="ds-link" href="@LocalizedRoute.For("privacy")">@privacyLinkLabel</a>.</span>
+                </label>
+                @if (HasError(nameof(model.Consent)))
+                {
+                    <span class="ds-field-error" id="cf-consent-err">@errors[nameof(model.Consent)]</span>
+                }
+            </div>
+
+            @* Honeypot, hidden from humans, tempting to bots. *@
+            <div class="ds-field ds-hp" aria-hidden="true">
+                <label for="cf-website">Website</label>
+                <input id="cf-website" type="text" tabindex="-1" autocomplete="off" @bind="model.Website" @bind:event="oninput" />
+            </div>
+
+            <div class="ds-form-actions">
+                <button class="ds-btn ds-btn-primary" type="submit" disabled="@(status == Status.Sending)">
+                    @(status == Status.Sending ? sendingLabel : submitLabel)
+                    <span aria-hidden="true">→</span>
+                </button>
+                <ButtonLink Href="https://calendly.com/andres-talavera/30min" External="true" Label="@bookLabel" />
+            </div>
+        </form>
+    }
+</PageSection>
+
+@code {
+    private enum Status { Idle, Sending, Success, Error }
+
+    private sealed class ContactModel
+    {
+        public string Name { get; set; } = "";
+        public string Email { get; set; } = "";
+        public string? Subject { get; set; }
+        public string Message { get; set; } = "";
+        public bool Consent { get; set; }
+        public string? Website { get; set; } // honeypot
+    }
+
+    private static readonly Regex EmailRegex =
+        new(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
+
+    private readonly ContactModel model = new();
+    private readonly Dictionary<string, string> errors = new();
+    private Status status = Status.Idle;
+
+    private string seoTitle = "Contact, IdeaStud.io";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/contact";
+    private string seoLocale = "fr_FR";
+    private string heroKicker = "Contact";
+    private string heroTitle = "Parlons de votre projet.";
+    private string heroLead = "";
+    private string nameLabel = "Nom";
+    private string emailLabel = "Email";
+    private string subjectLabel = "Sujet";
+    private string optionalLabel = "(facultatif)";
+    private string messageLabel = "Message";
+    private string consentLabel = "J'accepte que mes données soient utilisées pour me recontacter, conformément à la";
+    private string privacyLinkLabel = "politique de confidentialité";
+    private string submitLabel = "Envoyer le message";
+    private string sendingLabel = "Envoi…";
+    private string bookLabel = "Ou réserver un appel";
+    private string successTitle = "Message envoyé.";
+    private string successBody = "Merci, je vous réponds en général sous 24 h ouvrées.";
+    private string errorBody = "L'envoi a échoué. Réessayez, ou écrivez-moi directement à andres.talavera@ideastud.io.";
+    private string errRequired = "Ce champ est requis.";
+    private string errEmail = "Adresse email invalide.";
+    private string errMessage = "Quelques mots de plus, s'il vous plaît (10 caractères minimum).";
+    private string errConsent = "Merci de cocher cette case pour continuer.";
+    private List<string>? seoStructuredData;
+    private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
+
+    private bool HasError(string field) => errors.ContainsKey(field);
+    private string? Invalid(string field) => errors.ContainsKey(field) ? "true" : null;
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoCanonical = fr ? "https://ideastud.io/fr/contact" : "https://ideastud.io/en/contact";
+        seoTitle = fr ? "Contact, Andrés Talavera | IdeaStud.io" : "Contact, Andrés Talavera | IdeaStud.io";
+        heroTitle = fr ? "Parlons de votre projet." : "Let's talk about your project.";
+        heroLead = fr
+            ? "Décrivez votre besoin en quelques lignes, je reviens vers vous sous 24 h ouvrées avec une proposition ou des questions."
+            : "Tell me about your need in a few lines, I'll get back to you within one business day with a proposal or questions.";
+        seoDescription = heroLead;
+
+        nameLabel = fr ? "Nom" : "Name";
+        emailLabel = fr ? "Email" : "Email";
+        subjectLabel = fr ? "Sujet" : "Subject";
+        optionalLabel = fr ? "(facultatif)" : "(optional)";
+        messageLabel = fr ? "Message" : "Message";
+        consentLabel = fr
+            ? "J'accepte que mes données soient utilisées pour me recontacter, conformément à la"
+            : "I agree that my data may be used to get back to me, per the";
+        privacyLinkLabel = fr ? "politique de confidentialité" : "privacy policy";
+        submitLabel = fr ? "Envoyer le message" : "Send message";
+        sendingLabel = fr ? "Envoi…" : "Sending…";
+        bookLabel = fr ? "Ou réserver un appel" : "Or book a call";
+        successTitle = fr ? "Message envoyé." : "Message sent.";
+        successBody = fr
+            ? "Merci, je vous réponds en général sous 24 h ouvrées."
+            : "Thanks, I usually reply within one business day.";
+        errorBody = fr
+            ? "L'envoi a échoué. Réessayez, ou écrivez-moi directement à andres.talavera@ideastud.io."
+            : "Sending failed. Please try again, or email me directly at andres.talavera@ideastud.io.";
+        errRequired = fr ? "Ce champ est requis." : "This field is required.";
+        errEmail = fr ? "Adresse email invalide." : "Invalid email address.";
+        errMessage = fr ? "Quelques mots de plus, s'il vous plaît (10 caractères minimum)." : "A few more words, please (10 characters minimum).";
+        errConsent = fr ? "Merci de cocher cette case pour continuer." : "Please tick this box to continue.";
+
+        GenerateStructuredData();
+    }
+
+    private bool Validate()
+    {
+        errors.Clear();
+        if (string.IsNullOrWhiteSpace(model.Name)) errors[nameof(model.Name)] = errRequired;
+        if (string.IsNullOrWhiteSpace(model.Email)) errors[nameof(model.Email)] = errRequired;
+        else if (!EmailRegex.IsMatch(model.Email.Trim())) errors[nameof(model.Email)] = errEmail;
+        if (string.IsNullOrWhiteSpace(model.Message)) errors[nameof(model.Message)] = errRequired;
+        else if (model.Message.Trim().Length < 10) errors[nameof(model.Message)] = errMessage;
+        if (!model.Consent) errors[nameof(model.Consent)] = errConsent;
+        return errors.Count == 0;
+    }
+
+    private async Task HandleSubmit()
+    {
+        status = Status.Idle;
+
+        // Honeypot tripped, silently accept without sending.
+        if (!string.IsNullOrWhiteSpace(model.Website))
+        {
+            status = Status.Success;
+            return;
+        }
+
+        if (!Validate()) return;
+
+        status = Status.Sending;
+        bool ok = await ContactService.SendAsync(
+            new ContactRequest(model.Name.Trim(), model.Email.Trim(), model.Subject?.Trim(), model.Message.Trim()));
+        status = ok ? Status.Success : Status.Error;
+        if (ok)
+        {
+            await Analytics.TrackEventAsync("contact_submit");
+        }
+    }
+
+    private void GenerateStructuredData()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+
+        SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+            ("Contact", LocalizedRoute.For("contact", cultureCode)));
+
+        seoStructuredData = new List<string> { SchemaOrg.ToJsonLd(breadcrumb) };
+    }
+}

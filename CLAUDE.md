@@ -57,6 +57,8 @@ IdeaStudio.sln
 │   │   ├── Cv.razor                    #   /fr/cv  /en/resume (+ legacy aliases)
 │   │   ├── Services.razor              #   /fr/services  /en/services
 │   │   ├── ServiceDetail.razor         #   /{culture}/services/{slug}
+│   │   ├── Trainings.razor             #   /fr/formations  /en/training (catalogue hub)
+│   │   ├── TrainingDetail.razor        #   /{culture}/formations|training/{slug}
 │   │   ├── Realisations.razor          #   /fr/realisations  /en/projects (+ /portfolio aliases)
 │   │   ├── Privacy.razor               #   /fr/confidentialite  /en/privacy
 │   │   ├── Legal.razor                 #   /fr/mentions-legales  /en/legal
@@ -82,14 +84,13 @@ IdeaStudio.sln
 │   │   ├── i18n/                       # en.json, fr.json (UI strings)
 │   │   ├── fonts/                      # Inter Variable, JetBrains Mono — self-hosted
 │   │   ├── images/, *.pdf
-│   │   ├── index.html, llms.txt, ai.txt, robots.txt, sitemap.xml
-│   │   └── staticwebapp.config.json    # Azure SWA routing + 301 redirects
+│   │   └── index.html, llms.txt, ai.txt, robots.txt, sitemap.xml
 │   ├── scripts/copy-fonts.mjs          # Copies font assets out of node_modules
 │   ├── App.razor, MainLayout.razor, _Imports.razor
 │   ├── LoggerExtensions.cs             # [LoggerMessage] source-generated logging
 │   ├── Program.cs
 │   ├── package.json                    # esbuild + sass build pipeline
-│   └── fly.toml                        # Fly.io deploy (staged; SWA is currently live)
+│   └── fly.toml                        # Fly.io deploy (staged; Netlify is currently live)
 ├── IdeaStudio.Website.Tests/           # xUnit + Moq + Coverlet
 │   ├── BundleBudgetTests.cs            #   cinema.bundle.js gzipped ≤ 50 KB
 │   ├── HardcodedPathsTests.cs
@@ -171,3 +172,27 @@ dotnet workload install wasm-tools
 - Source of truth for visuals: `DESIGN.md` at the repo root (Techno-Iridescent V3) — mirrors `wwwroot/scss/tokens/`.
 - Dark-first; pure `#000` is banned. Iridescent gradient used as a single shared object across SCSS and the cinema runtime.
 - Type: Inter Variable + JetBrains Mono, self-hosted in `wwwroot/fonts/` (copied from npm by `scripts/copy-fonts.mjs`).
+
+### CSS architecture: utility-first (no BEM)
+
+- **Markup uses utility classes**, Tailwind-named but hand-rolled and token-backed,
+  defined in `wwwroot/scss/utilities/u-*.scss` (`u-layout`, `u-spacing`, `u-sizing`,
+  `u-text`, `u-border`, `u-color`, `u-effects`). Every value resolves to a theme CSS
+  custom property, so utilities like `bg-surface` / `text-muted` follow `[data-theme]`
+  automatically. Responsive variants are mobile-first (`sm:` ≥40rem … `xl:` ≥90rem);
+  state variants `hover:`. The fluid editorial sizes are semantic utilities
+  (`text-display`/`text-hero`/`text-title`/`text-lead`), not component classes.
+- **No BEM.** Class names never contain `--` or `__`. (CSS custom properties `--x`
+  are unaffected.)
+- **Primitives layer** — a deliberately small set of `.ds-*` classes remains for what
+  utilities cannot express: keyframes, `::before/::after` decoration, gradient-border
+  pills, the iridescent gradient, hover choreography (`.ds-link`, `.ds-tile`,
+  `.ds-list`), form focus/error states, the typographic rhythm system (`.ds-rhythm` +
+  `.ds-kicker`/`.ds-display`/`.ds-title`/`.ds-lead`), and JS/print hooks. **Never
+  rename these hooks**: JS selects `.ds-hero`, `.ds-timeline-row`, `#gl-canvas`,
+  toggles `is-revealed`/`is-active`, and reads `[data-reveal]`/`[data-scene]`/
+  `[data-motion]`/`[data-hero-state]`; print targets `.ds-masthead`/`.ds-footer`/
+  `.py-section`/`.ds-print-hidden`. The résumé-PDF subsystem (`netlify/functions/_lib/
+  render.mts` + `body.resume-pdf` in `utilities/_print.scss`) is self-contained.
+- When adding UI, prefer utilities; only add/extend a `.ds-*` primitive for genuinely
+  non-atomic CSS (state, pseudo-elements, keyframes, gradients).

@@ -8,20 +8,20 @@
 <div class="ds-culture-selector" @onkeydown="OnKeyDown">
     @if (isOpen)
     {
-        <button type="button" class="ds-culture-selector__backdrop" aria-hidden="true" @onclick="CloseMenu"></button>
+        <button type="button" class="ds-culture-selector-backdrop" aria-hidden="true" @onclick="CloseMenu"></button>
     }
-    <button class="ds-btn ds-btn--sm" type="button"
+    <button class="ds-btn ds-btn-sm" type="button"
         @onclick="ToggleOpen" aria-haspopup="menu" aria-expanded="@isOpen" aria-label="@changeLanguageText">
         <i class="fas fa-globe" aria-hidden="true"></i>
         <span>@GetCurrentCultureDisplayName()</span>
     </button>
     @if (isOpen)
     {
-        <ul class="ds-culture-selector__menu" role="menu">
+        <ul class="ds-culture-selector-menu" role="menu">
             @foreach (CultureInfo culture in CultureService.SupportedCultures)
             {
                 <li role="none">
-                    <button class="ds-culture-selector__item @(IsCurrentCulture(culture) ? "is-active" : "")"
+                    <button class="ds-culture-selector-item @(IsCurrentCulture(culture) ? "is-active" : "")"
                         type="button" role="menuitem"
                         @onclick="() => SelectCultureAsync(culture.Name)">
                         @GetCultureDisplayName(culture)

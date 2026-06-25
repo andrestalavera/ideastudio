@@ -1,8 +1,7 @@
 // base/_canvas.scss — WebGL canvas lives fixed behind all content.
-// When motion is reduced, it's hidden and replaced by a static body gradient
-// using the same palette tokens.
-
-@use '../tokens/colors' as c;
+// It is hidden — replaced by a calm static gradient on the same palette — when
+// motion is reduced/unavailable OR in light theme (light intentionally stays
+// quiet and un-techy; the cinema is a dark-mode signature).
 
 #gl-canvas {
   position: fixed;
@@ -14,18 +13,30 @@
   display: block;
 }
 
-// Static fallback for reduced motion / battery / no-WebGL.
 html[data-motion='reduced'] #gl-canvas,
-html[data-motion='off'] #gl-canvas {
+html[data-motion='off'] #gl-canvas,
+:root[data-theme='light'] #gl-canvas {
   display: none;
 }
 
+// Dark static fallback (reduced motion / battery / no-WebGL).
 html[data-motion='reduced'] body,
 html[data-motion='off'] body {
   background:
     radial-gradient(80% 60% at 30% 20%, rgba(0, 194, 212, 0.18), transparent 60%),
     radial-gradient(60% 50% at 70% 70%, rgba(45, 68, 255, 0.14), transparent 60%),
     radial-gradient(50% 40% at 20% 80%, rgba(255, 140, 26, 0.10), transparent 60%),
-    #{c.$bg-deep};
+    var(--bg-deep);
+  background-attachment: fixed;
+}
+
+// Light theme: a very subtle iridescent wash over the light page. Declared
+// after the dark fallback so it wins when both motion-reduced and light apply.
+:root[data-theme='light'] body {
+  background:
+    radial-gradient(80% 60% at 30% 18%, rgba(0, 122, 135, 0.08), transparent 60%),
+    radial-gradient(55% 50% at 78% 68%, rgba(45, 68, 255, 0.05), transparent 60%),
+    radial-gradient(50% 45% at 18% 88%, rgba(255, 140, 26, 0.05), transparent 60%),
+    var(--bg-deep);
   background-attachment: fixed;
 }

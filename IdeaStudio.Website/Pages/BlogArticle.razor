@@ -1,0 +1,161 @@
+@page "/fr/blog/{slug}"
+@page "/en/blog/{slug}"
+@using System.Globalization
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
+@layout MainLayout
+
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         Author="Andrés Talavera"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@seoHreflang"
+         SiteName="IdeaStud.io"
+         OgImage="https://ideastud.io/images/andres-talavera.jpeg" OgImageAlt="Andrés Talavera"
+         OgType="article"
+         StructuredData="@seoStructuredData"
+         SpeakableSelectors="@speakable" />
+
+@if (post is not null)
+{
+    <Hero Kicker="@kicker" Lead="@post.Summary">
+        <ChildContent>@post.Title</ChildContent>
+    </Hero>
+
+    <PageSection Rhythm="section" Bordered="false" Width="narrow">
+        <p class="ds-blogpost-meta" data-reveal>@FormatDate(post.Date) · @post.ReadingMinutes @minLabel</p>
+        <article class="ds-longform ds-blogpost-body" data-reveal>@bodyHtml</article>
+        <TagList Tags="@post.Tags" Class="mt-chapter" />
+        <p class="mt-chapter" data-reveal>
+            <a class="ds-link" href="@LocalizedRoute.For("blog")">
+                @backLabel <span class="ds-link-arrow" aria-hidden="true">→</span>
+            </a>
+        </p>
+    </PageSection>
+}
+else if (loaded)
+{
+    <Hero Kicker="Blog" Title="@notFoundTitle" Lead="@notFoundLead">
+        <Actions>
+            <ButtonLink Href="@LocalizedRoute.For("blog")" Variant="primary" Label="@backLabel" />
+        </Actions>
+    </Hero>
+}
+
+@code {
+    [Parameter] public string Slug { get; set; } = "";
+
+    private BlogPost? post;
+    private bool loaded;
+    private string? loadedSlug;
+    private MarkupString bodyHtml;
+
+    private string seoTitle = "Blog — IdeaStud.io";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/blog";
+    private string seoLocale = "fr_FR";
+    private string kicker = "Blog";
+    private string minLabel = "min";
+    private string backLabel = "Tous les articles";
+    private string notFoundTitle = "Article introuvable.";
+    private string notFoundLead = "";
+    private Dictionary<string, string>? seoHreflang;
+    private List<string>? seoStructuredData;
+    private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        await LoadAsync();
+        StateHasChanged();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (loadedSlug is not null && loadedSlug != Slug)
+        {
+            await LoadAsync();
+            StateHasChanged();
+        }
+    }
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        minLabel = fr ? "min de lecture" : "min read";
+        backLabel = fr ? "Tous les articles" : "All articles";
+        notFoundTitle = fr ? "Article introuvable." : "Article not found.";
+        notFoundLead = fr ? "Cet article n'existe pas ou a été déplacé." : "This article doesn't exist or has moved.";
+    }
+
+    private async Task LoadAsync()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        string cultureCode = fr ? "fr" : "en";
+        IReadOnlyList<BlogPost> all = await Content.GetBlogPostsAsync(CultureService.CurrentCulture.Name);
+        post = all.FirstOrDefault(p => string.Equals(p.Slug, Slug, StringComparison.OrdinalIgnoreCase));
+        loaded = true;
+        loadedSlug = Slug;
+
+        string hub = LocalizedRoute.For("blog", cultureCode);
+        if (post is not null)
+        {
+            bodyHtml = (MarkupString)Markdig.Markdown.ToHtml(post.Body);
+            seoTitle = $"{post.Title} | IdeaStud.io";
+            seoDescription = post.Summary;
+            seoCanonical = $"https://ideastud.io{hub}/{post.Slug}";
+
+            string frHub = LocalizedRoute.For("blog", "fr");
+            string enHub = LocalizedRoute.For("blog", "en");
+            seoHreflang = new Dictionary<string, string>
+            {
+                ["fr"] = $"https://ideastud.io{frHub}/{post.Slug}",
+                ["en"] = $"https://ideastud.io{enHub}/{post.Slug}",
+                ["x-default"] = $"https://ideastud.io{frHub}/{post.Slug}",
+            };
+
+            SchemaOrg.Person author = new(
+                Name: "Andrés Talavera",
+                JobTitle: fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
+                Url: "https://ideastud.io",
+                Image: "https://ideastud.io/images/andres-talavera.jpeg");
+
+            SchemaOrg.BlogPosting article = new(
+                Headline: post.Title,
+                Description: post.Summary,
+                Url: seoCanonical,
+                DatePublished: post.Date,
+                Author: author,
+                Image: "https://ideastud.io/images/andres-talavera.jpeg",
+                Keywords: post.Tags.ToArray(),
+                InLanguage: cultureCode);
+
+            SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
+                "https://ideastud.io",
+                (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+                ("Blog", hub),
+                (post.Title, $"{hub}/{post.Slug}"));
+
+            seoStructuredData = new List<string> { SchemaOrg.ToJsonLd(article), SchemaOrg.ToJsonLd(breadcrumb) };
+        }
+        else
+        {
+            seoTitle = fr ? "Article introuvable | IdeaStud.io" : "Article not found | IdeaStud.io";
+            seoCanonical = $"https://ideastud.io{hub}";
+            seoStructuredData = null;
+        }
+    }
+
+    private string FormatDate(string iso)
+    {
+        if (DateTime.TryParse(iso, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime d))
+        {
+            return d.ToString("d MMMM yyyy", CultureService.CurrentCulture);
+        }
+        return iso;
+    }
+}

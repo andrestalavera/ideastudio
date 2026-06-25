@@ -1,0 +1,134 @@
+// components/_form.scss — contact form fields, validation states, status banners.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-form {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-5;
+  max-width: 640px;
+}
+
+.ds-field {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-2;
+
+  &-label {
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: c.$fg-muted;
+  }
+
+  &-optional {
+    text-transform: none;
+    letter-spacing: 0;
+    color: c.$fg-faint;
+  }
+
+  &-input {
+    inline-size: 100%;
+    padding-inline: s.$s-4;
+    padding-block: s.$s-3;
+    background: c.$bg-surface;
+    border: 1px solid c.$rule;
+    border-radius: 10px;
+    color: c.$fg;
+    font-family: t.$font-sans;
+    font-size: t.$fs-body;
+    transition: border-color 160ms var(--ease-out),
+                box-shadow 160ms var(--ease-out);
+
+    &::placeholder { color: c.$fg-faint; }
+    &:hover { border-color: rgba(0, 194, 212, 0.4); }
+
+    &:focus-visible {
+      outline: none;
+      border-color: c.$ir-duck;
+      box-shadow: 0 0 0 3px c.$ring;
+    }
+
+    &[aria-invalid='true'] {
+      border-color: c.$danger;
+    }
+  }
+
+  &-textarea {
+    resize: vertical;
+    min-block-size: 8rem;
+    line-height: 1.6;
+  }
+
+  &-error {
+    font-size: t.$fs-small;
+    color: c.$danger;
+  }
+
+  &-check {
+    display: flex;
+    align-items: flex-start;
+    gap: s.$s-3;
+    cursor: pointer;
+    font-size: t.$fs-small;
+    line-height: 1.5;
+    color: c.$fg-muted;
+
+    input {
+      flex: none;
+      inline-size: 1.1rem;
+      block-size: 1.1rem;
+      margin-block-start: 0.15em;
+      accent-color: c.$ir-duck;
+    }
+  }
+}
+
+.ds-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: s.$s-3;
+  margin-block-start: s.$s-3;
+}
+
+// Honeypot — present in the DOM and out of the tab order, off-screen for humans.
+.ds-hp {
+  position: absolute !important;
+  inset-inline-start: -9999px !important;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+}
+
+.ds-form-status {
+  padding: s.$s-5;
+  border-radius: 12px;
+  border: 1px solid c.$rule;
+
+  &-title {
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    color: c.$fg;
+  }
+
+  p {
+    margin: 0;
+    max-width: 60ch;
+    color: c.$fg-muted;
+  }
+
+  &-ok {
+    background: linear-gradient(c.$bg-surface, c.$bg-surface) padding-box,
+                c.$gradient-iridescent border-box;
+    border: 1px solid transparent;
+  }
+
+  &-err {
+    border-color: c.$danger;
+    p { color: c.$fg; }
+  }
+}

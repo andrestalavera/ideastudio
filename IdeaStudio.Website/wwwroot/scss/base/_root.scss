@@ -1,30 +1,40 @@
-// base/_root.scss — mirror SCSS tokens into CSS custom properties so the
-// WebGL passes can read the same palette (via getComputedStyle) and stay
-// in lockstep with SCSS.
+// base/_root.scss — emit the themeable palette as CSS custom properties so
+// both components (via the var()-backed tokens in tokens/_colors.scss) and the
+// WebGL passes (via getComputedStyle) read one source of truth. One block per
+// theme: bare :root defaults to dark (no-JS / pre-hydration), and the explicit
+// [data-theme] blocks are what the no-flash bootstrap script in index.html sets
+// before first paint.
 
+@use 'sass:map';
 @use '../tokens/colors' as c;
 @use '../tokens/type' as t;
 @use '../tokens/motion' as m;
 
+@mixin palette($name) {
+  @each $key, $value in map.get(c.$themes, $name) {
+    --#{$key}: #{$value};
+  }
+
+  @if $name == 'light' {
+    color-scheme: light;
+  } @else {
+    color-scheme: dark;
+  }
+}
+
 :root {
-  // Palette
-  --bg-void:    #{c.$bg-void};
-  --bg-deep:    #{c.$bg-deep};
-  --bg-surface: #{c.$bg-surface};
-  --bg-raised:  #{c.$bg-raised};
+  @include palette('dark');
 
-  --fg:       #{c.$fg};
-  --fg-muted: #{c.$fg-muted};
-  --fg-faint: #{c.$fg-faint};
-
-  --ir-duck:  #{c.$ir-duck};
-  --ir-blue:  #{c.$ir-blue};
-  --ir-amber: #{c.$ir-amber};
-  --ir-pink:  #{c.$ir-pink};
-
-  --rule:  #{c.$rule};
-  --ring:  #{c.$ring};
-  --glass: #{c.$glass};
+  // The single iridescent gradient — rebuilt from the themed accent vars so it
+  // follows whichever [data-theme] is active.
+  --gradient-iridescent: conic-gradient(
+    from 140deg at 50% 50%,
+    var(--ir-duck),
+    var(--ir-blue),
+    var(--ir-amber),
+    var(--ir-pink),
+    var(--ir-duck)
+  );
 
   // Type
   --font-sans: #{t.$font-sans};
@@ -36,6 +46,8 @@
   --ease-smooth: #{m.$ease-smooth};
   --ease-bounce: #{m.$ease-bounce};
 
-  color-scheme: dark;
   accent-color: var(--ir-duck);
 }
+
+:root[data-theme='dark']  { @include palette('dark'); }
+:root[data-theme='light'] { @include palette('light'); }

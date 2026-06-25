@@ -20,7 +20,7 @@
   container-type: inline-size;
   container-name: masthead;
 
-  &__pill {
+  &-pill {
     display: flex;
     align-items: center;
     gap: s.$s-4;
@@ -35,23 +35,22 @@
     backdrop-filter: blur(14px);
     pointer-events: auto;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-    opacity: 0;
-    transform: translateY(-12px);
-    transition: opacity 320ms var(--ease-out),
-                transform 320ms var(--ease-out);
+    // Always visible — the navigation is persistent from the top of the page.
+    opacity: 1;
+    transform: none;
   }
 
-  &__wordmark {
+  &-wordmark {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-small;
     letter-spacing: -0.01em;
     color: c.$fg;
 
-    .ds-masthead__dot { color: c.$ir-duck; }
+    .ds-masthead-dot { color: c.$ir-duck; }
   }
 
-  &__nav {
+  &-nav {
     display: flex;
     gap: s.$s-4;
     font-family: t.$font-sans;
@@ -68,7 +67,7 @@
     }
   }
 
-  &__cta {
+  &-cta {
     padding-inline: s.$s-4;
     padding-block: s.$s-2;
     background: c.$ir-duck;
@@ -83,7 +82,7 @@
     }
   }
 
-  &__toggle {
+  &-toggle {
     display: none;
     align-items: center;
     justify-content: center;
@@ -103,7 +102,31 @@
     &[aria-expanded='true'] { background: c.$glass; }
   }
 
-  &__backdrop {
+  // Light/dark theme toggle — always visible in the pill.
+  &-theme {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: c.$fg;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 160ms var(--ease-out),
+                color 160ms var(--ease-out);
+
+    &:hover {
+      background: c.$glass;
+      color: c.$ir-duck;
+    }
+  }
+
+  &-backdrop {
     position: fixed;
     inset: 0;
     z-index: 80;
@@ -116,7 +139,7 @@
     pointer-events: auto;
   }
 
-  &__mobile {
+  &-mobile {
     position: fixed;
     inset-block-start: calc(#{s.$s-4} + 3.5rem);
     inset-inline: s.$s-4;
@@ -165,21 +188,38 @@ html {
   --hero-progress: 0;
 }
 
-// While hero dominates — pill invisible / compressed.
-html[data-hero-state='hero'] .ds-masthead__pill,
-html[data-hero-state='morphing'] .ds-masthead__pill {
-  opacity: calc(var(--hero-progress) * 1.25 - 0.15);
-  transform: translateY(calc((1 - var(--hero-progress)) * -22px))
-             scale(calc(0.88 + var(--hero-progress) * 0.12));
-}
-
-html[data-hero-state='pill'] .ds-masthead__pill {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
+// The navigation pill stays visible at all scroll positions (always-on menu).
+// (Previously it faded in from the hero state via --hero-progress.)
 
 // Container-query compacting.
 @container masthead (max-width: 40rem) {
-  .ds-masthead__nav { display: none; }
-  .ds-masthead__toggle { display: inline-flex; }
+  .ds-masthead-nav { display: none; }
+  .ds-masthead-theme { display: none; }   // moves into the mobile menu
+  .ds-masthead-toggle { display: inline-flex; }
+}
+
+// Theme row inside the mobile dropdown — styled like the mobile nav links.
+.ds-masthead-mobile-theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  inline-size: 100%;
+  padding-inline: s.$s-4;
+  padding-block: s.$s-3;
+  border-radius: 12px;
+  background: transparent;
+  border: 0;
+  color: c.$fg;
+  font-family: t.$font-sans;
+  font-size: t.$fs-small;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 160ms var(--ease-out),
+              color 160ms var(--ease-out);
+
+  &:hover,
+  &:focus-visible {
+    background: c.$glass;
+    color: c.$ir-duck;
+  }
 }

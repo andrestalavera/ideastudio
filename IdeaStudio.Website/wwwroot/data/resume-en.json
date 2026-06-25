@@ -1,9 +1,9 @@
 ﻿{
   "personalInformation": {
     "name": "Andrés Talavera",
-    "title": "Expert .NET Developer & Azure Consultant",
+    "title": ".NET & Azure consultant, tech lead and trainer",
     "hero": "Let's shape the future of your business together.",
-    "introduction": "Experienced .NET developer and Azure consultant with 10+ years of expertise in building modern web applications and cloud solutions.",
+    "introduction": "Experienced .NET developer and Azure consultant with 15+ years of expertise in building modern web applications and cloud solutions.",
     "languages": {
       "EN": "English",
       "FR": "Français",
@@ -34,7 +34,7 @@
       "title": "Your Trainer",
       "paragraphs": [
         "Experienced .NET and Azure trainer for developers and companies. ",
-        "LinkedIn Learning paragraphs creator focusing on Microsoft technologies.",
+        "LinkedIn Learning content creator focusing on Microsoft technologies.",
         "Proven track record training teams in France, Belgium, and Luxembourg.",
         "Expert in .NET 9, Blazor Server, and Azure cloud solutions."
       ],
@@ -44,7 +44,7 @@
       "link": "#training"
     },
     {
-      "title": "Passionnated",
+      "title": "Passionate",
       "paragraphs": [
         "Dedicated Microsoft technology expert staying current with latest trends.",
         "Committed to delivering innovative .NET solutions meeting client needs.",
@@ -164,12 +164,12 @@
     },
     {
       "title": ".NET Developer",
-      "company": "Medtech/CEESA",
+      "company": "MedTech/CEESA",
       "mode": "Freelance",
       "startDate": "2024-09-01",
       "endDate": "2025-05-01",
       "locations": [
-        "Bruxelles, Belgium",
+        "Brussels, Belgium",
         "Paris, France",
         "Remote"
       ],
@@ -227,7 +227,7 @@
       "company": "TRIGO",
       "mode": "Freelance",
       "startDate": "2024-02-01",
-      "endDate": "2024-07-01",
+      "endDate": "2024-06-01",
       "locations": [
         "Lyon, France",
         "Remote"
@@ -276,7 +276,7 @@
       "endDate": "2024-02-01",
       "locations": [
         "Boulogne-Billancourt, France",
-        "Remote"
+        "Hybrid"
       ],
       "description": [
         "Active Assurances is a leading provider of automobile insurance products and services in France. They were looking to improve internal processes and redesign some projects performing .NET migrations, security updates, or some automations.",
@@ -294,7 +294,7 @@
         "Handled Azure subscription migration and FinOps.",
         "Improved application security and upgraded certain projects to .NET 8.",
         "Implemented a database migration system to replicate data across different environments.",
-        "Cross-stack guidance for the teams: Razor/CSHTML (ASP.NET Framework) with Bootstrap/jQuery, React, Angular, and Blazor — including styling fixes and coaching on Bootstrap, Material, MudBlazor, and custom SCSS.",
+        "Cross-stack guidance for the teams: Razor/CSHTML (ASP.NET Framework) with Bootstrap/jQuery, React, Angular, and Blazor, including styling fixes and coaching on Bootstrap, Material, MudBlazor, and custom SCSS.",
         "Built the Azure Pipelines factory from a single existing pipeline (FTP-based deployments at the start) up to 25 reusable YAML templates and 10 pipelines deploying to 2 environments.",
         "Migrated on-premise applications to Azure and split/reorganized Git repositories, catching up 5 to 6 years of industrialization debt.",
         "Azure FinOps: removed orphan resources, optimized database costs, enabled automatic scaling across all resources, and consolidated App Service Plans based on actual needs.",
@@ -354,7 +354,7 @@
       "title": "Founder - freelance .NET developer, techlead and trainer",
       "company": "IdeaStudio",
       "mode": "Self-employed",
-      "startDate": "2015-07-01",
+      "startDate": "2017-05-01",
       "endDate": "2023-07-01",
       "locations": [
         "France",
@@ -808,8 +808,8 @@
       "startDate": "2019-08-01",
       "endDate": "2019-12-01",
       "locations": [
-        "Reuil-Malmaison, France",
-        "Remote"
+        "Rueil-Malmaison, France",
+        "Hybrid"
       ],
       "description": [
         "Cegid is a leading provider of cloud business management solutions for finance, human resources, CPAs, and the retail and entrepreneurial sectors.",
@@ -1146,11 +1146,11 @@
         "France"
       ],
       "description": [
-        "Andrés Talavera is my personal brand, where I offer freelance .NET development and training services.",
-        "I provided my first training sessions on .NET, C#, and Azure at institutions like Supinfo and NextFormation.",
-        "I focused on delivering high-quality training, sharing my knowledge, and helping developers enhance their skills.",
-        "I was involved in the research and development of a web application for displaying promotion codes, enhancing the user experience and driving customer engagement.",
-        "I developed the first version of the logistics application for Charl'Antoine, developed an e-commerce site for SIEHR (lecoinsiehr.com), and developed several websites for real estate agencies."
+        "Andrés Talavera is my personal brand: freelance .NET development and training.",
+        "My first .NET, C# and Azure training sessions, in schools and centres (Supinfo, NextFormation).",
+        "Mobile apps: a logistics / kitchen-delivery app for Charl'Antoine (with Novatech).",
+        "Web: a promo-code app (R&D), a dating site (astro-privée), a social network (check.fm), the SIEHR e-commerce site (lecoinsiehr.com), and sites for SMEs and real-estate agencies (Aubade).",
+        "Technologies: Windows Phone / Windows 10 Mobile, ASP.NET, HTML."
       ],
       "skills": [
         "UWP",

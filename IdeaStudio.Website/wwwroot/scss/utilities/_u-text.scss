@@ -1,0 +1,47 @@
+// utilities/_u-text.scss — typography utilities (size / weight / family / wrap).
+// text-subtitle bundles its canonical leading + tracking (the editorial fluid
+// size always travels with them).
+
+@use '../tokens/type' as t;
+@use '../tokens/colors' as c;
+
+// Smart composites: the card heading + body roles, repeated on every card.
+// One class each instead of five atoms.
+.card-title {
+  font-family: t.$font-sans;
+  font-weight: 600;
+  font-size: t.$fs-subtitle;
+  line-height: t.$lh-title;
+  letter-spacing: -0.015em;
+  color: c.$fg;
+  margin: 0;
+}
+.card-text {
+  font-size: t.$fs-body;
+  line-height: t.$lh-body;
+  color: c.$fg-muted;
+  margin: 0;
+}
+// Mono meta label (dates, key-facts labels, the availability pill).
+.label-mono {
+  font-size: t.$fs-mono;
+  color: c.$fg-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.text-base     { font-size: t.$fs-body; }
+.text-mono     { font-size: t.$fs-mono; }
+.text-subtitle { font-size: t.$fs-subtitle; line-height: t.$lh-title; letter-spacing: -0.015em; }
+
+.font-sans     { font-family: t.$font-sans; }
+.font-semibold { font-weight: 600; }
+
+.leading-relaxed { line-height: t.$lh-body; }
+.leading-normal  { line-height: 1.45; }
+.tracking-wide   { letter-spacing: 0.04em; }
+.uppercase       { text-transform: uppercase; }
+.text-center     { text-align: center; }
+
+.break-words      { overflow-wrap: anywhere; }
+.whitespace-nowrap { white-space: nowrap; }

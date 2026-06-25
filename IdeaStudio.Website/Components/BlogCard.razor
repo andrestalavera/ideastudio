@@ -1,0 +1,37 @@
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inject ILocalizedRoute LocalizedRoute
+@inject ICultureService CultureService
+
+@* BlogCard — one blog post as a clickable card. Shared by the Home teaser and
+   the Blog list so they never drift. Heading level is caller-controlled. *@
+
+<Card Href="@($"{LocalizedRoute.For("blog")}/{Post.Slug}")" data-reveal>
+    <p class="label-mono m-0">@Post.Date · @Post.ReadingMinutes @minLabel</p>
+    @if (Heading == "h2")
+    {
+        <h2 class="card-title">@Post.Title</h2>
+    }
+    else
+    {
+        <h3 class="card-title">@Post.Title</h3>
+    }
+    <p class="card-text">@Post.Summary</p>
+    @if (ShowTags)
+    {
+        <TagList Tags="@Post.Tags" />
+    }
+    <span class="ds-link mt-4">@readLabel <span class="ds-link-arrow" aria-hidden="true">→</span></span>
+</Card>
+
+@code {
+    [Parameter, EditorRequired] public BlogPost Post { get; set; } = default!;
+    /// <summary>Heading tag for the title: h3 (default, under a section h2) or h2.</summary>
+    [Parameter] public string Heading { get; set; } = "h3";
+    /// <summary>Show the post's tag chips (used on the Blog list).</summary>
+    [Parameter] public bool ShowTags { get; set; }
+
+    private bool Fr => CultureService.CurrentCulture.Name.StartsWith("fr");
+    private string minLabel => Fr ? "min de lecture" : "min read";
+    private string readLabel => Fr ? "Lire l'article" : "Read the article";
+}

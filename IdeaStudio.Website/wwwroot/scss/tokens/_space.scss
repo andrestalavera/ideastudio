@@ -12,17 +12,52 @@ $s-9:  6rem;
 $s-10: 8rem;
 $s-11: 12rem;
 
-// Container widths
+// Container widths. Content is capped at 1200px on large screens (section
+// backgrounds still span full-bleed); only the inner column is constrained.
 $container-narrow: 720px;
 $container:        1200px;
-$container-wide:   1440px;
+$container-wide:   1200px;
 
-// Section / chapter vertical rhythm (fluid)
-$py-section: clamp(5rem, 10vw, 9rem);
-$py-chapter: clamp(7rem, 14vw, 14rem);
+// Section / chapter vertical rhythm (fluid). Tuned for generous, premium
+// breathing room (epic.net-style whitespace) without sprawling on mobile.
+$py-section: clamp(6rem, 11vw, 10.5rem);
+$py-chapter: clamp(7.5rem, 14vw, 14rem);
 
 // Breakpoints (container queries preferred; media queries only at page frame)
 $bp-s:  24rem;   // 384px — small phones
 $bp-m:  40rem;   // 640px — tablet portrait
 $bp-l:  64rem;   // 1024px — tablet landscape / small laptop
 $bp-xl: 90rem;   // 1440px — large desktop
+
+// --- Utility-layer maps -----------------------------------------------------
+// These drive the generated utility classes in utilities/*. Mobile-first,
+// min-width prefixes (Tailwind convention): base applies everywhere, sm: at
+// ≥40rem, md: ≥48rem, lg: ≥64rem, xl: ≥90rem.
+@use 'sass:map';
+
+$breakpoints: (
+  'sm': 40rem,
+  'md': 48rem,
+  'lg': 64rem,
+  'xl': 90rem,
+);
+
+// Spacing scale used by p-*/m-*/gap-* (Tailwind rem values, token-aligned).
+$space: (
+  '0':   0,
+  'px':  1px,
+  '1':   $s-1,   // .25rem
+  '2':   $s-2,   // .5rem
+  '3':   $s-3,   // .75rem
+  '4':   $s-4,   // 1rem
+  '5':   1.25rem,
+  '6':   $s-5,   // 1.5rem
+  '8':   $s-6,   // 2rem
+  '10':  2.5rem,
+  '12':  $s-7,   // 3rem
+  '16':  $s-8,   // 4rem
+  '20':  5rem,
+  '24':  $s-9,   // 6rem
+  '32':  $s-10,  // 8rem
+  '48':  $s-11,  // 12rem
+);

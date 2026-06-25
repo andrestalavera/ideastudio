@@ -1,0 +1,41 @@
+// utilities/_u-layout.scss — display, flex, grid, position.
+// Lean: only the classes actually used in markup (see NoBemClassNamesTests +
+// the CSS-budget test). Add a class here the moment markup needs it — never
+// pre-generate a matrix of unused variants.
+
+@use '../tokens/space' as s;
+
+.flex        { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid        { display: grid; }
+
+.flex-col  { flex-direction: column; }
+.flex-row  { flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+
+.items-center { align-items: center; }
+.items-start  { align-items: flex-start; }
+
+.relative { position: relative; }
+
+// Smart composite: a horizontal, wrapping, vertically-centred row — the
+// ubiquitous button/chip row. One class instead of four.
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: s.$s-3;
+  flex-wrap: wrap;
+}
+
+.grid-cols-1    { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-auto { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+
+// Responsive grid steps (mobile-first), the only responsive utilities in use.
+@media (min-width: 40rem) {
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 64rem) {
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

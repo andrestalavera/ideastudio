@@ -7,20 +7,20 @@
 @inherits LocalizedComponent
 @inject IContentGateway Content
 @inject ILocalizedRoute LocalizedRoute
+@inject ISlugTranslator SlugTranslator
 @layout MainLayout
 
 <SeoHead Title="@seoTitle" Description="@seoDescription"
          CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@seoHreflang"
          SiteName="IdeaStud.io"
          StructuredData="@seoStructuredData" />
 
 @if (service is null)
 {
-    <Hero Kicker="— 404" Title="@notFoundTitle" Lead="@notFoundLead">
+    <Hero Kicker="404" Title="@notFoundTitle" Lead="@notFoundLead">
         <Actions>
-            <a class="ds-btn ds-btn--primary" href="@LocalizedRoute.For("services.hub")">
-                @backText <span aria-hidden="true">→</span>
-            </a>
+            <ButtonLink Href="@LocalizedRoute.For("services.hub")" Variant="primary" Label="@backText" />
         </Actions>
     </Hero>
 }
@@ -29,91 +29,79 @@ else
     <Hero Kicker="@service.Kicker" Title="@service.Title" Lead="@service.Tagline" />
 
     @* Summary *@
-    <section class="ds-section">
-        <div class="ds-container ds-container--narrow">
-            <p class="ds-lead" data-reveal>@service.Summary</p>
-        </div>
-    </section>
+    <PageSection Rhythm="section" Bordered="false" Width="narrow">
+        <p class="ds-lead" data-reveal>@service.Summary</p>
+    </PageSection>
 
     @* Highlights *@
     @if (service.Highlights is { Count: > 0 })
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container ds-container--narrow">
-                <ChapterBand Kicker="@highlightsKicker" Title="@highlightsTitle" />
-                <ul class="ds-highlight-list" style="margin-block-start: 2rem;">
-                    @for (int i = 0; i < service.Highlights.Count; i++)
-                    {
-                        <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
-                            <span class="ds-highlight__mark" aria-hidden="true"></span>
-                            <span>@service.Highlights[i]</span>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </section>
+        <PageSection Width="narrow">
+            <ChapterBand Kicker="@highlightsKicker" Title="@highlightsTitle" />
+            <ul class="ds-highlight-list mt-8">
+                @for (int i = 0; i < service.Highlights.Count; i++)
+                {
+                    <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
+                        <span class="ds-highlight-mark" aria-hidden="true"></span>
+                        <span>@service.Highlights[i]</span>
+                    </li>
+                }
+            </ul>
+        </PageSection>
     }
 
     @* Use cases *@
     @if (service.UseCases is { Count: > 0 })
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
-                <ChapterBand Kicker="@useCaseKicker" Title="@useCaseTitle" />
-                <div class="ds-grid ds-grid--2" style="margin-block-start: 2.5rem;">
-                    @for (int i = 0; i < service.UseCases.Count; i++)
-                    {
-                        UseCase uc = service.UseCases[i];
-                        <div class="ds-card" data-reveal style="@($"--reveal-step:{i}")">
-                            <h3 class="ds-card__title">@uc.Title</h3>
-                            <p class="ds-card__body">@uc.Description</p>
-                        </div>
-                    }
-                </div>
+        <PageSection>
+            <ChapterBand Kicker="@useCaseKicker" Title="@useCaseTitle" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
+                @for (int i = 0; i < service.UseCases.Count; i++)
+                {
+                    UseCase uc = service.UseCases[i];
+                    <Card data-reveal style="@($"--reveal-step:{i}")">
+                        <h3 class="card-title">@uc.Title</h3>
+                        <p class="card-text">@uc.Description</p>
+                    </Card>
+                }
             </div>
-        </section>
+        </PageSection>
     }
 
-    @* Training centres (formateur only) — shared editorial block with the CV page *@
+    @* Training centres (formateur only), shared editorial block with the CV page *@
     @if (IsTrainerService(service) && centers.Count > 0)
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
-                <ChapterBand Kicker="@centersKicker" Title="@centersTitle" />
-                <p class="ds-lead" data-reveal style="margin-block-start: 1.5rem;">@centersIntro</p>
-                <div style="margin-block-start: 2rem;">
-                    <TeachList Centers="@centers" />
-                </div>
+        <PageSection>
+            <ChapterBand Kicker="@centersKicker" Title="@centersTitle" />
+            <p class="ds-lead mt-6" data-reveal>@centersIntro</p>
+            <div class="mt-8">
+                <TeachList Centers="@centers" />
             </div>
-        </section>
+        </PageSection>
     }
 
-    @* FAQ — expanded editorial Q&A *@
+    @* FAQ, expanded editorial Q&A *@
     @if (service.Faq is { Count: > 0 })
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container ds-container--narrow">
-                <ChapterBand Kicker="@faqKicker" Title="@faqTitle" />
-                <div style="margin-block-start: 2.5rem;">
-                    @for (int i = 0; i < service.Faq.Count; i++)
-                    {
-                        FaqEntry f = service.Faq[i];
-                        <QABlock Kicker="@($"Q {i + 1:D2}")" Question="@f.Question" Answer="@f.Answer" Step="@i" />
-                    }
-                </div>
+        <PageSection Width="narrow">
+            <ChapterBand Kicker="@faqKicker" Title="@faqTitle" />
+            <div class="mt-10">
+                @for (int i = 0; i < service.Faq.Count; i++)
+                {
+                    FaqEntry f = service.Faq[i];
+                    <QABlock Kicker="@($"Q {i + 1:D2}")" Question="@f.Question" Answer="@f.Answer" Step="@i" />
+                }
             </div>
-        </section>
+        </PageSection>
     }
 
     @* Training catalogue (formateur only) *@
     @if (IsTrainerService(service) && trainings is { Count: > 0 })
     {
-        <section class="ds-section ds-section--chapter ds-section--bordered">
-            <div class="ds-container">
-                <ChapterBand Kicker="@catalogueKicker" Title="@catalogueTitle" />
-                <TrainingCatalogue Trainings="@trainings" />
-            </div>
-        </section>
+        <PageSection>
+            <ChapterBand Kicker="@catalogueKicker" Title="@catalogueTitle" />
+            <TrainingCatalogue Trainings="@trainings" />
+        </PageSection>
     }
 }
 
@@ -123,10 +111,11 @@ else
     private ServiceModel? service;
     private IReadOnlyList<Training> trainings = Array.Empty<Training>();
     private IReadOnlyList<TrainingCenter> centers = Array.Empty<TrainingCenter>();
-    private string seoTitle = "Service — IdeaStud.io";
+    private string seoTitle = "Service, IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/services";
     private string seoLocale = "fr_FR";
+    private Dictionary<string, string>? seoHreflang;
     private string highlightsKicker = "Le périmètre";
     private string highlightsTitle = "Ce que la mission couvre.";
     private string useCaseKicker = "Cas d'usage";
@@ -188,9 +177,27 @@ else
         if (service is not null)
         {
             bool fr = culture.StartsWith("fr");
-            seoTitle = $"{service.Title} — IdeaStud.io";
+            seoTitle = $"{service.Title}, IdeaStud.io";
             seoDescription = string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline;
             seoCanonical = $"https://ideastud.io{LocalizedRoute.For("services.hub", fr ? "fr" : "en")}/{service.Slug}";
+
+            // Hreflang, service slugs differ per culture, so translate the slug.
+            string cur = fr ? "fr" : "en";
+            string other = fr ? "en" : "fr";
+            string? otherSlug = await SlugTranslator.TranslateServiceSlugAsync(service.Slug, cur, other);
+            if (otherSlug is not null)
+            {
+                string frSlug = fr ? service.Slug : otherSlug;
+                string enSlug = fr ? otherSlug : service.Slug;
+                string frUrl = $"https://ideastud.io{LocalizedRoute.For("services.hub", "fr")}/{frSlug}";
+                string enUrl = $"https://ideastud.io{LocalizedRoute.For("services.hub", "en")}/{enSlug}";
+                seoHreflang = new Dictionary<string, string>
+                {
+                    ["fr"] = frUrl,
+                    ["en"] = enUrl,
+                    ["x-default"] = frUrl,
+                };
+            }
 
             if (IsTrainerService(service))
             {

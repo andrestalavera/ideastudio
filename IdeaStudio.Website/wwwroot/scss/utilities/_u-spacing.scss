@@ -1,0 +1,30 @@
+// utilities/_u-spacing.scss — padding / margin / gap (logical-property aware).
+// Lean: only the steps in use. Semantic fluid rhythm (py-section/py-chapter/
+// mt-chapter) lives here too.
+
+@use '../tokens/space' as s;
+
+.gap-2 { gap: s.$s-2; }   // .5rem
+.gap-3 { gap: s.$s-3; }   // .75rem
+.gap-4 { gap: s.$s-4; }   // 1rem
+.gap-6 { gap: s.$s-5; }   // 1.5rem
+.gap-8 { gap: s.$s-6; }   // 2rem
+
+.m-0     { margin: 0; }
+.mx-auto { margin-inline: auto; }
+.ml-auto { margin-inline-start: auto; }
+.mb-6    { margin-block-end: s.$s-5; }   // 1.5rem
+.mt-4    { margin-block-start: s.$s-4; } // 1rem
+.mt-6    { margin-block-start: s.$s-5; } // 1.5rem
+.mt-8    { margin-block-start: s.$s-6; } // 2rem
+.mt-10   { margin-block-start: 2.5rem; }
+.mt-12   { margin-block-start: s.$s-7; } // 3rem
+.mt-chapter { margin-block-start: clamp(2rem, 4vw, 3rem); }
+
+.p-8  { padding: s.$s-6; }          // 2rem
+.py-16 { padding-block: s.$s-8; }   // 4rem
+.px-3 { padding-inline: s.$s-3; }   // .75rem
+.px-6 { padding-inline: s.$s-5; }   // 1.5rem
+.py-1 { padding-block: s.$s-1; }    // .25rem
+.py-section { padding-block: s.$py-section; }
+.py-chapter { padding-block: s.$py-chapter; }

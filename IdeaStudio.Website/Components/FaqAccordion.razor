@@ -1,0 +1,24 @@
+@* FaqAccordion, accessible disclosure list built on native <details>/<summary>.
+   Keyboard-operable and screen-reader-friendly out of the box; the chevron and
+   open/close animation are pure CSS (see components/_faq.scss) and respect
+   prefers-reduced-motion. Used on the FAQ page. *@
+
+<div class="ds-faq-accordion">
+    @for (int i = 0; i < Items.Count; i++)
+    {
+        (string q, string a) = Items[i];
+        <details class="ds-faq-item" data-reveal style="@($"--reveal-step:{i}")">
+            <summary class="ds-faq-item-q">
+                <span>@q</span>
+                <span class="ds-faq-item-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="ds-faq-item-a">
+                <p>@a</p>
+            </div>
+        </details>
+    }
+</div>
+
+@code {
+    [Parameter] public IReadOnlyList<(string Q, string A)> Items { get; set; } = Array.Empty<(string, string)>();
+}

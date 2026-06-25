@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IdeaStud.io — Blog</title>
+    <link>https://ideastud.io/fr/blog</link>
+    <description>Notes et retours d'expérience sur .NET, Azure, l'IA dans le code et le cloud souverain, par Andrés Talavera.</description>
+    <language>fr</language>
+    <atom:link href="https://ideastud.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Coder avec l'IA sans créer de dette technique</title>
+      <link>https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique</link>
+      <guid>https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique</guid>
+      <pubDate>20 Jun 2026 09:00:00 GMT</pubDate>
+      <description>Les assistants de code font gagner un temps réel, à condition de garder l'humain dans la boucle. Voici la méthode que j'applique sur mes missions.</description>
+    </item>
+    <item>
+      <title>Cloud souverain : héberger en Europe sans sacrifier l'expérience</title>
+      <link>https://ideastud.io/fr/blog/cloud-souverain-europe</link>
+      <guid>https://ideastud.io/fr/blog/cloud-souverain-europe</guid>
+      <pubDate>10 Jun 2026 09:00:00 GMT</pubDate>
+      <description>Azure n'est pas la seule option. Tour d'horizon des hébergeurs européens (Clever Cloud, Infomaniak) et de quand les choisir.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,39 @@
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject ILocalizedRoute LocalizedRoute
+
+<SeoHead Title="@seoTitle" Description="@lead" NoIndex="true" Locale="@seoLocale" />
+
+<Hero Kicker="404" Title="@titleText" Lead="@lead">
+    <Actions>
+        <div class="row">
+            <ButtonLink Href="@LocalizedRoute.For("home")" Variant="primary" Label="@homeText" />
+            <ButtonLink Href="@LocalizedRoute.For("services.hub")" Label="@servicesText" />
+            <ButtonLink Href="@LocalizedRoute.For("realisations")" Label="@workText" />
+        </div>
+    </Actions>
+</Hero>
+
+@code {
+    private string seoTitle = "Page introuvable (404)";
+    private string seoLocale = "fr_FR";
+    private string titleText = "Page introuvable.";
+    private string lead = "";
+    private string homeText = "Accueil";
+    private string servicesText = "Services";
+    private string workText = "Réalisations";
+
+    protected override void LoadTexts()
+    {
+        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoTitle = fr ? "Page introuvable (404) | IdeaStud.io" : "Page not found (404) | IdeaStud.io";
+        titleText = fr ? "Page introuvable." : "Page not found.";
+        lead = fr
+            ? "Cette page n'existe pas ou a été déplacée. Voici par où continuer."
+            : "This page doesn't exist or has moved. Here's where to go next.";
+        homeText = fr ? "Accueil" : "Home";
+        servicesText = fr ? "Services" : "Services";
+        workText = fr ? "Réalisations" : "Projects";
+    }
+}

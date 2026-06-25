@@ -1,0 +1,17 @@
+// components/_blog.scss — blog article (post) styles.
+// The blog list is now <BlogCard> (Components/BlogCard.razor), shared with the
+// Home teaser, so the old .ds-bloglist styles are gone.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-blogpost-meta {
+  font-family: t.$font-mono;
+  font-size: t.$fs-mono;
+  letter-spacing: 0.04em;
+  color: c.$fg-muted;
+  margin-block-end: s.$s-4;
+}
+
+.ds-blogpost-body { margin-block-start: s.$s-5; }

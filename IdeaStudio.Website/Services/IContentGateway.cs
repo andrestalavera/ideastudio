@@ -23,6 +23,12 @@ public interface IContentGateway
 
     /// <summary>Returns the training centers list for the given culture.</summary>
     Task<IReadOnlyList<TrainingCenter>> GetTrainingCentersAsync(string culture, CancellationToken ct = default);
+
+    /// <summary>Returns client/colleague testimonials (verbatim, language-agnostic), sorted by display order.</summary>
+    Task<IReadOnlyList<Testimonial>> GetTestimonialsAsync(CancellationToken ct = default);
+
+    /// <summary>Returns the blog posts for the given culture, newest first.</summary>
+    Task<IReadOnlyList<BlogPost>> GetBlogPostsAsync(string culture, CancellationToken ct = default);
 }
 
 public sealed class JsonContentGateway(ILazyLoadingService loader) : IContentGateway
@@ -59,6 +65,19 @@ public sealed class JsonContentGateway(ILazyLoadingService loader) : IContentGat
         string lang = Normalize(culture);
         List<TrainingCenter>? items = await loader.LoadDataAsync<List<TrainingCenter>>($"data/training-centers-{lang}.json", ct);
         return items is null ? Array.Empty<TrainingCenter>() : items;
+    }
+
+    public async Task<IReadOnlyList<Testimonial>> GetTestimonialsAsync(CancellationToken ct = default)
+    {
+        List<Testimonial>? items = await loader.LoadDataAsync<List<Testimonial>>("data/testimonials.json", ct);
+        return items is null ? Array.Empty<Testimonial>() : items.OrderBy(t => t.DisplayOrder).ToArray();
+    }
+
+    public async Task<IReadOnlyList<BlogPost>> GetBlogPostsAsync(string culture, CancellationToken ct = default)
+    {
+        string lang = Normalize(culture);
+        List<BlogPost>? items = await loader.LoadDataAsync<List<BlogPost>>($"data/blog-{lang}.json", ct);
+        return items is null ? Array.Empty<BlogPost>() : items.OrderByDescending(p => p.Date).ToArray();
     }
 
     private static string Normalize(string culture) =>

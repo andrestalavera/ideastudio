@@ -1,0 +1,10 @@
+// utilities/_u-sizing.scss — width + named container maxima.
+
+@use '../tokens/space' as s;
+
+.w-full   { width: 100%; }
+.min-w-0  { min-width: 0; }
+
+.max-w-content { max-width: s.$container; }        // 1200 — the main cap
+.max-w-narrow  { max-width: s.$container-narrow; } // 720
+.max-w-wide    { max-width: s.$container-wide; }   // 1200

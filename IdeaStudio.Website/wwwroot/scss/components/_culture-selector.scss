@@ -10,7 +10,7 @@
   position: relative;
   display: inline-flex;
 
-  // Trigger inherits .ds-btn--sm look but stays compact in the pill.
+  // Trigger inherits .ds-btn-sm look but stays compact in the pill.
   > .ds-btn {
     padding-inline: s.$s-3;
     padding-block: s.$s-2;
@@ -25,7 +25,7 @@
     &[aria-expanded='true'] { background: c.$glass; }
   }
 
-  &__backdrop {
+  &-backdrop {
     position: fixed;
     inset: 0;
     z-index: 90;
@@ -35,7 +35,7 @@
     appearance: none;
   }
 
-  &__menu {
+  &-menu {
     position: absolute;
     inset-block-start: calc(100% + #{s.$s-2});
     inset-inline-end: 0;
@@ -53,7 +53,7 @@
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
   }
 
-  &__item {
+  &-item {
     display: block;
     inline-size: 100%;
     padding-inline: s.$s-3;

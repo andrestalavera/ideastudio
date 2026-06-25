@@ -7,6 +7,7 @@
 @inject ISceneTheme SceneTheme
 @inject IConsentService Consent
 @inject IAnalyticsService Analytics
+@inject Microsoft.JSInterop.IJSRuntime JS
 @implements IDisposable
 
 <CascadingValue Value="this">
@@ -79,11 +80,19 @@
         UpdateCtaVisibility(e.Location);
         StateHasChanged();
         _ = Analytics.TrackPageViewAsync(e.Location);
+        _ = UpdateHtmlLangAsync();
     }
 
     private void OnConsentChanged()
     {
         _ = Analytics.SetConsentAsync(Consent.IsGranted);
+    }
+
+    private async Task UpdateHtmlLangAsync()
+    {
+        try { await JS.InvokeVoidAsync("ideastudioLang.apply"); }
+        catch (Microsoft.JSInterop.JSException) { /* not ready */ }
+        catch (Microsoft.JSInterop.JSDisconnectedException) { /* gone */ }
     }
 
     private void UpdateCtaVisibility(string uri)

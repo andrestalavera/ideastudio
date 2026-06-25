@@ -1,0 +1,216 @@
+@page "/fr/formations"
+@page "/en/training"
+@using IdeaStudio.Website.Components
+@using IdeaStudio.Website.Models
+@using IdeaStudio.Website.Services
+@inherits LocalizedComponent
+@inject IContentGateway Content
+@inject ILocalizedRoute LocalizedRoute
+@layout MainLayout
+
+<SeoHead Title="@seoTitle" Description="@seoDescription"
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@LocalizedRoute.Alternates("training")"
+         SiteName="IdeaStud.io"
+         OgImage="https://ideastud.io/images/andres-talavera.jpeg"
+         OgImageAlt="Andrés Talavera - .NET & Azure"
+         StructuredData="@seoStructuredData"
+         SpeakableSelectors="@speakable" />
+
+<Hero Kicker="@heroKicker" Title="@heroTitle" Lead="@heroLead">
+    <Actions>
+        <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary" External="true" Label="@bookLabel" />
+    </Actions>
+</Hero>
+
+@* Why train with me *@
+<PageSection>
+    <ChapterBand Kicker="@whyKicker" Title="@whyTitle" />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-chapter">
+        @for (int i = 0; i < whyPoints.Count; i++)
+        {
+            (string t, string b) = whyPoints[i];
+            <Card data-reveal style="@($"--reveal-step:{i}")">
+                <h3 class="card-title">@t</h3>
+                <p class="card-text">@b</p>
+            </Card>
+        }
+    </div>
+</PageSection>
+
+@* Catalogue, grouped by family/track *@
+@foreach (string category in OrderedCategories)
+{
+    IReadOnlyList<Training> inCat = trainings.Where(t => t.Category == category).ToList();
+    if (inCat.Count == 0) { continue; }
+    <PageSection>
+        <ChapterBand Kicker="@catalogueKicker" Title="@category" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-chapter">
+            @foreach (Training t in inCat)
+            {
+                <Card Href="@($"{LocalizedRoute.For("training")}/{t.Slug}")" data-reveal>
+                    <TagList Tags="@MetaChips(t)" />
+                    <h3 class="card-title">@t.Title</h3>
+                    <p class="card-text">@t.Summary</p>
+                    <span class="ds-link mt-4">@detailCta <span class="ds-link-arrow" aria-hidden="true">→</span></span>
+                </Card>
+            }
+        </div>
+    </PageSection>
+}
+
+@* CTA *@
+<PageSection Rhythm="section">
+    <ChapterBand Kicker="@ctaKicker" Title="@ctaTitle" Lead="@ctaLead" />
+    <div class="row mt-chapter" data-reveal>
+        <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary" External="true" Label="@bookLabel" />
+        <ButtonLink Href="@LocalizedRoute.For("contact")" Label="@contactLabel" />
+    </div>
+</PageSection>
+
+@code {
+    private IReadOnlyList<Training> trainings = Array.Empty<Training>();
+
+    // Display order of the four training families.
+    private static readonly string[] OrderedCategories =
+        { ".NET", "Azure", "Vibe coding & IA", "Architecture & DevOps" };
+
+    private string seoTitle = "Formations .NET, Azure & IA | IdeaStud.io";
+    private string seoDescription = "";
+    private string seoCanonical = "https://ideastud.io/fr/formations";
+    private string seoLocale = "fr_FR";
+    private List<string> speakable = new() { ".ds-hero .ds-lead" };
+    private List<string>? seoStructuredData;
+
+    private string heroKicker = "Formations";
+    private string heroTitle = "Montez vos équipes en compétence.";
+    private string heroLead = "";
+    private string whyKicker = "Pourquoi moi";
+    private string whyTitle = "Un formateur qui code encore.";
+    private List<(string, string)> whyPoints = new();
+    private string catalogueKicker = "Catalogue";
+    private string detailCta = "Voir le programme";
+    private string ctaKicker = "Sur-mesure";
+    private string ctaTitle = "Construisons votre programme.";
+    private string ctaLead = "";
+    private string bookLabel = "Réserver un échange";
+    private string contactLabel = "Me contacter";
+
+    protected override async Task LoadLocalizedStringsAsync()
+    {
+        await base.LoadLocalizedStringsAsync();
+        trainings = await Content.GetTrainingsAsync(CultureService.CurrentCulture.Name);
+        GenerateStructuredData();
+        StateHasChanged();
+    }
+
+    private bool Fr => CultureService.CurrentCulture.Name.StartsWith("fr");
+
+    protected override void LoadTexts()
+    {
+        bool fr = Fr;
+        seoLocale = fr ? "fr_FR" : "en_US";
+        seoCanonical = fr ? "https://ideastud.io/fr/formations" : "https://ideastud.io/en/training";
+        seoTitle = fr
+            ? "Formations .NET, Azure & IA pour vos équipes | IdeaStud.io"
+            : "Training: .NET, Azure & AI for your teams | IdeaStud.io";
+        seoDescription = fr
+            ? "20 modules de formation .NET, Azure, IA et architecture, par un consultant qui code au quotidien. 3 000+ heures dispensées. En présentiel, classe virtuelle ou intra sur-mesure."
+            : "20 hands-on training modules across .NET, Azure, AI and architecture, by a consultant who codes every day. 3,000+ hours delivered. On-site, virtual classroom or bespoke in-house.";
+
+        heroKicker = fr ? "Formations" : "Training";
+        heroTitle  = fr ? "Montez vos équipes en compétence." : "Level up your team.";
+        heroLead   = fr
+            ? "20 modules .NET, Azure, IA et architecture, animés par un consultant qui code au quotidien. À prendre tels quels ou à recomposer pour votre équipe."
+            : "20 modules across .NET, Azure, AI and architecture, taught by a consultant who codes every day. Take them as-is or recompose them for your team.";
+
+        whyTitle = fr ? "Un formateur qui code encore." : "A trainer who still ships code.";
+        whyPoints = fr
+            ? new() {
+                ("Toujours à jour", "À jour sur .NET 10, Azure et les usages récents de l'IA."),
+                ("3 000+ heures", "Plus de 3 000 heures dispensées, du développeur junior au techlead en quête de recul."),
+                ("Du concret", "Des exemples tirés de vrais projets en production, directement réutilisables."),
+                ("Sur-mesure ou catalogue", "20 modules prêts à l'emploi, ou un programme recomposé pour votre contexte."),
+            }
+            : new() {
+                ("Always current", "Up to date on .NET 10, Azure and today's AI practices."),
+                ("3,000+ hours", "Over 3,000 hours delivered, from junior developers to tech leads stepping back for perspective."),
+                ("Real-world", "Examples drawn from real production projects, ready to reuse."),
+                ("Bespoke or catalogue", "20 ready-to-run modules, or a program recomposed for your context."),
+            };
+
+        catalogueKicker = fr ? "Catalogue" : "Catalogue";
+        detailCta = fr ? "Voir le programme" : "View the program";
+
+        ctaKicker = fr ? "Sur-mesure" : "Bespoke";
+        ctaTitle  = fr ? "Construisons votre programme." : "Let's build your program.";
+        ctaLead   = fr
+            ? "Un besoin précis, une équipe, un calendrier ? Composons ensemble le parcours qui colle à vos objectifs."
+            : "A specific need, a team, a timeline? Let's compose the path that fits your goals.";
+        bookLabel    = fr ? "Réserver un échange" : "Book a call";
+        contactLabel = fr ? "Me contacter" : "Contact me";
+    }
+
+    private IReadOnlyList<string> MetaChips(Training t)
+    {
+        List<string> chips = new();
+        if (t.DurationDays is int d) { chips.Add(Fr ? $"{d} j" : $"{d}d"); }
+        if (!string.IsNullOrWhiteSpace(t.Level)) { chips.Add(LevelLabel(t.Level)); }
+        return chips;
+    }
+
+    private string LevelLabel(string level) => level.ToLowerInvariant() switch
+    {
+        "foundation" => Fr ? "Fondamentaux" : "Foundation",
+        "intermediate" => Fr ? "Intermédiaire" : "Intermediate",
+        "advanced" => Fr ? "Avancé" : "Advanced",
+        _ => level,
+    };
+
+    private void GenerateStructuredData()
+    {
+        bool fr = Fr;
+        string cultureCode = fr ? "fr" : "en";
+        string hub = $"https://ideastud.io{LocalizedRoute.For("training", cultureCode)}";
+
+        SchemaOrg.Person person = new(
+            Name: "Andrés Talavera",
+            JobTitle: fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
+            Description: seoDescription,
+            Url: "https://ideastud.io",
+            Image: "https://ideastud.io/images/andres-talavera.jpeg",
+            SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
+            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "Software Training" },
+            Address: null,
+            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io"));
+
+        List<string> blocks = new();
+
+        // One Course per module — strong SEO/GEO signal.
+        foreach (Training t in trainings)
+        {
+            SchemaOrg.Course course = new(
+                Name: t.Title,
+                Description: t.Summary,
+                Provider: person,
+                CourseCode: t.Slug,
+                EducationalLevel: t.Level,
+                TimeRequired: t.DurationDays is int d ? $"P{d}D" : null,
+                Url: $"{hub}/{t.Slug}");
+            blocks.Add(SchemaOrg.ToJsonLd(course));
+        }
+
+        SchemaOrg.ListItem[] items = trainings.Select((t, i) => new SchemaOrg.ListItem(
+            Position: i + 1, Name: t.Title, Item: $"{hub}/{t.Slug}")).ToArray();
+        blocks.Add(SchemaOrg.ToJsonLd(new SchemaOrg.ItemList(
+            Name: fr ? "Catalogue de formations" : "Training catalogue",
+            Description: seoDescription, NumberOfItems: items.Length, ItemListElement: items)));
+
+        blocks.Add(SchemaOrg.ToJsonLd(SchemaOrg.CreateBreadcrumb(
+            "https://ideastud.io",
+            (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
+            (fr ? "Formations" : "Training", LocalizedRoute.For("training", cultureCode)))));
+
+        seoStructuredData = blocks;
+    }
+}

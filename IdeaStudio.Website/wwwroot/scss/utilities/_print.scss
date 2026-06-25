@@ -1,8 +1,7 @@
 ﻿// utilities/_print.scss — print + resume-PDF styles.
 //
 // Two concerns live here:
-//   1. Site browser-print utilities (.ds-print-hidden / .ds-print-only) used
-//      by Razor components (Masthead, Footer, CtaBand…).
+//   1. The .ds-print-hidden utility (Masthead, Footer, CtaBand…).
 //   2. Resume PDF stylesheet — applied when /css/styles.min.css is loaded
 //      by the standalone HTML produced in netlify/functions/_lib/render.mts.
 //      The body there carries class="resume-pdf" so all rules are scoped
@@ -20,21 +19,22 @@
   .ds-masthead,
   .ds-progress,
   .ds-cursor,
-  .ds-cta-band,
   .ds-footer,
   .ds-print-hidden {
     display: none !important;
   }
 
-  .ds-section {
+  .py-section,
+  .py-chapter {
     padding-block: 1.5rem !important;
   }
+
+  // Stop any element overflowing the printed page. Scoped to print only — on
+  // screen this universal !important was overriding every container's max-width.
+  * { max-width: 100% !important; }
 }
 
-* { max-width: 100% !important; }
-
 .ds-print-hidden { @media print { display: none !important; } }
-.ds-print-only   { display: none !important; @media print { display: initial !important; } }
 
 
 // ---- Resume PDF (Puppeteer-rendered standalone HTML) ----------------------
@@ -99,36 +99,36 @@ body.resume-pdf {
 
   // Long experiences may span more than one printed page; keep section
   // blocks together to avoid awkward splits.
-  .exp__section { page-break-inside: avoid; }
-  .exp__head    { page-break-after: avoid; }
+  .exp-section { page-break-inside: avoid; }
+  .exp-head    { page-break-after: avoid; }
 
   // ---- Cover ----
-  .cover__top {
+  .cover-top {
     display: grid;
     grid-template-columns: 90px 1fr;
     gap: 16px;
     align-items: center;
     margin-bottom: 12px;
   }
-  .cover__photo {
+  .cover-photo {
     width: 90px;
     height: 90px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid $pdf-accent;
   }
-  .cover__name {
+  .cover-name {
     font-size: 19pt;
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.05;
   }
-  .cover__title {
+  .cover-title {
     font-size: 9pt;
     color: $pdf-muted;
     margin-top: 4px;
   }
-  .cover__hero {
+  .cover-hero {
     font-size: 13pt;
     font-weight: 600;
     line-height: 1.15;
@@ -136,14 +136,14 @@ body.resume-pdf {
     color: #0a2328;
     margin: 10px 0 8px;
   }
-  .cover__intro {
+  .cover-intro {
     font-size: 8.5pt;
     color: $pdf-body;
     line-height: 1.45;
     margin-bottom: 10px;
   }
 
-  .cover__meta {
+  .cover-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -152,7 +152,7 @@ body.resume-pdf {
     padding-top: 8px;
     border-top: 1px solid $pdf-rule;
   }
-  .cover__lang {
+  .cover-lang {
     display: inline-block;
     padding: 2px 8px;
     border: 1px solid $pdf-accent-bd;
@@ -162,7 +162,7 @@ body.resume-pdf {
     color: $pdf-label;
     letter-spacing: 0.04em;
   }
-  .cover__contact {
+  .cover-contact {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -185,12 +185,12 @@ body.resume-pdf {
     border-left: 2px solid $pdf-accent;
     padding: 1px 0 1px 10px;
   }
-  .about-card__title {
+  .about-card-title {
     @include pdf-tag(7.5pt, $pdf-label, 0.1em);
     font-weight: 600;
     margin-bottom: 3px;
   }
-  .about-card__body p {
+  .about-card-body p {
     font-size: 8pt;
     line-height: 1.25;
     color: $pdf-body;
@@ -198,34 +198,34 @@ body.resume-pdf {
   }
 
   // ---- Experience pages ----
-  .exp__head {
+  .exp-head {
     display: grid;
     grid-template-columns: 56px 1fr auto;
     gap: 12px;
     align-items: center;
     margin-bottom: 10px;
   }
-  .exp__logo {
+  .exp-logo {
     width: 56px;
     height: 56px;
     object-fit: contain;
     background: #fff;
     padding: 3px;
   }
-  .exp__title {
+  .exp-title {
     font-size: 13pt;
     font-weight: 600;
     letter-spacing: -0.02em;
   }
-  .exp__company {
+  .exp-company {
     font-size: 8pt;
     color: $pdf-label;
     font-weight: 500;
     margin-top: 2px;
   }
-  .exp__index { @include pdf-tag(6pt, $pdf-muted, 0.1em); }
+  .exp-index { @include pdf-tag(6pt, $pdf-muted, 0.1em); }
 
-  .exp__meta {
+  .exp-meta {
     display: flex;
     flex-wrap: wrap;
     @include pdf-tag(6pt);
@@ -234,27 +234,27 @@ body.resume-pdf {
     border-bottom: 1px solid $pdf-rule;
     padding: 4px 0;
   }
-  .exp__meta-item {
+  .exp-meta-item {
     margin-right: 14px;
 
     &::before { content: "-"; color: $pdf-accent; margin-right: 4px; }
   }
 
-  .exp__description p {
+  .exp-description p {
     font-size: 8pt;
     line-height: 1.25;
     color: $pdf-body;
     margin-bottom: 6px;
   }
 
-  .exp__section { margin-top: 10px; }
-  .exp__section-title {
+  .exp-section { margin-top: 10px; }
+  .exp-section-title {
     @include pdf-tag(7.5pt, $pdf-label, 0.18em);
     font-weight: 500;
     margin-bottom: 6px;
   }
 
-  .exp__list {
+  .exp-list {
     list-style: none;
 
     li {
@@ -275,7 +275,7 @@ body.resume-pdf {
     }
   }
 
-  .exp__skills {
+  .exp-skills {
     margin-top: auto;
     padding-top: 8px;
   }
@@ -292,7 +292,7 @@ body.resume-pdf {
   }
 
   // Footer signature on each experience page
-  .page__footer {
+  .page-footer {
     margin-top: 10px;
     padding-top: 8px;
     border-top: 1px solid $pdf-rule-soft;

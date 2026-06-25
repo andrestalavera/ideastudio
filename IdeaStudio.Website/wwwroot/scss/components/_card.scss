@@ -1,34 +1,20 @@
-// components/_card.scss — baseline card primitive for About + Training + misc.
+// components/_card.scss — link-card affordance.
+// The card surface itself is utility-classed (see Components/Card.razor); this
+// only adds the hover feedback for clickable cards, which utilities can't do.
 
 @use '../tokens/colors' as c;
-@use '../tokens/space' as s;
-@use '../tokens/type' as t;
 
-.ds-card {
-  background: c.$bg-surface;
-  border: 1px solid c.$rule;
-  border-radius: 12px;
-  padding: s.$s-6;
-  color: c.$fg;
-  display: flex;
-  flex-direction: column;
-  gap: s.$s-3;
-  min-inline-size: 0;
-  overflow-wrap: anywhere;
+.ds-card-link {
+  text-decoration: none;
+  transition: transform 240ms var(--ease-out), border-color 240ms var(--ease-out);
 
-  &__title {
-    font-family: t.$font-sans;
-    font-weight: 600;
-    font-size: t.$fs-subtitle;
-    letter-spacing: -0.015em;
-    color: c.$fg;
-    margin: 0;
+  &:hover {
+    transform: translateY(-4px);
+    border-color: c.$ir-duck;
   }
+}
 
-  &__body {
-    font-size: t.$fs-body;
-    line-height: t.$lh-body;
-    color: c.$fg-muted;
-    margin: 0;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .ds-card-link { transition: none; }
+  .ds-card-link:hover { transform: none; }
 }

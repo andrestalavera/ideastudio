@@ -10,7 +10,7 @@
   DOTNET_VERSION              = "10.0.203"
   DOTNET_NOLOGO               = "1"
   DOTNET_CLI_TELEMETRY_OPTOUT = "1"
-  NODE_VERSION                = "20"
+  NODE_VERSION                = "22"
   NETLIFY_USE_PNPM            = "false"
 
 # Long-cache the framework + asset bundles (filenames are fingerprinted).
@@ -38,6 +38,9 @@
     Referrer-Policy           = "strict-origin-when-cross-origin"
     Permissions-Policy        = "geolocation=(), microphone=(), camera=()"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    # Blazor WASM needs 'wasm-unsafe-eval'; inline theme/lang/gtag scripts need 'unsafe-inline'.
+    # Allowed third parties: Google Analytics/Tag Manager, Microsoft Clarity, Meta Pixel, Calendly.
+    Content-Security-Policy   = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://connect.facebook.net https://assets.calendly.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.clarity.ms https://www.facebook.com; frame-src https://calendly.com https://assets.calendly.com; form-action 'self'; frame-ancestors 'none'"
 
 # Netlify Functions (TypeScript .mts, ES modules).
 # resume-pdf renders a PDF on demand from wwwroot/data/resume-{culture}.json
@@ -57,6 +60,24 @@
   from   = "/resume.pdf"
   to     = "/.netlify/functions/resume-pdf?culture=en"
   status = 200
+
+# Legacy / canonical 301s (ported from the old Azure SWA config; Netlify-only now).
+[[redirects]]
+  from   = "/"
+  to     = "/fr"
+  status = 301
+[[redirects]]
+  from   = "/andres-talavera-resume"
+  to     = "/fr/cv"
+  status = 301
+[[redirects]]
+  from   = "/privacy"
+  to     = "/fr/confidentialite"
+  status = 301
+[[redirects]]
+  from   = "/legal"
+  to     = "/fr/mentions-legales"
+  status = 301
 
 # Pre-render-friendly: Netlify serves static files first, then falls back
 # to index.html so client-side routes resolve.

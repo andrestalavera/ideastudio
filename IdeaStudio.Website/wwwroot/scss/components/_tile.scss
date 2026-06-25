@@ -10,8 +10,11 @@
   gap: s.$s-3;
   color: c.$fg;
   text-decoration: none;
+  // epic.net-style lively card: the whole tile lifts on hover.
+  transition: transform 320ms var(--ease-out);
 
-  &__media {
+  &-media {
+    position: relative;
     aspect-ratio: 16 / 10;
     border-radius: 12px;
     overflow: hidden;
@@ -23,9 +26,45 @@
       object-fit: cover;
       transition: transform 400ms var(--ease-out);
     }
+
+    // No screenshot (e.g. private platform) — a branded, text-forward panel
+    // instead of an empty box.
+    &-placeholder {
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(120% 120% at 0% 0%, rgba(0, 194, 212, 0.18), transparent 55%),
+        radial-gradient(120% 120% at 100% 100%, rgba(45, 68, 255, 0.16), transparent 55%),
+        c.$bg-surface;
+    }
   }
 
-  &__meta {
+  &-placeholder-mark {
+    font-family: t.$font-mono;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    letter-spacing: 0.05em;
+    color: c.$ir-duck;
+    opacity: 0.9;
+  }
+
+  &-badge {
+    position: absolute;
+    inset-block-start: s.$s-3;
+    inset-inline-start: s.$s-3;
+    padding-inline: s.$s-3;
+    padding-block: 0.2rem;
+    border-radius: 999px;
+    background: c.$ir-duck;
+    color: c.$bg-void;
+    font-family: t.$font-mono;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &-meta {
     display: flex;
     gap: s.$s-3;
     font-family: t.$font-mono;
@@ -34,7 +73,7 @@
     letter-spacing: 0.05em;
   }
 
-  &__title {
+  &-title {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-subtitle;
@@ -44,7 +83,7 @@
     transition: color 240ms var(--ease-out);
   }
 
-  &__summary {
+  &-summary {
     font-size: t.$fs-body;
     color: c.$fg-muted;
     margin: 0;
@@ -54,15 +93,25 @@
     overflow: hidden;
   }
 
-  &__tags {
+  &-tags {
     display: flex;
     flex-wrap: wrap;
     gap: s.$s-1;
     margin-block-start: s.$s-2;
   }
 
+  // Coherent with the flat, border-based content language: the tile lifts and
+  // the image zooms, the title shifts to duck — no drop shadow (shadows are
+  // reserved for floating UI: the masthead pill, dropdown menu, avatar).
   &:hover {
-    .ds-tile__media img { transform: scale(1.035); }
-    .ds-tile__title { color: c.$ir-duck; }
+    transform: translateY(-6px);
+
+    .ds-tile-media img { transform: scale(1.05); }
+    .ds-tile-title { color: c.$ir-duck; }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-tile { transition: none; }
+  .ds-tile:hover { transform: none; }
 }

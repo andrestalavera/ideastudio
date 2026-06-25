@@ -10,7 +10,7 @@
   padding: 0;
   border-block-start: 1px solid c.$rule;
 
-  &__row {
+  &-row {
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
@@ -29,7 +29,7 @@
   // Override global [data-reveal] for list rows: tighter stagger + shorter
   // travel so 6 dense rows feel like a single wave instead of a slideshow.
   // GPU-promoted via will-change to keep the transform jitter-free.
-  &__row[data-reveal] {
+  &-row[data-reveal] {
     transform: translateY(16px);
     transition: opacity 460ms var(--ease-out),
                 transform 460ms var(--ease-out),
@@ -38,12 +38,12 @@
     will-change: opacity, transform;
   }
 
-  &__row[data-reveal].is-revealed {
+  &-row[data-reveal].is-revealed {
     transform: translateY(0);
     transition-delay: calc(var(--reveal-step, 0) * 45ms);
   }
 
-  a.ds-list__row {
+  a.ds-list-row {
     cursor: pointer;
     color: inherit;
 
@@ -51,19 +51,19 @@
       padding-inline-start: s.$s-4;
       border-block-end-color: rgba(0, 194, 212, 0.35);
 
-      .ds-list__title { color: c.$ir-duck; }
-      .ds-list__arrow { transform: translateX(0.35em); }
+      .ds-list-title { color: c.$ir-duck; }
+      .ds-list-arrow { transform: translateX(0.35em); }
     }
   }
 
-  &__index {
+  &-index {
     font-family: t.$font-mono;
     font-size: t.$fs-mono;
     color: c.$ir-duck;
     letter-spacing: 0.1em;
   }
 
-  &__title {
+  &-title {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-subtitle;
@@ -72,14 +72,14 @@
     transition: color 240ms var(--ease-out);
   }
 
-  &__tagline {
+  &-tagline {
     grid-column: 2 / 3;
     font-size: t.$fs-body;
     color: c.$fg-muted;
     margin-block-start: s.$s-2;
   }
 
-  &__arrow {
+  &-arrow {
     display: inline-block;
     color: c.$fg-muted;
     transition: transform 240ms var(--ease-out);

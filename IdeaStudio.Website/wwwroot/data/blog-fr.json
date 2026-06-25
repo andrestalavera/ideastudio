@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "coder-avec-ia-sans-dette-technique",
+    "title": "Coder avec l'IA sans créer de dette technique",
+    "summary": "Les assistants de code font gagner un temps réel, à condition de garder l'humain dans la boucle. Voici la méthode que j'applique sur mes missions.",
+    "date": "2026-06-20",
+    "readingMinutes": 4,
+    "tags": ["IA", "Vibe coding", "Qualité"],
+    "body": "Les outils d'agentic coding (Claude Code, GitHub Copilot, Cursor) ont changé mon quotidien de développeur. Bien utilisés, ils font gagner un temps considérable. Mal utilisés, ils produisent une dette technique invisible qui coûte cher quelques mois plus tard.\n\n## La promesse n'est pas « moins de développeurs »\n\nC'est « des développeurs plus efficaces, qui gardent la maîtrise ». L'IA propose, l'humain dispose. Sur mes missions, aucune ligne générée n'est livrée sans relecture : je diffe, je raisonne, je corrige.\n\n## Trois garde-fous simples\n\n- **La relecture profonde.** On lit le diff comme on relirait une pull request d'un collègue : intention, effets de bord, cas limites.\n- **Les tests d'abord.** Une fonctionnalité non testée n'est pas finie. L'IA accélère aussi l'écriture des tests, ce qui rend la couverture moins douloureuse.\n- **Les conventions explicites.** Des règles de projet claires (architecture, nommage, sécurité) cadrent ce que l'assistant a le droit de produire.\n\n## Le vrai gain\n\nLe gain n'est pas de taper moins vite. C'est de passer plus de temps sur ce qui compte (la conception, les décisions) et moins sur la mécanique. À condition de ne jamais déléguer le jugement.\n\nEnvie d'outiller votre équipe sans sacrifier la qualité ? Parlons-en."
+  },
+  {
+    "slug": "cloud-souverain-europe",
+    "title": "Cloud souverain : héberger en Europe sans sacrifier l'expérience",
+    "summary": "Azure n'est pas la seule option. Tour d'horizon des hébergeurs européens (Clever Cloud, Infomaniak) et de quand les choisir.",
+    "date": "2026-06-10",
+    "readingMinutes": 5,
+    "tags": ["Cloud", "Souveraineté", "Azure"],
+    "body": "« Héberger en Europe » est devenu une exigence concrète pour beaucoup de mes clients : conformité RGPD, données sensibles, ou simplement choix de souveraineté. La bonne nouvelle, c'est qu'on n'a plus à choisir entre souveraineté et confort de déploiement.\n\n## Azure quand l'écosystème le justifie\n\nPour une plateforme déjà investie sur l'écosystème Microsoft (Entra ID, Service Bus, Functions), Azure reste cohérent et puissant. Les régions européennes couvrent la plupart des besoins de résidence des données.\n\n## Les souverains européens montent en gamme\n\n- **Clever Cloud** (France, certifié SecNumCloud/HDS) : PaaS managé, PostgreSQL et Redis de première classe, déploiement git-push. Idéal pour un SaaS à coût maîtrisé qui veut rester 100 % européen.\n- **Infomaniak** (Suisse) : Kubernetes managé et stockage objet, parfait quand le positionnement (luxe, santé) impose une résidence suisse.\n\n## Le critère qui tranche\n\nCe n'est pas un dogme cloud, c'est le contexte : modèle économique, contraintes réglementaires, compétences de l'équipe. La clé est de garder les frontières (stockage, base, observabilité) derrière des interfaces remplaçables, pour ne jamais être prisonnier d'un fournisseur.\n\nUn doute sur l'hébergement le plus adapté à votre projet ? C'est le genre de cadrage que je fais en début de mission."
+  }
+]

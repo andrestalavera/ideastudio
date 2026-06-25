@@ -5,12 +5,8 @@
     </Found>
     <NotFound>
         <LegacyRedirect />
-        <PageTitle>Not found</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
-            <div class="ds-section ds-container">
-                <h1>404</h1>
-                <p>Cette page n'existe pas. <a href="/fr">Retour à l'accueil</a></p>
-            </div>
+            <NotFoundView />
         </LayoutView>
     </NotFound>
 </Router>

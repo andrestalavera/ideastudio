@@ -8,6 +8,8 @@
         <RunAOTCompilation Condition="'$(Configuration)' == 'Release'">true</RunAOTCompilation>
         <BlazorEnableCompression>true</BlazorEnableCompression>
         <InvariantGlobalization>false</InvariantGlobalization>
+        <!-- Required true: the app switches culture (fr-FR / en-US) at runtime, which
+             throws "culture change not supported" without the full globalization data. -->
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     </PropertyGroup>
 

@@ -14,7 +14,7 @@
               c.$gradient-iridescent border-box;
   border: 1px solid transparent;
 
-  &__label {
+  &-label {
     font-family: t.$font-mono;
     font-size: t.$fs-mono;
     color: c.$fg-muted;
@@ -22,19 +22,11 @@
     text-transform: uppercase;
   }
 
-  &__value {
+  &-value {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-subtitle;
     color: c.$fg;
     letter-spacing: -0.01em;
   }
-}
-
-.ds-resume-band__stats {
-  margin-block-start: s.$s-6;
-}
-
-.ds-resume-band__cta {
-  margin-block-start: s.$s-6;
 }

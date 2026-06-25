@@ -3,7 +3,7 @@
     "slug": "dotnet-azure-consulting",
     "title": ".NET & Azure Consulting",
     "kicker": "ARCHITECTURE CONSULTING",
-    "tagline": "Architecture, hands-on guidance, and code on high-stakes .NET and Azure platforms.",
+    "tagline": "A .NET/Azure platform that scales and stays maintainable, architecture, audits and hands-on code, from someone who still ships code.",
     "iconId": "consulting",
     "summary": "With 15+ years in software design, I help you make the right architecture calls, scale your .NET/Azure platforms, and run technical audits.",
     "highlights": [
@@ -12,7 +12,7 @@
       "Robust CI/CD (Azure DevOps, GitHub Actions)",
       "Observability strategy (Application Insights, structured logging)",
       "Application security and secrets management (Key Vault, Managed Identity)",
-      "Multi-cloud working knowledge — Netlify, Vercel, Scaleway, CleverCloud, Infomaniak, OVHCloud when context steers away from Azure"
+      "Multi-cloud working knowledge, Netlify, Vercel, Scaleway, CleverCloud, Infomaniak, OVHCloud when context steers away from Azure"
     ],
     "useCases": [
       { "title": "SaaS platform audit and rebuild", "description": "Inventory, iterative refactoring plan, hands-on guidance through production." },
@@ -30,7 +30,7 @@
     "slug": "tech-lead",
     "title": "Tech Lead",
     "kicker": "TECHNICAL LEADERSHIP",
-    "tagline": "I own the technical direction of a product team and help it grow.",
+    "tagline": "A product team that ships, levels up and holds the quality line, I take technical ownership.",
     "iconId": "techlead",
     "summary": "As a tech lead, I align product vision with technical decisions, frame structural choices, grow the team's skills, and keep quality on course.",
     "highlights": [
@@ -56,22 +56,22 @@
     "slug": "trainer",
     "title": "Trainer",
     "kicker": "KNOWLEDGE TRANSFER",
-    "tagline": "I train your teams on .NET, Azure, and modern web fundamentals and advanced practices.",
+    "tagline": "Your teams leveled up on .NET, Azure and AI, 3,000+ hours taught, by a consultant who codes every day.",
     "iconId": "training",
-    "summary": "3,000+ hours of training under my belt, across two decades of Microsoft stack. To junior devs and to tech leads stepping back for perspective alike, in schools (Supinfo, NextFormation) or large centres (ORSYS, IP-Formation, Happly), on-site, virtual classroom or bespoke in-house. Twenty modules in the catalogue below — pick them as-is, or let's recompose them into the program that fits your team.",
+    "summary": "3,000+ hours of training under my belt, across two decades of Microsoft stack. To junior devs and to tech leads stepping back for perspective alike, in schools (Supinfo, NextFormation) or large centres (ORSYS, IP-Formation, Happly), on-site, virtual classroom or bespoke in-house. Twenty modules in the catalogue below, pick them as-is, or let's recompose them into the program that fits your team.",
     "highlights": [
       "ASP.NET Core 10, Blazor 10 (Server, WASM, Hybrid), Entity Framework Core",
-      "Azure platform and exam prep — AZ-204 (developer) and AZ-400 (DevOps)",
-      "Pragmatic software architecture — Clean Architecture, CQRS, event-driven, DDD-lite",
+      "Azure platform and exam prep, AZ-204 (developer) and AZ-400 (DevOps)",
+      "Pragmatic software architecture, Clean Architecture, CQRS, event-driven, DDD-lite",
       "Automated testing, TDD, snapshot and mutation testing",
-      "DevOps and CI/CD — GitHub Actions, Azure Pipelines, IaC Bicep / Terraform",
-      "Team-grade vibe coding & AI — Claude Code, GitHub Copilot, MCP, on-prem open-weight models",
+      "DevOps and CI/CD, GitHub Actions, Azure Pipelines, IaC Bicep / Terraform",
+      "Team-grade vibe coding & AI, Claude Code, GitHub Copilot, MCP, on-prem open-weight models",
       "Custom programs assembled from several official modules"
     ],
     "useCases": [
       {
         "title": "Inter-company · 3 days",
-        "description": "Catalogue sessions delivered at ORSYS, IP-Formation or in virtual classroom. Individual sign-ups, mixed audience — Blazor, Azure DevOps, Clean Architecture, AZ-204."
+        "description": "Catalogue sessions delivered at ORSYS, IP-Formation or in virtual classroom. Individual sign-ups, mixed audience, Blazor, Azure DevOps, Clean Architecture, AZ-204."
       },
       {
         "title": "Bespoke in-house",
@@ -79,13 +79,13 @@
       },
       {
         "title": "À-la-carte program",
-        "description": "Start from one official module as the backbone (e.g. AZ-204), add two or three adjacent modules to cover exactly your team's scope — neither too short nor too long."
+        "description": "Start from one official module as the backbone (e.g. AZ-204), add two or three adjacent modules to cover exactly your team's scope, neither too short nor too long."
       }
     ],
     "faq": [
       { "question": "What's your training day rate?", "answer": "800 € per day, or inter / in-house package depending on format. Quoted within 24h from a short brief." },
-      { "question": "Remote training?", "answer": "Yes — synchronous virtual classroom, pair exercises, screen-share demos, live feedback. Same rigour as on-site." },
-      { "question": "Certified?", "answer": "Active Microsoft Certified Trainer (MCT) and several Azure certifications (AZ-204, AZ-400 among others). My exam-prep modules are grounded in that experience." },
+      { "question": "Remote training?", "answer": "Yes, synchronous virtual classroom, pair exercises, screen-share demos, live feedback. Same rigour as on-site." },
+      { "question": "Certified?", "answer": "No Microsoft certification: what I bring is 15+ years of hands-on .NET/Azure in production and 3,000+ hours of training. My exam-prep modules (AZ-204, AZ-400) are grounded in that real-world experience." },
       { "question": "How do you build a custom program?", "answer": "We start from a catalogue module that covers the core of your need, identify what's missing and what's superfluous, borrow chapters from adjacent modules, calibrate duration. The brief takes one 30-minute call." },
       { "question": "What about funding mechanisms?", "answer": "Partner centres (ORSYS, IP-Formation, NextFormation) are Qualiopi-certified: OPCO, CPF entreprise, skills-development plans. For direct in-house, I point you to the right scheme." }
     ],
@@ -94,17 +94,17 @@
   },
   {
     "slug": "vibe-coding",
-    "title": "Vibe-coding rollout",
+    "title": "Develop faster with AI",
     "kicker": "AI IN YOUR IDE",
-    "tagline": "I help your team adopt Claude Code, Copilot, Cursor, Antigravity — without blind trust in generated code.",
+    "tagline": "Your developers faster with AI (Claude Code, Copilot, Cursor), no blind trust: every line gets reviewed.",
     "iconId": "vibe",
-    "summary": "AI coding tools are reshaping developer workflows. I help you frame usage: which tools, which guardrails, which practices, how to measure gains — and most importantly, how to keep ownership of generated code quality.",
+    "summary": "AI coding tools are reshaping developer workflows. I help you frame usage: which tools, which guardrails, which practices, how to measure gains, and most importantly, how to keep ownership of generated code quality.",
     "highlights": [
-      "Adoption of Claude Code, GitHub Copilot, Cursor, Antigravity + Gemini — tooling chosen for stack and constraints",
+      "Adoption of Claude Code, GitHub Copilot, Cursor, Antigravity + Gemini, tooling chosen for stack and constraints",
       "Team-grade Claude Code config: skills, hooks, sub-agents, MCP, plugins, governance",
-      "Deep-review methodology for generated code — diff, reason, correct",
+      "Deep-review methodology for generated code, diff, reason, correct",
       "CI guardrails: automated tests on AI PRs, security scans, prompt audit trail",
-      "Dev/lead coaching — from initial prompt to merge",
+      "Dev/lead coaching, from initial prompt to merge",
       "Impact metrics (velocity, quality, satisfaction) before/after"
     ],
     "useCases": [
@@ -113,10 +113,10 @@
       { "title": "AI-generated code audit", "description": "Detect anti-patterns, secure existing generations, put humans back in the loop." }
     ],
     "faq": [
-      { "question": "What's your day rate for vibe-coding work?", "answer": "800 € — these engagements are coaching and transmission, with significant time spent in pair-programming." },
+      { "question": "What's your day rate for vibe-coding work?", "answer": "800 €, these engagements are coaching and transmission, with significant time spent in pair-programming." },
       { "question": "Does it work on our stack?", "answer": "Current tools are stack-agnostic. We validate on your code base together." },
       { "question": "Code confidentiality?", "answer": "We pick a setup that fits your constraints (SaaS, self-hosted, zero-retention)." },
-      { "question": "Do you keep humans in the loop?", "answer": "Yes — the promise isn't 'fewer devs', it's 'more effective devs who keep ownership'. Every generated line gets reviewed." },
+      { "question": "Do you keep humans in the loop?", "answer": "Yes, the promise isn't 'fewer devs', it's 'more effective devs who keep ownership'. Every generated line gets reviewed." },
       { "question": "How long for a pilot?", "answer": "4 to 6 weeks, team of 3 to 5 devs, measured deliverable." }
     ],
     "ctaLabel": null,
@@ -126,17 +126,17 @@
     "slug": "ai-enterprise",
     "title": "AI for the enterprise",
     "kicker": "SOVEREIGN & MEASURABLE AI",
-    "tagline": "I bring AI in-house: local models, custom MCP servers, LLM-readable site, multi-platform analytics.",
+    "tagline": "AI inside your company, under your control, locally-hosted models, custom integrations, your data stays home.",
     "iconId": "ai-enterprise",
     "summary": "Generative AI is reaching the enterprise. Stay sovereign with your data, build custom integrations, measure the impact. I cover four angles: on-prem AI (Ollama, vLLM, open-weight models), custom MCP servers, sites optimized for LLM consumption (llms.txt, structured data), and AI-aware analytics (Google, Bing, Meta).",
     "highlights": [
-      "On-premise AI — Ollama, vLLM, open-weight models (Llama, Qwen, Mistral)",
-      "Custom MCP servers — expose your IT systems to your devs' AI (Claude Code, Cursor, Copilot)",
-      "LLM-readable site — llms.txt, ai.txt, enriched JSON-LD, AI-aware robots.txt",
-      "Multi-platform analytics — Google Analytics 4, Bing Webmaster, Meta Pixel, GDPR-compliant",
-      "Sovereignty & GDPR scoping — where prompts live, where data lives",
-      "European sovereign hosting available — Scaleway, OVHCloud, Infomaniak (GDPR-by-design)",
-      "Business impact metrics — AI KPIs in your existing dashboards"
+      "On-premise AI, Ollama, vLLM, open-weight models (Llama, Qwen, Mistral)",
+      "Custom MCP servers, expose your IT systems to your devs' AI (Claude Code, Cursor, Copilot)",
+      "LLM-readable site, llms.txt, ai.txt, enriched JSON-LD, AI-aware robots.txt",
+      "Multi-platform analytics, Google Analytics 4, Bing Webmaster, Meta Pixel, GDPR-compliant",
+      "Sovereignty & GDPR scoping, where prompts live, where data lives",
+      "European sovereign hosting available, Scaleway, OVHCloud, Infomaniak (GDPR-by-design)",
+      "Business impact metrics, AI KPIs in your existing dashboards"
     ],
     "useCases": [
       { "title": "On-prem AI deployment", "description": "For a confidentiality-bound client: model selection, hardware sizing, internal tool integration." },
@@ -144,11 +144,11 @@
       { "title": "AI-discoverability overhaul", "description": "llms.txt + JSON-LD + AI analytics for a B2B site that wants to surface in Perplexity / ChatGPT answers." }
     ],
     "faq": [
-      { "question": "What's your day rate?", "answer": "800 € — technical setup and coaching engagement." },
+      { "question": "What's your day rate?", "answer": "800 €, technical setup and coaching engagement." },
       { "question": "Why self-host AI rather than use ChatGPT/Claude?", "answer": "Data sovereignty, GDPR / sector compliance, controlled recurring cost on heavy usage." },
-      { "question": "Which models do you install?", "answer": "Llama 3, Qwen, Mistral, Gemma — based on use case (coding, search, summarization) and available hardware." },
-      { "question": "What's an MCP server, exactly?", "answer": "A standardized connector between an AI and your tools: expose internal APIs, doc bases, business data — the AI uses them as functions." },
-      { "question": "Will you touch our existing marketing pixels?", "answer": "No — we extend. AI-aware events get added without breaking GA4 / Meta Pixel already in place." }
+      { "question": "Which models do you install?", "answer": "Llama 3, Qwen, Mistral, Gemma, based on use case (coding, search, summarization) and available hardware." },
+      { "question": "What's an MCP server, exactly?", "answer": "A standardized connector between an AI and your tools: expose internal APIs, doc bases, business data, the AI uses them as functions." },
+      { "question": "Will you touch our existing marketing pixels?", "answer": "No, we extend. AI-aware events get added without breaking GA4 / Meta Pixel already in place." }
     ],
     "ctaLabel": null,
     "order": 5
@@ -157,7 +157,7 @@
     "slug": "mobile-apps",
     "title": "Mobile app development",
     "kicker": "CROSS-PLATFORM MOBILE",
-    "tagline": "I design and build your iOS/Android apps with a single technical base.",
+    "tagline": "Your iOS and Android app from a single codebase, from mockup to store launch.",
     "iconId": "mobile",
     "summary": "B2B and B2C mobile apps, cross-platform (.NET MAUI, Flutter depending on context). From mockup to store publishing.",
     "highlights": [
@@ -166,7 +166,7 @@
       "Backend and companion APIs",
       "Apple Store / Play Store publishing",
       "Evolutive maintenance",
-      "Backend hosted on Azure or European alternative — Scaleway, OVHCloud, Infomaniak"
+      "Backend hosted on Azure or European alternative, Scaleway, OVHCloud, Infomaniak"
     ],
     "useCases": [
       { "title": "B2B field app", "description": "Field app for agents, offline sync, IS integration." },
@@ -183,7 +183,7 @@
     "slug": "websites",
     "title": "Website development",
     "kicker": "BESPOKE WEB",
-    "tagline": "I design and build your showcase sites, e-commerce, and custom web apps.",
+    "tagline": "A fast, accessible, well-ranked website, from elegant showcase to custom business app.",
     "iconId": "web",
     "summary": "High-performance, SEO-optimized, accessible websites. From elegant showcase to complex business web apps, always on modern, maintainable tech.",
     "highlights": [
@@ -192,10 +192,10 @@
       "Technical SEO and Core Web Vitals",
       "Azure hosting or equivalent",
       "Handover training",
-      "Hosting matched to context — Azure, Netlify, Vercel, Scaleway, CleverCloud, Infomaniak or OVHCloud"
+      "Hosting matched to context, Azure, Netlify, Vercel, Scaleway, CleverCloud, Infomaniak or OVHCloud"
     ],
     "useCases": [
-      { "title": "Premium showcase site", "description": "Editorial site, strong identity, max performance — perfect for a brand." },
+      { "title": "Premium showcase site", "description": "Editorial site, strong identity, max performance, perfect for a brand." },
       { "title": "Business web application", "description": "Customer portal, back-office, complex workflows, IS integrations." }
     ],
     "faq": [

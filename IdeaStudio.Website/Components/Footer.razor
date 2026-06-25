@@ -3,45 +3,55 @@
 @inject ILocalizedRoute LocalizedRoute
 @inject IConsentService Consent
 
-@* Footer — 4-col mono footer. *@
+@* Footer, 4-col mono footer. *@
 
 <footer class="ds-footer ds-print-hidden">
-    <div class="ds-footer__inner">
-        <div class="ds-footer__col">
-            <div class="ds-footer__label">IdeaStud.io</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-content mx-auto">
+        <div class="flex flex-col gap-2">
+            <div class="ds-footer-label">IdeaStud.io</div>
             <p>Andrés Talavera</p>
             <p>@taglineText</p>
         </div>
-        <div class="ds-footer__col">
-            <div class="ds-footer__label">@sitemapLabel</div>
+        <div class="flex flex-col gap-2">
+            <div class="ds-footer-label">@sitemapLabel</div>
             <a href="@LocalizedRoute.For("home")">@homeText</a>
             <a href="@LocalizedRoute.For("services.hub")">@servicesText</a>
+            <a href="@LocalizedRoute.For("training")">@trainingText</a>
             <a href="@LocalizedRoute.For("realisations")">@realisationsText</a>
+            <a href="@LocalizedRoute.For("about")">@aboutText</a>
             <a href="@LocalizedRoute.For("cv")">@cvText</a>
+            <a href="@LocalizedRoute.For("blog")">@blogText</a>
+            <a href="@LocalizedRoute.For("faq")">@faqText</a>
         </div>
-        <div class="ds-footer__col">
-            <div class="ds-footer__label">@contactLabel</div>
+        <div class="flex flex-col gap-2">
+            <div class="ds-footer-label">@contactLabel</div>
+            <a href="@LocalizedRoute.For("contact")">@contactPageText</a>
             <a href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a>
             <a href="https://www.linkedin.com/in/andrestalavera/" target="_blank" rel="noopener">LinkedIn ↗</a>
             <a href="https://github.com/andrestalavera" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
-        <div class="ds-footer__col">
-            <div class="ds-footer__label">@legalLabel</div>
+        <div class="flex flex-col gap-2">
+            <div class="ds-footer-label">@legalLabel</div>
             <a href="@LocalizedRoute.For("legal")">@legalText</a>
             <a href="@LocalizedRoute.For("privacy")">@privacyText</a>
-            <button type="button" class="ds-footer__link-btn" @onclick="OpenCookieSettings">@manageCookiesText</button>
+            <button type="button" class="ds-footer-link-btn" @onclick="OpenCookieSettings">@manageCookiesText</button>
         </div>
     </div>
 </footer>
 
 @code {
-    private string taglineText = "Lyon · Paris · Genève · Fribourg — remote";
+    private string taglineText = "Lyon · Paris · Genève · Fribourg, remote";
     private string sitemapLabel = "Plan du site";
     private string homeText = "Accueil";
     private string servicesText = "Services";
+    private string trainingText = "Formations";
     private string realisationsText = "Réalisations";
+    private string aboutText = "À propos";
     private string cvText = "Parcours";
+    private string faqText = "FAQ";
+    private string blogText = "Blog";
     private string contactLabel = "Contact";
+    private string contactPageText = "Me contacter";
     private string legalLabel = "Légal";
     private string legalText = "Mentions légales";
     private string privacyText = "Confidentialité";
@@ -50,13 +60,18 @@
     protected override void LoadTexts()
     {
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        taglineText        = fr ? "Lyon · Paris · Genève · Fribourg — remote" : "Lyon · Paris · Geneva · Fribourg — remote";
+        taglineText        = fr ? "Lyon · Paris · Genève · Fribourg, remote" : "Lyon · Paris · Geneva · Fribourg, remote";
         sitemapLabel       = fr ? "Plan du site" : "Sitemap";
         homeText           = fr ? "Accueil" : "Home";
         servicesText       = fr ? "Services" : "Services";
+        trainingText       = fr ? "Formations" : "Training";
         realisationsText   = fr ? "Réalisations" : "Projects";
+        aboutText          = fr ? "À propos" : "About";
         cvText             = fr ? "Parcours" : "Resume";
+        faqText            = fr ? "FAQ" : "FAQ";
+        blogText           = fr ? "Blog" : "Blog";
         contactLabel       = fr ? "Contact" : "Contact";
+        contactPageText    = fr ? "Me contacter" : "Contact me";
         legalLabel         = fr ? "Légal" : "Legal";
         legalText          = fr ? "Mentions légales" : "Legal";
         privacyText        = fr ? "Confidentialité" : "Privacy";

@@ -12,6 +12,7 @@
 
 <SeoHead Title="@seoTitle" Description="@seoDescription"
          CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@LocalizedRoute.Alternates("cv")"
          SiteName="IdeaStud.io"
          OgImage="https://ideastud.io/images/andres-talavera.jpeg"
          OgImageAlt="Andrés Talavera - .NET & Azure"
@@ -19,7 +20,7 @@
          SpeakableSelectors="@speakable" />
 
 @* Always-visible floating CTA so the PDF is never more than one click away. *@
-<a class="ds-btn ds-btn--primary"
+<a class="ds-btn ds-btn-primary"
    href="@downloadUrl"
    target="_blank" rel="noopener"
    aria-label="@downloadText"
@@ -35,12 +36,10 @@
         @heroText
     </ChildContent>
     <Actions>
-        <div class="ds-row">
-            <a class="ds-btn ds-btn--primary" href="@downloadUrl" target="_blank" rel="noopener">
-                @downloadText <span aria-hidden="true">↓</span>
-            </a>
+        <div class="row">
+            <ButtonLink Href="@downloadUrl" Variant="primary" External="true" Arrow="↓" Label="@downloadText" />
         </div>
-        <div class="ds-row" style="margin-block-start: 1rem;">
+        <div class="row mt-4">
             @if (resume?.PersonalInformation?.Languages is not null)
             {
                 foreach (KeyValuePair<string, string> lang in resume.PersonalInformation.Languages)
@@ -53,101 +52,103 @@
 </Hero>
 
 @* 2 · About *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
-        <ChapterBand Kicker="@chapterTwo" Title="@aboutTitle" />
-        <div class="ds-grid ds-grid--3" style="margin-block-start: 3rem;">
-            @if (resume?.AboutSections is not null)
+<PageSection>
+    <ChapterBand Kicker="@chapterTwo" Title="@aboutTitle" />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        @if (resume?.AboutSections is not null)
+        {
+            int i = 0;
+            foreach (AboutSection s in resume.AboutSections)
             {
-                int i = 0;
-                foreach (AboutSection s in resume.AboutSections)
-                {
-                    <div class="ds-card" data-reveal style="@($"--reveal-step:{i}")">
-                        <h3 class="ds-card__title">@s.Title</h3>
-                        @if (s.Paragraphs is not null)
+                <Card data-reveal style="@($"--reveal-step:{i}")">
+                    <h3 class="card-title">@s.Title</h3>
+                    @if (s.Paragraphs is not null)
+                    {
+                        foreach (string p in s.Paragraphs)
                         {
-                            foreach (string p in s.Paragraphs)
-                            {
-                                <p class="ds-card__body">@p</p>
-                            }
+                            <p class="card-text">@p</p>
                         }
-                    </div>
-                    i++;
-                }
+                    }
+                </Card>
+                i++;
             }
-        </div>
+        }
     </div>
-</section>
+</PageSection>
 
 @* 3 · Experiences *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
-        <ChapterBand Kicker="@chapterThree" Title="@xpTitle" />
-        <div style="margin-block-start: 3rem;">
-            <Timeline Experiences="@resume?.Experiences" />
-        </div>
+<PageSection>
+    <ChapterBand Kicker="@chapterThree" Title="@xpTitle" />
+    <div class="mt-12">
+        <Timeline Experiences="@resume?.Experiences" />
     </div>
-</section>
+</PageSection>
+
+@* 3b · Clients *@
+@if (clients.Count > 0)
+{
+    <PageSection>
+        <ChapterBand Kicker="@clientsKicker" Title="@clientsTitle" />
+        <div class="mt-chapter">
+            <LogoWall Items="@clients" />
+        </div>
+    </PageSection>
+}
 
 @* 4 · Formations *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
-        <ChapterBand Kicker="@chapterFour" Title="@trainTitle" />
-        <p class="ds-lead" data-reveal style="margin-block-start: 1.5rem;">@trainIntro</p>
-        <div style="margin-block-start: 2rem;">
-            <TeachList Centers="@trainingCenters" />
-        </div>
+<PageSection>
+    <ChapterBand Kicker="@chapterFour" Title="@trainTitle" />
+    <p class="ds-lead mt-6" data-reveal>@trainIntro</p>
+    <div class="mt-8">
+        <TeachList Centers="@trainingCenters" />
     </div>
-</section>
+</PageSection>
 
 @* 5 · Contact *@
-<section class="ds-section ds-section--chapter ds-section--bordered">
-    <div class="ds-container">
-        <ChapterBand Kicker="@chapterFive" Title="@contactTitle" />
-        <div class="ds-grid ds-grid--3" style="margin-block-start: 2.5rem;">
-            @if (resume?.PersonalInformation is { } pi)
+<PageSection>
+    <ChapterBand Kicker="@chapterFive" Title="@contactTitle" />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+        @if (resume?.PersonalInformation is { } pi)
+        {
+            @if (!string.IsNullOrWhiteSpace(pi.Email))
             {
-                @if (!string.IsNullOrWhiteSpace(pi.Email))
-                {
-                    <div class="ds-card" data-reveal style="--reveal-step: 0">
-                        <div class="ds-card__title">Email</div>
-                        <a class="ds-link" href="mailto:@pi.Email">@pi.Email <span class="ds-link__arrow">→</span></a>
-                    </div>
-                }
-                @if (!string.IsNullOrWhiteSpace(pi.LinkedIn))
-                {
-                    <div class="ds-card" data-reveal style="--reveal-step: 1">
-                        <div class="ds-card__title">LinkedIn</div>
-                        <a class="ds-link" href="@($"https://www.linkedin.com/in/{pi.LinkedIn}/")" target="_blank" rel="noopener">@pi.LinkedIn <span class="ds-link__arrow">↗</span></a>
-                    </div>
-                }
-                @if (!string.IsNullOrWhiteSpace(pi.GitHub))
-                {
-                    <div class="ds-card" data-reveal style="--reveal-step: 2">
-                        <div class="ds-card__title">GitHub</div>
-                        <a class="ds-link" href="@($"https://github.com/{pi.GitHub}")" target="_blank" rel="noopener">@pi.GitHub <span class="ds-link__arrow">↗</span></a>
-                    </div>
-                }
+                <Card data-reveal style="--reveal-step: 0">
+                    <div class="card-title">Email</div>
+                    <ArrowLink Href="@($"mailto:{pi.Email}")" Text="@pi.Email" />
+                </Card>
             }
-        </div>
-        <div class="ds-contact__cta" data-reveal style="--reveal-step: 3">
-            <a class="ds-btn ds-btn--primary"
-               href="https://calendly.com/andres-talavera/30min"
-               target="_blank" rel="noopener">
-                @bookText <span aria-hidden="true">→</span>
-            </a>
-        </div>
+            @if (!string.IsNullOrWhiteSpace(pi.LinkedIn))
+            {
+                <Card data-reveal style="--reveal-step: 1">
+                    <div class="card-title">LinkedIn</div>
+                    <ArrowLink Href="@($"https://www.linkedin.com/in/{pi.LinkedIn}/")" Text="@pi.LinkedIn" External="true" />
+                </Card>
+            }
+            @if (!string.IsNullOrWhiteSpace(pi.GitHub))
+            {
+                <Card data-reveal style="--reveal-step: 2">
+                    <div class="card-title">GitHub</div>
+                    <ArrowLink Href="@($"https://github.com/{pi.GitHub}")" Text="@pi.GitHub" External="true" />
+                </Card>
+            }
+        }
     </div>
-</section>
+    <div class="ds-contact-cta" data-reveal style="--reveal-step: 3">
+        <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary" External="true" Arrow="→" Label="@bookText" />
+    </div>
+</PageSection>
 
 @code {
     private Resume? resume;
     private IReadOnlyList<TrainingCenter>? trainingCenters;
-    private string seoTitle = "Andrés Talavera — Parcours";
+    private List<LogoWall.LogoItem> clients = new();
+    private string clientsKicker = "Clients";
+    private string clientsTitle = "Ils m'ont fait confiance.";
+    private string seoTitle = "Andrés Talavera, Parcours";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/cv";
     private string seoLocale = "fr_FR";
-    private string chapterOne = "— Chapter I · Introduction";
+    private string chapterOne = "Chapter I · Introduction";
     private string chapterTwo = "Chapter II · About";
     private string chapterThree = "Chapter III · Experiences";
     private string chapterFour = "Chapter IV · Trainings";
@@ -178,9 +179,9 @@
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr/cv" : "https://ideastud.io/en/resume";
-        seoTitle = fr ? "Andrés Talavera — Parcours" : "Andrés Talavera — Resume";
+        seoTitle = fr ? "Andrés Talavera, Parcours" : "Andrés Talavera, Resume";
 
-        chapterOne   = fr ? "— Chapter I · Introduction"  : "— Chapter I · Introduction";
+        chapterOne   = fr ? "Chapter I · Introduction"  : "Chapter I · Introduction";
         chapterTwo   = fr ? "Chapter II · À propos"       : "Chapter II · About";
         chapterThree = fr ? "Chapter III · Expériences"   : "Chapter III · Experiences";
         chapterFour  = fr ? "Chapter IV · Formations"     : "Chapter IV · Trainings";
@@ -190,9 +191,11 @@
         xpTitle      = fr ? "Ce que j'ai construit."          : "What I've built.";
         trainTitle   = fr ? "Là où j'ai enseigné."            : "Where I've taught.";
         trainIntro   = fr
-            ? "Centres de formation et écoles qui m'ont confié leurs sessions, en présentiel comme en distanciel. Trois décennies de stack Microsoft, transmises à des publics très variés — de l'étudiant Supinfo au développeur senior en reconversion cloud."
-            : "Training centres and schools that have trusted me with their sessions, on-site and remote. Three decades of Microsoft stack, passed on to wildly different audiences — from Supinfo students to senior devs reskilling on cloud.";
+            ? "Centres de formation et écoles qui m'ont confié leurs sessions, en présentiel comme en distanciel. Deux décennies de stack Microsoft, transmises à des publics très variés, de l'étudiant Supinfo au développeur senior en reconversion cloud."
+            : "Training centres and schools that have trusted me with their sessions, on-site and remote. Two decades of Microsoft stack, passed on to wildly different audiences, from Supinfo students to senior devs reskilling on cloud.";
         contactTitle = fr ? "Parlons de votre projet."        : "Let's talk about your project.";
+        clientsKicker = fr ? "Clients"                      : "Clients";
+        clientsTitle  = fr ? "Ils m'ont fait confiance."       : "They put their trust in me.";
         bookText     = fr ? "Prendre rendez-vous"             : "Book a call";
         downloadText = fr ? "Télécharger mon CV"              : "Download my resume";
         downloadUrl  = fr ? "/cv.pdf?culture=fr"              : "/resume.pdf?culture=en";
@@ -203,6 +206,13 @@
         string culture = CultureService.CurrentCulture.Name;
         resume = await Content.GetResumeAsync(culture);
         trainingCenters = await Content.GetTrainingCentersAsync(culture);
+
+        // Client logo wall, real client brands (the public sites we shipped).
+        // Drop a LogoUrl per item to swap a wordmark for a real logo image.
+        IReadOnlyList<Realisation> projects = await Content.GetRealisationsAsync(culture);
+        clients = ClientRoster.Build(resume, projects)
+            .Select(c => new LogoWall.LogoItem(c.Name, LogoUrl: null, Url: c.Url))
+            .ToList();
         heroText = resume?.PersonalInformation?.Hero ?? (culture.StartsWith("fr") ? "Parcours." : "Resume.");
         introText = resume?.PersonalInformation?.Introduction ?? "";
         seoDescription = introText;

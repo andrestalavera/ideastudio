@@ -15,14 +15,7 @@
   }
 }
 
-// In the Home hero, give the signature its own breathing room. The kicker and
-// lead use the existing ds-rhythm spacing — we only need to nudge the canvas
-// out of any default heading rhythm since it isn't an <h1> in the DOM.
-.ds-hero--signature .ds-signature {
-  margin-block: clamp(0.5rem, 2vh, 1.25rem);
-}
-
-.ds-signature__canvas {
+.ds-signature-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -31,7 +24,7 @@
   pointer-events: none; // canvas shouldn't eat cursor events — we listen globally
 }
 
-.ds-signature__sr {
+.ds-signature-sr {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -45,9 +38,9 @@
 
 // Fallback: if WebGL2 fails, the JS hides the canvas and adds this class.
 // We show the screen-reader text visibly as a styled h1 instead.
-.ds-signature--fallback {
-  .ds-signature__canvas { display: none; }
-  .ds-signature__sr {
+.ds-signature-fallback {
+  .ds-signature-canvas { display: none; }
+  .ds-signature-sr {
     position: static;
     width: auto;
     height: auto;
