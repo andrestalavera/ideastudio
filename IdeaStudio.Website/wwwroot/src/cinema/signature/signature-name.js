@@ -368,6 +368,7 @@ export async function mountSignature(canvas, options) {
 
   return {
     fieldAspect,                     // aspect ratio of the rendered text — use to size the canvas CSS-side
+    getFieldAspect() { return fieldAspect; }, // .NET interop reads this off the handle (no property reads on IJSObjectReference)
     refresh() { palette = readPalette(); },
     dispose() {
       running = false;

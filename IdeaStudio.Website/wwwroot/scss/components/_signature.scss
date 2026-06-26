@@ -5,7 +5,10 @@
   width: 100%;
   max-width: 1100px;
   margin-inline: auto;
-  aspect-ratio: 5 / 1;  // matches the "Andrés Talavera" italic field aspect at 520 px
+  // Real glyph-field aspect is supplied at runtime via --sig-aspect (set by
+  // SignatureName once the JS mount reports it). Falls back to 5/1 for the
+  // first paint / when the WebGL fallback is used.
+  aspect-ratio: var(--sig-aspect, 5 / 1);
   isolation: isolate;
 }
 

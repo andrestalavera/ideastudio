@@ -195,7 +195,7 @@
     "slug": "claude-code-team",
     "title": "Claude Code for teams",
     "summary": "By the end, your team rolls out Claude Code at scale and turns it into real productivity, with the guardrails that protect quality.",
-    "category": "Vibe coding & IA",
+    "category": "Vibe coding & AI",
     "outline": [
       "Prompt patterns and house style",
       "Skills, create, package, share",
@@ -213,7 +213,7 @@
     "slug": "copilot-advanced",
     "title": "GitHub Copilot, advanced",
     "summary": "By the end, your developers get far more from GitHub Copilot than autocomplete to speed up their daily work, fully compliant.",
-    "category": "Vibe coding & IA",
+    "category": "Vibe coding & AI",
     "outline": [
       "Per-project custom instructions",
       "Copilot Edits, multi-file refactor",
@@ -230,7 +230,7 @@
     "slug": "mcp-server-design",
     "title": "Designing your MCP servers",
     "summary": "By the end, your teams connect your AI tools to your own data and applications securely, through custom bridges (MCP servers) that keep your data under control.",
-    "category": "Vibe coding & IA",
+    "category": "Vibe coding & AI",
     "outline": [
       "MCP architecture, clients, servers, transports",
       "stdio vs HTTP/SSE transport",
@@ -248,7 +248,7 @@
     "slug": "ai-on-premise",
     "title": "On-premise AI in the enterprise",
     "summary": "By the end, your teams run generative AI on your own servers, without sending your data outside. Ideal for privacy-sensitive sectors.",
-    "category": "Vibe coding & IA",
+    "category": "Vibe coding & AI",
     "outline": [
       "Open-weight model landscape (Llama, Qwen, Mistral, Gemma)",
       "Ollama, first deploy",

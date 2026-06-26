@@ -21,6 +21,8 @@ public class CultureService : ICultureService, IDisposable
     private readonly NavigationManager navigationManager;
     private readonly Store<AppState> store;
     private string lastSeen;
+    private string? cachedCultureName;
+    private CultureInfo? cachedCulture;
 
     public CultureService(IJSRuntime jsRuntime, NavigationManager navigationManager, Store<AppState> store)
     {
@@ -31,7 +33,21 @@ public class CultureService : ICultureService, IDisposable
         store.Changed += RelayCultureChange;
     }
 
-    public CultureInfo CurrentCulture => new(store.State.Culture);
+    public CultureInfo CurrentCulture
+    {
+        get
+        {
+            // The store is the source of truth; rebuild the CultureInfo only when the
+            // underlying culture string changes, so frequent reads don't allocate.
+            string name = store.State.Culture;
+            if (cachedCulture is null || cachedCultureName != name)
+            {
+                cachedCultureName = name;
+                cachedCulture = new CultureInfo(name);
+            }
+            return cachedCulture;
+        }
+    }
 
     public List<CultureInfo> SupportedCultures => [
         new CultureInfo("fr"),
