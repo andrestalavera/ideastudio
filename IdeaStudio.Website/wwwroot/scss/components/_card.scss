@@ -3,18 +3,26 @@
 // only adds the hover feedback for clickable cards, which utilities can't do.
 
 @use '../tokens/colors' as c;
+@use '../tokens/space' as s;
 
 .ds-card-link {
+  // Cards speak $radius-lg in the corner language (DESIGN §4).
+  border-radius: s.$radius-lg;
   text-decoration: none;
-  transition: transform 240ms var(--ease-out), border-color 240ms var(--ease-out);
+  // Premium damped settle: a small lift + the seated elevation shadow arriving
+  // together on the $ease-lux deceleration curve — no bouncy jump.
+  transition: transform var(--t-hover) var(--ease-lux),
+              box-shadow var(--t-hover) var(--ease-lux),
+              border-color var(--t-hover) var(--ease-lux);
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     border-color: c.$ir-duck;
+    box-shadow: c.$elev-1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .ds-card-link { transition: none; }
-  .ds-card-link:hover { transform: none; }
+  .ds-card-link:hover { transform: none; box-shadow: none; }
 }

@@ -40,11 +40,23 @@
   --font-sans: #{t.$font-sans};
   --font-mono: #{t.$font-mono};
 
+  // A reusable duck tint. Defined once: it references var(--ir-duck), so it
+  // follows whichever [data-theme] is active without being re-emitted per theme.
+  --tint-duck: color-mix(in oklab, var(--ir-duck) 8%, transparent);
+
   // Motion
   --ease-out:    #{m.$ease-out};
   --ease-in:     #{m.$ease-in};
   --ease-smooth: #{m.$ease-smooth};
   --ease-bounce: #{m.$ease-bounce};
+  --ease-lux:    #{m.$ease-lux};
+
+  // Duration tiers (also available as SCSS m.$t-* tokens).
+  --t-quick:  #{m.$t-quick};
+  --t-hover:  #{m.$t-hover};
+  --t-medium: #{m.$t-medium};
+  --t-slow:   #{m.$t-slow};
+  --t-grand:  #{m.$t-grand};
 
   accent-color: var(--ir-duck);
 }

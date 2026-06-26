@@ -1,8 +1,8 @@
 [
   {
     "slug": "csharp-modern",
-    "title": "C# moderne (records, source generators, pattern matching)",
-    "summary": "Maîtriser les fonctionnalités modernes de C# pour écrire du code expressif et performant : records, primary constructors, file-scoped types, source generators, pattern matching avancé.",
+    "title": "C# moderne",
+    "summary": "À l'issue, vos développeurs écrivent un code C# plus court, plus clair et plus sûr en tirant parti des apports récents du langage. Plus de lisibilité, moins de bugs.",
     "category": ".NET",
     "outline": [
       "Records et types valeurs immuables",
@@ -19,7 +19,7 @@
   {
     "slug": "aspnet-core-fundamentals",
     "title": "ASP.NET Core 10, fondamentaux",
-    "summary": "Construire des APIs et applications web modernes avec ASP.NET Core 10 : DI, middleware, minimal APIs, EF Core, configuration, logs.",
+    "summary": "À l'issue, votre équipe sait concevoir, configurer et faire tourner une application web prête pour la production avec ASP.NET Core 10.",
     "category": ".NET",
     "outline": [
       "Hôte générique et démarrage de l'app",
@@ -37,7 +37,7 @@
   {
     "slug": "aspnet-core-advanced",
     "title": "ASP.NET Core 10, avancé",
-    "summary": "Pousser ASP.NET Core en production : authentification & autorisation, observabilité OpenTelemetry, performance, tests d'intégration robustes.",
+    "summary": "À l'issue, vos équipes amènent une application web jusqu'à la production en confiance : accès sécurisés, performance, supervision et tests fiables. Du robuste, pas seulement du fonctionnel.",
     "category": ".NET",
     "outline": [
       "Authentification (cookies, JWT, OIDC)",
@@ -54,7 +54,7 @@
   {
     "slug": "blazor-modern",
     "title": "Blazor 10, Server, WASM et Hybrid",
-    "summary": "Construire des SPA et applications hybrides en Blazor : composants, état, rendu côté serveur, AOT WASM, interop JS et SignalR.",
+    "summary": "À l'issue, votre équipe construit des interfaces web modernes et réactives entièrement en C#, sans jongler avec plusieurs langages, et livre plus vite.",
     "category": ".NET",
     "outline": [
       "Composants, paramètres, événements",
@@ -71,7 +71,7 @@
   {
     "slug": "ef-core-10",
     "title": "Entity Framework Core 10",
-    "summary": "Modéliser un domaine avec EF Core 10 : conventions, fluent API, migrations, requêtes optimisées, SaveChanges concurrent et performance.",
+    "summary": "À l'issue, vos développeurs manipulent vos données de façon fiable et performante : modéliser, faire évoluer et interroger une base sans mauvaises surprises.",
     "category": ".NET",
     "outline": [
       "Conventions et fluent API",
@@ -88,7 +88,7 @@
   {
     "slug": "dotnet-testing",
     "title": "Tests automatisés .NET",
-    "summary": "Mettre en place une stratégie de tests pragmatique : xUnit, Testcontainers, snapshot testing, tests de mutation, golden tests.",
+    "summary": "À l'issue, votre équipe livre avec sérénité : des tests automatisés utiles qui attrapent les régressions tôt et permettent de déployer sans retenir son souffle.",
     "category": ".NET",
     "outline": [
       "xUnit, fondamentaux et organisation",
@@ -105,7 +105,7 @@
   {
     "slug": "azure-az204-prep",
     "title": "Azure pour développeurs (préparation AZ-204)",
-    "summary": "Couvrir l'examen AZ-204 : développer des solutions Azure (App Service, Functions, Cosmos DB, Service Bus, Key Vault, Identity).",
+    "summary": "Préparez et réussissez la certification Azure AZ-204, et repartez capable de développer des applications cloud concrètes. Les compétences et le diplôme reconnu.",
     "category": "Azure",
     "outline": [
       "App Service et configuration",
@@ -124,7 +124,7 @@
   {
     "slug": "azure-az400-prep",
     "title": "Azure DevOps & CI/CD (préparation AZ-400)",
-    "summary": "Mettre en place une chaîne DevOps complète : stratégies de branche, pipelines CI/CD multi-stage, tests automatisés, infrastructure as code, sécurité et gouvernance.",
+    "summary": "À l'issue, vos équipes automatisent la livraison logicielle et préparent la certification Azure AZ-400 : déployer plus souvent, plus vite, avec moins d'erreurs.",
     "category": "Azure",
     "outline": [
       "Source control et stratégies de branche",
@@ -143,7 +143,7 @@
   {
     "slug": "azure-functions-events",
     "title": "Azure Functions & event-driven",
-    "summary": "Construire des architectures événementielles avec Azure Functions, Service Bus, Event Grid et Durable Functions.",
+    "summary": "À l'issue, votre équipe construit des applications cloud qui réagissent en temps réel et montent en charge toutes seules, sans serveur à gérer.",
     "category": "Azure",
     "outline": [
       "Functions, bindings et triggers",
@@ -160,7 +160,7 @@
   {
     "slug": "azure-app-service-containers",
     "title": "Azure App Service & containers",
-    "summary": "Déployer en production sur App Service, Container Apps et ACR : slots, autoscale, networking, monitoring.",
+    "summary": "À l'issue, vos équipes mettent vos applications en ligne sur Azure de façon fiable : mises à jour sans coupure et montée en charge automatique.",
     "category": "Azure",
     "outline": [
       "App Service, plans, configuration, slots",
@@ -177,7 +177,7 @@
   {
     "slug": "azure-security-fundamentals",
     "title": "Sécurité Azure pour développeurs",
-    "summary": "Sécuriser une application Azure de bout en bout : Key Vault, Managed Identity, networking, Defender for Cloud, gestion des secrets et RBAC.",
+    "summary": "À l'issue, vos équipes sécurisent vos applications Azure de bout en bout et protègent vos données sensibles, sans ralentir les livraisons.",
     "category": "Azure",
     "outline": [
       "Key Vault et rotation des secrets",
@@ -194,7 +194,7 @@
   {
     "slug": "claude-code-team",
     "title": "Claude Code en équipe",
-    "summary": "Adopter Claude Code à l'échelle d'une équipe : skills, hooks, sub-agents, plugins, MCP, gouvernance et mesures d'impact.",
+    "summary": "À l'issue, votre équipe déploie Claude Code à grande échelle et en tire un vrai gain de productivité, avec les garde-fous qui protègent la qualité.",
     "category": "Vibe coding & IA",
     "outline": [
       "Modèles de prompt et style maison",
@@ -212,7 +212,7 @@
   {
     "slug": "copilot-advanced",
     "title": "GitHub Copilot avancé",
-    "summary": "Pousser GitHub Copilot au-delà de l'auto-complétion : custom instructions, edits, agentic mode, MCP, intégration en équipe.",
+    "summary": "À l'issue, vos développeurs exploitent GitHub Copilot bien au-delà de l'autocomplétion pour accélérer leur travail quotidien, en toute conformité.",
     "category": "Vibe coding & IA",
     "outline": [
       "Custom instructions par projet",
@@ -229,7 +229,7 @@
   {
     "slug": "mcp-server-design",
     "title": "Concevoir vos serveurs MCP",
-    "summary": "Construire un serveur Model Context Protocol robuste : transports, tools, resources, sécurité, erreurs, déploiement.",
+    "summary": "À l'issue, vos équipes connectent vos outils d'IA à vos propres données et applications en toute sécurité, grâce à des passerelles sur-mesure (serveurs MCP) qui gardent vos données sous contrôle.",
     "category": "Vibe coding & IA",
     "outline": [
       "Architecture MCP, clients, serveurs, transports",
@@ -247,7 +247,7 @@
   {
     "slug": "ai-on-premise",
     "title": "IA locale en entreprise",
-    "summary": "Déployer des modèles d'IA générative en local : Ollama, vLLM, modèles open-weight, dimensionnement matériel, intégration.",
+    "summary": "À l'issue, vos équipes font tourner l'IA générative sur vos propres serveurs, sans envoyer vos données à l'extérieur. Idéal pour les secteurs sensibles à la confidentialité.",
     "category": "Vibe coding & IA",
     "outline": [
       "Paysage des modèles open-weight (Llama, Qwen, Mistral, Gemma)",
@@ -265,7 +265,7 @@
   {
     "slug": "clean-architecture-dotnet",
     "title": "Clean Architecture en .NET",
-    "summary": "Structurer une application .NET selon les principes hexagonaux : ports & adapters, DDD-lite, séparation domaine / application / infrastructure.",
+    "summary": "À l'issue, vos équipes structurent des applications qui restent faciles à faire évoluer et à tester dans la durée. Moins de dette, plus de sérénité.",
     "category": "Architecture & DevOps",
     "outline": [
       "Pourquoi, coût du couplage",
@@ -283,7 +283,7 @@
   {
     "slug": "event-driven-cqrs",
     "title": "Architecture événementielle & CQRS pratique",
-    "summary": "Mettre en place CQRS et architecture événementielle sans dogmatisme : commandes, événements, projections, outbox, idempotence.",
+    "summary": "À l'issue, vos équipes conçoivent des applications qui restent fluides et fiables même sous forte charge, en appliquant les bons patterns au bon endroit, sans dogmatisme.",
     "category": "Architecture & DevOps",
     "outline": [
       "CQRS, pourquoi, quand, comment",
@@ -301,7 +301,7 @@
   {
     "slug": "observability-otel",
     "title": "Observabilité moderne, OpenTelemetry",
-    "summary": "Instrumenter une application .NET avec OpenTelemetry : traces, métriques, logs structurés, intégration Application Insights et back-ends OSS.",
+    "summary": "À l'issue, vos équipes savent exactement ce qui se passe dans vos applications en production et diagnostiquent un incident en minutes plutôt qu'en heures.",
     "category": "Architecture & DevOps",
     "outline": [
       "Pourquoi OTel, standardisation et portabilité",
@@ -319,7 +319,7 @@
   {
     "slug": "dotnet-performance",
     "title": "Performance & scalabilité .NET",
-    "summary": "Mesurer, profiler et optimiser une application .NET : benchmarks, GC, allocations, async patterns, caching, charge.",
+    "summary": "À l'issue, vos équipes rendent vos applications .NET nettement plus rapides et capables d'encaisser la charge. On mesure d'abord, on optimise ensuite, gains à l'appui.",
     "category": "Architecture & DevOps",
     "outline": [
       "Mesurer avant d'optimiser, BenchmarkDotNet",
@@ -336,7 +336,7 @@
   {
     "slug": "cicd-github-actions",
     "title": "CI/CD avec GitHub Actions",
-    "summary": "Construire des pipelines GitHub Actions robustes : workflows réutilisables, security scanning, déploiement multi-env, OIDC vers Azure.",
+    "summary": "À l'issue, vos équipes automatisent tests et mises en production avec GitHub Actions : livrer plus souvent, en confiance, sans étape manuelle.",
     "category": "Architecture & DevOps",
     "outline": [
       "Anatomie d'un workflow",

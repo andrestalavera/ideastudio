@@ -21,11 +21,25 @@ export function attachReveals() {
     io.observe(el);
   }
   if (!attachReveals._mo) {
-    attachReveals._mo = new MutationObserver(() => {
+    // Coalesce bursts of DOM mutations into a single rescan. Without this, a
+    // full-page query ran on every individual mutation during Blazor renders.
+    let scheduled = false;
+    const rescan = () => {
+      scheduled = false;
       for (const el of document.querySelectorAll('[data-reveal]')) {
         io.observe(el);  // re-observing an already-observed node is a no-op.
       }
-    });
+    };
+    const schedule = () => {
+      if (scheduled) return;
+      scheduled = true;
+      if (typeof requestIdleCallback === 'function') {
+        requestIdleCallback(rescan, { timeout: 200 });
+      } else {
+        queueMicrotask(rescan);
+      }
+    };
+    attachReveals._mo = new MutationObserver(schedule);
     attachReveals._mo.observe(document.body, { childList: true, subtree: true });
   }
 }

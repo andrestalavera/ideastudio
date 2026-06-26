@@ -10,13 +10,14 @@
             IdeaStud<span class="ds-masthead-dot">.</span>io
         </a>
 
-        <div class="ds-masthead-nav" role="menubar">
-            <a role="menuitem" href="@LocalizedRoute.For("services.hub")">@servicesText</a>
-            <a role="menuitem" href="@LocalizedRoute.For("training")">@trainingText</a>
-            <a role="menuitem" href="@LocalizedRoute.For("realisations")">@realisationsText</a>
-            <a role="menuitem" href="@LocalizedRoute.For("about")">@aboutText</a>
-            <a role="menuitem" href="@LocalizedRoute.For("blog")">@blogText</a>
-            <a role="menuitem" href="@LocalizedRoute.For("cv")">@cvText</a>
+        <div class="ds-masthead-nav">
+            <a href="@LocalizedRoute.For("services.hub")">@servicesText</a>
+            <a href="@LocalizedRoute.For("training")">@trainingText</a>
+            <a href="@LocalizedRoute.For("realisations")">@realisationsText</a>
+            <a href="@LocalizedRoute.For("about")">@aboutText</a>
+            <a href="@LocalizedRoute.For("blog")">@blogText</a>
+            <a href="@LocalizedRoute.For("cv")">@cvText</a>
+            <a href="@LocalizedRoute.For("contact")">@contactText</a>
         </div>
 
         <button class="ds-masthead-theme" type="button"
@@ -37,6 +38,7 @@
         </a>
 
         <button class="ds-masthead-toggle" type="button"
+                @ref="toggleButton"
                 aria-label="@(isMobileOpen ? closeMenuText : openMenuText)"
                 aria-expanded="@(isMobileOpen ? "true" : "false")"
                 aria-controls="ds-mobile-nav"
@@ -47,14 +49,15 @@
 
     @if (isMobileOpen)
     {
-        <button class="ds-masthead-backdrop" type="button" aria-hidden="true" @onclick="CloseMobileMenu"></button>
+        <div class="ds-masthead-backdrop" aria-hidden="true" @onclick="CloseMobileMenu"></div>
         <nav id="ds-mobile-nav" class="ds-masthead-mobile" aria-label="Mobile">
-            <a href="@LocalizedRoute.For("services.hub")" @onclick="CloseMobileMenu">@servicesText</a>
+            <a href="@LocalizedRoute.For("services.hub")" @ref="firstMobileLink" @onclick="CloseMobileMenu">@servicesText</a>
             <a href="@LocalizedRoute.For("training")" @onclick="CloseMobileMenu">@trainingText</a>
             <a href="@LocalizedRoute.For("realisations")" @onclick="CloseMobileMenu">@realisationsText</a>
             <a href="@LocalizedRoute.For("about")" @onclick="CloseMobileMenu">@aboutText</a>
             <a href="@LocalizedRoute.For("blog")" @onclick="CloseMobileMenu">@blogText</a>
             <a href="@LocalizedRoute.For("cv")" @onclick="CloseMobileMenu">@cvText</a>
+            <a href="@LocalizedRoute.For("contact")" @onclick="CloseMobileMenu">@contactText</a>
             <button class="ds-masthead-mobile-theme" type="button"
                     aria-pressed="@(theme == "light" ? "true" : "false")"
                     @onclick="ToggleTheme">
@@ -67,6 +70,10 @@
 
 @code {
     private bool isMobileOpen;
+    private ElementReference toggleButton;
+    private ElementReference firstMobileLink;
+    private bool focusFirstLinkOnRender;
+    private bool focusToggleOnRender;
     private string theme = "dark";
     private string servicesText = "Services";
     private string trainingText = "Training";
@@ -74,6 +81,7 @@
     private string aboutText = "About";
     private string blogText = "Blog";
     private string cvText = "Resume";
+    private string contactText = "Contact";
     private string meetText = "Meet";
     private string bookCallAriaText = "Book a 30-minute call on Calendly (opens in a new tab)";
     private string openMenuText = "Open menu";
@@ -91,6 +99,7 @@
         aboutText = LocalizationService.GetString("Nav.About");
         blogText = LocalizationService.GetString("Nav.Blog");
         cvText = LocalizationService.GetString("Nav.Cv");
+        contactText = LocalizationService.GetString("Contact");
         meetText = LocalizationService.GetString("Nav.Meet");
         toLightText = LocalizationService.GetString("Theme.ToLight");
         toDarkText = LocalizationService.GetString("Theme.ToDark");
@@ -103,16 +112,37 @@
             theme = await ThemeService.GetThemeAsync();
             StateHasChanged();
         }
+
+        if (focusFirstLinkOnRender)
+        {
+            focusFirstLinkOnRender = false;
+            await firstMobileLink.FocusAsync();
+        }
+        else if (focusToggleOnRender)
+        {
+            focusToggleOnRender = false;
+            await toggleButton.FocusAsync();
+        }
     }
 
     private async Task ToggleTheme() => theme = await ThemeService.ToggleAsync();
 
-    private void ToggleMobileMenu() => isMobileOpen = !isMobileOpen;
+    private void ToggleMobileMenu()
+    {
+        isMobileOpen = !isMobileOpen;
+        if (isMobileOpen) focusFirstLinkOnRender = true;
+        else focusToggleOnRender = true;
+    }
 
-    private void CloseMobileMenu() => isMobileOpen = false;
+    private void CloseMobileMenu()
+    {
+        if (!isMobileOpen) return;
+        isMobileOpen = false;
+        focusToggleOnRender = true;
+    }
 
     private void OnKeyDown(KeyboardEventArgs e)
     {
-        if (e.Key == "Escape") isMobileOpen = false;
+        if (e.Key == "Escape") CloseMobileMenu();
     }
 }

@@ -1,9 +1,9 @@
 ﻿{
   "personalInformation": {
     "name": "Andrés Talavera",
-    "title": ".NET & Azure consultant, tech lead and trainer",
+    "title": ".NET & Azure architect / tech lead and trainer",
     "hero": "Let's shape the future of your business together.",
-    "introduction": "Experienced .NET developer and Azure consultant with 15+ years of expertise in building modern web applications and cloud solutions.",
+    "introduction": "Architect and .NET developer, Azure consultant: 15+ years of experience in ASP.NET Core, Blazor, Clean Architecture / DDD and cloud-native platforms on Azure, from scoping to continuous production deployment.",
     "languages": {
       "EN": "English",
       "FR": "Français",
@@ -19,10 +19,10 @@
     {
       "title": "Your .NET Consultant",
       "paragraphs": [
-        "Expert .NET and Azure consultant delivering tailored business solutions.",
-        "Specializing in ASP.NET Core, MAUI, and modern cloud architecture on Azure.",
-        "Microsoft developer with proven enterprise project success.",
-        "Serving startups, SMEs, and digital service companies across multiple industries."
+        "Architect and .NET / Azure developer: design and delivery of cloud-native platforms end to end.",
+        "ASP.NET Core, Blazor (Server, WebAssembly, SSR), .NET MAUI / Xamarin, Entity Framework Core, and asynchronous messaging.",
+        "Clean Architecture and Domain-Driven Design, strict DTO boundary, automated testing, and industrialized CI/CD.",
+        "Serving startups, SMEs, and digital service companies, from scoping to production operations on Azure."
       ],
       "images": [
         "dotnet.svg",
@@ -33,10 +33,10 @@
     {
       "title": "Your Trainer",
       "paragraphs": [
-        "Experienced .NET and Azure trainer for developers and companies. ",
-        "LinkedIn Learning content creator focusing on Microsoft technologies.",
-        "Proven track record training teams in France, Belgium, and Luxembourg.",
-        "Expert in .NET 9, Blazor Server, and Azure cloud solutions."
+        "Trainer in .NET, C#, and Azure for developers and enterprise teams, on-site and remote.",
+        "Programs covering ASP.NET Core, Blazor, cloud architecture, Azure DevOps, and testing strategies.",
+        "Sessions delivered across France, Belgium, and Luxembourg, from students to senior devs reskilling on cloud.",
+        "Expert in .NET 9 / 10, Blazor, and cloud-native Azure solutions."
       ],
       "icons": [
         "fab fa-linkedin linkedin-logo"
@@ -46,40 +46,40 @@
     {
       "title": "Passionate",
       "paragraphs": [
-        "Dedicated Microsoft technology expert staying current with latest trends.",
-        "Committed to delivering innovative .NET solutions meeting client needs.",
+        "Continuous watch on the Microsoft ecosystem: .NET 10, Blazor, .NET Aspire, and agentic coding.",
+        "Ongoing R&D: cloud-native architectures, serverless, observability, and AI-assisted development tooling.",
         "Active developer community participant since Microsoft Student Partner days.",
-        "Passionate about mobile development, web technologies, and cloud architecture."
+        "Passionate about mobile development, high-performance web, and distributed architecture."
       ],
       "link": "#contact"
     },
     {
       "title": "Diverse experiences",
       "paragraphs": [
-        "Successfully delivered projects across medical, finance, aviation, and logistics sectors.",
-        "Expertise spanning healthcare statistics, insurance software, and education platforms.",
-        "Proven experience with multiple companies.",
-        "Mobile developer specializing in MAUI, Xamarin, and cross-platform solutions."
+        "Projects delivered across healthcare, finance / insurance, automotive, logistics, and construction.",
+        "Domains covered: healthcare statistics (HDS), insurance software, education platforms, and real-time data.",
+        "More than twenty engagements delivered for large accounts and SMEs.",
+        "Cross-platform mobile developer: .NET MAUI, Xamarin.Forms, and native Xamarin."
       ],
       "link": "#experiences"
     },
     {
       "title": "Recent projects",
       "paragraphs": [
-        "Improved healthcare data portals for Medtech and CEESA using .NET 9.",
-        "Enhanced TRIGO logistics software using advanced .NET development and Vue.js.",
-        "Led Active Assurances team developing comprehensive insurance management system.",
-        "Specialized in Azure migration, CI/CD implementation, and clean architecture design."
+        "Medtech / CEESA healthcare data portals in .NET 9, Blazor Server, and certified HDS hosting.",
+        "TRIGO logistics software modernization: ASP.NET (MVC4) migration to .NET and a Vue 3 front-end.",
+        "Technical lead at Active Assurances: full IS rebuild and an Azure Pipelines software factory.",
+        "PropTech / RegTech SaaS platform (DPE) in Clean Architecture, .NET 10, and Azure Container Apps."
       ],
       "link": "#experiences"
     },
     {
       "title": "Personal attributes",
       "paragraphs": [
-        "Curious and versatile developer with strong analytical design skills.",
-        "Talented at explaining complex technical concepts to diverse audiences.",
-        "Collaborative team leader thriving in dynamic development environments.",
-        "Trilingual consultant comfortable working across French, Spanish, and English markets."
+        "Curious and versatile developer, strong in analytical design and problem-solving.",
+        "Skilled at explaining complex technical concepts to diverse audiences.",
+        "Collaborative tech lead, comfortable in agile environments (Scrum, code reviews, pairing).",
+        "Trilingual consultant (FR / EN / ES) comfortable across French, Spanish, and English markets."
       ]
     }
   ],
@@ -238,15 +238,13 @@
         "I conducted comprehensive analysis, implemented unit tests, developed key features, and shared knowledge with team members. I also assisted in the migration of applications to Azure, leveraging Azure WebApp and Azure Functions for efficient and scalable solutions."
       ],
       "responsibilities": [
-        "Conducted a comprehensive analysis of existing projects to understand their structure and functionality.",
-        "Implemented unit tests to ensure the reliability and stability of the software.",
-        "Developed several key features on the WebApp, enhancing its functionality and user experience.",
-        "Performed analysis of the mobile app to understand its structure and functionality.",
-        "Developed Vue3 components, contributing to the modernisation of the application.",
-        "Collaborated with the team to troubleshoot and resolve technical issues.",
-        "Participated in code reviews to maintain high-quality code.",
-        "Built Vue 3 components with Vite and Pinia for state management, as part of a progressive front-end modernization.",
-        "Scoped the migration of the MVC4 application to modern .NET and the move to Azure (WebApp, Functions), preparing the upcoming cut-over."
+        "In-depth analysis and reverse engineering of the existing ASP.NET Framework (MVC4) application.",
+        "Added unit tests to harden the legacy code base before migration.",
+        "Developed new features on the MVC4 WebApp (C#, Razor) and fixed defects.",
+        "Analyzed the mobile app to scope its modernization.",
+        "Built Vue 3 components with Vite and Pinia state management, as part of a progressive front-end modernization.",
+        "Scoped the MVC4 migration to modern .NET and to Azure (Web App, Azure Functions, Azure SQL, Service Bus).",
+        "Collaborated within a 15-person team (Key Consulting): code reviews and knowledge sharing."
       ],
       "skills": [
         "Azure DevOps",
@@ -367,6 +365,13 @@
         "At IdeaStud.io, I develop innovative mobile and web applications for various industries using the latest Microsoft technologies, particularly cloud-based applications.",
         "I'm always ready to take on new challenges and stay updated with the evolving tech landscape. Besides application development, I also share my knowledge through training centers and blogs focusing on cloud computing and software architecture.",
         "This journey showcases my commitment to continuous learning, adaptability, and passion for sharing tech knowledge."
+      ],
+      "responsibilities": [
+        "Design and development of cloud-native web (ASP.NET Core, Blazor) and mobile (Xamarin) applications on Azure.",
+        "Clean Architecture / DDD and design of documented REST APIs (Swagger / OpenAPI).",
+        "Implemented managed Azure services: Functions, Service Bus, Cosmos DB, Data Factory, Storage, Key Vault, and Monitor.",
+        "Industrialized CI/CD with Azure DevOps and a FinOps approach to cloud cost control.",
+        "Delivered .NET, C#, and Azure training and authored technical articles on cloud and software architecture."
       ],
       "skills": [
         "Blazor",
@@ -1047,8 +1052,8 @@
         "I conducted functional analysis, engaged in research and development, performed reverse engineering, designed the architecture, developed the WPF application, their User Components and contributed to DevOps processes."
       ],
       "responsibilities": [
-        "Conducted functional analysis to understand the business requirements.",
-        "Used Telerik WPF components to speed up the development of the Innova UI and offer rich controls (grids, charts, dialogs).",
+        "Functional analysis and reverse engineering to understand the business requirements and the existing code base.",
+        "Developed the Innova WPF application in MVVM, with Telerik components (grids, charts, dialogs) to speed up the UI.",
         "Secured access through OAuth 2.0 for user authentication and authorization.",
         "Improved the existing CI/CD pipelines to make deliveries more reliable and faster."
       ],
@@ -1077,13 +1082,16 @@
         "Remote"
       ],
       "description": [
-        "AFILIZA is a digital agency focused on creating effective online presence for businesses."
+        "AFILIZA is a digital agency focused on creating an effective online presence for businesses.",
+        "I took part in the R&D and development of a web application to display promotional codes, improving user experience and customer engagement.",
+        "I built the first version of the Charl'Antoine logistics application, developed the SIEHR e-commerce site (lecoinsiehr.com), and delivered several websites for real-estate agencies."
       ],
       "responsibilities": [
-        "Application development",
-        "Data management",
-        "Research and development",
-        "User experience enhancement"
+        "R&D and development of a promo-code web application (ASP.NET Core).",
+        "Built the first version of the Charl'Antoine logistics application.",
+        "Developed the SIEHR e-commerce site (lecoinsiehr.com) and several real-estate agency websites.",
+        "Responsive front-end integration with Bootstrap, jQuery, and HTML / CSS / JavaScript.",
+        "Deployment to Azure via Azure DevOps pipelines."
       ],
       "skills": [
         "Azure DevOps",
@@ -1122,9 +1130,10 @@
         "I participated in the development of two applications for clients in Belfort and Strasbourg, and attempted to recruit collaborators."
       ],
       "responsibilities": [
-        "Web application development",
-        "Research and development",
-        "User experience enhancement"
+        "Developed a gamification application for CORA's forklift operators (.NET, mobile).",
+        "Developed two applications for clients in Belfort and Strasbourg (.NET Framework, ASP.NET, UWP).",
+        "Training, coaching, and developer recruitment.",
+        "Business development and signing of the CORA contract."
       ],
       "skills": [
         ".NET",
@@ -1151,6 +1160,12 @@
         "Mobile apps: a logistics / kitchen-delivery app for Charl'Antoine (with Novatech).",
         "Web: a promo-code app (R&D), a dating site (astro-privée), a social network (check.fm), the SIEHR e-commerce site (lecoinsiehr.com), and sites for SMEs and real-estate agencies (Aubade).",
         "Technologies: Windows Phone / Windows 10 Mobile, ASP.NET, HTML."
+      ],
+      "responsibilities": [
+        "First .NET, C#, and Azure training sessions in schools and centres (Supinfo, NextFormation).",
+        "Developed Windows Phone / Windows 10 Mobile apps (UWP, Xamarin), including a logistics / delivery app for Charl'Antoine.",
+        "ASP.NET web development: promo-code app (R&D), dating site, social network (check.fm), SIEHR e-commerce (lecoinsiehr.com).",
+        "Built websites for SMEs and real-estate agencies (Aubade)."
       ],
       "skills": [
         "UWP",

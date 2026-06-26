@@ -10,6 +10,21 @@
     <title>IdeaStud.io — Andrés Talavera</title>
     <meta name="description" content="Andrés Talavera — Consultant .NET & Azure, techlead, formateur. Lyon et à distance." />
 
+    <!-- Static social metadata. These are FR-baseline fallbacks for scrapers that read
+         only the static shell (LinkedIn, Slack, Facebook). The per-page SeoHead component
+         overrides them client-side once Blazor boots. -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="IdeaStud.io — Andrés Talavera" />
+    <meta property="og:description" content="Andrés Talavera — Consultant .NET & Azure, techlead, formateur. Lyon et à distance." />
+    <meta property="og:url" content="https://ideastud.io/" />
+    <meta property="og:image" content="https://ideastud.io/images/andres-talavera.jpeg" />
+    <meta property="og:image:alt" content="Andrés Talavera — Consultant .NET & Azure" />
+    <meta property="og:site_name" content="IdeaStud.io" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="IdeaStud.io — Andrés Talavera" />
+    <meta name="twitter:description" content="Andrés Talavera — Consultant .NET & Azure, techlead, formateur. Lyon et à distance." />
+    <meta name="twitter:image" content="https://ideastud.io/images/andres-talavera.jpeg" />
+
     <!-- Base href. On localhost we always use `/`. Otherwise we respect the
          first path segment so Blazor routes resolve under /fr or /en prefixes. -->
     <base />
@@ -127,6 +142,8 @@
     <link rel="preload" as="font" type="font/woff2" href="/fonts/jetbrains-mono.woff2" crossorigin />
     <link rel="preload" as="style" href="/css/styles.min.css" />
     <link rel="modulepreload" href="/js/cinema.bundle.js" />
+    <!-- Avatar is an LCP candidate on Home. -->
+    <link rel="preload" as="image" href="/images/andres-talavera.jpeg" fetchpriority="high" />
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/css/styles.min.css" />
@@ -152,9 +169,10 @@
     <div id="blazor-error-ui" class="ds-error-ui" hidden>
         <span>Une erreur est survenue.</span>
         <a href=".">Recharger</a>
-        <button class="dismiss" type="button" aria-label="Fermer" onclick="this.parentElement.style.display='none'">🗙</button>
+        <button class="dismiss" type="button" aria-label="Fermer">🗙</button>
     </div>
 
+    <script src="/js/error-ui.js" defer></script>
     <script src="_framework/blazor.webassembly.js" defer></script>
 </body>
 

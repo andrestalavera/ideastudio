@@ -1,3 +1,4 @@
+using IdeaStudio.Website.State;
 using Microsoft.JSInterop;
 
 namespace IdeaStudio.Website.Services;
@@ -20,28 +21,33 @@ public interface IThemeService
     Task<string> ToggleAsync();
 }
 
-public sealed class ThemeService : IThemeService
+public sealed class ThemeService(IJSRuntime js, Store<AppState> store) : IThemeService
 {
-    private const string Fallback = "dark";
-    private readonly IJSRuntime js;
-
-    public ThemeService(IJSRuntime js) => this.js = js;
+    private readonly IJSRuntime js = js;
+    private readonly Store<AppState> store = store;
 
     public async Task<string> GetThemeAsync()
     {
-        try { return await js.InvokeAsync<string>("ideastudioTheme.get"); }
-        catch { return Fallback; }
+        string theme;
+        try { theme = await js.InvokeAsync<string>("ideastudioTheme.get"); }
+        catch { theme = store.State.Theme; }
+        store.Dispatch(new SetTheme(theme));
+        return theme;
     }
 
     public async Task SetThemeAsync(string theme)
     {
         try { await js.InvokeVoidAsync("ideastudioTheme.set", theme); }
         catch { /* JS not ready (e.g. prerender) — no-op */ }
+        store.Dispatch(new SetTheme(theme));
     }
 
     public async Task<string> ToggleAsync()
     {
-        try { return await js.InvokeAsync<string>("ideastudioTheme.toggle"); }
-        catch { return Fallback; }
+        string theme;
+        try { theme = await js.InvokeAsync<string>("ideastudioTheme.toggle"); }
+        catch { theme = store.State.Theme == "dark" ? "light" : "dark"; }
+        store.Dispatch(new SetTheme(theme));
+        return theme;
     }
 }

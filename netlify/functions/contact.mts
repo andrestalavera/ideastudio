@@ -1,4 +1,4 @@
-import type { Context } from "@netlify/functions";
+import type { Config, Context } from "@netlify/functions";
 import nodemailer from "nodemailer";
 
 // Contact-form handler. Receives the JSON posted by Pages/Contact.razor and
@@ -24,6 +24,12 @@ interface ContactPayload {
 }
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+// Strip CR/LF so attacker-supplied values cannot inject extra SMTP/MIME
+// headers when interpolated into address fields. Internal newlines collapse
+// to a single space; surrounding whitespace is trimmed. Spaces are preserved
+// so display names like "Ada Lovelace" stay intact.
+const stripCrlf = (value: string): string => value.replace(/[\r\n]+/g, " ").trim();
 
 const json = (status: number, body: Record<string, unknown>): Response =>
   new Response(JSON.stringify(body), {
@@ -75,7 +81,12 @@ export default async (req: Request, _context: Context): Promise<Response> => {
     auth: { user, pass },
   });
 
-  const safeSubject = subject || `Contact ideastud.io — ${name}`;
+  // Header-injection defence: strip CR/LF from any value that flows into an
+  // address/header field before composing replyTo / subject.
+  const safeName = stripCrlf(name);
+  const safeEmail = stripCrlf(email);
+  const safeSubject = stripCrlf(subject || `Contact ideastud.io — ${safeName}`);
+
   const text =
     `Nouveau message depuis ideastud.io\n\n` +
     `Nom : ${name}\n` +
@@ -87,7 +98,7 @@ export default async (req: Request, _context: Context): Promise<Response> => {
     await transporter.sendMail({
       from,
       to,
-      replyTo: `${name} <${email}>`,
+      replyTo: `${safeName} <${safeEmail}>`,
       subject: safeSubject,
       text,
     });
@@ -96,4 +107,18 @@ export default async (req: Request, _context: Context): Promise<Response> => {
     console.error("contact: sendMail failed", err);
     return json(502, { success: false, error: "Send failed" });
   }
+};
+
+// Netlify-native, edge-enforced rate limiting for this public SMTP relay.
+// Enforced before the function runs and shared across all instances/regions
+// (unlike an in-memory counter, which resets on cold start). Caps each client
+// IP to 5 requests per 60s window; excess requests get a 429.
+// Docs: https://ntl.fyi/rate-limiting-code
+export const config: Config = {
+  rateLimit: {
+    action: "rate_limit",
+    aggregateBy: "ip",
+    windowSize: 60,
+    windowLimit: 5,
+  },
 };

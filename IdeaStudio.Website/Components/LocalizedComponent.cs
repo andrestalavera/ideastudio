@@ -19,13 +19,16 @@ public abstract class LocalizedComponent : ComponentBase, IDisposable
     {
         await LocalizationService.LoadCultureAsync(CultureService.CurrentCulture.Name);
         LoadTexts();
-        StateHasChanged();
+        await InvokeAsync(StateHasChanged);
     }
 
     protected virtual void LoadTexts() { }
 
-    private async void OnCultureChanged()
-     => await LoadLocalizedStringsAsync();
+    // CultureChanged is raised synchronously by CultureService. Keep a synchronous
+    // handler (no async void) and marshal the reload onto the renderer's sync context;
+    // the returned task is observed via discard so exceptions surface to the renderer.
+    private void OnCultureChanged()
+        => _ = InvokeAsync(LoadLocalizedStringsAsync);
 
     public void Dispose()
     {

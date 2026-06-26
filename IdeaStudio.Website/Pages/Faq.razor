@@ -34,8 +34,8 @@
         <p class="ds-kicker">@stillKicker</p>
         <h2 class="ds-title">@stillTitle</h2>
         <div class="row mt-8">
-            <ButtonLink Href="@LocalizedRoute.For("contact")" Variant="primary" Label="@contactCta" />
-            <ButtonLink Href="https://calendly.com/andres-talavera/30min" External="true" Label="@bookCta" />
+            <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary" External="true" Arrow="→" Label="@bookCta" />
+            <ButtonLink Href="@LocalizedRoute.For("contact")" Label="@contactCta" />
         </div>
     </div>
 </PageSection>
@@ -53,7 +53,7 @@
     private string heroLead = "";
     private string stillKicker = "Encore une question ?";
     private string stillTitle = "Écrivez-moi, je réponds vite.";
-    private string contactCta = "Me contacter";
+    private string contactCta = "Décrire mon projet";
     private string bookCta = "Réserver un appel";
     private List<string>? seoStructuredData;
     private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
@@ -72,7 +72,7 @@
 
         stillKicker = fr ? "Encore une question ?" : "Still have a question?";
         stillTitle = fr ? "Écrivez-moi, je réponds vite." : "Drop me a message, I reply fast.";
-        contactCta = fr ? "Me contacter" : "Contact me";
+        contactCta = fr ? "Décrire mon projet" : "Describe my project";
         bookCta = fr ? "Réserver un appel" : "Book a call";
 
         groups = fr ? BuildFr() : BuildEn();
@@ -84,11 +84,13 @@
         new("Travailler ensemble", new (string, string)[]
         {
             ("Quels projets acceptez-vous ?", "Conseil, techlead, formation, accompagnement IA, ou réalisations sur-mesure, .NET, Azure, mobile, web. Si le cadrage est clair et le délai sain, j'y vais."),
-            ("Quels sont vos tarifs ?", "TJM à partir de 600 € (conseil, techlead) et 800 € (formation, IA en entreprise). Ajusté selon la durée, la complexité et le niveau d'implication. Premier échange de 30 minutes offert, devis chiffré sous 24 h."),
+            ("Quels sont vos tarifs ?", "Tarif journalier à partir de 600 € (conseil, techlead) et 800 € (formation, IA en entreprise), ajusté selon la durée, la complexité et le niveau d'implication. Premier échange de 30 minutes offert, devis chiffré sous 24 h."),
             ("Où pouvez-vous intervenir ?", "Lyon, Paris, Genève, Fribourg, sur site, hybride ou full-remote selon votre besoin. Je me déplace pour les kick-offs, les ateliers techniques et les sessions de formation."),
             ("Comment travaille-t-on ensemble ?", "En portage salarial via OpenWork (société française) : un cadre contractuel simple et sécurisé pour vous comme pour moi. Facturation en EUR par défaut, CHF possible pour les missions côté suisse."),
             ("Sous quel délai pouvez-vous démarrer ?", "Un appel de cadrage sous quelques jours, un devis sous 24 h après un brief court. Les missions courtes démarrent généralement sous une à deux semaines selon mon planning."),
             ("Je préfère écrire plutôt qu'appeler, c'est possible ?", "Oui. Le formulaire de contact suffit pour un premier échange : décrivez votre besoin, je reviens vers vous rapidement avec une proposition ou des questions."),
+            ("À qui appartient le code produit ?", "À vous, entièrement. Le code, les comptes et l'infrastructure créés pendant la mission vous reviennent, avec la documentation pour que vos équipes prennent le relais sans dépendre de moi."),
+            ("Où sont hébergées mes données ?", "Là où vous le souhaitez : en Europe par défaut (France, Suisse) pour rester conforme au RGPD, ou sur votre propre infrastructure. Je conçois les projets pour que vous ne soyez jamais prisonnier d'un hébergeur."),
         }),
         new("Formation", new (string, string)[]
         {
@@ -99,8 +101,8 @@
         new("IA & technique", new (string, string)[]
         {
             ("Comment garantissez-vous la qualité avec l'IA ?", "Aucune ligne générée n'est livrée sans relecture. Je raisonne, je vérifie, je corrige, la vitesse de l'IA n'a de valeur que si elle ne crée pas de dette cachée."),
-            ("Pouvez-vous installer l'IA en interne / créer des serveurs MCP ?", "Oui, modèles open-weight (Llama, Qwen, Mistral) hébergés en local, et serveurs MCP sur-mesure qui exposent votre SI à vos outils IA. Vos données restent chez vous. Voir le service « IA en entreprise »."),
-            ("Pouvez-vous rendre mon site lisible par les IA ?", "Oui : llms.txt et ai.txt, JSON-LD enrichi (Schema.org) et robots.txt IA-aware pour apparaître dans les réponses de Perplexity, ChatGPT et consorts, la même approche que sur ce site."),
+            ("Pouvez-vous installer l'IA en interne ?", "Oui : des modèles d'IA open source hébergés sur vos propres serveurs, et des passerelles sur-mesure qui connectent vos outils d'IA à vos applications. Vos données ne sortent jamais de chez vous. Voir le service « IA en entreprise »."),
+            ("Pouvez-vous rendre mon site visible des IA ?", "Oui. J'optimise votre site pour qu'il soit compris et cité par les IA (ChatGPT, Perplexity, Gemini), exactement l'approche utilisée sur ce site, qui apparaît déjà dans leurs réponses."),
         }),
     };
 
@@ -114,6 +116,8 @@
             ("How do we work together?", "Via French wage-portage company OpenWork: a simple, secure contractual frame for both sides. Default invoicing in EUR, CHF available for Swiss assignments."),
             ("How fast can you start?", "A scoping call within days, a quote within 24h of a short brief. Short engagements typically start within one to two weeks depending on my schedule."),
             ("Can I just message you instead of booking a call?", "Yes. The contact form is enough for a first exchange: describe your need and I'll get back to you quickly with a proposal or questions."),
+            ("Who owns the code you produce?", "You do, fully. The code, accounts and infrastructure created during the engagement are yours, with documentation so your team can take over without depending on me."),
+            ("Where is my data hosted?", "Wherever you want: in Europe by default (France, Switzerland) to stay GDPR-compliant, or on your own infrastructure. I design projects so you're never locked into one host."),
         }),
         new("Training", new (string, string)[]
         {
@@ -124,8 +128,8 @@
         new("AI & technical", new (string, string)[]
         {
             ("How do you keep quality with AI?", "No generated line ships without review. I reason, verify, correct, AI speed is only valuable if it doesn't create hidden debt."),
-            ("Can you set up in-house AI / build MCP servers?", "Yes, open-weight models (Llama, Qwen, Mistral) self-hosted locally, and custom MCP servers that expose your IT systems to your AI tools. Your data stays home. See the \"AI for the enterprise\" service."),
-            ("Can you make my site readable by AIs?", "Yes: llms.txt and ai.txt, enriched JSON-LD (Schema.org) and an AI-aware robots.txt so you surface in Perplexity, ChatGPT and similar answers, the same approach used on this site."),
+            ("Can you set up AI in-house?", "Yes: open-source AI models hosted on your own servers, plus custom bridges that connect your AI tools to your applications. Your data never leaves your premises. See the \"AI for the enterprise\" service."),
+            ("Can you make my site visible to AIs?", "Yes. I optimize your site so it's understood and cited by AIs (ChatGPT, Perplexity, Gemini), exactly the approach used on this site, which already shows up in their answers."),
         }),
     };
 

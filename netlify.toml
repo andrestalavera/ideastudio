@@ -24,6 +24,12 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Cinema JS bundle is fingerprint-stable per deploy (esbuild output).
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [[headers]]
   for = "/fonts/*"
   [headers.values]
@@ -38,9 +44,21 @@
     Referrer-Policy           = "strict-origin-when-cross-origin"
     Permissions-Policy        = "geolocation=(), microphone=(), camera=()"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-    # Blazor WASM needs 'wasm-unsafe-eval'; inline theme/lang/gtag scripts need 'unsafe-inline'.
+    # Blazor WASM needs 'wasm-unsafe-eval'. The inline bootstrap <script> blocks in
+    # wwwroot/index.html (base href, <html lang>, theme, gtag consent, gtag loader)
+    # are allowlisted by sha256 instead of 'unsafe-inline' — so script-src no longer
+    # opens the door to injected inline scripts. The error-UI dismiss handler was
+    # externalised to /js/error-ui.js (covered by 'self'). RECOMPUTE THE HASHES after
+    # editing any inline script: `cd IdeaStudio.Website && node scripts/csp-hashes.mjs`
+    # then paste the values below. One byte of drift breaks first paint.
+    #   #1 base href   sha256-BObgjNSy+6cpDoHgoOLwh2Yj+LQ4gI3FWVqOdKS5OZ4=
+    #   #2 <html lang> sha256-B6ts0XSREbwwY6kVznXF8sS2RJz8bdb89cD9EdX39kU=
+    #   #3 theme       sha256-qtBultmCkb5i1LA4qjBLSvxgx1oEWuQxVtiMbWN66t4=
+    #   #4 gtag consent sha256-XcMWr4xKB7f2oVUxLRRz9DKWvKPbCMCz1phUYHNkJ6M=
+    #   #5 gtag loader  sha256-f+BeF53DX3oucknFuLf5ArdeacGwrfQFNAVIreripYE=
+    # style-src keeps 'unsafe-inline' (Blazor injects inline styles at runtime).
     # Allowed third parties: Google Analytics/Tag Manager, Microsoft Clarity, Meta Pixel, Calendly.
-    Content-Security-Policy   = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://connect.facebook.net https://assets.calendly.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.clarity.ms https://www.facebook.com; frame-src https://calendly.com https://assets.calendly.com; form-action 'self'; frame-ancestors 'none'"
+    Content-Security-Policy   = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-BObgjNSy+6cpDoHgoOLwh2Yj+LQ4gI3FWVqOdKS5OZ4=' 'sha256-B6ts0XSREbwwY6kVznXF8sS2RJz8bdb89cD9EdX39kU=' 'sha256-qtBultmCkb5i1LA4qjBLSvxgx1oEWuQxVtiMbWN66t4=' 'sha256-XcMWr4xKB7f2oVUxLRRz9DKWvKPbCMCz1phUYHNkJ6M=' 'sha256-f+BeF53DX3oucknFuLf5ArdeacGwrfQFNAVIreripYE=' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://connect.facebook.net https://assets.calendly.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.clarity.ms https://www.facebook.com; frame-src https://calendly.com https://assets.calendly.com; form-action 'self'; frame-ancestors 'none'"
 
 # Netlify Functions (TypeScript .mts, ES modules).
 # resume-pdf renders a PDF on demand from wwwroot/data/resume-{culture}.json
@@ -49,6 +67,11 @@
 [functions]
   node_bundler        = "esbuild"
   external_node_modules = ["@sparticuz/chromium"]
+
+# Rate limiting for the public, unauthenticated SMTP relay (contact form) is
+# enforced at the edge via the function's own `config.rateLimit` export in
+# netlify/functions/contact.mts (5 requests / 60s per IP). Netlify reads that
+# config at deploy time; there is no equivalent rate_limit key in netlify.toml.
 
 # Friendly aliases on top of the default /.netlify/functions/{name} path.
 [[redirects]]

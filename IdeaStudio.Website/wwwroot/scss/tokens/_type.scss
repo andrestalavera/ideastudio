@@ -20,10 +20,16 @@ $lh-title:   1.05;
 $lh-body:    1.6;
 
 // Letter-spacing
-$ls-display: -0.05em;
+$ls-display: -0.055em;  // tighter optical tracking at display scale
 $ls-title:   -0.03em;
+$ls-lead:    -0.01em;   // gentle negative tracking on lead paragraphs
 $ls-body:     0;
-$ls-kicker:   0.28em;  // uppercase mono kickers
+$ls-kicker:   0.28em;   // uppercase mono kickers
+
+// Measure (max line length). Body prose reads at ~68ch; leads are shorter and
+// punchier at ~46ch. Component agents: apply $measure-lead to .ds-lead.
+$measure-body: 68ch;
+$measure-lead: 46ch;
 
 // Weight
 $fw-display: 600;

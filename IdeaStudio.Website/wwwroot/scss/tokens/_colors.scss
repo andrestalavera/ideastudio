@@ -21,7 +21,7 @@ $themes: (
     bg-void:     #020a0d,
     bg-deep:     #05161a,
     bg-surface:  #0a2328,
-    bg-raised:   #0e2d33,
+    bg-raised:   #103740,  // nudged a touch lighter so elevation reads without a border
     fg:          #eaf4f2,
     fg-muted:    #a8bfbb,
     fg-faint:    #5e7a77,
@@ -35,6 +35,11 @@ $themes: (
     ring:        rgba(0, 194, 212, 0.6),
     glass:       rgba(234, 244, 242, 0.06),
     track:       rgba(234, 244, 242, 0.08),
+    // Elevation: a top inner-light line + a deep, soft drop so raised surfaces
+    // read without leaning on a border. --elev-1 for cards/chips, --elev-2 for
+    // menus/popovers/dialogs that float above the page.
+    elev-1:      (inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 8px 24px -10px rgba(0, 0, 0, 0.55)),
+    elev-2:      (inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 18px 48px -14px rgba(0, 0, 0, 0.62)),
   ),
   light: (
     bg-void:     #e7eeec,  // footer / far-back panel — darkest light surface
@@ -54,6 +59,10 @@ $themes: (
     ring:        rgba(0, 112, 125, 0.6),
     glass:       rgba(11, 26, 29, 0.05),
     track:       rgba(11, 26, 29, 0.10),
+    // Light equivalents: a bright top line + a soft, low-alpha ink drop so
+    // cards lift off the warm-neutral page without a heavy border.
+    elev-1:      (inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 8px 24px -12px rgba(11, 26, 29, 0.18)),
+    elev-2:      (inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 18px 48px -16px rgba(11, 26, 29, 0.26)),
   ),
 );
 
@@ -78,6 +87,13 @@ $rule-bright: var(--rule-bright);
 $ring:        var(--ring);
 $glass:       var(--glass);
 $track:       var(--track);
+
+// Elevation shadows (per-theme, emitted from $themes) + a reusable duck tint.
+// $tint-duck is an 8% duck wash over transparent — for hover backgrounds,
+// active rows, and faint accent fills that must not read as a solid fill.
+$elev-1:    var(--elev-1);
+$elev-2:    var(--elev-2);
+$tint-duck: var(--tint-duck);
 
 // The one iridescent gradient. Built once in :root from the themed accents
 // (see base/_root.scss) and reused as a single object across SCSS + WebGL.

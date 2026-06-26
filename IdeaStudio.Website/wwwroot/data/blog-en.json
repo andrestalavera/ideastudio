@@ -2,7 +2,7 @@
   {
     "slug": "coder-avec-ia-sans-dette-technique",
     "title": "Coding with AI without creating technical debt",
-    "summary": "AI coding assistants save real time, as long as you keep a human in the loop. Here's the method I apply on client work.",
+    "summary": "AI coding assistants save real time, as long as you keep a human in the loop. The concrete method I apply on every project.",
     "date": "2026-06-20",
     "readingMinutes": 4,
     "tags": ["AI", "Vibe coding", "Quality"],
@@ -11,7 +11,7 @@
   {
     "slug": "cloud-souverain-europe",
     "title": "Sovereign cloud: hosting in Europe without sacrificing the experience",
-    "summary": "Azure isn't the only option. A tour of European hosts (Clever Cloud, Infomaniak) and when to pick them.",
+    "summary": "Azure isn't the only way to host in Europe. A tour of sovereign hosts, and how to choose the one that fits your project.",
     "date": "2026-06-10",
     "readingMinutes": 5,
     "tags": ["Cloud", "Sovereignty", "Azure"],

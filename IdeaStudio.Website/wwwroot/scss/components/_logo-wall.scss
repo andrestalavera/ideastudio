@@ -24,6 +24,10 @@
     text-decoration: none;
   }
 
+  // One optical weight + colour for every mark so the strip reads as a curated
+  // roster, not a clash of brand palettes: monochrome wordmarks at one muted
+  // tone, image logos forced to grayscale at the same visual weight. Both
+  // resolve to full $fg on hover.
   &-wordmark {
     font-family: t.$font-sans;
     font-weight: 600;
@@ -31,16 +35,23 @@
     letter-spacing: -0.01em;
     color: c.$fg-muted;
     white-space: nowrap;
-    transition: color 200ms var(--ease-out);
+    transition: color var(--t-hover) var(--ease-lux);
   }
 
   &-img {
     block-size: clamp(2rem, 4vw, 2.75rem);
     inline-size: auto;
-    opacity: 0.8;
-    transition: opacity 200ms var(--ease-out);
+    opacity: 0.7;
+    filter: grayscale(1);
+    transition: opacity var(--t-hover) var(--ease-lux),
+                filter var(--t-hover) var(--ease-lux);
   }
 
   &:hover &-wordmark { color: c.$fg; }
-  &:hover &-img { opacity: 1; }
+  &:hover &-img { opacity: 1; filter: grayscale(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-logo-wordmark,
+  .ds-logo-img { transition: none; }
 }

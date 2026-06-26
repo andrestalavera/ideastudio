@@ -4,14 +4,14 @@
 <div class="row">
     @if (ShowSocials)
     {
-        <a class="ds-btn ds-btn-ghost" href="https://www.linkedin.com/in/andrestalavera/" target="_blank" rel="noopener">
+        <a class="ds-btn ds-btn-ghost" href="https://www.linkedin.com/in/andres-talavera/" target="_blank" rel="noopener">
             <span>01</span> LinkedIn <span aria-hidden="true">↗</span>
         </a>
         <a class="ds-btn ds-btn-ghost" href="https://github.com/andrestalavera" target="_blank" rel="noopener">
             <span>02</span> GitHub <span aria-hidden="true">↗</span>
         </a>
     }
-    <a class="ds-btn ds-btn-primary" href="@DownloadUrl" target="_blank" rel="noopener" aria-label="@DownloadLabel">
+    <a class="ds-btn @(DownloadPrimary ? "ds-btn-primary" : "ds-btn-ghost")" href="@DownloadUrl" target="_blank" rel="noopener" aria-label="@DownloadLabel">
         @if (ShowSocials)
         {
             <span>03</span>
@@ -30,6 +30,9 @@
 
 @code {
     [Parameter] public bool ShowSocials { get; set; } = true;
+    // When false the résumé download renders as a ghost (secondary) button so a
+    // caller can keep a single primary CTA (DESIGN §5 one-primary rule).
+    [Parameter] public bool DownloadPrimary { get; set; } = true;
     [Parameter] public string Label { get; set; } = "Meet";
     [Parameter] public string AriaLabel { get; set; } = "Book a 30-minute call on Calendly (opens in a new tab)";
     [Parameter] public string DownloadUrl { get; set; } = "cv.pdf";

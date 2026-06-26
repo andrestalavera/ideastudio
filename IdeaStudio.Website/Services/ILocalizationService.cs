@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-
-namespace IdeaStudio.Website.Services;
+﻿namespace IdeaStudio.Website.Services;
 
 public interface ILocalizationService
 {
@@ -8,10 +6,8 @@ public interface ILocalizationService
     Task LoadCultureAsync(string culture);
 }
 
-public class LocalizationService(HttpClient httpClient) : ILocalizationService
+public class LocalizationService(ILazyLoadingService loader) : ILocalizationService
 {
-    private readonly HttpClient httpClient = httpClient;
-    private readonly Dictionary<string, Dictionary<string, string>> cultureCache = [];
     private Dictionary<string, string> localizedStrings = [];
 
     public string GetString(string key)
@@ -26,30 +22,7 @@ public class LocalizationService(HttpClient httpClient) : ILocalizationService
 
     public async Task LoadCultureAsync(string culture)
     {
-        // Check cache first
-        if (cultureCache.TryGetValue(culture, out Dictionary<string, string>? cachedStrings))
-        {
-            localizedStrings = cachedStrings;
-            return;
-        }
-
-        try
-        {
-            HttpResponseMessage response = await httpClient.GetAsync($"i18n/{culture}.json");
-            if (response.IsSuccessStatusCode)
-            {
-                string? json = await response.Content.ReadAsStringAsync();
-                var strings = JsonSerializer.Deserialize<Dictionary<string, string>>(json) ?? [];
-
-                // Cache the loaded strings
-                cultureCache[culture] = strings;
-                localizedStrings = strings;
-            }
-        }
-        catch
-        {
-            // Fallback to empty dictionary if loading fails
-            localizedStrings = [];
-        }
+        Dictionary<string, string>? strings = await loader.LoadDataAsync<Dictionary<string, string>>($"i18n/{culture}.json");
+        localizedStrings = strings ?? [];
     }
 }

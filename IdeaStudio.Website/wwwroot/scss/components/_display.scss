@@ -12,22 +12,23 @@
   color: c.$fg;
   margin: 0;
 
-  // Accent dot on the final character of the brand name. Slight scale
-  // breathe to read as "alive" without competing with the per-char reveal.
-  // This is the only perpetual loop on the home hero — selective, not
-  // pervasive — and obeys prefers-reduced-motion below.
+  // Accent dot on the final character of the brand name. A barely-there scale
+  // breathe reads as "alive" without competing with the per-char reveal — the
+  // amplitude and cadence are dialed right back from the old restless pulse.
+  // It is one of two perpetual loops on the home hero (the availability dot also
+  // pulses); both obey prefers-reduced-motion below. (A single transformed glyph
+  // does not need a permanent will-change layer.)
   .ds-display-accent {
     color: c.$ir-duck;
     display: inline-block;
     transform-origin: 50% 80%;
-    animation: ds-display-accent-breathe 3.6s ease-in-out infinite;
-    will-change: transform;
+    animation: ds-display-accent-breathe 5s ease-in-out infinite;
   }
 }
 
 @keyframes ds-display-accent-breathe {
   0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.18); }
+  50%      { transform: scale(1.04); }
 }
 
 // Per-character reveal driven by parent state. The host carries [data-reveal]
@@ -52,14 +53,14 @@
     white-space: nowrap;
   }
 
+  // LCP-safe: chars are visible by default (paint immediately before the
+  // cinema runtime boots). The hidden pre-reveal state is gated behind
+  // html.cinema-ready below, then the per-char wave plays via .is-revealed.
   &-char {
     display: inline-block;
-    opacity: 0;
-    transform: translateY(0.45em);
     transition: opacity 720ms cubic-bezier(0.2, 0.8, 0.2, 1),
                 transform 720ms cubic-bezier(0.2, 0.8, 0.2, 1);
     transition-delay: calc(var(--i, 0) * 38ms + 220ms);
-    will-change: opacity, transform;
   }
 
   &.is-revealed &-char {
@@ -68,8 +69,17 @@
   }
 }
 
+// will-change is applied transiently — only once the cinema runtime is driving
+// the per-char wave (cinema-ready), never on the default LCP-painted state.
+html.cinema-ready .ds-reveal-chars-char {
+  opacity: 0;
+  transform: translateY(0.45em);
+  will-change: opacity, transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .ds-reveal-chars-char {
+  .ds-reveal-chars-char,
+  html.cinema-ready .ds-reveal-chars-char {
     transition: none;
     opacity: 1;
     transform: none;

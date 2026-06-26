@@ -1,4 +1,4 @@
-﻿@page "/fr"
+@page "/fr"
 @page "/en"
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Models
@@ -21,11 +21,12 @@
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
 
-@* 1 · Hero, asymmetric editorial layout: name occupies the left ten columns
-   at display scale, kicker pinned vertically to the right rail as an
-   orientation marker, lead offset right beneath the name. Per-character
-   reveal preserved; --hero-progress scroll morph preserved. *@
+@* Simplified marketing home — one narrative:
+   promise → proof → a little work → how I help → final CTA. *@
 <div class="ds-page-home">
+
+@* 1 · Hero — the promise + one primary CTA (book a call) and a secondary
+   "describe my project" link. Per-character name reveal + scroll morph preserved. *@
 <section class="ds-hero">
     <Container Width="wide">
         <div class="ds-hero-inner">
@@ -42,17 +43,28 @@
                 <span class="ds-display-accent" aria-hidden="true">.</span>
             </RevealChars>
             <p class="ds-lead" data-reveal style="--reveal-step: 2">@lead</p>
-            <div class="mt-4" data-reveal style="--reveal-step: 3">
-                <ActionRow Label="@meetLabel" DownloadUrl="@downloadUrl" DownloadLabel="@downloadLabel" />
+            <div class="row mt-4" data-reveal style="--reveal-step: 3">
+                <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary"
+                            External="true" Arrow="→" Label="@primaryCtaLabel" AriaLabel="@primaryCtaAria" />
+                <ButtonLink Href="@LocalizedRoute.For("contact")" Variant="ghost" Label="@secondaryCtaLabel" />
             </div>
         </div>
     </Container>
 </section>
 
-@* 2 · Why work with me, concrete, benefit-led value props *@
+@* 2 · Proof — "trusted by" client logos, surfaced early. *@
+@if (clients.Count > 0)
+{
+    <PageSection Rhythm="section">
+        <p class="ds-kicker mb-6" data-reveal>@clientsKicker</p>
+        <LogoWall Items="@clients" />
+    </PageSection>
+}
+
+@* 3 · What you get — plain, benefit-led value props. *@
 <PageSection>
     <ChapterBand Kicker="@benefitsKicker" Title="@benefitsTitle" Lead="@benefitsLead" />
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-chapter">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-chapter">
         @for (int i = 0; i < benefits.Count; i++)
         {
             (string t, string b) = benefits[i];
@@ -64,31 +76,7 @@
     </div>
 </PageSection>
 
-@* 2b · Latest articles, surfaced high for visibility *@
-@if (latestPosts.Count > 0)
-{
-    <PageSection>
-        <ChapterBand Kicker="@blogKicker" Title="@blogTitle" />
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-chapter">
-            @foreach (BlogPost post in latestPosts)
-            {
-                <BlogCard Post="@post" />
-            }
-        </div>
-        <SectionCta Href="@LocalizedRoute.For("blog")" Label="@blogAllCta" />
-    </PageSection>
-}
-
-@* 2c · Trusted by, client logo strip (social proof) *@
-@if (clients.Count > 0)
-{
-    <PageSection Rhythm="section">
-        <p class="ds-kicker mb-6" data-reveal>@clientsKicker</p>
-        <LogoWall Items="@clients" />
-    </PageSection>
-}
-
-@* 2c · Testimonials, real recommendations (social proof) *@
+@* 4 · Proof — real client recommendations. *@
 @if (testimonials.Count > 0)
 {
     <PageSection>
@@ -96,12 +84,12 @@
         <div class="mt-chapter">
             <Testimonials Items="@testimonials" />
         </div>
-        <SectionCta Href="https://www.linkedin.com/in/andrestalavera/details/recommendations/"
+        <SectionCta Href="https://www.linkedin.com/in/andres-talavera/details/recommendations/"
                     Label="@moreTestimonials" External="true" />
     </PageSection>
 }
 
-@* 3 · Latest realisations, editorial zig-zag stack, not uniform rows *@
+@* 5 · A little work — a couple of recent projects. *@
 <PageSection>
     <ChapterBand Kicker="@realisationsKicker" Title="@realisationsTitle" />
     <div class="ds-home-projects mt-chapter">
@@ -124,25 +112,16 @@
     <SectionCta Href="@LocalizedRoute.For("realisations")" Label="@seeAllRealisations" />
 </PageSection>
 
-@* 4 · Go to my resume *@
-<ResumeBand YearsValue="@yearsValue"
-            StackValue=".NET · Azure · Mobile"
-            LanguagesValue="FR · EN · ES" />
-
-@* 5 · About teaser, who's behind the work *@
+@* 6 · How I help — services as plain bullets. *@
 <PageSection>
-    <ChapterBand Kicker="@aboutKicker" Title="@aboutTitle" Lead="@aboutLead" />
-    <SectionCta Href="@LocalizedRoute.For("about")" Label="@aboutCta" />
-</PageSection>
-
-@* 6 · Services *@
-<PageSection>
-    <ChapterBand Kicker="@servicesKicker" Title="@servicesTitle" />
+    <ChapterBand Kicker="@servicesKicker" Title="@servicesTitle" Lead="@servicesLead" />
     <div class="mt-chapter" data-reveal>
         <EditorialList Items="@(services.Take(2).ToList())" />
     </div>
     <SectionCta Href="@LocalizedRoute.For("services.hub")" Label="@seeAllServices" />
 </PageSection>
+
+@* 7 · Final CTA is rendered globally by MainLayout (CtaBand) on non-legal pages. *@
 
 </div>
 
@@ -150,40 +129,36 @@
     private IReadOnlyList<ServiceModel> services = Array.Empty<ServiceModel>();
     private IReadOnlyList<Realisation> realisations = Array.Empty<Realisation>();
 
-    private string kicker = "CONSULTANT · TECHLEAD · FORMATEUR";
-    private string availability = "Disponible pour de nouvelles missions";
-    private string lead = "Je transforme des idées en logiciels qui marchent.";
+    private string kicker = "CONSEIL · DÉVELOPPEMENT · FORMATION";
+    private string availability = "Quelques missions sélectionnées à la fois";
+    private string lead = "Je transforme votre idée en logiciel que vos clients utilisent vraiment.";
     private string avatarAlt = "Andrés Talavera, consultant et développeur .NET & Azure";
-    private string meetLabel = "Rencontrer";
-    private string downloadLabel = "Télécharger CV";
-    private string downloadUrl = "cv.pdf";
+    private string primaryCtaLabel = "Réserver un appel";
+    private string primaryCtaAria = "Réserver un appel de 30 minutes sur Calendly (ouvre un nouvel onglet)";
+    private string secondaryCtaLabel = "Décrire mon projet";
+
     private List<(string Title, string Body)> benefits = new();
+    private string benefitsKicker = "Pourquoi moi";
+    private string benefitsTitle = "Ce que vous y gagnez.";
+    private string benefitsLead = "";
+
     private List<LogoWall.LogoItem> clients = new();
     private string clientsKicker = "Ils m'ont fait confiance";
+
     private IReadOnlyList<Testimonial> testimonials = Array.Empty<Testimonial>();
     private string testimonialsKicker = "Recommandations";
     private string testimonialsTitle = "Ce qu'ils disent.";
     private string moreTestimonials = "Plus de recommandations";
-    private string benefitsKicker = "Pourquoi moi";
-    private string benefitsTitle = "Ce que vous y gagnez.";
-    private string benefitsLead = "";
+
     private string realisationsKicker = "Réalisations";
     private string realisationsTitle = "Projets récents.";
     private string seeAllRealisations = "Voir toutes les réalisations";
     private string caseBadge = "Étude de cas";
-    private string aboutKicker = "À propos";
-    private string aboutTitle = "Qui se cache derrière le code.";
-    private string aboutLead = "";
-    private string aboutCta = "En savoir plus sur moi";
+
     private string servicesKicker = "Services";
     private string servicesTitle = "Comment je peux vous aider.";
+    private string servicesLead = "";
     private string seeAllServices = "Voir tous les services";
-    private string yearsValue = "15+";
-
-    private IReadOnlyList<BlogPost> latestPosts = Array.Empty<BlogPost>();
-    private string blogKicker = "Blog";
-    private string blogTitle = "À lire aussi.";
-    private string blogAllCta = "Voir le blog";
 
     private string seoTitle = "IdeaStud.io, Andrés Talavera";
     private string seoDescription = "";
@@ -208,9 +183,10 @@
         seoTitle = fr
             ? "Andrés Talavera, Consultant .NET & Azure, Techlead, Formateur | IdeaStud.io"
             : "Andrés Talavera, .NET & Azure Consultant, Tech Lead, Trainer | IdeaStud.io";
+        // Crisp single-sentence promise above the fold (geography lives in a benefit card).
         lead = fr
-            ? "Je vous aide à transformer une idée en logiciel que vos clients utilisent vraiment, et sur lequel votre équipe peut continuer à bâtir. Autour de Lyon, Paris, Genève et Fribourg, ou en full-remote."
-            : "I help you turn an idea into software your customers actually use, and your team can keep building on. Around Lyon, Paris, Geneva and Fribourg, or fully remote.";
+            ? "Je transforme votre idée en logiciel que vos clients utilisent vraiment : livré vite, fiable, et prêt à évoluer."
+            : "I turn your idea into software your customers actually use: shipped fast, reliable, and ready to grow.";
         // SEO description stays keyword-rich even though the visible lead is warmer.
         seoDescription = fr
             ? "Andrés Talavera, consultant .NET & Azure, techlead et formateur. Je transforme vos idées en logiciels fiables (web, mobile, cloud). Lyon · Paris · Genève · Fribourg ou à distance."
@@ -224,55 +200,49 @@
             : "CONSULTING · DEVELOPMENT · TRAINING";
 
         availability = fr
-            ? "Disponible pour de nouvelles missions"
-            : "Available for new projects";
+            ? "Quelques missions sélectionnées à la fois"
+            : "A few selected engagements at a time";
 
-        meetLabel = fr ? "Rencontrer" : "Meet";
-        downloadLabel = fr ? "Télécharger CV" : "Download resume";
-        downloadUrl = fr ? "cv.pdf?culture=fr" : "resume.pdf?culture=en";
+        primaryCtaLabel = fr ? "Réserver un appel" : "Book a call";
+        primaryCtaAria = fr
+            ? "Réserver un appel de 30 minutes sur Calendly (ouvre un nouvel onglet)"
+            : "Book a 30-minute call on Calendly (opens in a new tab)";
+        secondaryCtaLabel = fr ? "Décrire mon projet" : "Describe my project";
 
         clientsKicker  = fr ? "Ils m'ont fait confiance" : "Trusted by";
-        testimonialsKicker = fr ? "Recommandations" : "Recommendations";
-        testimonialsTitle  = fr ? "Ce qu'ils disent." : "What they say.";
+
         benefitsKicker = fr ? "Pourquoi moi" : "Why me";
         benefitsTitle  = fr ? "Ce que vous y gagnez." : "What you get.";
         benefitsLead   = fr
-            ? "Un interlocuteur unique, senior et impliqué, du premier échange à la livraison. Voici concrètement ce que ça change pour vous."
-            : "One senior, hands-on point of contact, from the first call to delivery. Here's concretely what that changes for you.";
+            ? "Un seul interlocuteur, senior, du premier échange à la livraison. Un premier appel de 30 min suffit pour voir si nous sommes faits pour travailler ensemble."
+            : "One senior point of contact, from the first call to delivery. A 30-minute introductory call is enough to see if we're a fit.";
         benefits = fr
             ? new() {
                 ("Un seul interlocuteur, senior", "15+ ans d'expérience. Vous parlez directement à l'expert qui conçoit et réalise votre logiciel, du début à la fin."),
-                ("Livré vite, sans surprise", "Un logiciel fiable, livré rapidement et conçu pour durer, sans dette technique qui coûte cher plus tard."),
-                ("Des tarifs clairs", "Tarif à la journée à partir de 600 €, premier échange de 30 min offert, devis sous 24 h. Vous savez toujours ce que vous payez."),
-                ("Près de vous, ou à distance", "Sur site à Lyon, Paris, Genève et Fribourg, ou 100 % à distance. Hébergement en Europe possible : vos données restent en Europe.")
+                ("Livré vite, conçu pour durer", "Un logiciel fiable, livré sans dérive ni mauvaise surprise. 600–800 €/jour, selon l'engagement : vous savez toujours où vous allez."),
+                ("Près de vous, ou à distance", "Sur site à Lyon, Paris, Genève et Fribourg, ou 100 % à distance. Vos données peuvent rester hébergées en Europe.")
             }
             : new() {
                 ("One senior point of contact", "15+ years of experience. You talk directly to the expert who designs and builds your software, start to finish."),
-                ("Delivered fast, no surprises", "Reliable software, delivered quickly and built to last, without the technical debt that gets expensive later."),
-                ("Clear pricing", "Day rate from 600 €, a free 30-minute intro call, a quote within 24h. You always know what you're paying for."),
-                ("Where you are, or remote", "On-site in Lyon, Paris, Geneva and Fribourg, or fully remote. European hosting available: your data stays in Europe.")
+                ("Delivered fast, built to last", "Reliable software, delivered without drift or nasty surprises. €600–800/day, scoped to the engagement: you always know where you stand."),
+                ("Where you are, or remote", "On-site in Lyon, Paris, Geneva and Fribourg, or fully remote. Your data can stay hosted in Europe.")
             };
+
+        testimonialsKicker = fr ? "Recommandations" : "Recommendations";
+        testimonialsTitle  = fr ? "Ce qu'ils disent." : "What they say.";
+        moreTestimonials   = fr ? "Plus de recommandations" : "More recommendations";
 
         realisationsKicker = fr ? "Réalisations" : "Work";
         realisationsTitle  = fr ? "Projets récents." : "Recent projects.";
         seeAllRealisations = fr ? "Voir toutes les réalisations" : "See all projects";
         caseBadge          = fr ? "Étude de cas" : "Case study";
 
-        aboutKicker = fr ? "À propos" : "About";
-        aboutTitle  = fr ? "Qui se cache derrière le code." : "The person behind the code.";
-        aboutLead   = fr
-            ? "Consultant, techlead et formateur indépendant. Un même fil rouge depuis 15 ans : transformer des idées en logiciels qui marchent."
-            : "Independent consultant, tech lead and trainer. One thread for 15 years: turning ideas into software that ships.";
-        aboutCta    = fr ? "En savoir plus sur moi" : "More about me";
-
         servicesKicker = fr ? "Services" : "Services";
         servicesTitle  = fr ? "Comment je peux vous aider." : "How I can help.";
+        servicesLead   = fr
+            ? "Du conseil au développement et à la formation : un accompagnement clair, adapté à votre besoin."
+            : "From advice to building and training: clear support, shaped around your need.";
         seeAllServices = fr ? "Voir tous les services" : "See all services";
-
-        blogKicker  = fr ? "Blog" : "Blog";
-        blogTitle   = fr ? "À lire aussi." : "Worth a read.";
-        blogAllCta  = fr ? "Voir tous les articles" : "See all articles";
-        moreTestimonials = fr ? "Plus de recommandations" : "More recommendations";
     }
 
     private async Task LoadDataAsync()
@@ -285,7 +255,6 @@
             .Select(c => new LogoWall.LogoItem(c.Name, LogoUrl: null, Url: c.Url))
             .ToList();
         testimonials = (await Content.GetTestimonialsAsync()).Take(2).ToArray();
-        latestPosts = (await Content.GetBlogPostsAsync(culture)).Take(2).ToArray();
     }
 
     private void GenerateStructuredData()
@@ -300,7 +269,7 @@
             Description: seoDescription,
             Url: "https://ideastud.io",
             Image: "https://ideastud.io/images/andres-talavera.jpeg",
-            SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
+            SameAs: new[] { "https://www.linkedin.com/in/andres-talavera/", "https://github.com/andrestalavera", "https://x.com/imcresus_" },
             KnowsAbout: new[] { ".NET", "Azure", "Blazor", "ASP.NET Core", "Cloud Architecture", "Software Training" },
             Address: new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressRegion: "Auvergne-Rhône-Alpes", AddressCountry: "FR"),
             WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io"),

@@ -39,6 +39,11 @@ export async function initialize() {
   if (booted) return;
   booted = true;
 
+  // Flip the reveal gate on. Until now [data-reveal] / per-char content paints
+  // immediately (LCP-safe); from here CSS drops elements into their hidden
+  // pre-reveal state and the IntersectionObserver choreographs them in.
+  document.documentElement.classList.add('cinema-ready');
+
   // Always attach reveals/cursor/nav-morph — they work without WebGL.
   attachReveals();
   attachCursor();
@@ -78,13 +83,8 @@ export async function initialize() {
     document.hidden ? pause('hidden') : resume('hidden');
   });
 
-  // Reading-progress rail.
-  const bar = document.getElementById('ds-progress-bar');
-  if (bar) {
-    const tickBar = () => { bar.style.inlineSize = (inputs.scroll.page * 100).toFixed(2) + '%'; };
-    window.addEventListener('scroll', tickBar, { passive: true });
-    tickBar();
-  }
+  // Reading-progress rail is driven entirely by CSS (animation-timeline:
+  // scroll(root)) in components/_progress.scss — no JS scroll listener here.
 
   // Route-change hook: rewire reveals when the DOM swaps via Blazor's router.
   window.addEventListener('ideastudio:routechanged', () => {
@@ -105,6 +105,9 @@ export function dispose() {
   disposeReveals();
   disposeCursor();
   disposeNavMorph();
+  // Restore the LCP-safe visible default so torn-down content never sticks
+  // hidden if the runtime is disposed without a re-init.
+  document.documentElement.classList.remove('cinema-ready');
   mesh = null; renderer = null; inputs = null; state = null; clock = null;
   booted = false;
   pauseReasons.clear();

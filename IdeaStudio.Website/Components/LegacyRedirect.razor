@@ -1,12 +1,15 @@
 @inject NavigationManager NavigationManager
+@inject ILocalizedRoute LocalizedRoute
 
 @code {
+    // Old, non-localized URLs mapped to the canonical pageId. The actual localized
+    // target is resolved through ILocalizedRoute.For so paths are never hard-coded here.
     private static readonly Dictionary<string, string> LegacyMap = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["/"] = "/fr",
-        ["/andres-talavera-resume"] = "/fr/cv",
-        ["/privacy"] = "/fr/confidentialite",
-        ["/legal"] = "/fr/mentions-legales"
+        ["/"] = "home",
+        ["/andres-talavera-resume"] = "cv",
+        ["/privacy"] = "privacy",
+        ["/legal"] = "legal"
     };
 
     protected override void OnInitialized()
@@ -15,9 +18,10 @@
         string path = uri.AbsolutePath;
         string query = uri.Query;
 
-        if (LegacyMap.TryGetValue(path, out string? target))
+        if (LegacyMap.TryGetValue(path, out string? pageId))
         {
-            string final = AppendCultureAwareQuery(target, query);
+            string culture = ParseCultureQuery(query) ?? "fr";
+            string final = LocalizedRoute.For(pageId, culture);
             NavigationManager.NavigateTo(final, replace: true);
             return;
         }
@@ -26,21 +30,11 @@
         if (!string.IsNullOrEmpty(query) && path != "/")
         {
             string? culture = ParseCultureQuery(query);
-            if (culture != null && !path.StartsWith("/fr") && !path.StartsWith("/en"))
+            if (culture != null && LocalizedRoute.ExtractCulture(path) is null)
             {
                 NavigationManager.NavigateTo($"/{culture}{path}", replace: true);
             }
         }
-    }
-
-    private static string AppendCultureAwareQuery(string target, string query)
-    {
-        string? culture = ParseCultureQuery(query);
-        if (culture == "en" && target.StartsWith("/fr"))
-        {
-            return "/en" + target[3..];
-        }
-        return target;
     }
 
     private static string? ParseCultureQuery(string query)

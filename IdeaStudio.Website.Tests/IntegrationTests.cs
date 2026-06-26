@@ -29,6 +29,25 @@ public class IntegrationTests
     [InlineData("/en/legal")]
     [InlineData("/fr/confidentialite")]
     [InlineData("/en/privacy")]
+    // Pages added since the original route list — assert their localized templates too.
+    [InlineData("/fr/contact")]
+    [InlineData("/en/contact")]
+    [InlineData("/fr/a-propos")]
+    [InlineData("/en/about")]
+    [InlineData("/fr/blog")]
+    [InlineData("/en/blog")]
+    [InlineData("/fr/faq")]
+    [InlineData("/en/faq")]
+    [InlineData("/fr/formations")]
+    [InlineData("/en/training")]
+    // Dynamic (slug-parameterised) detail routes — the introspection harness asserts the
+    // declared template string, matching how `/fr/services/{slug}` is covered above.
+    [InlineData("/fr/realisations/{slug}")]
+    [InlineData("/en/projects/{slug}")]
+    [InlineData("/fr/blog/{slug}")]
+    [InlineData("/en/blog/{slug}")]
+    [InlineData("/fr/formations/{Slug}")]
+    [InlineData("/en/training/{Slug}")]
     public void NewRoutes_AreDeclaredOnComponents(string template)
     {
         Assert.Contains(template, DeclaredRoutes);

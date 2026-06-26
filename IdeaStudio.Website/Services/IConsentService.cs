@@ -1,5 +1,6 @@
 // IdeaStudio.Website/Services/IConsentService.cs
 using System.Text.Json;
+using IdeaStudio.Website.State;
 using Microsoft.JSInterop;
 
 namespace IdeaStudio.Website.Services;
@@ -17,7 +18,7 @@ public interface IConsentService
     Task ResetAsync();
 }
 
-public sealed class ConsentService(IJSRuntime js, TimeProvider clock) : IConsentService
+public sealed class ConsentService : IConsentService, IDisposable
 {
     private const string StorageKey = "idea_consent";
     private static readonly TimeSpan Expiry = TimeSpan.FromDays(395); // ~13 months
@@ -27,14 +28,22 @@ public sealed class ConsentService(IJSRuntime js, TimeProvider clock) : IConsent
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
     };
 
-    private readonly IJSRuntime js = js;
-    private readonly TimeProvider clock = clock;
+    private readonly IJSRuntime js;
+    private readonly TimeProvider clock;
+    private readonly Store<AppState> store;
+    private ConsentStatus lastSeen;
 
-    private bool decided;
-    private bool granted;
+    public ConsentService(IJSRuntime js, TimeProvider clock, Store<AppState> store)
+    {
+        this.js = js;
+        this.clock = clock;
+        this.store = store;
+        lastSeen = store.State.Consent;
+        store.Changed += RelayConsentChange;
+    }
 
-    public bool HasDecided => decided;
-    public bool IsGranted => granted;
+    public bool HasDecided => store.State.Consent != ConsentStatus.Unknown;
+    public bool IsGranted => store.State.Consent == ConsentStatus.Granted;
     public event Action? OnChanged;
 
     public async Task LoadAsync()
@@ -44,25 +53,7 @@ public sealed class ConsentService(IJSRuntime js, TimeProvider clock) : IConsent
         catch (JSException) { /* prerender or storage unavailable */ }
         catch (JSDisconnectedException) { /* circuit gone */ }
 
-        if (string.IsNullOrWhiteSpace(raw)) { decided = false; granted = false; return; }
-
-        StoredConsent? parsed;
-        try { parsed = JsonSerializer.Deserialize<StoredConsent>(raw, JsonOpts); }
-        catch (JsonException) { decided = false; granted = false; return; }
-
-        if (parsed is null || (parsed.State != "granted" && parsed.State != "denied"))
-        {
-            decided = false; granted = false; return;
-        }
-
-        DateTimeOffset stored = DateTimeOffset.FromUnixTimeMilliseconds(parsed.Ts);
-        if (clock.GetUtcNow() - stored > Expiry)
-        {
-            decided = false; granted = false; return;
-        }
-
-        decided = true;
-        granted = parsed.State == "granted";
+        store.Dispatch(new SetConsent(Resolve(raw)));
     }
 
     public Task AcceptAsync() => PersistAsync(true);
@@ -73,9 +64,31 @@ public sealed class ConsentService(IJSRuntime js, TimeProvider clock) : IConsent
         try { await js.InvokeAsync<object>("localStorage.removeItem", StorageKey); }
         catch (JSException) { /* storage gone */ }
         catch (JSDisconnectedException) { /* circuit gone */ }
-        decided = false;
-        granted = false;
-        OnChanged?.Invoke();
+        store.Dispatch(new SetConsent(ConsentStatus.Unknown));
+    }
+
+    public void Dispose() => store.Changed -= RelayConsentChange;
+
+    private ConsentStatus Resolve(string? raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw)) { return ConsentStatus.Unknown; }
+
+        StoredConsent? parsed;
+        try { parsed = JsonSerializer.Deserialize<StoredConsent>(raw, JsonOpts); }
+        catch (JsonException) { return ConsentStatus.Unknown; }
+
+        if (parsed is null || (parsed.State != "granted" && parsed.State != "denied"))
+        {
+            return ConsentStatus.Unknown;
+        }
+
+        DateTimeOffset stored = DateTimeOffset.FromUnixTimeMilliseconds(parsed.Ts);
+        if (clock.GetUtcNow() - stored > Expiry)
+        {
+            return ConsentStatus.Unknown;
+        }
+
+        return parsed.State == "granted" ? ConsentStatus.Granted : ConsentStatus.Denied;
     }
 
     private async Task PersistAsync(bool grant)
@@ -86,8 +99,14 @@ public sealed class ConsentService(IJSRuntime js, TimeProvider clock) : IConsent
         try { await js.InvokeAsync<object>("localStorage.setItem", StorageKey, raw); }
         catch (JSException) { /* storage gone — keep in-memory state anyway */ }
         catch (JSDisconnectedException) { /* circuit gone */ }
-        decided = true;
-        granted = grant;
+        store.Dispatch(new SetConsent(grant ? ConsentStatus.Granted : ConsentStatus.Denied));
+    }
+
+    private void RelayConsentChange()
+    {
+        ConsentStatus current = store.State.Consent;
+        if (current == lastSeen) { return; }
+        lastSeen = current;
         OnChanged?.Invoke();
     }
 

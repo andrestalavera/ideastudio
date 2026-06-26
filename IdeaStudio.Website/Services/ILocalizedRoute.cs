@@ -126,7 +126,17 @@ public sealed class LocalizedRoute(ICultureService cultureService) : ILocalizedR
         };
     }
 
-    public string? ExtractCulture(string path)
+    public string? ExtractCulture(string path) => CulturePath.ExtractCulture(path);
+}
+
+/// <summary>
+/// Single source of truth for reading the culture code from a path's first segment.
+/// Shared by <see cref="LocalizedRoute"/> and <see cref="CultureService"/> to avoid a
+/// DI cycle (LocalizedRoute depends on ICultureService) while keeping one implementation.
+/// </summary>
+internal static class CulturePath
+{
+    public static string? ExtractCulture(string path)
     {
         if (string.IsNullOrEmpty(path)) return null;
         string trimmed = path.TrimStart('/');

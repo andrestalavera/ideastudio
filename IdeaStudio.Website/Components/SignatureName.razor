@@ -12,6 +12,7 @@
 
 @code {
     [Parameter, EditorRequired] public string Text { get; set; } = "";
+    [Parameter] public string FontFamily { get; set; } = "Inter";
     [Parameter] public int FontSizePx { get; set; } = 520;
     [Parameter] public int BlurPx { get; set; } = 36;
     [Parameter] public int EmergeMs { get; set; } = 2500;
@@ -34,6 +35,7 @@
                 new
                 {
                     text = Text,
+                    fontFamily = FontFamily,
                     fontSizePx = FontSizePx,
                     blurPx = BlurPx,
                     emergeMs = EmergeMs

@@ -16,7 +16,7 @@
 
   &-bar {
     block-size: 100%;
-    inline-size: 0%;
+    inline-size: 100%;
     background: linear-gradient(
       90deg,
       c.$ir-duck 0%,
@@ -27,6 +27,26 @@
     box-shadow: 0 0 8px rgba(0, 194, 212, 0.55),
                 0 0 14px rgba(255, 54, 112, 0.25);
     transform-origin: left;
-    transition: inline-size 80ms linear;
+    // Default (and graceful no-op where scroll-timeline / reduced-motion
+    // applies): collapsed to zero. The scroll-driven animation below grows it.
+    transform: scaleX(0);
   }
+}
+
+// Drive the rail from scroll position on the compositor — no JS listener, no
+// per-scroll style write. Gated behind reduced-motion (a scroll-linked grow is
+// motion) and behind support for the scroll() timeline; unsupported engines
+// keep the collapsed no-op above.
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .ds-progress-bar {
+      animation: ds-progress-grow linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes ds-progress-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }

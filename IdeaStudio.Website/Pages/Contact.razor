@@ -1,6 +1,5 @@
 @page "/fr/contact"
 @page "/en/contact"
-@using System.Text.RegularExpressions
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
@@ -38,10 +37,28 @@
             </div>
         }
 
+        @if (errors.Count > 0)
+        {
+            @* No data-reveal: the error summary must be visible the instant it renders
+               (WCAG 4.1.3) — gating it behind the IntersectionObserver could flash blank. *@
+            <div class="ds-form-status ds-form-status-err" role="alert" aria-live="assertive">
+                <p class="ds-form-status-title">@errorSummaryTitle</p>
+                <ul class="ds-form-error-summary">
+                    @foreach (string field in OrderedErrorFields())
+                    {
+                        <li>@errors[field]</li>
+                    }
+                </ul>
+            </div>
+        }
+
+        <p class="text-muted mb-6">@referralNote</p>
+
         <form class="ds-form" @onsubmit="HandleSubmit" @onsubmit:preventDefault novalidate>
             <div class="ds-field">
                 <label class="ds-field-label" for="cf-name">@nameLabel</label>
                 <input class="ds-field-input" id="cf-name" type="text" autocomplete="name"
+                       @ref="nameInput"
                        @bind="model.Name" @bind:event="oninput"
                        aria-invalid="@Invalid(nameof(model.Name))"
                        aria-describedby="@(HasError(nameof(model.Name)) ? "cf-name-err" : null)" />
@@ -54,6 +71,7 @@
             <div class="ds-field">
                 <label class="ds-field-label" for="cf-email">@emailLabel</label>
                 <input class="ds-field-input" id="cf-email" type="email" autocomplete="email"
+                       @ref="emailInput"
                        @bind="model.Email" @bind:event="oninput"
                        aria-invalid="@Invalid(nameof(model.Email))"
                        aria-describedby="@(HasError(nameof(model.Email)) ? "cf-email-err" : null)" />
@@ -72,6 +90,7 @@
             <div class="ds-field">
                 <label class="ds-field-label" for="cf-message">@messageLabel</label>
                 <textarea class="ds-field-input ds-field-textarea" id="cf-message" rows="6"
+                          @ref="messageInput"
                           @bind="model.Message" @bind:event="oninput"
                           aria-invalid="@Invalid(nameof(model.Message))"
                           aria-describedby="@(HasError(nameof(model.Message)) ? "cf-message-err" : null)"></textarea>
@@ -83,7 +102,7 @@
 
             <div class="ds-field ds-field-check">
                 <label class="ds-field-check">
-                    <input type="checkbox" @bind="model.Consent"
+                    <input type="checkbox" @ref="consentInput" @bind="model.Consent"
                            aria-invalid="@Invalid(nameof(model.Consent))"
                            aria-describedby="@(HasError(nameof(model.Consent)) ? "cf-consent-err" : null)" />
                     <span>@consentLabel <a class="ds-link" href="@LocalizedRoute.For("privacy")">@privacyLinkLabel</a>.</span>
@@ -114,22 +133,19 @@
 @code {
     private enum Status { Idle, Sending, Success, Error }
 
-    private sealed class ContactModel
-    {
-        public string Name { get; set; } = "";
-        public string Email { get; set; } = "";
-        public string? Subject { get; set; }
-        public string Message { get; set; } = "";
-        public bool Consent { get; set; }
-        public string? Website { get; set; } // honeypot
-    }
-
-    private static readonly Regex EmailRegex =
-        new(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
-
-    private readonly ContactModel model = new();
+    private readonly ContactFormModel model = new();
     private readonly Dictionary<string, string> errors = new();
     private Status status = Status.Idle;
+
+    // Field order for the error summary + first-invalid focus on failed submit.
+    private static readonly string[] FieldOrder =
+        { nameof(ContactFormModel.Name), nameof(ContactFormModel.Email), nameof(ContactFormModel.Message), nameof(ContactFormModel.Consent) };
+
+    private ElementReference nameInput;
+    private ElementReference emailInput;
+    private ElementReference messageInput;
+    private ElementReference consentInput;
+    private string? focusFieldOnRender;
 
     private string seoTitle = "Contact, IdeaStud.io";
     private string seoDescription = "";
@@ -138,6 +154,7 @@
     private string heroKicker = "Contact";
     private string heroTitle = "Parlons de votre projet.";
     private string heroLead = "";
+    private string referralNote = "La plupart de mes missions viennent par recommandation. Présentations bienvenues.";
     private string nameLabel = "Nom";
     private string emailLabel = "Email";
     private string subjectLabel = "Sujet";
@@ -155,11 +172,30 @@
     private string errEmail = "Adresse email invalide.";
     private string errMessage = "Quelques mots de plus, s'il vous plaît (10 caractères minimum).";
     private string errConsent = "Merci de cocher cette case pour continuer.";
+    private string errorSummaryTitle = "Veuillez corriger les erreurs suivantes :";
     private List<string>? seoStructuredData;
     private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
 
     private bool HasError(string field) => errors.ContainsKey(field);
     private string? Invalid(string field) => errors.ContainsKey(field) ? "true" : null;
+
+    private IEnumerable<string> OrderedErrorFields() => FieldOrder.Where(errors.ContainsKey);
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (focusFieldOnRender is null) return;
+
+        string field = focusFieldOnRender;
+        focusFieldOnRender = null;
+        ElementReference target = field switch
+        {
+            nameof(ContactFormModel.Name) => nameInput,
+            nameof(ContactFormModel.Email) => emailInput,
+            nameof(ContactFormModel.Message) => messageInput,
+            _ => consentInput
+        };
+        await target.FocusAsync();
+    }
 
     protected override void LoadTexts()
     {
@@ -169,9 +205,13 @@
         seoTitle = fr ? "Contact, Andrés Talavera | IdeaStud.io" : "Contact, Andrés Talavera | IdeaStud.io";
         heroTitle = fr ? "Parlons de votre projet." : "Let's talk about your project.";
         heroLead = fr
-            ? "Décrivez votre besoin en quelques lignes, je reviens vers vous sous 24 h ouvrées avec une proposition ou des questions."
-            : "Tell me about your need in a few lines, I'll get back to you within one business day with a proposal or questions.";
+            ? "Décrivez votre besoin en quelques lignes. Je reviens vers vous sous 24 h ouvrées avec une proposition claire ou les bonnes questions. Sans engagement."
+            : "Tell me about your need in a few lines. I'll get back to you within one business day with a clear proposal or the right questions. No strings attached.";
         seoDescription = heroLead;
+
+        referralNote = fr
+            ? "La plupart de mes missions viennent par recommandation. Présentations bienvenues."
+            : "Most of my work comes by referral. Introductions welcome.";
 
         nameLabel = fr ? "Nom" : "Name";
         emailLabel = fr ? "Email" : "Email";
@@ -196,6 +236,7 @@
         errEmail = fr ? "Adresse email invalide." : "Invalid email address.";
         errMessage = fr ? "Quelques mots de plus, s'il vous plaît (10 caractères minimum)." : "A few more words, please (10 characters minimum).";
         errConsent = fr ? "Merci de cocher cette case pour continuer." : "Please tick this box to continue.";
+        errorSummaryTitle = fr ? "Veuillez corriger les erreurs suivantes :" : "Please fix the following errors:";
 
         GenerateStructuredData();
     }
@@ -203,12 +244,11 @@
     private bool Validate()
     {
         errors.Clear();
-        if (string.IsNullOrWhiteSpace(model.Name)) errors[nameof(model.Name)] = errRequired;
-        if (string.IsNullOrWhiteSpace(model.Email)) errors[nameof(model.Email)] = errRequired;
-        else if (!EmailRegex.IsMatch(model.Email.Trim())) errors[nameof(model.Email)] = errEmail;
-        if (string.IsNullOrWhiteSpace(model.Message)) errors[nameof(model.Message)] = errRequired;
-        else if (model.Message.Trim().Length < 10) errors[nameof(model.Message)] = errMessage;
-        if (!model.Consent) errors[nameof(model.Consent)] = errConsent;
+        foreach (KeyValuePair<string, string> error in
+            model.Validate(new ContactErrorMessages(errRequired, errEmail, errMessage, errConsent)))
+        {
+            errors[error.Key] = error.Value;
+        }
         return errors.Count == 0;
     }
 
@@ -217,13 +257,19 @@
         status = Status.Idle;
 
         // Honeypot tripped, silently accept without sending.
-        if (!string.IsNullOrWhiteSpace(model.Website))
+        if (model.IsSpam)
         {
             status = Status.Success;
             return;
         }
 
-        if (!Validate()) return;
+        if (!Validate())
+        {
+            // Move focus to the first invalid field; the aria-live summary
+            // announces the full list to assistive tech.
+            focusFieldOnRender = FieldOrder.FirstOrDefault(errors.ContainsKey);
+            return;
+        }
 
         status = Status.Sending;
         bool ok = await ContactService.SendAsync(

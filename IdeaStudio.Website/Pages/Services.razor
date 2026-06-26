@@ -17,7 +17,15 @@
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
 
-<Hero Kicker="Services" Title="@titleText" Lead="@lead" />
+<Hero Kicker="Services" Title="@titleText" Lead="@lead">
+    <Actions>
+        <div class="row">
+            <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary"
+                        External="true" Arrow="→" Label="@ctaBookText" AriaLabel="@ctaBookAria" />
+            <ButtonLink Href="@LocalizedRoute.For("contact")" Variant="ghost" Label="@ctaDescribeText" />
+        </div>
+    </Actions>
+</Hero>
 
 <PageSection Rhythm="section" Bordered="false">
     <EditorialList Items="@services" />
@@ -31,6 +39,9 @@
     private string seoLocale = "fr_FR";
     private string titleText = "Sept façons de collaborer.";
     private string lead = "";
+    private string ctaBookText = "Réserver un appel";
+    private string ctaDescribeText = "Décrire mon projet";
+    private string ctaBookAria = "Réserver un appel de 30 minutes sur Calendly (nouvel onglet)";
     private List<string>? seoStructuredData;
     private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
 
@@ -47,12 +58,19 @@
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr/services" : "https://ideastud.io/en/services";
-        seoTitle = fr ? "Services, IdeaStud.io" : "Services, IdeaStud.io";
+        seoTitle = fr
+            ? "Conseil .NET & Azure, Tech Lead & Formation — Andrés Talavera | IdeaStud.io"
+            : ".NET & Azure Consulting, Tech Lead & Training — Andrés Talavera | IdeaStud.io";
         titleText = fr ? "Sept façons de collaborer." : "Seven ways to collaborate.";
         lead = fr
             ? "Consultant, techlead, formateur. Choisissez votre angle, chaque service se décline en mission courte, longue ou forfait."
             : "Consultant, tech lead, trainer. Pick your angle, every service scales from short engagements to long missions.";
         seoDescription = lead;
+        ctaBookText     = fr ? "Réserver un appel" : "Book a call";
+        ctaDescribeText = fr ? "Décrire mon projet" : "Describe my project";
+        ctaBookAria     = fr
+            ? "Réserver un appel de 30 minutes sur Calendly (nouvel onglet)"
+            : "Book a 30-minute call on Calendly (opens in a new tab)";
     }
 
     private void GenerateStructuredData()

@@ -5,6 +5,7 @@
 @use '../tokens/type' as t;
 
 .ds-footer {
+  position: relative;
   padding-block: s.$s-8;
   padding-inline: max(s.$s-5, env(safe-area-inset-left));
   padding-inline-end: max(s.$s-5, env(safe-area-inset-right));
@@ -13,7 +14,19 @@
   color: c.$fg-muted;
   font-family: t.$font-mono;
   font-size: t.$fs-mono;
-  border-block-start: 1px solid c.$rule;
+
+  // The ONE sanctioned recurring gradient moment (DESIGN §3): a 1px iridescent
+  // hairline as a precious closing stroke, replacing the flat Rule divider.
+  // Drawn on a pseudo so it stays a true 1px line independent of the border box.
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    block-size: 1px;
+    background: c.$gradient-iridescent;
+    pointer-events: none;
+  }
 
   &-label {
     color: c.$ir-duck;

@@ -27,14 +27,19 @@
     padding-inline: s.$s-4;
     padding-block: s.$s-2;
     min-block-size: 2.75rem;
-    border-radius: 999px;
-    background: linear-gradient(c.$bg-deep, c.$bg-deep) padding-box,
-                c.$gradient-iridescent border-box;
-    border: 1px solid transparent;
+    border-radius: s.$radius-pill;
+    background: c.$bg-deep;
+    // Luxe demotion: the always-on iridescent border was permanent chrome
+    // (wallpaper). It's now a 1px bright-rule hairline + lifted-glass depth from
+    // --elev-1 (top inner-light line + soft deep drop), so the gradient stays
+    // rare and precious. The hairline is decorative (~1.7:1, below the 3:1
+    // emphasized-divider threshold on its own); the --elev-1 shadow + backdrop
+    // blur are what carry the control boundary against the page.
+    border: 1px solid c.$rule-bright;
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     pointer-events: auto;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    box-shadow: c.$elev-1;
     // Always visible — the navigation is persistent from the top of the page.
     opacity: 1;
     transform: none;
@@ -59,7 +64,7 @@
 
     a {
       color: c.$fg-muted;
-      transition: color 180ms var(--ease-out);
+      transition: color var(--t-hover) var(--ease-lux);
 
       &:hover, &[aria-current='page'] {
         color: c.$fg;
@@ -68,17 +73,39 @@
   }
 
   &-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: s.$s-2;
+    // ≥44px tap target (DESIGN §7) without enlarging the visual pill.
+    min-block-size: 2.75rem;
     padding-inline: s.$s-4;
     padding-block: s.$s-2;
-    background: c.$ir-duck;
-    color: c.$bg-void;
-    border-radius: 999px;
+    // Softened from a loud solid-duck block to a quiet duck affordance: a faint
+    // duck wash + a duck hairline + duck label. The pill (the primary surface)
+    // now leads; the CTA reads as an accent, not a competing slab. Duck label
+    // text stays WCAG AA on the pill surface in both themes (see _colors.scss).
+    background: var(--tint-duck);
+    color: c.$ir-duck;
+    // Rest border. Dark: 55% duck over the bg-deep pill = ~3.4:1 (clears the
+    // 1.4.11 non-text 3:1 floor). Light: the same 55% mix on the near-white pill
+    // was only ~2.6:1 (<3:1), so the boundary disappeared — raise it to 70% duck
+    // (~3.1:1) so the control edge stays perceivable. See TokenContrastTests.
+    border: 1px solid color-mix(in oklab, c.$ir-duck 55%, transparent);
+    border-radius: s.$radius-pill;
     font-weight: 600;
     font-size: t.$fs-mono;
-    transition: background-color 180ms var(--ease-out);
+    transition: background-color var(--t-hover) var(--ease-lux),
+                border-color var(--t-hover) var(--ease-lux),
+                color var(--t-hover) var(--ease-lux);
+
+    :root[data-theme='light'] & {
+      border-color: color-mix(in oklab, c.$ir-duck 70%, transparent);
+    }
 
     &:hover {
-      background: color-mix(in oklab, c.$ir-duck 85%, white);
+      background: color-mix(in oklab, c.$ir-duck 16%, transparent);
+      border-color: c.$ir-duck;
+      color: c.$ir-duck;
     }
   }
 
@@ -86,17 +113,18 @@
     display: none;
     align-items: center;
     justify-content: center;
-    inline-size: 2.25rem;
-    block-size: 2.25rem;
+    // ≥44px tap target (DESIGN §7).
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
     padding: 0;
     border: 0;
-    border-radius: 999px;
+    border-radius: s.$radius-pill;
     background: transparent;
     color: c.$fg;
     font-size: 1.1rem;
     line-height: 1;
     cursor: pointer;
-    transition: background-color 160ms var(--ease-out);
+    transition: background-color var(--t-hover) var(--ease-lux);
 
     &:hover { background: c.$glass; }
     &[aria-expanded='true'] { background: c.$glass; }
@@ -107,18 +135,19 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    inline-size: 2.25rem;
-    block-size: 2.25rem;
+    // ≥44px tap target (DESIGN §7).
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
     padding: 0;
     border: 0;
-    border-radius: 999px;
+    border-radius: s.$radius-pill;
     background: transparent;
     color: c.$fg;
     font-size: 1rem;
     line-height: 1;
     cursor: pointer;
-    transition: background-color 160ms var(--ease-out),
-                color 160ms var(--ease-out);
+    transition: background-color var(--t-hover) var(--ease-lux),
+                color var(--t-hover) var(--ease-lux);
 
     &:hover {
       background: c.$glass;
@@ -150,26 +179,28 @@
     flex-direction: column;
     gap: s.$s-2;
     padding: s.$s-3;
-    border-radius: 18px;
-    background: linear-gradient(c.$bg-surface, c.$bg-surface) padding-box,
-                c.$gradient-iridescent border-box;
-    border: 1px solid transparent;
+    // Menu radius from the corner language (DESIGN §4: menus → $radius-md).
+    border-radius: s.$radius-md;
+    // Same luxe demotion as the pill: a floating popover, lifted by --elev-2 with
+    // a bright-rule hairline instead of permanent gradient chrome.
+    background: c.$bg-surface;
+    border: 1px solid c.$rule-bright;
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    box-shadow: c.$elev-2;
     pointer-events: auto;
 
     a {
       display: block;
       padding-inline: s.$s-4;
       padding-block: s.$s-3;
-      border-radius: 12px;
+      border-radius: s.$radius-sm;
       color: c.$fg;
       font-family: t.$font-sans;
       font-size: t.$fs-small;
       font-weight: 500;
-      transition: background-color 160ms var(--ease-out),
-                  color 160ms var(--ease-out);
+      transition: background-color var(--t-hover) var(--ease-lux),
+                  color var(--t-hover) var(--ease-lux);
 
       &:hover, &[aria-current='page'] {
         background: c.$glass;
@@ -206,7 +237,7 @@ html {
   inline-size: 100%;
   padding-inline: s.$s-4;
   padding-block: s.$s-3;
-  border-radius: 12px;
+  border-radius: s.$radius-sm;
   background: transparent;
   border: 0;
   color: c.$fg;
@@ -214,8 +245,8 @@ html {
   font-size: t.$fs-small;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 160ms var(--ease-out),
-              color 160ms var(--ease-out);
+  transition: background-color var(--t-hover) var(--ease-lux),
+              color var(--t-hover) var(--ease-lux);
 
   &:hover,
   &:focus-visible {

@@ -93,8 +93,8 @@
     private string ctaKicker = "Sur-mesure";
     private string ctaTitle = "Construisons votre programme.";
     private string ctaLead = "";
-    private string bookLabel = "Réserver un échange";
-    private string contactLabel = "Me contacter";
+    private string bookLabel = "Réserver un appel";
+    private string contactLabel = "Décrire mon projet";
 
     protected override async Task LoadLocalizedStringsAsync()
     {
@@ -147,8 +147,8 @@
         ctaLead   = fr
             ? "Un besoin précis, une équipe, un calendrier ? Composons ensemble le parcours qui colle à vos objectifs."
             : "A specific need, a team, a timeline? Let's compose the path that fits your goals.";
-        bookLabel    = fr ? "Réserver un échange" : "Book a call";
-        contactLabel = fr ? "Me contacter" : "Contact me";
+        bookLabel    = fr ? "Réserver un appel" : "Book a call";
+        contactLabel = fr ? "Décrire mon projet" : "Describe my project";
     }
 
     private IReadOnlyList<string> MetaChips(Training t)
@@ -179,7 +179,7 @@
             Description: seoDescription,
             Url: "https://ideastud.io",
             Image: "https://ideastud.io/images/andres-talavera.jpeg",
-            SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
+            SameAs: new[] { "https://www.linkedin.com/in/andres-talavera/", "https://github.com/andrestalavera", "https://x.com/imcresus_" },
             KnowsAbout: new[] { ".NET", "Azure", "Blazor", "Software Training" },
             Address: null,
             WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io"));

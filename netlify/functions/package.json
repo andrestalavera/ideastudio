@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "ideastudio-netlify-functions",
   "version": "1.0.0",
   "private": true,
@@ -7,7 +7,11 @@
   "dependencies": {
     "@netlify/functions": "^5.2.0",
     "@sparticuz/chromium-min": "^148.0.0",
-    "nodemailer": "^6.9.16",
-    "puppeteer-core": "^24.42.0"
+    "nodemailer": "^9.0.1",
+    "puppeteer-core": "^24.42.0",
+    "tar-fs": "^3.1.2"
+  },
+  "devDependencies": {
+    "@types/tar-fs": "^2.0.4"
   }
 }

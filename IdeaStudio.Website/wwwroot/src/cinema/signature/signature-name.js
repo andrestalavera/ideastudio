@@ -121,7 +121,7 @@ async function buildField(text, { fontSize, fontFamily, fontWeight, fontStyle, b
   const probe = document.createElement('canvas');
   probe.width = 4; probe.height = 4;
   const pctx = probe.getContext('2d');
-  pctx.font = `${fontStyle} ${fontWeight} ${fontSize}px "${fontFamily}", serif`;
+  pctx.font = `${fontStyle} ${fontWeight} ${fontSize}px "${fontFamily}", sans-serif`;
   const metrics = pctx.measureText(text);
   const textW = Math.ceil(metrics.width);
 
@@ -140,7 +140,7 @@ async function buildField(text, { fontSize, fontFamily, fontWeight, fontStyle, b
   ctx.fillStyle = '#fff';
   ctx.textBaseline = 'middle';
   ctx.textAlign = 'center';
-  ctx.font = `${fontStyle} ${fontWeight} ${fontSize}px "${fontFamily}", serif`;
+  ctx.font = `${fontStyle} ${fontWeight} ${fontSize}px "${fontFamily}", sans-serif`;
   ctx.fillText(text, w / 2, h / 2);
 
   // Re-draw through a blur filter to create a soft mask (approximation of an SDF).
@@ -188,7 +188,9 @@ function compile(gl, type, src) {
  */
 export async function mountSignature(canvas, options) {
   const text = options.text;
-  const fontFamily = options.fontFamily ?? 'Instrument Serif';
+  // Inter is the deliberate, self-hosted typeface (DESIGN.md §3). A generic
+  // serif default would silently rasterize in the OS Times-like face — banned.
+  const fontFamily = options.fontFamily ?? 'Inter';
   const fontWeight = options.fontWeight ?? 400;
   const fontStyle  = options.fontStyle  ?? 'italic';
   const fontSizePx = options.fontSizePx ?? 520;
