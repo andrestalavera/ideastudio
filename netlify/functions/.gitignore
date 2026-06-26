@@ -1,2 +1,6 @@
 # Local Netlify folder
 .netlify
+
+# Stale root-owned node_modules left over from a previous root/CI install.
+# Could not be deleted without sudo; remove manually: sudo rm -rf node_modules.root-old
+node_modules.root-old

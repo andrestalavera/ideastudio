@@ -10,13 +10,16 @@
   gap: s.$s-3;
   color: c.$fg;
   text-decoration: none;
-  // epic.net-style lively card: the whole tile lifts on hover.
-  transition: transform 320ms var(--ease-out);
+  // The whole tile lifts on hover — a restrained, damped settle on $ease-lux,
+  // not an epic.net-style bounce.
+  transition: transform var(--t-hover) var(--ease-lux),
+              box-shadow var(--t-hover) var(--ease-lux);
 
   &-media {
     position: relative;
     aspect-ratio: 16 / 10;
-    border-radius: 12px;
+    // Media maps onto $radius-lg (DESIGN §4 corner language).
+    border-radius: s.$radius-lg;
     overflow: hidden;
     background: c.$bg-raised;
 
@@ -24,17 +27,32 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 400ms var(--ease-out);
+      transition: transform var(--t-medium) var(--ease-lux);
+    }
+
+    // Frame the media: a 1px inset hairline crisps the edge and a subtle bottom
+    // vignette grounds the image. Sits above img/placeholder, never over the
+    // badge content (pointer-events: none), and darkens only the lower band so
+    // overlaid meta below the media keeps its contrast.
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      box-shadow: inset 0 0 0 1px var(--rule),
+                  inset 0 -40px 60px -40px rgba(0, 0, 0, 0.5);
     }
 
     // No screenshot (e.g. private platform) — a branded, text-forward panel
-    // instead of an empty box.
+    // instead of an empty box. Accent wash dialed right down so the mark, not
+    // the gradient, carries the panel.
     &-placeholder {
       display: grid;
       place-items: center;
       background:
-        radial-gradient(120% 120% at 0% 0%, rgba(0, 194, 212, 0.18), transparent 55%),
-        radial-gradient(120% 120% at 100% 100%, rgba(45, 68, 255, 0.16), transparent 55%),
+        radial-gradient(120% 120% at 0% 0%, rgba(0, 194, 212, 0.08), transparent 55%),
+        radial-gradient(120% 120% at 100% 100%, rgba(45, 68, 255, 0.08), transparent 55%),
         c.$bg-surface;
     }
   }
@@ -54,9 +72,18 @@
     inset-inline-start: s.$s-3;
     padding-inline: s.$s-3;
     padding-block: 0.2rem;
-    border-radius: 999px;
-    background: c.$ir-duck;
-    color: c.$bg-void;
+    border-radius: s.$radius-pill;
+    // Frosted chip over arbitrary thumbnail imagery. Contrast MUST NOT depend on
+    // the blur (blur over an unknown image measured as low as 1.1:1): an opaque,
+    // theme-matched scrim carries it instead. c.$bg-void at 65% (an ink scrim in
+    // dark, a light scrim in light) under c.$fg text clears >=4.5:1 on ANY image
+    // — dark floor ~5.7:1 (over white), light floor ~6.3:1 (over black). The
+    // blur + the rule-bright edge are now purely cosmetic.
+    background: color-mix(in oklab, c.$bg-void 65%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid c.$rule-bright;
+    color: c.$fg;
     font-family: t.$font-mono;
     font-size: 0.7rem;
     font-weight: 600;
@@ -104,14 +131,16 @@
   // the image zooms, the title shifts to duck — no drop shadow (shadows are
   // reserved for floating UI: the masthead pill, dropdown menu, avatar).
   &:hover {
-    transform: translateY(-6px);
+    transform: translateY(-3px);
+    box-shadow: c.$elev-1;
 
-    .ds-tile-media img { transform: scale(1.05); }
+    .ds-tile-media img { transform: scale(1.04); }
     .ds-tile-title { color: c.$ir-duck; }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .ds-tile { transition: none; }
-  .ds-tile:hover { transform: none; }
+  .ds-tile:hover { transform: none; box-shadow: none; }
+  .ds-tile:hover .ds-tile-media img { transform: none; }
 }

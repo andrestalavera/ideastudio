@@ -1,5 +1,6 @@
 // IdeaStudio.Website.Tests/ConsentServiceTests.cs
 using IdeaStudio.Website.Services;
+using IdeaStudio.Website.State;
 using Microsoft.JSInterop;
 using Moq;
 
@@ -17,7 +18,8 @@ public class ConsentServiceTests
         js.Setup(j => j.InvokeAsync<string?>("localStorage.getItem", It.Is<object[]>(a => (string)a[0] == Key)))
             .ReturnsAsync(storedRaw);
         FakeTimeProvider clock = new(now ?? new DateTimeOffset(2026, 4, 26, 12, 0, 0, TimeSpan.Zero));
-        ConsentService svc = new(js.Object, clock);
+        Store<AppState> store = new(AppState.Initial, AppReducer.Reduce);
+        ConsentService svc = new(js.Object, clock, store);
         return (svc, js, clock);
     }
 

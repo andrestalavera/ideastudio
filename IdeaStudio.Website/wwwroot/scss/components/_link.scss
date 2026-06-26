@@ -1,28 +1,58 @@
-// components/_link.scss — text link with underline + trailing arrow slide.
+// components/_link.scss — text link with underline-wipe + trailing arrow slide.
 
 @use '../tokens/colors' as c;
 
 .ds-link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
   color: c.$fg;
   text-decoration: none;
-  border-block-end: 1px solid rgba(0, 194, 212, 0.35);
-  transition: color 180ms var(--ease-out),
-              border-color 180ms var(--ease-out);
+  // Resting affordance: a faint duck rule so the link reads as a link without
+  // relying on hover (keeps the link perceivable for AA).
+  border-block-end: 1px solid color-mix(in oklab, c.$ir-duck 35%, transparent);
+  transition: color var(--t-hover) var(--ease-lux),
+              border-color var(--t-hover) var(--ease-lux);
+
+  // Hover flourish: a crisp duck underline that wipes in from the inline start.
+  // scaleX on a pseudo is compositor-only (no layout/paint), eased on $ease-lux.
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: -1px;
+    block-size: 1px;
+    background: c.$ir-duck;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--t-hover) var(--ease-lux);
+  }
 
   &-arrow {
     display: inline-block;
-    transition: transform 180ms var(--ease-out);
+    transition: transform var(--t-hover) var(--ease-lux);
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: c.$ir-duck;
-    border-block-end-color: c.$ir-duck;
+    // Hand the resting rule off to the crisp wiped stroke.
+    border-block-end-color: transparent;
 
-    .ds-link-arrow {
-      transform: translateX(0.25em);
-    }
+    &::after { transform: scaleX(1); }
+
+    .ds-link-arrow { transform: translateX(0.25em); }
   }
+}
+
+// prefers-reduced-motion: keep the affordance, drop the movement. The underline
+// flips state instantly (no wipe) and the arrow does not travel.
+@media (prefers-reduced-motion: reduce) {
+  .ds-link,
+  .ds-link::after,
+  .ds-link-arrow { transition: none; }
+
+  .ds-link:hover .ds-link-arrow,
+  .ds-link:focus-visible .ds-link-arrow { transform: none; }
 }

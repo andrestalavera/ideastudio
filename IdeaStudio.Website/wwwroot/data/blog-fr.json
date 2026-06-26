@@ -2,7 +2,7 @@
   {
     "slug": "coder-avec-ia-sans-dette-technique",
     "title": "Coder avec l'IA sans créer de dette technique",
-    "summary": "Les assistants de code font gagner un temps réel, à condition de garder l'humain dans la boucle. Voici la méthode que j'applique sur mes missions.",
+    "summary": "Les assistants de code font gagner un temps réel, à condition de garder l'humain dans la boucle. La méthode concrète que j'applique sur chaque mission.",
     "date": "2026-06-20",
     "readingMinutes": 4,
     "tags": ["IA", "Vibe coding", "Qualité"],
@@ -11,7 +11,7 @@
   {
     "slug": "cloud-souverain-europe",
     "title": "Cloud souverain : héberger en Europe sans sacrifier l'expérience",
-    "summary": "Azure n'est pas la seule option. Tour d'horizon des hébergeurs européens (Clever Cloud, Infomaniak) et de quand les choisir.",
+    "summary": "Azure n'est pas la seule option pour héberger en Europe. Tour d'horizon des hébergeurs souverains, et comment choisir celui qui convient à votre projet.",
     "date": "2026-06-10",
     "readingMinutes": 5,
     "tags": ["Cloud", "Souveraineté", "Azure"],

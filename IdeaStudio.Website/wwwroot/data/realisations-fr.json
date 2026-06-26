@@ -1,57 +1,55 @@
-﻿[
+[
   {
     "slug": "restoplatform",
     "title": "RestoPlatform",
     "client": "Startup SaaS, restauration",
-    "summary": "Logiciel de gestion tout-en-un pour la restauration indépendante : commande au QR, paiement à table, réservations, livraison et statistiques. Un site par restaurant, sans commission.",
+    "summary": "Logiciel tout-en-un pour la restauration indépendante : commande au QR, paiement à table, réservations, livraison et un site web bien à soi, sans la moindre commission sur les ventes.",
     "imageUrl": "",
     "imageAlt": "",
     "liveUrl": "",
     "type": "ApplicationWeb",
-    "technologies": [".NET", "Blazor", "PostgreSQL", "Clever Cloud", "Stripe", "Multi-tenant"],
+    "technologies": [".NET", "Blazor", "PostgreSQL", "Clever Cloud", "Stripe", "Multi-restaurant"],
     "completedOn": "2026-06-01",
     "displayOrder": 0,
     "caseStudy": {
-      "sector": "SaaS · Restauration, multi-tenant, souveraineté européenne",
-      "role": "Architecte-développeur unique, avec une orchestration multi-agents IA",
-      "timeline": "Conçu et développé en quelques mois · 6 projets source, 150 fichiers de test",
-      "challenge": "Un restaurateur indépendant doit aujourd'hui jongler avec une dizaine d'outils, menu, réservations, commande au QR, paiement, livraison, statistiques, et céder une commission aux agrégateurs sur chaque repas. RestoPlatform réunit tout dans une seule plateforme, un site par restaurant, sans commission.",
-      "approach": "Une plateforme SaaS multi-tenant en Clean Architecture : une API REST temps réel, un site public par restaurant (Blazor SSR, référençable) et un back-office d'exploitation (Blazor Server). Toutes les données dans une base PostgreSQL partagée, isolées par restaurant grâce à une défense en profondeur (filtre applicatif + Row-Level Security PostgreSQL). Hébergement 100 % européen sur Clever Cloud.",
-      "outcome": "Une plateforme complète, testée et prête pour la production, commande et paiement à table, menu, réservations, livraison interne, fidélité, statistiques et tableau de bord staff, avec le premier restaurant client qui passe en production. Modèle sans commission (abonnement fixe), conforme RGPD et souverain par conception, porté par environ 17 000 lignes de code et 18 500 lignes de tests.",
+      "sector": "SaaS · Restauration, hébergé entièrement en Europe",
+      "role": "Architecte-développeur unique, épaulé par une équipe d'agents IA",
+      "timeline": "Conçu et développé en quelques mois, premier restaurant en production",
+      "challenge": "Un restaurateur indépendant jongle avec une dizaine d'outils, menu, réservations, commande au QR, paiement, livraison, statistiques, et cède encore une part de chaque repas aux plateformes de livraison. RestoPlatform remplace tout ça par une seule solution : un site web par restaurant, et pas un centime de commission sur ce qu'il vend.",
+      "approach": "Une seule plateforme, trois usages : un site web public par restaurant (pensé pour remonter sur Google), une commande fluide pour les clients, et un back-office où l'équipe pilote son service. Les données de chaque restaurant sont totalement cloisonnées, et tout est hébergé en Europe. Côté technique, un seul code .NET sert les trois.",
+      "outcome": "Le premier restaurant est en ligne. Le restaurateur dispose d'un seul outil au lieu de dix, garde chaque euro de chaque addition (un abonnement fixe remplace les commissions au repas) et possède un site qui se référence. Pensé pour la confidentialité, hébergé entièrement en Europe, et soutenu par une batterie de tests automatisés qui permet d'ajouter des fonctions sans casser l'existant.",
       "diagramImage": "images/case-restoplatform-architecture.png",
       "diagramAlt": "Architecture Clean Architecture de RestoPlatform : API REST + SignalR, site Showcase en Blazor SSR, Dashboard en Blazor Server, application multi-tenant, infrastructure EF Core 10 / PostgreSQL avec Row-Level Security sur Clever Cloud",
       "stats": [
-        { "value": "40+", "label": "Use cases métier" },
-        { "value": "32", "label": "Contrôleurs API" },
-        { "value": "39", "label": "Entités de données" },
-        { "value": "20+", "label": "Langues (DeepL)" },
-        { "value": "150", "label": "Fichiers de test" },
-        { "value": "13", "label": "Domaines métier" }
+        { "value": "40+", "label": "Cas d'usage métier" },
+        { "value": "32", "label": "Modules livrés" },
+        { "value": "20+", "label": "Langues" },
+        { "value": "150", "label": "Fichiers de test" }
       ],
       "decisions": [
-        { "title": "Multi-tenant sur une base partagée + Row-Level Security", "detail": "Tous les restaurants partagent une base PostgreSQL, mais chaque ligne est isolée par une défense en profondeur : filtre applicatif, filtre global EF, puis Row-Level Security native de PostgreSQL (rôle non-propriétaire, tenant posé par transaction). Un accès cross-tenant renvoie 404, jamais 403, pas de fuite d'existence. Chaque entité passe un test de refus cross-tenant avant d'être livrée." },
-        { "title": "Hébergement souverain européen (Clever Cloud)", "detail": "Pas d'hyperscaler : tout vit sur Clever Cloud (PaaS français, certifié SecNumCloud/HDS). PostgreSQL y est une base managée de première classe, le coût reste maîtrisé pour un modèle à abonnement fixe, et la donnée ne quitte pas l'Europe. Les frontières (stockage objet, backplane, observabilité) restent des interfaces remplaçables." },
-        { "title": "Sans commission : abonnement fixe", "detail": "La plateforme ne prend jamais de part sur le repas ; les frais Stripe et livraison sont en pass-through. L'outil est aligné sur l'intérêt du restaurateur, pas sur l'extraction de marge, c'est la différence structurante face aux agrégateurs." },
-        { "title": "Les allergènes ne peuvent jamais être masqués", "detail": "Tant qu'un plat est commandable, son avertissement allergène reste visible, impossible à cacher, masquer ou rendre invisible par le thème. Sur un produit alimentaire, c'est une règle de sécurité inscrite dans la conception, pas une option d'affichage." },
-        { "title": "Public en SSR (jamais WASM) pour le référencement", "detail": "Chaque site de restaurant est rendu côté serveur : crawlable, données structurées (Restaurant, Menu) et hreflang automatiques. L'interactivité de commande passe par de petits îlots JavaScript et du temps réel, pas de circuit Blazor par client, donc pas d'état lourd côté serveur." },
-        { "title": "Stripe Connect : le restaurant est le marchand", "detail": "Chaque restaurant garde son propre compte Stripe, ses virements et ses litiges (KYC direct). Les données de carte ne nous touchent jamais (Stripe Elements/Checkout uniquement), ce qui place la conformité au niveau PCI le plus léger (SAQ-A) ; le SCA/3DS2 est géré par Stripe." }
+        { "title": "Les données de chaque restaurant restent cloisonnées", "detail": "Tous les restaurants partagent une base, mais chacun ne voit que ses propres données, garanti à plusieurs niveaux indépendants, jusqu'au cœur de la base elle-même. Tenter d'accéder aux données d'un autre restaurant renvoie simplement « introuvable ». Chaque type de donnée est testé sur ce point avant d'être livré." },
+        { "title": "Vos données ne quittent jamais l'Europe", "detail": "Pas de géant américain : tout tourne sur un hébergeur français certifié souveraineté. Les coûts restent prévisibles pour un modèle à abonnement fixe, et les données des clients restent en Europe de bout en bout." },
+        { "title": "Zéro commission, juste un forfait", "detail": "La plateforme ne prend jamais de part sur un repas ; les frais de carte et de livraison sont répercutés tels quels. L'outil est aligné sur les recettes du restaurateur, pas sur le grignotage de marge, c'est la différence de fond avec les agrégateurs." },
+        { "title": "Les avertissements allergènes ne peuvent jamais être cachés", "detail": "Tant qu'un plat est commandable, son avertissement allergène reste à l'écran, impossible à masquer ou à effacer par le thème. Sur l'alimentaire, c'est une règle de sécurité inscrite dans le produit, pas une option." },
+        { "title": "Des sites de restaurant pensés pour Google", "detail": "Le site public de chaque restaurant est rendu côté serveur, avec données structurées et balises de langue, donc visible dans la recherche et capable d'amener des couverts directement, sans dépendre d'une marketplace." },
+        { "title": "Chaque restaurant est payé directement", "detail": "Chaque restaurant garde son propre compte de paiement, ses virements et la gestion de ses litiges. Les données de carte ne transitent jamais par nous, ce qui maintient la plateforme au niveau de conformité le plus léger." }
       ],
       "sections": [
-        { "title": "Multi-tenant & isolation", "body": [
-          "Une seule base PostgreSQL partagée, mais quatre couches de défense : contexte tenant résolu côté serveur (jamais depuis le client), filtre dans les repositories, filtre global EF + tampon au SaveChanges, et Row-Level Security PostgreSQL forcée (rôle applicatif non-propriétaire, tenant posé par SET LOCAL).",
-          "La règle est vérifiée par les tests : chaque entité appartenant à un restaurant doit passer un test de refus cross-tenant, exécuté sur un vrai PostgreSQL (Testcontainers), avant tout merge."
+        { "title": "Comment les restaurants restent séparés", "body": [
+          "Tous les restaurants vivent dans une base partagée, mais chacun ne voit que ses propres données. Cette séparation est garantie à quatre niveaux indépendants, le dernier au cœur même de la base, de sorte qu'une seule erreur de code ne peut pas faire fuiter les données d'un restaurant vers un autre.",
+          "Rien n'est laissé à la confiance : chaque donnée appartenant à un restaurant possède un test automatisé prouvant qu'elle est inaccessible depuis un autre compte, exécuté sur une vraie base avant toute mise en ligne."
         ] },
-        { "title": "Paiement & conformité", "body": [
-          "Stripe Connect (le restaurant est marchand, PCI SAQ-A), TVA multi-pays appliquée par canal (sur place / à emporter / livraison), et multi-devise informative, l'euro est la seule devise facturée, les autres ne sont qu'un affichage indicatif via taux de change en cache.",
-          "RGPD par conception : résidence des données en Europe, base d'audit séparée (append-only), droits des personnes (accès, export, effacement) et pseudonymisation à l'effacement."
+        { "title": "Paiement & confidentialité", "body": [
+          "Chaque restaurant est le marchand et encaisse directement ; les données de carte ne touchent jamais la plateforme. La TVA est appliquée correctement par canal (sur place, à emporter, livraison), et les prix peuvent s'afficher en plusieurs devises alors que l'euro reste la seule réellement débitée.",
+          "La confidentialité est intégrée : les données restent en Europe, chaque changement est consigné dans un historique séparé et infalsifiable, et les clients peuvent accéder à leurs données, les exporter ou les effacer sur demande."
         ] },
-        { "title": "Temps réel & asynchrone", "body": [
-          "SignalR pour le temps réel (état du pass cuisine, appel serveur) et Web Push pour l'app serveur. Pas de broker en V0 : la fiabilité passe par un outbox EF et des services hébergés, idempotents sur l'identifiant d'événement.",
-          "Les tâches planifiées tournent sur toutes les instances mais sont sérialisées par un verrou PostgreSQL (pg_advisory_lock) ; le backplane temps réel s'appuie sur le Redis managé de Clever Cloud."
+        { "title": "Des mises à jour en temps réel pour l'équipe", "body": [
+          "Le pass cuisine et les appels en salle se mettent à jour en temps réel, et l'app du personnel reçoit des notifications, salle et cuisine voient toujours la même chose.",
+          "Les tâches de fond (relances, entretien) tournent de façon fiable sans système de messagerie lourd, volontairement simple à ce stade."
         ] },
-        { "title": "Qualité & intégration continue", "body": [
-          "xUnit + NSubstitute pour les tests, Testcontainers PostgreSQL pour l'intégration (isolation cross-tenant, migrations rejouées sur une vraie base). Environ 18 500 lignes de tests pour 17 000 lignes de code.",
-          "CI GitHub Actions : build et tests verts font office de porte de merge sur develop (auto-merge sur succès) ; la branche main reste sous revue humaine."
+        { "title": "Une qualité qui protège le lancement", "body": [
+          "Le produit s'appuie sur une large batterie de tests automatisés, avec plus de code de test que de code produit, dont des vérifications sur une vraie base pour garantir la séparation des données.",
+          "Rien n'atteint la branche de production sans un build vert et des tests au vert ; la branche principale reste sous revue humaine."
         ] }
       ],
       "stack": [".NET 10", "C# 14", "Blazor SSR", "Blazor Server", "EF Core 10", "PostgreSQL", "Row-Level Security", "Stripe Connect", "SignalR", ".NET Aspire", "Clever Cloud", "Tailwind v4"]
@@ -61,7 +59,7 @@
     "slug": "dpelib",
     "title": "DPELib",
     "client": "Plateforme DPE (PropTech / RegTech)",
-    "summary": "Plateforme qui met en relation cinq publics du Diagnostic de Performance Énergétique, anonymat par défaut, paiement sécurisé, conformité RGPD/CNIL/DSP2.",
+    "summary": "Une plateforme qui met en relation les cinq acteurs du Diagnostic de Performance Énergétique, particuliers, diagnostiqueurs, notaires, agences et artisans, dans l'anonymat, avec paiement sécurisé et conformité RGPD complète.",
     "imageUrl": "",
     "imageAlt": "",
     "liveUrl": "",
@@ -70,46 +68,46 @@
     "completedOn": "2026-06-01",
     "displayOrder": 0,
     "caseStudy": {
-      "sector": "PropTech · RegTech, Diagnostic de Performance Énergétique (réglementation française)",
-      "role": "Architecte-développeur unique, avec des agents IA (Claude Code) pour accélérer le delivery",
-      "timeline": "~18 mois de développement actif · 1 730+ commits",
-      "challenge": "Mettre en relation cinq publics qui ne se font pas spontanément confiance, particuliers, diagnostiqueurs, notaires, agences immobilières et professionnels du bâtiment, sur une seule plateforme. Le tout avec anonymat par défaut, paiement sécurisé et un empilement réglementaire serré : RGPD, CNIL, DSP2/SCA et la méthode de calcul DPE en vigueur.",
-      "approach": "Une plateforme Clean Architecture à quatre fronts (API REST, PWA mobile pour les particuliers, dashboard pro à quatre rôles, vitrine SSR pensée SEO) posée sur 153 use cases métier. L'identité ne se révèle qu'une fois l'intervention confirmée ; le paiement est pré-autorisé puis capturé seulement à la confirmation ; l'annuaire public des diagnostiqueurs est importé chaque nuit depuis data.gouv.fr.",
-      "outcome": "Un véritable tiers de confiance logiciel : le client réserve et règle en sécurité (pré-autorisation 3DS2), le diagnostiqueur reste anonyme jusqu'à confirmation, et l'argent n'est capturé qu'au moment de l'intervention planifiée, sinon les fonds sont libérés et un re-booking en un clic est proposé. Conforme RGPD, CNIL, DSP2 et méthode DPE 3CL, déployé en serverless sans aucun secret stocké.",
+      "sector": "PropTech · RegTech, le Diagnostic de Performance Énergétique (DPE)",
+      "role": "Architecte-développeur unique, avec des agents IA pour accélérer la livraison",
+      "timeline": "~18 mois de développement actif",
+      "challenge": "Réunir cinq publics qui ne se font pas spontanément confiance, particuliers, diagnostiqueurs, notaires, agences immobilières et artisans, sur une seule plateforme. Avec des identités privées par défaut, un paiement sûr pour les deux parties, et tout un empilement réglementaire français à respecter dès le premier jour.",
+      "approach": "Une seule plateforme, quatre expériences sur mesure : une app mobile pour les particuliers, un tableau de bord pour les pros, une vitrine publique pensée pour le référencement, et le moteur qui les alimente. Le diagnostiqueur reste anonyme jusqu'à la confirmation du rendez-vous, le paiement du client n'est prélevé qu'une fois le créneau verrouillé, et l'annuaire public des professionnels se met à jour chaque nuit depuis les données publiques. Un seul code .NET fait tourner l'ensemble.",
+      "outcome": "Un véritable tiers de confiance : le particulier réserve et paie en sécurité, le professionnel reste anonyme jusqu'à ce qu'il accepte, et l'argent ne change de mains qu'au moment où le rendez-vous est réellement planifié, sinon il est libéré automatiquement et le client peut re-réserver en un clic. Pleinement conforme au RGPD et aux règles de paiement, et déployé sans aucun secret qui traîne.",
       "diagramImage": "images/case-dpelib-architecture.png",
       "diagramAlt": "Architecture Clean Architecture de DPELib : 4 applications de présentation, 153 use cases applicatifs, infrastructure EF Core 10 / SQL Server avec base d'audit séparée",
       "stats": [
-        { "value": "153", "label": "Use cases métier" },
-        { "value": "117", "label": "Endpoints REST" },
+        { "value": "153", "label": "Cas d'usage métier" },
+        { "value": "117", "label": "Opérations" },
         { "value": "5", "label": "Publics adressés" },
         { "value": "6", "label": "Intégrations externes" },
         { "value": "~65 000", "label": "Lignes de code produit" },
         { "value": "1 730+", "label": "Commits" }
       ],
       "decisions": [
-        { "title": "Anonymat par défaut, révélation conditionnelle", "detail": "L'identité du diagnostiqueur n'est dévoilée qu'une fois l'intervention confirmée ; avant ça, les numéros sont masqués via un proxy téléphonique (Twilio). Sur une mise en relation, la confiance se gagne étape par étape, elle ne se présume pas." },
-        { "title": "Paiement pré-autorisé, capture différée", "detail": "On bloque les fonds dès la réservation (3DS2/SCA) mais on ne capture qu'à la confirmation du pro. En cas de silence : relances automatiques à J+2 et J+5, puis expiration à J+7 avec libération des fonds. Le client n'est jamais débité pour un rendez-vous qui n'a pas lieu." },
-        { "title": "Comptes « fantômes » depuis les données publiques", "detail": "L'annuaire officiel (data.gouv.fr) est importé chaque nuit et dédupliqué ; chaque diagnostiqueur existe en profil sans compte, créé seulement quand un client le sollicite (lien magique pré-rempli). La plateforme est utile dès le premier jour, sans attendre les inscriptions." },
-        { "title": "Base d'audit séparée + soft-delete systématique", "detail": "Les consentements et l'audit vivent dans une base distincte, jamais dans la transaction métier ; aucune suppression physique. Le droit à l'effacement (< 30 j) et la traçabilité CNIL sont garantis par l'architecture, pas par la discipline du code." },
-        { "title": "Validation de l'injection au build", "detail": "Un test résout chaque use case du runtime : une dépendance non enregistrée fait échouer le build (ValidateOnBuild). Sur 153 use cases, c'est ce qui rend l'ajout de fonctionnalités sûr plutôt qu'anxiogène." },
-        { "title": "Déploiement serverless sans secret stocké", "detail": "Azure Container Apps piloté par azd, authentification CI par OIDC federated (zéro secret long-lived), secrets en Key Vault. Le pipeline est rejouable, auditable, et ne laisse traîner aucune clé." }
+        { "title": "Anonyme jusqu'à la confirmation", "detail": "L'identité du diagnostiqueur reste masquée jusqu'à la confirmation du rendez-vous ; même les appels passent par un numéro masqué avant ça. Sur une mise en relation, la confiance se gagne étape par étape, elle ne se présume pas." },
+        { "title": "On ne paie qu'une fois le rendez-vous verrouillé", "detail": "L'argent est réservé à la réservation mais prélevé seulement quand le professionnel confirme. S'il reste silencieux, des relances automatiques partent, et au bout d'une semaine la réservation des fonds est libérée. Personne ne paie pour un rendez-vous qui n'a pas lieu." },
+        { "title": "Utile dès le premier jour", "detail": "L'annuaire officiel est importé chaque nuit, donc chaque diagnostiqueur a déjà un profil, sans compte, créé seulement quand un client le sollicite. La plateforme est utile immédiatement, sans attendre les inscriptions." },
+        { "title": "La confidentialité garantie par conception", "detail": "Les consentements et l'historique vivent dans un espace séparé et inaltérable, et rien n'est jamais vraiment supprimé, seulement anonymisé. Le droit à l'effacement et la traçabilité sont garantis par l'architecture, pas par la discipline." },
+        { "title": "La fiabilité intégrée à la compilation", "detail": "Une vérification automatique s'assure que chaque fonctionnalité est correctement raccordée avant même que l'application ne se compile, ce qui rend l'ajout de fonctions sûr plutôt qu'anxiogène sur plus de 150 fonctionnalités." },
+        { "title": "Déployé sans aucun secret stocké", "detail": "Le pipeline de mise en ligne ne contient aucun mot de passe ou clé durable, il est rejouable, auditable, et ne laisse rien de sensible traîner." }
       ],
       "sections": [
-        { "title": "Du créneau au paiement", "body": [
-          "Le client choisit un créneau, puis Stripe pré-autorise le montant (80 € + 30 €/pièce) avec authentification forte 3DS2/SCA. Le professionnel est notifié par e-mail et SMS.",
-          "S'il confirme, les fonds sont capturés, l'identité est révélée et l'intervention est planifiée. S'il reste silencieux, des relances partent automatiquement, puis le hold expire à J+7 : les fonds sont libérés et un re-booking en un clic est proposé au client."
+        { "title": "De la réservation au paiement", "body": [
+          "Le client choisit un créneau et sa carte est pré-autorisée (80 € + 30 € par pièce supplémentaire) avec une vérification bancaire forte. Le professionnel est prévenu par e-mail et SMS.",
+          "S'il confirme, le paiement passe, l'identité est révélée et le rendez-vous est planifié. S'il reste silencieux, des relances partent automatiquement, puis au bout d'une semaine les fonds sont libérés et une nouvelle réservation en un clic est proposée au client."
         ] },
-        { "title": "Intégrations", "body": [
-          "Six systèmes externes : Stripe (paiement DSP2, webhooks idempotents), data.gouv.fr (import CSV quotidien via CRON + retry Polly), YOLO/ONNX Runtime (inférence ML embarquée), BDNB (enrichissement bâtiment avec cache), Twilio (masquage des numéros) et Gravatar.",
-          "Chaque intégration est isolée derrière une interface, testable, remplaçable, et jamais exposée au reste du domaine."
+        { "title": "Connecté aux bons systèmes", "body": [
+          "Six services externes sont branchés, paiement, annuaire officiel en open data, reconnaissance d'image embarquée, base de données du bâti, masquage des numéros et avatars, chacun bien isolé et remplaçable.",
+          "Cette isolation permet d'en changer ou d'en remplacer un sans toucher au reste de la plateforme."
         ] },
-        { "title": "DevOps & CI/CD", "body": [
-          "Pipeline GitHub Actions complet : build .NET 10, tests xUnit, coverage gate, validation des templates Bicep, déploiement azd et smoke tests post-release sur /alive et /health.",
-          "Infrastructure-as-Code en Bicep (12 fichiers), Azure Container Apps en runtime serverless, secrets en Key Vault, et .NET Aspire en local pour orchestrer SQL Server, Redis et le stockage."
+        { "title": "Conçu pour tourner de façon fiable", "body": [
+          "Chaque mise en ligne passe par un pipeline automatisé, build, tests complets, vérification de couverture, puis déploiement et contrôle de santé après publication, pour qu'une version cassée n'atteigne jamais les utilisateurs.",
+          "Toute l'infrastructure est décrite comme du code, tourne à la demande pour maîtriser les coûts, et garde ses secrets dans un coffre sécurisé."
         ] },
         { "title": "Conformité réglementaire", "body": [
-          "RGPD : consentements granulaires, journal de consentement en base séparée, droit à l'effacement sous 30 jours. CNIL : bannière de consentement bloquante avant tout traceur non essentiel.",
-          "DSP2/SCA sur le paiement, calcul DPE conforme à la méthode 3CL en vigueur, et alertes en lecture seule sur les interdictions locatives (passoires thermiques F/G)."
+          "Consentements granulaires, journal de consentement séparé, droit à l'effacement sous 30 jours. Une bannière bloquante avant tout traceur non essentiel.",
+          "Authentification bancaire forte au paiement, méthode officielle de calcul du DPE, et alertes en lecture seule sur les biens qui ne peuvent plus être loués."
         ] }
       ],
       "stack": [".NET 10", "C# (latest)", "Blazor WASM (PWA)", "Blazor Server", "Blazor SSR", "EF Core 10", "SQL Server", "Stripe", "ONNX Runtime", "Azure Container Apps", "Bicep", ".NET Aspire", "Twilio"]
@@ -119,7 +117,7 @@
     "slug": "brasageneva",
     "title": "Brasa Geneva",
     "client": "Brasa Geneva",
-    "summary": "Plateforme complète pour un club de cigares genevois : vitrine publique réservée aux adultes, espace membre, et une interface d'administration sécurisée qui pilote toute l'activité (catalogue, abonnements, paiements, galerie d'art).",
+    "summary": "Une plateforme complète pour un club de cigares genevois : une vitrine publique réservée aux adultes, un espace membre, et une administration sécurisée qui pilote toute l'activité, catalogue, abonnements, paiements et galerie d'art.",
     "imageUrl": "images/brasageneva.webp",
     "imageAlt": "Logo Brasa Geneva gravé sur laiton brossé",
     "liveUrl": "https://www.brasageneva.ch",
@@ -128,46 +126,45 @@
     "completedOn": "2026-04-01",
     "displayOrder": 1,
     "caseStudy": {
-      "sector": "Luxe · E-commerce réglementé, cigares premium, caves artisanales et galerie d'art pour un club privé genevois",
-      "role": "Architecte-développeur unique pilotant une orchestration multi-agents IA (conseil de 14 personas + boucle de delivery TDD-first)",
-      "timeline": "~4,5 mois de développement actif · 687 commits",
-      "challenge": "Un club privé genevois voulait une plateforme unique pour vendre cigares premium, caves artisanales et galerie d'art, à la fois vitrine publique, espace membre et back-office. Le tout dans l'un des cadres légaux les plus stricts qui soient : publicité du tabac, interdiction de la vente transfrontalière, vérification d'âge obligatoire, RGPD et paiement fort.",
-      "approach": "Une seule solution Clean Architecture servant trois fronts (vitrine WASM age-gatée, espace membre, back-office Blazor Server) et deux types d'utilisateurs, avec les garde-fous légaux inscrits dans la conception plutôt qu'ajoutés après coup. Hébergement 100 % suisse (Infomaniak), paiement multi-canal, et une couche d'audit isolée pour la conformité.",
-      "outcome": "Une plateforme de vente de luxe conforme par conception : achat de cigares bloqué hors de Suisse, age-gate incontournable, données tracées dans une base d'audit séparée. Livrée en ~4,5 mois grâce à une orchestration IA pilotée, avec un effort de test supérieur à l'effort de production (ratio 2,2 : 1).",
+      "sector": "Luxe · e-commerce réglementé, cigares premium, caves et galerie d'art pour un club privé genevois",
+      "role": "Architecte-développeur unique pilotant une équipe de plusieurs agents IA",
+      "timeline": "~4,5 mois de développement actif",
+      "challenge": "Un club privé genevois voulait une seule plateforme pour vendre cigares premium, caves artisanales et galerie d'art, vitrine publique, espace membre et back-office réunis, dans l'un des cadres légaux les plus stricts qui soient : publicité du tabac, interdiction de la vente transfrontalière, vérification d'âge obligatoire, protection des données et paiement fort.",
+      "approach": "Une seule plateforme à trois visages, une vitrine publique avec contrôle d'âge, un espace membre, et un back-office qui pilote l'activité, avec les règles légales inscrites dans le produit plutôt qu'ajoutées après coup. Hébergement 100 % suisse, trois moyens de paiement, et une piste d'audit séparée pour la conformité. Un seul code .NET derrière tout ça.",
+      "outcome": "Une boutique de luxe conforme par conception : impossible d'acheter un cigare hors de Suisse, contrôle d'âge incontournable, et chaque changement consigné dans une piste d'audit séparée. Livrée en environ quatre mois et demi, avec plus d'efforts consacrés aux tests automatisés qu'au code produit lui-même, le club a donc lancé sur des bases solides.",
       "diagramImage": "images/case-brasageneva-architecture.png",
       "diagramAlt": "Architecture Clean Architecture de Brasa Geneva : 3 applications de présentation, 99 use cases applicatifs, infrastructure EF Core 10 / PostgreSQL avec base d'audit séparée",
       "stats": [
-        { "value": "99", "label": "Use cases métier" },
-        { "value": "~98", "label": "Endpoints REST" },
-        { "value": "27", "label": "Entités de données" },
-        { "value": "7", "label": "Langues (.resx)" },
+        { "value": "99", "label": "Cas d'usage métier" },
+        { "value": "~98", "label": "Opérations" },
+        { "value": "7", "label": "Langues" },
         { "value": "2,2 : 1", "label": "Ratio tests / code" },
         { "value": "687", "label": "Commits" }
       ],
       "decisions": [
-        { "title": "Garde-fous légaux par conception", "detail": "La vente de cigares est bloquée hors de Suisse et l'age-gate est incontournable, codés comme des règles du domaine, impossibles à contourner par une URL ou un état d'interface. Ici, un contournement n'est pas un bug : c'est un risque juridique." },
-        { "title": "Base d'audit physiquement séparée", "detail": "Les changements d'entités sont tracés dans une base append-only, jamais dans la même transaction que les données métier. La conformité RGPD ne dépend pas de la bonne volonté du code applicatif, elle est structurelle." },
-        { "title": "Hébergement souverain (Infomaniak, Suisse)", "detail": "Aucun service Azure ou AWS managé : la souveraineté des données colle au positionnement luxe genevois, et le déploiement Kubernetes (Helm) reste maîtrisé de bout en bout." },
-        { "title": "Le back-office parle à l'API, jamais à la base", "detail": "Le Dashboard (Blazor Server) passe par l'API via un HttpClient typé : une seule porte d'entrée aux données, donc une seule surface à sécuriser et à auditer." },
-        { "title": "CRON embarqué plutôt que bus de messages", "detail": "Les tâches de fond (badges d'ancienneté, réassort, rétention Stripe) tournent sur un planificateur embarqué. La dépendance RabbitMQ est cadrée mais pas activée tant que le besoin transactionnel ne la justifie pas, pas de complexité payée d'avance." },
-        { "title": "Les tests d'abord (ratio 2,2 : 1)", "detail": "Un test garantit que chaque use case possède sa classe de tests : impossible d'ajouter une règle métier non couverte sans casser le build. Sur un domaine régulé, c'est la qualité qui protège le client." }
+        { "title": "La loi est inscrite dans le produit", "detail": "La vente de cigares hors de Suisse est bloquée et le contrôle d'âge est incontournable, tous deux codés comme des règles centrales, impossibles à contourner par une URL astucieuse. Ici, un contournement n'est pas un bug, c'est un risque juridique." },
+        { "title": "Une piste d'audit séparée et infalsifiable", "detail": "Chaque changement est enregistré dans un historique en ajout seul, tenu à l'écart des données vivantes. La conformité ne repose pas sur les bonnes intentions du code, elle est structurelle." },
+        { "title": "Hébergé entièrement en Suisse", "detail": "Pas de cloud américain ou mondial : garder les données en Suisse colle au positionnement luxe genevois, et l'hébergement reste maîtrisé de bout en bout." },
+        { "title": "Une seule porte sécurisée vers les données", "detail": "Le back-office n'accède aux données qu'à travers le même service interne que tout le reste, donc une seule surface à sécuriser et à auditer, pas plusieurs." },
+        { "title": "Volontairement simple", "detail": "Les tâches de fond (badges de fidélité, relances de réassort) tournent sur un planificateur léger. Une infrastructure plus lourde est prévue mais laissée éteinte tant qu'un besoin réel ne la justifie pas, pas de complexité payée d'avance." },
+        { "title": "La qualité d'abord", "detail": "Chaque fonctionnalité doit avoir ses propres tests avant d'être livrée, donc impossible qu'une règle non testée se glisse dans une activité régulée. C'est la qualité qui protège le client." }
       ],
       "sections": [
-        { "title": "Paiement multi-canal", "body": [
-          "Trois moyens de règlement, un même tunnel : carte via Stripe (liens de paiement, webhooks idempotents, rétention d'événements contrôlée), virement bancaire et crypto.",
-          "Garde-fou légal intégré au tunnel : l'achat de cigare n'est possible qu'en Suisse ; hors-CH, le parcours bascule en devis ou réservé au Club."
+        { "title": "Trois moyens de paiement", "body": [
+          "Un seul tunnel, trois options, carte, virement bancaire et crypto, les paiements par carte étant pris en charge par un prestataire de confiance.",
+          "Le garde-fou légal est intégré au tunnel : on ne peut acheter un cigare qu'en Suisse ; ailleurs, le parcours bascule en devis ou en accès réservé au Club."
         ] },
-        { "title": "DevOps & hébergement souverain", "body": [
-          "Toute la plateforme est publiée sur Infomaniak Kubernetes. Infrastructure-as-Code en Helm (~25 templates) couvrant déploiements, jobs de migration et de bootstrap admin, HPA, PDB et NetworkPolicy.",
-          ".NET Aspire orchestre l'environnement local ; la CI GitHub Actions exige un build et des tests verts avant tout commit."
+        { "title": "Hébergement & exploitation", "body": [
+          "Toute la plateforme tourne sur une infrastructure suisse, entièrement décrite comme du code pour être reconstruite ou mise à l'échelle de façon fiable.",
+          "Un build vert et des tests au vert sont exigés avant tout commit."
         ] },
         { "title": "Conformité réglementaire", "body": [
-          "Publicité du tabac (copie produit régulée, posture PR validée), vente transfrontalière bloquée, age-gate incontournable.",
-          "RGPD : base d'audit séparée, soft-delete systématique, aucune donnée personnelle en clair dans les logs. La galerie d'art est protégée par badge-gating et protection d'image."
+          "Règles de publicité du tabac respectées, vente transfrontalière bloquée, contrôle d'âge incontournable.",
+          "Protection des données par conception : piste d'audit séparée, aucune suppression définitive, aucune donnée personnelle en clair dans les logs. La galerie d'art est protégée contre la copie facile."
         ] },
-        { "title": "i18n & design « light luxury »", "body": [
-          "Sept locales gérées en fichiers .resx (FR/EN + de-CH, it-CH, es-ES, hu, bg), chaque chaîne visible est obligatoirement traduite.",
-          "Esthétique parchemin / encre / braise tenue par un contrôle qualité multi-persona : typographies Italiana + Cormorant Garamond + Jost, animations lentes, zéro glass-morphism."
+        { "title": "Langues & design « light luxury »", "body": [
+          "Sept langues, chaque mot visible traduit professionnellement.",
+          "Une esthétique parchemin, encre et braise, des animations lentes et retenues et une finition soignée d'un bout à l'autre."
         ] }
       ],
       "stack": [".NET 10", "C# 14", "Blazor WASM", "Blazor Server", "EF Core 10", "PostgreSQL", "Stripe", "Kubernetes", "Helm", "Infomaniak", ".NET Aspire", "Tailwind v4"]
@@ -177,7 +174,7 @@
     "slug": "krosquare",
     "title": "K-RO SQUARE",
     "client": "K-RO SQUARE",
-    "summary": "Site vitrine et présentation d'offre pour une marque française, direction artistique épurée, mise en scène claire de l'identité.",
+    "summary": "Site vitrine pour une marque française, direction artistique épurée et mise en scène claire et assumée de son identité.",
     "imageUrl": "images/www.krosquare.fr.webp",
     "imageAlt": "Capture d'écran du site K-RO SQUARE",
     "liveUrl": "https://www.krosquare.fr",
@@ -190,7 +187,7 @@
     "slug": "monseigneurchampagne",
     "title": "Monseigneur Champagne",
     "client": "Monseigneur Champagne",
-    "summary": "Vitrine d'une maison de champagne, identité premium, parcours client soigné jusqu'à la prise de contact.",
+    "summary": "Vitrine d'une maison de champagne, une identité premium et un parcours soigné qui mène le visiteur jusqu'à la prise de contact.",
     "imageUrl": "images/www.monseigneurchampagne.com.png",
     "imageAlt": "Capture d'écran du site Monseigneur Champagne",
     "liveUrl": "https://www.monseigneurchampagne.com",
@@ -203,7 +200,7 @@
     "slug": "coronaclubnobless",
     "title": "Corona Club Noblesse",
     "client": "Corona Club Noblesse",
-    "summary": "Site institutionnel d'un club suisse, rendu élégant, navigation tri-langue, mise en valeur d'une identité héritée.",
+    "summary": "Site institutionnel d'un club suisse, élégant et sobre, en trois langues, qui remet en lumière une identité héritée.",
     "imageUrl": "images/www.coronaclubnobless.ch.webp",
     "imageAlt": "Capture d'écran du site Corona Club Noblesse",
     "liveUrl": "https://www.coronaclubnobless.ch",

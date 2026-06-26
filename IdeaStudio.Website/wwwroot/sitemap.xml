@@ -121,6 +121,26 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Services: IA en entreprise / AI for the enterprise -->
+  <url>
+    <loc>https://ideastud.io/fr/services/ia-en-entreprise</loc>
+    <lastmod>2026-06-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/ia-en-entreprise" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/ai-enterprise" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/ia-en-entreprise" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/services/ai-enterprise</loc>
+    <lastmod>2026-06-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/ia-en-entreprise" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/ai-enterprise" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/ia-en-entreprise" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Services: Applications mobiles / Mobile apps -->
   <url>
     <loc>https://ideastud.io/fr/services/applications-mobiles</loc>

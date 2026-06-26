@@ -1,3 +1,4 @@
+using IdeaStudio.Website.State;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Globalization;
@@ -14,13 +15,23 @@ public interface ICultureService
     event Action? CultureChanged;
 }
 
-public class CultureService(IJSRuntime jsRuntime, NavigationManager navigationManager) : ICultureService
+public class CultureService : ICultureService, IDisposable
 {
-    private readonly IJSRuntime jsRuntime = jsRuntime;
-    private readonly NavigationManager navigationManager = navigationManager;
-    private CultureInfo currentCulture = new("fr");
+    private readonly IJSRuntime jsRuntime;
+    private readonly NavigationManager navigationManager;
+    private readonly Store<AppState> store;
+    private string lastSeen;
 
-    public CultureInfo CurrentCulture => currentCulture;
+    public CultureService(IJSRuntime jsRuntime, NavigationManager navigationManager, Store<AppState> store)
+    {
+        this.jsRuntime = jsRuntime;
+        this.navigationManager = navigationManager;
+        this.store = store;
+        lastSeen = store.State.Culture;
+        store.Changed += RelayCultureChange;
+    }
+
+    public CultureInfo CurrentCulture => new(store.State.Culture);
 
     public List<CultureInfo> SupportedCultures => [
         new CultureInfo("fr"),
@@ -32,7 +43,7 @@ public class CultureService(IJSRuntime jsRuntime, NavigationManager navigationMa
     public Task InitializeAsync()
     {
         string path = new Uri(navigationManager.Uri).AbsolutePath;
-        string? fromUrl = ExtractCulture(path);
+        string? fromUrl = CulturePath.ExtractCulture(path);
         string resolved = fromUrl ?? "fr";
         return SetCultureAsync(resolved);
     }
@@ -45,11 +56,11 @@ public class CultureService(IJSRuntime jsRuntime, NavigationManager navigationMa
             return Task.CompletedTask;
         }
 
-        currentCulture = new CultureInfo(culture);
-        CultureInfo.DefaultThreadCurrentCulture = currentCulture;
-        CultureInfo.DefaultThreadCurrentUICulture = currentCulture;
+        CultureInfo resolved = new(culture);
+        CultureInfo.DefaultThreadCurrentCulture = resolved;
+        CultureInfo.DefaultThreadCurrentUICulture = resolved;
 
-        CultureChanged?.Invoke();
+        store.Dispatch(new SetCulture(culture));
         return Task.CompletedTask;
     }
 
@@ -61,12 +72,13 @@ public class CultureService(IJSRuntime jsRuntime, NavigationManager navigationMa
         await SetCultureAsync(culture);
     }
 
-    private static string? ExtractCulture(string path)
+    public void Dispose() => store.Changed -= RelayCultureChange;
+
+    private void RelayCultureChange()
     {
-        if (string.IsNullOrEmpty(path)) return null;
-        string trimmed = path.TrimStart('/');
-        int slash = trimmed.IndexOf('/');
-        string first = slash < 0 ? trimmed : trimmed[..slash];
-        return first is "fr" or "en" ? first : null;
+        string current = store.State.Culture;
+        if (current == lastSeen) { return; }
+        lastSeen = current;
+        CultureChanged?.Invoke();
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Concurrent;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -14,7 +13,7 @@ public interface ILazyLoadingService
 public class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFactory) : ILazyLoadingService
 {
     private readonly ILogger<LazyLoadingService> logger = loggerFactory.CreateLogger<LazyLoadingService>();
-    private readonly ConcurrentDictionary<string, object> cache = [];
+    private readonly Dictionary<string, object> cache = [];
 
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
     {
@@ -40,9 +39,13 @@ public class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFact
             }
             return data;
         }
+        // Only expected I/O / deserialization failures degrade gracefully to default
+        // (e.g. a missing or malformed JSON file → empty content, not a crash). Any other
+        // exception is a genuine bug and is allowed to propagate rather than be swallowed.
         catch (HttpRequestException ex)
         {
             logger.HttpError(url, ex.Message, ex);
+            return default;
         }
         catch (TaskCanceledException ex)
         {
@@ -54,11 +57,6 @@ public class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFact
             logger.JsonError(url, ex.Message, ex);
             return default;
         }
-        catch (Exception ex)
-        {
-            logger.Exception("in ILazyLoadingService.LoadDataAsync", ex);
-        }
-        return default;
     }
 
     public async Task<string?> LoadImageAsync(string imageUrl, CancellationToken cancellationToken = default)
@@ -89,11 +87,6 @@ public class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFact
         catch (TaskCanceledException ex)
         {
             logger.HttpRequestCanceled(imageUrl, ex.Message, ex);
-            return null;
-        }
-        catch (Exception ex)
-        {
-            logger.Exception(imageUrl, ex);
             return null;
         }
     }

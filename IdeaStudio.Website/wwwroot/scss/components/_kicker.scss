@@ -14,5 +14,8 @@
   text-transform: uppercase;
   color: c.$ir-duck;
   line-height: 1;
+  // Tabular figures so any numerals in the mono meta label (years, counts)
+  // align rather than jostle.
+  font-variant-numeric: tabular-nums;
   text-shadow: 0 0 20px rgba(0, 194, 212, 0.15);
 }

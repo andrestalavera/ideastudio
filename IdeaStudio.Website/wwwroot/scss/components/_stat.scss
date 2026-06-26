@@ -9,15 +9,20 @@
   flex-direction: column;
   gap: s.$s-1;
   padding: s.$s-4 s.$s-5;
-  border-radius: 12px;
-  background: linear-gradient(c.$bg-surface, c.$bg-surface) padding-box,
-              c.$gradient-iridescent border-box;
-  border: 1px solid transparent;
+  // Stat tiles speak $radius-md in the corner language (DESIGN §4).
+  border-radius: s.$radius-md;
+  // The full iridescent border meant a whole ROW of stat chips each wore the
+  // precious gradient — multiple gradient moments per view. Demoted to a plain
+  // bright-rule hairline; the duck label below is the single accent per chip.
+  background: c.$bg-surface;
+  border: 1px solid c.$rule-bright;
 
   &-label {
     font-family: t.$font-mono;
     font-size: t.$fs-mono;
-    color: c.$fg-muted;
+    // The one accent: duck label (AA on bg-surface — ~7.5:1 dark, ~5.8:1 light)
+    // instead of leaking the iridescent gradient onto every chip's border.
+    color: c.$ir-duck;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
@@ -28,5 +33,7 @@
     font-size: t.$fs-subtitle;
     color: c.$fg;
     letter-spacing: -0.01em;
+    // Lining, tabular figures so stat values align column-to-column.
+    font-variant-numeric: tabular-nums lining-nums;
   }
 }

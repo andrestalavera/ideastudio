@@ -1,0 +1,62 @@
+// components/_social.scss — branded social row (LinkedIn, GitHub, X).
+// Monochrome + hairline at rest for a cohesive luxe look; each link adopts its
+// own brand identity on hover/focus (LinkedIn blue; GitHub & X are monochrome
+// brands, so they resolve to full --fg, correct in both themes). Tap targets
+// are ≥44px; focus uses the global :focus-visible ring; motion respects
+// prefers-reduced-motion.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+
+.ds-social {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li { margin: 0; }
+}
+
+.ds-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.75rem;   // 44px tap target
+  block-size: 2.75rem;
+  border: 1px solid c.$rule-bright;
+  border-radius: s.$radius-sm;
+  color: c.$fg-muted;     // AA against page/footer surfaces
+  background: transparent;
+  transition:
+    color var(--t-hover) var(--ease-lux),
+    border-color var(--t-hover) var(--ease-lux),
+    box-shadow var(--t-hover) var(--ease-lux),
+    transform var(--t-hover) var(--ease-lux);
+
+  svg { display: block; }
+
+  &:hover,
+  &:focus-visible {
+    color: c.$fg;
+    border-color: currentColor;
+    box-shadow: c.$elev-1;
+    transform: translateY(-2px);
+  }
+}
+
+// Brand identities on hover/focus.
+.ds-social-linkedin:hover,
+.ds-social-linkedin:focus-visible { color: #0a66c2; }   // LinkedIn blue
+
+// GitHub and X are monochrome brands — full --fg (white in dark, ink in light)
+// respects their identity in both themes. They inherit the base hover (--fg).
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-social-link {
+    transition: color var(--t-hover) linear, border-color var(--t-hover) linear;
+  }
+  .ds-social-link:hover,
+  .ds-social-link:focus-visible { transform: none; }
+}

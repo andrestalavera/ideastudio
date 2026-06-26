@@ -26,7 +26,15 @@
 }
 else
 {
-    <Hero Kicker="@service.Kicker" Title="@service.Title" Lead="@service.Tagline" />
+    <Hero Kicker="@service.Kicker" Title="@service.Title" Lead="@service.Tagline">
+        <Actions>
+            <div class="row">
+                <ButtonLink Href="https://calendly.com/andres-talavera/30min" Variant="primary"
+                            External="true" Arrow="→" Label="@ctaBookText" AriaLabel="@ctaBookAria" />
+                <ButtonLink Href="@LocalizedRoute.For("contact")" Variant="ghost" Label="@ctaDescribeText" />
+            </div>
+        </Actions>
+    </Hero>
 
     @* Summary *@
     <PageSection Rhythm="section" Bordered="false" Width="narrow">
@@ -116,8 +124,8 @@ else
     private string seoCanonical = "https://ideastud.io/fr/services";
     private string seoLocale = "fr_FR";
     private Dictionary<string, string>? seoHreflang;
-    private string highlightsKicker = "Le périmètre";
-    private string highlightsTitle = "Ce que la mission couvre.";
+    private string highlightsKicker = "Bénéfices";
+    private string highlightsTitle = "Ce que vous obtenez.";
     private string useCaseKicker = "Cas d'usage";
     private string useCaseTitle = "Quand on m'appelle.";
     private string faqKicker = "Questions fréquentes";
@@ -130,6 +138,9 @@ else
     private string notFoundTitle = "Service introuvable.";
     private string notFoundLead = "Ce service n'existe pas dans ce slug. Retour à la liste des services.";
     private string backText = "Voir les services";
+    private string ctaBookText = "Réserver un appel";
+    private string ctaDescribeText = "Décrire mon projet";
+    private string ctaBookAria = "Réserver un appel de 30 minutes sur Calendly (nouvel onglet)";
     private List<string>? seoStructuredData;
 
     protected override async Task LoadLocalizedStringsAsync()
@@ -150,8 +161,8 @@ else
     {
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
-        highlightsKicker = fr ? "Le périmètre" : "Scope";
-        highlightsTitle  = fr ? "Ce que la mission couvre." : "What the engagement covers.";
+        highlightsKicker = fr ? "Bénéfices" : "Benefits";
+        highlightsTitle  = fr ? "Ce que vous obtenez." : "What you get.";
         useCaseKicker    = fr ? "Cas d'usage" : "Use cases";
         useCaseTitle     = fr ? "Quand on m'appelle." : "When clients reach out.";
         faqKicker        = fr ? "Questions fréquentes" : "Frequent questions";
@@ -166,6 +177,11 @@ else
         notFoundTitle    = fr ? "Service introuvable." : "Service not found.";
         notFoundLead     = fr ? "Ce service n'existe pas. Retour à la liste." : "That service doesn't exist. Back to the list.";
         backText         = fr ? "Voir les services" : "See all services";
+        ctaBookText      = fr ? "Réserver un appel" : "Book a call";
+        ctaDescribeText  = fr ? "Décrire mon projet" : "Describe my project";
+        ctaBookAria      = fr
+            ? "Réserver un appel de 30 minutes sur Calendly (nouvel onglet)"
+            : "Book a 30-minute call on Calendly (opens in a new tab)";
     }
 
     private async Task LoadServiceAsync()
@@ -220,7 +236,7 @@ else
             Description: seoDescription,
             Url: "https://ideastud.io",
             Image: "https://ideastud.io/images/andres-talavera.jpeg",
-            SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
+            SameAs: new[] { "https://www.linkedin.com/in/andres-talavera/", "https://github.com/andrestalavera", "https://x.com/imcresus_" },
             KnowsAbout: new[] { ".NET", "Azure", "Blazor" },
             Address: null,
             WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io")

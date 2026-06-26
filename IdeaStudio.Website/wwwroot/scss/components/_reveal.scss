@@ -2,14 +2,22 @@
 
 @use '../tokens/space' as s;
 
+// LCP-safe gate: reveal elements are VISIBLE by default so the hero / above-
+// the-fold text paints immediately, before WASM boots and the cinema runtime
+// dynamic-imports. Only once the runtime is live (it adds `cinema-ready` to
+// <html> at the start of initialize()) do we drop elements into their hidden
+// pre-reveal state and let the IntersectionObserver choreograph them in.
 [data-reveal] {
-  opacity: 0;
-  transform: translateY(28px);
   transition: opacity 640ms var(--ease-out),
               transform 640ms var(--ease-out);
   // Stagger entry; exits drop the delay so they feel snappier when scrolling
   // back up and don't pile cascading delays at the top of viewport.
   transition-delay: 0ms;
+}
+
+html.cinema-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
 
   &.is-revealed {
     opacity: 1;
@@ -19,7 +27,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
+  [data-reveal],
+  html.cinema-ready [data-reveal] {
     opacity: 1;
     transform: none;
     transition: none;

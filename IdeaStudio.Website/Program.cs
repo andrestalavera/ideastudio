@@ -1,5 +1,6 @@
 ﻿using IdeaStudio.Website;
 using IdeaStudio.Website.Services;
+using IdeaStudio.Website.State;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -11,6 +12,11 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+// Single source of truth for client state (theme, culture, consent). Scoped is
+// correct for WASM: one DI scope per app instance. Theme/Culture/Consent services
+// read and write through this store.
+builder.Services.AddScoped(_ => new Store<AppState>(AppState.Initial, AppReducer.Reduce));
 builder.Services.AddScoped<ILazyLoadingService, LazyLoadingService>();
 builder.Services.AddScoped<IContentGateway, JsonContentGateway>();
 builder.Services.AddScoped<ISceneTheme, SceneTheme>();

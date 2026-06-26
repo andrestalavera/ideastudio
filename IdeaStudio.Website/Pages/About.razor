@@ -33,23 +33,13 @@
 <PageSection>
     <ChapterBand Kicker="@anglesKicker" Title="@anglesTitle" Lead="@anglesLead" />
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-chapter">
-        @if (resume?.AboutSections is not null)
+        @for (int i = 0; i < aboutCards.Count; i++)
         {
-            int i = 0;
-            foreach (AboutSection s in resume.AboutSections)
-            {
-                <Card data-reveal style="@($"--reveal-step:{i}")">
-                    <h3 class="card-title">@s.Title</h3>
-                    @if (s.Paragraphs is not null)
-                    {
-                        foreach (string p in s.Paragraphs)
-                        {
-                            <p class="card-text">@p</p>
-                        }
-                    }
-                </Card>
-                i++;
-            }
+            (string title, string body) = aboutCards[i];
+            <Card data-reveal style="@($"--reveal-step:{i}")">
+                <h3 class="card-title">@title</h3>
+                <p class="card-text">@body</p>
+            </Card>
         }
     </div>
 </PageSection>
@@ -86,11 +76,12 @@
     private string heroKicker = "À propos";
     private string heroText = "Andrés Talavera.";
     private string introText = "";
-    private string bookText = "Prendre rendez-vous";
+    private string bookText = "Réserver un appel";
     private string resumeText = "Voir mon parcours";
-    private string anglesKicker = "Plusieurs angles";
-    private string anglesTitle = "Consultant, techlead, formateur.";
+    private string anglesKicker = "En quelques mots";
+    private string anglesTitle = "Qui je suis, comment je travaille.";
     private string anglesLead = "";
+    private List<(string Title, string Body)> aboutCards = new();
     private string exploreKicker = "Explorer";
     private string exploreTitle = "Aller plus loin.";
     private string servicesLink = "Mes services";
@@ -120,14 +111,32 @@
             : "About, Andrés Talavera, .NET & Azure consultant | IdeaStud.io";
 
         heroKicker = fr ? "À propos" : "About";
-        bookText = fr ? "Prendre rendez-vous" : "Book a call";
+        heroText = "Andrés Talavera.";
+        introText = fr
+            ? "Depuis 15 ans, je conçois et je livre des logiciels sur lesquels des entreprises s'appuient chaque jour. Un seul interlocuteur, du premier échange à la mise en ligne."
+            : "For 15 years I've designed and shipped software businesses rely on every day. One point of contact, from the first conversation to launch.";
+        bookText = fr ? "Réserver un appel" : "Book a call";
         resumeText = fr ? "Voir mon parcours" : "See my résumé";
 
-        anglesKicker = fr ? "Plusieurs angles" : "Several angles";
-        anglesTitle = fr ? "Consultant, techlead, formateur." : "Consultant, tech lead, trainer.";
+        anglesKicker = fr ? "En quelques mots" : "In a few words";
+        anglesTitle = fr ? "Qui je suis, comment je travaille." : "Who I am, how I work.";
         anglesLead = fr
-            ? "Un même fil rouge depuis 15 ans : transformer des idées en logiciels qui marchent, et transmettre ce que j'apprends en chemin."
-            : "One thread for 15 years: turning ideas into software that ships, and passing on what I learn along the way.";
+            ? "Pas de jargon, pas de promesses en l'air : du travail concret, des délais tenus et des décisions claires."
+            : "No jargon, no empty promises: concrete work, deadlines kept and clear decisions.";
+
+        aboutCards = fr
+            ? new()
+            {
+                ("Qui je suis", "Développeur depuis 15 ans, basé à Lyon, je travaille avec des entreprises à Lyon, Paris, Genève, Fribourg ou à distance. J'aime les projets concrets, les équipes qui avancent et les choses bien faites."),
+                ("Comment je travaille", "Un seul interlocuteur, du premier échange à la mise en ligne. Je dis ce que je vais faire, je le fais, et je vous explique tout simplement, sans vous noyer sous la technique."),
+                ("Ce qui compte pour moi", "La confiance, la transparence et le travail bien fait. Votre projet vous appartient, code et infrastructure compris : mon but est de vous rendre autonome, jamais dépendant."),
+            }
+            : new()
+            {
+                ("Who I am", "A developer for 15 years, based in Lyon, working with companies in Lyon, Paris, Geneva, Fribourg or remotely. I like concrete projects, teams that move forward, and things done well."),
+                ("How I work", "One point of contact, from the first conversation to launch. I say what I'll do, I do it, and I explain it plainly, without drowning you in technical detail."),
+                ("What matters to me", "Trust, transparency and craftsmanship. Your project is yours, code and infrastructure included: my goal is to leave you independent, never dependent."),
+            };
 
         exploreKicker = fr ? "Explorer" : "Explore";
         exploreTitle = fr ? "Aller plus loin." : "Go further.";
@@ -142,8 +151,6 @@
         string culture = CultureService.CurrentCulture.Name;
         bool fr = culture.StartsWith("fr");
         resume = await Content.GetResumeAsync(culture);
-        heroText = resume?.PersonalInformation?.Hero ?? (fr ? "Andrés Talavera." : "Andrés Talavera.");
-        introText = resume?.PersonalInformation?.Introduction ?? "";
         testimonials = await Content.GetTestimonialsAsync();
         seoDescription = string.IsNullOrWhiteSpace(introText)
             ? (fr ? "Andrés Talavera, consultant .NET & Azure, techlead et formateur. 15 ans d'expérience, Lyon, Paris, Genève, Fribourg ou à distance."
@@ -163,7 +170,7 @@
             Description: seoDescription,
             Url: "https://ideastud.io",
             Image: "https://ideastud.io/images/andres-talavera.jpeg",
-            SameAs: new[] { "https://www.linkedin.com/in/andrestalavera/", "https://github.com/andrestalavera" },
+            SameAs: new[] { "https://www.linkedin.com/in/andres-talavera/", "https://github.com/andrestalavera", "https://x.com/imcresus_" },
             KnowsAbout: new[] { ".NET", "Azure", "Blazor", "ASP.NET Core", "Cloud Architecture", "Software Training" },
             Address: new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressRegion: "Auvergne-Rhône-Alpes", AddressCountry: "FR"),
             WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io"));

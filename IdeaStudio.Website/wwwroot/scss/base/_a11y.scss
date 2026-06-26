@@ -2,6 +2,7 @@
 
 @use '../tokens/colors' as c;
 @use '../tokens/space' as s;
+@use '../tokens/motion' as m;
 
 .ds-skip-link {
   position: absolute;
@@ -21,9 +22,24 @@
   }
 }
 
+// Layered focus ring: a crisp 2px duck stroke carries the AA-mandated contrast,
+// with a soft halo built from the ring token sitting just outside it. The short
+// settle (offset + halo) makes focus feel placed rather than snapped. The solid
+// stroke is the load-bearing indicator — the halo is purely decorative, so
+// removing it (e.g. forced-colors) never weakens accessibility.
 :focus-visible {
   outline: 2px solid c.$ir-duck;
   outline-offset: 3px;
   border-radius: 2px;
+  box-shadow: 0 0 0 5px color-mix(in oklab, c.$ring 45%, transparent);
+  transition:
+    outline-offset #{m.$t-quick} var(--ease-lux),
+    box-shadow #{m.$t-quick} var(--ease-lux);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :focus-visible {
+    transition: none;
+  }
 }
 

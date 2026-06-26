@@ -72,7 +72,7 @@
   },
   "social": {
     "twitter": "@imcresus_",
-    "linkedin": "andrestalavera",
+    "linkedin": "andres-talavera",
     "github": "andrestalavera"
   },
   "llmsTxt": "https://ideastud.io/llms.txt"

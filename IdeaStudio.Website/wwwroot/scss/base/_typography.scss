@@ -33,19 +33,29 @@ body {
   font-weight: t.$fw-body;
   line-height: t.$lh-body;
   letter-spacing: t.$ls-body;
+
+  // Premium text shaping across the whole product. Ligatures + contextual
+  // alternates + kerning on; the variable optical-size axis tracks font-size.
+  // (tabular-nums is NOT forced here — proportional figures read better in prose.)
+  font-feature-settings: 'liga' 1, 'calt' 1, 'kern' 1;
+  font-optical-sizing: auto;
 }
 
 p {
-  max-width: 68ch;
+  max-width: t.$measure-body;
 }
 
 strong, b {
   font-weight: t.$fw-strong;
 }
 
+// Tabular figures for monospaced/meta contexts so digits align in stats,
+// timestamps and kickers. Component agents: also add `font-variant-numeric:
+// tabular-nums` to mono kicker/meta/stat-like classes that don't use <code>.
 code, pre, kbd, samp {
   font-family: t.$font-mono;
   font-size: t.$fs-mono;
+  font-variant-numeric: tabular-nums;
 }
 
 a {
@@ -59,7 +69,10 @@ a {
   }
 }
 
+// Softened selection: a translucent duck tint rather than a solid block, so
+// selected runs stay legible (text keeps its own color) and read as light, not
+// paint. 28% over the page still meets AA against c.$fg.
 ::selection {
-  background: c.$ir-duck;
-  color: c.$bg-void;
+  background: color-mix(in oklab, c.$ir-duck 28%, transparent);
+  color: c.$fg;
 }

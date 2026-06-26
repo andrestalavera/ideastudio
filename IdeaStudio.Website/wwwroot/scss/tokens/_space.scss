@@ -23,6 +23,16 @@ $container-wide:   1200px;
 $py-section: clamp(6rem, 11vw, 10.5rem);
 $py-chapter: clamp(7.5rem, 14vw, 14rem);
 
+// Corner language (V3.1 luxe). A deliberate, restrained radius scale so cards,
+// chips, inputs, pills and bands speak one corner vocabulary instead of the
+// ad-hoc 8/10/12/16/18px values they used before. Components map onto these —
+// e.g. inputs/chips → $radius-sm, cards/panels → $radius-lg, pills → $radius-pill.
+$radius-sm:   10px;  // small controls, chips, inputs
+$radius-md:   14px;  // menus, nested panels, stat tiles
+$radius-lg:   20px;  // cards, case-study media, testimonials
+$radius-xl:   28px;  // large editorial panels, hero media frames
+$radius-pill: 999px; // pills, avatars, fully-rounded controls
+
 // Breakpoints (container queries preferred; media queries only at page frame)
 $bp-s:  24rem;   // 384px — small phones
 $bp-m:  40rem;   // 640px — tablet portrait

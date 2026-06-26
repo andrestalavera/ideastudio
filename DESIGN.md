@@ -40,7 +40,7 @@ The design ethos: **expensive, intentional, alive.** Every element earns its pla
 - **Void** (`#020a0d` / `#e7eeec`) — Far body / footer panel. Pure `#000` is BANNED.
 - **Deep** (`#05161a` / `#f5f8f7`) — Primary page background.
 - **Surface** (`#0a2328` / `#ffffff`) — Masthead pill, chapter bands, menus.
-- **Raised** (`#0e2d33` / `#ffffff`) — Cards, stat chips (separated by Rule in light).
+- **Raised** (`#103740` / `#ffffff`) — Cards, stat chips. Nudged a touch lighter in dark (V3.1) so elevation reads from the surface itself, not a border.
 
 **Foreground** (dark / light):
 - **FG** (`#eaf4f2` / `#0b1a1d`) — Primary text. AAA contrast.
@@ -62,6 +62,11 @@ These four are members of `$gradient-iridescent` (a 140°-rotated conic). They a
 - **Glass** (`rgba(234,244,242,0.06)` / `rgba(11,26,29,0.05)`) — Frosted overlays / hover tints.
 - **Track** (`rgba(234,244,242,0.08)` / `rgba(11,26,29,0.10)`) — Progress / scrollbar tracks.
 
+**Elevation & tint (V3.1):** raised surfaces lift via shadow tokens, not borders.
+- **Elev-1** (`$elev-1` → `--elev-1`) — Cards, chips. A top inner-light line + a soft deep drop: dark `inset 0 1px 0 rgba(255,255,255,.05), 0 8px 24px -10px rgba(0,0,0,.55)`; light uses a bright top line + low-alpha ink drop.
+- **Elev-2** (`$elev-2` → `--elev-2`) — Stronger; for menus, popovers, dialogs that float above the page.
+- **Tint-Duck** (`$tint-duck` → `--tint-duck`) — `color-mix(in oklab, var(--ir-duck) 8%, transparent)`. A faint duck wash for hover backgrounds / active rows; never a solid fill. Outer neon glows remain banned — these are seated, directional shadows, not glows.
+
 ### Deliberate divergence from the skill template
 - The template's "max 1 accent at <80% saturation" rule is overridden: the iridescent gradient *is* the brand. The discipline is preserved by gating the four colors behind a single shared gradient — they never appear as standalone fills.
 - Dark is the **signature** theme and the no-JS default; light is a first-class calm counterpart (the WebGL cinema is hidden in light, replaced by a subtle static gradient — quieter, less "techy").
@@ -79,12 +84,12 @@ These four are members of `$gradient-iridescent` (a 140°-rotated conic). They a
 - **Serif:** None. Direction is sans-grotesk. Generic serifs (`Times New Roman`, `Georgia`, `Garamond`, `Palatino`) are BANNED. If editorial serif is ever needed, only `Fraunces`, `Instrument Serif`, `Editorial New`, or `Gambarino` are acceptable.
 
 **Fluid scale (from `tokens/_type.scss` — do not deviate):**
-- Display (signature hero, once per page): `clamp(4rem, 11vw, 10.5rem)`, weight 600, leading 0.95, tracking -0.05em.
+- Display (signature hero, once per page): `clamp(4rem, 11vw, 10.5rem)`, weight 600, leading 0.95, tracking -0.055em.
 - Hero (other page heroes): `clamp(3rem, 7vw, 6rem)`.
 - Title (chapter): `clamp(2rem, 4.5vw, 3.6rem)`, leading 1.05, tracking -0.03em, weight 600.
 - Subtitle: `clamp(1.25rem, 2vw, 1.75rem)`.
-- Lead: `clamp(1.125rem, 1.4vw, 1.3rem)`.
-- Body: `1rem`, weight 400, leading 1.6, max-width 68ch.
+- Lead: `clamp(1.125rem, 1.4vw, 1.3rem)`, tracking -0.01em (`$ls-lead`), measure ~46ch (`$measure-lead`).
+- Body: `1rem`, weight 400, leading 1.6, max-width 68ch (`$measure-body`). Global text shaping: `font-feature-settings: "liga" 1, "calt" 1, "kern" 1` + `font-optical-sizing: auto`. Tabular figures (`tabular-nums`) on mono/meta contexts only — never forced on prose. `text-rendering: optimizeLegibility` is scoped to headings (perf).
 - Small: `0.875rem`.
 - Mono: `0.8125rem`, uppercase kicker tracking `0.28em`.
 
@@ -92,8 +97,9 @@ These four are members of `$gradient-iridescent` (a 140°-rotated conic). They a
 
 ## 4. Component Stylings
 
-- **Buttons:** Flat. Primary uses iridescent gradient as a 1px border with Deep fill — never a solid neon background. Secondary is ghost with Rule border. Active state: `-1px translateY` for tactile push. Hover: subtle FG shift, no outer glow. Focus: Ring (`rgba(0,194,212,0.6)`) at 2px offset.
-- **Cards:** Raised surface (`#0e2d33`). Rounded corners around `1.5rem`–`2rem` (match existing `_card.scss`; do not invent new radii). Internal padding from `$s-5`–`$s-6`. Used only when elevation communicates hierarchy. In dense regions, replace cards with a top hairline (`Rule`) and negative space.
+- **Buttons:** Flat. Primary uses iridescent gradient as a 1px border with Deep fill — never a solid neon background. Secondary is ghost with Rule border. Active state: `-1px translateY` for tactile push. Hover: subtle FG shift, no outer glow. Focus: layered double-stroke — a crisp 2px solid Duck outline (the AA-load-bearing stroke) at 3px offset, plus a soft halo from the Ring token (`box-shadow 0 0 0 5px color-mix(in oklab, --ring 45%, transparent)`), with a short `$ease-lux` settle. Global default lives in `base/_a11y.scss`.
+- **Cards:** Raised surface (`#103740`), lifted with `--elev-1` (no border needed). Corners come from the radius scale — cards use `$radius-lg` (20px). Internal padding from `$s-5`–`$s-6`. Used only when elevation communicates hierarchy. In dense regions, replace cards with a top hairline (`Rule`) and negative space.
+- **Corner language (radius scale):** From `tokens/_space.scss` — `$radius-sm` 10px (chips, inputs), `$radius-md` 14px (menus, nested panels, stat tiles), `$radius-lg` 20px (cards, media, testimonials), `$radius-xl` 28px (large editorial panels, hero media frames), `$radius-pill` 999px (pills, avatars). Components map onto these; do not invent intermediate radii.
 - **Hairlines / Dividers:** `1px` `Rule` (`rgba(234,244,242,0.08)`). For emphasis, a 1px iridescent gradient line — used sparingly, once per chapter.
 - **Inputs/Forms:** Label above input. Helper below in FG Muted. Error in `Pink` (this is the one sanctioned standalone use of a non-Duck accent — error state only). Focus ring in Duck. No floating labels.
 - **Loaders:** Skeletal placeholders matching the exact layout shape — never circular spinners. The `Loading.razor` and `Placeholder.razor` components are the canonical primitives.
@@ -112,6 +118,7 @@ The hero on the home page is the primary brand expression. Other pages get a sma
 - **Asymmetric structure:** Centered hero is BANNED at this variance level. Use Split, Left-aligned text / Right visual, or Asymmetric Whitespace.
 - **CTA restraint:** One primary CTA maximum. No secondary "Learn more" link.
 - **Inline image typography:** Reserved for editorial chapters, not the signature hero — the signature is type + WebGL only.
+- **Sanctioned exception — Home hero (marketing):** The home hero (`/fr`, `/en`) intentionally pairs **one primary CTA** ("Book a call") with **one ghost secondary CTA** ("Describe my project" → `/contact`), and carries an **inline avatar photo** (`.ds-hero-avatar`) in the identity row. This is a deliberate conversion/marketing divergence from the two rules above and applies to the home hero only; all other heroes keep the single-CTA, type-only signature.
 
 ## 6. Layout Principles
 
@@ -145,12 +152,16 @@ Motion tokens come from `tokens/_motion.scss` — do not invent new easings or d
 - `$ease-in` (`cubic-bezier(0.8, 0.0, 1.0, 0.2)`) — entering elements.
 - `$ease-smooth` (`cubic-bezier(0.4, 0.0, 0.2, 1)`) — general transitions.
 - `$ease-bounce` (`cubic-bezier(0.34, 1.56, 0.64, 1)`) — rare and playful only.
+- `$ease-lux` (`cubic-bezier(0.16, 1, 0.3, 1)`) — expensive, decelerating. The signature settle for hover/reveal choreography; pair with `$t-hover`/`$t-medium`. Exposed as `--ease-lux`.
 
 **Durations:**
-- `$t-quick` 150ms — hover, focus ring.
-- `$t-medium` 320ms — fade/slide reveals.
-- `$t-slow` 640ms — card entrance, chapter reveal.
+- `$t-quick` 150ms — focus-ring snap, instant state flips.
+- `$t-hover` 260ms — interaction/hover tier; tactile and unhurried (use with `$ease-lux`).
+- `$t-medium` 460ms — fade/slide reveals; slower, confident.
+- `$t-slow` 760ms — card entrance, chapter reveal.
 - `$t-grand` 1200ms — hero morph, thread unfurl (sparingly).
+
+All durations are also exposed as custom properties (`--t-quick` … `--t-grand`).
 
 **Rules:**
 - **MotionReveal everywhere:** Scroll-triggered content uses `<MotionReveal Kind="…" />`. Lists cascade via stagger; never mount instantly.

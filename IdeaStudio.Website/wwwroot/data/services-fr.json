@@ -3,31 +3,31 @@
     "slug": "consultant-dotnet-azure",
     "title": "Consultant .NET & Azure",
     "kicker": "CONSEIL ARCHITECTURE",
-    "tagline": "Une plateforme .NET/Azure qui tient la charge et reste maintenable, architecture, audit et code, par quelqu'un qui code encore.",
+    "tagline": "Un logiciel qui tient le jour du pic et reste simple à faire évoluer, conçu et codé par quelqu'un qui livre encore en production.",
     "iconId": "consulting",
-    "summary": "Après plus de 15 ans d'expérience en conception logicielle, je vous accompagne sur vos choix d'architecture, la montée en charge de vos plateformes .NET/Azure, et les audits techniques.",
+    "summary": "Après plus de 15 ans à concevoir des logiciels, je vous aide à faire les bons choix dès le départ, à tenir la charge quand le trafic grimpe, et à reprendre la main sur une base devenue difficile à maintenir.",
     "highlights": [
-      "Architecture cloud native (App Service, Functions, Service Bus, Event Grid, Cosmos DB)",
-      "Audit de code et refactoring progressif",
-      "Mise en place de CI/CD robustes (Azure DevOps, GitHub Actions)",
-      "Stratégie d'observabilité (Application Insights, logs structurés)",
-      "Sécurité applicative et gestion des secrets (Key Vault, Managed Identity)",
-      "Multi-cloud opérationnel, Netlify, Vercel, Scaleway, CleverCloud, Infomaniak, OVHCloud quand le contexte ne pousse pas vers Azure"
+      "Un logiciel qui reste debout en pleine charge, même le jour du pic",
+      "Une base de code saine qu'on fait évoluer sans tout casser",
+      "Moins de bugs en production grâce à des livraisons automatisées et fiables",
+      "Quand un incident arrive, vous savez tout de suite ce qui tourne et pourquoi",
+      "Vos données et vos secrets restent protégés",
+      "Le bon hébergement pour votre contexte, en France, en Europe ou ailleurs, sans dépendance forcée"
     ],
     "useCases": [
       {
-        "title": "Audit et refonte d'une plateforme SaaS",
-        "description": "Analyse de l'existant, plan de refactoring par itérations, accompagnement des équipes jusqu'à la mise en production."
+        "title": "Reprendre en main une plateforme qui ralentit",
+        "description": "Diagnostic clair de l'existant, plan de remise à niveau par étapes, accompagnement de vos équipes jusqu'à la mise en production, sans tout arrêter."
       },
       {
-        "title": "Conception d'une architecture événementielle",
-        "description": "Pose des fondations pour absorber une croissance × 10 sur le trafic, avec Service Bus, patterns Outbox et projections asynchrones."
+        "title": "Préparer une forte croissance",
+        "description": "On pose des fondations capables d'absorber dix fois plus de trafic, pour que votre succès commercial ne se transforme pas en panne."
       }
     ],
     "faq": [
       { "question": "Quel est votre TJM ?", "answer": "Sur demande, en fonction de la mission, de la durée et du niveau d'implication." },
       { "question": "Travaillez-vous à distance ?", "answer": "Oui, en full-remote ou hybride. Je me déplace ponctuellement à Lyon, Paris, Genève et Fribourg." },
-      { "question": "Intervenez-vous sur du legacy ?", "answer": "Oui. Les audits et les plans de modernisation font partie de mon quotidien." }
+      { "question": "Reprenez-vous des projets existants ?", "answer": "Oui. Auditer et moderniser une application déjà en place fait partie de mon quotidien." }
     ],
     "ctaLabel": null,
     "order": 1
@@ -36,19 +36,19 @@
     "slug": "techlead",
     "title": "Techlead",
     "kicker": "LEADERSHIP TECHNIQUE",
-    "tagline": "Une équipe produit qui livre, monte en compétence et garde le cap qualité, je prends la responsabilité technique.",
+    "tagline": "Une équipe qui livre dans les temps, gagne en autonomie et garde un produit de qualité, je porte la responsabilité technique à vos côtés.",
     "iconId": "techlead",
-    "summary": "En tant que techlead, j'aligne vision produit et décisions techniques, je cadre les choix structurants, je fais monter l'équipe en compétences, et je garde le cap sur la qualité.",
+    "summary": "Comme responsable technique, je fais le lien entre vos objectifs produit et les décisions techniques, je tranche les choix qui engagent l'avenir, je fais grandir votre équipe et je veille à ce que la qualité ne décroche jamais.",
     "highlights": [
-      "Cadrage technique des nouveaux chantiers",
-      "Revues de code et pair programming",
-      "Coaching individuel et collectif",
-      "Lien direct avec Product et Design",
-      "Ownership du delivery et des indicateurs qualité"
+      "Des décisions techniques cadrées, alignées sur vos priorités produit",
+      "Une équipe qui progresse, par la relecture et le travail en binôme",
+      "Des développeurs plus autonomes et plus confiants",
+      "Un dialogue fluide entre la technique, le produit et le design",
+      "Une livraison maîtrisée, avec des indicateurs de qualité suivis"
     ],
     "useCases": [
-      { "title": "Prise de rôle de techlead intérimaire", "description": "Le temps de recruter le profil pérenne, je prends les rênes techniques d'une équipe produit." },
-      { "title": "Accompagnement d'un nouveau techlead", "description": "Binôme pendant 3 à 6 mois pour transmettre pratiques, outillage et posture." }
+      { "title": "Responsable technique par intérim", "description": "Le temps de recruter la bonne personne, je prends les rênes pour que l'équipe continue d'avancer sans perdre le cap." },
+      { "title": "Accompagner un nouveau responsable technique", "description": "3 à 6 mois en binôme pour transmettre les bons réflexes, les outils et la posture." }
     ],
     "faq": [
       { "question": "Quel est votre TJM ?", "answer": "Sur demande, en fonction de la mission, de la durée et du niveau d'implication." },
@@ -62,26 +62,26 @@
     "slug": "formateur",
     "title": "Formateur",
     "kicker": "TRANSMISSION",
-    "tagline": "Vos équipes montées en compétence sur .NET, Azure et l'IA, 3 000+ heures dispensées, par un consultant qui code au quotidien.",
+    "tagline": "Vos équipes qui montent vraiment en compétence sur .NET, Azure et l'IA, 3 000+ heures de formation, par un consultant qui code au quotidien.",
     "iconId": "training",
-    "summary": "Plus de 3 000 heures de formation à mon actif, sur deux décennies de stack Microsoft. Auprès de développeurs juniors comme de techleads en quête de recul, dans des écoles (Supinfo, NextFormation) ou de grands centres (ORSYS, IP-Formation, Happly), en présentiel, classe virtuelle ou intra sur-mesure. Vingt modules au catalogue ci-dessous, à prendre tels quels, ou à recomposer ensemble pour bâtir le programme qui colle à votre équipe.",
+    "summary": "Plus de 3 000 heures de formation à mon actif, sur deux décennies d'écosystème Microsoft. Auprès de développeurs juniors comme de techleads en quête de recul, dans des écoles (Supinfo, NextFormation) ou de grands centres (ORSYS, IP-Formation, Happly), en présentiel, classe virtuelle ou intra sur-mesure. Vingt modules au catalogue ci-dessous, à prendre tels quels, ou à recomposer ensemble pour bâtir le programme qui colle à votre équipe.",
     "highlights": [
-      "ASP.NET Core 10, Blazor 10 (Server, WASM, Hybrid), Entity Framework Core",
-      "Azure plateforme et préparation aux examens AZ-204 (développeur) et AZ-400 (DevOps)",
-      "Architecture logicielle pragmatique, Clean Architecture, CQRS, event-driven, DDD-lite",
-      "Tests automatisés, TDD, snapshot et tests de mutation",
-      "DevOps et CI/CD, GitHub Actions, Azure Pipelines, IaC Bicep / Terraform",
-      "Vibe coding & IA en équipe, Claude Code, GitHub Copilot, MCP, modèles open-weight en local",
-      "Programmes sur-mesure assemblés à partir de plusieurs modules officiels"
+      "Vos développeurs construisent des applications web modernes, prêtes pour la production (ASP.NET Core, Blazor)",
+      "Vos équipes maîtrisent le cloud Azure et décrochent les certifications AZ-204 et AZ-400",
+      "Du code mieux structuré, plus simple à faire évoluer dans le temps",
+      "Moins de régressions, grâce à des tests automatisés qui rassurent",
+      "Des livraisons plus rapides et plus sûres, sans stress le jour de la mise en ligne",
+      "Vos équipes adoptent l'IA de code sans rien lâcher sur la qualité",
+      "Un programme assemblé sur-mesure à partir de plusieurs modules, calé sur votre équipe"
     ],
     "useCases": [
       {
         "title": "Inter-entreprise · 3 jours",
-        "description": "Sessions catalogue dispensées chez ORSYS, IP-Formation ou en classe virtuelle. Inscriptions individuelles, groupe mixte d'apprenants, Blazor, Azure DevOps, Clean Architecture, AZ-204."
+        "description": "Sessions catalogue dispensées chez ORSYS, IP-Formation ou en classe virtuelle. Inscriptions individuelles, groupe mixte d'apprenants : développement web, cloud, architecture, préparation aux certifications."
       },
       {
         "title": "Intra sur-mesure",
-        "description": "Programme calibré avec vous : audit de besoins préalable, choix des modules, profondeur et exemples adaptés à votre code base."
+        "description": "Programme calibré avec vous : on part de vos besoins réels, on choisit les modules, on adapte la profondeur et les exemples à votre propre code."
       },
       {
         "title": "Programme à la carte",
@@ -89,7 +89,7 @@
       }
     ],
     "faq": [
-      { "question": "Quel est votre TJM en formation ?", "answer": "800 € par jour, ou forfait inter / intra selon le format. Devis chiffré sous 24 h à partir d'un brief court." },
+      { "question": "Quel est votre TJM en formation ?", "answer": "600 à 800 € par jour selon le module et le format, ou forfait inter / intra. Devis chiffré sous 24 h à partir d'un brief court." },
       { "question": "Formez-vous à distance ?", "answer": "Oui, classe virtuelle synchrone, exercices en binôme, démos en partage d'écran, retours en direct. La même rigueur qu'en présentiel." },
       { "question": "Êtes-vous certifié ?", "answer": "Pas de certification Microsoft : ce que j'apporte, c'est 15+ ans de pratique .NET/Azure en production et 3 000+ heures de formation. Mes modules de préparation aux examens (AZ-204, AZ-400) s'appuient sur ce vécu terrain." },
       { "question": "Comment construire un programme sur-mesure ?", "answer": "On part d'un module catalogue qui couvre le cœur de votre besoin, on identifie ce qui manque et ce qui est superflu, on emprunte des chapitres aux modules connexes, on cale la durée. Le brief tient en un appel de 30 minutes." },
@@ -101,29 +101,29 @@
   {
     "slug": "vibe-coding",
     "title": "Développer plus vite avec l'IA",
-    "kicker": "IA DANS VOTRE IDE",
-    "tagline": "Vos développeurs plus rapides avec l'IA (Claude Code, Copilot, Cursor), sans confiance aveugle : chaque ligne est relue.",
+    "kicker": "L'IA DANS VOS OUTILS DE CODE",
+    "tagline": "Vos développeurs plus rapides grâce à l'IA, sans jamais la croire sur parole : chaque ligne générée est relue.",
     "iconId": "vibe",
-    "summary": "L'arrivée des IA de code change le quotidien des développeurs. Je vous aide à cadrer l'usage : quels outils, quels garde-fous, quelles pratiques, comment mesurer le gain, et surtout, comment garder la main sur la qualité du code généré.",
+    "summary": "Les assistants de code par IA changent le quotidien des développeurs. Je vous aide à en tirer un vrai gain : quels outils choisir, quelles règles poser, comment mesurer les progrès, et surtout comment garder la maîtrise de la qualité de ce qui est produit.",
     "highlights": [
-      "Adoption Claude Code, GitHub Copilot, Cursor, Antigravity + Gemini, choix outillage selon stack et contraintes",
-      "Configuration Claude Code en équipe : skills, hooks, sub-agents, MCP, plugins, gouvernance",
-      "Méthodologie de relecture profonde du code généré, on diffe, on raisonne, on corrige",
-      "Workflows et garde-fous CI : tests automatiques sur les PR IA, scans sécurité, traçabilité",
-      "Coaching dev/lead, du prompt initial au merge",
-      "Mesure d'impact (vélocité, qualité, satisfaction) avant/après"
+      "Vos équipes adoptent les bons outils d'IA, choisis pour votre contexte",
+      "Un cadre d'utilisation clair, partagé par toute l'équipe",
+      "Une méthode de relecture qui garantit la qualité du code généré",
+      "Des garde-fous automatiques avant chaque mise en production",
+      "Un accompagnement concret, du premier essai jusqu'à la livraison",
+      "Un gain mesuré, chiffres à l'appui, avant et après"
     ],
     "useCases": [
-      { "title": "Pilote sur une équipe volontaire", "description": "2 à 3 mois de pilote encadré, restitution et recommandation pour le scale-up." },
-      { "title": "Déploiement à l'échelle", "description": "Généralisation à toute l'organisation avec guide de bonnes pratiques et dispositif de support." },
-      { "title": "Audit de code généré par IA", "description": "Détecter les anti-patterns, sécuriser les générations existantes, remettre l'humain dans la boucle." }
+      { "title": "Pilote sur une équipe volontaire", "description": "2 à 3 mois de pilote encadré, puis un bilan et une recommandation claire pour généraliser." },
+      { "title": "Déploiement à l'échelle", "description": "Généralisation à toute l'organisation, avec un guide de bonnes pratiques et un dispositif de support." },
+      { "title": "Audit de code généré par IA", "description": "Repérer les fragilités, sécuriser ce qui a déjà été généré, et remettre l'humain dans la boucle." }
     ],
     "faq": [
-      { "question": "Quel est votre TJM en vibe coding ?", "answer": "800 €, il s'agit d'une mission de coaching et de transmission, dont une partie significative consiste à former l'équipe en pair-programming." },
-      { "question": "Est-ce que ça marche sur notre stack ?", "answer": "Les outils actuels sont stack-agnostiques. On valide ensemble sur votre base de code." },
-      { "question": "Quid de la confidentialité du code ?", "answer": "On choisit un dispositif compatible avec vos contraintes (SaaS, self-hosted, zero-retention)." },
+      { "question": "Quel est votre TJM en vibe coding ?", "answer": "600 à 800 € par jour selon le périmètre. Il s'agit d'une mission de coaching et de transmission, dont une partie significative consiste à former l'équipe en pair-programming." },
+      { "question": "Est-ce que ça marche sur notre stack ?", "answer": "Les outils actuels fonctionnent quel que soit votre langage. On valide ensemble sur votre base de code." },
+      { "question": "Quid de la confidentialité du code ?", "answer": "On choisit un dispositif compatible avec vos contraintes : service en ligne, hébergé chez vous, ou sans conservation des données." },
       { "question": "Vous gardez l'humain dans la boucle ?", "answer": "Oui, la promesse n'est pas « moins de devs », c'est « plus de devs efficaces, qui gardent la maîtrise ». Chaque ligne générée passe par une revue." },
-      { "question": "Combien de temps pour un pilote ?", "answer": "4 à 6 semaines, équipe de 3 à 5 devs, livrable mesuré." }
+      { "question": "Combien de temps pour un pilote ?", "answer": "4 à 6 semaines, équipe de 3 à 5 devs, avec un résultat mesuré." }
     ],
     "ctaLabel": null,
     "order": 4
@@ -131,30 +131,30 @@
   {
     "slug": "ia-en-entreprise",
     "title": "IA en entreprise",
-    "kicker": "IA SOUVERAINE & MESURABLE",
-    "tagline": "L'IA chez vous, sous votre contrôle, modèles hébergés en local, intégrations sur-mesure, vos données restent à la maison.",
+    "kicker": "IA PRIVÉE & MESURABLE",
+    "tagline": "L'IA chez vous, sous votre contrôle : vos données ne quittent pas la maison, et vos usages restent mesurables.",
     "iconId": "ai-enterprise",
-    "summary": "L'IA générative arrive en entreprise. Restez maître de vos données, créez des intégrations sur-mesure, mesurez son impact. Je couvre quatre angles : IA locale (Ollama, vLLM, modèles open-weight), serveurs MCP custom, site optimisé pour la lecture par LLM (llms.txt, structured data), et analytics IA-aware (Google, Bing, Meta).",
+    "summary": "L'IA générative entre dans les entreprises. Je vous aide à l'adopter en gardant la main : vos données chez vous, des intégrations utiles à votre métier, et un impact que vous pouvez réellement mesurer.",
     "highlights": [
-      "IA locale on-premise, Ollama, vLLM, modèles open-weight (Llama, Qwen, Mistral)",
-      "Serveurs MCP sur-mesure, exposez votre SI aux IA de vos devs (Claude Code, Cursor, Copilot)",
-      "Site lisible par IA, llms.txt, ai.txt, JSON-LD enrichi, robots.txt IA-aware",
-      "Analytics multi-régies, Google Analytics 4, Bing Webmaster, Meta Pixel, intégration RGPD",
-      "Cadrage souveraineté & RGPD, où vivent les prompts, où vivent les données",
-      "Hébergement souverain européen disponible, Scaleway, OVHCloud, Infomaniak (RGPD-by-design)",
-      "Mesure d'impact business, KPI IA injectés dans vos dashboards existants"
+      "Une IA hébergée chez vous, vos données ne sortent jamais",
+      "Vos outils et votre savoir interne rendus accessibles à l'IA de vos équipes",
+      "Un site mieux repéré et cité par les IA (ChatGPT, Perplexity)",
+      "Une mesure d'audience qui intègre le trafic venu des IA, dans le respect du RGPD",
+      "Un cadre clair sur où vivent vos données et vos requêtes",
+      "Un hébergement souverain européen quand la conformité l'exige",
+      "L'impact de l'IA suivi directement dans vos tableaux de bord existants"
     ],
     "useCases": [
-      { "title": "Déploiement IA on-premise", "description": "Pour un client soumis à confidentialité forte : sélection des modèles, dimensionnement matériel, intégration aux outils internes." },
-      { "title": "Serveur MCP custom", "description": "Interconnecter votre SI ou votre base de connaissance à Claude Code / Cursor pour décupler la productivité dev." },
-      { "title": "Refonte IA-discoverability", "description": "llms.txt + JSON-LD + analytics IA pour un site B2B qui veut apparaître dans les réponses Perplexity / ChatGPT." }
+      { "title": "IA installée chez vous", "description": "Pour un besoin de confidentialité forte : choix des modèles, dimensionnement du matériel, intégration à vos outils internes." },
+      { "title": "Connecter l'IA à vos outils", "description": "Relier votre système d'information ou votre base de connaissances aux assistants de vos développeurs, pour décupler leur productivité." },
+      { "title": "Être visible dans les réponses des IA", "description": "Rendre votre site lisible et citable par les IA, pour apparaître dans les réponses de Perplexity ou ChatGPT." }
     ],
     "faq": [
-      { "question": "Quel est votre TJM ?", "answer": "800 €, mission de mise en place technique et de coaching." },
-      { "question": "Pourquoi héberger l'IA chez moi plutôt qu'utiliser ChatGPT/Claude ?", "answer": "Souveraineté des données, conformité RGPD/sectorielle, coût récurrent maîtrisé sur des usages de masse." },
-      { "question": "Quels modèles vous installez ?", "answer": "Llama 3, Qwen, Mistral, Gemma, choix selon use case (codage, recherche, summarization) et matériel disponible." },
-      { "question": "C'est quoi un serveur MCP, concrètement ?", "answer": "Un connecteur standardisé entre une IA et vos outils : exposez vos APIs internes, votre base docs, vos données métier, l'IA les utilise comme des fonctions." },
-      { "question": "Vous touchez à mes pixels marketing existants ?", "answer": "Non, on étend. On ajoute les events IA-aware sans casser GA4 / Meta Pixel en place." }
+      { "question": "Quel est votre TJM ?", "answer": "600 à 800 € par jour selon le périmètre, mission de mise en place technique et de coaching." },
+      { "question": "Pourquoi héberger l'IA chez moi plutôt qu'utiliser ChatGPT/Claude ?", "answer": "Vos données restent chez vous, vous restez conforme au RGPD et à votre secteur, et le coût reste maîtrisé sur des usages intensifs." },
+      { "question": "Quels modèles vous installez ?", "answer": "Llama, Qwen, Mistral, Gemma, le choix se fait selon votre usage (codage, recherche, résumé) et le matériel disponible." },
+      { "question": "C'est quoi un serveur MCP, concrètement ?", "answer": "Un connecteur standard entre une IA et vos outils : vos applications internes, votre documentation et vos données métier deviennent utilisables directement par l'IA." },
+      { "question": "Vous touchez à mes outils de mesure marketing existants ?", "answer": "Non, on étend l'existant. On ajoute le suivi des usages IA sans casser ce qui est déjà en place." }
     ],
     "ctaLabel": null,
     "order": 5
@@ -162,24 +162,24 @@
   {
     "slug": "applications-mobiles",
     "title": "Création d'applications mobiles",
-    "kicker": "MOBILE CROSS-PLATFORM",
-    "tagline": "Votre application iOS et Android depuis une seule base de code, de la maquette à la publication sur les stores.",
+    "kicker": "MOBILE iOS & ANDROID",
+    "tagline": "Votre application sur iPhone et Android à la fois, sans la développer deux fois, de la maquette à la publication sur les stores.",
     "iconId": "mobile",
-    "summary": "Applications mobiles B2B et B2C, cross-platform (.NET MAUI, Flutter selon contexte). De la maquette à la publication sur les stores.",
+    "summary": "Des applications mobiles pour vos clients ou vos équipes, qui fonctionnent sur iPhone et Android à partir d'une seule réalisation. De la première maquette jusqu'à la mise en ligne sur les stores.",
     "highlights": [
-      "Audit de faisabilité et choix techno",
-      "UX/UI mobile et prototypage",
-      "Backend et APIs associés",
-      "Publication Apple Store / Play Store",
-      "Maintenance évolutive",
-      "Backend hébergé sur Azure ou alternative européenne, Scaleway, OVHCloud, Infomaniak"
+      "On valide ensemble la faisabilité avant d'investir",
+      "Une expérience mobile soignée, testée sur maquette avant le développement",
+      "Une application complète, du mobile jusqu'au serveur",
+      "Publiée pour vous sur l'App Store et le Play Store",
+      "Maintenue et améliorée dans la durée",
+      "Vos données hébergées là où vous le souhaitez, en Europe si besoin"
     ],
     "useCases": [
-      { "title": "App métier B2B", "description": "Application terrain pour agents, synchronisation offline, intégration SI." },
-      { "title": "App grand public", "description": "MVP rapide, itérations sur les retours utilisateurs, croissance organique." }
+      { "title": "Application métier pour vos équipes", "description": "Un outil de terrain pour vos agents, qui fonctionne même sans réseau et se connecte à vos outils internes." },
+      { "title": "Application grand public", "description": "Une première version rapide, puis des améliorations guidées par les retours de vos utilisateurs." }
     ],
     "faq": [
-      { "question": "Vous faites de l'iOS natif ?", "answer": "Oui, si le contexte le justifie. Par défaut je privilégie le cross-platform pour l'économie." },
+      { "question": "Vous faites de l'iOS natif ?", "answer": "Oui, si le contexte le justifie. Par défaut je privilégie une seule réalisation pour les deux plateformes, plus économique." },
       { "question": "Qui gère les comptes Apple/Google ?", "answer": "Vous, je vous accompagne sur la création et les soumissions." }
     ],
     "ctaLabel": null,
@@ -191,18 +191,17 @@
     "kicker": "WEB SUR-MESURE",
     "tagline": "Un site rapide, accessible et bien référencé, de la vitrine élégante à l'application métier sur-mesure.",
     "iconId": "web",
-    "summary": "Sites performants, optimisés SEO, accessibles. De la vitrine élégante au site métier complexe, toujours sur des technos modernes et maintenables.",
+    "summary": "Des sites qui chargent vite, que Google met en avant et que tout le monde peut utiliser. De la vitrine élégante à l'application métier complexe, sur des bases modernes et faciles à faire vivre.",
     "highlights": [
-      "Conception et design système",
-      "Développement Blazor, ASP.NET Core, ou stack adaptée",
-      "SEO technique et Core Web Vitals",
-      "Hébergement Azure ou équivalent",
-      "Formation à la prise en main",
-      "Hébergement adapté, Azure, Netlify, Vercel, Scaleway, CleverCloud, Infomaniak ou OVHCloud selon le contexte projet"
+      "Un design pensé pour votre marque et vos visiteurs",
+      "Un site sur des bases modernes, simples à faire évoluer dans le temps",
+      "Un bon référencement et des temps de chargement au niveau",
+      "Une prise en main pour gérer votre site en autonomie",
+      "Hébergé là où c'est le plus pertinent pour vous, en France ou en Europe"
     ],
     "useCases": [
-      { "title": "Site vitrine premium", "description": "Site éditorial, identité forte, performance maximale, parfait pour une marque." },
-      { "title": "Application web métier", "description": "Portail client, back-office, workflows complexes, intégrations SI." }
+      { "title": "Site vitrine premium", "description": "Un site éditorial à l'identité forte et ultra-rapide, parfait pour incarner une marque." },
+      { "title": "Application web métier", "description": "Portail client, espace d'administration, processus complexes, connexion à vos outils internes." }
     ],
     "faq": [
       { "question": "Faites-vous les designs ?", "answer": "Sur des petits projets oui. Sur des projets identitaires, je collabore avec des designers." },

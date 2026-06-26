@@ -1,8 +1,9 @@
 namespace IdeaStudio.Website.Services;
 
 /// <summary>
-/// Translates a content slug between cultures by loading both JSON files and
-/// pairing entries by a stable integer id (e.g. Service.Order).
+/// Translates a content slug between cultures by reading both culture lists through
+/// <see cref="IContentGateway"/> and pairing entries on <c>Service.IconId</c> — a
+/// culture-invariant, unique key shared across the FR/EN service JSON files.
 /// </summary>
 public interface ISlugTranslator
 {

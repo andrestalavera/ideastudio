@@ -1,9 +1,9 @@
 ﻿{
   "personalInformation": {
     "name": "Andrés Talavera",
-    "title": "Consultant .NET & Azure, techlead et formateur",
+    "title": "Architecte / techlead .NET & Azure et formateur",
     "hero": "Donnons vie à l'avenir de votre entreprise ensemble.",
-    "introduction": "Développeur .NET expérimenté et consultant Azure avec plus de 15 ans d'expertise dans la création d'applications web modernes et de solutions cloud.",
+    "introduction": "Architecte et développeur .NET, consultant Azure : 15+ ans d'expérience en ASP.NET Core, Blazor, Clean Architecture / DDD et plateformes cloud-native sur Azure, du cadrage au déploiement continu en production.",
     "languages": {
       "EN": "English",
       "FR": "Français",
@@ -19,10 +19,10 @@
     {
       "title": "Votre consultant .NET",
       "paragraphs": [
-        "Expert consultant .NET et Azure proposant des solutions métier sur mesure.",
-        "Spécialisé en ASP.NET Core, MAUI et architecture cloud moderne sur Azure.",
-        "Développeur Microsoft avec un succès prouvé sur des projets d'entreprise.",
-        "Au service des startups, PME et entreprises de services numériques dans plusieurs secteurs d'activité."
+        "Architecte et développeur .NET / Azure : conception et livraison de plateformes cloud-native de bout en bout.",
+        "ASP.NET Core, Blazor (Server, WebAssembly, SSR), .NET MAUI / Xamarin, Entity Framework Core et messagerie asynchrone.",
+        "Clean Architecture et Domain-Driven Design, frontière DTO stricte, tests automatisés et CI/CD industrialisée.",
+        "Au service des startups, PME et ESN, du cadrage à l'exploitation en production sur Azure."
       ],
       "images": [
         "dotnet.svg",
@@ -33,10 +33,10 @@
     {
       "title": "Votre formateur",
       "paragraphs": [
-        "Formateur .NET et Azure expérimenté pour développeurs et entreprises.",
-        "Créateur de contenu LinkedIn Learning spécialisé dans les technologies Microsoft.",
-        "Expérience avérée dans la formation d'équipes en France, Belgique et Luxembourg.",
-        "Expert en .NET 9, Blazor Server et solutions cloud Azure."
+        "Formateur .NET, C# et Azure pour développeurs et équipes en entreprise, en présentiel comme en distanciel.",
+        "Programmes sur ASP.NET Core, Blazor, architecture cloud, DevOps Azure et stratégies de test.",
+        "Sessions dispensées en France, Belgique et Luxembourg, du niveau étudiant au développeur senior en reconversion cloud.",
+        "Expert .NET 9 / 10, Blazor et solutions cloud-native Azure."
       ],
       "icons": [
         "fab fa-linkedin linkedin-logo"
@@ -46,40 +46,40 @@
     {
       "title": "Passionné",
       "paragraphs": [
-        "Expert dédié aux technologies Microsoft, toujours à jour avec les dernières tendances.",
-        "Engagé à fournir des solutions .NET innovantes répondant aux besoins des clients.",
+        "Veille continue sur l'écosystème Microsoft : .NET 10, Blazor, .NET Aspire et agentic coding.",
+        "R&D permanente : architectures cloud-native, serverless, observabilité et outils de développement assisté par IA.",
         "Participant actif de la communauté des développeurs depuis l'époque Microsoft Student Partner.",
-        "Passionné par le développement mobile, les technologies web et l'architecture cloud."
+        "Passionné par le développement mobile, le web haute performance et l'architecture distribuée."
       ],
       "link": "#contact"
     },
     {
       "title": "Expériences diversifiées",
       "paragraphs": [
-        "Projets réalisés avec succès dans les secteurs médical, financier, aéronautique et logistique.",
-        "Expertise couvrant les statistiques de santé, les logiciels d'assurance et les plateformes éducatives.",
-        "Expérience prouvée avec de multiples entreprises.",
-        "Développeur mobile spécialisé en MAUI, Xamarin et solutions multiplateformes."
+        "Projets livrés dans les secteurs santé, finance / assurance, automobile, logistique et BTP.",
+        "Domaines couverts : statistiques de santé (HDS), logiciels d'assurance, plateformes éducatives et data temps réel.",
+        "Plus de vingt missions menées en grand compte et en PME.",
+        "Développement mobile multiplateforme : .NET MAUI, Xamarin.Forms et Xamarin natif."
       ],
       "link": "#experiences"
     },
     {
       "title": "Projets récents",
       "paragraphs": [
-        "Amélioration des portails de données de santé pour Medtech et CEESA en utilisant .NET 9.",
-        "Amélioration du logiciel logistique TRIGO en utilisant le développement .NET avancé et Vue.js.",
-        "Direction de l'équipe Active Assurances pour développer un système complet de gestion d'assurance.",
-        "Spécialisé dans la migration Azure, l'implémentation CI/CD et la conception d'architecture propre."
+        "Portails de données de santé Medtech / CEESA en .NET 9, Blazor Server et hébergement certifié HDS.",
+        "Modernisation du logiciel logistique TRIGO : migration ASP.NET (MVC4) vers .NET et front Vue 3.",
+        "Direction technique chez Active Assurances : refonte complète du SI et usine logicielle Azure Pipelines.",
+        "Plateforme SaaS PropTech / RegTech (DPE) en Clean Architecture, .NET 10 et Azure Container Apps."
       ],
       "link": "#experiences"
     },
     {
       "title": "Qualités personnelles",
       "paragraphs": [
-        "Développeur curieux et polyvalent avec de solides compétences en conception analytique.",
-        "Talentueux pour expliquer des concepts techniques complexes à des audiences diverses.",
-        "Leader d'équipe collaboratif prospérant dans des environnements de développement dynamiques.",
-        "Consultant trilingue à l'aise pour travailler sur les marchés français, espagnol et anglais."
+        "Développeur curieux et polyvalent, fort en conception analytique et en résolution de problèmes.",
+        "Pédagogue : capable de vulgariser des concepts techniques complexes pour des publics variés.",
+        "Tech lead collaboratif, à l'aise dans les environnements agiles (Scrum, revues de code, pairing).",
+        "Consultant trilingue (FR / EN / ES) à l'aise sur les marchés français, espagnol et anglophone."
       ]
     }
   ],
@@ -239,16 +239,13 @@
         "J'ai mené une analyse approfondie, mis en œuvre des tests unitaires, développé des fonctionnalités clés et partagé mes connaissances avec les membres de l'équipe. J'ai également participé à la migration des applications vers Azure, en tirant parti d'Azure WebApp et d'Azure Functions pour obtenir des solutions efficaces et évolutives."
       ],
       "responsibilities": [
-        "Analyse complète des projets existants pour comprendre leur structure et leur fonctionnalité.",
-        "Analyse approfondie des projets existants.",
-        "Mise en place des tests unitaires pour assurer la fiabilité et la stabilité du logiciel.",
-        "Développement de plusieurs fonctionnalités, améliorant sa fonctionnalité et l'expérience utilisateur.",
-        "J'ai effectué une analyse détaillée de l'application mobile pour comprendre sa structure et ses fonctionnalités.",
-        "J'ai développé des composants Vue3 dans le cadre du processus de migration.",
-        "J'ai partagé mes connaissances et mon expertise avec les membres de l'équipe, favorisant un environnement de travail collaboratif et axé sur l'apprentissage.",
-        "J'ai collaboré avec une équipe de 15 membres chez Key Consulting, favorisant un environnement de travail productif et solidaire.",
-        "Développement de composants Vue 3 avec Vite et gestion d'état via Pinia, dans une logique de modernisation progressive du front-end.",
-        "Cadrage des migrations de l'application MVC4 vers .NET moderne et vers Azure (WebApp, Functions), en préparation des chantiers de bascule."
+        "Analyse approfondie et rétro-ingénierie de l'application ASP.NET Framework (MVC4) existante.",
+        "Mise en place de tests unitaires pour fiabiliser le code legacy avant migration.",
+        "Développement de nouvelles fonctionnalités sur la WebApp MVC4 (C#, Razor) et correction d'anomalies.",
+        "Analyse de l'application mobile pour cadrer sa modernisation.",
+        "Développement de composants Vue 3 avec Vite et gestion d'état Pinia, dans une modernisation progressive du front-end.",
+        "Cadrage des migrations MVC4 vers .NET moderne et vers Azure (Web App, Azure Functions, Azure SQL, Service Bus).",
+        "Collaboration au sein d'une équipe de 15 personnes (Key Consulting) : revues de code et partage de connaissances."
       ],
       "skills": [
         "Azure DevOps",
@@ -359,12 +356,23 @@
       "startDate": "2017-05-01",
       "endDate": "2023-07-01",
       "locations": [
-        "Région de Paris, France"
+        "France",
+        "Luxembourg",
+        "Belgique",
+        "Autriche",
+        "Remote"
       ],
       "description": [
         "Chez IdeaStud.io, je développe des applications mobiles et web innovantes pour divers secteurs d'activité à l'aide des dernières technologies Microsoft, en particulier les applications basées sur le cloud.",
         "Je suis toujours prêt à relever de nouveaux défis et à me tenir au courant des dernières évolutions technologiques. Outre le développement d'applications, je partage également mes connaissances par le biais de centres de formation et de blogs consacrés au cloud computing et à l'architecture logicielle.",
         "Ce parcours témoigne de mon engagement en faveur de l'apprentissage continu, de ma capacité d'adaptation et de ma passion pour le partage des connaissances technologiques."
+      ],
+      "responsibilities": [
+        "Conception et développement d'applications web (ASP.NET Core, Blazor) et mobiles (Xamarin) cloud-native sur Azure.",
+        "Architecture Clean Architecture / DDD et conception d'API REST documentées (Swagger / OpenAPI).",
+        "Mise en œuvre de services Azure managés : Functions, Service Bus, Cosmos DB, Data Factory, Storage, Key Vault et Monitor.",
+        "Industrialisation CI/CD via Azure DevOps et démarche FinOps de maîtrise des coûts cloud.",
+        "Animation de formations .NET, C# et Azure et rédaction d'articles techniques sur le cloud et l'architecture logicielle."
       ],
       "skills": [
         "Blazor",
@@ -418,14 +426,11 @@
         "J'ai réalisé des analyses fonctionnelles, développé des applications et des services, géré les migrations de .NET Core 3 vers .NET 6, géré le déploiement et mené des activités de recherche et développement sur Azure Managed Identities, Azure RBAC, etc."
       ],
       "responsibilities": [
-        "Analyse fonctionnelle",
-        "Analyse des développements existants",
-        "Développement d'applications et de services de multiples produits internes",
-        "Migrations de netcore3 à net6",
-        "Refactoring",
-        "Déploiement",
-        "Recherche et développement (Azure Managed Identities, Azure RBAC, ...)",
-        "Support",
+        "Analyse fonctionnelle et analyse des développements existants.",
+        "Développement d'applications et de services pour plusieurs produits internes.",
+        "Migrations de .NET Core 3 vers .NET 6 et refactoring.",
+        "Gestion du déploiement et support applicatif.",
+        "Recherche et développement sur Azure Managed Identities et Azure RBAC.",
         "Implémentation effective d'Azure Managed Identities et d'Azure RBAC dans les services backend, pour supprimer les secrets en clair et durcir le contrôle d'accès aux ressources Azure.",
         "Migrations .NET Core 3 vers .NET 6 sur plusieurs projets, avec parfois la réécriture complète d'applications historiques pour repartir sur des bases saines.",
         "Création de pipelines CI/CD Azure DevOps et de templates YAML partagés, en réutilisant les templates existants du périmètre pour standardiser et accélérer les déploiements.",
@@ -483,12 +488,10 @@
         "J'ai réalisé des analyses fonctionnelles, développé des API et des microservices, développé des tests unitaires et contribué au développement d'un projet à partir de zéro, en mettant en œuvre une architecture en oignon et des tests unitaires."
       ],
       "responsibilities": [
-        "Analyse des développements existants et des architectures (onion/hexagonale)",
-        "Analyse fonctionnelle",
-        "Développement d'APIs et de micro-services",
-        "Développement de tests unitaires",
-        "Recherche et développement",
-        "Contributions au développement d'un nouveau projet (implémentation d'une architecture onion, tests unitaires, ...)",
+        "Analyse fonctionnelle et analyse des développements et architectures existants (onion / hexagonale).",
+        "Développement d'API et de micro-services.",
+        "Développement de tests unitaires et activités de recherche et développement.",
+        "Contribution au développement d'un nouveau projet from scratch (architecture onion, tests unitaires, etc.).",
         "Implémentation des interfaces utilisateurs en Vue.js, en cohérence avec les APIs et microservices développés côté back.",
         "Déploiement des microservices sur Azure via les pipelines CI/CD existants, en respectant les conventions et standards en place.",
         "Sécurisation des échanges via la consommation d'OpenID Connect (OIDC) et gestion centralisée des secrets pour les services backend.",
@@ -649,17 +652,16 @@
         "J'ai réalisé des analyses techniques et fonctionnelles, analysé les développements existants, travaillé sur les architectures, participé à la recherche et au développement, géré la migration de code, développé des API et des applications .NET, créé des packages NuGet, développé des fonctions Azure et configuré Azure Data Factory et Azure EventHubs."
       ],
       "responsibilities": [
-        "Analyse technique et fonctionnelle",
-        "Analyse des développements existants",
-        "Architectures (NLayered et Oignon)",
-        "Recherche et développement",
-        "Migration du code",
-        "Développement des API",
-        "Développements DotNET",
-        "Forfaits NuGet",
-        "Azure Fonctions développements (avec un orchestrateur)",
-        "Mise en place d'Azure Data Factory, Azure EventHubs",
-        "Maintien de l'existant en architecture NLayered et proposition d'une cible en Onion Architecture, formalisée et partagée avec les équipes pour préparer l'évolution.",
+        "Analyse technique et fonctionnelle pour cadrer les besoins et spécifications des projets.",
+        "Analyse des développements existants pour identifier les axes d'amélioration et les points de risque.",
+        "Travail sur les architectures (N-Layered et Onion) pour un code bien structuré et maintenable.",
+        "Recherche et développement pour explorer de nouvelles technologies et méthodologies.",
+        "Migration de code maîtrisée, avec transition progressive et impact minimal.",
+        "Développement d'API et d'applications .NET répondant aux besoins métier.",
+        "Création de packages NuGet pour la gestion et la distribution mutualisée du code .NET.",
+        "Développement d'Azure Functions pilotées par un orchestrateur pour cadencer les traitements.",
+        "Mise en place d'Azure Data Factory et Azure Event Hubs pour l'intégration de données et l'analytique temps réel.",
+        "Maintien de l'existant en architecture N-Layered et proposition d'une cible en Onion Architecture, formalisée et partagée avec les équipes pour préparer l'évolution.",
         "Création de pipelines Azure Data Factory pour orchestrer des flux de données à fort volume entre les différents systèmes du périmètre.",
         "Recherche et développement orientés FinOps : étude et mise en œuvre d'optimisations de coûts sur les ressources Azure du périmètre.",
         "Conception multi-région pour absorber des volumes importants, avec optimisation via partition keys et batching côté Azure Event Hubs."
@@ -1053,11 +1055,8 @@
         "J'ai mené des analyses fonctionnelles, participé à la recherche et au développement, effectué de la rétro-ingénierie, conçu l'architecture, développé l'application WPF et ses composants utilisateur, et contribué aux processus DevOps."
       ],
       "responsibilities": [
-        "Développement de l'application",
-        "Gestion des données",
-        "Recherche et développement",
-        "Amélioration de l'expérience utilisateur",
-        "Utilisation des composants Telerik WPF pour accélérer le développement de l'IHM Innova et offrir des contrôles riches (grids, charts, dialogs).",
+        "Analyse fonctionnelle et rétro-ingénierie pour comprendre les besoins métier et l'existant.",
+        "Développement de l'application WPF Innova en MVVM, avec composants Telerik (grids, charts, dialogs) pour accélérer l'IHM.",
         "Sécurisation des accès via OAuth 2.0 pour l'authentification et l'autorisation des utilisateurs.",
         "Amélioration des pipelines CI/CD existants pour fiabiliser et accélérer les livraisons."
       ],
@@ -1090,9 +1089,11 @@
         "J'ai développé la première version de l'application logistique pour Charl'Antoine, développé un site de commerce électronique pour SIEHR (lecoinsiehr.com) et développé plusieurs sites web pour des agences immobilières."
       ],
       "responsibilities": [
-        "Développement d'une application web",
-        "Recherche et développement",
-        "Amélioration de l'expérience utilisateur"
+        "R&D et développement d'une application web d'affichage de codes promotionnels (ASP.NET Core).",
+        "Développement de la première version de l'application logistique Charl'Antoine.",
+        "Développement du site e-commerce SIEHR (lecoinsiehr.com) et de plusieurs sites pour agences immobilières.",
+        "Intégration front responsive en Bootstrap, jQuery et HTML / CSS / JavaScript.",
+        "Déploiement sur Azure via les pipelines Azure DevOps."
       ],
       "skills": [
         "Azure DevOps",
@@ -1130,9 +1131,10 @@
         "J'ai participé au développement de deux applications pour des clients à Belfort et Strasbourg, et j'ai tenté de recruter des collaborateurs."
       ],
       "responsibilities": [
-        "Formation et coaching",
-        "Développement d'applications",
-        "Recherche et développement"
+        "Développement d'une application de gamification pour les caristes de CORA (.NET, mobile).",
+        "Développement de deux applications pour des clients à Belfort et Strasbourg (.NET Framework, ASP.NET, UWP).",
+        "Formation, coaching et recrutement de développeurs.",
+        "Prospection commerciale et signature du contrat CORA."
       ],
       "skills": [
         ".NET",
@@ -1159,6 +1161,12 @@
         "Applications mobiles : appli de logistique / livraison de cuisines pour Charl'Antoine (avec Novatech).",
         "Web : appli de codes promo (R&D), site de rencontre (astro-privée), réseau social (check.fm), e-commerce SIEHR (lecoinsiehr.com), et sites pour des PME et agences immobilières (Aubade).",
         "Technologies : Windows Phone / Windows 10 Mobile, ASP.NET, HTML."
+      ],
+      "responsibilities": [
+        "Premières formations .NET, C# et Azure en écoles et centres (Supinfo, NextFormation).",
+        "Développement d'applications mobiles Windows Phone / Windows 10 Mobile (UWP, Xamarin), dont une appli de logistique / livraison pour Charl'Antoine.",
+        "Développement web ASP.NET : appli de codes promo (R&D), site de rencontre, réseau social (check.fm), e-commerce SIEHR (lecoinsiehr.com).",
+        "Réalisation de sites web pour des PME et des agences immobilières (Aubade)."
       ],
       "skills": [
         "UWP",

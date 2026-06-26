@@ -10,8 +10,9 @@
   gap: s.$s-2;
   padding-inline: s.$s-5;
   padding-block: s.$s-3;
-  min-block-size: 2.75rem;
-  border-radius: 999px;
+  min-block-size: 2.75rem; // ≥44px tap target (DESIGN §7).
+  // Pills speak $radius-pill in the corner language (DESIGN §4).
+  border-radius: s.$radius-pill;
   border: 1px solid transparent;
   font-family: t.$font-sans;
   font-size: t.$fs-small;
@@ -20,46 +21,60 @@
   color: c.$fg;
   background: transparent;
   cursor: pointer;
-  transition: border-color 180ms var(--ease-out),
-              color 180ms var(--ease-out),
-              background-color 180ms var(--ease-out),
-              transform 180ms var(--ease-out);
+  // All interaction routed through the luxe deceleration curve + hover tier.
+  transition: border-color var(--t-hover) var(--ease-lux),
+              color var(--t-hover) var(--ease-lux),
+              background-color var(--t-hover) var(--ease-lux),
+              transform var(--t-hover) var(--ease-lux),
+              box-shadow var(--t-hover) var(--ease-lux);
 
   &:hover {
     color: c.$fg;
     transform: translateY(-1px);
   }
 
-  // Primary — iridescent filled pill.
+  // Primary — the single lit moment. A subtle lit top edge over the seated
+  // --elev-1 drop gives the one CTA tactile dimension; :active pushes it down
+  // and collapses the drop shadow so the press reads physically.
   &-primary {
     background: c.$ir-duck;
     color: c.$bg-void;
     border-color: c.$ir-duck;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), var(--elev-1);
 
     &:hover {
       background: color-mix(in oklab, c.$ir-duck 85%, white);
       color: c.$bg-void;
     }
+
+    &:active {
+      transform: translateY(1px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
   }
 
   // Ghost — duck outline, translucent fill on hover.
   &-ghost {
-    border-color: rgba(0, 194, 212, 0.55);
+    border-color: color-mix(in oklab, c.$ir-duck 55%, transparent);
 
     &:hover {
       border-color: c.$ir-duck;
-      background: rgba(0, 194, 212, 0.08);
+      background: var(--tint-duck);
     }
   }
 
-  // Iridescent border pill — gradient border via padding-box trick.
+  // Iridescent border pill — gradient border via padding-box trick. The four
+  // accents only ever appear together inside the gradient, and only on a single
+  // scarce moment (DESIGN §2/§3): never as everyday chrome.
   &-iridescent {
     background: linear-gradient(c.$bg-deep, c.$bg-deep) padding-box,
                 c.$gradient-iridescent border-box;
     border: 1px solid transparent;
+    box-shadow: var(--elev-1);
 
-    &:hover {
-      transform: translateY(-1px);
+    &:active {
+      transform: translateY(1px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
   }
 
@@ -74,4 +89,12 @@
     opacity: 0.5;
     pointer-events: none;
   }
+}
+
+// prefers-reduced-motion: hold position — no lift/push transform, no shadow
+// travel. The lit edge + elevation remain as static depth (not motion).
+@media (prefers-reduced-motion: reduce) {
+  .ds-btn { transition: none; }
+  .ds-btn:hover,
+  .ds-btn:active { transform: none; }
 }

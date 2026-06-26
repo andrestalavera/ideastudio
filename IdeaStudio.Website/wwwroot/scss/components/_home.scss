@@ -73,32 +73,5 @@
   }
 }
 
-// Home FAQ — magazine-style 2-col Q/A on desktop. Question + kicker
-// stack on the left, answer occupies the wider right column. Each Q&A
-// keeps its own hairline separators (from _qa.scss) so chapters still
-// feel structured. On tablet/mobile the layout collapses to the default
-// vertical stack from _qa.scss.
-.ds-page-home .ds-faq-list {
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 1024px) {
-  .ds-page-home .ds-faq-list .ds-qa {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-    column-gap: clamp(2rem, 4vw, 4rem);
-    align-items: start;
-  }
-
-  .ds-page-home .ds-faq-list .ds-qa-kicker { grid-column: 1; grid-row: 1; }
-  .ds-page-home .ds-faq-list .ds-qa-question { grid-column: 1; grid-row: 2; }
-  .ds-page-home .ds-faq-list .ds-qa-answer {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    align-self: start;
-  }
-}
-
 // Kicker tracking is a touch wider on Home for editorial feel.
 .ds-page-home .ds-rhythm > .ds-kicker { letter-spacing: 0.18em; }

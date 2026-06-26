@@ -8,9 +8,9 @@
 <div class="ds-culture-selector" @onkeydown="OnKeyDown">
     @if (isOpen)
     {
-        <button type="button" class="ds-culture-selector-backdrop" aria-hidden="true" @onclick="CloseMenu"></button>
+        <div class="ds-culture-selector-backdrop" aria-hidden="true" @onclick="CloseMenu"></div>
     }
-    <button class="ds-btn ds-btn-sm" type="button"
+    <button class="ds-btn ds-btn-sm" type="button" @ref="triggerButton"
         @onclick="ToggleOpen" aria-haspopup="menu" aria-expanded="@isOpen" aria-label="@changeLanguageText">
         <i class="fas fa-globe" aria-hidden="true"></i>
         <span>@GetCurrentCultureDisplayName()</span>
@@ -18,15 +18,28 @@
     @if (isOpen)
     {
         <ul class="ds-culture-selector-menu" role="menu">
+            @{ bool isFirstOption = true; }
             @foreach (CultureInfo culture in CultureService.SupportedCultures)
             {
                 <li role="none">
-                    <button class="ds-culture-selector-item @(IsCurrentCulture(culture) ? "is-active" : "")"
-                        type="button" role="menuitem"
-                        @onclick="() => SelectCultureAsync(culture.Name)">
-                        @GetCultureDisplayName(culture)
-                    </button>
+                    @if (isFirstOption)
+                    {
+                        <button class="ds-culture-selector-item @(IsCurrentCulture(culture) ? "is-active" : "")"
+                            type="button" role="menuitem" @ref="firstOption"
+                            @onclick="() => SelectCultureAsync(culture.Name)">
+                            @GetCultureDisplayName(culture)
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="ds-culture-selector-item @(IsCurrentCulture(culture) ? "is-active" : "")"
+                            type="button" role="menuitem"
+                            @onclick="() => SelectCultureAsync(culture.Name)">
+                            @GetCultureDisplayName(culture)
+                        </button>
+                    }
                 </li>
+                isFirstOption = false;
             }
         </ul>
     }
@@ -34,6 +47,10 @@
 
 @code {
     private bool isOpen;
+    private ElementReference triggerButton;
+    private ElementReference firstOption;
+    private bool focusFirstOnRender;
+    private bool focusTriggerOnRender;
     private string changeLanguageText = "Change Language";
     private string englishText = "English";
     private string frenchText = "Français";
@@ -45,13 +62,37 @@
         frenchText = LocalizationService.GetString("French");
     }
 
-    private void ToggleOpen() => isOpen = !isOpen;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (focusFirstOnRender)
+        {
+            focusFirstOnRender = false;
+            await firstOption.FocusAsync();
+        }
+        else if (focusTriggerOnRender)
+        {
+            focusTriggerOnRender = false;
+            await triggerButton.FocusAsync();
+        }
+    }
 
-    private void CloseMenu() => isOpen = false;
+    private void ToggleOpen()
+    {
+        isOpen = !isOpen;
+        if (isOpen) focusFirstOnRender = true;
+        else focusTriggerOnRender = true;
+    }
+
+    private void CloseMenu()
+    {
+        if (!isOpen) return;
+        isOpen = false;
+        focusTriggerOnRender = true;
+    }
 
     private void OnKeyDown(KeyboardEventArgs e)
     {
-        if (e.Key == "Escape") isOpen = false;
+        if (e.Key == "Escape") CloseMenu();
     }
 
     private async Task SelectCultureAsync(string culture)

@@ -19,7 +19,9 @@ html {
   -moz-tab-size: 4;
   tab-size: 4;
   scroll-behavior: smooth;
-  text-rendering: optimizeLegibility;
+  // NOTE: text-rendering: optimizeLegibility is deliberately NOT set globally —
+  // on large body copy it forces a synchronous shaping pass that delays first
+  // paint. It is scoped to headings (short, kerning-sensitive runs) below.
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,6 +40,7 @@ p, figure, blockquote, dl, dd {
 h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
   text-wrap: balance;
+  text-rendering: optimizeLegibility; // scoped here, not globally — see html note
 }
 
 p {
