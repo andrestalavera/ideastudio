@@ -2,10 +2,11 @@
    from a mesh, breathes, reacts to cursor and dissolves on scroll. A hidden
    <h1> carries the actual text for search engines and assistive tech. *@
 
+@using System.Globalization
 @inject IJSRuntime JS
 @implements IAsyncDisposable
 
-<div class="ds-signature" @ref="containerRef">
+<div class="ds-signature" style="@AspectStyle" @ref="containerRef">
     <h1 class="ds-signature-sr">@Text</h1>
     <canvas class="ds-signature-canvas" @ref="canvasRef" aria-hidden="true"></canvas>
 </div>
@@ -21,6 +22,15 @@
     private ElementReference canvasRef;
     private IJSObjectReference? module;
     private IJSObjectReference? handle;
+    private double? fieldAspect;
+
+    // Until the real glyph-field aspect is known (after the async mount), the
+    // SCSS fallback (5/1, 4/1 on phones) applies. Once known, drive it via the
+    // CSS custom property so the typeface's true proportions aren't stretched.
+    private string AspectStyle =>
+        fieldAspect is { } a
+            ? $"--sig-aspect: {a.ToString(CultureInfo.InvariantCulture)}"
+            : string.Empty;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -40,6 +50,14 @@
                     blurPx = BlurPx,
                     emergeMs = EmergeMs
                 });
+
+            // The WebGL fallback handles don't expose getFieldAspect — guard it.
+            try
+            {
+                fieldAspect = await handle.InvokeAsync<double>("getFieldAspect");
+                if (fieldAspect is > 0) StateHasChanged();
+            }
+            catch (JSException) { /* fallback handle, keep SCSS default aspect */ }
         }
         catch (JSDisconnectedException) { /* runtime gone, ignore */ }
     }

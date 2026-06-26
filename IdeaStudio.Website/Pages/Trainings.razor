@@ -71,9 +71,11 @@
 @code {
     private IReadOnlyList<Training> trainings = Array.Empty<Training>();
 
-    // Display order of the four training families.
-    private static readonly string[] OrderedCategories =
-        { ".NET", "Azure", "Vibe coding & IA", "Architecture & DevOps" };
+    // Display order of the four training families. The "Vibe coding" track is the
+    // only category whose label differs by culture (IA in FR, AI in EN); these
+    // strings must match the `category` values in trainings-{fr,en}.json for grouping.
+    private string[] OrderedCategories =>
+        new[] { ".NET", "Azure", Fr ? "Vibe coding & IA" : "Vibe coding & AI", "Architecture & DevOps" };
 
     private string seoTitle = "Formations .NET, Azure & IA | IdeaStud.io";
     private string seoDescription = "";

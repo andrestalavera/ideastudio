@@ -127,6 +127,11 @@
                 <ButtonLink Href="https://calendly.com/andres-talavera/30min" External="true" Label="@bookLabel" />
             </div>
         </form>
+
+        <div class="mt-8" data-reveal>
+            <p class="text-muted mb-3">@socialPrompt</p>
+            <SocialLinks />
+        </div>
     }
 </PageSection>
 
@@ -173,6 +178,7 @@
     private string errMessage = "Quelques mots de plus, s'il vous plaît (10 caractères minimum).";
     private string errConsent = "Merci de cocher cette case pour continuer.";
     private string errorSummaryTitle = "Veuillez corriger les erreurs suivantes :";
+    private string socialPrompt = "Ou retrouvez-moi sur";
     private List<string>? seoStructuredData;
     private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
 
@@ -237,6 +243,7 @@
         errMessage = fr ? "Quelques mots de plus, s'il vous plaît (10 caractères minimum)." : "A few more words, please (10 characters minimum).";
         errConsent = fr ? "Merci de cocher cette case pour continuer." : "Please tick this box to continue.";
         errorSummaryTitle = fr ? "Veuillez corriger les erreurs suivantes :" : "Please fix the following errors:";
+        socialPrompt = fr ? "Ou retrouvez-moi sur" : "Or find me on";
 
         GenerateStructuredData();
     }

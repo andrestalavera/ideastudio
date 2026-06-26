@@ -31,8 +31,12 @@
     <Container Width="wide">
         <div class="ds-hero-inner">
             <div class="flex items-center gap-4 flex-wrap" data-reveal style="--reveal-step: 0">
-                <img class="ds-hero-avatar" src="images/andres-talavera.jpeg"
-                     alt="@avatarAlt" width="800" height="800" fetchpriority="high" decoding="async" />
+                <picture>
+                    <source type="image/avif" srcset="images/andres-talavera-256.avif" />
+                    <source type="image/webp" srcset="images/andres-talavera-256.webp" />
+                    <img class="ds-hero-avatar" src="images/andres-talavera-256.jpg"
+                         alt="@avatarAlt" width="256" height="256" fetchpriority="high" decoding="async" />
+                </picture>
                 <p class="ds-kicker text-muted leading-normal">@kicker</p>
                 <span class="ds-availability ml-auto inline-flex items-center gap-2 rounded-full border border-rule px-3 py-1 label-mono whitespace-nowrap">
                     <span class="ds-availability-dot" aria-hidden="true"></span>
