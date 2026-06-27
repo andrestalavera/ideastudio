@@ -11,7 +11,7 @@ PUBLISH_DIR="publish"
 FUNCTIONS_DIR="netlify/functions"
 
 echo "→ Installing .NET ${DOTNET_VERSION} → ${DOTNET_INSTALL_DIR}"
-curl -sSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh
+curl -sSL --proto '=https' --tlsv1.2 https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh
 chmod +x /tmp/dotnet-install.sh
 /tmp/dotnet-install.sh --version "${DOTNET_VERSION}" --install-dir "${DOTNET_INSTALL_DIR}"
 

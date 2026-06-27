@@ -74,7 +74,7 @@
             Position: i + 1,
             Name: p.Title,
             Item: $"https://ideastud.io{LocalizedRoute.For("blog", cultureCode)}/{p.Slug}")).ToArray();
-        SchemaOrg.ItemList list = new(fr ? "Articles" : "Articles", lead, items.Length, items);
+        SchemaOrg.ItemList list = new("Articles", lead, items.Length, items);
 
         seoStructuredData = new List<string> { SchemaOrg.ToJsonLd(breadcrumb), SchemaOrg.ToJsonLd(list) };
     }
