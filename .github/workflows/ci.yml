@@ -1,0 +1,51 @@
+name: CI
+
+# Build + test the solution on every PR and on pushes to main.
+# Also gives CodeQL's "actions" analyzer real workflow source to scan
+# (default setup was failing with "no source code seen" — there were no
+# workflow files in the repo).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Least privilege: this workflow only needs to read the repo.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    name: Build & test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      # The website's MSBuild BeforeBuild target runs `npm run build`
+      # (copy-fonts + sass + esbuild + prerender-shells), so node deps
+      # must be present before the dotnet build.
+      - name: Install asset-pipeline deps
+        working-directory: IdeaStudio.Website
+        run: npm ci
+
+      - name: Build (Debug)
+        run: dotnet build IdeaStudio.sln -c Debug
+
+      - name: Test
+        run: dotnet test IdeaStudio.sln -c Debug --no-build
