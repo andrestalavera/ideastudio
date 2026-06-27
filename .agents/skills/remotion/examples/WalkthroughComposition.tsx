@@ -23,13 +23,9 @@ export const WalkthroughComposition: React.FC = () => {
       {screensManifest.screens.map((screen, index) => {
         const durationInFrames = screen.duration * fps;
         
-        // Select transition based on screen config
-        const transition =
-          screen.transitionType === 'slide'
-            ? slide()
-            : screen.transitionType === 'zoom'
-            ? fade() // Can customize with zoom effect
-            : fade();
+        // Select transition based on screen config.
+        // 'zoom' currently falls back to fade() — customize with a zoom effect later.
+        const transition = screen.transitionType === 'slide' ? slide() : fade();
 
         return (
           <TransitionSeries.Sequence
