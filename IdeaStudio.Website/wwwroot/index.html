@@ -25,19 +25,13 @@
     <meta name="twitter:description" content="Andrés Talavera — Consultant .NET & Azure, techlead, formateur. Lyon et à distance." />
     <meta name="twitter:image" content="https://ideastud.io/images/andres-talavera.jpeg" />
 
-    <!-- Base href. On localhost we always use `/`. Otherwise we respect the
-         first path segment so Blazor routes resolve under /fr or /en prefixes. -->
+    <!-- Base href. Every host we target (localhost, Netlify, static hosts)
+         resolves Blazor routes from the root, so the base is always `/`. -->
     <base />
     <script>
         (function () {
             var base = document.getElementsByTagName('base')[0];
-            var host = window.location.host;
-            if (host.indexOf('localhost') !== -1 || host.indexOf('127.0.0.1') !== -1) {
-                base.setAttribute('href', '/');
-            } else {
-                // Static hosts (Azure SWA, GitHub Pages) — always resolve from root.
-                base.setAttribute('href', '/');
-            }
+            base.setAttribute('href', '/');
         })();
     </script>
 
