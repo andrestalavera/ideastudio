@@ -42,7 +42,10 @@ jobs:
       # must be present before the dotnet build.
       - name: Install asset-pipeline deps
         working-directory: IdeaStudio.Website
-        run: npm ci
+        # --ignore-scripts: no dep needs lifecycle scripts (esbuild ships its
+        # binary via optionalDependencies), and it blocks supply-chain script
+        # execution at install time (Sonar shell:S6505).
+        run: npm ci --ignore-scripts
 
       - name: Build (Debug)
         run: dotnet build IdeaStudio.sln -c Debug
