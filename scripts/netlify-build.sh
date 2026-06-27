@@ -36,9 +36,9 @@ dotnet publish "${PROJECT}" -c Release -o "${PUBLISH_DIR}"
 # auto-installed before esbuild bundles them, so install explicitly here.
 echo "→ npm ci in ${FUNCTIONS_DIR} (puppeteer-core, @sparticuz/chromium-min, …)"
 if [ -f "${FUNCTIONS_DIR}/package-lock.json" ]; then
-  npm --prefix "${FUNCTIONS_DIR}" ci
+  npm --prefix "${FUNCTIONS_DIR}" ci --ignore-scripts
 else
-  npm --prefix "${FUNCTIONS_DIR}" install
+  npm --prefix "${FUNCTIONS_DIR}" install --ignore-scripts
 fi
 
 # Prerender each route to static HTML (real content + per-page <head> for crawlers
