@@ -34,10 +34,10 @@ function loadClarity() {
   if (clarityLoaded || isLocalhost) return;
   clarityLoaded = true;
   // Standard Microsoft Clarity loader, inlined to avoid a separate file.
-  (function (c, l, a, r, i, t, y) {
+  (function (c, l, a, r, i) {
     c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
-    t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
-    y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    const t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+    const y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
   })(window, document, 'clarity', 'script', CLARITY_ID);
 }
 
@@ -45,13 +45,15 @@ function loadMetaPixel() {
   if (pixelLoaded || isLocalhost || !META_PIXEL_ID) return;
   pixelLoaded = true;
   // Standard Meta Pixel loader.
-  (function (f, b, e, v, n, t, s) {
-    if (f.fbq) return; n = f.fbq = function () {
+  (function (f, b, e, v) {
+    if (f.fbq) return;
+    const n = f.fbq = function () {
       n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
     };
     if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-    n.queue = []; t = b.createElement(e); t.async = !0;
-    t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    n.queue = [];
+    const t = b.createElement(e); t.async = !0; t.src = v;
+    const s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
   })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
   window.fbq('init', META_PIXEL_ID);
   window.fbq('track', 'PageView');

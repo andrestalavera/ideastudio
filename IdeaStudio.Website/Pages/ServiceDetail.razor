@@ -167,7 +167,7 @@ else
         useCaseTitle     = fr ? "Quand on m'appelle." : "When clients reach out.";
         faqKicker        = fr ? "Questions fréquentes" : "Frequent questions";
         faqTitle         = fr ? "Ce que les clients demandent." : "What clients ask.";
-        catalogueKicker  = fr ? "Catalogue" : "Catalogue";
+        catalogueKicker  = "Catalogue";
         catalogueTitle   = fr ? "20 modules pour vos équipes." : "20 modules for your teams.";
         centersKicker = fr ? "Partenaires"          : "Partners";
         centersTitle  = fr ? "Là où j'ai enseigné." : "Where I've taught.";
@@ -279,7 +279,7 @@ else
             SchemaOrg.CreateBreadcrumb(
                 "https://ideastud.io",
                 (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
-                (fr ? "Services" : "Services", LocalizedRoute.For("services.hub", cultureCode)),
+                ("Services", LocalizedRoute.For("services.hub", cultureCode)),
                 (service?.Title ?? Slug ?? "Service",
                     $"{LocalizedRoute.For("services.hub", cultureCode)}/{service?.Slug ?? Slug ?? string.Empty}")
             )));

@@ -81,7 +81,7 @@
         SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
             "https://ideastud.io",
             (fr ? "Accueil" : "Home", LocalizedRoute.For("home", cultureCode)),
-            (fr ? "Services" : "Services", LocalizedRoute.For("services.hub", cultureCode)));
+            ("Services", LocalizedRoute.For("services.hub", cultureCode)));
 
         SchemaOrg.ListItem[] items = services.Select((s, i) => new SchemaOrg.ListItem(
             Position: i + 1,
