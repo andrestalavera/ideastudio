@@ -28,6 +28,10 @@ public class CspHashConsistencyTests
 
     private static List<string> InlineScriptHashes(string html)
     {
+        // Normalize CRLF -> LF: Netlify serves LF (pinned by .gitattributes
+        // `*.html text eol=lf`) and the browser hashes those exact bytes. A CRLF
+        // checkout (core.autocrlf=true) would otherwise compute the wrong hashes.
+        html = html.Replace("\r\n", "\n");
         List<string> hashes = [];
         foreach (Match m in ScriptBlock.Matches(html))
         {

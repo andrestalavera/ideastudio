@@ -26,7 +26,11 @@ function sha256(content) {
   return "'sha256-" + createHash('sha256').update(content, 'utf8').digest('base64') + "'";
 }
 
-const html = await readFile(indexHtml, 'utf8');
+// Normalize CRLF -> LF before hashing. Netlify serves the file with LF endings
+// (enforced by .gitattributes `*.html text eol=lf`), and the browser hashes
+// those exact bytes. Hashing a CRLF working-tree copy (core.autocrlf=true) would
+// otherwise produce hashes that never match production.
+const html = (await readFile(indexHtml, 'utf8')).replace(/\r\n/g, '\n');
 const hashes = [];
 let match;
 let index = 0;

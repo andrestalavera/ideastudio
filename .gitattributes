@@ -1,0 +1,6 @@
+# Served + CSP-hashed assets must be byte-identical across platforms, so the
+# sha256 hashes computed locally (scripts/csp-hashes.mjs) match the bytes Netlify
+# (Linux) actually serves and the browser hashes. Without this, a CRLF working
+# tree (e.g. core.autocrlf=true on Windows/macOS) yields different hashes than
+# the LF file Netlify serves — silently breaking CSP in production. Force LF.
+*.html text eol=lf
