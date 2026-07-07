@@ -1,4 +1,4 @@
-# Commercial Pivot Implementation Plan
+﻿# Commercial Pivot Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -993,19 +993,6 @@ git commit -m "feat: seed services-en.json with six services"
     "displayOrder": 1
   },
   {
-    "slug": "coronaclubnobless",
-    "title": "Corona Club Noblesse",
-    "client": "Corona Club Noblesse",
-    "summary": "Site institutionnel d'un club suisse, rendu élégant et tri-langue.",
-    "imageUrl": "images/realisations/corona-club-noblesse.webp",
-    "imageAlt": "Capture d'écran du site Corona Club Noblesse",
-    "liveUrl": "https://www.coronaclubnobless.ch",
-    "type": "SiteVitrine",
-    "technologies": [".NET", "Blazor"],
-    "completedOn": "2025-09-15",
-    "displayOrder": 2
-  },
-  {
     "slug": "krosquare",
     "title": "Krosquare",
     "client": "Krosquare",
@@ -1066,19 +1053,6 @@ Use the same structure as `realisations-fr.json` but translate `summary` and `im
     "displayOrder": 1
   },
   {
-    "slug": "coronaclubnobless",
-    "title": "Corona Club Noblesse",
-    "client": "Corona Club Noblesse",
-    "summary": "Institutional site for a Swiss club, with an elegant rendering and tri-language support.",
-    "imageUrl": "images/realisations/corona-club-noblesse.webp",
-    "imageAlt": "Screenshot of the Corona Club Noblesse website",
-    "liveUrl": "https://www.coronaclubnobless.ch",
-    "type": "SiteVitrine",
-    "technologies": [".NET", "Blazor"],
-    "completedOn": "2025-09-15",
-    "displayOrder": 2
-  },
-  {
     "slug": "krosquare",
     "title": "Krosquare",
     "client": "Krosquare",
@@ -1118,7 +1092,6 @@ git commit -m "feat: seed realisations-en.json with four projects"
 
 **Files:**
 - Create: `IdeaStudio.Website/wwwroot/images/realisations/monseigneur-champagne.webp` *(placeholder)*
-- Create: `IdeaStudio.Website/wwwroot/images/realisations/corona-club-noblesse.webp` *(placeholder)*
 - Create: `IdeaStudio.Website/wwwroot/images/realisations/krosquare.webp` *(placeholder)*
 - Create: `IdeaStudio.Website/wwwroot/images/realisations/ideastudio.webp` *(placeholder)*
 
@@ -3191,7 +3164,6 @@ Read the current file, then add at the bottom two sections:
 ## Réalisations
 
 - Monseigneur Champagne — https://www.monseigneurchampagne.com
-- Corona Club Noblesse — https://www.coronaclubnobless.ch
 - Krosquare — https://www.krosquare.fr
 - IdeaStud.io — https://www.ideastud.io
 ```

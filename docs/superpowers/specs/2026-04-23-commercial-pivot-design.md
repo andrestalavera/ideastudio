@@ -1,4 +1,4 @@
-# Commercial pivot — IdeaStud.io
+﻿# Commercial pivot — IdeaStud.io
 
 **Date:** 2026-04-23
 **Status:** Spec — ready for implementation plan
@@ -228,7 +228,6 @@ Storage: `wwwroot/data/realisations-fr.json`, `wwwroot/data/realisations-en.json
 Initial dataset to seed at step 4 (confirmed content from Andrés):
 
 - `monseigneurchampagne` — Monseigneur Champagne — `https://www.monseigneurchampagne.com`
-- `coronaclubnobless` — Corona Club Noblesse — `https://www.coronaclubnobless.ch`
 - `krosquare` — Krosquare — `https://www.krosquare.fr`
 - `ideastudio` — IdeaStud.io (self) — `https://www.ideastud.io`
 
@@ -478,7 +477,7 @@ After this step the home is a placeholder, the CV is at its final URL, nav still
 
 - Implement `CommercialHero`, `ServicesGrid`, `ServiceCard`, `RealisationsTeaser`, `RealisationCard`, `CtaCalendlySection`.
 - Populate `services-{fr,en}.json` with the six services — at minimum `Slug`, `Title`, `Kicker`, `Tagline`, `IconId`, `Order`. `Summary`, `Highlights`, `UseCases`, `Faq` may still be placeholders at this step.
-- Populate `realisations-{fr,en}.json` with the four initial entries (Monseigneur Champagne, Corona Club Noblesse, Krosquare, IdeaStud.io). Screenshots and full data provided by Andrés.
+- Populate `realisations-{fr,en}.json` with the four initial entries (Brasa Geneva, Monseigneur Champagne, Krosquare, IdeaStud.io). Screenshots and full data provided by Andrés.
 - Add the custom SVG icons for the six services under `wwwroot/images/icons/services/`.
 - Wire `Home.razor` to compose the four acts.
 
@@ -532,7 +531,7 @@ Action on spec approval: notify the cinematic session to rebase their work on th
 - Calendly link: `https://calendly.com/andres-talavera/30min`
 - Initial réalisations:
   - `https://www.monseigneurchampagne.com`
-  - `https://www.coronaclubnobless.ch`
+  - `https://www.brasageneva.ch`
   - `https://www.krosquare.fr`
   - `https://www.ideastud.io`
 - Cinematic parallel spec: `docs/superpowers/specs/2026-04-22-cinematic-redesign-design.md`
