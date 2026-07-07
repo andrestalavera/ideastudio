@@ -26,14 +26,12 @@
     <meta name="twitter:image" content="https://ideastud.io/images/andres-talavera.jpeg" />
 
     <!-- Base href. Every host we target (localhost, Netlify, static hosts)
-         resolves Blazor routes from the root, so the base is always `/`. -->
-    <base />
-    <script>
-        (function () {
-            var base = document.getElementsByTagName('base')[0];
-            base.setAttribute('href', '/');
-        })();
-    </script>
+         resolves Blazor routes from the root, so the base is always `/`.
+         Static (not JS-assigned) so it survives even under a strict CSP: it MUST
+         be set before the browser parses the _framework/blazor.webassembly.js tag
+         below, or relative framework URLs resolve against a nested path (e.g.
+         /fr/realisations/_framework/...) → 404 → SPA fallback → wrong MIME type. -->
+    <base href="/" />
 
     <!-- Set <html lang> from the URL's culture segment (/en/... → en, else fr) so
          the document language is correct for crawlers, screen readers and hreflang.
