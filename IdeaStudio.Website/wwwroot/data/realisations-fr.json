@@ -1,7 +1,7 @@
 [
   {
-    "slug": "restoplatform",
-    "title": "RestoPlatform",
+    "slug": "ardoise-it",
+    "title": "Ardoise.it",
     "client": "Startup SaaS, restauration",
     "summary": "Logiciel tout-en-un pour la restauration indépendante : commande au QR, paiement à table, réservations, livraison et un site web bien à soi, sans la moindre commission sur les ventes.",
     "imageUrl": "",
@@ -15,11 +15,11 @@
       "sector": "SaaS · Restauration, hébergé entièrement en Europe",
       "role": "Architecte-développeur unique, épaulé par une équipe d'agents IA",
       "timeline": "Conçu et développé en quelques mois, premier restaurant en production",
-      "challenge": "Un restaurateur indépendant jongle avec une dizaine d'outils, menu, réservations, commande au QR, paiement, livraison, statistiques, et cède encore une part de chaque repas aux plateformes de livraison. RestoPlatform remplace tout ça par une seule solution : un site web par restaurant, et pas un centime de commission sur ce qu'il vend.",
+      "challenge": "Un restaurateur indépendant jongle avec une dizaine d'outils, menu, réservations, commande au QR, paiement, livraison, statistiques, et cède encore une part de chaque repas aux plateformes de livraison. Ardoise.it remplace tout ça par une seule solution : un site web par restaurant, et pas un centime de commission sur ce qu'il vend.",
       "approach": "Une seule plateforme, trois usages : un site web public par restaurant (pensé pour remonter sur Google), une commande fluide pour les clients, et un back-office où l'équipe pilote son service. Les données de chaque restaurant sont totalement cloisonnées, et tout est hébergé en Europe. Côté technique, un seul code .NET sert les trois.",
       "outcome": "Le premier restaurant est en ligne. Le restaurateur dispose d'un seul outil au lieu de dix, garde chaque euro de chaque addition (un abonnement fixe remplace les commissions au repas) et possède un site qui se référence. Pensé pour la confidentialité, hébergé entièrement en Europe, et soutenu par une batterie de tests automatisés qui permet d'ajouter des fonctions sans casser l'existant.",
-      "diagramImage": "images/case-restoplatform-architecture.png",
-      "diagramAlt": "Architecture Clean Architecture de RestoPlatform : API REST + SignalR, site Showcase en Blazor SSR, Dashboard en Blazor Server, application multi-tenant, infrastructure EF Core 10 / PostgreSQL avec Row-Level Security sur Clever Cloud",
+      "diagramImage": "images/case-ardoise-it-architecture.png",
+      "diagramAlt": "Architecture Clean Architecture de Ardoise.it : API REST + SignalR, site Showcase en Blazor SSR, Dashboard en Blazor Server, application multi-tenant, infrastructure EF Core 10 / PostgreSQL avec Row-Level Security sur Clever Cloud",
       "stats": [
         { "value": "40+", "label": "Cas d'usage métier" },
         { "value": "32", "label": "Modules livrés" },

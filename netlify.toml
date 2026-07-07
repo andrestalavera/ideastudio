@@ -45,20 +45,24 @@
     Permissions-Policy        = "geolocation=(), microphone=(), camera=()"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
     # Blazor WASM needs 'wasm-unsafe-eval'. The inline bootstrap <script> blocks in
-    # wwwroot/index.html (base href, <html lang>, theme, gtag consent, gtag loader)
-    # are allowlisted by sha256 instead of 'unsafe-inline' — so script-src no longer
-    # opens the door to injected inline scripts. The error-UI dismiss handler was
-    # externalised to /js/error-ui.js (covered by 'self'). RECOMPUTE THE HASHES after
-    # editing any inline script: `cd IdeaStudio.Website && node scripts/csp-hashes.mjs`
-    # then paste the values below. One byte of drift breaks first paint.
-    #   #1 base href   sha256-BObgjNSy+6cpDoHgoOLwh2Yj+LQ4gI3FWVqOdKS5OZ4=
-    #   #2 <html lang> sha256-B6ts0XSREbwwY6kVznXF8sS2RJz8bdb89cD9EdX39kU=
-    #   #3 theme       sha256-qtBultmCkb5i1LA4qjBLSvxgx1oEWuQxVtiMbWN66t4=
-    #   #4 gtag consent sha256-XcMWr4xKB7f2oVUxLRRz9DKWvKPbCMCz1phUYHNkJ6M=
-    #   #5 gtag loader  sha256-f+BeF53DX3oucknFuLf5ArdeacGwrfQFNAVIreripYE=
+    # wwwroot/index.html (<html lang>, theme, gtag consent, gtag loader) are
+    # allowlisted by sha256 instead of 'unsafe-inline' — so script-src no longer
+    # opens the door to injected inline scripts. The <base href="/"> is now STATIC
+    # (no inline script, no hash) so it can never be CSP-blocked — a blocked base
+    # href silently breaks framework loading on nested routes. The error-UI dismiss
+    # handler was externalised to /js/error-ui.js (covered by 'self'). RECOMPUTE THE
+    # HASHES after editing any inline script: `cd IdeaStudio.Website && node
+    # scripts/csp-hashes.mjs` then paste the values below. One byte of drift breaks
+    # first paint. Hashes are computed on LF-normalized bytes (what Netlify serves;
+    # .gitattributes pins *.html to eol=lf). CspHashConsistencyTests fails CI if
+    # these fall out of sync.
+    #   #1 <html lang>  sha256-WiS5ra6UvDHlQV9ETVu3ahTTGZKP2CzHRxEUwB/YCi8=
+    #   #2 theme        sha256-myYqLbOoe9z9BMmIk5lkleXHh1wYTOJIhe5d82Gh7Hc=
+    #   #3 gtag consent sha256-nhiW/ulTwWDu5HfFOa9Ly2HsbaDzsCsPHDLM9sIwWkM=
+    #   #4 gtag loader  sha256-bhXkdC3LSM4yWGRebqKoCfRP6qwe5TB+6x1zxsOq3eQ=
     # style-src keeps 'unsafe-inline' (Blazor injects inline styles at runtime).
     # Allowed third parties: Google Analytics/Tag Manager, Microsoft Clarity, Meta Pixel, Calendly.
-    Content-Security-Policy   = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-BObgjNSy+6cpDoHgoOLwh2Yj+LQ4gI3FWVqOdKS5OZ4=' 'sha256-B6ts0XSREbwwY6kVznXF8sS2RJz8bdb89cD9EdX39kU=' 'sha256-qtBultmCkb5i1LA4qjBLSvxgx1oEWuQxVtiMbWN66t4=' 'sha256-XcMWr4xKB7f2oVUxLRRz9DKWvKPbCMCz1phUYHNkJ6M=' 'sha256-f+BeF53DX3oucknFuLf5ArdeacGwrfQFNAVIreripYE=' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://connect.facebook.net https://assets.calendly.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.clarity.ms https://www.facebook.com; frame-src https://calendly.com https://assets.calendly.com; form-action 'self'; frame-ancestors 'none'"
+    Content-Security-Policy   = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-WiS5ra6UvDHlQV9ETVu3ahTTGZKP2CzHRxEUwB/YCi8=' 'sha256-myYqLbOoe9z9BMmIk5lkleXHh1wYTOJIhe5d82Gh7Hc=' 'sha256-nhiW/ulTwWDu5HfFOa9Ly2HsbaDzsCsPHDLM9sIwWkM=' 'sha256-bhXkdC3LSM4yWGRebqKoCfRP6qwe5TB+6x1zxsOq3eQ=' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://connect.facebook.net https://assets.calendly.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.clarity.ms https://www.facebook.com; frame-src https://calendly.com https://assets.calendly.com; form-action 'self'; frame-ancestors 'none'"
 
 # Netlify Functions (TypeScript .mts, ES modules).
 # resume-pdf renders a PDF on demand from wwwroot/data/resume-{culture}.json
