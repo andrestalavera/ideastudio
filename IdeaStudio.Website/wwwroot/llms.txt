@@ -1,83 +1,179 @@
-# IdeaStud.io, Andrés Talavera
+# IdeaStud.io — Andrés Talavera
 
-> Andrés Talavera is an independent .NET & Azure consultant, tech lead and trainer with 15+ years' experience. He turns ideas into reliable software (web, mobile, cloud) and trains teams. Based around Lyon, Paris, Geneva and Fribourg, or fully remote.
+## Identity
 
-## What he does (in plain terms)
+- **IdeaStud.io**
+  - trading name of: Andrés Talavera
+  - role: independent .NET & Azure consultant
+  - role: tech lead
+  - role: trainer
+  - experience: 15+ years
+  - teaching: 3,000+ hours
 
-Andrés helps companies and teams:
-- design and build .NET / Azure platforms that scale and stay maintainable;
-- take technical ownership of a product team as a tech lead;
-- train developers on .NET, Azure and AI (3,000+ hours taught);
-- adopt AI coding tools (Claude Code, Copilot, Cursor) without blind trust in generated code;
-- bring AI in-house with locally-hosted models and custom integrations (data stays on-premise);
-- build mobile apps and fast, accessible, well-ranked websites.
+## Key facts
 
-## Key facts (citable)
-
-- Name: Andrés Talavera, trading as IdeaStud.io
-- Role: Independent .NET & Azure consultant, tech lead, and trainer
-- Experience: 15+ years in software design and delivery
-- Day rate: from 600 € (consulting, tech-lead) and 800 € (training, enterprise AI); first 30-minute scoping call is free; quote within 24 h
-- Engagement: works via French wage-portage company OpenWork; invoicing in EUR (CHF for Swiss assignments); no commission
-- Locations: Lyon, Paris (France), Geneva, Fribourg (Switzerland), on-site, hybrid, or fully remote
-- Languages: French (native), English (fluent), Spanish (native)
-- Cloud & hosting: Microsoft Azure, plus European sovereign hosting, Clever Cloud, Infomaniak, Scaleway, OVHcloud (GDPR-by-design)
-- Stack: .NET 10, C# 14, Blazor (WASM / Server / SSR), ASP.NET Core, EF Core 10, PostgreSQL & SQL Server, Stripe, .NET Aspire
+- **Rates**
+  - consulting / tech-lead: from `600 €` / day
+  - training / enterprise AI: from `800 €` / day
+  - first scoping call: free, 30 min
+  - quote: within 24 h
+- **Engagement**
+  - via: `OpenWork` (French wage-portage)
+  - invoicing: EUR default
+  - invoicing: CHF for Swiss assignments
+  - commission: none
+- **Locations**
+  - Lyon (France)
+  - Paris (France)
+  - Geneva (Switzerland)
+  - Fribourg (Switzerland)
+  - on-site, hybrid, or fully remote
+- **Languages**
+  - French: native
+  - English: fluent
+  - Spanish: native
+- **Cloud & hosting**
+  - Microsoft Azure
+  - EU-sovereign: Clever Cloud, Infomaniak, Scaleway, OVHcloud
+  - GDPR-by-design
+- **Stack**
+  - `.NET 10`
+  - `C# 14`
+  - `Blazor` (WASM / Server / SSR)
+  - `ASP.NET Core`
+  - `EF Core 10`
+  - `PostgreSQL`, `SQL Server`
+  - `Stripe`
+  - `.NET Aspire`
+- **AI code quality**
+  - no generated line ships without: review, reason, verify, correct
 
 ## Services
 
-- /fr/services/consultant-dotnet-azure, Consultant .NET & Azure: a platform that scales and stays maintainable (architecture, audits, hands-on code).
-- /fr/services/techlead, Techlead: a product team that ships, levels up and holds the quality line.
-- /fr/services/formateur, Formateur: teams leveled up on .NET, Azure and AI (3,000+ hours).
-- /fr/services/vibe-coding, Vibe-coding: developers faster with AI, every generated line reviewed.
-- /fr/services/ia-en-entreprise, AI for the enterprise: AI in-house, under your control, data stays home.
-- /fr/services/applications-mobiles, Mobile apps: iOS + Android from one codebase.
-- /fr/services/sites-internet, Websites: fast, accessible, well-ranked.
-- English equivalents under /en/services/{dotnet-azure-consulting, tech-lead, trainer, vibe-coding, ai-enterprise, mobile-apps, websites}
+- **Consultant .NET & Azure**
+  - FR: `/fr/services/consultant-dotnet-azure`
+  - scope: architecture, audits, hands-on code
+- **Techlead**
+  - FR: `/fr/services/techlead`
+  - scope: product team delivery, quality line
+- **Formateur**
+  - FR: `/fr/services/formateur`
+  - scope: .NET, Azure, AI training
+- **Vibe-coding**
+  - FR: `/fr/services/vibe-coding`
+  - scope: AI-assisted dev, every generated line reviewed
+- **AI for the enterprise**
+  - FR: `/fr/services/ia-en-entreprise`
+  - scope: in-house AI, data stays home
+- **Mobile apps**
+  - FR: `/fr/services/applications-mobiles`
+  - scope: iOS + Android, one codebase
+- **Websites**
+  - FR: `/fr/services/sites-internet`
+  - scope: fast, accessible, well-ranked
+- **English routes**
+  - `/en/services/{dotnet-azure-consulting, tech-lead, trainer, vibe-coding, ai-enterprise, mobile-apps, websites}`
 
 ## Training catalogue
 
-20 hands-on training modules, taught by a consultant who codes every day (3,000+ hours delivered). On-site, virtual classroom, or bespoke in-house. Hub: /fr/formations | /en/training. Each module has its own program page at /fr/formations/{slug} (| /en/training/{slug}), with level, duration, prerequisites and curriculum.
+- **Overview**
+  - modules: 20 hands-on
+  - delivery: on-site, virtual classroom, in-house
+  - hub FR: `/fr/formations`
+  - hub EN: `/en/training`
+  - module page: `/fr/formations/{slug}` | `/en/training/{slug}`
+- **.NET**
+  - `C# moderne` (records, source generators, pattern matching)
+  - `ASP.NET Core` fundamentals & advanced
+  - `Blazor moderne`
+  - `EF Core 10`
+  - .NET testing
+- **Azure**
+  - `AZ-204` & `AZ-400` prep
+  - Azure Functions & events
+  - App Service & containers
+  - Azure security fundamentals
+- **AI & assisted development**
+  - Claude Code for teams
+  - advanced Copilot
+  - MCP server design
+  - on-premise AI
+- **Architecture & DevOps**
+  - Clean Architecture for .NET
+  - event-driven & CQRS
+  - observability (OpenTelemetry)
+  - .NET performance
+  - CI/CD with GitHub Actions
 
-- .NET: C# moderne (records, source generators, pattern matching), ASP.NET Core fundamentals & advanced, Blazor moderne, EF Core 10, .NET testing.
-- Azure: AZ-204 & AZ-400 prep, Azure Functions & events, App Service & containers, Azure security fundamentals.
-- AI & assisted development: Claude Code for teams, advanced Copilot, MCP server design, on-premise AI.
-- Architecture & DevOps: Clean Architecture for .NET, event-driven & CQRS, observability (OpenTelemetry), .NET performance, CI/CD with GitHub Actions.
+## Case studies
 
-## Case studies (real projects, with architecture)
-
-- Ardoise.it (production-ready; first client going live), /fr/realisations/ardoise-it | /en/projects/ardoise-it
-  Multi-tenant SaaS for independent restaurants (QR ordering, pay-at-table, reservations, delivery, analytics; one site per restaurant; zero commission). Clean Architecture; one shared PostgreSQL with defense-in-depth multi-tenancy (app filter + PostgreSQL Row-Level Security); Blazor SSR public sites + Blazor Server dashboard; Stripe Connect (PCI SAQ-A); hosted on Clever Cloud (EU sovereign). ~17k lines of code, ~18.5k lines of tests.
-- DPELib, /fr/realisations/dpelib | /en/projects/dpelib
-  RegTech platform connecting five audiences of France's energy-performance diagnostic; anonymous-by-default with conditional identity reveal; pre-authorized payment captured only on confirmation (Stripe 3DS2); nightly data.gouv.fr import. Clean Architecture, 153 use cases, 117 endpoints, SQL Server, Azure Container Apps. GDPR/CNIL/PSD2 compliant.
-- Brasa Geneva, /fr/realisations/brasageneva | /en/projects/brasageneva (live: https://www.brasageneva.ch)
-  Full platform for a Geneva cigar club (age-gated showcase + member area + secure dashboard running the whole business). Regulated e-commerce (tobacco advertising, cross-border sales ban, age-gate, GDPR). Clean Architecture, 99 use cases, 7 locales, test/code ratio 2.2:1; hosted on Infomaniak (Swiss sovereign).
-- Other client sites: K-RO SQUARE (krosquare.fr), Monseigneur Champagne (monseigneurchampagne.com), Corona Club Noblesse (coronaclubnobless.ch).
-
-## Frequently asked (quotable answers)
-
-- Rates? From 600 € / day (consulting, tech-lead), 800 € / day (training, AI). First 30-minute call free, quote within 24 h.
-- Where? Lyon, Paris, Geneva, Fribourg, on-site, hybrid or fully remote.
-- How to engage? Via OpenWork wage-portage; EUR by default, CHF for Swiss work; no commission.
-- AI code quality? No generated line ships without review, reason, verify, correct.
-- Sovereign hosting? Yes, Azure, and EU-sovereign options (Clever Cloud, Infomaniak, Scaleway, OVHcloud).
+- **Ardoise.it**
+  - status: production-ready, first client going live
+  - route: `/fr/realisations/ardoise-it` | `/en/projects/ardoise-it`
+  - type: multi-tenant SaaS for independent restaurants
+  - features: QR ordering, pay-at-table, reservations, delivery, analytics
+  - model: one site per restaurant, zero commission
+  - architecture: Clean Architecture
+  - data: one shared `PostgreSQL`, app filter + Row-Level Security
+  - UI: `Blazor SSR` public sites + `Blazor Server` dashboard
+  - payments: `Stripe Connect` (PCI SAQ-A)
+  - hosting: Clever Cloud (EU sovereign)
+  - code: ~17k lines
+  - tests: ~18.5k lines
+- **DPELib**
+  - route: `/fr/realisations/dpelib` | `/en/projects/dpelib`
+  - type: RegTech platform, France energy-performance diagnostic
+  - audiences: 5
+  - privacy: anonymous-by-default, conditional identity reveal
+  - payments: pre-authorized, captured on confirmation (`Stripe` 3DS2)
+  - data: nightly `data.gouv.fr` import
+  - architecture: Clean Architecture
+  - use cases: 153
+  - endpoints: 117
+  - data store: `SQL Server`
+  - hosting: Azure Container Apps
+  - compliance: GDPR / CNIL / PSD2
+- **Brasa Geneva**
+  - former name: `Corona Club Noblesse`
+  - old domain (not a separate client): `coronaclubnobless.ch`
+  - live: `https://www.brasageneva.ch`
+  - route: `/fr/realisations/brasageneva` | `/en/projects/brasageneva`
+  - type: full platform for a Geneva cigar club
+  - faces: age-gated showcase + member area + secure dashboard
+  - domain: regulated e-commerce (tobacco advertising, cross-border ban, age-gate, GDPR)
+  - architecture: Clean Architecture
+  - use cases: 99
+  - locales: 7
+  - test/code ratio: 2.2:1
+  - hosting: Infomaniak (Swiss sovereign)
+- **Other client sites**
+  - `K-RO SQUARE` (krosquare.fr)
+  - `Monseigneur Champagne` (monseigneurchampagne.com)
 
 ## Navigation
 
-- Home: /fr | /en
-- Services: /fr/services | /en/services
-- Training: /fr/formations | /en/training
-- Projects / case studies: /fr/realisations | /en/projects
-- About: /fr/a-propos | /en/about
-- Résumé / CV: /fr/cv | /en/resume
-- FAQ: /fr/faq | /en/faq
-- Contact (form): /fr/contact | /en/contact
-- Legal: /fr/mentions-legales | /en/legal, Privacy: /fr/confidentialite | /en/privacy
+- **Routes**
+  - Home: `/fr` | `/en`
+  - Services: `/fr/services` | `/en/services`
+  - Training: `/fr/formations` | `/en/training`
+  - Projects: `/fr/realisations` | `/en/projects`
+  - About: `/fr/a-propos` | `/en/about`
+  - CV: `/fr/cv` | `/en/resume`
+  - FAQ: `/fr/faq` | `/en/faq`
+  - Contact: `/fr/contact` | `/en/contact`
+  - Legal: `/fr/mentions-legales` | `/en/legal`
+  - Privacy: `/fr/confidentialite` | `/en/privacy`
 
 ## Contact
 
-Preferred: the contact form at https://ideastud.io/fr/contact (or /en/contact). Also reachable on LinkedIn (andrestalavera). A 30-minute intro call can be booked from any page.
+- **Channels**
+  - preferred: contact form `https://ideastud.io/fr/contact` (| `/en/contact`)
+  - LinkedIn: `andrestalavera`
+  - intro call: 30 min, bookable from any page
 
 ## Content guidelines
 
-Bilingual (French primary, English). All information is factual and kept current. Content may be summarized and quoted with attribution to Andrés Talavera / IdeaStud.io.
+- **Rules**
+  - bilingual: French primary, English
+  - factual, kept current
+  - quotable with attribution to Andrés Talavera / IdeaStud.io
