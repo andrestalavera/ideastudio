@@ -76,79 +76,30 @@
 
 ## Training catalogue
 
-- **Overview**
-  - modules: 20 hands-on
-  - delivery: on-site, virtual classroom, in-house
-  - hub FR: `/fr/formations`
-  - hub EN: `/en/training`
-  - module page: `/fr/formations/{slug}` | `/en/training/{slug}`
-- **.NET**
-  - `C# moderne` (records, source generators, pattern matching)
-  - `ASP.NET Core` fundamentals & advanced
-  - `Blazor moderne`
-  - `EF Core 10`
-  - .NET testing
-- **Azure**
-  - `AZ-204` & `AZ-400` prep
-  - Azure Functions & events
-  - App Service & containers
-  - Azure security fundamentals
-- **AI & assisted development**
-  - Claude Code for teams
-  - advanced Copilot
-  - MCP server design
-  - on-premise AI
-- **Architecture & DevOps**
-  - Clean Architecture for .NET
-  - event-driven & CQRS
-  - observability (OpenTelemetry)
-  - .NET performance
-  - CI/CD with GitHub Actions
+20 hands-on training modules, taught by a consultant who codes every day (3,000+ hours delivered). On-site, virtual classroom, or bespoke in-house. Hub: /fr/formations | /en/training. Each module has its own program page at /fr/formations/{slug} (| /en/training/{slug}), with level, duration, prerequisites and curriculum.
 
-## Case studies
+- .NET: C# moderne (records, source generators, pattern matching), ASP.NET Core fundamentals & advanced, Blazor moderne, EF Core 10, .NET testing.
+- Azure: AZ-204 & AZ-400 prep, Azure Functions & events, App Service & containers, Azure security fundamentals.
+- AI & assisted development: Claude Code for teams, advanced Copilot, MCP server design, on-premise AI.
+- Architecture & DevOps: Clean Architecture for .NET, event-driven & CQRS, observability (OpenTelemetry), .NET performance, CI/CD with GitHub Actions.
 
-- **Ardoise.it**
-  - status: production-ready, first client going live
-  - route: `/fr/realisations/ardoise-it` | `/en/projects/ardoise-it`
-  - type: multi-tenant SaaS for independent restaurants
-  - features: QR ordering, pay-at-table, reservations, delivery, analytics
-  - model: one site per restaurant, zero commission
-  - architecture: Clean Architecture
-  - data: one shared `PostgreSQL`, app filter + Row-Level Security
-  - UI: `Blazor SSR` public sites + `Blazor Server` dashboard
-  - payments: `Stripe Connect` (PCI SAQ-A)
-  - hosting: Clever Cloud (EU sovereign)
-  - code: ~17k lines
-  - tests: ~18.5k lines
-- **DPELib**
-  - route: `/fr/realisations/dpelib` | `/en/projects/dpelib`
-  - type: RegTech platform, France energy-performance diagnostic
-  - audiences: 5
-  - privacy: anonymous-by-default, conditional identity reveal
-  - payments: pre-authorized, captured on confirmation (`Stripe` 3DS2)
-  - data: nightly `data.gouv.fr` import
-  - architecture: Clean Architecture
-  - use cases: 153
-  - endpoints: 117
-  - data store: `SQL Server`
-  - hosting: Azure Container Apps
-  - compliance: GDPR / CNIL / PSD2
-- **Brasa Geneva**
-  - former name: `Corona Club Noblesse`
-  - old domain (not a separate client): `coronaclubnobless.ch`
-  - live: `https://www.brasageneva.ch`
-  - route: `/fr/realisations/brasageneva` | `/en/projects/brasageneva`
-  - type: full platform for a Geneva cigar club
-  - faces: age-gated showcase + member area + secure dashboard
-  - domain: regulated e-commerce (tobacco advertising, cross-border ban, age-gate, GDPR)
-  - architecture: Clean Architecture
-  - use cases: 99
-  - locales: 7
-  - test/code ratio: 2.2:1
-  - hosting: Infomaniak (Swiss sovereign)
-- **Other client sites**
-  - `K-RO SQUARE` (krosquare.fr)
-  - `Monseigneur Champagne` (monseigneurchampagne.com)
+## Case studies (real projects, with architecture)
+
+- Ardoise.it (production-ready; first client going live), /fr/realisations/ardoise-it | /en/projects/ardoise-it
+  Multi-tenant SaaS for independent restaurants (QR ordering, pay-at-table, reservations, delivery, analytics; one site per restaurant; zero commission). Clean Architecture; one shared PostgreSQL with defense-in-depth multi-tenancy (app filter + PostgreSQL Row-Level Security); Blazor SSR public sites + Blazor Server dashboard; Stripe Connect (PCI SAQ-A); hosted on Clever Cloud (EU sovereign). ~17k lines of code, ~18.5k lines of tests.
+- DPELib, /fr/realisations/dpelib | /en/projects/dpelib
+  RegTech platform connecting five audiences of France's energy-performance diagnostic; anonymous-by-default with conditional identity reveal; pre-authorized payment captured only on confirmation (Stripe 3DS2); nightly data.gouv.fr import. Clean Architecture, 153 use cases, 117 endpoints, SQL Server, Azure Container Apps. GDPR/CNIL/PSD2 compliant.
+- Brasa Geneva, /fr/realisations/brasageneva | /en/projects/brasageneva (live: https://www.brasageneva.ch)
+  Full platform for a Geneva cigar club (age-gated showcase + member area + secure dashboard running the whole business). Regulated e-commerce (tobacco advertising, cross-border sales ban, age-gate, GDPR). Clean Architecture, 99 use cases, 7 locales, test/code ratio 2.2:1; hosted on Infomaniak (Swiss sovereign).
+- Other client sites: K-RO SQUARE (krosquare.fr), Monseigneur Champagne (monseigneurchampagne.com), Corona Club Noblesse (coronaclubnobless.ch).
+
+## Frequently asked (quotable answers)
+
+- Rates? From 600 € / day (consulting, tech-lead), 800 € / day (training, AI). First 30-minute call free, quote within 24 h.
+- Where? Lyon, Paris, Geneva, Fribourg, on-site, hybrid or fully remote.
+- How to engage? Via OpenWork wage-portage; EUR by default, CHF for Swiss work; no commission.
+- AI code quality? No generated line ships without review, reason, verify, correct.
+- Sovereign hosting? Yes, Azure, and EU-sovereign options (Clever Cloud, Infomaniak, Scaleway, OVHcloud).
 
 ## Navigation
 
