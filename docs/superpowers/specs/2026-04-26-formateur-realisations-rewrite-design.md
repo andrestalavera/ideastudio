@@ -1,4 +1,4 @@
-# Design — Réalisations + page Formateur + clarification CV
+﻿# Design — Réalisations + page Formateur + clarification CV
 
 **Date** : 2026-04-26
 **Auteur** : Andrés Talavera (via Claude)
@@ -34,7 +34,7 @@ Périmètre transverse : revoir la tonalité éditoriale en s'inspirant du vocab
   "slug": "brasageneva",
   "title": "Brasa Geneva",
   "client": "Brasa Geneva",
-  "summary": "Site vitrine d'un club de cigares genevois — identité feutrée, parcours membre, version suisse de l'esprit Corona Club.",
+  "summary": "Site vitrine d'un club de cigares genevois — identité feutrée, parcours membre, version suisse de l'esprit Brasa Geneva.",
   "imageUrl": "images/www.brasageneva.ch.png",
   "imageAlt": "Capture d'écran du site Brasa Geneva",
   "liveUrl": "https://www.brasageneva.ch",
@@ -53,7 +53,6 @@ Périmètre transverse : revoir la tonalité éditoriale en s'inspirant du vocab
 |---|---|---|---|
 | 1 | Brasa Geneva | 2026-04-01 | `images/www.brasageneva.ch.png` |
 | 2 | IdeaStud.io | 2026-02-01 | `images/www.ideastud.io.png` |
-| 3 | Corona Club Noblesse | 2025-12-01 | `images/www.coronaclubnobless.ch.png` |
 | 4 | K-RO SQUARE | 2025-10-01 | `images/www.krosquare.fr.png` |
 | 5 | Monseigneur Champagne | 2025-08-01 | `images/realisations/monseigneur-champagne.svg` (inchangé) |
 
@@ -61,7 +60,6 @@ Périmètre transverse : revoir la tonalité éditoriale en s'inspirant du vocab
 
 - **Brasa Geneva** : voir entrée ci-dessus.
 - **IdeaStud.io** : "Le site que vous lisez : portfolio éditorial, fiches de services, blog technique. Blazor WASM AOT, design system maison, design tokens partagés entre SCSS et runtime JS."
-- **Corona Club Noblesse** : "Site institutionnel d'un club suisse — rendu élégant, navigation tri-langue, mise en valeur d'une identité héritée."
 - **K-RO SQUARE** : "Site vitrine et présentation d'offre pour une marque française — direction artistique épurée, mise en scène claire de l'identité."
 - **Monseigneur Champagne** : "Vitrine d'une maison de champagne — identité premium, parcours client soigné jusqu'à la prise de contact."
 

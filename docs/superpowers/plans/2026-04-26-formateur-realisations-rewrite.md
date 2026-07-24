@@ -1,4 +1,4 @@
-# Formateur + Realisations Rewrite Implementation Plan
+﻿# Formateur + Realisations Rewrite Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -25,7 +25,6 @@
 
 **Add to git:**
 - `IdeaStudio.Website/wwwroot/images/www.brasageneva.ch.png` (already on disk, untracked)
-- `IdeaStudio.Website/wwwroot/images/www.coronaclubnobless.ch.png`
 - `IdeaStudio.Website/wwwroot/images/www.ideastud.io.png`
 - `IdeaStudio.Website/wwwroot/images/www.krosquare.fr.png`
 
@@ -37,23 +36,21 @@
 
 **Files:**
 - Stage: `IdeaStudio.Website/wwwroot/images/www.brasageneva.ch.png`
-- Stage: `IdeaStudio.Website/wwwroot/images/www.coronaclubnobless.ch.png`
 - Stage: `IdeaStudio.Website/wwwroot/images/www.ideastud.io.png`
 - Stage: `IdeaStudio.Website/wwwroot/images/www.krosquare.fr.png`
 
-- [ ] **Step 1: Verify the four PNGs exist on disk**
+- [ ] **Step 1: Verify the three PNGs exist on disk**
 
 ```bash
 ls -lh IdeaStudio.Website/wwwroot/images/www.*.png
 ```
 
-Expected: four PNG files listed (brasageneva.ch, coronaclubnobless.ch, ideastud.io, krosquare.fr). If any is missing, stop and ask the user to provide it.
+Expected: three PNG files listed (brasageneva.ch, ideastud.io, krosquare.fr). If any is missing, stop and ask the user to provide it.
 
 - [ ] **Step 2: Stage and commit the images**
 
 ```bash
 git add IdeaStudio.Website/wwwroot/images/www.brasageneva.ch.png \
-        IdeaStudio.Website/wwwroot/images/www.coronaclubnobless.ch.png \
         IdeaStudio.Website/wwwroot/images/www.ideastud.io.png \
         IdeaStudio.Website/wwwroot/images/www.krosquare.fr.png
 
@@ -84,7 +81,7 @@ Expected: commit succeeds, four files added.
     "slug": "brasageneva",
     "title": "Brasa Geneva",
     "client": "Brasa Geneva",
-    "summary": "Site vitrine d'un club de cigares genevois — identité feutrée, parcours membre, version suisse de l'esprit Corona Club.",
+    "summary": "Site vitrine d'un club de cigares genevois — identité feutrée, parcours membre, version suisse de l'esprit Brasa Geneva.",
     "imageUrl": "images/www.brasageneva.ch.png",
     "imageAlt": "Capture d'écran du site Brasa Geneva",
     "liveUrl": "https://www.brasageneva.ch",
@@ -105,19 +102,6 @@ Expected: commit succeeds, four files added.
     "technologies": [".NET", "Blazor", "Azure", "Markdig"],
     "completedOn": "2026-02-01",
     "displayOrder": 2
-  },
-  {
-    "slug": "coronaclubnobless",
-    "title": "Corona Club Noblesse",
-    "client": "Corona Club Noblesse",
-    "summary": "Site institutionnel d'un club suisse — rendu élégant, navigation tri-langue, mise en valeur d'une identité héritée.",
-    "imageUrl": "images/www.coronaclubnobless.ch.png",
-    "imageAlt": "Capture d'écran du site Corona Club Noblesse",
-    "liveUrl": "https://www.coronaclubnobless.ch",
-    "type": "SiteVitrine",
-    "technologies": [".NET", "Blazor"],
-    "completedOn": "2025-12-01",
-    "displayOrder": 3
   },
   {
     "slug": "krosquare",
@@ -191,7 +175,7 @@ Expected: commit succeeds.
     "slug": "brasageneva",
     "title": "Brasa Geneva",
     "client": "Brasa Geneva",
-    "summary": "Showcase site for a Geneva-based cigar club — hushed identity, member journey, Swiss take on the Corona Club spirit.",
+    "summary": "Showcase site for a Geneva-based cigar club — hushed identity, member journey, Swiss take on the Brasa Geneva spirit.",
     "imageUrl": "images/www.brasageneva.ch.png",
     "imageAlt": "Screenshot of the Brasa Geneva website",
     "liveUrl": "https://www.brasageneva.ch",
@@ -212,19 +196,6 @@ Expected: commit succeeds.
     "technologies": [".NET", "Blazor", "Azure", "Markdig"],
     "completedOn": "2026-02-01",
     "displayOrder": 2
-  },
-  {
-    "slug": "coronaclubnobless",
-    "title": "Corona Club Noblesse",
-    "client": "Corona Club Noblesse",
-    "summary": "Institutional site for a Swiss club — elegant rendering, tri-language navigation, inherited identity brought into focus.",
-    "imageUrl": "images/www.coronaclubnobless.ch.png",
-    "imageAlt": "Screenshot of the Corona Club Noblesse website",
-    "liveUrl": "https://www.coronaclubnobless.ch",
-    "type": "SiteVitrine",
-    "technologies": [".NET", "Blazor"],
-    "completedOn": "2025-12-01",
-    "displayOrder": 3
   },
   {
     "slug": "krosquare",
@@ -902,8 +873,8 @@ Open `http://localhost:<port>/fr/realisations`.
 Check:
 - Brasa Geneva appears first (top-left of the grid).
 - K-RO SQUARE shows that name (not "Krosquare").
-- IdeaStud.io, Corona Club Noblesse, K-RO SQUARE all show their PNG screenshots; MonSeigneur Champagne keeps its SVG illustration.
-- Order top-to-bottom matches the spec table (Brasa → IdeaStud.io → Corona → K-RO → MonSeigneur).
+- IdeaStud.io, Brasa Geneva, K-RO SQUARE all show their PNG screenshots; MonSeigneur Champagne keeps its SVG illustration.
+- Order top-to-bottom matches the spec table (Brasa → IdeaStud.io → K-RO → MonSeigneur).
 
 - [ ] **Step 3: Verify the home (FR)**
 

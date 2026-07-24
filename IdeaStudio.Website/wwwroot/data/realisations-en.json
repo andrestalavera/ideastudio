@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "slug": "ardoise-it",
     "title": "Ardoise.it",
@@ -195,18 +195,5 @@
     "technologies": [".NET", "Blazor", "Clever Cloud", "Claude Design", "Claude Code"],
     "completedOn": "2025-08-01",
     "displayOrder": 3
-  },
-  {
-    "slug": "coronaclubnobless",
-    "title": "Corona Club Noblesse",
-    "client": "Corona Club Noblesse",
-    "summary": "Institutional site for a Swiss club, elegant and understated, in three languages, putting an inherited identity back in the spotlight.",
-    "imageUrl": "images/www.coronaclubnobless.ch.webp",
-    "imageAlt": "Screenshot of the Corona Club Noblesse website",
-    "liveUrl": "https://www.coronaclubnobless.ch",
-    "type": "SiteVitrine",
-    "technologies": [".NET", "Blazor", "Azure", "Cursor AI"],
-    "completedOn": "2025-12-01",
-    "displayOrder": 4
   }
 ]
