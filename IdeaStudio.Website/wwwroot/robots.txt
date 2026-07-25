@@ -1,4 +1,4 @@
-﻿# robots.txt for IdeaStud.io
+# robots.txt for IdeaStud.io
 # https://ideastud.io
 
 User-agent: *

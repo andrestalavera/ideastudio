@@ -81,6 +81,7 @@
         StateHasChanged();
         _ = Analytics.TrackPageViewAsync(e.Location);
         _ = UpdateHtmlLangAsync();
+        _ = SceneTheme.NotifyRouteChangedAsync();
     }
 
     private void OnConsentChanged()
