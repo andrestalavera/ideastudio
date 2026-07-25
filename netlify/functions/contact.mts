@@ -1,5 +1,11 @@
 import type { Config, Context } from "@netlify/functions";
 import nodemailer from "nodemailer";
+import {
+  type ContactPayload,
+  isHoneypotTripped,
+  stripCrlf,
+  validateContact,
+} from "./_lib/contact-validation.mjs";
 
 // Contact-form handler. Receives the JSON posted by Pages/Contact.razor and
 // relays it to an inbox over SMTP. Configure via environment variables in the
@@ -14,22 +20,6 @@ import nodemailer from "nodemailer";
 //
 // Until these are set the function returns 503 and the form shows its error
 // state (with a mailto fallback), so nothing breaks before configuration.
-
-interface ContactPayload {
-  name?: string;
-  email?: string;
-  subject?: string;
-  message?: string;
-  website?: string; // honeypot
-}
-
-const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-
-// Strip CR/LF so attacker-supplied values cannot inject extra SMTP/MIME
-// headers when interpolated into address fields. Internal newlines collapse
-// to a single space; surrounding whitespace is trimmed. Spaces are preserved
-// so display names like "Ada Lovelace" stay intact.
-const stripCrlf = (value: string): string => value.replace(/[\r\n]+/g, " ").trim();
 
 const json = (status: number, body: Record<string, unknown>): Response =>
   new Response(JSON.stringify(body), {
@@ -50,18 +40,15 @@ export default async (req: Request, _context: Context): Promise<Response> => {
   }
 
   // Honeypot — a bot filled the hidden field. Pretend success, send nothing.
-  if (payload.website && payload.website.trim().length > 0) {
+  if (isHoneypotTripped(payload)) {
     return json(200, { success: true });
   }
 
-  const name = (payload.name ?? "").trim();
-  const email = (payload.email ?? "").trim();
-  const subject = (payload.subject ?? "").trim();
-  const message = (payload.message ?? "").trim();
-
-  if (!name || !EMAIL_RE.test(email) || message.length < 10) {
-    return json(422, { success: false, error: "Validation failed" });
+  const validation = validateContact(payload);
+  if (!validation.ok) {
+    return json(validation.status, { success: false, error: validation.error });
   }
+  const { name, email, subject, message } = validation.fields;
 
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;

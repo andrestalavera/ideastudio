@@ -1,0 +1,11 @@
+<Project>
+  <!-- Solution-wide defaults. -->
+  <PropertyGroup>
+    <!-- Supply-chain gate: audit NuGet dependencies (direct + transitive) on every
+         restore. Emits NU1901-1904 warnings (non-blocking) when a referenced package
+         has a known advisory, so vulnerable drift surfaces in local + CI build logs. -->
+    <NuGetAudit>true</NuGetAudit>
+    <NuGetAuditMode>all</NuGetAuditMode>
+    <NuGetAuditLevel>low</NuGetAuditLevel>
+  </PropertyGroup>
+</Project>
