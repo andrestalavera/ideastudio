@@ -1,0 +1,35 @@
+version: 2
+# Keeps dependencies patched across every ecosystem in the repo. Grouped, weekly,
+# low-noise PRs; security updates are opened regardless of the schedule.
+updates:
+  - package-ecosystem: nuget
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      dotnet:
+        patterns: ["*"]
+
+  - package-ecosystem: npm
+    directory: "/IdeaStudio.Website"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      asset-pipeline:
+        patterns: ["*"]
+
+  - package-ecosystem: npm
+    directory: "/netlify/functions"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      functions:
+        patterns: ["*"]
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly

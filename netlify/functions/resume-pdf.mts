@@ -3,6 +3,7 @@ import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium-min";
 import { resolveChromiumExecutable } from "./_lib/chromium.mjs";
 import { renderResumeHtml } from "./_lib/render.mjs";
+import { trustedBaseUrl } from "./_lib/host.mjs";
 import type { Culture, Resume } from "./_lib/types.mjs";
 
 // chromium-min ships without the Chromium binary so the deployed function
@@ -14,51 +15,13 @@ const CHROMIUM_PACK_URL =
   process.env.CHROMIUM_PACK_URL ??
   "https://github.com/Sparticuz/chromium/releases/download/v148.0.0/chromium-v148.0.0-pack.x64.tar";
 
-// Hosts the function is allowed to render from. The fetch target is never
-// derived from an attacker-controllable Host header: a spoofed Host would
-// otherwise make the function fetch and render attacker-controlled "resume"
-// data (SSRF). Netlify injects the real deploy origin via URL / DEPLOY_PRIME_URL
-// at runtime; those are added to the set below and preferred over the request
-// host when building the fetch base.
-const STATIC_ALLOWED_HOSTS = [
-  "ideastud.io",
-  "www.ideastud.io",
-  "localhost",
-  "localhost:8888",
-  "127.0.0.1",
-  "127.0.0.1:8888",
-] as const;
+// The SSRF host allowlist + fetch-origin resolution lives in _lib/host.mts
+// (trustedBaseUrl), kept pure so it can be unit-tested.
 
 const SECURITY_HEADERS = {
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "no-referrer",
 } as const;
-
-function trustedBaseUrl(requestUrl: URL): string | null {
-  const allowed = new Set<string>(STATIC_ALLOWED_HOSTS);
-  for (const envOrigin of [process.env.URL, process.env.DEPLOY_PRIME_URL, process.env.DEPLOY_URL]) {
-    if (!envOrigin) continue;
-    try {
-      allowed.add(new URL(envOrigin).host);
-    } catch {
-      // Ignore malformed env origins.
-    }
-  }
-
-  if (!allowed.has(requestUrl.host)) {
-    return null;
-  }
-
-  const canonical = process.env.URL ?? process.env.DEPLOY_PRIME_URL;
-  if (canonical) {
-    try {
-      return new URL(canonical).origin;
-    } catch {
-      // Fall through to the allowlisted request origin.
-    }
-  }
-  return requestUrl.origin;
-}
 
 function textResponse(status: number, body: string): Response {
   return new Response(body, {

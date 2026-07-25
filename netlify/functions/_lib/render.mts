@@ -9,7 +9,7 @@ const ESCAPE_MAP: Record<string, string> = {
   "'": "&#39;",
 };
 
-function escape(s: string): string {
+export function escape(s: string): string {
   return s.replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch] ?? ch);
 }
 

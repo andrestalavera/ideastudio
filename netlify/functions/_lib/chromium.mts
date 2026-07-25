@@ -1,4 +1,4 @@
-import { createHash, timingSafeEqual } from "node:crypto";
+import { createHash } from "node:crypto";
 import { createReadStream, createWriteStream, existsSync } from "node:fs";
 import { rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -7,6 +7,7 @@ import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
 import { extract } from "tar-fs";
 import chromium from "@sparticuz/chromium-min";
+import { digestsMatch, isHttpsUrl } from "./integrity.mjs";
 
 // SHA-256 of the upstream Sparticuz Chromium pack that matches the
 // @sparticuz/chromium-min version pinned in package.json
@@ -25,25 +26,8 @@ const cachedBinaryPath = join(tmpdir(), "chromium");
 const packTarPath = join(tmpdir(), "chromium-pack.tar");
 const packDir = join(tmpdir(), "chromium-pack");
 
-function isHttpsUrl(value: string): boolean {
-  try {
-    return new URL(value).protocol === "https:";
-  } catch {
-    return false;
-  }
-}
-
 function expectedDigest(): string {
   return (process.env.CHROMIUM_PACK_SHA256 ?? EXPECTED_PACK_SHA256).toLowerCase();
-}
-
-function digestsMatch(actual: string, expected: string): boolean {
-  const actualBytes = Buffer.from(actual, "hex");
-  const expectedBytes = Buffer.from(expected, "hex");
-  if (actualBytes.length === 0 || actualBytes.length !== expectedBytes.length) {
-    return false;
-  }
-  return timingSafeEqual(actualBytes, expectedBytes);
 }
 
 async function sha256File(path: string): Promise<string> {
