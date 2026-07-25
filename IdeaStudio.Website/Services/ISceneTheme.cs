@@ -18,4 +18,11 @@ public interface ISceneTheme
 
     /// <summary>Triggers a brief <c>html.is-pulsing</c> window so SCSS can react to a state change.</summary>
     Task PulseAsync();
+
+    /// <summary>
+    /// Notifies the runtime that a client-side navigation occurred, so it can rewire
+    /// reveals and re-measure the hero (nav-morph) for the new page. No-op if the
+    /// runtime has not booted yet.
+    /// </summary>
+    Task NotifyRouteChangedAsync();
 }

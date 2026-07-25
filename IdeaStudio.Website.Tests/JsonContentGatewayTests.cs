@@ -159,16 +159,21 @@ public class JsonContentGatewayTests
         Assert.Contains(en!, s => s.Slug == "ai-enterprise");
     }
 
-    [Fact]
-    public void TrainingsJson_AllModulesUseValidCategory()
+    // Guards the EN "AI" content-loss bug: TrainingCatalogue groups by TrainingCategories.Ordered,
+    // so every category present in the data MUST appear in that ordered list for the culture, in
+    // BOTH languages — otherwise the whole family is silently dropped from the rendered catalogue.
+    [Theory]
+    [InlineData(true, "trainings-fr.json")]
+    [InlineData(false, "trainings-en.json")]
+    public void TrainingCategories_Ordered_CoversEveryCategoryInData(bool fr, string file)
     {
-        HashSet<string> allowed = new(StringComparer.Ordinal) { ".NET", "Azure", "Vibe coding & IA", "Architecture & DevOps" };
-        Training[]? fr = JsonSerializer.Deserialize<Training[]>(
-            File.ReadAllText(LocateDataFile("trainings-fr.json")),
+        Training[]? items = JsonSerializer.Deserialize<Training[]>(
+            File.ReadAllText(LocateDataFile(file)),
             new JsonSerializerOptions(JsonSerializerDefaults.Web));
 
-        Assert.NotNull(fr);
-        Assert.All(fr!, t => Assert.Contains(t.Category, allowed));
+        Assert.NotNull(items);
+        HashSet<string> ordered = new(TrainingCategories.Ordered(fr), StringComparer.Ordinal);
+        Assert.All(items!, t => Assert.Contains(t.Category, ordered));
     }
 
     private static Training Sample(string slug) => new()

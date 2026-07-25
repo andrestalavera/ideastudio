@@ -2,15 +2,16 @@
 @inherits LocalizedComponent
 
 @{
-    string[] orderedCategories = new[] { ".NET", "Azure", "Vibe coding & IA", "Architecture & DevOps" };
-    var grouped = orderedCategories
+    bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
+    string[] orderedCategories = TrainingCategories.Ordered(fr);
+    (string Category, Training[] Items)[] grouped = orderedCategories
         .Select(cat => (Category: cat, Items: Trainings.Where(t => t.Category == cat).ToArray()))
         .Where(g => g.Items.Length > 0)
         .ToArray();
 }
 
 <div class="ds-training-catalogue">
-    @foreach (var group in grouped)
+    @foreach ((string Category, Training[] Items) group in grouped)
     {
         <section class="ds-training-catalogue-group" data-reveal>
             <h3 class="ds-training-catalogue-category">@group.Category</h3>
