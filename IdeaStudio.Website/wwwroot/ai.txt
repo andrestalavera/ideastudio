@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "IdeaStud.io",
   "type": "portfolio",
   "owner": "Andrés Talavera",
@@ -10,8 +10,8 @@
   "experienceYears": 15,
   "pricing": {
     "currency": "EUR",
-    "dayRateConsulting": 600,
-    "dayRateTraining": 800,
+    "dayRateMin": 600,
+    "dayRateMax": 800,
     "freeScopingCall": true,
     "quoteWithinHours": 24,
     "commission": 0,
