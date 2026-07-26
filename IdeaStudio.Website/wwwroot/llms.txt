@@ -13,8 +13,7 @@
 ## Key facts
 
 - **Rates**
-  - consulting / tech-lead: from `600 €` / day
-  - training / enterprise AI: from `800 €` / day
+  - day rate: `600–800 €` / day (consulting, tech-lead, training, enterprise AI — by scope, complexity & involvement)
   - first scoping call: free, 30 min
   - quote: within 24 h
 - **Engagement**
