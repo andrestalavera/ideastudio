@@ -5,12 +5,13 @@ namespace IdeaStudio.Website.Tests;
 
 public class BundleBudgetTests
 {
-    // Phase D stripped Three.js (the WebGL aurora backdrop) entirely — the
-    // editorial direction wants a quiet CSS radial gradient, not a shader.
-    // magnetic interactions, cursor halo/target and shine are gone too. What's
-    // left: GSAP core (~28 KB gzipped), our four interaction modules plus the
-    // reveals observer. Budget tightened from 165 → 50 KB.
-    private const long MaxGzipBytes = 50 * 1024;
+    // The bundle is a small hand-rolled runtime: a WebGL signature mesh plus the
+    // interaction modules (reveals observer, cursor, nav-morph) and analytics.
+    // No GSAP, no Three.js. It currently gzips to ~8.3 KB, so the budget is set
+    // to 15 KB — tight enough to catch a real regression (a heavy dep sneaking in
+    // ~doubles it) while leaving headroom for legitimate growth. If a change
+    // needs more, profile the bundle before raising this.
+    private const long MaxGzipBytes = 15 * 1024;
 
     [Fact]
     public void CinemaBundle_Gzipped_IsUnderBudget()
