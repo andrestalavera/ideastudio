@@ -91,14 +91,12 @@ IdeaStudio.sln
 │   ├── Program.cs
 │   ├── package.json                    # esbuild + sass build pipeline
 │   └── fly.toml                        # Fly.io deploy (staged; Netlify is currently live)
-├── IdeaStudio.Website.Tests/           # xUnit + Moq + Coverlet
-│   ├── BundleBudgetTests.cs            #   cinema.bundle.js gzipped ≤ 50 KB
-│   ├── HardcodedPathsTests.cs
-│   ├── IntegrationTests.cs
-│   ├── LocalizedRouteTests.cs
-│   └── RealisationFilterTests.cs
-└── IdeaStudio.Apis/                    # Minimal-API host (scaffold only — no endpoints yet)
-    └── Api/, Application/, Domain/, Infrastructure/   # Clean Architecture folders w/ READMEs
+└── IdeaStudio.Website.Tests/           # xUnit + Moq + Coverlet
+    ├── BundleBudgetTests.cs            #   cinema.bundle.js gzipped ≤ 15 KB
+    ├── HardcodedPathsTests.cs
+    ├── IntegrationTests.cs
+    ├── LocalizedRouteTests.cs
+    └── RealisationFilterTests.cs
 ```
 
 > `IdeaStudio.Website.Models` was removed — the directory still exists with empty `bin/obj` but has no `.csproj`. Models live inside `IdeaStudio.Website/Models/`.
