@@ -31,7 +31,6 @@ Editorial portfolio for [ideastud.io](https://ideastud.io).
 - Inter Variable + JetBrains Mono (`@fontsource-variable/inter`, `@fontsource/jetbrains-mono`)
 - xUnit, Moq, Coverlet
 - GitHub Actions for CI/CD; Azure Static Web Apps for hosting
-- `IdeaStudio.Apis` — minimal-API host scaffolded for future endpoints (no endpoints yet)
 
 ## Repository structure
 
@@ -53,7 +52,6 @@ Editorial portfolio for [ideastud.io](https://ideastud.io).
   - `package.json` — esbuild + sass build pipeline
   - `fly.toml` — Fly.io deploy (staged)
 - `IdeaStudio.Website.Tests/` — xUnit test project (BundleBudget, HardcodedPaths, Integration, LocalizedRoute, RealisationFilter)
-- `IdeaStudio.Apis/` — Minimal-API host (Clean Architecture folder scaffold; no endpoints yet)
 - `DESIGN.md` — Design system source of truth
 
 ## Getting started
@@ -201,7 +199,7 @@ Lazy loading defers non-critical content to keep the initial payload small.
 
 ### Why Blazor?
 
-C# end-to-end and WebAssembly performance in the browser. Shared types across `IdeaStudio.Website`, the future `IdeaStudio.Apis`, and the test project.
+C# end-to-end and WebAssembly performance in the browser. Shared types across `IdeaStudio.Website` and the test project.
 
 ### Why AOT now?
 
