@@ -3,6 +3,7 @@
 
 User-agent: *
 Allow: /
+Disallow: /proto/
 
 # Sitemap location
 Sitemap: https://ideastud.io/sitemap.xml
@@ -15,33 +16,44 @@ Sitemap: https://ideastud.io/sitemap.xml
 # AI-specific crawlers - welcome!
 User-agent: GPTBot
 Allow: /
+Disallow: /proto/
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /proto/
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /proto/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /proto/
 
 User-agent: Anthropic-AI
 Allow: /
+Disallow: /proto/
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /proto/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /proto/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /proto/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /proto/
 
 User-agent: Amazonbot
 Allow: /
+Disallow: /proto/
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /proto/

@@ -173,32 +173,9 @@
         string cultureCode = fr ? "fr" : "en";
         string hub = $"https://ideastud.io{LocalizedRoute.For("training", cultureCode)}";
 
-        SchemaOrg.Person person = new(
-            Name: "Andrés Talavera",
-            JobTitle: fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
-            Description: seoDescription,
-            Url: "https://ideastud.io",
-            Image: "https://ideastud.io/images/andres-talavera.jpeg",
-            SameAs: new[] { "https://www.linkedin.com/in/andres-talavera/", "https://github.com/andrestalavera", "https://x.com/imcresus_" },
-            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "Software Training" },
-            Address: null,
-            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io"));
-
-        List<string> blocks = new();
-
-        // One Course per module — strong SEO/GEO signal.
-        foreach (Training t in trainings)
-        {
-            SchemaOrg.Course course = new(
-                Name: t.Title,
-                Description: t.Summary,
-                Provider: person,
-                CourseCode: t.Slug,
-                EducationalLevel: t.Level,
-                TimeRequired: t.DurationDays is int d ? $"P{d}D" : null,
-                Url: $"{hub}/{t.Slug}");
-            blocks.Add(SchemaOrg.ToJsonLd(course));
-        }
+        // Summary-page pattern: the hub lists the modules; full Course markup lives on
+        // each module page so there is one canonical Course per URL.
+        List<string> blocks = new() { SchemaOrg.ToJsonLd(SchemaIdentity.Person(fr)) };
 
         SchemaOrg.ListItem[] items = trainings.Select((t, i) => new SchemaOrg.ListItem(
             Position: i + 1, Name: t.Title, Item: $"{hub}/{t.Slug}")).ToArray();

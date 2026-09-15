@@ -4,11 +4,13 @@
 
 - **IdeaStud.io**
   - trading name of: Andrés Talavera
+  - also written: IdeaStudio, Idea Studio; Andres Talavera
   - role: independent .NET & Azure consultant
   - role: tech lead
   - role: trainer
   - experience: 15+ years
   - teaching: 3,750 hours delivered
+  - certified: no (supports teams preparing certification-track training)
 
 ## Key facts
 
@@ -184,7 +186,7 @@
 
 - **Channels**
   - preferred: contact form `https://ideastud.io/fr/contact` (| `/en/contact`)
-  - LinkedIn: `andrestalavera`
+  - LinkedIn: `andres-talavera`
   - intro call: 30 min, bookable from any page
 
 ## Content guidelines

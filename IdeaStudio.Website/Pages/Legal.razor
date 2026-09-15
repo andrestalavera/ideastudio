@@ -7,7 +7,8 @@
 @layout MainLayout
 
 <SeoHead Title="@seoTitle" Description="@seoDescription"
-         CanonicalUrl="@seoCanonical" Locale="@seoLocale" />
+         CanonicalUrl="@seoCanonical" Locale="@seoLocale"
+         HreflangUrls="@LocalizedRoute.Alternates("legal")" />
 
 <Hero Kicker="@kicker" Title="@titleText" Lead="@leadText" />
 
@@ -18,6 +19,7 @@
         {
             <h2 class="ds-longform-h2">Éditeur</h2>
             <p><strong>Andrés Talavera</strong><br/>
+               Nom commercial : IdeaStud.io (IdeaStudio)<br/>
                Consultant indépendant en développement logiciel<br/>
                Lyon, France<br/>
                Email : <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a></p>
@@ -44,6 +46,7 @@
         {
             <h2 class="ds-longform-h2">Publisher</h2>
             <p><strong>Andrés Talavera</strong><br/>
+               Trading name: IdeaStud.io (IdeaStudio)<br/>
                Independent software consultant<br/>
                Lyon, France<br/>
                Email: <a class="ds-link" href="mailto:andres.talavera@@ideastud.io">andres.talavera@@ideastud.io</a></p>

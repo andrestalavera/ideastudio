@@ -198,8 +198,8 @@
             : "I turn your idea into software your customers actually use: shipped fast, reliable, and ready to grow.";
         // SEO description stays keyword-rich even though the visible lead is warmer.
         seoDescription = fr
-            ? "Andrés Talavera, consultant .NET & Azure, techlead et formateur. Je transforme vos idées en logiciels fiables (web, mobile, cloud). Lyon · Paris · Genève · Fribourg ou à distance."
-            : "Andrés Talavera, .NET & Azure consultant, tech lead and trainer. I turn your ideas into reliable software (web, mobile, cloud). Lyon · Paris · Geneva · Fribourg or remote.";
+            ? "IdeaStudio (IdeaStud.io) : Andrés Talavera, consultant .NET & Azure, techlead et formateur. Je transforme vos idées en logiciels fiables (web, mobile, cloud, SaaS). Lyon · Paris · Genève · Fribourg ou à distance."
+            : "IdeaStudio (IdeaStud.io): Andrés Talavera, .NET & Azure consultant, tech lead and trainer. I turn your ideas into reliable software (web, mobile, cloud, SaaS). Lyon · Paris · Geneva · Fribourg or remote.";
         avatarAlt = fr
             ? "Andrés Talavera, consultant et développeur .NET & Azure"
             : "Andrés Talavera, .NET & Azure consultant and developer";
@@ -272,33 +272,19 @@
         string cultureCode = fr ? "fr" : "en";
         string servicesUrl = $"https://ideastud.io{LocalizedRoute.For("services.hub", cultureCode)}";
 
-        SchemaOrg.Person person = new(
-            Name: "Andrés Talavera",
-            JobTitle: fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
-            Description: seoDescription,
-            Url: "https://ideastud.io",
-            Image: "https://ideastud.io/images/andres-talavera.jpeg",
-            SameAs: new[] { "https://www.linkedin.com/in/andres-talavera/", "https://github.com/andrestalavera", "https://x.com/imcresus_" },
-            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "ASP.NET Core", "Cloud Architecture", "Software Training" },
-            Address: new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressRegion: "Auvergne-Rhône-Alpes", AddressCountry: "FR"),
-            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io"),
-            WorkLocation: new[]
+        SchemaOrg.Person person = SchemaIdentity.Person(fr, seoDescription) with
+        {
+            WorkLocation = new[]
             {
                 new SchemaOrg.Place(new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressCountry: "FR")),
                 new SchemaOrg.Place(new SchemaOrg.PostalAddress(AddressLocality: "Paris", AddressCountry: "FR")),
                 new SchemaOrg.Place(new SchemaOrg.PostalAddress(AddressLocality: fr ? "Genève" : "Geneva", AddressCountry: "CH")),
                 new SchemaOrg.Place(new SchemaOrg.PostalAddress(AddressLocality: "Fribourg", AddressCountry: "CH"))
             },
-            KnowsLanguage: new[] { "fr", "en", "es" }
-        );
+            KnowsLanguage = new[] { "fr", "en", "es" }
+        };
 
-        SchemaOrg.WebSite website = new(
-            Name: "IdeaStud.io",
-            Url: "https://ideastud.io",
-            Description: fr
-                ? "Portfolio et services d'Andrés Talavera, consultant .NET & Azure à Lyon."
-                : "Portfolio and services of Andrés Talavera, .NET & Azure consultant in Lyon."
-        );
+        SchemaOrg.WebSite website = SchemaIdentity.WebSite(fr);
 
         SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
             "https://ideastud.io",

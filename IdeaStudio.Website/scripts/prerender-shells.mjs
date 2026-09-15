@@ -48,11 +48,11 @@ const SEO = {
     og: 'profile', schema: ['WebSite', 'Person'],
     fr: {
       title: 'IdeaStud.io — Andrés Talavera, Consultant .NET & Azure',
-      description: 'Andrés Talavera — Consultant .NET & Azure, techlead, formateur. Lyon et à distance.',
+      description: 'IdeaStudio (IdeaStud.io) : Andrés Talavera, consultant .NET & Azure, techlead et formateur. Lyon, Paris, Genève, Fribourg ou à distance.',
     },
     en: {
       title: 'IdeaStud.io — Andrés Talavera, .NET & Azure Consultant',
-      description: 'Andrés Talavera — .NET & Azure consultant, tech lead and trainer. Lyon and remote.',
+      description: 'IdeaStudio (IdeaStud.io): Andrés Talavera, .NET & Azure consultant, tech lead and trainer. Lyon, Paris, Geneva, Fribourg or remote.',
     },
   },
   'services.hub': {
@@ -69,12 +69,12 @@ const SEO = {
   training: {
     og: 'website',
     fr: {
-      title: 'Formations .NET, C# moderne, Blazor & Azure | IdeaStud.io',
-      description: "Formations sur mesure en .NET, C# moderne, Blazor et Azure, animées par un consultant qui code encore. En présentiel à Lyon ou à distance.",
+      title: 'Formations .NET, Azure & IA pour vos équipes | IdeaStud.io',
+      description: "40 modules de formation .NET, Azure, IA, GitHub, FinOps et architecture, par un consultant qui code au quotidien. 3 750 heures de formation animées. En présentiel, classe virtuelle ou intra sur-mesure.",
     },
     en: {
-      title: 'Training — .NET, modern C#, Blazor & Azure | IdeaStud.io',
-      description: 'Tailored training in .NET, modern C#, Blazor and Azure, taught by a consultant who still ships code. On-site in Lyon or remote.',
+      title: 'Training: .NET, Azure & AI for your teams | IdeaStud.io',
+      description: '40 hands-on training modules across .NET, Azure, AI, GitHub, FinOps and architecture, by a consultant who codes every day. 3,750 hours of training delivered. On-site, virtual classroom or bespoke in-house.',
     },
   },
   about: {
@@ -210,19 +210,24 @@ function jsonLdFor(pageId, culture, canonical) {
       blocks.push({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
+        '@id': `${ORIGIN}/#website`,
         name: 'IdeaStud.io',
-        url: canonical,
-        inLanguage: culture,
+        alternateName: ['IdeaStudio', 'Idea Studio'],
+        url: ORIGIN,
+        inLanguage: ['fr', 'en'],
       });
     } else if (type === 'Person') {
       blocks.push({
         '@context': 'https://schema.org',
         '@type': 'Person',
+        '@id': `${ORIGIN}/#person`,
         name: 'Andrés Talavera',
-        url: canonical,
+        alternateName: ['Andres Talavera'],
+        url: ORIGIN,
         image: OG_IMAGE,
         jobTitle: JOB_TITLE[culture],
-        worksFor: { '@type': 'Organization', name: 'IdeaStud.io', url: ORIGIN },
+        sameAs: ['https://www.linkedin.com/in/andres-talavera/', 'https://github.com/andrestalavera', 'https://x.com/imcresus_'],
+        worksFor: { '@type': 'Organization', '@id': `${ORIGIN}/#organization`, name: 'IdeaStud.io', alternateName: ['IdeaStudio', 'Idea Studio'], url: ORIGIN },
       });
     }
   }

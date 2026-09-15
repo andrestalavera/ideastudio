@@ -4,7 +4,7 @@
   <!-- Home -->
   <url>
     <loc>https://ideastud.io/fr</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr" />
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr" />
@@ -44,7 +44,7 @@
   <!-- Services: Consultant .NET & Azure -->
   <url>
     <loc>https://ideastud.io/fr/services/consultant-dotnet-azure</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/consultant-dotnet-azure" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/dotnet-azure-consulting" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/consultant-dotnet-azure" />
@@ -53,7 +53,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/services/dotnet-azure-consulting</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/consultant-dotnet-azure" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/dotnet-azure-consulting" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/consultant-dotnet-azure" />
@@ -84,7 +84,7 @@
   <!-- Services: Formateur / Trainer -->
   <url>
     <loc>https://ideastud.io/fr/services/formateur</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/formateur" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/trainer" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/formateur" />
@@ -93,7 +93,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/services/trainer</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/formateur" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/trainer" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/formateur" />
@@ -104,7 +104,7 @@
   <!-- Services: Vibe coding -->
   <url>
     <loc>https://ideastud.io/fr/services/vibe-coding</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/vibe-coding" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/vibe-coding" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/vibe-coding" />
@@ -113,7 +113,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/services/vibe-coding</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/services/vibe-coding" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/services/vibe-coding" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/services/vibe-coding" />
@@ -260,7 +260,7 @@
   <!-- CV / Resume -->
   <url>
     <loc>https://ideastud.io/fr/cv</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/cv" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/resume" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/cv" />
@@ -269,7 +269,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/resume</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/cv" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/resume" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/cv" />
@@ -280,7 +280,7 @@
   <!-- About / À propos -->
   <url>
     <loc>https://ideastud.io/fr/a-propos</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/a-propos" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/a-propos" />
@@ -289,7 +289,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/about</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/a-propos" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/a-propos" />
@@ -300,7 +300,7 @@
   <!-- FAQ -->
   <url>
     <loc>https://ideastud.io/fr/faq</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/faq" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/faq" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/faq" />
@@ -309,7 +309,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/faq</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/faq" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/faq" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/faq" />
@@ -396,7 +396,7 @@
   <!-- Legal -->
   <url>
     <loc>https://ideastud.io/fr/mentions-legales</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/mentions-legales" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/legal" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/mentions-legales" />
@@ -405,7 +405,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/legal</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/mentions-legales" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/legal" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/mentions-legales" />
@@ -416,7 +416,7 @@
   <!-- Privacy -->
   <url>
     <loc>https://ideastud.io/fr/confidentialite</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/confidentialite" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/privacy" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/confidentialite" />
@@ -425,7 +425,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/privacy</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/confidentialite" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/privacy" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/confidentialite" />
@@ -435,7 +435,7 @@
   <!-- Training -->
   <url>
     <loc>https://ideastud.io/fr/formations</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations" />
@@ -444,7 +444,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations" />
@@ -453,7 +453,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/csharp-modern</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/csharp-modern" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/csharp-modern" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/csharp-modern" />
@@ -462,7 +462,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/csharp-modern</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/csharp-modern" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/csharp-modern" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/csharp-modern" />
@@ -507,7 +507,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/api-design-aspnet-core</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/api-design-aspnet-core" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/api-design-aspnet-core" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/api-design-aspnet-core" />
@@ -516,7 +516,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/api-design-aspnet-core</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/api-design-aspnet-core" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/api-design-aspnet-core" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/api-design-aspnet-core" />
@@ -525,7 +525,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/aspnet-blazor-security</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/aspnet-blazor-security" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/aspnet-blazor-security" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/aspnet-blazor-security" />
@@ -534,7 +534,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/aspnet-blazor-security</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/aspnet-blazor-security" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/aspnet-blazor-security" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/aspnet-blazor-security" />
@@ -561,7 +561,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/ef-core-10</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ef-core-10" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ef-core-10" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ef-core-10" />
@@ -570,7 +570,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/ef-core-10</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ef-core-10" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ef-core-10" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ef-core-10" />
@@ -579,7 +579,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/dotnet-testing</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-testing" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-testing" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-testing" />
@@ -588,7 +588,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/dotnet-testing</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-testing" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-testing" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-testing" />
@@ -597,7 +597,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/dotnet-aspire</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-aspire" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-aspire" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-aspire" />
@@ -606,7 +606,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/dotnet-aspire</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-aspire" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-aspire" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-aspire" />
@@ -615,7 +615,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/dotnet-11-migration</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-11-migration" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-11-migration" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-11-migration" />
@@ -624,7 +624,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/dotnet-11-migration</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-11-migration" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-11-migration" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-11-migration" />
@@ -633,7 +633,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/azure-ai200-prep</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-ai200-prep" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-ai200-prep" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-ai200-prep" />
@@ -642,7 +642,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/azure-ai200-prep</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-ai200-prep" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-ai200-prep" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-ai200-prep" />
@@ -651,7 +651,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/azure-az400-prep</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-az400-prep" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-az400-prep" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-az400-prep" />
@@ -660,7 +660,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/azure-az400-prep</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-az400-prep" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-az400-prep" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-az400-prep" />
@@ -669,7 +669,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/azure-functions-events</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-functions-events" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-functions-events" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-functions-events" />
@@ -678,7 +678,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/azure-functions-events</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-functions-events" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-functions-events" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-functions-events" />
@@ -705,7 +705,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/azure-iac-bicep</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-iac-bicep" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-iac-bicep" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-iac-bicep" />
@@ -714,7 +714,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/azure-iac-bicep</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-iac-bicep" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-iac-bicep" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-iac-bicep" />
@@ -741,7 +741,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/azure-architect-az305</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-architect-az305" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-architect-az305" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-architect-az305" />
@@ -750,7 +750,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/azure-architect-az305</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-architect-az305" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-architect-az305" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-architect-az305" />
@@ -759,7 +759,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/azure-finops</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-finops" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-finops" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-finops" />
@@ -768,7 +768,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/azure-finops</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-finops" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-finops" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-finops" />
@@ -777,7 +777,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/azure-foundry-agents-dotnet</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-foundry-agents-dotnet" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-foundry-agents-dotnet" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-foundry-agents-dotnet" />
@@ -786,7 +786,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/azure-foundry-agents-dotnet</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azure-foundry-agents-dotnet" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azure-foundry-agents-dotnet" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azure-foundry-agents-dotnet" />
@@ -795,7 +795,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/claude-code-team</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/claude-code-team" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/claude-code-team" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/claude-code-team" />
@@ -804,7 +804,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/claude-code-team</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/claude-code-team" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/claude-code-team" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/claude-code-team" />
@@ -813,7 +813,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/speckit-spec-driven</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/speckit-spec-driven" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/speckit-spec-driven" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/speckit-spec-driven" />
@@ -822,7 +822,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/speckit-spec-driven</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/speckit-spec-driven" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/speckit-spec-driven" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/speckit-spec-driven" />
@@ -831,7 +831,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/speckit-dotnet-custom</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/speckit-dotnet-custom" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/speckit-dotnet-custom" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/speckit-dotnet-custom" />
@@ -840,7 +840,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/speckit-dotnet-custom</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/speckit-dotnet-custom" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/speckit-dotnet-custom" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/speckit-dotnet-custom" />
@@ -849,7 +849,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/copilot-advanced</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/copilot-advanced" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/copilot-advanced" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/copilot-advanced" />
@@ -858,7 +858,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/copilot-advanced</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/copilot-advanced" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/copilot-advanced" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/copilot-advanced" />
@@ -867,7 +867,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/github-agentic-gh600</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/github-agentic-gh600" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/github-agentic-gh600" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/github-agentic-gh600" />
@@ -876,7 +876,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/github-agentic-gh600</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/github-agentic-gh600" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/github-agentic-gh600" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/github-agentic-gh600" />
@@ -885,7 +885,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/mcp-server-design</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/mcp-server-design" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/mcp-server-design" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/mcp-server-design" />
@@ -894,7 +894,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/mcp-server-design</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/mcp-server-design" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/mcp-server-design" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/mcp-server-design" />
@@ -921,7 +921,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/m365-copilot-work</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/m365-copilot-work" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/m365-copilot-work" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/m365-copilot-work" />
@@ -930,7 +930,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/m365-copilot-work</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/m365-copilot-work" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/m365-copilot-work" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/m365-copilot-work" />
@@ -939,7 +939,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/clean-architecture-dotnet</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/clean-architecture-dotnet" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/clean-architecture-dotnet" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/clean-architecture-dotnet" />
@@ -948,7 +948,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/clean-architecture-dotnet</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/clean-architecture-dotnet" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/clean-architecture-dotnet" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/clean-architecture-dotnet" />
@@ -957,7 +957,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/ddd-strategic</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ddd-strategic" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ddd-strategic" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ddd-strategic" />
@@ -966,7 +966,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/ddd-strategic</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ddd-strategic" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ddd-strategic" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ddd-strategic" />
@@ -993,7 +993,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/saas-dotnet-speckit</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/saas-dotnet-speckit" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/saas-dotnet-speckit" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/saas-dotnet-speckit" />
@@ -1002,7 +1002,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/saas-dotnet-speckit</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/saas-dotnet-speckit" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/saas-dotnet-speckit" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/saas-dotnet-speckit" />
@@ -1029,7 +1029,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/docker-kubernetes-dotnet</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/docker-kubernetes-dotnet" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/docker-kubernetes-dotnet" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/docker-kubernetes-dotnet" />
@@ -1038,7 +1038,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/docker-kubernetes-dotnet</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/docker-kubernetes-dotnet" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/docker-kubernetes-dotnet" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/docker-kubernetes-dotnet" />
@@ -1047,7 +1047,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/sovereign-cloud-europe</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/sovereign-cloud-europe" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/sovereign-cloud-europe" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/sovereign-cloud-europe" />
@@ -1056,7 +1056,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/sovereign-cloud-europe</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/sovereign-cloud-europe" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/sovereign-cloud-europe" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/sovereign-cloud-europe" />
@@ -1065,7 +1065,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/devcontainers-devtunnels</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/devcontainers-devtunnels" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/devcontainers-devtunnels" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/devcontainers-devtunnels" />
@@ -1074,7 +1074,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/devcontainers-devtunnels</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/devcontainers-devtunnels" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/devcontainers-devtunnels" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/devcontainers-devtunnels" />
@@ -1101,7 +1101,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/techlead-leadership</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/techlead-leadership" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/techlead-leadership" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/techlead-leadership" />
@@ -1110,7 +1110,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/techlead-leadership</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/techlead-leadership" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/techlead-leadership" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/techlead-leadership" />
@@ -1119,7 +1119,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/cicd-github-actions</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/cicd-github-actions" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/cicd-github-actions" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/cicd-github-actions" />
@@ -1128,7 +1128,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/cicd-github-actions</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/cicd-github-actions" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/cicd-github-actions" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/cicd-github-actions" />
@@ -1137,7 +1137,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/azdo-to-github-migration</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azdo-to-github-migration" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azdo-to-github-migration" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azdo-to-github-migration" />
@@ -1146,7 +1146,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/azdo-to-github-migration</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/azdo-to-github-migration" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/azdo-to-github-migration" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/azdo-to-github-migration" />
@@ -1155,7 +1155,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/formations/github-advanced-security-gh500</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/github-advanced-security-gh500" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/github-advanced-security-gh500" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/github-advanced-security-gh500" />
@@ -1164,7 +1164,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/training/github-advanced-security-gh500</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/github-advanced-security-gh500" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/github-advanced-security-gh500" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/github-advanced-security-gh500" />

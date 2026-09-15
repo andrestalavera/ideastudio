@@ -38,7 +38,9 @@ public static class SchemaOrg
         string? Email = null,
         string? Telephone = null,
         Place[]? WorkLocation = null,
-        string[]? KnowsLanguage = null)
+        string[]? KnowsLanguage = null,
+        [property: JsonPropertyName("@id")] string? Id = null,
+        string[]? AlternateName = null)
     {
         [JsonPropertyName("@context")]
         public string Context => "https://schema.org";
@@ -55,11 +57,12 @@ public static class SchemaOrg
         string? Url = null,
         string? Logo = null,
         string? Description = null,
-        string? AlternateName = null,
+        string[]? AlternateName = null,
         PostalAddress? Address = null,
         string[]? SameAs = null,
         string? Email = null,
-        string? Telephone = null)
+        string? Telephone = null,
+        [property: JsonPropertyName("@id")] string? Id = null)
     {
         [JsonPropertyName("@context")]
         public string Context => "https://schema.org";
@@ -98,8 +101,10 @@ public static class SchemaOrg
         string Name,
         string Url,
         string? Description = null,
-        string? AlternateName = null,
-        Organization? Publisher = null)
+        string[]? AlternateName = null,
+        Organization? Publisher = null,
+        [property: JsonPropertyName("@id")] string? Id = null,
+        string[]? InLanguage = null)
     {
         [JsonPropertyName("@context")]
         public string Context => "https://schema.org";
@@ -368,16 +373,38 @@ public static class SchemaOrg
     public record Course(
         string Name,
         string Description,
-        Person Provider,
+        Organization Provider,
         string? CourseCode = null,
         string? EducationalLevel = null,
         string? TimeRequired = null,
-        string? Url = null)
+        string? Url = null,
+        [property: JsonPropertyName("@id")] string? Id = null,
+        string? InLanguage = null,
+        CourseOffer? Offers = null,
+        CourseInstance? HasCourseInstance = null)
     {
         [JsonPropertyName("@context")]
         public string Context => "https://schema.org";
 
         [JsonPropertyName("@type")]
         public string Type => "Course";
+    }
+
+    /// <summary>
+    /// Schema.org Offer for a course — category only, no invented per-course price.
+    /// </summary>
+    public record CourseOffer(string Category)
+    {
+        [JsonPropertyName("@type")]
+        public string Type => "Offer";
+    }
+
+    /// <summary>
+    /// Schema.org CourseInstance — how a course is delivered and by whom.
+    /// </summary>
+    public record CourseInstance(string[] CourseMode, string? CourseWorkload = null, Person? Instructor = null)
+    {
+        [JsonPropertyName("@type")]
+        public string Type => "CourseInstance";
     }
 }
