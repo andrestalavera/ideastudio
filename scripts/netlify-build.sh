@@ -4,7 +4,7 @@
 # restores Blazor WASM AOT toolchain, publishes to ./publish/wwwroot.
 set -euo pipefail
 
-DOTNET_VERSION="${DOTNET_VERSION:-10.0.203}"
+DOTNET_VERSION="${DOTNET_VERSION:-10.0.401}"
 DOTNET_INSTALL_DIR="${HOME}/.dotnet"
 PROJECT="IdeaStudio.Website/IdeaStudio.Website.csproj"
 PUBLISH_DIR="publish"
