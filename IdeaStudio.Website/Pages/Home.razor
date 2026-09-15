@@ -21,8 +21,8 @@
          OgImageType="image/jpeg"
          OgImageWidth="800"
          OgImageHeight="800"
-         TwitterSite="@@imcresus_"
-         TwitterCreator="@@imcresus_"
+         TwitterSite="@TwitterHandle"
+         TwitterCreator="@TwitterHandle"
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
 
@@ -169,6 +169,9 @@
     private string servicesLead = "";
     private string seeAllServices = "Voir tous les services";
 
+    // A literal "@@handle" in a component attribute is rejected by older Razor compilers
+    // (SDK 10.0.2xx used on Netlify), so pass the handle through a constant.
+    private const string TwitterHandle = "@imcresus_";
     private string seoTitle = "IdeaStud.io, Andrés Talavera";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr";
