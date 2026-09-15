@@ -76,7 +76,7 @@
 ## Training catalogue
 
 - **Overview**
-  - modules: 36 hands-on
+  - modules: 40 hands-on
   - delivery: on-site, virtual classroom, in-house
   - hub FR: `/fr/formations`
   - hub EN: `/en/training`
@@ -85,6 +85,7 @@
   - `C# moderne` (records, source generators, pattern matching)
   - `ASP.NET Core` fundamentals & advanced
   - web API design with ASP.NET Core
+  - securing ASP.NET Core & Blazor (OIDC with Keycloak or Entra ID)
   - `Blazor moderne`
   - `EF Core 10`
   - .NET testing
@@ -113,6 +114,9 @@
   - event-driven & CQRS
   - building a .NET SaaS end to end with Spec Kit (multi-tenant, subscriptions)
   - observability (OpenTelemetry)
+  - Docker & Kubernetes for .NET (AKS, Scaleway Kapsule)
+  - hosting .NET in Europe: Scaleway & Infomaniak (managed PostgreSQL, S3-compatible storage, Keycloak)
+  - reproducible dev environments: Dev Containers & Dev Tunnels
   - .NET performance
   - tech lead: architecture decisions & team leadership
   - CI/CD with GitHub Actions (`GH-200` prep)

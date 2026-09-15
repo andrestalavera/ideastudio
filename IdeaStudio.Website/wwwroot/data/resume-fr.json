@@ -165,6 +165,17 @@
         "RegTech",
         "Redis",
         "Docker",
+        "Kubernetes",
+        "PostgreSQL",
+        "Keycloak",
+        "Azure Container Registry (ACR)",
+        "Azure Developer CLI (azd)",
+        "Dev Containers",
+        "Dev Tunnels",
+        "Scaleway",
+        "Infomaniak",
+        "AWS S3",
+        "ASP.NET Core Security",
         "GitHub",
         "Web Development"
       ]

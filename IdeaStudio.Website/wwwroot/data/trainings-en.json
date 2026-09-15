@@ -70,6 +70,24 @@
     "level": "intermediate"
   },
   {
+    "slug": "aspnet-blazor-security",
+    "title": "Securing ASP.NET Core and Blazor",
+    "summary": "By the end, your teams close the common holes in their ASP.NET Core and Blazor apps, and handle authentication and authorization properly, with Keycloak or Microsoft Entra ID.",
+    "category": ".NET",
+    "outline": [
+      "OWASP Top 10 applied to ASP.NET Core",
+      "OIDC authentication with Keycloak or Microsoft Entra ID",
+      "Fine-grained authorization: policies, resources, multi-tenancy",
+      "Blazor Server, WebAssembly and SSR: where tokens live",
+      "Security headers, CSP, CORS and antiforgery",
+      "Secrets, Data Protection and encryption",
+      "Security testing and dependency review"
+    ],
+    "prerequisites": "ASP.NET Core fundamentals or equivalent experience.",
+    "durationDays": 2,
+    "level": "advanced"
+  },
+  {
     "slug": "blazor-modern",
     "title": "Blazor 10, Server, WASM and Hybrid",
     "summary": "By the end, your team builds modern, responsive web interfaces entirely in C#, without juggling several languages, and ships faster.",
@@ -556,6 +574,59 @@
     ],
     "prerequisites": "ASP.NET Core, production basics.",
     "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "docker-kubernetes-dotnet",
+    "title": "Docker & Kubernetes for .NET applications",
+    "summary": "By the end, your teams containerise their .NET applications cleanly and run them on Kubernetes, on Azure or a European cloud, without depending on a single provider.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Optimised .NET images: multi-stage, chiseled images, SDK container publishing",
+      "Docker Compose for the developer machine",
+      "Registries: Azure Container Registry, image signing and scanning",
+      "Kubernetes: pods, deployments, services, ingress",
+      "Configuration, secrets and health probes",
+      "Helm and multi-environment deployment",
+      "Managed Kubernetes: AKS or Scaleway Kapsule"
+    ],
+    "prerequisites": "Hands-on ASP.NET Core, Linux basics.",
+    "durationDays": 3,
+    "level": "intermediate"
+  },
+  {
+    "slug": "sovereign-cloud-europe",
+    "title": "Hosting .NET applications in Europe: Scaleway and Infomaniak",
+    "summary": "By the end, your teams can deploy and run a .NET application on a European cloud, keeping your data in Europe and your bill predictable, without giving up managed services.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Sovereignty, GDPR and data residency: what really matters",
+      "Landscape: Scaleway, Infomaniak, Clever Cloud, OVHcloud",
+      "Containers and managed Kubernetes in Europe",
+      "Managed PostgreSQL and S3-compatible object storage",
+      "Self-hosted identity with Keycloak",
+      "Portability: avoiding lock-in, moving from or to Azure",
+      "Cost, monitoring and day-to-day operations"
+    ],
+    "prerequisites": "Hands-on ASP.NET Core and Docker.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "devcontainers-devtunnels",
+    "title": "Reproducible dev environments: Dev Containers and Dev Tunnels",
+    "summary": "By the end, your teams get going on a project in minutes with the same environment for everyone, and test webhooks and mobile apps straight against the developer machine.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Dev Containers: devcontainer.json, features, images",
+      "A complete .NET solution in a container: SDK, database, cache",
+      "VS Code and GitHub Codespaces",
+      "Dev Tunnels: exposing a local API securely",
+      "Testing webhooks and mobile apps against the developer machine",
+      "Onboarding a new developer in minutes"
+    ],
+    "prerequisites": "Docker basics.",
+    "durationDays": 1,
     "level": "intermediate"
   },
   {

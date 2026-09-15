@@ -70,6 +70,24 @@
     "level": "intermediate"
   },
   {
+    "slug": "aspnet-blazor-security",
+    "title": "Sécuriser ASP.NET Core et Blazor",
+    "summary": "À l'issue, vos équipes ferment les failles courantes de leurs applications ASP.NET Core et Blazor, et savent authentifier et autoriser correctement, avec Keycloak comme avec Microsoft Entra ID.",
+    "category": ".NET",
+    "outline": [
+      "OWASP Top 10 appliqué à ASP.NET Core",
+      "Authentification OIDC avec Keycloak ou Microsoft Entra ID",
+      "Autorisation fine : policies, ressources, multi-tenant",
+      "Blazor Server, WebAssembly et SSR : où vivent les jetons",
+      "En-têtes de sécurité, CSP, CORS et antiforgery",
+      "Secrets, Data Protection et chiffrement",
+      "Tests de sécurité et revue des dépendances"
+    ],
+    "prerequisites": "ASP.NET Core fondamentaux ou expérience équivalente.",
+    "durationDays": 2,
+    "level": "advanced"
+  },
+  {
     "slug": "blazor-modern",
     "title": "Blazor 10, Server, WASM et Hybrid",
     "summary": "À l'issue, votre équipe construit des interfaces web modernes et réactives entièrement en C#, sans jongler avec plusieurs langages, et livre plus vite.",
@@ -556,6 +574,59 @@
     ],
     "prerequisites": "ASP.NET Core, notions de production.",
     "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "docker-kubernetes-dotnet",
+    "title": "Docker & Kubernetes pour applications .NET",
+    "summary": "À l'issue, vos équipes conteneurisent leurs applications .NET proprement et les exploitent sur Kubernetes, sur Azure comme sur un cloud européen, sans dépendre d'un seul fournisseur.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Images .NET optimisées : multi-stage, images chiseled, publication conteneur du SDK",
+      "Docker Compose pour le poste de développement",
+      "Registres : Azure Container Registry, signature et scan d'images",
+      "Kubernetes : pods, deployments, services, ingress",
+      "Configuration, secrets et sondes de santé",
+      "Helm et déploiement multi-environnement",
+      "Kubernetes managé : AKS ou Scaleway Kapsule"
+    ],
+    "prerequisites": "Pratique d'ASP.NET Core, notions Linux.",
+    "durationDays": 3,
+    "level": "intermediate"
+  },
+  {
+    "slug": "sovereign-cloud-europe",
+    "title": "Héberger vos applications .NET en Europe : Scaleway et Infomaniak",
+    "summary": "À l'issue, vos équipes savent déployer et exploiter une application .NET sur un cloud européen, pour garder vos données en Europe et une facture prévisible, sans renoncer aux services managés.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Souveraineté, RGPD et localisation des données : ce qui compte vraiment",
+      "Panorama : Scaleway, Infomaniak, Clever Cloud, OVHcloud",
+      "Conteneurs et Kubernetes managé en Europe",
+      "PostgreSQL managé et stockage objet compatible S3",
+      "Identité auto-hébergée avec Keycloak",
+      "Portabilité : éviter l'enfermement, migrer depuis ou vers Azure",
+      "Coûts, supervision et exploitation au quotidien"
+    ],
+    "prerequisites": "Pratique d'ASP.NET Core et de Docker.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "devcontainers-devtunnels",
+    "title": "Environnements de dev reproductibles : Dev Containers et Dev Tunnels",
+    "summary": "À l'issue, vos équipes démarrent sur un projet en quelques minutes avec le même environnement pour tous, et testent webhooks et applications mobiles directement contre le poste de dev.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Dev Containers : devcontainer.json, features, images",
+      "Une solution .NET complète en conteneur : SDK, base de données, cache",
+      "VS Code et GitHub Codespaces",
+      "Dev Tunnels : exposer une API locale en toute sécurité",
+      "Tester webhooks et applications mobiles contre le poste de dev",
+      "Onboarding d'un nouveau développeur en quelques minutes"
+    ],
+    "prerequisites": "Notions Docker.",
+    "durationDays": 1,
     "level": "intermediate"
   },
   {

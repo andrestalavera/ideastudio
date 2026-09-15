@@ -524,6 +524,24 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ideastud.io/fr/formations/aspnet-blazor-security</loc>
+    <lastmod>2026-09-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/aspnet-blazor-security" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/aspnet-blazor-security" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/aspnet-blazor-security" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/aspnet-blazor-security</loc>
+    <lastmod>2026-09-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/aspnet-blazor-security" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/aspnet-blazor-security" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/aspnet-blazor-security" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ideastud.io/fr/formations/blazor-modern</loc>
     <lastmod>2026-07-26</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/blazor-modern" />
@@ -1006,6 +1024,60 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/observability-otel" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/observability-otel" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/observability-otel" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/docker-kubernetes-dotnet</loc>
+    <lastmod>2026-09-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/docker-kubernetes-dotnet" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/docker-kubernetes-dotnet" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/docker-kubernetes-dotnet" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/docker-kubernetes-dotnet</loc>
+    <lastmod>2026-09-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/docker-kubernetes-dotnet" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/docker-kubernetes-dotnet" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/docker-kubernetes-dotnet" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/sovereign-cloud-europe</loc>
+    <lastmod>2026-09-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/sovereign-cloud-europe" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/sovereign-cloud-europe" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/sovereign-cloud-europe" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/sovereign-cloud-europe</loc>
+    <lastmod>2026-09-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/sovereign-cloud-europe" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/sovereign-cloud-europe" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/sovereign-cloud-europe" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/devcontainers-devtunnels</loc>
+    <lastmod>2026-09-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/devcontainers-devtunnels" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/devcontainers-devtunnels" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/devcontainers-devtunnels" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/devcontainers-devtunnels</loc>
+    <lastmod>2026-09-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/devcontainers-devtunnels" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/devcontainers-devtunnels" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/devcontainers-devtunnels" />
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
