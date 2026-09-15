@@ -61,16 +61,20 @@
     #   #3 gtag consent sha256-nhiW/ulTwWDu5HfFOa9Ly2HsbaDzsCsPHDLM9sIwWkM=
     #   #4 gtag loader  sha256-bhXkdC3LSM4yWGRebqKoCfRP6qwe5TB+6x1zxsOq3eQ=
     # style-src keeps 'unsafe-inline' (Blazor injects inline styles at runtime).
-    # Allowed third parties: Google Analytics/Tag Manager, Microsoft Clarity, Meta Pixel, Calendly.
-    Content-Security-Policy   = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-WiS5ra6UvDHlQV9ETVu3ahTTGZKP2CzHRxEUwB/YCi8=' 'sha256-myYqLbOoe9z9BMmIk5lkleXHh1wYTOJIhe5d82Gh7Hc=' 'sha256-nhiW/ulTwWDu5HfFOa9Ly2HsbaDzsCsPHDLM9sIwWkM=' 'sha256-bhXkdC3LSM4yWGRebqKoCfRP6qwe5TB+6x1zxsOq3eQ=' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://connect.facebook.net https://assets.calendly.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.clarity.ms https://www.facebook.com; frame-src https://calendly.com https://assets.calendly.com; form-action 'self'; frame-ancestors 'none'"
+    # Allowed third parties: Google Analytics/Tag Manager, Microsoft Clarity, Calendly.
+    # Meta Pixel is disabled (analytics/index.js META_PIXEL_ID = null), so its origins
+    # (connect.facebook.net in script-src, www.facebook.com in connect-src) are removed
+    # here — re-add them in the same change that sets META_PIXEL_ID.
+    Content-Security-Policy   = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-WiS5ra6UvDHlQV9ETVu3ahTTGZKP2CzHRxEUwB/YCi8=' 'sha256-myYqLbOoe9z9BMmIk5lkleXHh1wYTOJIhe5d82Gh7Hc=' 'sha256-nhiW/ulTwWDu5HfFOa9Ly2HsbaDzsCsPHDLM9sIwWkM=' 'sha256-bhXkdC3LSM4yWGRebqKoCfRP6qwe5TB+6x1zxsOq3eQ=' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://assets.calendly.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.clarity.ms; frame-src https://calendly.com https://assets.calendly.com; form-action 'self'; frame-ancestors 'none'"
 
 # Netlify Functions (TypeScript .mts, ES modules).
 # resume-pdf renders a PDF on demand from wwwroot/data/resume-{culture}.json
-# using puppeteer-core + @sparticuz/chromium. The Chromium binary is too
-# heavy to bundle, so it must stay external.
+# using puppeteer-core + @sparticuz/chromium-min. chromium-min ships WITHOUT the
+# Chromium binary (fetched + integrity-checked at cold start, see _lib/chromium.mts),
+# so it bundles fine — no external_node_modules entry is needed. (The former
+# "@sparticuz/chromium" entry matched no installed package and was dead.)
 [functions]
-  node_bundler        = "esbuild"
-  external_node_modules = ["@sparticuz/chromium"]
+  node_bundler = "esbuild"
 
 # Rate limiting for the public, unauthenticated SMTP relay (contact form) is
 # enforced at the edge via the function's own `config.rateLimit` export in
