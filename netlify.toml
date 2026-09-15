@@ -110,6 +110,16 @@
   to     = "/fr/mentions-legales"
   status = 301
 
+# AZ-204 was retired; its prep module now targets the successor exam AI-200.
+[[redirects]]
+  from   = "/fr/formations/azure-az204-prep"
+  to     = "/fr/formations/azure-ai200-prep"
+  status = 301
+[[redirects]]
+  from   = "/en/training/azure-az204-prep"
+  to     = "/en/training/azure-ai200-prep"
+  status = 301
+
 # Pre-render-friendly: Netlify serves static files first, then falls back
 # to index.html so client-side routes resolve.
 [[redirects]]
