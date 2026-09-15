@@ -76,7 +76,7 @@
 ## Training catalogue
 
 - **Overview**
-  - modules: 28 hands-on
+  - modules: 36 hands-on
   - delivery: on-site, virtual classroom, in-house
   - hub FR: `/fr/formations`
   - hub EN: `/en/training`
@@ -84,20 +84,24 @@
 - **.NET**
   - `C# moderne` (records, source generators, pattern matching)
   - `ASP.NET Core` fundamentals & advanced
+  - web API design with ASP.NET Core
   - `Blazor moderne`
   - `EF Core 10`
   - .NET testing
+  - distributed applications with Aspire
   - moving to .NET 11 (C# 15, runtime async)
 - **Azure**
   - `AI-200`, `AZ-305` & `AZ-400` prep (the trainer is not certified; supports teams preparing certification-track training)
   - Azure Functions & events
   - App Service & containers
+  - Infrastructure as Code with Bicep & azd
   - Azure security fundamentals
   - FinOps on Azure
   - AI agents in .NET with Microsoft Foundry
 - **Vibe coding & AI**
   - Claude Code for teams
   - Spec-Driven Development with GitHub Spec Kit
+  - tailoring Spec Kit to a .NET stack
   - advanced GitHub Copilot (`GH-300` prep)
   - agentic development with GitHub (`GH-600` prep)
   - MCP server design
@@ -105,10 +109,14 @@
   - Microsoft 365 Copilot at work (`AB-730` prep)
 - **Architecture & DevOps**
   - Clean Architecture for .NET
+  - strategic Domain-Driven Design
   - event-driven & CQRS
+  - building a .NET SaaS end to end with Spec Kit (multi-tenant, subscriptions)
   - observability (OpenTelemetry)
   - .NET performance
+  - tech lead: architecture decisions & team leadership
   - CI/CD with GitHub Actions (`GH-200` prep)
+  - migrating from Azure DevOps to GitHub
   - GitHub Advanced Security (`GH-500` prep)
 
 ## Case studies

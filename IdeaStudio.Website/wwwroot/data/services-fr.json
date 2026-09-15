@@ -22,6 +22,10 @@
       {
         "title": "Préparer une forte croissance",
         "description": "On pose des fondations capables d'absorber dix fois plus de trafic, pour que votre succès commercial ne se transforme pas en panne."
+      },
+      {
+        "title": "Construire votre SaaS de A à Z",
+        "description": "Du cadrage à la mise en production : architecture multi-tenant, abonnements, sécurité et hébergement, en Spec-Driven Development pour garder le cap à chaque itération."
       }
     ],
     "faq": [
@@ -64,7 +68,7 @@
     "kicker": "TRANSMISSION",
     "tagline": "Vos équipes qui montent vraiment en compétence sur .NET, Azure et l'IA, 3 750 heures de formation animées, par un consultant qui code au quotidien.",
     "iconId": "training",
-    "summary": "3 750 heures de formation animées à mon actif, sur deux décennies d'écosystème Microsoft. Auprès de développeurs juniors comme de techleads en quête de recul, dans des écoles (Supinfo, NextFormation) ou de grands centres (ORSYS, IP-Formation, Happly), en présentiel, classe virtuelle ou intra sur-mesure. 28 modules au catalogue ci-dessous, à prendre tels quels, ou à recomposer ensemble pour bâtir le programme qui colle à votre équipe.",
+    "summary": "3 750 heures de formation animées à mon actif, sur deux décennies d'écosystème Microsoft. Auprès de développeurs juniors comme de techleads en quête de recul, dans des écoles (Supinfo, NextFormation) ou de grands centres (ORSYS, IP-Formation, Happly), en présentiel, classe virtuelle ou intra sur-mesure. 36 modules au catalogue ci-dessous, à prendre tels quels, ou à recomposer ensemble pour bâtir le programme qui colle à votre équipe.",
     "highlights": [
       "Vos développeurs construisent des applications web modernes, prêtes pour la production (ASP.NET Core, Blazor)",
       "Vos équipes maîtrisent le cloud Azure et se préparent sereinement aux certifications AI-200, AZ-305 et AZ-400",
@@ -111,7 +115,8 @@
       "Une méthode de relecture qui garantit la qualité du code généré",
       "Des garde-fous automatiques avant chaque mise en production",
       "Un accompagnement concret, du premier essai jusqu'à la livraison",
-      "Un gain mesuré, chiffres à l'appui, avant et après"
+      "Un gain mesuré, chiffres à l'appui, avant et après",
+      "Des spécifications versionnées qui cadrent les agents IA (Spec-Driven Development avec Spec Kit)"
     ],
     "useCases": [
       { "title": "Pilote sur une équipe volontaire", "description": "2 à 3 mois de pilote encadré, puis un bilan et une recommandation claire pour généraliser." },

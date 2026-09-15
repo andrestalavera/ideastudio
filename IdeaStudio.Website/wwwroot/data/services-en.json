@@ -16,7 +16,8 @@
     ],
     "useCases": [
       { "title": "Regain control of a platform that's slowing down", "description": "A clear diagnosis of what you have, a step-by-step recovery plan, and hands-on support for your teams through to production, without stopping everything." },
-      { "title": "Get ready for fast growth", "description": "We lay foundations that can absorb ten times the traffic, so your commercial success never turns into an outage." }
+      { "title": "Get ready for fast growth", "description": "We lay foundations that can absorb ten times the traffic, so your commercial success never turns into an outage." },
+      { "title": "Build your SaaS end to end", "description": "From scoping to production: multi-tenant architecture, subscriptions, security and hosting, with Spec-Driven Development to stay on course at every iteration." }
     ],
     "faq": [
       { "question": "What's your daily rate?", "answer": "On request, depending on scope, duration, and level of involvement." },
@@ -58,7 +59,7 @@
     "kicker": "KNOWLEDGE TRANSFER",
     "tagline": "Teams that genuinely level up on .NET, Azure and AI, 3,750 hours taught, by a consultant who codes every day.",
     "iconId": "training",
-    "summary": "3,750 hours of training under my belt, across two decades of the Microsoft ecosystem. To junior devs and to tech leads stepping back for perspective alike, in schools (Supinfo, NextFormation) or large centres (ORSYS, IP-Formation, Happly), on-site, virtual classroom or bespoke in-house. 28 modules in the catalogue below, pick them as-is, or let's recompose them into the program that fits your team.",
+    "summary": "3,750 hours of training under my belt, across two decades of the Microsoft ecosystem. To junior devs and to tech leads stepping back for perspective alike, in schools (Supinfo, NextFormation) or large centres (ORSYS, IP-Formation, Happly), on-site, virtual classroom or bespoke in-house. 36 modules in the catalogue below, pick them as-is, or let's recompose them into the program that fits your team.",
     "highlights": [
       "Your developers build modern, production-ready web apps (ASP.NET Core, Blazor)",
       "Your teams master the Azure cloud and prepare with confidence for the AI-200, AZ-305 and AZ-400 certifications",
@@ -105,7 +106,8 @@
       "A review method that guarantees the quality of generated code",
       "Automatic guardrails before every release to production",
       "Concrete support, from the first attempt to delivery",
-      "A measured gain, with numbers, before and after"
+      "A measured gain, with numbers, before and after",
+      "Versioned specifications that keep AI agents on track (Spec-Driven Development with Spec Kit)"
     ],
     "useCases": [
       { "title": "Pilot with a willing team", "description": "A 2-to-3-month framed pilot, then a clear debrief and recommendation for rolling it out." },

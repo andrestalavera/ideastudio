@@ -52,6 +52,24 @@
     "level": "advanced"
   },
   {
+    "slug": "api-design-aspnet-core",
+    "title": "Designing robust web APIs with ASP.NET Core",
+    "summary": "By the end, your teams ship clear, documented, versioned and secure APIs that your partners and apps consume with no nasty surprises.",
+    "category": ".NET",
+    "outline": [
+      "REST or GraphQL: which one, and when",
+      "Minimal APIs and controllers, validation and ProblemDetails",
+      "Built-in OpenAPI, documentation and client generation",
+      "Versioning and backward compatibility",
+      "Authentication, authorization and rate limiting",
+      "Idempotency, pagination and webhooks",
+      "Publishing and governance with Azure API Management"
+    ],
+    "prerequisites": "ASP.NET Core fundamentals or equivalent experience.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
     "slug": "blazor-modern",
     "title": "Blazor 10, Server, WASM and Hybrid",
     "summary": "By the end, your team builds modern, responsive web interfaces entirely in C#, without juggling several languages, and ships faster.",
@@ -100,6 +118,23 @@
       "Pragmatic TDD, when and how"
     ],
     "prerequisites": "Modern C#, team-project experience.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "dotnet-aspire",
+    "title": "Distributed applications with Aspire",
+    "summary": "By the end, your teams run, observe and deploy a distributed .NET application in a few commands, from the developer machine to Azure.",
+    "category": ".NET",
+    "outline": [
+      "AppHost and service defaults",
+      "Integrations: PostgreSQL, SQL Server, Redis, Service Bus, Storage",
+      "Dashboard: OpenTelemetry logs, traces and metrics",
+      "Configuration, secrets and service discovery",
+      "Integration tests for the distributed application",
+      "Deploying to Azure Container Apps with azd"
+    ],
+    "prerequisites": "ASP.NET Core, Docker basics.",
     "durationDays": 2,
     "level": "intermediate"
   },
@@ -192,6 +227,24 @@
       "Monitoring, Application Insights"
     ],
     "prerequisites": "Azure basics, Docker experience.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "azure-iac-bicep",
+    "title": "Infrastructure as Code on Azure with Bicep and azd",
+    "summary": "By the end, your teams describe their Azure environments as versioned, reproducible, reviewed code, and deploy with no secrets stored in pipelines.",
+    "category": "Azure",
+    "outline": [
+      "Bicep: resources, parameters, modules",
+      "Azure Verified Modules and naming conventions",
+      "What-if, deployment stacks and configuration drift",
+      "Azure Developer CLI (azd): templates and environments",
+      "Azure Pipelines and GitHub Actions with OIDC, no secrets",
+      "Governance: Azure Policy, tags and cost tracking",
+      "Testing and reviewing infrastructure"
+    ],
+    "prerequisites": "Azure basics, hands-on experience with a CI pipeline.",
     "durationDays": 2,
     "level": "intermediate"
   },
@@ -298,11 +351,29 @@
       "Technical plan and breakdown into verifiable tasks",
       "Agent implementation, human review, conformance to the spec",
       "Spec Kit on an existing codebase and in the PR flow",
-      "Hands-on thread: one .NET feature from spec to merge"
+      "Hands-on thread: one .NET SaaS feature from spec to merge"
     ],
     "prerequisites": "Hands-on Git and an AI coding assistant (Claude Code or GitHub Copilot).",
     "durationDays": 2,
     "level": "intermediate"
+  },
+  {
+    "slug": "speckit-dotnet-custom",
+    "title": "Tailoring Spec Kit to your .NET stack",
+    "summary": "By the end, your team has its own Spec Kit variant, tuned to its .NET conventions, producing specs, plans and code that match your architecture.",
+    "category": "Vibe coding & AI",
+    "outline": [
+      "Spec Kit anatomy: commands, templates, scripts, memory",
+      "A .NET constitution: Clean Architecture, tests, coding conventions",
+      "Spec, plan and task templates designed for a .NET solution",
+      "Custom commands: EF Core migrations, tests, ADRs, review",
+      "Integration with Claude Code and GitHub Copilot",
+      "Versioning, sharing and evolving the team variant",
+      "Lessons from a .NET variant proven on SaaS projects"
+    ],
+    "prerequisites": "Spec-Driven Development with GitHub Spec Kit, or equivalent practice.",
+    "durationDays": 2,
+    "level": "advanced"
   },
   {
     "slug": "copilot-advanced",
@@ -416,6 +487,23 @@
     "level": "advanced"
   },
   {
+    "slug": "ddd-strategic",
+    "title": "Strategic Domain-Driven Design",
+    "summary": "By the end, your teams split a complex business domain into clear contexts, speak the same language as the business, and turn that model into .NET code that lasts.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Event Storming: exploring the domain with the business",
+      "Ubiquitous language and a living glossary",
+      "Bounded contexts and context mapping",
+      "Designing aggregates and their invariants",
+      "From model to .NET code: entities, value objects, events",
+      "Splitting a monolith or microservices by context"
+    ],
+    "prerequisites": "Experience on a business application in a team. Clean Architecture in .NET recommended.",
+    "durationDays": 2,
+    "level": "advanced"
+  },
+  {
     "slug": "event-driven-cqrs",
     "title": "Event-driven architecture & practical CQRS",
     "summary": "By the end, your teams design applications that stay smooth and reliable even under heavy load, applying the right patterns in the right place, no dogma.",
@@ -431,6 +519,25 @@
     ],
     "prerequisites": "ASP.NET Core, EF Core, message broker basics.",
     "durationDays": 3,
+    "level": "advanced"
+  },
+  {
+    "slug": "saas-dotnet-speckit",
+    "title": "Building a .NET SaaS end to end with Spec Kit",
+    "summary": "By the end, your teams can take a SaaS from idea to production: versioned specifications, multi-tenant architecture, subscriptions and operations, without losing their way.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Product framing and project constitution",
+      "Specifying SaaS journeys: sign-up, onboarding, roles, subscriptions",
+      "Multi-tenancy: database per tenant, shared schema or Row-Level Security",
+      "Identity, roles and per-tenant data isolation",
+      "Subscriptions and payments with Stripe",
+      "Deployment, observability and per-tenant cost",
+      "GDPR and hosting in Europe",
+      "Hands-on thread: a SaaS delivered iteratively, from spec to deployment"
+    ],
+    "prerequisites": "ASP.NET Core, EF Core, hands-on use of an AI coding assistant.",
+    "durationDays": 4,
     "level": "advanced"
   },
   {
@@ -469,6 +576,24 @@
     "level": "advanced"
   },
   {
+    "slug": "techlead-leadership",
+    "title": "Tech lead: architecture decisions and team leadership",
+    "summary": "By the end, your senior developers step into the tech lead role: settling technical choices, growing the team and delivering against tracked quality indicators.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "The tech lead role: scope, expectations, pitfalls",
+      "Recorded architecture decisions (ADRs) and trade-offs",
+      "Code review and pair programming that help people grow",
+      "Technical debt: making it visible and prioritising it",
+      "Working with product and design",
+      "Delivery and quality indicators (DORA)",
+      "Framing AI use within the team"
+    ],
+    "prerequisites": "Experienced developer working in a team.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
     "slug": "cicd-github-actions",
     "title": "CI/CD with GitHub Actions (GH-200 prep)",
     "summary": "By the end, your teams automate testing and releases with GitHub Actions and prepare for the GH-200 certification: ship more often, with confidence, with no manual steps.",
@@ -486,6 +611,24 @@
     "durationDays": 2,
     "level": "intermediate",
     "certification": "GH-200"
+  },
+  {
+    "slug": "azdo-to-github-migration",
+    "title": "Migrating from Azure DevOps to GitHub",
+    "summary": "By the end, your teams plan and carry out the move of their repositories, pipelines and work tracking from Azure DevOps to GitHub, without stopping delivery.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Inventory and strategy: big-bang cutover or coexistence",
+      "Repositories and history with GitHub Enterprise Importer",
+      "Pipelines: converting to GitHub Actions with GitHub Actions Importer",
+      "Azure Boards: keep, integrate or move to GitHub Projects",
+      "Identities, teams and permissions",
+      "Security: secrets, OIDC to Azure, GitHub Advanced Security",
+      "Lessons from a real migration"
+    ],
+    "prerequisites": "Hands-on Azure DevOps, GitHub Actions basics.",
+    "durationDays": 1,
+    "level": "intermediate"
   },
   {
     "slug": "github-advanced-security-gh500",
