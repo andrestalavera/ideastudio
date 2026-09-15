@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "IdeaStud.io",
   "type": "portfolio",
   "owner": "Andrés Talavera",

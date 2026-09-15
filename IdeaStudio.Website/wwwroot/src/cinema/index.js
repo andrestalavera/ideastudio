@@ -9,7 +9,7 @@ import { HeroState } from './engine/state.js';
 import { createMeshPass } from './passes/mesh.js';
 import { attachReveals, disposeReveals } from './interactions/reveals.js';
 import { attachCursor, disposeCursor } from './interactions/cursor.js';
-import { attachNavMorph, disposeNavMorph } from './interactions/nav-morph.js';
+import { attachNavMorph, disposeNavMorph, refreshNavMorph } from './interactions/nav-morph.js';
 import { prefersReducedMotion, batteryLow, setMotionMode } from './utils/perf.js';
 export { mountSignature } from './signature/signature-name.js';
 import './analytics/index.js'; // side-effect: defines window.ideaAnalytics
@@ -49,6 +49,14 @@ export async function initialize() {
   attachCursor();
   attachNavMorph();
 
+  // Route-change hook: after Blazor swaps the DOM, rewire reveals and re-measure
+  // the hero so nav-morph state can't stay stale from the previous page. Registered
+  // here (before any early return) so it survives reduced-motion / no-WebGL paths.
+  window.addEventListener('ideastudio:routechanged', () => {
+    attachReveals();
+    refreshNavMorph();
+  });
+
   const canvas = document.getElementById('gl-canvas');
   if (!canvas) return;
 
@@ -85,11 +93,12 @@ export async function initialize() {
 
   // Reading-progress rail is driven entirely by CSS (animation-timeline:
   // scroll(root)) in components/_progress.scss — no JS scroll listener here.
+}
 
-  // Route-change hook: rewire reveals when the DOM swaps via Blazor's router.
-  window.addEventListener('ideastudio:routechanged', () => {
-    attachReveals();
-  });
+// Called by the app (via ISceneTheme) after a Blazor client-side navigation.
+// Fires the DOM event the runtime listens for in initialize().
+export function notifyRouteChanged() {
+  window.dispatchEvent(new CustomEvent('ideastudio:routechanged'));
 }
 
 export function applyTheme(scene) {

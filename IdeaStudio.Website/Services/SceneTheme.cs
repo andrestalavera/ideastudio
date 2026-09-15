@@ -37,6 +37,15 @@ public sealed class SceneTheme : ISceneTheme, IAsyncDisposable
         await mod.InvokeVoidAsync("pulse");
     }
 
+    public async Task NotifyRouteChangedAsync()
+    {
+        // Only fire if the runtime is already booted; never force-load the bundle
+        // just to announce a navigation.
+        if (module is null) return;
+        try { await module.InvokeVoidAsync("notifyRouteChanged"); }
+        catch (JSDisconnectedException) { /* runtime gone */ }
+    }
+
     public async ValueTask DisposeAsync()
     {
         if (module is not null)

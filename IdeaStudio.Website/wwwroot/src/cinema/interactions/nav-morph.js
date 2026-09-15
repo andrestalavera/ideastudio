@@ -55,6 +55,14 @@ export function attachNavMorph() {
   attachNavMorph._schedule = schedule;
 }
 
+// Recompute after a Blazor client-side navigation: the DOM has swapped, so the
+// previous page's data-hero-state / --hero-progress may be stale (the user may
+// not have scrolled). Double rAF lets Blazor paint the new page before we measure
+// the new (or now-absent) hero.
+export function refreshNavMorph() {
+  requestAnimationFrame(() => requestAnimationFrame(writeState));
+}
+
 export function disposeNavMorph() {
   if (attachNavMorph._schedule) {
     window.removeEventListener('scroll', attachNavMorph._schedule);
