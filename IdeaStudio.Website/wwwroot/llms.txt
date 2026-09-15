@@ -89,13 +89,13 @@
   - .NET testing
   - moving to .NET 11 (C# 15, runtime async)
 - **Azure**
-  - `AI-200`, `AZ-305` & `AZ-400` prep (not certified himself: supports teams preparing certification-track training)
+  - `AI-200`, `AZ-305` & `AZ-400` prep (the trainer is not certified; supports teams preparing certification-track training)
   - Azure Functions & events
   - App Service & containers
   - Azure security fundamentals
   - FinOps on Azure
   - AI agents in .NET with Microsoft Foundry
-- **AI & assisted development**
+- **Vibe coding & AI**
   - Claude Code for teams
   - Spec-Driven Development with GitHub Spec Kit
   - advanced GitHub Copilot (`GH-300` prep)

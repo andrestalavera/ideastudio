@@ -183,13 +183,16 @@ public class JsonContentGatewayTests
     [Theory]
     [InlineData("IdeaStudio.Website/Pages/Trainings.razor")]
     [InlineData("IdeaStudio.Website/Pages/ServiceDetail.razor")]
+    [InlineData("IdeaStudio.Website/Pages/Faq.razor")]
+    [InlineData("IdeaStudio.Website/wwwroot/data/services-fr.json")]
+    [InlineData("IdeaStudio.Website/wwwroot/data/services-en.json")]
     [InlineData("IdeaStudio.Website/wwwroot/llms.txt")]
     public void TrainingCountCopy_MatchesCatalogueSize(string relativePath)
     {
         int expected = LoadTrainings("trainings-fr.json").Length;
         string text = File.ReadAllText(LocateRepoFile(relativePath));
 
-        MatchCollection counts = Regex.Matches(text, @"\b(\d+) (?:hands-on |ready-to-run )?(?:training )?modules|modules: (\d+)");
+        MatchCollection counts = Regex.Matches(text, @"\b(\d+) (?:hands-on |ready-to-run )?(?:training |catalogue )?modules|modules: (\d+)");
 
         Assert.NotEmpty(counts);
         Assert.All(counts, m => Assert.Equal(expected, int.Parse(m.Groups[1].Success ? m.Groups[1].Value : m.Groups[2].Value)));

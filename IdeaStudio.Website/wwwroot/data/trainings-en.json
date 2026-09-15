@@ -156,7 +156,7 @@
       "Instrumentation: Azure Monitor, Application Insights, KQL",
       "Exam preparation, sample questions"
     ],
-    "prerequisites": "Team project experience, basic Git, basic cloud.",
+    "prerequisites": "Team project experience, Git basics, cloud basics. The Expert certification also requires AZ-104 or a still-valid Azure Developer Associate.",
     "durationDays": 5,
     "level": "advanced",
     "certification": "AZ-400"
@@ -339,7 +339,7 @@
     ],
     "prerequisites": "Hands-on GitHub, an AI coding assistant and a CI pipeline.",
     "durationDays": 3,
-    "level": "advanced",
+    "level": "intermediate",
     "certification": "GH-600"
   },
   {

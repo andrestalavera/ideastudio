@@ -156,7 +156,7 @@
       "Instrumentation : Azure Monitor, Application Insights, KQL",
       "Préparation à l'examen, questions types"
     ],
-    "prerequisites": "Expérience d'un projet en équipe, notions Git, notions cloud.",
+    "prerequisites": "Expérience d'un projet en équipe, notions Git, notions cloud. La certification Expert requiert aussi l'AZ-104 ou une Azure Developer Associate encore valide.",
     "durationDays": 5,
     "level": "advanced",
     "certification": "AZ-400"
@@ -339,7 +339,7 @@
     ],
     "prerequisites": "Pratique de GitHub, d'un assistant IA de code et d'un pipeline CI.",
     "durationDays": 3,
-    "level": "advanced",
+    "level": "intermediate",
     "certification": "GH-600"
   },
   {
