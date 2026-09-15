@@ -8,7 +8,7 @@
   - role: tech lead
   - role: trainer
   - experience: 15+ years
-  - teaching: 3,000+ hours
+  - teaching: 3,750 hours delivered
 
 ## Key facts
 
@@ -89,7 +89,7 @@
   - .NET testing
   - moving to .NET 11 (C# 15, runtime async)
 - **Azure**
-  - `AI-200` (successor to AZ-204), `AZ-305` & `AZ-400` prep
+  - `AI-200`, `AZ-305` & `AZ-400` prep (not certified himself: supports teams preparing certification-track training)
   - Azure Functions & events
   - App Service & containers
   - Azure security fundamentals

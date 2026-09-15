@@ -123,7 +123,7 @@
   {
     "slug": "azure-ai200-prep",
     "title": "Solutions cloud & IA sur Azure (préparation AI-200)",
-    "summary": "Préparez la certification Azure AI Cloud Developer Associate (AI-200), qui succède à l'AZ-204, et repartez capable de construire le back-end cloud de vos applications IA. Les compétences et le diplôme reconnu.",
+    "summary": "À l'issue, vos équipes construisent le back-end cloud de leurs applications IA sur Azure (conteneurs, données vectorielles, messagerie, sécurité, supervision) et abordent la certification Azure AI Cloud Developer Associate (AI-200) bien préparées.",
     "category": "Azure",
     "outline": [
       "Conteneurs : Container Registry, App Service, Container Apps et KEDA, AKS",
