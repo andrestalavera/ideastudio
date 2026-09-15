@@ -1,0 +1,83 @@
+// components/_module.scss — one module of a training programme, on a training detail page.
+// Numbered list of modules: each carries a label + duration pill, a title, its points
+// and the hands-on exercise that closes it.
+
+@use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+@use '../tokens/type' as t;
+
+.ds-module-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-6;
+  counter-reset: ds-module;
+}
+
+.ds-module {
+  display: flex;
+  flex-direction: column;
+  gap: s.$s-3;
+  padding-block: s.$s-6;
+  border-block-start: 1px solid c.$rule;
+
+  &:last-child {
+    border-block-end: 1px solid c.$rule;
+  }
+
+  &-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: s.$s-3;
+  }
+
+  &-title {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: t.$fs-subtitle;
+    letter-spacing: -0.015em;
+    color: c.$fg;
+    margin: 0;
+  }
+
+  &-points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: s.$s-3;
+    color: c.$fg-muted;
+
+    li {
+      position: relative;
+      padding-inline-start: s.$s-5;
+    }
+
+    // Dash marker: quieter than a bullet, and it lines up with the editorial rules.
+    li::before {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-start: 0.7em;
+      width: s.$s-3;
+      height: 1px;
+      background: c.$ir-duck;
+    }
+  }
+
+  &-workshop {
+    display: flex;
+    flex-direction: column;
+    gap: s.$s-2;
+    margin: 0;
+    padding: s.$s-4;
+    border-radius: 12px;
+    background: c.$bg-surface;
+    color: c.$fg-muted;
+    font-size: t.$fs-body;
+  }
+}

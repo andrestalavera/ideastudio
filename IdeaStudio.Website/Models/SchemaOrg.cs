@@ -381,7 +381,8 @@ public static class SchemaOrg
         [property: JsonPropertyName("@id")] string? Id = null,
         string? InLanguage = null,
         CourseOffer? Offers = null,
-        CourseInstance? HasCourseInstance = null)
+        CourseInstance? HasCourseInstance = null,
+        Syllabus[]? SyllabusSections = null)
     {
         [JsonPropertyName("@context")]
         public string Context => "https://schema.org";
@@ -397,6 +398,15 @@ public static class SchemaOrg
     {
         [JsonPropertyName("@type")]
         public string Type => "Offer";
+    }
+
+    /// <summary>
+    /// Schema.org Syllabus — one module of a course programme.
+    /// </summary>
+    public record Syllabus(string Name, string? Description = null, string? TimeRequired = null)
+    {
+        [JsonPropertyName("@type")]
+        public string Type => "Syllabus";
     }
 
     /// <summary>

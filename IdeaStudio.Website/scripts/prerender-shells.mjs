@@ -70,11 +70,11 @@ const SEO = {
     og: 'website',
     fr: {
       title: 'Formations .NET, Azure & IA pour vos équipes | IdeaStud.io',
-      description: "40 modules de formation .NET, Azure, IA, GitHub, FinOps et architecture, par un consultant qui code au quotidien. 3 750 heures de formation animées. En présentiel, classe virtuelle ou intra sur-mesure.",
+      description: "40 formations .NET, Azure, IA, GitHub, FinOps et architecture, par un consultant qui code au quotidien. 3 750 heures de formation animées. En présentiel, classe virtuelle ou intra sur-mesure.",
     },
     en: {
       title: 'Training: .NET, Azure & AI for your teams | IdeaStud.io',
-      description: '40 hands-on training modules across .NET, Azure, AI, GitHub, FinOps and architecture, by a consultant who codes every day. 3,750 hours of training delivered. On-site, virtual classroom or bespoke in-house.',
+      description: '40 hands-on training courses across .NET, Azure, AI, GitHub, FinOps and architecture, by a consultant who codes every day. 3,750 hours of training delivered. On-site, virtual classroom or bespoke in-house.',
     },
   },
   about: {

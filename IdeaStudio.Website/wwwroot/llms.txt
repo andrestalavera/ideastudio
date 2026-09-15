@@ -92,7 +92,7 @@
 ## Training catalogue
 
 - **Overview**
-  - modules: 40 hands-on
+  - courses: 40 hands-on (each split into modules with a hands-on exercise)
   - delivery: on-site, virtual classroom, in-house
   - hub FR: `/fr/formations`
   - hub EN: `/en/training`
