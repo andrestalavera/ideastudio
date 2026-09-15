@@ -23,16 +23,16 @@
 	},
 	"homepage": "https://github.com/andrestalavera/ideastudio#readme",
 	"dependencies": {
-		"@fontsource-variable/inter": "5.2.5",
-		"@fontsource/jetbrains-mono": "5.2.5",
+		"@fontsource-variable/inter": "5.3.0",
+		"@fontsource/jetbrains-mono": "5.3.0",
 		"gsap": "^3.13.0",
 		"modern-normalize": "^3.0.1"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.0",
-		"sass": "^1.92.1",
-		"stylelint": "^16.24.0",
-		"stylelint-config-recommended-scss": "^16.0.0",
+		"esbuild": "^0.28.2",
+		"sass": "^1.104.1",
+		"stylelint": "^17.15.0",
+		"stylelint-config-recommended-scss": "^17.0.1",
 		"stylelint-scss": "^6.12.1"
 	}
 }
