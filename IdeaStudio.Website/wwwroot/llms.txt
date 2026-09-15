@@ -12,6 +12,20 @@
   - teaching: 3,750 hours delivered
   - certified: no (supports teams preparing certification-track training)
 
+## Key pages
+
+- [Home (FR)](https://ideastud.io/fr) · [Home (EN)](https://ideastud.io/en)
+- [Services (FR)](https://ideastud.io/fr/services) · [Services (EN)](https://ideastud.io/en/services)
+- [Training catalogue (FR)](https://ideastud.io/fr/formations) · [Training catalogue (EN)](https://ideastud.io/en/training)
+- [Trainer service (FR)](https://ideastud.io/fr/services/formateur) · [Trainer service (EN)](https://ideastud.io/en/services/trainer)
+- [Projects & case studies (FR)](https://ideastud.io/fr/realisations) · [Projects (EN)](https://ideastud.io/en/projects)
+- [About (FR)](https://ideastud.io/fr/a-propos) · [About (EN)](https://ideastud.io/en/about)
+- [Resume (FR)](https://ideastud.io/fr/cv) · [Resume (EN)](https://ideastud.io/en/resume)
+- [FAQ (FR)](https://ideastud.io/fr/faq) · [FAQ (EN)](https://ideastud.io/en/faq)
+- [Blog (FR)](https://ideastud.io/fr/blog) · [Blog (EN)](https://ideastud.io/en/blog)
+- [Contact (FR)](https://ideastud.io/fr/contact) · [Contact (EN)](https://ideastud.io/en/contact)
+- [Sitemap](https://ideastud.io/sitemap.xml) · [ai.txt](https://ideastud.io/ai.txt)
+
 ## Key facts
 
 - **Rates**
