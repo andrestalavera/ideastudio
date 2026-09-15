@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.RegularExpressions;
 using IdeaStudio.Website.Models;
 using IdeaStudio.Website.Services;
@@ -174,7 +174,29 @@ public class JsonContentGatewayTests
             Assert.Equal(pair.First.DurationDays, pair.Second.DurationDays);
             Assert.Equal(pair.First.Level, pair.Second.Level);
             Assert.Equal(pair.First.Certification, pair.Second.Certification);
-            Assert.Equal(pair.First.Outline.Count, pair.Second.Outline.Count);
+            Assert.Equal(pair.First.Modules.Count, pair.Second.Modules.Count);
+            Assert.Equal(pair.First.Objectives?.Count, pair.Second.Objectives?.Count);
+            Assert.Equal(pair.First.Faq?.Count, pair.Second.Faq?.Count);
+            Assert.Equal(
+                pair.First.Modules.Select(m => m.Points.Count),
+                pair.Second.Modules.Select(m => m.Points.Count));
+        });
+    }
+
+    // A programme that doesn't add up to the advertised duration is a promise we can't keep.
+    [Theory]
+    [InlineData("trainings-fr.json")]
+    [InlineData("trainings-en.json")]
+    public void TrainingModules_DurationsAddUpToTheCourseLength(string file)
+    {
+        Assert.All(LoadTrainings(file), t =>
+        {
+            Assert.NotEmpty(t.Modules);
+            Assert.All(t.Modules, m => Assert.NotEmpty(m.Points));
+            if (t.DurationDays is int days && t.Modules.All(m => m.DurationDays is not null))
+            {
+                Assert.Equal(days, t.Modules.Sum(m => m.DurationDays!.Value), precision: 2);
+            }
         });
     }
 
@@ -192,7 +214,7 @@ public class JsonContentGatewayTests
         int expected = LoadTrainings("trainings-fr.json").Length;
         string text = File.ReadAllText(LocateRepoFile(relativePath));
 
-        MatchCollection counts = Regex.Matches(text, @"\b(\d+) (?:hands-on |ready-to-run )?(?:training |catalogue )?modules|modules: (\d+)");
+        MatchCollection counts = Regex.Matches(text, @"\b(\d+) (?:hands-on |ready-to-run )?(?:training |catalogue )?(?:modules|formations?|courses)|(?:modules|courses): (\d+)");
 
         Assert.NotEmpty(counts);
         Assert.All(counts, m => Assert.Equal(expected, int.Parse(m.Groups[1].Success ? m.Groups[1].Value : m.Groups[2].Value)));
@@ -219,7 +241,7 @@ public class JsonContentGatewayTests
         Title = slug,
         Summary = "summary",
         Category = ".NET",
-        Outline = ["a", "b"],
+        Modules = [new TrainingModule { Title = "module", Points = ["a", "b"] }],
     };
 
     private static string LocateDataFile(string fileName) =>

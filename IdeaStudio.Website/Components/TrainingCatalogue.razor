@@ -37,12 +37,12 @@
                             </div>
                         </header>
                         <p class="ds-training-card-summary">@t.Summary</p>
-                        @if (t.Outline is { Count: > 0 })
+                        @if (t.Modules is { Count: > 0 })
                         {
                             <ul class="ds-training-card-outline">
-                                @foreach (string item in t.Outline)
+                                @foreach (TrainingModule module in t.Modules)
                                 {
-                                    <li>@item</li>
+                                    <li>@module.Title</li>
                                 }
                             </ul>
                         }

@@ -3,6 +3,7 @@
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
+@using System.Globalization
 @inherits LocalizedComponent
 @inject IContentGateway Content
 @inject ILocalizedRoute LocalizedRoute
@@ -46,20 +47,119 @@ else
         </div>
     </PageSection>
 
-    @* Agenda *@
-    @if (training.Outline is { Count: > 0 })
+    @* Objectives + audience *@
+    @if (training.Objectives is { Count: > 0 })
     {
         <PageSection Width="narrow">
-            <ChapterBand Kicker="@agendaKicker" Title="@agendaTitle" />
+            <ChapterBand Kicker="@objectivesKicker" Title="@objectivesTitle" />
             <ul class="ds-highlight-list mt-8">
-                @for (int i = 0; i < training.Outline.Count; i++)
+                @for (int i = 0; i < training.Objectives.Count; i++)
                 {
                     <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
                         <span class="ds-highlight-mark" aria-hidden="true"></span>
-                        <span>@training.Outline[i]</span>
+                        <span>@training.Objectives[i]</span>
                     </li>
                 }
             </ul>
+            @if (!string.IsNullOrWhiteSpace(training.Audience))
+            {
+                <p class="mt-10 text-lead text-muted" data-reveal>
+                    <span class="label-mono block mb-2">@audienceLabel</span>
+                    @training.Audience
+                </p>
+            }
+        </PageSection>
+    }
+
+    @* Programme, module by module *@
+    @if (training.Modules is { Count: > 0 })
+    {
+        <PageSection Width="narrow">
+            <ChapterBand Kicker="@agendaKicker" Title="@agendaTitle" />
+            <ol class="ds-module-list mt-10">
+                @for (int i = 0; i < training.Modules.Count; i++)
+                {
+                    TrainingModule module = training.Modules[i];
+                    <li class="ds-module" data-reveal style="@($"--reveal-step:{i}")">
+                        <div class="ds-module-head">
+                            <span class="label-mono">@moduleLabel @((i + 1).ToString("D2", CultureInfo.InvariantCulture))</span>
+                            @if (FormatModuleDuration(module.DurationDays) is string duration)
+                            {
+                                <span class="ds-training-card-pill">@duration</span>
+                            }
+                        </div>
+                        <h3 class="ds-module-title">@module.Title</h3>
+                        <ul class="ds-module-points">
+                            @foreach (string point in module.Points)
+                            {
+                                <li>@point</li>
+                            }
+                        </ul>
+                        @if (!string.IsNullOrWhiteSpace(module.Workshop))
+                        {
+                            <p class="ds-module-workshop">
+                                <span class="label-mono">@workshopLabel</span>
+                                @module.Workshop
+                            </p>
+                        }
+                    </li>
+                }
+            </ol>
+        </PageSection>
+    }
+
+    @* How the course runs *@
+    <PageSection Width="narrow">
+        <ChapterBand Kicker="@formatKicker" Title="@formatTitle" />
+        <ul class="ds-highlight-list mt-8">
+            @for (int i = 0; i < formatPoints.Count; i++)
+            {
+                <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
+                    <span class="ds-highlight-mark" aria-hidden="true"></span>
+                    <span>@formatPoints[i]</span>
+                </li>
+            }
+        </ul>
+        @if (!string.IsNullOrWhiteSpace(training.Evaluation))
+        {
+            <p class="mt-10 text-lead text-muted" data-reveal>
+                <span class="label-mono block mb-2">@evaluationLabel</span>
+                @training.Evaluation
+            </p>
+        }
+    </PageSection>
+
+    @* FAQ *@
+    @if (training.Faq is { Count: > 0 })
+    {
+        <PageSection Width="narrow">
+            <ChapterBand Kicker="@faqKicker" Title="@faqTitle" />
+            <div class="mt-10">
+                @for (int i = 0; i < training.Faq.Count; i++)
+                {
+                    FaqEntry entry = training.Faq[i];
+                    <QABlock Kicker="@($"Q {i + 1:D2}")" Question="@entry.Question" Answer="@entry.Answer" Step="@i" />
+                }
+            </div>
+        </PageSection>
+    }
+
+    @* Same family *@
+    @if (related is { Count: > 0 })
+    {
+        <PageSection>
+            <ChapterBand Kicker="@relatedKicker" Title="@relatedTitle" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+                @for (int i = 0; i < related.Count; i++)
+                {
+                    Training other = related[i];
+                    <a class="ds-tile" href="@($"{LocalizedRoute.For("training")}/{other.Slug}")" data-reveal style="@($"--reveal-step:{i}")">
+                        <span class="label-mono">@FormatTrainingFacts(other)</span>
+                        <span class="card-title">@other.Title</span>
+                        <span class="text-muted">@other.Summary</span>
+                    </a>
+                }
+            </div>
         </PageSection>
     }
 
@@ -77,6 +177,7 @@ else
     [Parameter] public string? Slug { get; set; }
 
     private Training? training;
+    private IReadOnlyList<Training>? related;
     private bool loaded;
     private string seoTitle = "Formation, IdeaStud.io";
     private string seoDescription = "";
@@ -85,8 +186,20 @@ else
     private Dictionary<string, string>? seoHreflang;
     private List<string>? seoStructuredData;
 
+    private string objectivesKicker = "Objectifs";
+    private string objectivesTitle = "Ce que vous saurez faire.";
     private string agendaKicker = "Au programme";
-    private string agendaTitle = "Ce que vous couvrez.";
+    private string agendaTitle = "Le programme, module par module.";
+    private string moduleLabel = "Module";
+    private string workshopLabel = "Atelier";
+    private string formatKicker = "Déroulé";
+    private string formatTitle = "Comment la formation se passe.";
+    private List<string> formatPoints = new();
+    private string evaluationLabel = "Évaluation";
+    private string faqKicker = "Questions fréquentes";
+    private string faqTitle = "Ce que les équipes demandent.";
+    private string relatedKicker = "Dans la même famille";
+    private string relatedTitle = "Pour aller plus loin.";
     private string ctaKicker = "Sur-mesure";
     private string ctaTitle = "Cette formation pour votre équipe ?";
     private string ctaLead = "";
@@ -99,9 +212,9 @@ else
     // Fact labels
     private string levelLabel = "Niveau";
     private string durationLabel = "Durée";
-    private string audienceLabel = "Public";
+    private string audienceLabel = "Pour qui";
     private string prereqLabel = "Prérequis";
-    private string certLabel = "Certification";
+    private string certLabel = "Certification visée";
 
     private bool Fr => CultureService.CurrentCulture.Name.StartsWith("fr");
 
@@ -123,8 +236,30 @@ else
     {
         bool fr = Fr;
         seoLocale = fr ? "fr_FR" : "en_US";
+        objectivesKicker = fr ? "Objectifs" : "Objectives";
+        objectivesTitle  = fr ? "Ce que vous saurez faire." : "What you'll be able to do.";
         agendaKicker = fr ? "Au programme" : "Curriculum";
-        agendaTitle  = fr ? "Ce que vous couvrez." : "What you'll cover.";
+        agendaTitle  = fr ? "Le programme, module par module." : "The programme, module by module.";
+        moduleLabel   = fr ? "Module" : "Module";
+        workshopLabel = fr ? "Atelier" : "Hands-on";
+        formatKicker = fr ? "Déroulé" : "How it runs";
+        formatTitle  = fr ? "Comment la formation se passe." : "How the course runs.";
+        formatPoints = fr
+            ? new() {
+                "En présentiel, en classe virtuelle synchrone ou en intra sur-mesure, dans vos locaux comme à distance.",
+                "Alternance de démonstrations et d'exercices sur machine, avec un atelier fil rouge repris de module en module.",
+                "Supports de cours et code des exercices remis aux participants, à garder après la session.",
+            }
+            : new() {
+                "On-site, in a synchronous virtual classroom or as a bespoke in-house session, at your offices or remote.",
+                "Demonstrations alternating with hands-on exercises, around a thread carried from module to module.",
+                "Course materials and exercise code handed to participants, theirs to keep after the session.",
+            };
+        evaluationLabel = fr ? "Évaluation" : "Assessment";
+        faqKicker = fr ? "Questions fréquentes" : "FAQ";
+        faqTitle  = fr ? "Ce que les équipes demandent." : "What teams ask.";
+        relatedKicker = fr ? "Dans la même famille" : "Same family";
+        relatedTitle  = fr ? "Pour aller plus loin." : "To go further.";
         ctaKicker = fr ? "Sur-mesure" : "Bespoke";
         ctaTitle  = fr ? "Cette formation pour votre équipe ?" : "This training for your team?";
         ctaLead   = fr
@@ -137,7 +272,7 @@ else
         notFoundLead  = fr ? "Cette formation n'existe pas. Retour au catalogue." : "That training doesn't exist. Back to the catalogue.";
         levelLabel    = fr ? "Niveau" : "Level";
         durationLabel = fr ? "Durée" : "Duration";
-        audienceLabel = fr ? "Public" : "Audience";
+        audienceLabel = fr ? "Pour qui" : "Who it's for";
         prereqLabel   = fr ? "Prérequis" : "Prerequisites";
         certLabel     = fr ? "Certification visée" : "Target certification";
     }
@@ -151,6 +286,10 @@ else
         loaded = true;
         if (training is not null)
         {
+            related = all
+                .Where(t => t.Category == training.Category && t.Slug != training.Slug)
+                .Take(3)
+                .ToList();
             seoTitle = $"{training.Title} | {(fr ? "Formation" : "Training")} — Andrés Talavera | IdeaStud.io";
             seoDescription = training.Summary;
             string slug = training.Slug;
@@ -166,7 +305,6 @@ else
         if (training is null) { yield break; }
         if (!string.IsNullOrWhiteSpace(training.Level)) { yield return (levelLabel, LevelLabel(training.Level!)); }
         if (training.DurationDays is int d) { yield return (durationLabel, Fr ? $"{d} jour{(d > 1 ? "s" : "")}" : $"{d} day{(d > 1 ? "s" : "")}"); }
-        if (!string.IsNullOrWhiteSpace(training.Audience)) { yield return (audienceLabel, training.Audience!); }
         if (!string.IsNullOrWhiteSpace(training.Prerequisites)) { yield return (prereqLabel, training.Prerequisites!); }
         if (!string.IsNullOrWhiteSpace(training.Certification)) { yield return (certLabel, training.Certification!); }
     }
@@ -178,6 +316,27 @@ else
         "advanced" => Fr ? "Avancé" : "Advanced",
         _ => level,
     };
+
+    // Modules are sized in quarters of a day; fractions read better as glyphs than as decimals.
+    private string? FormatModuleDuration(double? days) => days switch
+    {
+        null => null,
+        <= 0 => null,
+        0.25 => Fr ? "¼ j" : "¼d",
+        0.5 => Fr ? "½ j" : "½d",
+        0.75 => Fr ? "¾ j" : "¾d",
+        _ => Fr ? $"{days.Value.ToString("0.##", CultureInfo.GetCultureInfo("fr-FR"))} j"
+                : $"{days.Value.ToString("0.##", CultureInfo.InvariantCulture)}d",
+    };
+
+    private string FormatTrainingFacts(Training t)
+    {
+        List<string> parts = new();
+        if (t.DurationDays is int d) { parts.Add(Fr ? $"{d} j" : $"{d}d"); }
+        if (!string.IsNullOrWhiteSpace(t.Level)) { parts.Add(LevelLabel(t.Level!)); }
+        if (!string.IsNullOrWhiteSpace(t.Certification)) { parts.Add(t.Certification!); }
+        return string.Join(" · ", parts);
+    }
 
     private void GenerateStructuredData()
     {
@@ -201,9 +360,15 @@ else
             HasCourseInstance: new SchemaOrg.CourseInstance(
                 CourseMode: ["Onsite", "Online"],
                 CourseWorkload: workload,
-                Instructor: SchemaIdentity.PersonRef()));
+                Instructor: SchemaIdentity.PersonRef()),
+            SyllabusSections: training.Modules
+                .Select(m => new SchemaOrg.Syllabus(
+                    Name: m.Title,
+                    Description: string.Join(" · ", m.Points),
+                    TimeRequired: ToIso8601(m.DurationDays)))
+                .ToArray());
 
-        seoStructuredData = new List<string>
+        List<string> blocks = new()
         {
             SchemaOrg.ToJsonLd(course),
             SchemaOrg.ToJsonLd(SchemaOrg.CreateBreadcrumb(
@@ -212,5 +377,17 @@ else
                 (fr ? "Formations" : "Training", LocalizedRoute.For("training", cultureCode)),
                 (training.Title, $"{LocalizedRoute.For("training", cultureCode)}/{training.Slug}"))),
         };
+
+        if (training.Faq is { Count: > 0 })
+        {
+            blocks.Add(SchemaOrg.ToJsonLd(new SchemaOrg.FAQPage(
+                training.Faq.Select(f => new SchemaOrg.Question(f.Question, new SchemaOrg.Answer(f.Answer))).ToArray())));
+        }
+
+        seoStructuredData = blocks;
     }
+
+    // Quarter-day modules, expressed as ISO 8601 hours on a 7-hour training day.
+    private static string? ToIso8601(double? days) =>
+        days is null or <= 0 ? null : $"PT{(int)Math.Round(days.Value * 7)}H";
 }
