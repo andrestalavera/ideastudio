@@ -34,9 +34,9 @@
       "title": "Your Trainer",
       "paragraphs": [
         "Trainer in .NET, C#, and Azure for developers and enterprise teams, on-site and remote.",
-        "Programs covering ASP.NET Core, Blazor, cloud architecture, Azure DevOps, and testing strategies.",
+        "Programs covering ASP.NET Core, Blazor, cloud architecture, Azure DevOps and GitHub, generative AI, FinOps, and testing strategies.",
         "Sessions delivered across France, Belgium, and Luxembourg, from students to senior devs reskilling on cloud.",
-        "Expert in .NET 9 / 10, Blazor, and cloud-native Azure solutions."
+        "Expert in .NET 10 / 11, Blazor, and cloud-native Azure solutions."
       ],
       "icons": [
         "fab fa-linkedin linkedin-logo"
@@ -46,7 +46,7 @@
     {
       "title": "Passionate",
       "paragraphs": [
-        "Continuous watch on the Microsoft ecosystem: .NET 10, Blazor, .NET Aspire, and agentic coding.",
+        "Continuous watch on the Microsoft ecosystem: .NET 10 and .NET 11, Blazor, Aspire, and agentic coding.",
         "Ongoing R&D: cloud-native architectures, serverless, observability, and AI-assisted development tooling.",
         "Active developer community participant since Microsoft Student Partner days.",
         "Passionate about mobile development, high-performance web, and distributed architecture."
@@ -96,6 +96,8 @@
       "description": [
         "The craft is evolving: daily integration of agentic coding tools to design, architect, and ship complete platforms faster — without compromising on architecture or quality.",
         "Directing AI agents (Claude Code) as the sole architect-developer to accelerate delivery on real projects, from scoping through production deployment.",
+        "End-to-end SaaS development with Spec-Driven Development and GitHub Spec Kit, using an in-house variant tailored to .NET (custom constitution, templates and commands).",
+        "Supporting clients as they build their SaaS products, from scoping to production.",
         "Flagship project: design and delivery of a PropTech / RegTech SaaS platform for the French Energy Performance Diagnosis (DPE), built over ~8 months and 2,000+ commits."
       ],
       "responsibilities": [
@@ -119,6 +121,11 @@
         "Agentic Coding",
         "Claude Code",
         "GitHub Copilot",
+        "GitHub Spec Kit",
+        "Spec-Driven Development",
+        "SaaS",
+        "Multi-tenant",
+        "Microsoft 365 Copilot",
         "Ollama",
         "Codex App",
         "Hermes Agent",
@@ -158,6 +165,17 @@
         "RegTech",
         "Redis",
         "Docker",
+        "Kubernetes",
+        "PostgreSQL",
+        "Keycloak",
+        "Azure Container Registry (ACR)",
+        "Azure Developer CLI (azd)",
+        "Dev Containers",
+        "Dev Tunnels",
+        "Scaleway",
+        "Infomaniak",
+        "AWS S3",
+        "ASP.NET Core Security",
         "GitHub",
         "Web Development"
       ]

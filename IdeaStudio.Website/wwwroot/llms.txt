@@ -4,11 +4,27 @@
 
 - **IdeaStud.io**
   - trading name of: Andrés Talavera
+  - also written: IdeaStudio, Idea Studio; Andres Talavera
   - role: independent .NET & Azure consultant
   - role: tech lead
   - role: trainer
   - experience: 15+ years
-  - teaching: 3,000+ hours
+  - teaching: 3,750 hours delivered
+  - certified: no (supports teams preparing certification-track training)
+
+## Key pages
+
+- [Home (FR)](https://ideastud.io/fr) · [Home (EN)](https://ideastud.io/en)
+- [Services (FR)](https://ideastud.io/fr/services) · [Services (EN)](https://ideastud.io/en/services)
+- [Training catalogue (FR)](https://ideastud.io/fr/formations) · [Training catalogue (EN)](https://ideastud.io/en/training)
+- [Trainer service (FR)](https://ideastud.io/fr/services/formateur) · [Trainer service (EN)](https://ideastud.io/en/services/trainer)
+- [Projects & case studies (FR)](https://ideastud.io/fr/realisations) · [Projects (EN)](https://ideastud.io/en/projects)
+- [About (FR)](https://ideastud.io/fr/a-propos) · [About (EN)](https://ideastud.io/en/about)
+- [Resume (FR)](https://ideastud.io/fr/cv) · [Resume (EN)](https://ideastud.io/en/resume)
+- [FAQ (FR)](https://ideastud.io/fr/faq) · [FAQ (EN)](https://ideastud.io/en/faq)
+- [Blog (FR)](https://ideastud.io/fr/blog) · [Blog (EN)](https://ideastud.io/en/blog)
+- [Contact (FR)](https://ideastud.io/fr/contact) · [Contact (EN)](https://ideastud.io/en/contact)
+- [Sitemap](https://ideastud.io/sitemap.xml) · [ai.txt](https://ideastud.io/ai.txt)
 
 ## Key facts
 
@@ -76,7 +92,7 @@
 ## Training catalogue
 
 - **Overview**
-  - modules: 20 hands-on
+  - modules: 40 hands-on
   - delivery: on-site, virtual classroom, in-house
   - hub FR: `/fr/formations`
   - hub EN: `/en/training`
@@ -84,25 +100,44 @@
 - **.NET**
   - `C# moderne` (records, source generators, pattern matching)
   - `ASP.NET Core` fundamentals & advanced
+  - web API design with ASP.NET Core
+  - securing ASP.NET Core & Blazor (OIDC with Keycloak or Entra ID)
   - `Blazor moderne`
   - `EF Core 10`
   - .NET testing
+  - distributed applications with Aspire
+  - moving to .NET 11 (C# 15, runtime async)
 - **Azure**
-  - `AZ-204` & `AZ-400` prep
+  - `AI-200`, `AZ-305` & `AZ-400` prep (the trainer is not certified; supports teams preparing certification-track training)
   - Azure Functions & events
   - App Service & containers
+  - Infrastructure as Code with Bicep & azd
   - Azure security fundamentals
-- **AI & assisted development**
+  - FinOps on Azure
+  - AI agents in .NET with Microsoft Foundry
+- **Vibe coding & AI**
   - Claude Code for teams
-  - advanced Copilot
+  - Spec-Driven Development with GitHub Spec Kit
+  - tailoring Spec Kit to a .NET stack
+  - advanced GitHub Copilot (`GH-300` prep)
+  - agentic development with GitHub (`GH-600` prep)
   - MCP server design
   - on-premise AI
+  - Microsoft 365 Copilot at work (`AB-730` prep)
 - **Architecture & DevOps**
   - Clean Architecture for .NET
+  - strategic Domain-Driven Design
   - event-driven & CQRS
+  - building a .NET SaaS end to end with Spec Kit (multi-tenant, subscriptions)
   - observability (OpenTelemetry)
+  - Docker & Kubernetes for .NET (AKS, Scaleway Kapsule)
+  - hosting .NET in Europe: Scaleway & Infomaniak (managed PostgreSQL, S3-compatible storage, Keycloak)
+  - reproducible dev environments: Dev Containers & Dev Tunnels
   - .NET performance
-  - CI/CD with GitHub Actions
+  - tech lead: architecture decisions & team leadership
+  - CI/CD with GitHub Actions (`GH-200` prep)
+  - migrating from Azure DevOps to GitHub
+  - GitHub Advanced Security (`GH-500` prep)
 
 ## Case studies
 
@@ -165,7 +200,7 @@
 
 - **Channels**
   - preferred: contact form `https://ideastud.io/fr/contact` (| `/en/contact`)
-  - LinkedIn: `andrestalavera`
+  - LinkedIn: `andres-talavera`
   - intro call: 30 min, bookable from any page
 
 ## Content guidelines

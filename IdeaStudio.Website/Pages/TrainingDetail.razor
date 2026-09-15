@@ -12,6 +12,7 @@
          CanonicalUrl="@seoCanonical" Locale="@seoLocale"
          HreflangUrls="@seoHreflang"
          SiteName="IdeaStud.io"
+         NoIndex="@(loaded && training is null)"
          StructuredData="@seoStructuredData" />
 
 @if (training is null)
@@ -76,6 +77,7 @@ else
     [Parameter] public string? Slug { get; set; }
 
     private Training? training;
+    private bool loaded;
     private string seoTitle = "Formation, IdeaStud.io";
     private string seoDescription = "";
     private string seoCanonical = "https://ideastud.io/fr/formations";
@@ -137,7 +139,7 @@ else
         durationLabel = fr ? "Durée" : "Duration";
         audienceLabel = fr ? "Public" : "Audience";
         prereqLabel   = fr ? "Prérequis" : "Prerequisites";
-        certLabel     = "Certification";
+        certLabel     = fr ? "Certification visée" : "Target certification";
     }
 
     private async Task LoadAsync()
@@ -146,9 +148,10 @@ else
         bool fr = Fr;
         IReadOnlyList<Training> all = await Content.GetTrainingsAsync(CultureService.CurrentCulture.Name);
         training = all.FirstOrDefault(t => string.Equals(t.Slug, Slug, StringComparison.OrdinalIgnoreCase));
+        loaded = true;
         if (training is not null)
         {
-            seoTitle = $"{training.Title} | {(fr ? "Formation" : "Training")} | IdeaStud.io";
+            seoTitle = $"{training.Title} | {(fr ? "Formation" : "Training")} — Andrés Talavera | IdeaStud.io";
             seoDescription = training.Summary;
             string slug = training.Slug;
             seoCanonical = $"https://ideastud.io{LocalizedRoute.For("training", fr ? "fr" : "en")}/{slug}";
@@ -182,25 +185,23 @@ else
         bool fr = Fr;
         string cultureCode = fr ? "fr" : "en";
 
-        SchemaOrg.Person person = new(
-            Name: "Andrés Talavera",
-            JobTitle: fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
-            Description: seoDescription,
-            Url: "https://ideastud.io",
-            Image: "https://ideastud.io/images/andres-talavera.jpeg",
-            SameAs: new[] { "https://www.linkedin.com/in/andres-talavera/", "https://github.com/andrestalavera", "https://x.com/imcresus_" },
-            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "Software Training" },
-            Address: null,
-            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io"));
-
+        string? workload = training.DurationDays is int d ? $"P{d}D" : null;
         SchemaOrg.Course course = new(
             Name: training.Title,
             Description: training.Summary,
-            Provider: person,
+            Provider: SchemaIdentity.Organization(),
             CourseCode: training.Slug,
             EducationalLevel: training.Level,
-            TimeRequired: training.DurationDays is int d ? $"P{d}D" : null,
-            Url: seoCanonical);
+            TimeRequired: workload,
+            Url: seoCanonical,
+            Id: $"{seoCanonical}#course",
+            InLanguage: cultureCode,
+            // No per-course price and no credential awarded: modules prepare for exams, they don't certify.
+            Offers: new SchemaOrg.CourseOffer("Paid"),
+            HasCourseInstance: new SchemaOrg.CourseInstance(
+                CourseMode: ["Onsite", "Online"],
+                CourseWorkload: workload,
+                Instructor: SchemaIdentity.PersonRef()));
 
         seoStructuredData = new List<string>
         {

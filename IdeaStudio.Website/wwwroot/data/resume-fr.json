@@ -34,9 +34,9 @@
       "title": "Votre formateur",
       "paragraphs": [
         "Formateur .NET, C# et Azure pour développeurs et équipes en entreprise, en présentiel comme en distanciel.",
-        "Programmes sur ASP.NET Core, Blazor, architecture cloud, DevOps Azure et stratégies de test.",
+        "Programmes sur ASP.NET Core, Blazor, architecture cloud, Azure DevOps et GitHub, IA générative, FinOps et stratégies de test.",
         "Sessions dispensées en France, Belgique et Luxembourg, du niveau étudiant au développeur senior en reconversion cloud.",
-        "Expert .NET 9 / 10, Blazor et solutions cloud-native Azure."
+        "Expert .NET 10 / 11, Blazor et solutions cloud-native Azure."
       ],
       "icons": [
         "fab fa-linkedin linkedin-logo"
@@ -46,7 +46,7 @@
     {
       "title": "Passionné",
       "paragraphs": [
-        "Veille continue sur l'écosystème Microsoft : .NET 10, Blazor, .NET Aspire et agentic coding.",
+        "Veille continue sur l'écosystème Microsoft : .NET 10 et .NET 11, Blazor, Aspire et agentic coding.",
         "R&D permanente : architectures cloud-native, serverless, observabilité et outils de développement assisté par IA.",
         "Participant actif de la communauté des développeurs depuis l'époque Microsoft Student Partner.",
         "Passionné par le développement mobile, le web haute performance et l'architecture distribuée."
@@ -96,6 +96,8 @@
       "description": [
         "Le métier évolue : intégration au quotidien des outils d'agentic coding pour concevoir, architecturer et livrer des plateformes complètes plus vite, sans renoncer à l'exigence d'architecture et de qualité.",
         "Pilotage d'agents IA (Claude Code) en tant qu'unique architecte-développeur, pour accélérer le delivery sur des projets réels, du cadrage jusqu'au déploiement en production.",
+        "Développement de SaaS de A à Z en Spec-Driven Development avec GitHub Spec Kit, à partir d'une déclinaison maison adaptée à .NET (constitution, templates et commandes sur-mesure).",
+        "Accompagnement de clients dans le développement de leurs SaaS, du cadrage à la mise en production.",
         "Projet phare : conception et réalisation d'une plateforme SaaS PropTech / RegTech autour du Diagnostic de Performance Énergétique (DPE), menée en ~8 mois et 2 000+ commits."
       ],
       "responsibilities": [
@@ -119,6 +121,11 @@
         "Agentic Coding",
         "Claude Code",
         "GitHub Copilot",
+        "GitHub Spec Kit",
+        "Spec-Driven Development",
+        "SaaS",
+        "Multi-tenant",
+        "Microsoft 365 Copilot",
         "Ollama",
         "Codex App",
         "Hermes Agent",
@@ -158,6 +165,17 @@
         "RegTech",
         "Redis",
         "Docker",
+        "Kubernetes",
+        "PostgreSQL",
+        "Keycloak",
+        "Azure Container Registry (ACR)",
+        "Azure Developer CLI (azd)",
+        "Dev Containers",
+        "Dev Tunnels",
+        "Scaleway",
+        "Infomaniak",
+        "AWS S3",
+        "ASP.NET Core Security",
         "GitHub",
         "Web Development"
       ]

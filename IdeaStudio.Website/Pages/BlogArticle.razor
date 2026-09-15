@@ -17,6 +17,7 @@
          SiteName="IdeaStud.io"
          OgImage="https://ideastud.io/images/andres-talavera.jpeg" OgImageAlt="Andrés Talavera"
          OgType="article"
+         NoIndex="@(loaded && post is null)"
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
 
@@ -129,11 +130,7 @@ else if (loaded)
                 ["x-default"] = $"https://ideastud.io{frHub}/{post.Slug}",
             };
 
-            SchemaOrg.Person author = new(
-                Name: "Andrés Talavera",
-                JobTitle: fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
-                Url: "https://ideastud.io",
-                Image: "https://ideastud.io/images/andres-talavera.jpeg");
+            SchemaOrg.Person author = SchemaIdentity.Person(fr);
 
             SchemaOrg.BlogPosting article = new(
                 Headline: post.Title,

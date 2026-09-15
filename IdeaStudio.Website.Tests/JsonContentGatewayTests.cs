@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using IdeaStudio.Website.Models;
 using IdeaStudio.Website.Services;
 using Moq;
@@ -111,23 +112,6 @@ public class JsonContentGatewayTests
     }
 
     [Fact]
-    public void TrainingsJson_HasTwentyModules_AndParityBetweenFrAndEn()
-    {
-        JsonSerializerOptions opts = new(JsonSerializerDefaults.Web);
-        Training[]? fr = JsonSerializer.Deserialize<Training[]>(File.ReadAllText(LocateDataFile("trainings-fr.json")), opts);
-        Training[]? en = JsonSerializer.Deserialize<Training[]>(File.ReadAllText(LocateDataFile("trainings-en.json")), opts);
-
-        Assert.NotNull(fr);
-        Assert.NotNull(en);
-        Assert.Equal(20, fr!.Length);
-        Assert.Equal(20, en!.Length);
-
-        IEnumerable<string> frSlugs = fr.Select(t => t.Slug).OrderBy(s => s);
-        IEnumerable<string> enSlugs = en.Select(t => t.Slug).OrderBy(s => s);
-        Assert.Equal(frSlugs, enSlugs);
-    }
-
-    [Fact]
     public void ServicesJson_HasSevenEntries_InBothLanguages_WithUniqueOrders()
     {
         JsonSerializerOptions opts = new(JsonSerializerDefaults.Web);
@@ -176,6 +160,59 @@ public class JsonContentGatewayTests
         Assert.All(items!, t => Assert.Contains(t.Category, ordered));
     }
 
+    // Module pages are routed by slug in both cultures, so FR and EN must list the same modules
+    // with the same facts (duration, level, certification) and the same outline length.
+    [Fact]
+    public void TrainingsJson_FrAndEn_HaveMatchingModules()
+    {
+        Training[] fr = LoadTrainings("trainings-fr.json");
+        Training[] en = LoadTrainings("trainings-en.json");
+
+        Assert.Equal(fr.Select(t => t.Slug), en.Select(t => t.Slug));
+        Assert.All(fr.Zip(en), pair =>
+        {
+            Assert.Equal(pair.First.DurationDays, pair.Second.DurationDays);
+            Assert.Equal(pair.First.Level, pair.Second.Level);
+            Assert.Equal(pair.First.Certification, pair.Second.Certification);
+            Assert.Equal(pair.First.Outline.Count, pair.Second.Outline.Count);
+        });
+    }
+
+    // The "N modules" marketing copy is hand-written (it must exist before the data loads for SEO),
+    // so guard it against drifting from the actual catalogue size.
+    [Theory]
+    [InlineData("IdeaStudio.Website/Pages/Trainings.razor")]
+    [InlineData("IdeaStudio.Website/Pages/ServiceDetail.razor")]
+    [InlineData("IdeaStudio.Website/Pages/Faq.razor")]
+    [InlineData("IdeaStudio.Website/wwwroot/data/services-fr.json")]
+    [InlineData("IdeaStudio.Website/wwwroot/data/services-en.json")]
+    [InlineData("IdeaStudio.Website/wwwroot/llms.txt")]
+    public void TrainingCountCopy_MatchesCatalogueSize(string relativePath)
+    {
+        int expected = LoadTrainings("trainings-fr.json").Length;
+        string text = File.ReadAllText(LocateRepoFile(relativePath));
+
+        MatchCollection counts = Regex.Matches(text, @"\b(\d+) (?:hands-on |ready-to-run )?(?:training |catalogue )?modules|modules: (\d+)");
+
+        Assert.NotEmpty(counts);
+        Assert.All(counts, m => Assert.Equal(expected, int.Parse(m.Groups[1].Success ? m.Groups[1].Value : m.Groups[2].Value)));
+    }
+
+    [Theory]
+    [InlineData("trainings-fr.json", "https://ideastud.io/fr/formations/")]
+    [InlineData("trainings-en.json", "https://ideastud.io/en/training/")]
+    public void Sitemap_ListsEveryTrainingModule(string file, string hub)
+    {
+        string sitemap = File.ReadAllText(LocateRepoFile("IdeaStudio.Website/wwwroot/sitemap.xml"));
+
+        Assert.All(LoadTrainings(file), t => Assert.Contains($"<loc>{hub}{t.Slug}</loc>", sitemap));
+    }
+
+    private static Training[] LoadTrainings(string file) =>
+        JsonSerializer.Deserialize<Training[]>(
+            File.ReadAllText(LocateDataFile(file)),
+            new JsonSerializerOptions(JsonSerializerDefaults.Web))!;
+
     private static Training Sample(string slug) => new()
     {
         Slug = slug,
@@ -185,13 +222,16 @@ public class JsonContentGatewayTests
         Outline = ["a", "b"],
     };
 
-    private static string LocateDataFile(string fileName)
+    private static string LocateDataFile(string fileName) =>
+        LocateRepoFile(Path.Combine("IdeaStudio.Website", "wwwroot", "data", fileName));
+
+    private static string LocateRepoFile(string relativePath)
     {
         DirectoryInfo? dir = new(AppContext.BaseDirectory);
         while (dir is not null && !File.Exists(Path.Combine(dir.FullName, "IdeaStudio.sln")))
             dir = dir.Parent;
         if (dir is null)
             throw new InvalidOperationException("Could not locate repo root from " + AppContext.BaseDirectory);
-        return Path.Combine(dir.FullName, "IdeaStudio.Website", "wwwroot", "data", fileName);
+        return Path.Combine(dir.FullName, relativePath);
     }
 }

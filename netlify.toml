@@ -13,22 +13,24 @@
   NODE_VERSION                = "22"
   NETLIFY_USE_PNPM            = "false"
 
-# Long-cache the framework + asset bundles (filenames are fingerprinted).
+# Long-cache the Blazor framework: its file names are fingerprinted per build.
 [[headers]]
   for = "/_framework/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# styles.min.css, cinema.bundle.js and error-ui.js keep the same name on every
+# deploy, so they must revalidate (cheap 304 via ETag). Marking them immutable
+# would pin returning visitors to a stale stylesheet/bundle for a year.
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
-# Cinema JS bundle is fingerprint-stable per deploy (esbuild output).
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/fonts/*"
@@ -108,6 +110,16 @@
 [[redirects]]
   from   = "/legal"
   to     = "/fr/mentions-legales"
+  status = 301
+
+# AZ-204 was retired; its prep module now targets the successor exam AI-200.
+[[redirects]]
+  from   = "/fr/formations/azure-az204-prep"
+  to     = "/fr/formations/azure-ai200-prep"
+  status = 301
+[[redirects]]
+  from   = "/en/training/azure-az204-prep"
+  to     = "/en/training/azure-ai200-prep"
   status = 301
 
 # Pre-render-friendly: Netlify serves static files first, then falls back

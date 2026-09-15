@@ -14,6 +14,7 @@
          HreflangUrls="@seoHreflang"
          SiteName="IdeaStud.io"
          OgImage="@seoOgImage" OgImageAlt="@seoOgAlt"
+         NoIndex="@(loaded && realisation?.CaseStudy is null)"
          StructuredData="@seoStructuredData"
          SpeakableSelectors="@speakable" />
 
@@ -245,8 +246,8 @@ else if (loaded)
         if (realisation?.CaseStudy is { } cs)
         {
             seoTitle = fr
-                ? $"{realisation.Title}, Étude de cas | IdeaStud.io"
-                : $"{realisation.Title}, Case study | IdeaStud.io";
+                ? $"{realisation.Title}, étude de cas — Andrés Talavera | IdeaStud.io"
+                : $"{realisation.Title}, case study — Andrés Talavera | IdeaStud.io";
             seoDescription = cs.Challenge;
             seoCanonical = $"https://ideastud.io{hub}/{realisation.Slug}";
             string hubFr = LocalizedRoute.For("realisations", "fr");

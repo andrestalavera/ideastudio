@@ -1,13 +1,18 @@
 {
   "name": "IdeaStud.io",
+  "alternateNames": ["IdeaStudio", "Idea Studio"],
   "type": "portfolio",
   "owner": "Andrés Talavera",
+  "ownerAlternateNames": ["Andres Talavera"],
   "description": "Independent .NET & Azure consultant, tech lead and trainer. Turns ideas into reliable web, mobile and cloud software, and trains teams.",
   "languages": ["en", "fr"],
   "primaryLanguage": "fr",
   "contentType": "professional-services",
   "spokenLanguages": ["fr", "en", "es"],
   "experienceYears": 15,
+  "trainingHoursDelivered": 3750,
+  "certified": false,
+  "certificationNote": "Supports teams preparing certification-track training (AI-200, AZ-305, AZ-400, GH-200, GH-300, GH-500, GH-600, AB-730); holds no certification.",
   "pricing": {
     "currency": "EUR",
     "dayRateMin": 600,
@@ -21,6 +26,9 @@
     ".NET development", "Azure cloud architecture", "Blazor", "ASP.NET Core",
     "software consulting", "tech lead", "technical training",
     "vibe coding", "AI in the enterprise", "multi-tenant SaaS", "European sovereign hosting",
+    "Spec-Driven Development", "GitHub Spec Kit", "GitHub Copilot", "Claude Code", "Microsoft Foundry",
+    "Model Context Protocol", "FinOps", "Aspire", "Docker", "Kubernetes", "Keycloak",
+    "certification exam preparation training",
     "mobile apps", "websites"
   ],
   "hosting": ["Microsoft Azure", "Clever Cloud", "Infomaniak", "Scaleway", "OVHcloud"],

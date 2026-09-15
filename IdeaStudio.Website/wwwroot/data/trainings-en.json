@@ -5,12 +5,12 @@
     "summary": "By the end, your developers write C# that's shorter, clearer and safer by using the language's recent improvements. More readability, fewer bugs.",
     "category": ".NET",
     "outline": [
-      "Records and immutable value types",
-      "Primary constructors and init-only properties",
-      "File-scoped types and incremental compilation",
+      "Records, primary constructors and collection expressions",
+      "Extension members and the field keyword (C# 14)",
       "Advanced pattern matching and switch expressions",
+      "Unions and closed types (C# 15, .NET 11)",
       "Source generators, basics",
-      "Async, ValueTask and performance"
+      "Async, ValueTask and runtime async"
     ],
     "prerequisites": "Basic C#, ability to read object-oriented code.",
     "durationDays": 2,
@@ -52,6 +52,42 @@
     "level": "advanced"
   },
   {
+    "slug": "api-design-aspnet-core",
+    "title": "Designing robust web APIs with ASP.NET Core",
+    "summary": "By the end, your teams ship clear, documented, versioned and secure APIs that your partners and apps consume with no nasty surprises.",
+    "category": ".NET",
+    "outline": [
+      "REST or GraphQL: which one, and when",
+      "Minimal APIs and controllers, validation and ProblemDetails",
+      "Built-in OpenAPI, documentation and client generation",
+      "Versioning and backward compatibility",
+      "Authentication, authorization and rate limiting",
+      "Idempotency, pagination and webhooks",
+      "Publishing and governance with Azure API Management"
+    ],
+    "prerequisites": "ASP.NET Core fundamentals or equivalent experience.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "aspnet-blazor-security",
+    "title": "Securing ASP.NET Core and Blazor",
+    "summary": "By the end, your teams close the common holes in their ASP.NET Core and Blazor apps, and handle authentication and authorization properly, with Keycloak or Microsoft Entra ID.",
+    "category": ".NET",
+    "outline": [
+      "OWASP Top 10 applied to ASP.NET Core",
+      "OIDC authentication with Keycloak or Microsoft Entra ID",
+      "Fine-grained authorization: policies, resources, multi-tenancy",
+      "Blazor Server, WebAssembly and SSR: where tokens live",
+      "Security headers, CSP, CORS and antiforgery",
+      "Secrets, Data Protection and encryption",
+      "Security testing and dependency review"
+    ],
+    "prerequisites": "ASP.NET Core fundamentals or equivalent experience.",
+    "durationDays": 2,
+    "level": "advanced"
+  },
+  {
     "slug": "blazor-modern",
     "title": "Blazor 10, Server, WASM and Hybrid",
     "summary": "By the end, your team builds modern, responsive web interfaces entirely in C#, without juggling several languages, and ships faster.",
@@ -76,6 +112,7 @@
     "outline": [
       "Conventions and fluent API",
       "Relationships 1-N, N-N, inheritance TPT/TPH",
+      "Complex types, JSON columns and vector search",
       "Migrations and deployment",
       "Queries, IQueryable, projections, split queries",
       "Tracking, AsNoTracking, identity resolution",
@@ -91,51 +128,88 @@
     "summary": "By the end, your team ships with peace of mind: useful automated tests that catch regressions early and let you deploy without holding your breath.",
     "category": ".NET",
     "outline": [
-      "xUnit, basics and organization",
-      "Integration testing and Testcontainers",
+      "xUnit v3 and Microsoft.Testing.Platform",
+      "Integration tests and Testcontainers",
       "Snapshot testing with Verify",
       "Mutation testing with Stryker",
-      "Coverage and useful metrics",
-      "Pragmatic TDD, when, how"
+      "Coverage and metrics that matter",
+      "Pragmatic TDD, when and how"
     ],
     "prerequisites": "Modern C#, team-project experience.",
     "durationDays": 2,
     "level": "intermediate"
   },
   {
-    "slug": "azure-az204-prep",
-    "title": "Azure for developers (AZ-204 prep)",
-    "summary": "Prepare and pass the Azure AZ-204 certification, and leave able to build real cloud applications. The skills and the recognized credential.",
+    "slug": "dotnet-aspire",
+    "title": "Distributed applications with Aspire",
+    "summary": "By the end, your teams run, observe and deploy a distributed .NET application in a few commands, from the developer machine to Azure.",
+    "category": ".NET",
+    "outline": [
+      "AppHost and service defaults",
+      "Integrations: PostgreSQL, SQL Server, Redis, Service Bus, Storage",
+      "Dashboard: OpenTelemetry logs, traces and metrics",
+      "Configuration, secrets and service discovery",
+      "Integration tests for the distributed application",
+      "Deploying to Azure Container Apps with azd"
+    ],
+    "prerequisites": "ASP.NET Core, Docker basics.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "dotnet-11-migration",
+    "title": "Moving to .NET 11: C# 15 and runtime async",
+    "summary": "By the end, your teams know what .NET 11 really changes, when to move from .NET 10 LTS, and how to do it without breaking production.",
+    "category": ".NET",
+    "outline": [
+      "Timeline: .NET 10 LTS or .NET 11 STS, which to pick",
+      "C# 15: unions, closed types, richer collection expressions",
+      "Runtime async: performance and stack traces",
+      "What's new in the BCL, ASP.NET Core 11 and EF Core 11",
+      "Trying previews safely: global.json, CI, feature flags",
+      "Migrating a solution step by step, with AI assistance"
+    ],
+    "prerequisites": "Hands-on .NET 8 or .NET 10 in production.",
+    "durationDays": 1,
+    "level": "intermediate"
+  },
+  {
+    "slug": "azure-ai200-prep",
+    "title": "Cloud & AI solutions on Azure (AI-200 prep)",
+    "summary": "By the end, your teams build the cloud back end of their AI applications on Azure (containers, vector data, messaging, security, monitoring) and approach the Azure AI Cloud Developer Associate certification (AI-200) well prepared.",
     "category": "Azure",
     "outline": [
-      "App Service and configuration",
-      "Azure Functions and Durable Functions",
-      "Storage and Cosmos DB",
-      "Service Bus and Event Grid",
-      "Key Vault, Managed Identity, App Configuration",
-      "Identity and Microsoft Entra ID",
-      "Exam prep, sample questions"
+      "Containers: Container Registry, App Service, Container Apps with KEDA, AKS",
+      "Cosmos DB for NoSQL: SDK, RUs, change feed and vector search",
+      "PostgreSQL and pgvector: RAG with metadata filters",
+      "Azure Managed Redis: caching, expiration and invalidation",
+      "Service Bus, Event Grid and Azure Functions",
+      "Key Vault, App Configuration and Managed Identity",
+      "OpenTelemetry and KQL queries",
+      "Exam preparation, sample questions"
     ],
-    "prerequisites": "Modern C#, cloud basics.",
+    "prerequisites": "Modern C#, cloud and container basics.",
     "durationDays": 5,
     "level": "intermediate",
-    "certification": "AZ-204"
+    "certification": "AI-200"
   },
   {
     "slug": "azure-az400-prep",
-    "title": "Azure DevOps & CI/CD (AZ-400 prep)",
-    "summary": "By the end, your teams automate software delivery and prepare the Azure AZ-400 certification: deploy more often, faster, with fewer errors.",
+    "title": "DevOps with Azure DevOps & GitHub (AZ-400 prep)",
+    "summary": "By the end, your teams automate software delivery on both Azure DevOps and GitHub and prepare for the Azure AZ-400 certification: ship more often, faster, with fewer errors.",
     "category": "Azure",
     "outline": [
+      "Work tracking, GitHub Flow and Azure Boards",
       "Source control and branching strategies",
-      "Azure Pipelines, multi-stage YAML",
-      "Automated tests in pipeline",
+      "Azure Pipelines and GitHub Actions, multi-stage YAML",
+      "Automated tests in the pipeline",
       "Infrastructure as code (Bicep, Terraform)",
       "Release management and environments",
-      "Security, secrets, scans, governance",
-      "Exam prep, sample questions"
+      "Security: secrets, dependencies, GitHub Advanced Security",
+      "Instrumentation: Azure Monitor, Application Insights, KQL",
+      "Exam preparation, sample questions"
     ],
-    "prerequisites": "Team project experience, basic Git, basic cloud.",
+    "prerequisites": "Team project experience, Git basics, cloud basics. The Expert certification also requires AZ-104 or a still-valid Azure Developer Associate.",
     "durationDays": 5,
     "level": "advanced",
     "certification": "AZ-400"
@@ -153,7 +227,7 @@
       "Patterns, outbox, fan-out, retry",
       "Observability and distributed tracing"
     ],
-    "prerequisites": "ASP.NET Core or Azure 204, async basics.",
+    "prerequisites": "ASP.NET Core or AI-200 prep, async basics.",
     "durationDays": 3,
     "level": "intermediate"
   },
@@ -175,6 +249,24 @@
     "level": "intermediate"
   },
   {
+    "slug": "azure-iac-bicep",
+    "title": "Infrastructure as Code on Azure with Bicep and azd",
+    "summary": "By the end, your teams describe their Azure environments as versioned, reproducible, reviewed code, and deploy with no secrets stored in pipelines.",
+    "category": "Azure",
+    "outline": [
+      "Bicep: resources, parameters, modules",
+      "Azure Verified Modules and naming conventions",
+      "What-if, deployment stacks and configuration drift",
+      "Azure Developer CLI (azd): templates and environments",
+      "Azure Pipelines and GitHub Actions with OIDC, no secrets",
+      "Governance: Azure Policy, tags and cost tracking",
+      "Testing and reviewing infrastructure"
+    ],
+    "prerequisites": "Azure basics, hands-on experience with a CI pipeline.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
     "slug": "azure-security-fundamentals",
     "title": "Azure security for developers",
     "summary": "By the end, your teams secure your Azure applications end to end and protect your sensitive data, without slowing delivery.",
@@ -192,39 +284,152 @@
     "level": "intermediate"
   },
   {
+    "slug": "azure-architect-az305",
+    "title": "Azure solution architecture (AZ-305 prep)",
+    "summary": "By the end, your architects design Azure solutions that are robust, secure and cost-controlled, and prepare for the Azure Solutions Architect Expert certification (AZ-305).",
+    "category": "Azure",
+    "outline": [
+      "Identity, governance and monitoring: Entra ID, Azure Policy, Azure Monitor",
+      "Data storage: relational, NoSQL, object",
+      "Business continuity: backup, high availability, disaster recovery",
+      "Infrastructure: compute, networking, application integration, migrations",
+      "Well-Architected Framework and Cloud Adoption Framework",
+      "Case studies and cost, risk and performance trade-offs",
+      "Exam preparation, sample questions"
+    ],
+    "prerequisites": "Hands-on Azure experience in production. The Expert certification also requires AZ-104.",
+    "durationDays": 4,
+    "level": "advanced",
+    "certification": "AZ-305"
+  },
+  {
+    "slug": "azure-finops",
+    "title": "FinOps on Azure",
+    "summary": "By the end, your teams know who spends what on Azure, cut the bill without slowing projects down, and treat cost as a design criterion like any other.",
+    "category": "Azure",
+    "outline": [
+      "FinOps framework: principles, personas, Inform, Optimize, Operate phases",
+      "Microsoft Cost Management: analysis, budgets, alerts, exports",
+      "Cost allocation: tags, Azure Policy, showback and chargeback",
+      "FOCUS cost data and the FinOps toolkit",
+      "Optimisation: right-sizing, reservations, savings plans, Azure Hybrid Benefit",
+      "AI costs: tokens, provisioned throughput and quotas",
+      "Cost in the dev lifecycle: estimates in CI, architecture reviews"
+    ],
+    "prerequisites": "Azure basics, access to a subscription or billing data.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "azure-foundry-agents-dotnet",
+    "title": "AI agents in .NET with Microsoft Foundry",
+    "summary": "By the end, your .NET teams build useful AI agents, wired to your data and tools, evaluated and governed before they reach production.",
+    "category": "Azure",
+    "outline": [
+      "Microsoft Foundry: projects, model catalogue, deployments",
+      "Microsoft Agent Framework in C#",
+      "Tools: function calling, MCP, search and RAG",
+      "Multi-agent workflows and orchestration",
+      "Evaluations, tracing and content safety",
+      "Deployment, cost and governance"
+    ],
+    "prerequisites": "Modern C#, Azure and generative AI basics.",
+    "durationDays": 3,
+    "level": "advanced"
+  },
+  {
     "slug": "claude-code-team",
     "title": "Claude Code for teams",
     "summary": "By the end, your team rolls out Claude Code at scale and turns it into real productivity, with the guardrails that protect quality.",
     "category": "Vibe coding & AI",
     "outline": [
-      "Prompt patterns and house style",
-      "Skills, create, package, share",
-      "Hooks PreToolUse / PostToolUse / Stop",
+      "Prompt patterns, CLAUDE.md and house style",
+      "Skills and plugins: create, package, share",
+      "PreToolUse / PostToolUse / Stop hooks",
       "Sub-agents and delegation",
       "MCP integration, internal tools",
-      "CI guardrails and usage policy",
-      "Impact metrics, velocity, quality"
+      "Claude Code in CI (GitHub Actions, Azure DevOps)",
+      "Guardrails: permissions, sandbox and usage policy",
+      "Measuring impact: velocity, quality"
     ],
     "prerequisites": "Git practice, dev team experience.",
     "durationDays": 2,
     "level": "intermediate"
   },
   {
-    "slug": "copilot-advanced",
-    "title": "GitHub Copilot, advanced",
-    "summary": "By the end, your developers get far more from GitHub Copilot than autocomplete to speed up their daily work, fully compliant.",
+    "slug": "speckit-spec-driven",
+    "title": "Spec-Driven Development with GitHub Spec Kit",
+    "summary": "By the end, your teams steer AI agents with versioned specifications: less improvisation, and code that finally matches the need.",
     "category": "Vibe coding & AI",
     "outline": [
-      "Per-project custom instructions",
-      "Copilot Edits, multi-file refactor",
-      "Agentic mode, task execution",
+      "From vibe coding to Spec-Driven Development: why and when",
+      "Setting up Spec Kit with Claude Code or GitHub Copilot",
+      "The constitution: principles, conventions, guardrails",
+      "From intent to spec: specify, clarify, remove ambiguity",
+      "Technical plan and breakdown into verifiable tasks",
+      "Agent implementation, human review, conformance to the spec",
+      "Spec Kit on an existing codebase and in the PR flow",
+      "Hands-on thread: one .NET SaaS feature from spec to merge"
+    ],
+    "prerequisites": "Hands-on Git and an AI coding assistant (Claude Code or GitHub Copilot).",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "speckit-dotnet-custom",
+    "title": "Tailoring Spec Kit to your .NET stack",
+    "summary": "By the end, your team has its own Spec Kit variant, tuned to its .NET conventions, producing specs, plans and code that match your architecture.",
+    "category": "Vibe coding & AI",
+    "outline": [
+      "Spec Kit anatomy: commands, templates, scripts, memory",
+      "A .NET constitution: Clean Architecture, tests, coding conventions",
+      "Spec, plan and task templates designed for a .NET solution",
+      "Custom commands: EF Core migrations, tests, ADRs, review",
+      "Integration with Claude Code and GitHub Copilot",
+      "Versioning, sharing and evolving the team variant",
+      "Lessons from a .NET variant proven on SaaS projects"
+    ],
+    "prerequisites": "Spec-Driven Development with GitHub Spec Kit, or equivalent practice.",
+    "durationDays": 2,
+    "level": "advanced"
+  },
+  {
+    "slug": "copilot-advanced",
+    "title": "GitHub Copilot, advanced (GH-300 prep)",
+    "summary": "By the end, your developers use GitHub Copilot far beyond autocomplete to speed up their daily work, fully compliant, and prepare for the GitHub Copilot certification (GH-300).",
+    "category": "Vibe coding & AI",
+    "outline": [
+      "Custom instructions, prompt files and custom agents",
+      "Agent mode, multi-file refactoring",
+      "Copilot coding agent: assign an issue, review the PR",
       "MCP with Copilot",
-      "Usage policy and compliance",
-      "Impact metrics"
+      "Prompt engineering and context management",
+      "Privacy, content exclusions and responsible use",
+      "Measuring impact and exam preparation"
     ],
     "prerequisites": "Hands-on Copilot or other IDE assistant.",
     "durationDays": 1,
-    "level": "intermediate"
+    "level": "intermediate",
+    "certification": "GH-300"
+  },
+  {
+    "slug": "github-agentic-gh600",
+    "title": "Agentic development with GitHub (GH-600 prep)",
+    "summary": "By the end, your teams put AI agents to work in their real development lifecycle, with GitHub as the control plane, and prepare for the GitHub Agentic AI Developer certification (GH-600).",
+    "category": "Vibe coding & AI",
+    "outline": [
+      "Agent architecture and SDLC integration",
+      "Tools and environment: MCP, Actions, repositories",
+      "Memory, state and execution",
+      "Evaluation, error analysis and tuning",
+      "Multi-agent coordination: Copilot coding agent, Claude Code, custom agents",
+      "Guardrails, traceability and accountability",
+      "Exam preparation, sample questions"
+    ],
+    "prerequisites": "Hands-on GitHub, an AI coding assistant and a CI pipeline.",
+    "durationDays": 3,
+    "level": "intermediate",
+    "certification": "GH-600"
   },
   {
     "slug": "mcp-server-design",
@@ -232,15 +437,15 @@
     "summary": "By the end, your teams connect your AI tools to your own data and applications securely, through custom bridges (MCP servers) that keep your data under control.",
     "category": "Vibe coding & AI",
     "outline": [
-      "MCP architecture, clients, servers, transports",
-      "stdio vs HTTP/SSE transport",
+      "MCP architecture: clients, servers, transports",
+      "stdio vs Streamable HTTP transport",
       "Tools, schemas, validation, errors",
-      "Resources, reading, subscriptions",
-      "Security, auth, audit, secrets",
+      "Resources and prompts",
+      "Security, OAuth, audit, secrets",
       "Deployment and observability",
       "End-to-end testing"
     ],
-    "prerequisites": "Hands-on backend language (TS, Python or C#), API basics.",
+    "prerequisites": "Hands-on experience with a backend language (C#, TypeScript or Python), API basics.",
     "durationDays": 2,
     "level": "advanced"
   },
@@ -263,6 +468,25 @@
     "level": "advanced"
   },
   {
+    "slug": "m365-copilot-work",
+    "title": "Microsoft 365 Copilot at work (AB-730 prep)",
+    "summary": "By the end, your staff draft, analyse, research and automate recurring tasks with Microsoft 365 Copilot, knowing where the limits are, and prepare for the AI Business Professional certification (AB-730).",
+    "category": "Vibe coding & AI",
+    "outline": [
+      "Generative AI: strengths, limits, hallucinations",
+      "Privacy: what Copilot sees and protects",
+      "Effective prompts and conversation management",
+      "Draft, summarise, analyse in Word, Excel, PowerPoint, Outlook, Teams",
+      "Deep research and sourced reports with agents",
+      "Automating recurring tasks: saved prompts and simple agents",
+      "Exam preparation, sample questions"
+    ],
+    "prerequisites": "Everyday Microsoft 365 use. No development skills required.",
+    "durationDays": 1,
+    "level": "foundation",
+    "certification": "AB-730"
+  },
+  {
     "slug": "clean-architecture-dotnet",
     "title": "Clean Architecture in .NET",
     "summary": "By the end, your teams structure applications that stay easy to evolve and test over time. Less debt, more peace of mind.",
@@ -272,12 +496,29 @@
       "Layers, domain, application, infrastructure, presentation",
       "Ports & adapters",
       "DDD-lite, entities, value objects, aggregates",
-      "Use cases and MediatR",
+      "Use cases and handlers, with or without a mediator",
       "Layer-by-layer testing",
       "Progressive legacy migration"
     ],
     "prerequisites": "ASP.NET Core, mid-size app experience.",
     "durationDays": 3,
+    "level": "advanced"
+  },
+  {
+    "slug": "ddd-strategic",
+    "title": "Strategic Domain-Driven Design",
+    "summary": "By the end, your teams split a complex business domain into clear contexts, speak the same language as the business, and turn that model into .NET code that lasts.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Event Storming: exploring the domain with the business",
+      "Ubiquitous language and a living glossary",
+      "Bounded contexts and context mapping",
+      "Designing aggregates and their invariants",
+      "From model to .NET code: entities, value objects, events",
+      "Splitting a monolith or microservices by context"
+    ],
+    "prerequisites": "Experience on a business application in a team. Clean Architecture in .NET recommended.",
+    "durationDays": 2,
     "level": "advanced"
   },
   {
@@ -299,6 +540,25 @@
     "level": "advanced"
   },
   {
+    "slug": "saas-dotnet-speckit",
+    "title": "Building a .NET SaaS end to end with Spec Kit",
+    "summary": "By the end, your teams can take a SaaS from idea to production: versioned specifications, multi-tenant architecture, subscriptions and operations, without losing their way.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Product framing and project constitution",
+      "Specifying SaaS journeys: sign-up, onboarding, roles, subscriptions",
+      "Multi-tenancy: database per tenant, shared schema or Row-Level Security",
+      "Identity, roles and per-tenant data isolation",
+      "Subscriptions and payments with Stripe",
+      "Deployment, observability and per-tenant cost",
+      "GDPR and hosting in Europe",
+      "Hands-on thread: a SaaS delivered iteratively, from spec to deployment"
+    ],
+    "prerequisites": "ASP.NET Core, EF Core, hands-on use of an AI coding assistant.",
+    "durationDays": 4,
+    "level": "advanced"
+  },
+  {
     "slug": "observability-otel",
     "title": "Modern observability, OpenTelemetry",
     "summary": "By the end, your teams know exactly what's happening in your apps in production and diagnose an incident in minutes rather than hours.",
@@ -314,6 +574,59 @@
     ],
     "prerequisites": "ASP.NET Core, production basics.",
     "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "docker-kubernetes-dotnet",
+    "title": "Docker & Kubernetes for .NET applications",
+    "summary": "By the end, your teams containerise their .NET applications cleanly and run them on Kubernetes, on Azure or a European cloud, without depending on a single provider.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Optimised .NET images: multi-stage, chiseled images, SDK container publishing",
+      "Docker Compose for the developer machine",
+      "Registries: Azure Container Registry, image signing and scanning",
+      "Kubernetes: pods, deployments, services, ingress",
+      "Configuration, secrets and health probes",
+      "Helm and multi-environment deployment",
+      "Managed Kubernetes: AKS or Scaleway Kapsule"
+    ],
+    "prerequisites": "Hands-on ASP.NET Core, Linux basics.",
+    "durationDays": 3,
+    "level": "intermediate"
+  },
+  {
+    "slug": "sovereign-cloud-europe",
+    "title": "Hosting .NET applications in Europe: Scaleway and Infomaniak",
+    "summary": "By the end, your teams can deploy and run a .NET application on a European cloud, keeping your data in Europe and your bill predictable, without giving up managed services.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Sovereignty, GDPR and data residency: what really matters",
+      "Landscape: Scaleway, Infomaniak, Clever Cloud, OVHcloud",
+      "Containers and managed Kubernetes in Europe",
+      "Managed PostgreSQL and S3-compatible object storage",
+      "Self-hosted identity with Keycloak",
+      "Portability: avoiding lock-in, moving from or to Azure",
+      "Cost, monitoring and day-to-day operations"
+    ],
+    "prerequisites": "Hands-on ASP.NET Core and Docker.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "devcontainers-devtunnels",
+    "title": "Reproducible dev environments: Dev Containers and Dev Tunnels",
+    "summary": "By the end, your teams get going on a project in minutes with the same environment for everyone, and test webhooks and mobile apps straight against the developer machine.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Dev Containers: devcontainer.json, features, images",
+      "A complete .NET solution in a container: SDK, database, cache",
+      "VS Code and GitHub Codespaces",
+      "Dev Tunnels: exposing a local API securely",
+      "Testing webhooks and mobile apps against the developer machine",
+      "Onboarding a new developer in minutes"
+    ],
+    "prerequisites": "Docker basics.",
+    "durationDays": 1,
     "level": "intermediate"
   },
   {
@@ -334,21 +647,77 @@
     "level": "advanced"
   },
   {
-    "slug": "cicd-github-actions",
-    "title": "CI/CD with GitHub Actions",
-    "summary": "By the end, your teams automate testing and releases with GitHub Actions: ship more often, with confidence, no manual steps.",
+    "slug": "techlead-leadership",
+    "title": "Tech lead: architecture decisions and team leadership",
+    "summary": "By the end, your senior developers step into the tech lead role: settling technical choices, growing the team and delivering against tracked quality indicators.",
     "category": "Architecture & DevOps",
     "outline": [
-      "Workflow anatomy",
-      "Reusable workflows and composite actions",
-      "Tests, lint and code quality",
-      "Security scanning, CodeQL, dependencies, secrets",
-      "Multi-env deployment with environments",
-      "OIDC to Azure, secret-less auth",
-      "Pipeline observability"
+      "The tech lead role: scope, expectations, pitfalls",
+      "Recorded architecture decisions (ADRs) and trade-offs",
+      "Code review and pair programming that help people grow",
+      "Technical debt: making it visible and prioritising it",
+      "Working with product and design",
+      "Delivery and quality indicators (DORA)",
+      "Framing AI use within the team"
+    ],
+    "prerequisites": "Experienced developer working in a team.",
+    "durationDays": 2,
+    "level": "intermediate"
+  },
+  {
+    "slug": "cicd-github-actions",
+    "title": "CI/CD with GitHub Actions (GH-200 prep)",
+    "summary": "By the end, your teams automate testing and releases with GitHub Actions and prepare for the GH-200 certification: ship more often, with confidence, with no manual steps.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Anatomy of a workflow, events and permissions",
+      "Reusable workflows and custom actions (composite, JavaScript, Docker)",
+      "Tests, linting and code quality",
+      "Security: CodeQL, dependencies, secrets, OIDC to Azure",
+      "Multi-environment deployment and environments",
+      "Actions in the enterprise: runners, policies, sharing",
+      "Troubleshooting and optimising the pipeline"
     ],
     "prerequisites": "Git basics, hands-on with any CI.",
     "durationDays": 2,
+    "level": "intermediate",
+    "certification": "GH-200"
+  },
+  {
+    "slug": "azdo-to-github-migration",
+    "title": "Migrating from Azure DevOps to GitHub",
+    "summary": "By the end, your teams plan and carry out the move of their repositories, pipelines and work tracking from Azure DevOps to GitHub, without stopping delivery.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Inventory and strategy: big-bang cutover or coexistence",
+      "Repositories and history with GitHub Enterprise Importer",
+      "Pipelines: converting to GitHub Actions with GitHub Actions Importer",
+      "Azure Boards: keep, integrate or move to GitHub Projects",
+      "Identities, teams and permissions",
+      "Security: secrets, OIDC to Azure, GitHub Advanced Security",
+      "Lessons from a real migration"
+    ],
+    "prerequisites": "Hands-on Azure DevOps, GitHub Actions basics.",
+    "durationDays": 1,
     "level": "intermediate"
+  },
+  {
+    "slug": "github-advanced-security-gh500",
+    "title": "Application security with GitHub Advanced Security (GH-500 prep)",
+    "summary": "By the end, your teams catch secrets, vulnerable dependencies and code flaws before they reach production, on GitHub and Azure DevOps alike, and prepare for the GH-500 certification.",
+    "category": "Architecture & DevOps",
+    "outline": [
+      "Overview: Secret Protection and Code Security",
+      "Secret Protection: detection, push protection, custom patterns",
+      "Supply chain: dependency graph, Dependabot, dependency review",
+      "Code Security: CodeQL, queries, Copilot Autofix",
+      "GitHub Advanced Security for Azure DevOps",
+      "Prioritisation, remediation and governance at scale",
+      "Exam preparation, sample questions"
+    ],
+    "prerequisites": "Hands-on GitHub or Azure Repos, application security basics.",
+    "durationDays": 2,
+    "level": "intermediate",
+    "certification": "GH-500"
   }
 ]

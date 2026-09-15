@@ -16,7 +16,8 @@
     ],
     "useCases": [
       { "title": "Regain control of a platform that's slowing down", "description": "A clear diagnosis of what you have, a step-by-step recovery plan, and hands-on support for your teams through to production, without stopping everything." },
-      { "title": "Get ready for fast growth", "description": "We lay foundations that can absorb ten times the traffic, so your commercial success never turns into an outage." }
+      { "title": "Get ready for fast growth", "description": "We lay foundations that can absorb ten times the traffic, so your commercial success never turns into an outage." },
+      { "title": "Build your SaaS end to end", "description": "From scoping to production: multi-tenant architecture, subscriptions, security and hosting, with Spec-Driven Development to stay on course at every iteration." }
     ],
     "faq": [
       { "question": "What's your daily rate?", "answer": "On request, depending on scope, duration, and level of involvement." },
@@ -56,16 +57,16 @@
     "slug": "trainer",
     "title": "Trainer",
     "kicker": "KNOWLEDGE TRANSFER",
-    "tagline": "Teams that genuinely level up on .NET, Azure and AI, 3,000+ hours taught, by a consultant who codes every day.",
+    "tagline": "Teams that genuinely level up on .NET, Azure and AI, 3,750 hours taught, by a consultant who codes every day.",
     "iconId": "training",
-    "summary": "3,000+ hours of training under my belt, across two decades of the Microsoft ecosystem. To junior devs and to tech leads stepping back for perspective alike, in schools (Supinfo, NextFormation) or large centres (ORSYS, IP-Formation, Happly), on-site, virtual classroom or bespoke in-house. Twenty modules in the catalogue below, pick them as-is, or let's recompose them into the program that fits your team.",
+    "summary": "3,750 hours of training under my belt, across two decades of the Microsoft ecosystem. To junior devs and to tech leads stepping back for perspective alike, in schools (Supinfo, NextFormation) or large centres (ORSYS, IP-Formation, Happly), on-site, virtual classroom or bespoke in-house. 40 modules in the catalogue below, pick them as-is, or let's recompose them into the program that fits your team.",
     "highlights": [
       "Your developers build modern, production-ready web apps (ASP.NET Core, Blazor)",
-      "Your teams master the Azure cloud and pass the AZ-204 and AZ-400 certifications",
+      "Your teams master the Azure cloud and prepare with confidence for the AI-200, AZ-305 and AZ-400 certifications",
       "Better-structured code that's simpler to evolve over time",
       "Fewer regressions, thanks to automated tests that bring peace of mind",
       "Faster, safer releases, no stress on launch day",
-      "Your teams adopt AI coding without giving up on quality",
+      "Your teams adopt AI coding (Claude Code, GitHub Copilot, Spec Kit) without giving up on quality",
       "A program assembled bespoke from several modules, tuned to your team"
     ],
     "useCases": [
@@ -79,13 +80,13 @@
       },
       {
         "title": "À-la-carte program",
-        "description": "Start from one official module as the backbone (e.g. AZ-204), add two or three adjacent modules to cover exactly your team's scope, neither too short nor too long."
+        "description": "Start from one official module as the backbone (e.g. AI-200), add two or three adjacent modules to cover exactly your team's scope, neither too short nor too long."
       }
     ],
     "faq": [
       { "question": "What's your training day rate?", "answer": "600–800 € per day depending on module and format, or an inter / in-house package. Quoted within 24h from a short brief." },
       { "question": "Remote training?", "answer": "Yes, synchronous virtual classroom, pair exercises, screen-share demos, live feedback. Same rigour as on-site." },
-      { "question": "Certified?", "answer": "No Microsoft certification: what I bring is 15+ years of hands-on .NET/Azure in production and 3,000+ hours of training. My exam-prep modules (AZ-204, AZ-400) are grounded in that real-world experience." },
+      { "question": "Certified?", "answer": "No, I'm not certified myself. I support teams as they prepare for certification-track training (AI-200, AZ-305, AZ-400, GH-200, GH-300, GH-500, GH-600, AB-730), drawing on 15+ years of hands-on .NET/Azure in production and 3,750 hours of training delivered." },
       { "question": "How do you build a custom program?", "answer": "We start from a catalogue module that covers the core of your need, identify what's missing and what's superfluous, borrow chapters from adjacent modules, calibrate duration. The brief takes one 30-minute call." },
       { "question": "What about funding mechanisms?", "answer": "Partner centres (ORSYS, IP-Formation, NextFormation) are Qualiopi-certified: OPCO, CPF entreprise, skills-development plans. For direct in-house, I point you to the right scheme." }
     ],
@@ -105,7 +106,8 @@
       "A review method that guarantees the quality of generated code",
       "Automatic guardrails before every release to production",
       "Concrete support, from the first attempt to delivery",
-      "A measured gain, with numbers, before and after"
+      "A measured gain, with numbers, before and after",
+      "Versioned specifications that keep AI agents on track (Spec-Driven Development with Spec Kit)"
     ],
     "useCases": [
       { "title": "Pilot with a willing team", "description": "A 2-to-3-month framed pilot, then a clear debrief and recommendation for rolling it out." },

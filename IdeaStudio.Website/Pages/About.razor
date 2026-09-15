@@ -152,10 +152,9 @@
         bool fr = culture.StartsWith("fr");
         resume = await Content.GetResumeAsync(culture);
         testimonials = await Content.GetTestimonialsAsync();
-        seoDescription = string.IsNullOrWhiteSpace(introText)
-            ? (fr ? "Andrés Talavera, consultant .NET & Azure, techlead et formateur. 15 ans d'expérience, Lyon, Paris, Genève, Fribourg ou à distance."
-                  : "Andrés Talavera, .NET & Azure consultant, tech lead and trainer. 15 years' experience, Lyon, Paris, Geneva, Fribourg or remote.")
-            : introText;
+        seoDescription = fr
+            ? "Andrés Talavera (IdeaStud.io) : consultant .NET & Azure, techlead et formateur. 15+ ans d'expérience, 3 750 heures de formation animées. Lyon, Paris, Genève, Fribourg ou à distance."
+            : "Andrés Talavera (IdeaStud.io): .NET & Azure consultant, tech lead and trainer. 15+ years' experience, 3,750 hours of training delivered. Lyon, Paris, Geneva, Fribourg or remote.";
     }
 
     private void GenerateStructuredData()
@@ -164,16 +163,10 @@
         string cultureCode = fr ? "fr" : "en";
         PersonalInformation? pi = resume?.PersonalInformation;
 
-        SchemaOrg.Person person = new(
-            Name: pi?.Name ?? "Andrés Talavera",
-            JobTitle: pi?.Title ?? (fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer"),
-            Description: seoDescription,
-            Url: "https://ideastud.io",
-            Image: "https://ideastud.io/images/andres-talavera.jpeg",
-            SameAs: new[] { "https://www.linkedin.com/in/andres-talavera/", "https://github.com/andrestalavera", "https://x.com/imcresus_" },
-            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "ASP.NET Core", "Cloud Architecture", "Software Training" },
-            Address: new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressRegion: "Auvergne-Rhône-Alpes", AddressCountry: "FR"),
-            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io"));
+        SchemaOrg.Person person = SchemaIdentity.Person(fr, seoDescription) with
+        {
+            JobTitle = pi?.Title ?? SchemaIdentity.JobTitle(fr),
+        };
 
         SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
             "https://ideastud.io",

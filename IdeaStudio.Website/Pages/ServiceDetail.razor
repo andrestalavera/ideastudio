@@ -14,6 +14,7 @@
          CanonicalUrl="@seoCanonical" Locale="@seoLocale"
          HreflangUrls="@seoHreflang"
          SiteName="IdeaStud.io"
+         NoIndex="@(loaded && service is null)"
          StructuredData="@seoStructuredData" />
 
 @if (service is null)
@@ -117,6 +118,7 @@ else
     [Parameter] public string? Slug { get; set; }
 
     private ServiceModel? service;
+    private bool loaded;
     private IReadOnlyList<Training> trainings = Array.Empty<Training>();
     private IReadOnlyList<TrainingCenter> centers = Array.Empty<TrainingCenter>();
     private string seoTitle = "Service, IdeaStud.io";
@@ -131,7 +133,7 @@ else
     private string faqKicker = "Questions fréquentes";
     private string faqTitle = "Ce que les clients demandent.";
     private string catalogueKicker = "Catalogue";
-    private string catalogueTitle = "20 modules pour vos équipes.";
+    private string catalogueTitle = "40 modules pour vos équipes.";
     private string centersKicker = "Partenaires";
     private string centersTitle  = "Là où j'ai enseigné.";
     private string centersIntro  = "Centres de formation et écoles qui m'ont confié leurs sessions, en présentiel comme en distanciel.";
@@ -168,7 +170,7 @@ else
         faqKicker        = fr ? "Questions fréquentes" : "Frequent questions";
         faqTitle         = fr ? "Ce que les clients demandent." : "What clients ask.";
         catalogueKicker  = "Catalogue";
-        catalogueTitle   = fr ? "20 modules pour vos équipes." : "20 modules for your teams.";
+        catalogueTitle   = fr ? "40 modules pour vos équipes." : "40 modules for your teams.";
         centersKicker = fr ? "Partenaires"          : "Partners";
         centersTitle  = fr ? "Là où j'ai enseigné." : "Where I've taught.";
         centersIntro  = fr
@@ -190,10 +192,11 @@ else
         string culture = CultureService.CurrentCulture.Name;
         IReadOnlyList<ServiceModel> all = await Content.GetServicesAsync(culture);
         service = all.FirstOrDefault(s => string.Equals(s.Slug, Slug, StringComparison.OrdinalIgnoreCase));
+        loaded = true;
         if (service is not null)
         {
             bool fr = culture.StartsWith("fr");
-            seoTitle = $"{service.Title}, IdeaStud.io";
+            seoTitle = $"{service.Title} — Andrés Talavera | IdeaStud.io";
             seoDescription = string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline;
             seoCanonical = $"https://ideastud.io{LocalizedRoute.For("services.hub", fr ? "fr" : "en")}/{service.Slug}";
 
@@ -230,17 +233,7 @@ else
 
         List<string> blocks = new();
 
-        SchemaOrg.Person person = new(
-            Name: "Andrés Talavera",
-            JobTitle: fr ? "Consultant .NET & Azure, Tech lead, Formateur" : ".NET & Azure Consultant, Tech Lead, Trainer",
-            Description: seoDescription,
-            Url: "https://ideastud.io",
-            Image: "https://ideastud.io/images/andres-talavera.jpeg",
-            SameAs: new[] { "https://www.linkedin.com/in/andres-talavera/", "https://github.com/andrestalavera", "https://x.com/imcresus_" },
-            KnowsAbout: new[] { ".NET", "Azure", "Blazor" },
-            Address: null,
-            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io")
-        );
+        SchemaOrg.Person person = SchemaIdentity.Person(fr);
 
         if (service is not null)
         {
@@ -258,21 +251,8 @@ else
                 blocks.Add(SchemaOrg.ToJsonLd(faq));
             }
 
-            if (IsTrainerService(service) && trainings is { Count: > 0 })
-            {
-                foreach (Training t in trainings)
-                {
-                    SchemaOrg.Course course = new(
-                        Name: t.Title,
-                        Description: t.Summary,
-                        Provider: person,
-                        CourseCode: t.Slug,
-                        EducationalLevel: t.Level,
-                        TimeRequired: t.DurationDays is int d ? $"P{d}D" : null,
-                        Url: $"https://ideastud.io{LocalizedRoute.For("services.hub", cultureCode)}/{service.Slug}#{t.Slug}");
-                    blocks.Add(SchemaOrg.ToJsonLd(course));
-                }
-            }
+            // Course markup lives on each module page (TrainingDetail); repeating it here with
+            // #fragment URLs would compete with those canonical pages.
         }
 
         blocks.Add(SchemaOrg.ToJsonLd(

@@ -179,7 +179,7 @@
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         seoLocale = fr ? "fr_FR" : "en_US";
         seoCanonical = fr ? "https://ideastud.io/fr/cv" : "https://ideastud.io/en/resume";
-        seoTitle = fr ? "Andrés Talavera, Parcours" : "Andrés Talavera, Resume";
+        seoTitle = fr ? "CV d'Andrés Talavera, consultant .NET & Azure | IdeaStud.io" : "Andrés Talavera's resume, .NET & Azure consultant | IdeaStud.io";
 
         chapterOne   = "Chapter I · Introduction";
         chapterTwo   = fr ? "Chapter II · À propos"       : "Chapter II · About";
@@ -225,20 +225,10 @@
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         string cultureCode = fr ? "fr" : "en";
 
-        SchemaOrg.Person person = new(
-            Name: pi.Name ?? "Andrés Talavera",
-            JobTitle: pi.Title ?? (fr ? "Consultant .NET & Azure" : ".NET & Azure Consultant"),
-            Description: introText,
-            Url: "https://ideastud.io",
-            Image: "https://ideastud.io/images/andres-talavera.jpeg",
-            SameAs: new[] {
-                $"https://www.linkedin.com/in/{pi.LinkedIn}/",
-                $"https://github.com/{pi.GitHub}"
-            },
-            KnowsAbout: new[] { ".NET", "Azure", "Blazor", "ASP.NET Core", "Cloud Architecture", "Software Training" },
-            Address: new SchemaOrg.PostalAddress(AddressLocality: "Lyon", AddressRegion: "Auvergne-Rhône-Alpes", AddressCountry: "FR"),
-            WorksFor: new SchemaOrg.Organization(Name: "IdeaStud.io", Url: "https://ideastud.io")
-        );
+        SchemaOrg.Person person = SchemaIdentity.Person(fr, introText) with
+        {
+            JobTitle = pi.Title ?? SchemaIdentity.JobTitle(fr),
+        };
 
         SchemaOrg.BreadcrumbList breadcrumb = SchemaOrg.CreateBreadcrumb(
             "https://ideastud.io",
