@@ -39,10 +39,14 @@
   // JetBrains Mono would draw => as an arrow: C# listings show the characters typed.
   code { font-variant-ligatures: none; }
 
-  table {
-    display: block;
+  // The wrapper scrolls; the table keeps display: table so screen readers still
+  // announce rows and columns (display: block drops that in Safari/VoiceOver).
+  .ds-table-scroll {
     max-width: 100%;
     overflow-x: auto;
+  }
+
+  table {
     border-collapse: collapse;
     font-size: t.$fs-small;
     font-variant-numeric: tabular-nums;
@@ -67,7 +71,7 @@
   }
 
   pre:focus-visible,
-  table:focus-visible { outline-offset: 2px; }
+  .ds-table-scroll:focus-visible { outline-offset: 2px; }
 
   img { border-radius: s.$radius-md; }
 }

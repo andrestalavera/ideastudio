@@ -236,11 +236,13 @@ html {
 }
 
 // Smallest phones: the booking CTA moves into the menu (last item) so the pill fits.
+// Wider than that the pill keeps it, so the menu copy stays hidden (no duplicate link).
+.ds-masthead-mobile .ds-masthead-mobile-cta { display: none; color: c.$ir-duck; }
+
 @container masthead (max-width: 24rem) {
   .ds-masthead-cta { display: none; }
+  .ds-masthead-mobile .ds-masthead-mobile-cta { display: block; }
 }
-
-.ds-masthead-mobile-cta { color: c.$ir-duck; }
 
 // Theme row inside the mobile dropdown — styled like the mobile nav links.
 .ds-masthead-mobile-theme {

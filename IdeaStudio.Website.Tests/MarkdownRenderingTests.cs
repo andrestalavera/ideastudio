@@ -39,7 +39,14 @@ public class MarkdownRenderingTests
     public void ToHtml_CodeBlock_IsKeyboardFocusable()
         => Assert.Contains("<pre tabindex=\"0\"", MarkdownRendering.ToHtml("```csharp\nvar x = 1;\n```"));
 
+    // The table itself stays a real table (display: block would drop its semantics in
+    // Safari/VoiceOver); a named, focusable region around it does the scrolling.
     [Fact]
-    public void ToHtml_Table_IsKeyboardFocusable()
-        => Assert.Contains("<table tabindex=\"0\"", MarkdownRendering.ToHtml("| A | B |\n| --- | --- |\n| 1 | 2 |"));
+    public void ToHtml_Table_IsWrappedInNamedFocusableRegion()
+    {
+        string html = MarkdownRendering.ToHtml("| A | B |\n| --- | --- |\n| 1 | 2 |", tableLabel: "Tableau");
+
+        Assert.Contains("<div class=\"ds-table-scroll\" role=\"region\" tabindex=\"0\" aria-label=\"Tableau\"><table>", html);
+        Assert.Contains("</table></div>", html);
+    }
 }

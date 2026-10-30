@@ -105,7 +105,7 @@ else if (loaded)
         string hub = LocalizedRoute.For("blog", cultureCode);
         if (post is not null)
         {
-            bodyHtml = (MarkupString)MarkdownRendering.ToHtml(post.Body);
+            bodyHtml = (MarkupString)MarkdownRendering.ToHtml(post.Body, tableLabel: fr ? "Tableau" : "Table");
             seoTitle = $"{post.Title} | IdeaStud.io";
             seoDescription = post.Summary;
             seoCanonical = $"https://ideastud.io{hub}/{post.Slug}";
