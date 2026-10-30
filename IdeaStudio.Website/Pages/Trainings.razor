@@ -98,8 +98,9 @@
 
     protected override async Task LoadLocalizedStringsAsync()
     {
-        await base.LoadLocalizedStringsAsync();
+        // Fetch the culture's data first so the base render never pairs new headings with old items.
         trainings = await Content.GetTrainingsAsync(CultureService.CurrentCulture.Name);
+        await base.LoadLocalizedStringsAsync();
         GenerateStructuredData();
         StateHasChanged();
     }

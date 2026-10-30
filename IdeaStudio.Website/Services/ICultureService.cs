@@ -1,5 +1,6 @@
 using IdeaStudio.Website.State;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Routing;
 using System.Globalization;
 
 namespace IdeaStudio.Website.Services;
@@ -30,6 +31,7 @@ public sealed class CultureService : ICultureService, IDisposable
         this.store = store;
         lastSeen = store.State.Culture;
         store.Changed += RelayCultureChange;
+        navigationManager.LocationChanged += OnLocationChanged;
     }
 
     public CultureInfo CurrentCulture
@@ -76,7 +78,22 @@ public sealed class CultureService : ICultureService, IDisposable
         return Task.CompletedTask;
     }
 
-    public void Dispose() => store.Changed -= RelayCultureChange;
+    public void Dispose()
+    {
+        store.Changed -= RelayCultureChange;
+        navigationManager.LocationChanged -= OnLocationChanged;
+    }
+
+    // Browser history (Back/Forward) changes the URL without going through CultureSelector,
+    // so the culture prefix of the new location is the source of truth.
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        string? fromUrl = CulturePath.ExtractCulture(new Uri(e.Location).AbsolutePath);
+        if (fromUrl is not null && fromUrl != store.State.Culture)
+        {
+            _ = SetCultureAsync(fromUrl);
+        }
+    }
 
     private void RelayCultureChange()
     {
