@@ -19,6 +19,20 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# ...except the two entry scripts, which keep their name on every deploy. dotnet.js
+# lists the fingerprinted assets to load: pinned for a year, a returning visitor
+# requests the previous build's assets, they 404, and the app never boots (the
+# visitor is stuck on the static prerender shell). CacheHeadersTests guards this.
+[[headers]]
+  for = "/_framework/blazor.webassembly.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/_framework/dotnet.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 # styles.min.css, cinema.bundle.js and error-ui.js keep the same name on every
 # deploy, so they must revalidate (cheap 304 via ETag). Marking them immutable
 # would pin returning visitors to a stale stylesheet/bundle for a year.
