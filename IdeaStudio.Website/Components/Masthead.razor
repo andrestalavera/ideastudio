@@ -58,6 +58,10 @@
             <a href="@LocalizedRoute.For("blog")" @onclick="CloseMobileMenu">@blogText</a>
             <a href="@LocalizedRoute.For("cv")" @onclick="CloseMobileMenu">@cvText</a>
             <a href="@LocalizedRoute.For("contact")" @onclick="CloseMobileMenu">@contactText</a>
+            <a class="ds-masthead-mobile-cta" href="https://calendly.com/andres-talavera/30min"
+               target="_blank" rel="noopener" aria-label="@bookCallAriaText" @onclick="CloseMobileMenu">
+                @meetText <span aria-hidden="true">↗</span>
+            </a>
             <button class="ds-masthead-mobile-theme" type="button"
                     aria-pressed="@(theme == "light" ? "true" : "false")"
                     @onclick="ToggleTheme">
