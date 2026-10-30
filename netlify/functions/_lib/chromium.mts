@@ -11,14 +11,14 @@ import { digestsMatch, isHttpsUrl } from "./integrity.mjs";
 
 // SHA-256 of the upstream Sparticuz Chromium pack that matches the
 // @sparticuz/chromium-min version pinned in package.json
-// (v148.0.0 -> chromium-v148.0.0-pack.x64.tar). The pack is fetched at cold
+// (v153.0.0 -> chromium-v153.0.0-pack.x64.tar). The pack is fetched at cold
 // start from a GitHub release addressed only by a *mutable* version tag, so a
 // swapped upstream artifact would be arbitrary code executing inside the
 // function. We download it ourselves, verify the digest, and fail closed on
 // mismatch instead of trusting the tag. Recompute when bumping the version:
 //   curl -sL <pack-url> | shasum -a 256
 const EXPECTED_PACK_SHA256 =
-  "b8050d5477a9c000681c85ccbe95df17a1e69a6a776bb1db144b5d236c9cfb8f";
+  "91b9f56d35a2cbb14279a1cbdaf1c86c0faa5fd82315bdd7334ff93bf35f224d";
 
 const PACK_DOWNLOAD_TIMEOUT_MS = 300_000;
 

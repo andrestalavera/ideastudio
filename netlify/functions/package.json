@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@netlify/functions": "^5.2.0",
-    "@sparticuz/chromium-min": "^148.0.0",
+    "@sparticuz/chromium-min": "153.0.0",
     "nodemailer": "^10.3.1",
-    "puppeteer-core": "^24.42.0",
+    "puppeteer-core": "25.11.0",
     "tar-fs": "^3.1.2"
   },
   "devDependencies": {
