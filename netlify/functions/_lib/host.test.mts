@@ -29,3 +29,42 @@ test("trustedBaseUrl ignores a malformed env origin", () => {
   const base = trustedBaseUrl(new URL("https://ideastud.io/x"), { URL: "not a url" });
   assert.equal(base, "https://ideastud.io");
 });
+
+// Netlify does not expose URL / DEPLOY_PRIME_URL to functions at runtime, but
+// context.site.name is always set, and only this site's deploys answer on
+// <site>.netlify.app and <prefix>--<site>.netlify.app.
+test("trustedBaseUrl allows this site's deploy previews and branch deploys", () => {
+  for (const host of [
+    "deploy-preview-90--ideastud-io.netlify.app",
+    "main--ideastud-io.netlify.app",
+    "6720f1c2a3b4c5d6e7f8a9b0--ideastud-io.netlify.app",
+    "ideastud-io.netlify.app",
+  ]) {
+    assert.equal(trustedBaseUrl(new URL(`https://${host}/x`), {}, "ideastud-io"), `https://${host}`);
+  }
+});
+
+test("trustedBaseUrl renders a preview from its own origin, not the canonical one", () => {
+  const base = trustedBaseUrl(
+    new URL("https://deploy-preview-90--ideastud-io.netlify.app/x"),
+    { URL: "https://ideastud.io" },
+    "ideastud-io",
+  );
+  assert.equal(base, "https://deploy-preview-90--ideastud-io.netlify.app");
+});
+
+test("trustedBaseUrl rejects other Netlify sites and look-alike hosts", () => {
+  for (const host of [
+    "deploy-preview-1--evil.netlify.app",
+    "evil-ideastud-io.netlify.app",
+    "ideastud-io.netlify.app.attacker.com",
+    "x--ideastud-io.netlify.app.evil.example",
+    "a.b--ideastud-io.netlify.app",
+  ]) {
+    assert.equal(trustedBaseUrl(new URL(`https://${host}/x`), {}, "ideastud-io"), null, host);
+  }
+});
+
+test("trustedBaseUrl ignores the Netlify pattern when the site name is unknown", () => {
+  assert.equal(trustedBaseUrl(new URL("https://main--ideastud-io.netlify.app/x"), {}), null);
+});

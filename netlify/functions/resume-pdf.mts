@@ -30,7 +30,7 @@ function textResponse(status: number, body: string): Response {
   });
 }
 
-export default async (req: Request, _context: Context): Promise<Response> => {
+export default async (req: Request, context: Context): Promise<Response> => {
   const url = new URL(req.url);
 
   // Strict allowlist — only the literal strings "fr" and "en" ever reach the
@@ -38,7 +38,7 @@ export default async (req: Request, _context: Context): Promise<Response> => {
   const cultureParam = url.searchParams.get("culture")?.toLowerCase();
   const culture: Culture = cultureParam === "en" ? "en" : "fr";
 
-  const baseUrl = trustedBaseUrl(url);
+  const baseUrl = trustedBaseUrl(url, process.env, context.site?.name);
   if (!baseUrl) {
     return textResponse(400, "Invalid request host.");
   }
