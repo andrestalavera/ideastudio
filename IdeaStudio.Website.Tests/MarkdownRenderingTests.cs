@@ -32,4 +32,14 @@ public class MarkdownRenderingTests
     [Fact]
     public void ToHtml_RawHtml_StaysEscaped()
         => Assert.DoesNotContain("<script", MarkdownRendering.ToHtml("# T\n\n<script>alert(1)</script>"));
+
+    // RGAA 7.3 / WCAG 2.1.1: a code listing or table wider than the column scrolls inside
+    // its frame, so keyboard users must be able to focus it to scroll it.
+    [Fact]
+    public void ToHtml_CodeBlock_IsKeyboardFocusable()
+        => Assert.Contains("<pre tabindex=\"0\"", MarkdownRendering.ToHtml("```csharp\nvar x = 1;\n```"));
+
+    [Fact]
+    public void ToHtml_Table_IsKeyboardFocusable()
+        => Assert.Contains("<table tabindex=\"0\"", MarkdownRendering.ToHtml("| A | B |\n| --- | --- |\n| 1 | 2 |"));
 }

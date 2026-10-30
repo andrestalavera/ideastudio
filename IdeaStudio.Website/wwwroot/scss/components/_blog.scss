@@ -17,6 +17,9 @@
 .ds-blogpost-body {
   margin-block-start: s.$s-5;
   min-width: 0;
+  // Articles are read end to end: a step up from UI body copy, with airier leading.
+  font-size: 1.0625rem;
+  line-height: 1.7;
 
   // Code listings and benchmark tables are wider than the 68ch measure: they scroll
   // inside their own frame instead of pushing the page sideways on a phone.
@@ -51,8 +54,20 @@
     white-space: nowrap;
   }
 
-  // Long inline identifiers (Microsoft.Extensions.Logging.LoggerMessage) may break anywhere.
-  :not(pre) > code { overflow-wrap: anywhere; }
+  // Inline code: same colour as the prose, set on a faint chip so it reads as code
+  // without dropping contrast. Long identifiers (Microsoft.Extensions.Logging.LoggerMessage)
+  // may break anywhere rather than widen the page.
+  :not(pre) > code {
+    font-size: 0.875em;
+    padding: 0.1em 0.35em;
+    border-radius: 6px;
+    background: c.$glass;
+    color: c.$fg;
+    overflow-wrap: anywhere;
+  }
+
+  pre:focus-visible,
+  table:focus-visible { outline-offset: 2px; }
 
   img { border-radius: s.$radius-md; }
 }

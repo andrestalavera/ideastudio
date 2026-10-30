@@ -30,6 +30,11 @@ internal static class MarkdownRendering
                 heading.Level = Math.Min(heading.Level + 1, 6);
             }
         }
-        return document.ToHtml(Pipeline);
+        // Code listings and tables scroll inside their frame when wider than the column
+        // (RGAA 7.3, WCAG 2.1.1): make them focusable so the keyboard can scroll them.
+        // Raw HTML is disabled, so a literal "<pre>" or "<table>" here is always ours.
+        return document.ToHtml(Pipeline)
+            .Replace("<pre>", "<pre tabindex=\"0\">", StringComparison.Ordinal)
+            .Replace("<table>", "<table tabindex=\"0\">", StringComparison.Ordinal);
     }
 }
