@@ -5,10 +5,10 @@ namespace IdeaStudio.Website.Tests;
 
 public class TrainingSeoTests
 {
-    private static Training Make(int? days, string summary = "À l'issue, vos équipes savent faire.") => new()
+    private static Training Make(int? days, string summary = "À l'issue, vos équipes savent faire.", string title = "Blazor") => new()
     {
         Slug = "blazor",
-        Title = "Blazor",
+        Title = title,
         Summary = summary,
         Category = ".NET",
         Modules = [],
@@ -16,24 +16,32 @@ public class TrainingSeoTests
     };
 
     [Theory]
-    [InlineData(true, "Formation Blazor (3 j) — intra ou inter | IdeaStud.io")]
-    [InlineData(false, "Blazor training course (3 days) | IdeaStud.io")]
-    public void Title_WithDuration_LeadsWithBuyerKeyword(bool fr, string expected)
+    [InlineData(true, "Blazor — formation 3 j | IdeaStud.io")]
+    [InlineData(false, "Blazor — 3-day training course | IdeaStud.io")]
+    public void Title_WithDuration_AppendsCourseFormat(bool fr, string expected)
         => Assert.Equal(expected, TrainingSeo.Title(Make(3), fr));
 
     [Theory]
-    [InlineData(true, "Formation Blazor — intra ou inter | IdeaStud.io")]
-    [InlineData(false, "Blazor training course | IdeaStud.io")]
+    [InlineData(true, "Blazor — formation | IdeaStud.io")]
+    [InlineData(false, "Blazor — training course | IdeaStud.io")]
     public void Title_WithoutDuration_OmitsDays(bool fr, string expected)
         => Assert.Equal(expected, TrainingSeo.Title(Make(null), fr));
 
+    // Many course titles start with a verb ("Concevoir des API…"): the format must follow
+    // the title, never wrap it, or the snippet reads "Formation Concevoir…".
+    [Theory]
+    [InlineData(true, "Concevoir des API web — formation 2 j | IdeaStud.io")]
+    [InlineData(false, "Concevoir des API web — 2-day training course | IdeaStud.io")]
+    public void Title_VerbLedCourseTitle_KeepsTitleIntact(bool fr, string expected)
+        => Assert.Equal(expected, TrainingSeo.Title(Make(2, title: "Concevoir des API web"), fr));
+
     [Fact]
-    public void Title_OneDayEnglish_UsesSingular()
-        => Assert.Equal("Blazor training course (1 day) | IdeaStud.io", TrainingSeo.Title(Make(1), fr: false));
+    public void Description_OneDayFrench_ReadsNaturally()
+        => Assert.StartsWith("Formation d'une journée,", TrainingSeo.Description(Make(1), fr: true));
 
     [Theory]
-    [InlineData(true, "Formation Blazor en 3 jours, en présentiel, à distance ou en intra. À l'issue, vos équipes savent faire.")]
-    [InlineData(false, "3-day Blazor course, on-site, remote or in-house. À l'issue, vos équipes savent faire.")]
+    [InlineData(true, "Formation de 3 jours, en présentiel, à distance ou en intra. À l'issue, vos équipes savent faire.")]
+    [InlineData(false, "3-day training course, on-site, remote or in-house. À l'issue, vos équipes savent faire.")]
     public void Description_ShortSummary_PrefixesCourseFacts(bool fr, string expected)
         => Assert.Equal(expected, TrainingSeo.Description(Make(3), fr));
 

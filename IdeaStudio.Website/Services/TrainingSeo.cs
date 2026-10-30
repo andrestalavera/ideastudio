@@ -3,9 +3,10 @@ using IdeaStudio.Website.Models;
 namespace IdeaStudio.Website.Services;
 
 /// <summary>
-/// Search-snippet wording for a course page. The title leads with the term buyers search
-/// for ("Formation Blazor", "Blazor training course"), and the description opens with the
-/// course facts, because every summary starts the same way ("À l'issue, vos…").
+/// Search-snippet wording for a course page. The course title comes first, untouched
+/// (many start with a verb: "Concevoir des API…"), followed by the format; the
+/// description opens with the course facts, because every summary starts the same way
+/// ("À l'issue, vos…").
 /// </summary>
 public static class TrainingSeo
 {
@@ -13,20 +14,21 @@ public static class TrainingSeo
 
     public static string Title(Training training, bool fr) => (fr, training.DurationDays) switch
     {
-        (true, int d) => $"Formation {training.Title} ({d} j) — intra ou inter | IdeaStud.io",
-        (true, null) => $"Formation {training.Title} — intra ou inter | IdeaStud.io",
-        (false, int d) => $"{training.Title} training course ({d} {(d == 1 ? "day" : "days")}) | IdeaStud.io",
-        (false, null) => $"{training.Title} training course | IdeaStud.io",
+        (true, int d) => $"{training.Title} — formation {d} j | IdeaStud.io",
+        (true, null) => $"{training.Title} — formation | IdeaStud.io",
+        (false, int d) => $"{training.Title} — {d}-day training course | IdeaStud.io",
+        (false, null) => $"{training.Title} — training course | IdeaStud.io",
     };
 
     public static string Description(Training training, bool fr)
     {
         string prefix = (fr, training.DurationDays) switch
         {
-            (true, int d) => $"Formation {training.Title} en {d} {(d == 1 ? "jour" : "jours")}, en présentiel, à distance ou en intra. ",
-            (true, null) => $"Formation {training.Title}, en présentiel, à distance ou en intra. ",
-            (false, int d) => $"{d}-day {training.Title} course, on-site, remote or in-house. ",
-            (false, null) => $"{training.Title} course, on-site, remote or in-house. ",
+            (true, 1) => "Formation d'une journée, en présentiel, à distance ou en intra. ",
+            (true, int d) => $"Formation de {d} jours, en présentiel, à distance ou en intra. ",
+            (true, null) => "Formation en présentiel, à distance ou en intra. ",
+            (false, int d) => $"{d}-day training course, on-site, remote or in-house. ",
+            (false, null) => "Training course, on-site, remote or in-house. ",
         };
         return Truncate(prefix + training.Summary);
     }
