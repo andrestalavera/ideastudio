@@ -17,7 +17,7 @@
         "title": "Records, constructeurs primaires et expressions de collection",
         "durationDays": 0.5,
         "points": [
-          "Records et types immuables : égalité par valeur, with-expressions, records positionnels",
+          "Records et types immuables : égalité par valeur, with-expressions, records positionnels",
           "Constructeurs primaires sur classes et structs pour réduire le code de câblage",
           "Expressions de collection ([...]) et leur conversion implicite vers tableaux, listes et types personnalisés"
         ],
@@ -29,7 +29,7 @@
         "points": [
           "Extension members pour étendre un type existant avec des propriétés, pas seulement des méthodes",
           "Le mot-clé field (C# 14) pour simplifier des propriétés avec logique de validation",
-          "Pattern matching avancé : patterns de liste, patterns relationnels, combinaisons avec and/or/not",
+          "Pattern matching avancé : patterns de liste, patterns relationnels, combinaisons avec and/or/not",
           "Switch expressions exhaustives et vérifiées par le compilateur"
         ],
         "workshop": "Réécrire une chaîne de if/else de validation en switch expression avec pattern matching combiné, et ajouter une propriété calculée avec field."
@@ -40,17 +40,17 @@
         "points": [
           "Unions et hiérarchies fermées (C# 15, .NET 11) pour représenter un résultat ou une erreur sans exception",
           "Exhaustivité du traitement vérifiée par le compilateur sur les types fermés",
-          "Principe d'un source generator : ce qu'il automatise et où il évite du code par réflexion"
+          "Principe d'un source generator : ce qu'il automatise et où il évite du code par réflexion"
         ],
         "workshop": "Remplacer une hiérarchie de résultats maison par une union C# 15 et vérifier l'exhaustivité du traitement à la compilation."
       },
       {
-        "title": "Async moderne : ValueTask et runtime async",
+        "title": "Async moderne : ValueTask et runtime async",
         "durationDays": 0.5,
         "points": [
           "Quand préférer ValueTask à Task pour réduire les allocations",
-          "Ce que change le runtime async : machines à états déplacées dans le runtime",
-          "Pièges courants de l'async : ConfigureAwait, async void, blocages mutuels"
+          "Ce que change le runtime async : machines à états déplacées dans le runtime",
+          "Pièges courants de l'async : ConfigureAwait, async void, blocages mutuels"
         ],
         "workshop": "Convertir une méthode async fréquemment appelée en ValueTask et mesurer la réduction d'allocations sur un scénario réel."
       }
@@ -58,19 +58,19 @@
     "prerequisites": "C# de base, lecture de code orienté objet.",
     "durationDays": 2,
     "level": "foundation",
-    "evaluation": "Quiz de validation à la fin de chaque module, et exercice de synthèse en fin de formation : refactorer un extrait de code représentatif avec les apports récents du langage.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et exercice de synthèse en fin de formation : refactorer un extrait de code représentatif avec les apports récents du langage.",
     "faq": [
       {
-        "question": "Faut-il déjà connaître C# 12 ou 13 pour suivre cette formation ?",
-        "answer": "Non. Les prérequis sont une bonne pratique du C# de base et la lecture de code orienté objet ; les fonctionnalités récentes sont introduites une à une, avec leur contexte."
+        "question": "Faut-il déjà connaître C# 12 ou 13 pour suivre cette formation ?",
+        "answer": "Non. Les prérequis sont une bonne pratique du C# de base et la lecture de code orienté objet ; les fonctionnalités récentes sont introduites une à une, avec leur contexte."
       },
       {
-        "question": "La formation couvre-t-elle .NET 11 en plus de C# 15 ?",
+        "question": "La formation couvre-t-elle .NET 11 en plus de C# 15 ?",
         "answer": "Le module sur les unions et les types fermés s'appuie sur C# 15 et .NET 11, mais l'essentiel du contenu s'applique dès .NET 10."
       },
       {
-        "question": "Peut-on travailler sur notre propre code ?",
-        "answer": "En intra, oui : les exercices peuvent porter sur un extrait de votre codebase. En inter-entreprise, on part d'exemples représentatifs."
+        "question": "Peut-on travailler sur notre propre code ?",
+        "answer": "En intra, oui : les exercices peuvent porter sur un extrait de votre codebase. En inter-entreprise, on part d'exemples représentatifs."
       }
     ]
   },
@@ -102,7 +102,7 @@
         "title": "Routing et minimal APIs",
         "durationDays": 0.5,
         "points": [
-          "Définir des endpoints avec les minimal APIs : verbes, paramètres de route, binding",
+          "Définir des endpoints avec les minimal APIs : verbes, paramètres de route, binding",
           "Grouper des endpoints avec MapGroup pour partager filtres et métadonnées",
           "Quand préférer les minimal APIs aux contrôleurs MVC classiques"
         ],
@@ -112,7 +112,7 @@
         "title": "Injection de dépendances et options",
         "durationDays": 0.5,
         "points": [
-          "Durées de vie des services : singleton, scoped, transient, et les pièges de mélange",
+          "Durées de vie des services : singleton, scoped, transient, et les pièges de mélange",
           "Le pattern Options pour une configuration fortement typée et validée",
           "Enregistrer et résoudre des services dans le conteneur intégré"
         ],
@@ -124,7 +124,7 @@
         "points": [
           "Rôle et ordre du pipeline de middleware, et pourquoi cet ordre compte",
           "Écrire un middleware personnalisé pour un besoin transverse (journalisation, en-tête, timing)",
-          "Middleware intégrés courants : gestion des exceptions, redirection HTTPS, fichiers statiques"
+          "Middleware intégrés courants : gestion des exceptions, redirection HTTPS, fichiers statiques"
         ],
         "workshop": "Écrire un middleware qui mesure le temps de traitement de chaque requête et l'insérer au bon endroit du pipeline."
       },
@@ -152,26 +152,26 @@
     "prerequisites": "C# moderne, notions de HTTP.",
     "durationDays": 3,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour : l'application construite pendant la formation doit démarrer, exposer ses endpoints et persister des données.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour : l'application construite pendant la formation doit démarrer, exposer ses endpoints et persister des données.",
     "faq": [
       {
-        "question": "Faut-il connaître ASP.NET Core MVC au préalable ?",
-        "answer": "Non, la formation part de zéro sur ASP.NET Core lui-même ; seules une pratique du C# moderne et des notions de HTTP sont attendues."
+        "question": "Faut-il connaître ASP.NET Core MVC au préalable ?",
+        "answer": "Non, la formation part de zéro sur ASP.NET Core lui-même ; seules une pratique du C# moderne et des notions de HTTP sont attendues."
       },
       {
-        "question": "La formation couvre-t-elle les API GraphQL ou la sécurité avancée ?",
-        "answer": "Non, ces sujets sont traités dans des formations dédiées (conception d'API, sécurisation d'ASP.NET Core et Blazor) ; ici l'objectif est de maîtriser les fondamentaux."
+        "question": "La formation couvre-t-elle les API GraphQL ou la sécurité avancée ?",
+        "answer": "Non, ces sujets sont traités dans des formations dédiées (conception d'API, sécurisation d'ASP.NET Core et Blazor) ; ici l'objectif est de maîtriser les fondamentaux."
       },
       {
-        "question": "Le module EF Core suffit-il pour un projet en production ?",
-        "answer": "Il pose les bases (DbContext, migration, lecture et écriture) ; pour la modélisation avancée et la performance, la formation Entity Framework Core 10 complète ce module."
+        "question": "Le module EF Core suffit-il pour un projet en production ?",
+        "answer": "Il pose les bases (DbContext, migration, lecture et écriture) ; pour la modélisation avancée et la performance, la formation Entity Framework Core 10 complète ce module."
       }
     ]
   },
   {
     "slug": "aspnet-core-advanced",
     "title": "ASP.NET Core 10, avancé",
-    "summary": "À l'issue, vos équipes amènent une application web jusqu'à la production en confiance : accès sécurisés, performance, supervision et tests fiables. Du robuste, pas seulement du fonctionnel.",
+    "summary": "À l'issue, vos équipes amènent une application web jusqu'à la production en confiance : accès sécurisés, performance, supervision et tests fiables. Du robuste, pas seulement du fonctionnel.",
     "category": ".NET",
     "audience": "Développeurs et techleads .NET ayant une pratique d'ASP.NET Core qui doivent amener une application jusqu'à la production en confiance.",
     "objectives": [
@@ -183,11 +183,11 @@
     ],
     "modules": [
       {
-        "title": "Authentification : cookies, JWT, OIDC",
+        "title": "Authentification : cookies, JWT, OIDC",
         "durationDays": 0.5,
         "points": [
           "Authentification par cookies pour une application server-side classique",
-          "Jetons JWT : émission, validation, expiration et renouvellement",
+          "Jetons JWT : émission, validation, expiration et renouvellement",
           "Authentification déléguée avec OIDC face à un fournisseur d'identité"
         ],
         "workshop": "Protéger une API avec une authentification JWT et vérifier le comportement sur un jeton expiré."
@@ -203,7 +203,7 @@
         "workshop": "Écrire une policy d'autorisation personnalisée qui vérifie un claim métier avant d'autoriser une action."
       },
       {
-        "title": "Observabilité : OpenTelemetry, logs, métriques",
+        "title": "Observabilité : OpenTelemetry, logs, métriques",
         "durationDays": 0.5,
         "points": [
           "Traces distribuées avec OpenTelemetry et corrélation entre services",
@@ -213,7 +213,7 @@
         "workshop": "Instrumenter un endpoint avec OpenTelemetry et suivre une requête de bout en bout dans les traces."
       },
       {
-        "title": "Performance : benchmarks, caching, compression",
+        "title": "Performance : benchmarks, caching, compression",
         "durationDays": 0.5,
         "points": [
           "Mesurer avant d'optimiser avec BenchmarkDotNet",
@@ -246,19 +246,19 @@
     "prerequisites": "ASP.NET Core fondamentaux ou expérience équivalente.",
     "durationDays": 3,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et scénario de synthèse le dernier jour : sécuriser, instrumenter et déployer une application fournie, tests d'intégration au vert.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et scénario de synthèse le dernier jour : sécuriser, instrumenter et déployer une application fournie, tests d'intégration au vert.",
     "faq": [
       {
-        "question": "Faut-il choisir entre JWT et OIDC avant la formation ?",
-        "answer": "Non, le premier module compare les approches ; vous repartez avec un critère de choix adapté à votre contexte, pas une réponse unique imposée."
+        "question": "Faut-il choisir entre JWT et OIDC avant la formation ?",
+        "answer": "Non, le premier module compare les approches ; vous repartez avec un critère de choix adapté à votre contexte, pas une réponse unique imposée."
       },
       {
-        "question": "La formation couvre-t-elle Keycloak ou Microsoft Entra ID en détail ?",
-        "answer": "Elle introduit OIDC de façon générique ; l'intégration détaillée avec Keycloak ou Microsoft Entra ID est approfondie dans la formation Sécuriser ASP.NET Core et Blazor."
+        "question": "La formation couvre-t-elle Keycloak ou Microsoft Entra ID en détail ?",
+        "answer": "Elle introduit OIDC de façon générique ; l'intégration détaillée avec Keycloak ou Microsoft Entra ID est approfondie dans la formation Sécuriser ASP.NET Core et Blazor."
       },
       {
-        "question": "Travaille-t-on sur une application réelle ?",
-        "answer": "En intra, les exercices peuvent porter sur l'une de vos applications ; en inter-entreprise, on part d'une application d'exemple représentative."
+        "question": "Travaille-t-on sur une application réelle ?",
+        "answer": "En intra, les exercices peuvent porter sur l'une de vos applications ; en inter-entreprise, on part d'une application d'exemple représentative."
       }
     ]
   },
@@ -273,11 +273,11 @@
       "Concevoir des endpoints validés, avec des erreurs cohérentes au format ProblemDetails",
       "Documenter une API avec OpenAPI natif et générer des clients à partir de cette documentation",
       "Faire évoluer une API sans casser ses consommateurs grâce au versioning",
-      "Sécuriser, gouverner et fiabiliser une API en production : authentification, rate limiting, idempotence et publication"
+      "Sécuriser, gouverner et fiabiliser une API en production : authentification, rate limiting, idempotence et publication"
     ],
     "modules": [
       {
-        "title": "REST ou GraphQL : que choisir, et quand",
+        "title": "REST ou GraphQL : que choisir, et quand",
         "durationDays": 0.25,
         "points": [
           "Critères de choix entre REST et GraphQL selon les consommateurs de l'API",
@@ -290,7 +290,7 @@
         "title": "Minimal APIs et contrôleurs, validation et ProblemDetails",
         "durationDays": 0.5,
         "points": [
-          "Minimal APIs face aux contrôleurs : critères de choix pour une API",
+          "Minimal APIs face aux contrôleurs : critères de choix pour une API",
           "Validation des entrées et retour d'erreurs cohérent",
           "Format ProblemDetails pour standardiser les réponses d'erreur",
           "Regrouper plusieurs erreurs de validation dans une seule réponse"
@@ -311,7 +311,7 @@
         "title": "Versioning et compatibilité ascendante",
         "durationDays": 0.25,
         "points": [
-          "Stratégies de versioning : dans l'URL, l'en-tête ou le média type",
+          "Stratégies de versioning : dans l'URL, l'en-tête ou le média type",
           "Faire évoluer un contrat sans casser les consommateurs existants",
           "Politique de dépréciation d'une version d'API"
         ],
@@ -333,7 +333,7 @@
         "points": [
           "Rendre un endpoint de création idempotent pour supporter les retries",
           "Pagination cohérente pour des collections volumineuses",
-          "Webhooks : livrer un événement de façon fiable côté consommateur"
+          "Webhooks : livrer un événement de façon fiable côté consommateur"
         ],
         "workshop": "Rendre un endpoint de création idempotent avec une clé fournie par le client, et vérifier l'absence de doublon sur un retry."
       },
@@ -341,9 +341,9 @@
         "title": "Publication et gouvernance avec Azure API Management",
         "durationDays": 0.25,
         "points": [
-          "Rôle d'une passerelle d'API : publication, quotas, politiques transverses",
+          "Rôle d'une passerelle d'API : publication, quotas, politiques transverses",
           "Publier une API existante via Azure API Management",
-          "Gouvernance multi-équipes : qui expose quoi, avec quelles règles"
+          "Gouvernance multi-équipes : qui expose quoi, avec quelles règles"
         ],
         "workshop": "Publier l'API construite pendant la formation derrière Azure API Management avec une politique de quota."
       }
@@ -351,19 +351,19 @@
     "prerequisites": "ASP.NET Core fondamentaux ou expérience équivalente.",
     "durationDays": 2,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et revue finale d'une API construite pendant la formation : contrat versionné, erreurs cohérentes, documentation et publication.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et revue finale d'une API construite pendant la formation : contrat versionné, erreurs cohérentes, documentation et publication.",
     "faq": [
       {
-        "question": "Faut-il un compte Azure pour le module API Management ?",
-        "answer": "Non, l'atelier utilise un niveau gratuit ou une instance partagée fournie pendant la formation ; si vous disposez déjà d'un abonnement, nous l'utilisons."
+        "question": "Faut-il un compte Azure pour le module API Management ?",
+        "answer": "Non, l'atelier utilise un niveau gratuit ou une instance partagée fournie pendant la formation ; si vous disposez déjà d'un abonnement, nous l'utilisons."
       },
       {
-        "question": "La formation choisit-elle GraphQL ou REST pour nous ?",
-        "answer": "Non, l'objectif est de vous donner les critères de décision ; les ateliers pratiques portent sur REST, le style le plus fréquent en contexte partenaire."
+        "question": "La formation choisit-elle GraphQL ou REST pour nous ?",
+        "answer": "Non, l'objectif est de vous donner les critères de décision ; les ateliers pratiques portent sur REST, le style le plus fréquent en contexte partenaire."
       },
       {
-        "question": "Peut-on appliquer ces pratiques à une API déjà en production ?",
-        "answer": "Oui, c'est le cas le plus fréquent en intra : les ateliers de versioning et de gouvernance partent alors de votre contrat d'API existant."
+        "question": "Peut-on appliquer ces pratiques à une API déjà en production ?",
+        "answer": "Oui, c'est le cas le plus fréquent en intra : les ateliers de versioning et de gouvernance partent alors de votre contrat d'API existant."
       }
     ]
   },
@@ -386,7 +386,7 @@
         "durationDays": 0.25,
         "points": [
           "Panorama du OWASP Top 10 et sa traduction concrète dans une application ASP.NET Core",
-          "Injection, contrôle d'accès défaillant et mauvaise configuration : les cas les plus fréquents en revue",
+          "Injection, contrôle d'accès défaillant et mauvaise configuration : les cas les plus fréquents en revue",
           "Prioriser les corrections selon l'exposition réelle de l'application"
         ],
         "workshop": "Auditer une application fournie et classer ses failles selon les catégories du OWASP Top 10."
@@ -395,15 +395,15 @@
         "title": "Authentification OIDC avec Keycloak ou Microsoft Entra ID",
         "durationDays": 0.5,
         "points": [
-          "Flux OIDC : code d'autorisation, jetons d'accès et d'identité, rafraîchissement",
+          "Flux OIDC : code d'autorisation, jetons d'accès et d'identité, rafraîchissement",
           "Configurer Keycloak comme fournisseur d'identité pour une application ASP.NET Core",
           "Configurer Microsoft Entra ID comme alternative, et ce qui change entre les deux",
-          "Pièges courants : URI de redirection, validation d'émetteur, expiration silencieuse"
+          "Pièges courants : URI de redirection, validation d'émetteur, expiration silencieuse"
         ],
         "workshop": "Brancher une application ASP.NET Core sur Keycloak en OIDC et vérifier le comportement à l'expiration du jeton."
       },
       {
-        "title": "Autorisation fine : policies, ressources, multi-tenant",
+        "title": "Autorisation fine : policies, ressources, multi-tenant",
         "durationDays": 0.25,
         "points": [
           "Policies basées sur des claims plutôt que sur des rôles figés",
@@ -413,12 +413,12 @@
         "workshop": "Écrire une policy qui empêche un utilisateur d'un tenant d'accéder à une ressource d'un autre tenant."
       },
       {
-        "title": "Blazor Server, WebAssembly et SSR : où vivent les jetons",
+        "title": "Blazor Server, WebAssembly et SSR : où vivent les jetons",
         "durationDays": 0.25,
         "points": [
           "Cycle de vie d'un jeton en Blazor Server, côté serveur uniquement",
           "Exposition du jeton en Blazor WebAssembly, côté client, et ses implications",
-          "Rendu SSR et composants interactifs : ce qui change pour l'authentification"
+          "Rendu SSR et composants interactifs : ce qui change pour l'authentification"
         ],
         "workshop": "Identifier, sur une application Blazor donnée, où le jeton est réellement stocké selon le modèle de rendu utilisé."
       },
@@ -428,7 +428,7 @@
         "points": [
           "En-têtes de sécurité essentiels et ce qu'ils préviennent réellement",
           "Content Security Policy adaptée à une application Blazor sans casser l'interactivité",
-          "CORS : ouvrir juste ce qu'il faut, pas plus",
+          "CORS : ouvrir juste ce qu'il faut, pas plus",
           "Protection antiforgery sur les formulaires et les appels mutants"
         ],
         "workshop": "Mettre en place une CSP restrictive sur une application Blazor et corriger les violations qu'elle révèle."
@@ -457,18 +457,18 @@
     "prerequisites": "ASP.NET Core fondamentaux ou expérience équivalente.",
     "durationDays": 2,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et audit final d'une application fournie : failles OWASP corrigées, authentification OIDC fonctionnelle, en-têtes de sécurité en place.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et audit final d'une application fournie : failles OWASP corrigées, authentification OIDC fonctionnelle, en-têtes de sécurité en place.",
     "faq": [
       {
-        "question": "La formation garantit-elle une application invulnérable ?",
+        "question": "La formation garantit-elle une application invulnérable ?",
         "answer": "Non, aucune formation ne peut le garantir. L'objectif est de fermer les failles les plus courantes et d'installer des réflexes de revue, pas de certifier une sécurité absolue."
       },
       {
-        "question": "Faut-il choisir entre Keycloak et Microsoft Entra ID avant la formation ?",
-        "answer": "Non, le module d'authentification couvre les deux ; vous repartez avec les critères pour choisir selon votre contexte."
+        "question": "Faut-il choisir entre Keycloak et Microsoft Entra ID avant la formation ?",
+        "answer": "Non, le module d'authentification couvre les deux ; vous repartez avec les critères pour choisir selon votre contexte."
       },
       {
-        "question": "La formation couvre-t-elle Blazor Server, WebAssembly et le rendu SSR ?",
+        "question": "La formation couvre-t-elle Blazor Server, WebAssembly et le rendu SSR ?",
         "answer": "Oui, le module dédié compare les trois modèles de rendu du point de vue de la sécurité des jetons."
       }
     ]
@@ -541,9 +541,9 @@
         "title": "Compilation AOT et budget de bundle",
         "durationDays": 0.5,
         "points": [
-          "Compilation AOT : ce qu'elle apporte en performance et ce qu'elle coûte en taille",
+          "Compilation AOT : ce qu'elle apporte en performance et ce qu'elle coûte en taille",
           "Mesurer et suivre le budget de bundle d'une application WebAssembly",
-          "Techniques de réduction du bundle : trimming, chargement différé des assemblies"
+          "Techniques de réduction du bundle : trimming, chargement différé des assemblies"
         ],
         "workshop": "Activer la compilation AOT sur une application WebAssembly et mesurer l'évolution du budget de bundle."
       }
@@ -551,26 +551,26 @@
     "prerequisites": "C# moderne, HTML/CSS, notions JS.",
     "durationDays": 3,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour : l'application Blazor construite pendant la formation fonctionne sans rendu superflu et respecte son budget de bundle.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour : l'application Blazor construite pendant la formation fonctionne sans rendu superflu et respecte son budget de bundle.",
     "faq": [
       {
-        "question": "Faut-il connaître Blazor Server ou WebAssembly au préalable ?",
-        "answer": "Non, les deux modèles sont introduits depuis le début ; seuls le C# moderne, HTML/CSS et des notions de JavaScript sont attendus."
+        "question": "Faut-il connaître Blazor Server ou WebAssembly au préalable ?",
+        "answer": "Non, les deux modèles sont introduits depuis le début ; seuls le C# moderne, HTML/CSS et des notions de JavaScript sont attendus."
       },
       {
-        "question": "La formation couvre-t-elle Blazor Hybrid ?",
+        "question": "La formation couvre-t-elle Blazor Hybrid ?",
         "answer": "Elle mentionne son existence, mais l'essentiel du temps porte sur Server et WebAssembly, les modèles les plus utilisés pour des applications web."
       },
       {
-        "question": "Aborde-t-on la sécurité des jetons selon le modèle de rendu ?",
-        "answer": "Brièvement au fil des modules ; le sujet est traité en profondeur dans la formation Sécuriser ASP.NET Core et Blazor."
+        "question": "Aborde-t-on la sécurité des jetons selon le modèle de rendu ?",
+        "answer": "Brièvement au fil des modules ; le sujet est traité en profondeur dans la formation Sécuriser ASP.NET Core et Blazor."
       }
     ]
   },
   {
     "slug": "ef-core-10",
     "title": "Entity Framework Core 10",
-    "summary": "À l'issue, vos développeurs manipulent vos données de façon fiable et performante : modéliser, faire évoluer et interroger une base sans mauvaises surprises.",
+    "summary": "À l'issue, vos développeurs manipulent vos données de façon fiable et performante : modéliser, faire évoluer et interroger une base sans mauvaises surprises.",
     "category": ".NET",
     "audience": "Développeurs .NET à l'aise avec le C# moderne qui veulent modéliser, faire évoluer et interroger une base de données de façon fiable avec EF Core 10.",
     "objectives": [
@@ -608,7 +608,7 @@
         "points": [
           "Types complexes pour regrouper des valeurs sans créer d'entité séparée",
           "Colonnes JSON pour des données semi-structurées, et leurs limites de requêtage",
-          "Recherche vectorielle : cas d'usage et intégration avec EF Core 10"
+          "Recherche vectorielle : cas d'usage et intégration avec EF Core 10"
         ],
         "workshop": "Mapper un type complexe et une colonne JSON sur une entité existante, puis interroger un champ imbriqué."
       },
@@ -637,7 +637,7 @@
         "durationDays": 0.25,
         "points": [
           "Coût réel du change tracking sur une requête de lecture",
-          "AsNoTracking et AsNoTrackingWithIdentityResolution : quand utiliser lequel",
+          "AsNoTracking et AsNoTrackingWithIdentityResolution : quand utiliser lequel",
           "Effets de bord d'un mauvais choix de tracking sur les mises à jour suivantes"
         ],
         "workshop": "Mesurer l'effet d'AsNoTracking sur une requête de lecture volumineuse et vérifier l'absence de régression sur les écritures."
@@ -648,7 +648,7 @@
         "points": [
           "Lire un plan d'exécution pour repérer un scan à la place d'un index",
           "Mesurer une requête EF Core avec des outils de benchmark plutôt qu'à l'intuition",
-          "Requêtes N+1 : les repérer et les corriger"
+          "Requêtes N+1 : les repérer et les corriger"
         ],
         "workshop": "Repérer une requête N+1 dans un scénario fourni, la corriger, puis confirmer le gain sur le plan d'exécution."
       }
@@ -656,26 +656,26 @@
     "prerequisites": "C# moderne, notions SQL.",
     "durationDays": 2,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et exercice de synthèse en fin de formation : modéliser, migrer et interroger un schéma fourni avec les pratiques vues pendant les deux jours.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et exercice de synthèse en fin de formation : modéliser, migrer et interroger un schéma fourni avec les pratiques vues pendant les deux jours.",
     "faq": [
       {
-        "question": "La formation couvre-t-elle un fournisseur de base de données en particulier ?",
-        "answer": "Les exemples s'appuient sur un fournisseur relationnel courant ; les principes vus (conventions, relations, tracking) s'appliquent aux fournisseurs pris en charge par EF Core 10."
+        "question": "La formation couvre-t-elle un fournisseur de base de données en particulier ?",
+        "answer": "Les exemples s'appuient sur un fournisseur relationnel courant ; les principes vus (conventions, relations, tracking) s'appliquent aux fournisseurs pris en charge par EF Core 10."
       },
       {
-        "question": "Faut-il déjà connaître une version antérieure d'EF Core ?",
-        "answer": "Non, seuls le C# moderne et des notions de SQL sont attendus ; le contenu part des conventions de base avant d'aborder les sujets avancés."
+        "question": "Faut-il déjà connaître une version antérieure d'EF Core ?",
+        "answer": "Non, seuls le C# moderne et des notions de SQL sont attendus ; le contenu part des conventions de base avant d'aborder les sujets avancés."
       },
       {
-        "question": "La recherche vectorielle nécessite-t-elle un service externe ?",
-        "answer": "Le module en présente le principe et l'intégration côté EF Core ; le choix et la configuration du service de recherche sous-jacent dépendent de votre infrastructure et restent hors périmètre."
+        "question": "La recherche vectorielle nécessite-t-elle un service externe ?",
+        "answer": "Le module en présente le principe et l'intégration côté EF Core ; le choix et la configuration du service de recherche sous-jacent dépendent de votre infrastructure et restent hors périmètre."
       }
     ]
   },
   {
     "slug": "dotnet-testing",
     "title": "Tests automatisés .NET",
-    "summary": "À l'issue, votre équipe livre avec sérénité : des tests automatisés utiles qui attrapent les régressions tôt et permettent de déployer sans retenir son souffle.",
+    "summary": "À l'issue, votre équipe livre avec sérénité : des tests automatisés utiles qui attrapent les régressions tôt et permettent de déployer sans retenir son souffle.",
     "category": ".NET",
     "audience": "Développeurs .NET qui livrent en équipe et veulent des tests qui protègent vraiment les mises en production.",
     "objectives": [
@@ -687,11 +687,11 @@
     ],
     "modules": [
       {
-        "title": "Fondations : xUnit v3 et Microsoft.Testing.Platform",
+        "title": "Fondations : xUnit v3 et Microsoft.Testing.Platform",
         "durationDays": 0.5,
         "points": [
           "Nouveautés de xUnit v3 et migration depuis xUnit v2",
-          "Microsoft.Testing.Platform : exécution, filtrage et intégration CI",
+          "Microsoft.Testing.Platform : exécution, filtrage et intégration CI",
           "Organiser une suite de tests unitaires lisible et rapide"
         ],
         "workshop": "Migrer un projet de test existant vers xUnit v3 et Microsoft.Testing.Platform, puis le faire tourner en CI."
@@ -711,7 +711,7 @@
         "durationDays": 0.5,
         "points": [
           "Verrouiller une sortie complexe (JSON, HTML, arbre d'objets) sans écrire d'assertions fragiles",
-          "Gérer les snapshots en revue de code : accepter, rejeter, faire évoluer",
+          "Gérer les snapshots en revue de code : accepter, rejeter, faire évoluer",
           "Combiner Verify avec les tests existants sans dupliquer la couverture"
         ],
         "workshop": "Ajouter un test de snapshot sur une réponse d'API existante et valider la mise à jour du snapshot en revue."
@@ -730,15 +730,15 @@
     "prerequisites": "C# moderne, expérience d'un projet en équipe.",
     "durationDays": 2,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et revue de la suite de tests construite pendant la formation : elle doit couvrir les cas critiques identifiés collectivement et résister à Stryker sur les mutants clés.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et revue de la suite de tests construite pendant la formation : elle doit couvrir les cas critiques identifiés collectivement et résister à Stryker sur les mutants clés.",
     "faq": [
       {
-        "question": "Faut-il déjà utiliser xUnit ?",
-        "answer": "Une pratique de base d'un framework de test .NET (xUnit, NUnit ou MSTest) suffit ; la migration vers xUnit v3 est couverte en formation."
+        "question": "Faut-il déjà utiliser xUnit ?",
+        "answer": "Une pratique de base d'un framework de test .NET (xUnit, NUnit ou MSTest) suffit ; la migration vers xUnit v3 est couverte en formation."
       },
       {
-        "question": "La formation couvre-t-elle les tests de bout en bout (interface) ?",
-        "answer": "Non, elle se concentre sur les tests unitaires, d'intégration et de mutation côté backend .NET ; les tests d'interface ne sont pas au programme."
+        "question": "La formation couvre-t-elle les tests de bout en bout (interface) ?",
+        "answer": "Non, elle se concentre sur les tests unitaires, d'intégration et de mutation côté backend .NET ; les tests d'interface ne sont pas au programme."
       }
     ]
   },
@@ -750,7 +750,7 @@
     "audience": "Développeurs et techleads .NET qui construisent une application distribuée et veulent la faire tourner, l'observer et la déployer sans complexité inutile.",
     "objectives": [
       "Structurer une solution .NET distribuée avec l'AppHost Aspire et les service defaults",
-      "Brancher les intégrations Aspire courantes : PostgreSQL, SQL Server, Redis, Service Bus, Storage",
+      "Brancher les intégrations Aspire courantes : PostgreSQL, SQL Server, Redis, Service Bus, Storage",
       "Lire le tableau de bord Aspire pour diagnostiquer logs, traces et métriques OpenTelemetry",
       "Gérer configuration, secrets et découverte de services entre plusieurs projets",
       "Tester puis déployer l'application sur Azure Container Apps avec l'Azure Developer CLI (azd)"
@@ -761,13 +761,13 @@
         "durationDays": 0.5,
         "points": [
           "Composer une solution distribuée avec l'AppHost Aspire",
-          "Appliquer les service defaults : résilience, health checks, OpenTelemetry par défaut",
+          "Appliquer les service defaults : résilience, health checks, OpenTelemetry par défaut",
           "Gérer configuration, secrets et découverte de services entre les projets"
         ],
         "workshop": "Ajouter un nouveau projet à l'AppHost et lui faire hériter des service defaults sans configuration manuelle."
       },
       {
-        "title": "Intégrations Aspire : données et messagerie",
+        "title": "Intégrations Aspire : données et messagerie",
         "durationDays": 0.5,
         "points": [
           "Brancher PostgreSQL, SQL Server et Redis via les intégrations Aspire",
@@ -800,21 +800,21 @@
     "prerequisites": "ASP.NET Core, notions Docker.",
     "durationDays": 2,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et déploiement de l'application fil rouge le dernier jour : elle doit démarrer, être observable dans le tableau de bord et répondre correctement une fois déployée sur Azure Container Apps.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et déploiement de l'application fil rouge le dernier jour : elle doit démarrer, être observable dans le tableau de bord et répondre correctement une fois déployée sur Azure Container Apps.",
     "faq": [
       {
-        "question": "Faut-il déjà connaître Docker ?",
-        "answer": "Des notions de base suffisent : Aspire orchestre les conteneurs pour vous, mais comprendre ce qu'est une image et un conteneur aide à lire les erreurs."
+        "question": "Faut-il déjà connaître Docker ?",
+        "answer": "Des notions de base suffisent : Aspire orchestre les conteneurs pour vous, mais comprendre ce qu'est une image et un conteneur aide à lire les erreurs."
       },
       {
-        "question": "Peut-on utiliser nos propres intégrations (base de données, message broker) ?",
+        "question": "Peut-on utiliser nos propres intégrations (base de données, message broker) ?",
         "answer": "Oui, en intra on branche les intégrations Aspire sur vos dépendances existantes plutôt que sur un projet d'exemple."
       }
     ]
   },
   {
     "slug": "dotnet-11-migration",
-    "title": "Passer à .NET 11 : C# 15 et runtime async",
+    "title": "Passer à .NET 11 : C# 15 et runtime async",
     "summary": "À l'issue, vos équipes savent ce que .NET 11 change vraiment, quand migrer depuis .NET 10 LTS, et comment le faire sans casser la production.",
     "category": ".NET",
     "audience": "Développeurs et techleads .NET qui maintiennent des applications en production et doivent décider quand passer à .NET 11.",
@@ -826,20 +826,20 @@
     ],
     "modules": [
       {
-        "title": "Choisir sa version : .NET 10 LTS ou .NET 11 STS",
+        "title": "Choisir sa version : .NET 10 LTS ou .NET 11 STS",
         "durationDays": 0.25,
         "points": [
           "Cycle de support .NET, dates de fin de correctifs et conséquences pour vos clients",
-          "Critères de décision par type d'application : produit, interne, bibliothèque publiée",
+          "Critères de décision par type d'application : produit, interne, bibliothèque publiée",
           "Coût réel d'un saut de version, et coût de l'attente"
         ],
         "workshop": "Classer vos applications et proposer une trajectoire de migration argumentée."
       },
       {
-        "title": "C# 15 : unions, types fermés et expressions de collection",
+        "title": "C# 15 : unions, types fermés et expressions de collection",
         "durationDays": 0.25,
         "points": [
-          "Unions et hiérarchies fermées : modéliser un résultat ou une erreur sans exception",
+          "Unions et hiérarchies fermées : modéliser un résultat ou une erreur sans exception",
           "Pattern matching exhaustif vérifié par le compilateur",
           "Expressions de collection et de dictionnaire enrichies"
         ],
@@ -849,7 +849,7 @@
         "title": "Runtime async et nouveautés des bibliothèques",
         "durationDays": 0.25,
         "points": [
-          "Runtime async : machines à états déplacées dans le runtime, effets sur les performances",
+          "Runtime async : machines à états déplacées dans le runtime, effets sur les performances",
           "Piles d'appels enfin lisibles lors d'un diagnostic en production",
           "Nouveautés d'ASP.NET Core 11, d'EF Core 11 et des API de la BCL"
         ],
@@ -859,8 +859,8 @@
         "title": "Migrer une solution pas à pas",
         "durationDays": 0.25,
         "points": [
-          "Tester une préversion sans risque : global.json, CI dédiée, drapeaux de fonctionnalité",
-          "Ordre de migration : bibliothèques, services, applications clientes",
+          "Tester une préversion sans risque : global.json, CI dédiée, drapeaux de fonctionnalité",
+          "Ordre de migration : bibliothèques, services, applications clientes",
           "Se faire aider par un assistant IA sans lui laisser la main sur les décisions"
         ],
         "workshop": "Migrer une solution multi-projets vers .NET 11 et faire passer toute la suite de tests au vert."
@@ -869,15 +869,15 @@
     "prerequisites": "Pratique de .NET 8 ou .NET 10 en production.",
     "durationDays": 1,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution de la migration réalisée pendant la journée : la solution doit compiler et passer ses tests sur la nouvelle version.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution de la migration réalisée pendant la journée : la solution doit compiler et passer ses tests sur la nouvelle version.",
     "faq": [
       {
-        "question": "Faut-il migrer tout de suite vers .NET 11 ?",
-        "answer": "Pas forcément, et la formation sert justement à trancher. .NET 10 reste supporté en LTS ; .NET 11 apporte C# 15 et le runtime async, avec un support plus court."
+        "question": "Faut-il migrer tout de suite vers .NET 11 ?",
+        "answer": "Pas forcément, et la formation sert justement à trancher. .NET 10 reste supporté en LTS ; .NET 11 apporte C# 15 et le runtime async, avec un support plus court."
       },
       {
-        "question": "Travaille-t-on sur notre code ?",
-        "answer": "En intra, oui : on migre l'une de vos solutions pendant l'atelier. En inter-entreprise, on part d'une solution d'exemple représentative."
+        "question": "Travaille-t-on sur notre code ?",
+        "answer": "En intra, oui : on migre l'une de vos solutions pendant l'atelier. En inter-entreprise, on part d'une solution d'exemple représentative."
       }
     ]
   },
@@ -907,7 +907,7 @@
         "workshop": "Déployer le même service conteneurisé sur App Service puis sur Container Apps, et comparer la configuration d'autoscale."
       },
       {
-        "title": "Données pour l'IA : Cosmos DB for NoSQL",
+        "title": "Données pour l'IA : Cosmos DB for NoSQL",
         "durationDays": 1,
         "points": [
           "Modéliser des données avec le SDK Cosmos DB for NoSQL et dimensionner les RU",
@@ -937,7 +937,7 @@
         "workshop": "Ajouter un cache Redis devant un endpoint de recherche vectorielle et mesurer le gain de latence."
       },
       {
-        "title": "Messagerie et événements : Service Bus, Event Grid, Functions",
+        "title": "Messagerie et événements : Service Bus, Event Grid, Functions",
         "durationDays": 0.5,
         "points": [
           "Découpler des traitements avec Service Bus (files, sujets)",
@@ -947,7 +947,7 @@
         "workshop": "Déclencher une Azure Function sur un message Service Bus et publier un événement Event Grid en sortie."
       },
       {
-        "title": "Sécurité et configuration : Key Vault, Managed Identity",
+        "title": "Sécurité et configuration : Key Vault, Managed Identity",
         "durationDays": 0.5,
         "points": [
           "Retirer les secrets du code avec Key Vault et App Configuration",
@@ -957,7 +957,7 @@
         "workshop": "Remplacer une chaîne de connexion en dur par un accès Key Vault via Managed Identity."
       },
       {
-        "title": "Supervision : OpenTelemetry et KQL",
+        "title": "Supervision : OpenTelemetry et KQL",
         "durationDays": 0.5,
         "points": [
           "Instrumenter un service avec OpenTelemetry",
@@ -980,19 +980,19 @@
     "prerequisites": "C# moderne, notions de cloud et de conteneurs.",
     "durationDays": 5,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et un jeu de questions type examen le dernier jour pour mesurer la préparation individuelle ; la formation prépare à l'examen AI-200, elle ne le fait pas passer ni ne garantit sa réussite.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et un jeu de questions type examen le dernier jour pour mesurer la préparation individuelle ; la formation prépare à l'examen AI-200, elle ne le fait pas passer ni ne garantit sa réussite.",
     "faq": [
       {
-        "question": "La formation inclut-elle l'examen AI-200 ?",
+        "question": "La formation inclut-elle l'examen AI-200 ?",
         "answer": "Non. Elle prépare au contenu et au format de l'examen AI-200, que vous passez ensuite de votre côté auprès de Microsoft ou d'un centre agréé."
       },
       {
-        "question": "Faut-il déjà connaître Kubernetes pour le module AKS ?",
-        "answer": "Non, le module reste au niveau des concepts nécessaires à l'examen ; une pratique approfondie d'AKS n'est pas un prérequis."
+        "question": "Faut-il déjà connaître Kubernetes pour le module AKS ?",
+        "answer": "Non, le module reste au niveau des concepts nécessaires à l'examen ; une pratique approfondie d'AKS n'est pas un prérequis."
       },
       {
-        "question": "Peut-on suivre uniquement certains modules ?",
-        "answer": "En inter-entreprise la formation se suit dans son ensemble sur cinq jours ; en intra, le programme peut être resserré sur les thèmes qui manquent réellement à votre équipe."
+        "question": "Peut-on suivre uniquement certains modules ?",
+        "answer": "En inter-entreprise la formation se suit dans son ensemble sur cinq jours ; en intra, le programme peut être resserré sur les thèmes qui manquent réellement à votre équipe."
       }
     ],
     "certification": "AI-200"
@@ -1000,14 +1000,14 @@
   {
     "slug": "azure-az400-prep",
     "title": "DevOps avec Azure DevOps & GitHub (préparation AZ-400)",
-    "summary": "À l'issue, vos équipes automatisent la livraison logicielle sur Azure DevOps comme sur GitHub et préparent la certification Azure AZ-400 : déployer plus souvent, plus vite, avec moins d'erreurs.",
+    "summary": "À l'issue, vos équipes automatisent la livraison logicielle sur Azure DevOps comme sur GitHub et préparent la certification Azure AZ-400 : déployer plus souvent, plus vite, avec moins d'erreurs.",
     "category": "Azure",
     "audience": "Techleads et ingénieurs DevOps qui outillent la livraison logicielle sur Azure DevOps ou GitHub et préparent la certification Azure AZ-400.",
     "objectives": [
       "Organiser le travail et le code source avec Azure Boards, GitHub Flow et une stratégie de branche adaptée à l'équipe",
       "Construire des pipelines multi-étapes fiables avec Azure Pipelines et GitHub Actions",
       "Intégrer tests automatisés et infrastructure as code (Bicep, Terraform) dans le pipeline de livraison",
-      "Sécuriser la chaîne de livraison : secrets, dépendances, GitHub Advanced Security",
+      "Sécuriser la chaîne de livraison : secrets, dépendances, GitHub Advanced Security",
       "Instrumenter la production avec Azure Monitor, Application Insights et KQL pour boucler sur la qualité"
     ],
     "modules": [
@@ -1022,7 +1022,7 @@
         "workshop": "Définir une stratégie de branche et de revue pour une équipe fictive à partir de ses contraintes de livraison."
       },
       {
-        "title": "Pipelines multi-étapes : Azure Pipelines et GitHub Actions",
+        "title": "Pipelines multi-étapes : Azure Pipelines et GitHub Actions",
         "durationDays": 1,
         "points": [
           "Écrire un pipeline YAML multi-étapes avec Azure Pipelines",
@@ -1043,7 +1043,7 @@
         "workshop": "Ajouter une étape de tests automatisés qui bloque le déploiement en cas d'échec ou de couverture insuffisante."
       },
       {
-        "title": "Infrastructure as code : Bicep et Terraform",
+        "title": "Infrastructure as code : Bicep et Terraform",
         "durationDays": 1,
         "points": [
           "Décrire une infrastructure Azure avec Bicep",
@@ -1074,7 +1074,7 @@
         "workshop": "Configurer un scan de dépendances GitHub Advanced Security et traiter une vulnérabilité détectée."
       },
       {
-        "title": "Instrumentation : Azure Monitor, Application Insights, KQL",
+        "title": "Instrumentation : Azure Monitor, Application Insights, KQL",
         "durationDays": 0.5,
         "points": [
           "Instrumenter une application avec Application Insights",
@@ -1097,19 +1097,19 @@
     "prerequisites": "Expérience d'un projet en équipe, notions Git, notions cloud. La certification Expert requiert aussi l'AZ-104 ou une Azure Developer Associate encore valide.",
     "durationDays": 5,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et un jeu de questions type examen le dernier jour pour mesurer la préparation individuelle ; la formation prépare à l'examen AZ-400, elle ne le fait pas passer ni ne garantit sa réussite.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et un jeu de questions type examen le dernier jour pour mesurer la préparation individuelle ; la formation prépare à l'examen AZ-400, elle ne le fait pas passer ni ne garantit sa réussite.",
     "faq": [
       {
-        "question": "La formation inclut-elle l'examen AZ-400 ?",
+        "question": "La formation inclut-elle l'examen AZ-400 ?",
         "answer": "Non. Elle prépare au contenu et au format de l'examen AZ-400, que vous passez ensuite de votre côté auprès de Microsoft ou d'un centre agréé."
       },
       {
-        "question": "Faut-il déjà avoir l'AZ-104 ou l'Azure Developer Associate ?",
+        "question": "Faut-il déjà avoir l'AZ-104 ou l'Azure Developer Associate ?",
         "answer": "Pas pour suivre la formation. En revanche, la certification Expert AZ-400 exige de votre côté l'une de ces deux certifications encore valide, en plus de l'examen AZ-400."
       },
       {
-        "question": "Travaille-t-on sur Azure DevOps ou sur GitHub ?",
-        "answer": "Les deux : chaque brique est montrée sur Azure Pipelines et sur GitHub Actions, pour couvrir les deux écosystèmes de l'examen."
+        "question": "Travaille-t-on sur Azure DevOps ou sur GitHub ?",
+        "answer": "Les deux : chaque brique est montrée sur Azure Pipelines et sur GitHub Actions, pour couvrir les deux écosystèmes de l'examen."
       }
     ],
     "certification": "AZ-400"
@@ -1124,7 +1124,7 @@
       "Écrire des Azure Functions avec les bindings et triggers adaptés au scénario",
       "Orchestrer des traitements longs avec Durable Functions, orchestrations et entités",
       "Faire communiquer des services avec Service Bus (files, sujets, sessions) et Event Grid",
-      "Appliquer des patterns d'intégration robustes : outbox, fan-out, retry",
+      "Appliquer des patterns d'intégration robustes : outbox, fan-out, retry",
       "Rendre une architecture événementielle observable avec du tracing distribué"
     ],
     "modules": [
@@ -1139,7 +1139,7 @@
         "workshop": "Écrire une Azure Function déclenchée par un message et qui écrit son résultat via un binding de sortie."
       },
       {
-        "title": "Durable Functions : orchestration et entités",
+        "title": "Durable Functions : orchestration et entités",
         "durationDays": 0.5,
         "points": [
           "Modéliser un traitement long avec une orchestration Durable Functions",
@@ -1149,7 +1149,7 @@
         "workshop": "Écrire une orchestration Durable Functions qui enchaîne plusieurs activités et reprend après une erreur."
       },
       {
-        "title": "Service Bus : files, sujets, sessions",
+        "title": "Service Bus : files, sujets, sessions",
         "durationDays": 0.5,
         "points": [
           "Choisir entre file et sujet selon le nombre de consommateurs",
@@ -1159,7 +1159,7 @@
         "workshop": "Configurer un sujet Service Bus avec plusieurs abonnements et une session par client."
       },
       {
-        "title": "Event Grid : abonnements et schémas",
+        "title": "Event Grid : abonnements et schémas",
         "durationDays": 0.5,
         "points": [
           "Publier et consommer des événements avec Event Grid",
@@ -1169,7 +1169,7 @@
         "workshop": "Publier un événement personnalisé sur Event Grid et le router vers deux abonnements filtrés différemment."
       },
       {
-        "title": "Patterns d'intégration : outbox, fan-out, retry",
+        "title": "Patterns d'intégration : outbox, fan-out, retry",
         "durationDays": 0.5,
         "points": [
           "Implémenter le pattern outbox pour ne jamais perdre un événement métier",
@@ -1192,14 +1192,14 @@
     "prerequisites": "ASP.NET Core ou préparation AI-200, notions d'asynchrone.",
     "durationDays": 3,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et un scénario événementiel construit progressivement pendant la formation : il doit traiter un pic de charge et un message en échec sans perte de donnée.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et un scénario événementiel construit progressivement pendant la formation : il doit traiter un pic de charge et un message en échec sans perte de donnée.",
     "faq": [
       {
-        "question": "Faut-il déjà connaître ASP.NET Core ?",
+        "question": "Faut-il déjà connaître ASP.NET Core ?",
         "answer": "Une pratique d'ASP.NET Core ou de la préparation AI-200 aide à suivre le rythme, mais n'est pas strictement indispensable pour les bases."
       },
       {
-        "question": "La formation couvre-t-elle Kafka ou d'autres brokers non Azure ?",
+        "question": "La formation couvre-t-elle Kafka ou d'autres brokers non Azure ?",
         "answer": "Non, elle reste centrée sur les services Azure (Functions, Service Bus, Event Grid) qui composent l'essentiel des architectures événementielles sur cette plateforme."
       }
     ]
@@ -1207,7 +1207,7 @@
   {
     "slug": "azure-app-service-containers",
     "title": "Azure App Service & containers",
-    "summary": "À l'issue, vos équipes mettent vos applications en ligne sur Azure de façon fiable : mises à jour sans coupure et montée en charge automatique.",
+    "summary": "À l'issue, vos équipes mettent vos applications en ligne sur Azure de façon fiable : mises à jour sans coupure et montée en charge automatique.",
     "category": "Azure",
     "audience": "Développeurs et techleads qui mettent des applications .NET en production sur Azure et doivent choisir entre App Service et les containers.",
     "objectives": [
@@ -1219,7 +1219,7 @@
     ],
     "modules": [
       {
-        "title": "App Service : plans, configuration, slots",
+        "title": "App Service : plans, configuration, slots",
         "durationDays": 0.5,
         "points": [
           "Choisir un plan App Service adapté à la charge et au budget",
@@ -1249,7 +1249,7 @@
         "workshop": "Signer une image applicative et bloquer le déploiement d'une image non signée."
       },
       {
-        "title": "Réseau : VNet integration et Private Endpoint",
+        "title": "Réseau : VNet integration et Private Endpoint",
         "durationDays": 0.25,
         "points": [
           "Isoler une application dans un VNet avec VNet integration",
@@ -1285,12 +1285,12 @@
     "evaluation": "Quiz de validation à la fin de chaque module, et déploiement d'une mise à jour de l'application fil rouge sans coupure de service, avec bascule de trafic vérifiée.",
     "faq": [
       {
-        "question": "Faut-il choisir entre App Service et Container Apps avant la formation ?",
+        "question": "Faut-il choisir entre App Service et Container Apps avant la formation ?",
         "answer": "Non, la formation compare les deux options sur des critères concrets pour vous aider à choisir selon votre contexte."
       },
       {
-        "question": "Faut-il déjà maîtriser Docker ?",
-        "answer": "Une expérience Docker de base est un prérequis ; la formation ne couvre pas la création d'images depuis zéro."
+        "question": "Faut-il déjà maîtriser Docker ?",
+        "answer": "Une expérience Docker de base est un prérequis ; la formation ne couvre pas la création d'images depuis zéro."
       }
     ]
   },
@@ -1301,7 +1301,7 @@
     "category": "Azure",
     "audience": "Développeurs et techleads qui gèrent l'infrastructure Azure en code et veulent la rendre reproductible, relue et sans secret dans les pipelines.",
     "objectives": [
-      "Décrire une infrastructure Azure avec Bicep : ressources, paramètres et modules réutilisables",
+      "Décrire une infrastructure Azure avec Bicep : ressources, paramètres et modules réutilisables",
       "Utiliser les Azure Verified Modules et des conventions de nommage cohérentes",
       "Prévenir la dérive de configuration avec what-if et les deployment stacks",
       "Déployer et gérer des environnements avec l'Azure Developer CLI (azd)",
@@ -1329,7 +1329,7 @@
         "workshop": "Détecter une dérive de configuration entre le code Bicep et l'environnement réel avec what-if."
       },
       {
-        "title": "Azure Developer CLI (azd) : templates et environnements",
+        "title": "Azure Developer CLI (azd) : templates et environnements",
         "durationDays": 0.25,
         "points": [
           "Structurer un projet avec un template azd",
@@ -1339,7 +1339,7 @@
         "workshop": "Créer un environnement azd supplémentaire et y déployer l'application sans dupliquer le code d'infrastructure."
       },
       {
-        "title": "CI/CD en OIDC : Azure Pipelines et GitHub Actions",
+        "title": "CI/CD en OIDC : Azure Pipelines et GitHub Actions",
         "durationDays": 0.5,
         "points": [
           "Configurer l'authentification OIDC entre le pipeline et Azure, sans secret stocké",
@@ -1349,7 +1349,7 @@
         "workshop": "Configurer un pipeline GitHub Actions qui déploie une infrastructure Bicep via OIDC, sans secret dans le dépôt."
       },
       {
-        "title": "Gouvernance : Azure Policy, tags et coûts",
+        "title": "Gouvernance : Azure Policy, tags et coûts",
         "durationDays": 0.25,
         "points": [
           "Appliquer des règles avec Azure Policy pour contraindre les déploiements",
@@ -1375,11 +1375,11 @@
     "evaluation": "Quiz de validation à la fin de chaque module, et déploiement d'un environnement complet à partir du code Bicep produit pendant la formation, sans secret stocké dans le pipeline.",
     "faq": [
       {
-        "question": "Faut-il choisir entre Bicep et Terraform ?",
-        "answer": "Non, cette formation est centrée sur Bicep et l'écosystème natif Azure ; un comparatif avec Terraform est traité dans la formation DevOps (préparation AZ-400)."
+        "question": "Faut-il choisir entre Bicep et Terraform ?",
+        "answer": "Non, cette formation est centrée sur Bicep et l'écosystème natif Azure ; un comparatif avec Terraform est traité dans la formation DevOps (préparation AZ-400)."
       },
       {
-        "question": "Faut-il déjà avoir un pipeline CI en place ?",
+        "question": "Faut-il déjà avoir un pipeline CI en place ?",
         "answer": "Une pratique de base d'un pipeline CI aide à suivre le module OIDC, mais nous pouvons partir d'un pipeline minimal si besoin."
       }
     ]
@@ -1403,7 +1403,7 @@
         "durationDays": 0.5,
         "points": [
           "Stocker secrets, clés et certificats dans Key Vault, avec versions et rotation automatique",
-          "Managed Identity system-assigned vs user-assigned : quand choisir laquelle",
+          "Managed Identity system-assigned vs user-assigned : quand choisir laquelle",
           "Remplacer une chaîne de connexion en dur par une identité managée sur une ressource Azure"
         ],
         "workshop": "Brancher une application sur Key Vault via une Managed Identity et supprimer le dernier secret en dur du code."
@@ -1412,7 +1412,7 @@
         "title": "RBAC et moindre privilège",
         "durationDays": 0.5,
         "points": [
-          "Rôles intégrés Azure RBAC et portée d'attribution : abonnement, groupe de ressources, ressource",
+          "Rôles intégrés Azure RBAC et portée d'attribution : abonnement, groupe de ressources, ressource",
           "Construire un rôle personnalisé quand les rôles intégrés sont trop larges",
           "Auditer qui a accès à quoi, et retirer les attributions devenues inutiles"
         ],
@@ -1422,8 +1422,8 @@
         "title": "Réseau sécurisé",
         "durationDays": 0.5,
         "points": [
-          "Private Endpoint : couper l'exposition publique d'un service PaaS sans casser vos intégrations",
-          "Network Security Group : règles entrantes/sortantes et bonnes pratiques de segmentation",
+          "Private Endpoint : couper l'exposition publique d'un service PaaS sans casser vos intégrations",
+          "Network Security Group : règles entrantes/sortantes et bonnes pratiques de segmentation",
           "Diagnostiquer un flux bloqué entre deux ressources Azure"
         ],
         "workshop": "Mettre un service PaaS derrière un Private Endpoint et vérifier que l'accès public est bien coupé."
@@ -1433,7 +1433,7 @@
         "durationDays": 0.5,
         "points": [
           "Lire le score sécurité et prioriser les recommandations Defender for Cloud",
-          "Microsoft Entra ID : Conditional Access pour les comptes à privilèges",
+          "Microsoft Entra ID : Conditional Access pour les comptes à privilèges",
           "Combiner identité, réseau et supervision dans une checklist de mise en production"
         ],
         "workshop": "Traiter les trois recommandations Defender for Cloud les plus critiques sur un abonnement de démonstration."
@@ -1445,12 +1445,12 @@
     "evaluation": "Quiz de validation à la fin de chaque module, et revue finale de la checklist de sécurisation appliquée à une application de démonstration.",
     "faq": [
       {
-        "question": "Travaille-t-on sur notre propre abonnement Azure ?",
+        "question": "Travaille-t-on sur notre propre abonnement Azure ?",
         "answer": "En intra, oui, dans un environnement dédié à la formation. En inter-entreprise, on utilise un abonnement de démonstration fourni."
       },
       {
-        "question": "Faut-il des droits d'administrateur global sur le tenant Entra ID ?",
-        "answer": "Non. Les ateliers utilisent des rôles limités au groupe de ressources ou à l'abonnement de la formation ; aucun droit global n'est nécessaire."
+        "question": "Faut-il des droits d'administrateur global sur le tenant Entra ID ?",
+        "answer": "Non. Les ateliers utilisent des rôles limités au groupe de ressources ou à l'abonnement de la formation ; aucun droit global n'est nécessaire."
       }
     ]
   },
@@ -1463,7 +1463,7 @@
     "objectives": [
       "Concevoir une architecture d'identité, de gouvernance et de supervision cohérente avec Entra ID, Azure Policy et Azure Monitor",
       "Choisir la bonne stratégie de stockage de données selon la charge et le modèle d'accès",
-      "Concevoir la continuité d'activité d'une solution : sauvegarde, haute disponibilité, reprise après sinistre",
+      "Concevoir la continuité d'activité d'une solution : sauvegarde, haute disponibilité, reprise après sinistre",
       "Arbitrer entre coût, risque et performance sur des études de cas représentatives",
       "Structurer sa préparation à l'examen AZ-305 à partir d'un plan de révision et de questions types"
     ],
@@ -1493,17 +1493,17 @@
         "durationDays": 0.5,
         "points": [
           "Concevoir une stratégie de sauvegarde adaptée à la criticité des données",
-          "Choisir un niveau de haute disponibilité : zones de disponibilité, régions jumelles",
+          "Choisir un niveau de haute disponibilité : zones de disponibilité, régions jumelles",
           "Construire un plan de reprise après sinistre et en estimer le RTO/RPO"
         ],
         "workshop": "Définir la stratégie de sauvegarde et de reprise après sinistre d'une application critique imposée."
       },
       {
-        "title": "Infrastructure : calcul, réseau, intégration, migration",
+        "title": "Infrastructure : calcul, réseau, intégration, migration",
         "durationDays": 1,
         "points": [
           "Choisir entre VM, conteneurs et services managés selon le profil de charge",
-          "Concevoir la topologie réseau : hub-and-spoke, peering, passerelles",
+          "Concevoir la topologie réseau : hub-and-spoke, peering, passerelles",
           "Intégrer des applications avec Service Bus, Event Grid et API Management",
           "Planifier une migration vers Azure sans interruption de service"
         ],
@@ -1520,7 +1520,7 @@
         "workshop": "Passer une architecture existante au crible du Well-Architected Review et prioriser les corrections."
       },
       {
-        "title": "Études de cas : coût, risque, performance",
+        "title": "Études de cas : coût, risque, performance",
         "durationDays": 0.5,
         "points": [
           "Lire un énoncé de cas d'étude AZ-305 et en extraire les contraintes réelles",
@@ -1543,15 +1543,15 @@
     "prerequisites": "Expérience d'Azure en production. La certification Expert requiert aussi l'AZ-104.",
     "durationDays": 4,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et étude de cas notée le dernier jour, sur le modèle des mises en situation de l'examen AZ-305. La formation prépare à l'examen ; elle ne le fait pas passer et ne garantit pas son obtention.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et étude de cas notée le dernier jour, sur le modèle des mises en situation de l'examen AZ-305. La formation prépare à l'examen ; elle ne le fait pas passer et ne garantit pas son obtention.",
     "faq": [
       {
-        "question": "La formation inclut-elle le passage de l'examen ou garantit-elle la certification ?",
-        "answer": "Non. Elle prépare au contenu et au format de l'examen AZ-305, que vous passez ensuite de votre côté, chez Pearson VUE ; ni le passage ni la réussite ne sont inclus."
+        "question": "La formation inclut-elle le passage de l'examen ou garantit-elle la certification ?",
+        "answer": "Non. Elle prépare au contenu et au format de l'examen AZ-305, que vous passez ensuite de votre côté, chez Pearson VUE ; ni le passage ni la réussite ne sont inclus."
       },
       {
-        "question": "Peut-on garantir la réussite à l'examen AZ-305 ?",
-        "answer": "Non, aucun organisme sérieux ne peut le garantir. La formation couvre l'intégralité du référentiel et s'entraîne sur des questions types ; la réussite dépend aussi de votre pratique du terrain."
+        "question": "Peut-on garantir la réussite à l'examen AZ-305 ?",
+        "answer": "Non, aucun organisme sérieux ne peut le garantir. La formation couvre l'intégralité du référentiel et s'entraîne sur des questions types ; la réussite dépend aussi de votre pratique du terrain."
       }
     ],
     "certification": "AZ-305"
@@ -1574,8 +1574,8 @@
         "title": "Le cadre FinOps",
         "durationDays": 0.25,
         "points": [
-          "Les trois phases FinOps : Informer, Optimiser, Opérer, et ce que chacune produit concrètement",
-          "Rôles impliqués : finance, ingénierie, produit, et qui décide quoi",
+          "Les trois phases FinOps : Informer, Optimiser, Opérer, et ce que chacune produit concrètement",
+          "Rôles impliqués : finance, ingénierie, produit, et qui décide quoi",
           "Faire du coût une responsabilité partagée plutôt qu'un sujet exclusivement finance"
         ],
         "workshop": "Cartographier les rôles FinOps existants dans votre organisation et identifier les manques."
@@ -1595,8 +1595,8 @@
         "title": "Données de coût FOCUS et FinOps toolkit",
         "durationDays": 0.25,
         "points": [
-          "Le format FOCUS : lire un jeu de données de coût normalisé multi-cloud",
-          "Le FinOps toolkit : tableaux de bord et automatisations prêts à l'emploi",
+          "Le format FOCUS : lire un jeu de données de coût normalisé multi-cloud",
+          "Le FinOps toolkit : tableaux de bord et automatisations prêts à l'emploi",
           "Relier les données FOCUS à vos propres outils de reporting"
         ],
         "workshop": "Ouvrir un export FOCUS et en tirer un tableau de répartition du coût par service."
@@ -1606,7 +1606,7 @@
         "durationDays": 0.5,
         "points": [
           "Dimensionner correctement machines virtuelles, bases de données et stockage",
-          "Réservations, savings plans et Azure Hybrid Benefit : quand chacun est rentable",
+          "Réservations, savings plans et Azure Hybrid Benefit : quand chacun est rentable",
           "Repérer les ressources orphelines ou sous-utilisées et les décommissionner"
         ],
         "workshop": "Identifier trois ressources surdimensionnées sur un abonnement de démonstration et chiffrer l'économie d'un redimensionnement ou d'une réservation."
@@ -1629,11 +1629,11 @@
     "evaluation": "Quiz de validation à la fin de chaque module, et restitution d'un plan d'optimisation chiffré sur un scénario de coût imposé.",
     "faq": [
       {
-        "question": "Faut-il un abonnement Azure en production pour suivre la formation ?",
+        "question": "Faut-il un abonnement Azure en production pour suivre la formation ?",
         "answer": "Non, un abonnement de démonstration avec des données de coût réalistes est fourni. Si vous avez accès à vos propres données de facturation, on les utilise à la place."
       },
       {
-        "question": "La formation aborde-t-elle les tarifs Azure ou nos négociations commerciales ?",
+        "question": "La formation aborde-t-elle les tarifs Azure ou nos négociations commerciales ?",
         "answer": "Non. Elle porte sur les méthodes et les outils de pilotage du coût, pas sur les grilles tarifaires ni sur la négociation contractuelle."
       }
     ]
@@ -1653,7 +1653,7 @@
     ],
     "modules": [
       {
-        "title": "Microsoft Foundry : projets et modèles",
+        "title": "Microsoft Foundry : projets et modèles",
         "durationDays": 0.5,
         "points": [
           "Créer un projet Foundry et choisir un modèle dans le catalogue selon le besoin et le budget",
@@ -1666,19 +1666,19 @@
         "title": "Microsoft Agent Framework en C#",
         "durationDays": 0.5,
         "points": [
-          "Structurer un agent avec Microsoft Agent Framework : instructions, mémoire, boucle d'exécution",
+          "Structurer un agent avec Microsoft Agent Framework : instructions, mémoire, boucle d'exécution",
           "Gérer l'état de conversation et le contexte entre les tours",
           "Tester un agent en isolant ses dépendances externes"
         ],
         "workshop": "Construire un agent Microsoft Agent Framework en C# qui répond à une tâche métier simple, tests à l'appui."
       },
       {
-        "title": "Outiller l'agent : function calling, MCP, RAG",
+        "title": "Outiller l'agent : function calling, MCP, RAG",
         "durationDays": 0.5,
         "points": [
           "Exposer une fonction .NET à l'agent avec function calling, et sécuriser ses paramètres",
           "Brancher un serveur MCP pour donner accès à des outils ou des données externes",
-          "Construire un pipeline RAG : indexation, recherche, injection dans le contexte",
+          "Construire un pipeline RAG : indexation, recherche, injection dans le contexte",
           "Choisir entre function calling, MCP et RAG selon le cas d'usage"
         ],
         "workshop": "Ajouter un outil function calling et une recherche RAG à l'agent construit dans le module précédent."
@@ -1688,7 +1688,7 @@
         "durationDays": 0.5,
         "points": [
           "Découper une tâche complexe entre plusieurs agents spécialisés",
-          "Modèles d'orchestration : séquentiel, superviseur, délégation",
+          "Modèles d'orchestration : séquentiel, superviseur, délégation",
           "Faire communiquer les agents sans perdre le fil du contexte"
         ],
         "workshop": "Orchestrer deux agents spécialisés sur un scénario métier qu'un seul agent gère mal."
@@ -1708,7 +1708,7 @@
         "durationDays": 0.5,
         "points": [
           "Déployer un agent en production et gérer ses mises à jour de modèle",
-          "Suivre le coût d'un agent : jetons consommés, débit, quotas",
+          "Suivre le coût d'un agent : jetons consommés, débit, quotas",
           "Gouverner les accès et les usages autorisés d'un agent en entreprise"
         ],
         "workshop": "Définir le plan de déploiement, de suivi de coût et de gouvernance de l'agent construit pendant la formation."
@@ -1720,18 +1720,18 @@
     "evaluation": "Quiz de validation à la fin de chaque module, et démonstration de l'agent construit pendant la formation face au groupe, évaluations et traces à l'appui.",
     "faq": [
       {
-        "question": "Faut-il un abonnement Azure pour suivre la formation ?",
-        "answer": "Oui, un accès à Microsoft Foundry est nécessaire ; un abonnement de démonstration est fourni si vous n'en avez pas."
+        "question": "Faut-il un abonnement Azure pour suivre la formation ?",
+        "answer": "Oui, un accès à Microsoft Foundry est nécessaire ; un abonnement de démonstration est fourni si vous n'en avez pas."
       },
       {
-        "question": "Faut-il déjà connaître le Machine Learning ?",
-        "answer": "Non. Une pratique du C# moderne et des notions d'IA générative suffisent ; la formation ne couvre pas l'entraînement de modèles."
+        "question": "Faut-il déjà connaître le Machine Learning ?",
+        "answer": "Non. Une pratique du C# moderne et des notions d'IA générative suffisent ; la formation ne couvre pas l'entraînement de modèles."
       }
     ]
   },
   {
     "slug": "claude-code-fundamentals",
-    "title": "Claude Code : les fondamentaux",
+    "title": "Claude Code : les fondamentaux",
     "summary": "À l'issue, vos développeurs utilisent Claude Code au quotidien sur leurs propres projets, en gardant la main sur chaque modification proposée.",
     "category": "Vibe coding & IA",
     "audience": "Développeurs qui découvrent Claude Code, ou qui l'ont essayé sans méthode, et veulent l'utiliser sur un vrai projet.",
@@ -1744,7 +1744,7 @@
     ],
     "modules": [
       {
-        "title": "Premiers pas : installation, terminal et IDE",
+        "title": "Premiers pas : installation, terminal et IDE",
         "durationDays": 0.25,
         "points": [
           "Installer Claude Code et se connecter au compte de l'équipe",
@@ -1754,7 +1754,7 @@
         "workshop": "Faire expliquer l'architecture d'un dépôt inconnu par Claude Code, puis vérifier ses affirmations dans le code."
       },
       {
-        "title": "Donner du contexte : CLAUDE.md et commandes",
+        "title": "Donner du contexte : CLAUDE.md et commandes",
         "durationDays": 0.25,
         "points": [
           "Générer un premier CLAUDE.md avec /init, puis le corriger à la main",
@@ -1788,15 +1788,15 @@
     "prerequisites": "Pratique courante d'un langage de programmation et de Git. Un accès à Claude Code pour chaque participant (abonnement ou clé API).",
     "durationDays": 1,
     "level": "foundation",
-    "evaluation": "Quiz de validation à la fin de chaque module, et exercice de synthèse : chaque participant livre une correction de bug avec son test, réalisée avec Claude Code et relue par un pair.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et exercice de synthèse : chaque participant livre une correction de bug avec son test, réalisée avec Claude Code et relue par un pair.",
     "faq": [
       {
-        "question": "Faut-il savoir programmer ?",
-        "answer": "Oui. Claude Code est un outil de développeur : la formation s'adresse à des personnes qui écrivent déjà du code et savent relire un diff."
+        "question": "Faut-il savoir programmer ?",
+        "answer": "Oui. Claude Code est un outil de développeur : la formation s'adresse à des personnes qui écrivent déjà du code et savent relire un diff."
       },
       {
-        "question": "Quelle différence avec « Claude Code en équipe » ?",
-        "answer": "Cette formation couvre l'usage individuel, au quotidien. « Claude Code en équipe » traite du déploiement à l'échelle d'une équipe : skills, plugins, hooks, sub-agents et intégration continue."
+        "question": "Quelle différence avec « Claude Code en équipe » ?",
+        "answer": "Cette formation couvre l'usage individuel, au quotidien. « Claude Code en équipe » traite du déploiement à l'échelle d'une équipe : skills, plugins, hooks, sub-agents et intégration continue."
       }
     ]
   },
@@ -1815,7 +1815,7 @@
     ],
     "modules": [
       {
-        "title": "Fondations : prompts, CLAUDE.md et style maison",
+        "title": "Fondations : prompts, CLAUDE.md et style maison",
         "durationDays": 0.25,
         "points": [
           "Structurer un CLAUDE.md qui documente les conventions réelles du projet",
@@ -1860,7 +1860,7 @@
         "durationDays": 0.25,
         "points": [
           "Exécuter Claude Code dans GitHub Actions ou Azure DevOps pour une tâche non interactive",
-          "Poser les limites d'une exécution automatisée : permissions, budget, sortie attendue",
+          "Poser les limites d'une exécution automatisée : permissions, budget, sortie attendue",
           "Faire relire une proposition de l'agent par un humain avant fusion"
         ],
         "workshop": "Mettre en place un pipeline CI qui exécute Claude Code sur une tâche définie et publie son résultat en revue."
@@ -1870,7 +1870,7 @@
         "durationDays": 0.5,
         "points": [
           "Définir une politique de permissions et un mode sandbox adaptés à l'équipe",
-          "Écrire une politique d'usage : ce que l'agent peut et ne peut pas faire seul",
+          "Écrire une politique d'usage : ce que l'agent peut et ne peut pas faire seul",
           "Choisir des indicateurs de vélocité et de qualité pour mesurer l'adoption",
           "Identifier les signaux d'un usage qui dégrade la qualité plutôt que de l'accélérer"
         ],
@@ -1883,11 +1883,11 @@
     "evaluation": "Quiz de validation à la fin de chaque module, et restitution de la politique d'usage et du pipeline CI construits pendant la formation.",
     "faq": [
       {
-        "question": "Travaille-t-on sur nos propres dépôts ?",
+        "question": "Travaille-t-on sur nos propres dépôts ?",
         "answer": "En intra, oui, dans un environnement isolé de vos dépôts réels. En inter-entreprise, on part d'un dépôt d'exemple représentatif."
       },
       {
-        "question": "Faut-il que toute l'équipe utilise déjà Claude Code ?",
+        "question": "Faut-il que toute l'équipe utilise déjà Claude Code ?",
         "answer": "Non, mais une première pratique individuelle facilite le module sur les hooks et les sub-agents. Les fondamentaux sont revus en début de formation."
       }
     ]
@@ -1895,7 +1895,7 @@
   {
     "slug": "speckit-spec-driven",
     "title": "Spec-Driven Development avec GitHub Spec Kit",
-    "summary": "À l'issue, vos équipes cadrent le travail des agents IA avec des spécifications versionnées : moins d'improvisation, et du code qui correspond enfin au besoin.",
+    "summary": "À l'issue, vos équipes cadrent le travail des agents IA avec des spécifications versionnées : moins d'improvisation, et du code qui correspond enfin au besoin.",
     "category": "Vibe coding & IA",
     "audience": "Équipes de développement qui pilotent déjà un assistant IA de code et veulent structurer son usage avec des spécifications plutôt qu'en mode conversationnel.",
     "objectives": [
@@ -1910,8 +1910,8 @@
         "title": "Du vibe coding au Spec-Driven Development",
         "durationDays": 0.25,
         "points": [
-          "Les limites du vibe coding sur un projet qui dure : dérive de portée, code qui ne correspond plus au besoin",
-          "Ce que le Spec-Driven Development change : une spécification versionnée comme contrat avec l'agent",
+          "Les limites du vibe coding sur un projet qui dure : dérive de portée, code qui ne correspond plus au besoin",
+          "Ce que le Spec-Driven Development change : une spécification versionnée comme contrat avec l'agent",
           "Installer et configurer Spec Kit avec Claude Code ou GitHub Copilot sur une solution .NET"
         ],
         "workshop": "Installer Spec Kit sur un projet .NET et comparer une tâche traitée en vibe coding et la même traitée en Spec-Driven Development."
@@ -1921,7 +1921,7 @@
         "durationDays": 0.25,
         "points": [
           "Écrire les principes d'architecture et les conventions que l'agent doit respecter",
-          "Poser des garde-fous explicites : ce que l'agent ne doit jamais faire seul",
+          "Poser des garde-fous explicites : ce que l'agent ne doit jamais faire seul",
           "Faire évoluer la constitution sans la laisser devenir un document mort"
         ],
         "workshop": "Rédiger la constitution d'un projet .NET réel et vérifier qu'elle est appliquée sur un premier changement."
@@ -1951,7 +1951,7 @@
         "durationDays": 0.5,
         "points": [
           "Faire implémenter une tâche par l'agent en gardant la spécification comme référence",
-          "Structurer la revue humaine : vérifier la conformité à la spec, pas seulement la syntaxe",
+          "Structurer la revue humaine : vérifier la conformité à la spec, pas seulement la syntaxe",
           "Traiter un écart entre le code produit et la spécification, sans réécrire la spec après coup"
         ],
         "workshop": "Faire implémenter une tâche par l'agent, puis mener une revue de conformité à la spec avant de fusionner."
@@ -1970,14 +1970,14 @@
     "prerequisites": "Pratique de Git et d'un assistant IA de code (Claude Code ou GitHub Copilot).",
     "durationDays": 2,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution du fil rouge le dernier jour : la fonctionnalité doit être passée de la spécification à une pull request fusionnée, conforme à la spec.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution du fil rouge le dernier jour : la fonctionnalité doit être passée de la spécification à une pull request fusionnée, conforme à la spec.",
     "faq": [
       {
-        "question": "Faut-il déjà utiliser Spec Kit ?",
+        "question": "Faut-il déjà utiliser Spec Kit ?",
         "answer": "Non. Le premier module l'installe et le configure. Une pratique de Git et d'un assistant IA de code (Claude Code ou GitHub Copilot) suffit."
       },
       {
-        "question": "Peut-on l'appliquer à notre projet existant plutôt qu'au fil rouge ?",
+        "question": "Peut-on l'appliquer à notre projet existant plutôt qu'au fil rouge ?",
         "answer": "Oui, c'est le cas le plus fréquent en intra. Le fil rouge devient alors une fonctionnalité réelle de votre backlog."
       }
     ]
@@ -1989,7 +1989,7 @@
     "category": "Vibe coding & IA",
     "audience": "Équipes .NET qui pratiquent déjà le Spec-Driven Development et veulent une déclinaison de Spec Kit alignée sur leurs propres conventions.",
     "objectives": [
-      "Décomposer l'anatomie de Spec Kit : commandes, templates, scripts, mémoire",
+      "Décomposer l'anatomie de Spec Kit : commandes, templates, scripts, mémoire",
       "Écrire une constitution .NET qui impose Clean Architecture, tests et conventions de code",
       "Adapter les templates de spec, de plan et de tâches à une solution .NET",
       "Créer des commandes personnalisées pour les migrations EF Core, les tests, les ADR et la revue",
@@ -2021,7 +2021,7 @@
         "durationDays": 0.25,
         "points": [
           "Adapter le template de spec pour référencer les couches et les projets de votre solution",
-          "Ajuster le template de plan aux artefacts .NET attendus : projets, interfaces, migrations",
+          "Ajuster le template de plan aux artefacts .NET attendus : projets, interfaces, migrations",
           "Standardiser le découpage en tâches selon la structure de votre solution"
         ],
         "workshop": "Adapter les trois templates à la structure réelle d'une solution .NET multi-projets."
@@ -2074,11 +2074,11 @@
     "evaluation": "Quiz de validation à la fin de chaque module, et restitution de la déclinaison .NET construite pendant la formation, commandes personnalisées à l'appui.",
     "faq": [
       {
-        "question": "Faut-il déjà pratiquer Spec-Driven Development ?",
-        "answer": "Oui, une pratique de GitHub Spec Kit ou d'une démarche équivalente est nécessaire ; cette formation ne réexplique pas les fondamentaux du Spec-Driven Development."
+        "question": "Faut-il déjà pratiquer Spec-Driven Development ?",
+        "answer": "Oui, une pratique de GitHub Spec Kit ou d'une démarche équivalente est nécessaire ; cette formation ne réexplique pas les fondamentaux du Spec-Driven Development."
       },
       {
-        "question": "La déclinaison présentée est-elle un produit officiel de Spec Kit ?",
+        "question": "La déclinaison présentée est-elle un produit officiel de Spec Kit ?",
         "answer": "Non. C'est une déclinaison .NET maintenue par le formateur et éprouvée sur des projets SaaS réels, pas un produit ni une extension officielle de GitHub Spec Kit."
       }
     ]
@@ -2086,32 +2086,32 @@
   {
     "slug": "ai-dev-method",
     "title": "Développer avec l'IA sans dette technique",
-    "summary": "À l'issue, votre équipe livre plus vite avec Claude Code ou GitHub Copilot sans accumuler de dette technique : responsabilités claires, spécification avant le code, itérations courtes.",
+    "summary": "À l'issue, votre équipe livre plus vite avec Claude Code ou GitHub Copilot sans accumuler de dette technique : responsabilités claires, spécification avant le code, itérations courtes.",
     "category": "Vibe coding & IA",
     "audience": "Équipes de développement, techleads et product owners qui utilisent déjà un assistant IA et veulent une méthode pour garder la qualité sous contrôle.",
     "objectives": [
       "Répartir clairement les responsabilités entre l'équipe et l'assistant IA",
-      "Appliquer une méthode Spec-Driven Development allégée : spécification, test rouge, implémentation, refactorisation",
+      "Appliquer une méthode Spec-Driven Development allégée : spécification, test rouge, implémentation, refactorisation",
       "Cadrer l'agent avec des conventions écrites et des contrôles automatiques",
       "Organiser des itérations courtes et une démonstration quotidienne d'une minute",
       "Repérer, mesurer et rembourser la dette technique produite avec l'IA"
     ],
     "modules": [
       {
-        "title": "Responsabilités : qui décide, qui répond",
+        "title": "Responsabilités : qui décide, qui répond",
         "durationDays": 0.25,
         "points": [
           "Répartir les rôles entre product owner, développeur, relecteur et assistant",
-          "Poser la règle : aucun code fusionné que son auteur ne sait pas expliquer",
+          "Poser la règle : aucun code fusionné que son auteur ne sait pas expliquer",
           "Définir le périmètre de permissions de l'agent selon le dépôt"
         ],
-        "workshop": "Écrire la charte d'usage de l'IA de l'équipe : rôles, périmètre de l'agent et règles de relecture."
+        "workshop": "Écrire la charte d'usage de l'IA de l'équipe : rôles, périmètre de l'agent et règles de relecture."
       },
       {
         "title": "Une spécification courte avant le code",
         "durationDays": 0.5,
         "points": [
-          "Rédiger une spécification d'une page : besoin, règles, cas limites, critères d'acceptation",
+          "Rédiger une spécification d'une page : besoin, règles, cas limites, critères d'acceptation",
           "Traduire les critères d'acceptation en tests qui échouent avant l'implémentation",
           "Donner la spécification à l'agent comme source de vérité, avec Claude Code ou GitHub Copilot",
           "Adapter le cadre, Spec Kit ou version allégée, à la taille de l'équipe"
@@ -2142,7 +2142,7 @@
         "title": "Mesurer et rembourser la dette technique",
         "durationDays": 0.5,
         "points": [
-          "Repérer la dette typique du code généré : doublons, abstractions inutiles, dépendances non choisies",
+          "Repérer la dette typique du code généré : doublons, abstractions inutiles, dépendances non choisies",
           "Garder des pull requests courtes et relisibles",
           "Réserver du temps de suppression à chaque itération",
           "Suivre quelques indicateurs simples plutôt que le seul ressenti"
@@ -2156,22 +2156,22 @@
     "evaluation": "Quiz de validation à la fin de chaque module, et restitution de la charte d'usage et du dépôt outillé construits pendant la formation.",
     "faq": [
       {
-        "question": "Faut-il utiliser Claude Code ou GitHub Copilot ?",
-        "answer": "L'un ou l'autre. La méthode ne dépend pas de l'outil : les ateliers se font avec celui que votre équipe utilise déjà."
+        "question": "Faut-il utiliser Claude Code ou GitHub Copilot ?",
+        "answer": "L'un ou l'autre. La méthode ne dépend pas de l'outil : les ateliers se font avec celui que votre équipe utilise déjà."
       },
       {
-        "question": "Faut-il abandonner Scrum ?",
-        "answer": "Non. La méthode s'intègre à votre cadre actuel : elle raccourcit les itérations et remplace le daily par une démonstration, mais garde vos autres rituels."
+        "question": "Faut-il abandonner Scrum ?",
+        "answer": "Non. La méthode s'intègre à votre cadre actuel : elle raccourcit les itérations et remplace le daily par une démonstration, mais garde vos autres rituels."
       },
       {
-        "question": "Quelle différence avec la formation Spec Kit ?",
+        "question": "Quelle différence avec la formation Spec Kit ?",
         "answer": "La formation Spec Kit approfondit l'outil de GitHub. Celle-ci présente une méthode complète (rôles, spécification, rituels, dette) avec une version allégée du SDD."
       }
     ]
   },
   {
     "slug": "copilot-fundamentals",
-    "title": "GitHub Copilot : les fondamentaux",
+    "title": "GitHub Copilot : les fondamentaux",
     "summary": "À l'issue, vos développeurs utilisent GitHub Copilot dans leur IDE pour écrire, comprendre et corriger du code plus vite, en relisant chaque suggestion.",
     "category": "Vibe coding & IA",
     "audience": "Développeurs qui découvrent GitHub Copilot ou ne l'utilisent que pour l'autocomplétion.",
@@ -2194,7 +2194,7 @@
         "workshop": "Implémenter une fonction à partir de sa signature et de son commentaire, puis comparer les suggestions proposées."
       },
       {
-        "title": "Copilot Chat : comprendre et corriger",
+        "title": "Copilot Chat : comprendre et corriger",
         "durationDays": 0.25,
         "points": [
           "Faire expliquer un code inconnu ou une erreur de compilation",
@@ -2207,7 +2207,7 @@
         "title": "Modes ask, edit et agent",
         "durationDays": 0.25,
         "points": [
-          "Choisir le mode adapté : question, modification ciblée ou tâche multi-fichiers",
+          "Choisir le mode adapté : question, modification ciblée ou tâche multi-fichiers",
           "Relire le plan et le diff proposés avant de les appliquer",
           "Faire écrire les tests unitaires d'une classe existante"
         ],
@@ -2227,14 +2227,14 @@
     "prerequisites": "Pratique courante d'un langage de programmation et de Git. Une licence GitHub Copilot pour chaque participant.",
     "durationDays": 1,
     "level": "foundation",
-    "evaluation": "Quiz de validation à la fin de chaque module, et exercice de synthèse : chaque participant ajoute une fonctionnalité testée avec Copilot, puis explique ce qu'il a accepté et refusé.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et exercice de synthèse : chaque participant ajoute une fonctionnalité testée avec Copilot, puis explique ce qu'il a accepté et refusé.",
     "faq": [
       {
-        "question": "Quelle différence avec « GitHub Copilot avancé » ?",
+        "question": "Quelle différence avec « GitHub Copilot avancé » ?",
         "answer": "Celle-ci pose les bases de l'usage quotidien. La formation avancée traite de la personnalisation, du Copilot coding agent, de MCP et de la préparation à l'examen GH-300."
       },
       {
-        "question": "Quel IDE utilise-t-on ?",
+        "question": "Quel IDE utilise-t-on ?",
         "answer": "VS Code par défaut. Visual Studio ou JetBrains sont possibles en intra, si toute l'équipe utilise le même."
       }
     ]
@@ -2279,7 +2279,7 @@
         "points": [
           "Déléguer une issue au Copilot coding agent et relire la pull request générée",
           "Structurer un prompt pour réduire l'ambiguïté et les allers-retours",
-          "Gérer le contexte : fichiers ouverts, historique, taille de la fenêtre",
+          "Gérer le contexte : fichiers ouverts, historique, taille de la fenêtre",
           "Reconnaître les limites du modèle sur une tâche mal cadrée"
         ],
         "workshop": "Assigner une issue réelle au Copilot coding agent, puis relire et corriger la pull request avant de la fusionner."
@@ -2299,19 +2299,19 @@
     "prerequisites": "Pratique Copilot ou autre assistant IDE.",
     "durationDays": 1,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module et exercice de synthèse en fin de journée sur un dépôt fourni : chaque participant produit une pull request revue par un agent et documente les garde-fous appliqués. La formation prépare à l'examen GH-300 mais ne garantit ni sa réussite ni la délivrance de la certification.",
+    "evaluation": "Quiz de validation à la fin de chaque module et exercice de synthèse en fin de journée sur un dépôt fourni : chaque participant produit une pull request revue par un agent et documente les garde-fous appliqués. La formation prépare à l'examen GH-300 mais ne garantit ni sa réussite ni la délivrance de la certification.",
     "faq": [
       {
-        "question": "Cette formation garantit-elle la réussite de l'examen GH-300 ?",
+        "question": "Cette formation garantit-elle la réussite de l'examen GH-300 ?",
         "answer": "Non. Elle couvre le programme et son format de questions, mais la certification est délivrée par GitHub après un examen que vous passez de votre côté."
       },
       {
-        "question": "Faut-il déjà connaître GitHub Copilot ?",
-        "answer": "Oui, une pratique régulière de Copilot ou d'un assistant IDE équivalent est nécessaire : la formation ne couvre pas les bases de l'autocomplétion."
+        "question": "Faut-il déjà connaître GitHub Copilot ?",
+        "answer": "Oui, une pratique régulière de Copilot ou d'un assistant IDE équivalent est nécessaire : la formation ne couvre pas les bases de l'autocomplétion."
       },
       {
-        "question": "Travaille-t-on sur notre propre dépôt ?",
-        "answer": "En intra, oui : on utilise un extrait représentatif de votre code. En inter-entreprise, on part d'un dépôt d'exemple."
+        "question": "Travaille-t-on sur notre propre dépôt ?",
+        "answer": "En intra, oui : on utilise un extrait représentatif de votre code. En inter-entreprise, on part d'un dépôt d'exemple."
       }
     ],
     "certification": "GH-300"
@@ -2334,8 +2334,8 @@
         "title": "Architecture d'agents et cycle de vie logiciel",
         "durationDays": 0.5,
         "points": [
-          "Où un agent s'insère dans le cycle : issue, code, revue, déploiement",
-          "Modèles d'architecture agentique : boucle simple, planification, sous-agents",
+          "Où un agent s'insère dans le cycle : issue, code, revue, déploiement",
+          "Modèles d'architecture agentique : boucle simple, planification, sous-agents",
           "Limites à fixer dès la conception pour éviter un agent qui dérive"
         ],
         "workshop": "Schématiser l'architecture d'un agent capable de traiter une issue de bout en bout sur un dépôt fourni."
@@ -2365,7 +2365,7 @@
         "durationDays": 0.5,
         "points": [
           "Construire un jeu de cas de test pour évaluer un agent avant mise en production",
-          "Analyser une erreur d'agent : mauvais outil, mauvais contexte ou mauvaise instruction",
+          "Analyser une erreur d'agent : mauvais outil, mauvais contexte ou mauvaise instruction",
           "Ajuster prompts et garde-fous à partir des résultats d'évaluation"
         ],
         "workshop": "Faire échouer volontairement un agent sur trois cas limites, puis corriger l'instruction responsable de chaque échec."
@@ -2395,18 +2395,18 @@
     "prerequisites": "Pratique de GitHub, d'un assistant IA de code et d'un pipeline CI.",
     "durationDays": 3,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour d'un scénario multi-agents construit pendant la formation : garde-fous, traçabilité et responsabilité doivent être démontrés. La formation prépare à l'examen GH-600 mais ne garantit ni sa réussite ni la délivrance de la certification.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour d'un scénario multi-agents construit pendant la formation : garde-fous, traçabilité et responsabilité doivent être démontrés. La formation prépare à l'examen GH-600 mais ne garantit ni sa réussite ni la délivrance de la certification.",
     "faq": [
       {
-        "question": "Cette formation garantit-elle la certification GH-600 ?",
+        "question": "Cette formation garantit-elle la certification GH-600 ?",
         "answer": "Non. Elle prépare au programme et au format de l'examen, que vous passez ensuite de votre côté auprès de GitHub."
       },
       {
-        "question": "Faut-il déjà avoir mis un agent en production ?",
+        "question": "Faut-il déjà avoir mis un agent en production ?",
         "answer": "Non, mais une pratique de GitHub, d'un assistant IA de code et d'un pipeline CI est nécessaire pour suivre le rythme des ateliers."
       },
       {
-        "question": "Travaille-t-on avec Claude Code et le Copilot coding agent en même temps ?",
+        "question": "Travaille-t-on avec Claude Code et le Copilot coding agent en même temps ?",
         "answer": "Oui, le module de coordination multi-agents les fait travailler ensemble sur le même dépôt, chacun dans son rôle."
       }
     ],
@@ -2420,7 +2420,7 @@
     "audience": "Développeurs et techleads qui veulent renforcer leurs tests et leurs revues de code avec Claude Code ou GitHub Copilot.",
     "objectives": [
       "Faire écrire des tests utiles à partir d'une spécification, pas à partir du code existant",
-      "Détecter les tests qui ne testent rien : assertions creuses, mocks excessifs",
+      "Détecter les tests qui ne testent rien : assertions creuses, mocks excessifs",
       "Utiliser la revue de code de GitHub Copilot et une revue avec Claude Code sur une pull request",
       "Vérifier la qualité d'une suite de tests avec la couverture et le test de mutation",
       "Définir ce que la revue humaine garde, et ce qu'elle peut déléguer"
@@ -2452,7 +2452,7 @@
         "points": [
           "Demander une revue de pull request à Copilot et lire ses commentaires avec recul",
           "Faire relire un diff par Claude Code avec une checklist d'équipe",
-          "Trier les remarques : bug réel, style, faux positif"
+          "Trier les remarques : bug réel, style, faux positif"
         ],
         "workshop": "Faire relire une pull request qui contient trois défauts cachés, puis comparer ce que l'IA et l'humain ont trouvé."
       },
@@ -2460,7 +2460,7 @@
         "title": "Règles de revue en équipe",
         "durationDays": 0.25,
         "points": [
-          "Fixer ce qui reste une décision humaine : architecture, sécurité, fusion",
+          "Fixer ce qui reste une décision humaine : architecture, sécurité, fusion",
           "Écrire une checklist de revue utilisable par l'agent comme par l'équipe",
           "Limiter la taille des pull requests pour qu'elles restent relisibles"
         ],
@@ -2470,14 +2470,14 @@
     "prerequisites": "Pratique de Claude Code ou de GitHub Copilot, et d'un framework de tests (xUnit, NUnit, MSTest ou équivalent).",
     "durationDays": 1,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et exercice de synthèse : chaque participant renforce une suite de tests jusqu'au score de mutation fixé, puis relit une pull request avec la checklist de l'équipe.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et exercice de synthèse : chaque participant renforce une suite de tests jusqu'au score de mutation fixé, puis relit une pull request avec la checklist de l'équipe.",
     "faq": [
       {
-        "question": "La formation est-elle réservée à .NET ?",
+        "question": "La formation est-elle réservée à .NET ?",
         "answer": "Les exemples sont en C# avec xUnit et Stryker.NET. En intra, on peut adapter les ateliers à votre stack si un outil de test de mutation équivalent existe."
       },
       {
-        "question": "La revue par l'IA peut-elle remplacer la revue humaine ?",
+        "question": "La revue par l'IA peut-elle remplacer la revue humaine ?",
         "answer": "Non. Elle trouve des choses que l'humain rate, et inversement. La décision de fusionner reste humaine."
       }
     ]
@@ -2502,7 +2502,7 @@
         "points": [
           "Faire décrire l'architecture, les dépendances et les points de couplage par l'agent",
           "Vérifier la cartographie dans le code avant de s'y fier",
-          "Identifier les dépendances bloquantes : packages, API Windows, WCF, Web Forms"
+          "Identifier les dépendances bloquantes : packages, API Windows, WCF, Web Forms"
         ],
         "workshop": "Produire avec Claude Code la carte des dépendances d'une application .NET Framework fournie, puis la corriger."
       },
@@ -2551,15 +2551,15 @@
     "prerequisites": "Bonne pratique de C# et de .NET, et d'un assistant de code (Claude Code ou GitHub Copilot).",
     "durationDays": 2,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution de l'application migrée : plan de migration, tests de caractérisation et pull requests produits pendant la formation.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution de l'application migrée : plan de migration, tests de caractérisation et pull requests produits pendant la formation.",
     "faq": [
       {
-        "question": "Peut-on travailler sur notre propre application ?",
+        "question": "Peut-on travailler sur notre propre application ?",
         "answer": "En intra, oui, sur une copie isolée de votre code. En inter-entreprise, on part d'une application d'exemple en .NET Framework."
       },
       {
-        "question": "Migre-t-on une application entière en deux jours ?",
-        "answer": "Non. On pose la méthode et on migre une partie représentative : l'équipe repart avec un plan et les outils pour terminer."
+        "question": "Migre-t-on une application entière en deux jours ?",
+        "answer": "Non. On pose la méthode et on migre une partie représentative : l'équipe repart avec un plan et les outils pour terminer."
       }
     ]
   },
@@ -2570,7 +2570,7 @@
     "category": "Vibe coding & IA",
     "audience": "Développeurs backend expérimentés (C#, TypeScript ou Python) qui veulent exposer leurs données et outils internes à des assistants IA via des serveurs MCP maîtrisés de bout en bout.",
     "objectives": [
-      "Choisir une architecture MCP adaptée : clients, serveurs, transports",
+      "Choisir une architecture MCP adaptée : clients, serveurs, transports",
       "Décider entre transport stdio et Streamable HTTP selon le contexte de déploiement",
       "Concevoir des tools MCP avec schémas, validation et gestion d'erreurs propres",
       "Sécuriser un serveur MCP avec OAuth, audit et gestion des secrets",
@@ -2582,8 +2582,8 @@
         "durationDays": 0.5,
         "points": [
           "Rôles respectifs du client, du serveur et de l'hôte dans le protocole MCP",
-          "Transport stdio : cas d'usage local, avantages, limites",
-          "Transport Streamable HTTP : cas d'usage distant, gestion de session",
+          "Transport stdio : cas d'usage local, avantages, limites",
+          "Transport Streamable HTTP : cas d'usage distant, gestion de session",
           "Critères pour choisir entre les deux selon votre architecture"
         ],
         "workshop": "Faire tourner un même serveur MCP minimal d'abord en stdio, puis en Streamable HTTP, et comparer les deux."
@@ -2643,18 +2643,18 @@
     "prerequisites": "Pratique d'un langage backend (C#, TypeScript ou Python), notions API.",
     "durationDays": 2,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour du serveur MCP construit pendant la formation : il doit exposer au moins un tool et une resource, être sécurisé par OAuth et passer sa suite de tests.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour du serveur MCP construit pendant la formation : il doit exposer au moins un tool et une resource, être sécurisé par OAuth et passer sa suite de tests.",
     "faq": [
       {
-        "question": "Faut-il choisir un langage en particulier ?",
-        "answer": "Non. Les exemples sont donnés en C#, TypeScript et Python ; chaque participant peut suivre les ateliers dans le langage qu'il pratique."
+        "question": "Faut-il choisir un langage en particulier ?",
+        "answer": "Non. Les exemples sont donnés en C#, TypeScript et Python ; chaque participant peut suivre les ateliers dans le langage qu'il pratique."
       },
       {
-        "question": "Peut-on connecter le serveur construit à Claude Code ou GitHub Copilot ?",
+        "question": "Peut-on connecter le serveur construit à Claude Code ou GitHub Copilot ?",
         "answer": "Oui, les ateliers vérifient la compatibilité avec plusieurs clients MCP courants, dont Claude Code et GitHub Copilot."
       },
       {
-        "question": "Le protocole MCP est-il stable ?",
+        "question": "Le protocole MCP est-il stable ?",
         "answer": "Il continue d'évoluer. La formation s'appuie sur la version en vigueur au moment du cours et signale les points susceptibles de changer."
       }
     ]
@@ -2678,7 +2678,7 @@
         "durationDays": 0.25,
         "points": [
           "Comparer Llama, Qwen, Mistral et Gemma selon la tâche et la taille",
-          "Lire une fiche modèle : licence, contexte, capacités déclarées",
+          "Lire une fiche modèle : licence, contexte, capacités déclarées",
           "Choisir un modèle en fonction du matériel disponible"
         ],
         "workshop": "Comparer trois modèles open-weight sur le même prompt et documenter les écarts observés."
@@ -2748,19 +2748,19 @@
     "prerequisites": "Notions Linux/Docker, notions IA générative.",
     "durationDays": 2,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour d'un cas d'usage interne déployé pendant la formation, du modèle jusqu'à l'API : il doit tourner entièrement sur l'infrastructure fournie, sans appel à un service cloud.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour d'un cas d'usage interne déployé pendant la formation, du modèle jusqu'à l'API : il doit tourner entièrement sur l'infrastructure fournie, sans appel à un service cloud.",
     "faq": [
       {
-        "question": "A-t-on besoin de GPU pour suivre la formation ?",
-        "answer": "Les ateliers sont dimensionnés pour tourner sur l'infrastructure fournie ou la vôtre si vous la mettez à disposition ; certains exercices passent volontairement par le CPU pour montrer les limites de cette option."
+        "question": "A-t-on besoin de GPU pour suivre la formation ?",
+        "answer": "Les ateliers sont dimensionnés pour tourner sur l'infrastructure fournie ou la vôtre si vous la mettez à disposition ; certains exercices passent volontairement par le CPU pour montrer les limites de cette option."
       },
       {
-        "question": "Quels modèles utilise-t-on pendant la formation ?",
+        "question": "Quels modèles utilise-t-on pendant la formation ?",
         "answer": "Des modèles open-weight actuels comme Llama, Qwen, Mistral ou Gemma, choisis selon le matériel disponible le jour de la formation."
       },
       {
-        "question": "Peut-on appliquer cela à notre infrastructure existante ?",
-        "answer": "Oui, c'est le cas le plus fréquent en intra : on dimensionne et on déploie sur vos serveurs plutôt que sur un environnement de démonstration."
+        "question": "Peut-on appliquer cela à notre infrastructure existante ?",
+        "answer": "Oui, c'est le cas le plus fréquent en intra : on dimensionne et on déploie sur vos serveurs plutôt que sur un environnement de démonstration."
       }
     ]
   },
@@ -2826,16 +2826,16 @@
     "evaluation": "Quiz de validation à la fin de chaque module, portant sur des mises en situation proches de votre quotidien. La formation prépare à l'examen AB-730 mais ne garantit ni sa réussite ni la délivrance de la certification.",
     "faq": [
       {
-        "question": "Faut-il savoir coder ?",
+        "question": "Faut-il savoir coder ?",
         "answer": "Non, aucune compétence en développement n'est requise. La formation s'adresse à des utilisateurs de Microsoft 365 au quotidien."
       },
       {
-        "question": "Cette formation garantit-elle la certification AB-730 ?",
+        "question": "Cette formation garantit-elle la certification AB-730 ?",
         "answer": "Non. Elle couvre le programme et son format de questions, mais l'examen est passé de votre côté auprès de Microsoft."
       },
       {
-        "question": "A-t-on besoin d'une licence Copilot pour suivre la formation ?",
-        "answer": "Oui, les ateliers utilisent Microsoft 365 Copilot en conditions réelles ; une licence active facilite grandement la pratique."
+        "question": "A-t-on besoin d'une licence Copilot pour suivre la formation ?",
+        "answer": "Oui, les ateliers utilisent Microsoft 365 Copilot en conditions réelles ; une licence active facilite grandement la pratique."
       }
     ],
     "certification": "AB-730"
@@ -2868,7 +2868,7 @@
         "title": "Les couches de Clean Architecture",
         "durationDays": 0.5,
         "points": [
-          "Domaine, application, infrastructure, présentation : rôle et responsabilités de chacune",
+          "Domaine, application, infrastructure, présentation : rôle et responsabilités de chacune",
           "Sens des dépendances entre les couches",
           "Où placer une règle métier, une requête, un appel externe"
         ],
@@ -2885,7 +2885,7 @@
         "workshop": "Remplacer l'implémentation d'un port par un adapter de test et vérifier que le domaine ne change pas."
       },
       {
-        "title": "DDD-lite : entités, value objects, agrégats",
+        "title": "DDD-lite : entités, value objects, agrégats",
         "durationDays": 0.5,
         "points": [
           "Différencier une entité d'un value object dans un modèle .NET",
@@ -2918,18 +2918,18 @@
     "prerequisites": "ASP.NET Core, expérience d'une app de taille moyenne.",
     "durationDays": 3,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour : le module extrait pendant l'atelier doit être testé indépendamment de la base de données et du framework web.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour : le module extrait pendant l'atelier doit être testé indépendamment de la base de données et du framework web.",
     "faq": [
       {
-        "question": "Travaille-t-on sur notre propre code ?",
-        "answer": "En intra, oui : on part d'un module de votre application. En inter-entreprise, on part d'une solution d'exemple représentative."
+        "question": "Travaille-t-on sur notre propre code ?",
+        "answer": "En intra, oui : on part d'un module de votre application. En inter-entreprise, on part d'une solution d'exemple représentative."
       },
       {
-        "question": "Faut-il utiliser un médiateur comme MediatR ?",
+        "question": "Faut-il utiliser un médiateur comme MediatR ?",
         "answer": "Non, c'est un choix parmi d'autres. La formation montre les deux approches et les critères pour choisir selon la taille du projet."
       },
       {
-        "question": "Cette architecture convient-elle à un projet déjà avancé ?",
+        "question": "Cette architecture convient-elle à un projet déjà avancé ?",
         "answer": "Oui, le dernier module porte justement sur la migration progressive d'un legacy, sans réécriture complète."
       }
     ]
@@ -2939,7 +2939,7 @@
     "title": "Domain-Driven Design stratégique",
     "summary": "À l'issue, vos équipes découpent un domaine métier complexe en contextes clairs, parlent le même langage que le métier et traduisent ce modèle en code .NET qui tient dans la durée.",
     "category": "Architecture & DevOps",
-    "audience": "Équipes qui conçoivent une application métier complexe en groupe et veulent découper le domaine en contextes clairs avant de le traduire en code .NET ; une pratique de Clean Architecture en .NET est conseillée.",
+    "audience": "Équipes qui conçoivent une application métier complexe en groupe et veulent découper le domaine en contextes clairs avant de le traduire en code .NET ; une pratique de Clean Architecture en .NET est conseillée.",
     "objectives": [
       "Explorer un domaine métier complexe avec le métier grâce à l'Event Storming",
       "Construire un langage omniprésent et un glossaire vivant partagé avec le métier",
@@ -2963,7 +2963,7 @@
         "durationDays": 0.5,
         "points": [
           "Repérer les frontières naturelles d'un domaine à partir de l'Event Storming",
-          "Cartographier les relations entre contextes : partenariat, client-fournisseur, conformiste",
+          "Cartographier les relations entre contextes : partenariat, client-fournisseur, conformiste",
           "Décider où placer une ambiguïté de vocabulaire entre deux équipes"
         ],
         "workshop": "Découper le domaine exploré en bounded contexts et documenter la relation entre deux d'entre eux."
@@ -2992,19 +2992,19 @@
     "prerequisites": "Expérience d'une application métier en équipe. Clean Architecture en .NET conseillée.",
     "durationDays": 2,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour : le modèle issu de l'Event Storming doit être traduit en code .NET cohérent avec les bounded contexts identifiés.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour : le modèle issu de l'Event Storming doit être traduit en code .NET cohérent avec les bounded contexts identifiés.",
     "faq": [
       {
-        "question": "Faut-il connaître Clean Architecture au préalable ?",
-        "answer": "C'est conseillé mais pas obligatoire : la formation porte sur le modèle du domaine, pas sur l'organisation technique du code, même si le dernier module s'appuie sur des notions de couches."
+        "question": "Faut-il connaître Clean Architecture au préalable ?",
+        "answer": "C'est conseillé mais pas obligatoire : la formation porte sur le modèle du domaine, pas sur l'organisation technique du code, même si le dernier module s'appuie sur des notions de couches."
       },
       {
-        "question": "A-t-on besoin d'experts métier pendant la formation ?",
+        "question": "A-t-on besoin d'experts métier pendant la formation ?",
         "answer": "En intra, leur présence sur la session d'Event Storming change beaucoup la qualité du résultat. En inter-entreprise, on simule ce rôle sur un domaine d'exemple."
       },
       {
-        "question": "Peut-on appliquer cela à un monolithe existant ?",
-        "answer": "Oui, c'est même l'un des cas les plus fréquents : on utilise le context mapping pour préparer un découpage progressif plutôt qu'une réécriture."
+        "question": "Peut-on appliquer cela à un monolithe existant ?",
+        "answer": "Oui, c'est même l'un des cas les plus fréquents : on utilise le context mapping pour préparer un découpage progressif plutôt qu'une réécriture."
       }
     ]
   },
@@ -3023,12 +3023,12 @@
     ],
     "modules": [
       {
-        "title": "CQRS : pourquoi, quand, comment",
+        "title": "CQRS : pourquoi, quand, comment",
         "durationDays": 0.5,
         "points": [
-          "Séparer commandes et requêtes : ce que ça résout vraiment, ce que ça n'apporte pas",
-          "Signaux qui justifient CQRS : contention en lecture/écriture, modèles de lecture divergents, montée en charge",
-          "Pièges courants : CQRS appliqué par dogme, complexité ajoutée sans bénéfice"
+          "Séparer commandes et requêtes : ce que ça résout vraiment, ce que ça n'apporte pas",
+          "Signaux qui justifient CQRS : contention en lecture/écriture, modèles de lecture divergents, montée en charge",
+          "Pièges courants : CQRS appliqué par dogme, complexité ajoutée sans bénéfice"
         ],
         "workshop": "Identifier, sur un module existant, si CQRS apporte un gain réel ou juste de la complexité."
       },
@@ -3037,7 +3037,7 @@
         "durationDays": 0.5,
         "points": [
           "Modéliser une commande comme une intention explicite, pas comme un DTO générique",
-          "Valider une commande avant exécution : règles métier vs contraintes de saisie",
+          "Valider une commande avant exécution : règles métier vs contraintes de saisie",
           "Gérer l'échec d'une commande sans exposer les détails internes au demandeur"
         ],
         "workshop": "Écrire un handler de commande avec validation en amont et retour d'erreur exploitable côté appelant."
@@ -3046,8 +3046,8 @@
         "title": "Événements de domaine et d'intégration",
         "durationDays": 0.5,
         "points": [
-          "Événement de domaine : ce qui s'est passé à l'intérieur d'un agrégat, et qui l'écoute",
-          "Événement d'intégration : le contrat publié aux autres services, versionné et stable",
+          "Événement de domaine : ce qui s'est passé à l'intérieur d'un agrégat, et qui l'écoute",
+          "Événement d'intégration : le contrat publié aux autres services, versionné et stable",
           "Éviter de confondre les deux et de faire fuir des détails internes vers l'extérieur"
         ],
         "workshop": "Extraire un événement de domaine existant en événement d'intégration versionné, contrat à l'appui."
@@ -3056,9 +3056,9 @@
         "title": "Outbox pattern et garantie at-least-once",
         "durationDays": 0.5,
         "points": [
-          "Le problème du double-écriture : base de données et broker qui divergent",
+          "Le problème du double-écriture : base de données et broker qui divergent",
           "Table Outbox et publication transactionnelle des événements",
-          "Relais Outbox : polling, verrouillage, ordre de publication",
+          "Relais Outbox : polling, verrouillage, ordre de publication",
           "Garantie at-least-once et ses conséquences côté consommateur"
         ],
         "workshop": "Implémenter une table Outbox et un relais qui publie les événements après le commit, pas avant."
@@ -3080,7 +3080,7 @@
           "Construire une projection à partir d'un flux d'événements, en gérant le retard et le rejeu",
           "Choisir un stockage adapté au read model, distinct du modèle d'écriture",
           "Tester des handlers de commande et des projecteurs d'événements de façon isolée",
-          "Observer le flux : lag de projection, événements en échec, retries"
+          "Observer le flux : lag de projection, événements en échec, retries"
         ],
         "workshop": "Construire une projection à partir d'événements rejoués depuis le début et vérifier sa cohérence avec le modèle d'écriture."
       }
@@ -3088,33 +3088,33 @@
     "prerequisites": "ASP.NET Core, EF Core, notions message brokers.",
     "durationDays": 3,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution de l'atelier fil rouge le dernier jour : les événements du système construit pendant la formation doivent être rejouables et idempotents de bout en bout.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution de l'atelier fil rouge le dernier jour : les événements du système construit pendant la formation doivent être rejouables et idempotents de bout en bout.",
     "faq": [
       {
-        "question": "CQRS impose-t-il forcément deux bases de données ?",
+        "question": "CQRS impose-t-il forcément deux bases de données ?",
         "answer": "Non. On commence souvent avec une seule base et des modèles de lecture et d'écriture distincts dans le code. Le stockage séparé vient seulement si le besoin de montée en charge le justifie."
       },
       {
-        "question": "Faut-il déjà utiliser un message broker ?",
+        "question": "Faut-il déjà utiliser un message broker ?",
         "answer": "Une pratique de base suffit (files, topics). La formation approfondit l'Outbox, l'idempotence et les projections, pas la prise en main du broker lui-même."
       },
       {
-        "question": "Travaille-t-on sur notre code ?",
-        "answer": "En intra, oui : les ateliers portent sur un module de votre application. En inter-entreprise, on part d'une application fil rouge représentative."
+        "question": "Travaille-t-on sur notre code ?",
+        "answer": "En intra, oui : les ateliers portent sur un module de votre application. En inter-entreprise, on part d'une application fil rouge représentative."
       }
     ]
   },
   {
     "slug": "saas-dotnet-speckit",
     "title": "Construire un SaaS .NET de A à Z avec Spec Kit",
-    "summary": "À l'issue, vos équipes savent mener un SaaS de l'idée à la production : spécifications versionnées, architecture multi-tenant, abonnements et exploitation, sans perdre le cap en route.",
+    "summary": "À l'issue, vos équipes savent mener un SaaS de l'idée à la production : spécifications versionnées, architecture multi-tenant, abonnements et exploitation, sans perdre le cap en route.",
     "category": "Architecture & DevOps",
     "audience": "Développeurs .NET expérimentés, techleads et architectes qui doivent livrer un produit SaaS, pas seulement une application.",
     "objectives": [
       "Cadrer un produit SaaS et le traduire en spécifications versionnées que vos agents IA et vos développeurs suivent vraiment",
       "Choisir un modèle d'isolation multi-tenant adapté à votre contexte et l'implémenter avec EF Core",
       "Brancher abonnements et paiements sans laisser de trou dans la facturation",
-      "Exploiter le produit en production : déploiement, supervision et coût par client",
+      "Exploiter le produit en production : déploiement, supervision et coût par client",
       "Tenir vos obligations RGPD dès la conception, hébergement compris"
     ],
     "modules": [
@@ -3122,8 +3122,8 @@
         "title": "Cadrage produit et constitution du projet",
         "durationDays": 0.5,
         "points": [
-          "Délimiter le périmètre du premier lot : ce qui fait vivre le produit, ce qui attendra",
-          "Écrire la constitution du projet : principes d'architecture, conventions, garde-fous de qualité",
+          "Délimiter le périmètre du premier lot : ce qui fait vivre le produit, ce qui attendra",
+          "Écrire la constitution du projet : principes d'architecture, conventions, garde-fous de qualité",
           "Mettre en place Spec Kit avec Claude Code ou GitHub Copilot sur une solution .NET"
         ],
         "workshop": "Rédiger la constitution du SaaS fil rouge et la faire appliquer par l'agent sur un premier changement."
@@ -3132,7 +3132,7 @@
         "title": "Spécifier les parcours SaaS",
         "durationDays": 0.5,
         "points": [
-          "Inscription, onboarding et invitation d'un collaborateur : les cas limites qui coûtent cher",
+          "Inscription, onboarding et invitation d'un collaborateur : les cas limites qui coûtent cher",
           "Rôles, permissions et parcours d'abonnement, décrits comme des spécifications testables",
           "Lever les ambiguïtés avant l'implémentation plutôt qu'en revue de code"
         ],
@@ -3142,10 +3142,10 @@
         "title": "Architecture multi-tenant",
         "durationDays": 1,
         "points": [
-          "Base par client, schéma partagé ou table partagée : ce que chaque modèle coûte en exploitation",
+          "Base par client, schéma partagé ou table partagée : ce que chaque modèle coûte en exploitation",
           "Row-Level Security PostgreSQL et filtres de requête EF Core, sans oublier les tâches de fond",
           "Migrations et évolutions de schéma quand vous avez cent clients",
-          "Voisin bruyant : quotas, limites et surveillance par client"
+          "Voisin bruyant : quotas, limites et surveillance par client"
         ],
         "workshop": "Isoler deux clients dans la même base avec Row-Level Security, puis prouver l'isolation par un test."
       },
@@ -3153,9 +3153,9 @@
         "title": "Identité, rôles et isolation des données",
         "durationDays": 0.5,
         "points": [
-          "Résoudre le client courant : sous-domaine, jeton ou en-tête, et les pièges de chacun",
+          "Résoudre le client courant : sous-domaine, jeton ou en-tête, et les pièges de chacun",
           "Authentification OIDC avec Microsoft Entra ID ou Keycloak, et rôles par client",
-          "Autorisation par ressource : ce que la couche application doit vérifier elle-même"
+          "Autorisation par ressource : ce que la couche application doit vérifier elle-même"
         ],
         "workshop": "Ajouter un rôle administrateur par client et bloquer un accès transverse depuis un jeton valide."
       },
@@ -3163,14 +3163,14 @@
         "title": "Abonnements et paiements",
         "durationDays": 0.5,
         "points": [
-          "Offres, essais et changements de formule : modéliser avant de coder",
-          "Stripe : webhooks idempotents, reprise sur échec et réconciliation",
+          "Offres, essais et changements de formule : modéliser avant de coder",
+          "Stripe : webhooks idempotents, reprise sur échec et réconciliation",
           "Impayés, suspension et suppression de compte, du point de vue produit comme du code"
         ],
         "workshop": "Traiter un webhook d'échec de paiement de bout en bout, en le rejouant deux fois sans double effet."
       },
       {
-        "title": "Exploitation : déploiement, observabilité et coûts",
+        "title": "Exploitation : déploiement, observabilité et coûts",
         "durationDays": 0.5,
         "points": [
           "Environnements et déploiement continu d'un produit multi-clients",
@@ -3183,7 +3183,7 @@
         "title": "RGPD et hébergement en Europe",
         "durationDays": 0.5,
         "points": [
-          "Données personnelles d'un SaaS : minimisation, durées de conservation, journal d'audit",
+          "Données personnelles d'un SaaS : minimisation, durées de conservation, journal d'audit",
           "Export et suppression d'un compte client, y compris les sauvegardes",
           "Choisir un hébergement européen et documenter où vivent les données"
         ],
@@ -3193,18 +3193,18 @@
     "prerequisites": "ASP.NET Core, EF Core, pratique d'un assistant IA de code.",
     "durationDays": 4,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution de l'atelier fil rouge le dernier jour : le SaaS construit pendant la formation doit passer les tests d'isolation, de facturation et de suppression de compte.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution de l'atelier fil rouge le dernier jour : le SaaS construit pendant la formation doit passer les tests d'isolation, de facturation et de suppression de compte.",
     "faq": [
       {
-        "question": "Faut-il un abonnement Azure ou un compte Stripe ?",
+        "question": "Faut-il un abonnement Azure ou un compte Stripe ?",
         "answer": "Non. Les ateliers tournent en local avec Docker, PostgreSQL et le mode test de Stripe. Si vous préférez travailler sur vos propres environnements, on les utilise."
       },
       {
-        "question": "Peut-on l'appliquer à notre SaaS existant plutôt qu'à un projet neuf ?",
+        "question": "Peut-on l'appliquer à notre SaaS existant plutôt qu'à un projet neuf ?",
         "answer": "Oui, c'est le cas le plus fréquent en intra. On part de votre code et de votre modèle d'isolation actuel, et les ateliers deviennent des chantiers de votre backlog."
       },
       {
-        "question": "Faut-il déjà utiliser Spec Kit ?",
+        "question": "Faut-il déjà utiliser Spec Kit ?",
         "answer": "Non. Le premier module l'installe et le configure. Une pratique préalable d'un assistant IA de code suffit."
       }
     ]
@@ -3224,11 +3224,11 @@
     ],
     "modules": [
       {
-        "title": "Pourquoi OpenTelemetry : standardisation et portabilité",
+        "title": "Pourquoi OpenTelemetry : standardisation et portabilité",
         "durationDays": 0.25,
         "points": [
           "Le problème que résout un standard commun face aux SDK propriétaires",
-          "Les trois piliers : traces, métriques, logs, et comment ils se complètent",
+          "Les trois piliers : traces, métriques, logs, et comment ils se complètent",
           "Panorama des bibliothèques d'instrumentation .NET disponibles"
         ],
         "workshop": "Installer le SDK OpenTelemetry sur une application ASP.NET Core et vérifier l'export des trois signaux."
@@ -3245,7 +3245,7 @@
         "workshop": "Suivre une requête traversant deux services et repérer, dans la trace, lequel introduit la latence."
       },
       {
-        "title": "Métriques : compteurs, histogrammes, jauges",
+        "title": "Métriques : compteurs, histogrammes, jauges",
         "durationDays": 0.5,
         "points": [
           "Choisir le bon type de métrique selon ce qu'on veut mesurer",
@@ -3270,7 +3270,7 @@
         "durationDays": 0.25,
         "points": [
           "Envoyer les signaux vers Application Insights et vers des back-ends open source (Grafana, Prometheus, Jaeger)",
-          "Stratégies d'échantillonnage : tête, queue, basé sur le taux d'erreur",
+          "Stratégies d'échantillonnage : tête, queue, basé sur le taux d'erreur",
           "Maîtriser le volume et le coût sans perdre les traces des incidents rares"
         ],
         "workshop": "Configurer un échantillonnage basé sur le taux d'erreur pour garder 100 % des traces en échec."
@@ -3279,7 +3279,7 @@
         "title": "Diagnostiquer un incident en production",
         "durationDays": 0.25,
         "points": [
-          "Méthode : partir du symptôme utilisateur et remonter vers la cause via traces, métriques et logs",
+          "Méthode : partir du symptôme utilisateur et remonter vers la cause via traces, métriques et logs",
           "Exploiter les tableaux de bord et les traces pour restreindre le périmètre en quelques minutes",
           "Documenter un incident pour accélérer le prochain diagnostic"
         ],
@@ -3292,16 +3292,16 @@
     "evaluation": "Quiz de validation à la fin de chaque module, et diagnostic chronométré d'un incident simulé le dernier jour, à partir des seuls traces, métriques et logs produits par l'application de l'atelier.",
     "faq": [
       {
-        "question": "Faut-il un compte Azure pour Application Insights ?",
-        "answer": "Pas obligatoirement. Les ateliers utilisent des back-ends open source par défaut (Grafana, Prometheus, Jaeger) ; Application Insights est démontré si vous l'utilisez déjà."
+        "question": "Faut-il un compte Azure pour Application Insights ?",
+        "answer": "Pas obligatoirement. Les ateliers utilisent des back-ends open source par défaut (Grafana, Prometheus, Jaeger) ; Application Insights est démontré si vous l'utilisez déjà."
       },
       {
-        "question": "OpenTelemetry remplace-t-il Application Insights ?",
-        "answer": "Non, il s'y branche. OpenTelemetry standardise l'instrumentation ; Application Insights reste un back-end possible parmi d'autres."
+        "question": "OpenTelemetry remplace-t-il Application Insights ?",
+        "answer": "Non, il s'y branche. OpenTelemetry standardise l'instrumentation ; Application Insights reste un back-end possible parmi d'autres."
       },
       {
-        "question": "Travaille-t-on sur notre application ?",
-        "answer": "En intra, oui : on instrumente l'une de vos applications. En inter-entreprise, on part d'une application d'exemple représentative."
+        "question": "Travaille-t-on sur notre application ?",
+        "answer": "En intra, oui : on instrumente l'une de vos applications. En inter-entreprise, on part d'une application d'exemple représentative."
       }
     ]
   },
@@ -3315,7 +3315,7 @@
       "Construire des images .NET optimisées, petites et reproductibles pour la production",
       "Développer avec Docker Compose dans un environnement proche de la production",
       "Publier et sécuriser des images dans un registre, signature et scan compris",
-      "Déployer et exposer une application sur Kubernetes : pods, deployments, services, ingress",
+      "Déployer et exposer une application sur Kubernetes : pods, deployments, services, ingress",
       "Déployer de façon fiable sur plusieurs environnements avec Helm, sur Kubernetes managé"
     ],
     "modules": [
@@ -3323,8 +3323,8 @@
         "title": "Images .NET optimisées",
         "durationDays": 0.5,
         "points": [
-          "Multi-stage build : séparer compilation et exécution pour réduire la taille de l'image",
-          "Images de base chiseled : réduire la surface d'attaque et le nombre de paquets",
+          "Multi-stage build : séparer compilation et exécution pour réduire la taille de l'image",
+          "Images de base chiseled : réduire la surface d'attaque et le nombre de paquets",
           "Publication conteneur du SDK (dotnet publish en mode conteneur) sans Dockerfile manuel",
           "Choisir la bonne base entre Alpine, distroless et chiseled selon le besoin"
         ],
@@ -3334,7 +3334,7 @@
         "title": "Docker Compose pour le poste de développement",
         "durationDays": 0.5,
         "points": [
-          "Décrire une solution .NET complète : API, base de données, cache, dépendances",
+          "Décrire une solution .NET complète : API, base de données, cache, dépendances",
           "Variables d'environnement et fichiers de configuration par profil",
           "Reproduire un environnement proche de la production sur le poste de dev"
         ],
@@ -3351,13 +3351,13 @@
         "workshop": "Publier une image vers un registre, la scanner et bloquer le déploiement si une vulnérabilité critique est détectée."
       },
       {
-        "title": "Kubernetes : pods, deployments, services, ingress",
+        "title": "Kubernetes : pods, deployments, services, ingress",
         "durationDays": 0.5,
         "points": [
-          "Modèle d'objets Kubernetes : pods, deployments, replicasets, services",
+          "Modèle d'objets Kubernetes : pods, deployments, replicasets, services",
           "Exposer une application avec un service et un ingress",
           "Mise à jour progressive (rolling update) et retour arrière",
-          "Ressources CPU et mémoire : requests, limits et leurs conséquences"
+          "Ressources CPU et mémoire : requests, limits et leurs conséquences"
         ],
         "workshop": "Déployer une API sur un cluster Kubernetes, l'exposer via ingress, puis réaliser un rolling update sans interruption visible."
       },
@@ -3365,9 +3365,9 @@
         "title": "Configuration, secrets et sondes de santé",
         "durationDays": 0.5,
         "points": [
-          "ConfigMaps et Secrets : séparer configuration et code, gérer la rotation",
+          "ConfigMaps et Secrets : séparer configuration et code, gérer la rotation",
           "Sondes liveness, readiness et startup, et leurs effets sur le trafic",
-          "Éviter les pièges classiques : secrets en clair, sondes mal calibrées"
+          "Éviter les pièges classiques : secrets en clair, sondes mal calibrées"
         ],
         "workshop": "Ajouter des sondes readiness et liveness à un déploiement existant et observer leur effet lors d'un déploiement raté."
       },
@@ -3375,7 +3375,7 @@
         "title": "Helm, multi-environnement et Kubernetes managé",
         "durationDays": 0.5,
         "points": [
-          "Packager une application avec Helm : charts, values, templates",
+          "Packager une application avec Helm : charts, values, templates",
           "Déployer la même application sur plusieurs environnements avec des valeurs différentes",
           "Choisir entre Kubernetes managé Azure (AKS) et Scaleway Kapsule selon le contexte"
         ],
@@ -3385,25 +3385,25 @@
     "prerequisites": "Pratique d'ASP.NET Core, notions Linux.",
     "durationDays": 3,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et déploiement chronométré le dernier jour : l'application de l'atelier doit être construite, publiée et exposée sur le cluster Kubernetes via Helm.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et déploiement chronométré le dernier jour : l'application de l'atelier doit être construite, publiée et exposée sur le cluster Kubernetes via Helm.",
     "faq": [
       {
-        "question": "Faut-il un cluster Kubernetes en production pour suivre la formation ?",
-        "answer": "Non. Les ateliers tournent sur un cluster local (kind ou minikube) ; les spécificités d'AKS et de Scaleway Kapsule sont montrées en démonstration."
+        "question": "Faut-il un cluster Kubernetes en production pour suivre la formation ?",
+        "answer": "Non. Les ateliers tournent sur un cluster local (kind ou minikube) ; les spécificités d'AKS et de Scaleway Kapsule sont montrées en démonstration."
       },
       {
-        "question": "La formation couvre-t-elle Azure Container Apps ou uniquement Kubernetes ?",
+        "question": "La formation couvre-t-elle Azure Container Apps ou uniquement Kubernetes ?",
         "answer": "Uniquement Kubernetes et Docker. Azure Container Apps peut être abordé en aparté si votre contexte le justifie, mais n'est pas dans le programme."
       },
       {
-        "question": "Travaille-t-on sur notre application ?",
-        "answer": "En intra, oui : on conteneurise et on déploie l'une de vos applications. En inter-entreprise, on part d'une application d'exemple représentative."
+        "question": "Travaille-t-on sur notre application ?",
+        "answer": "En intra, oui : on conteneurise et on déploie l'une de vos applications. En inter-entreprise, on part d'une application d'exemple représentative."
       }
     ]
   },
   {
     "slug": "sovereign-cloud-europe",
-    "title": "Héberger vos applications .NET en Europe : Scaleway et Infomaniak",
+    "title": "Héberger vos applications .NET en Europe : Scaleway et Infomaniak",
     "summary": "À l'issue, vos équipes savent déployer et exploiter une application .NET sur un cloud européen, pour garder vos données en Europe et une facture prévisible, sans renoncer aux services managés.",
     "category": "Architecture & DevOps",
     "audience": "Développeurs et techleads .NET qui doivent héberger une application en Europe pour des raisons de conformité ou de souveraineté.",
@@ -3429,9 +3429,9 @@
         "title": "Panorama des clouds européens",
         "durationDays": 0.25,
         "points": [
-          "Scaleway, Infomaniak, Clever Cloud, OVHcloud : positionnement et services managés respectifs",
+          "Scaleway, Infomaniak, Clever Cloud, OVHcloud : positionnement et services managés respectifs",
           "Ce qui manque encore par rapport à Azure, et ce qui n'a pas d'importance pour votre cas",
-          "Critères de choix : coût, support, écosystème, localisation exacte des datacenters"
+          "Critères de choix : coût, support, écosystème, localisation exacte des datacenters"
         ],
         "workshop": "Comparer deux fournisseurs européens sur une grille de critères adaptée à votre application."
       },
@@ -3440,7 +3440,7 @@
         "durationDays": 0.5,
         "points": [
           "Déployer une image Docker existante sur un Kubernetes managé européen (Scaleway Kapsule)",
-          "Différences pratiques avec AKS : réseau, ingress, stockage persistant",
+          "Différences pratiques avec AKS : réseau, ingress, stockage persistant",
           "Supervision et journaux disponibles nativement chez le fournisseur"
         ],
         "workshop": "Déployer une application conteneurisée sur Scaleway Kapsule et l'exposer publiquement."
@@ -3451,7 +3451,7 @@
         "points": [
           "Provisionner une base PostgreSQL managée hors Azure et migrer un schéma existant",
           "Sauvegardes, haute disponibilité et bascule chez un fournisseur européen",
-          "Stockage objet compatible S3 : compatibilité applicative et limites réelles"
+          "Stockage objet compatible S3 : compatibilité applicative et limites réelles"
         ],
         "workshop": "Migrer une base PostgreSQL vers un service managé européen et faire pointer une application dessus sans changer son code d'accès aux données."
       },
@@ -3460,7 +3460,7 @@
         "durationDays": 0.25,
         "points": [
           "Déployer Keycloak comme fournisseur d'identité OIDC auto-hébergé",
-          "Realms, clients et rôles : les faire correspondre aux besoins de l'application",
+          "Realms, clients et rôles : les faire correspondre aux besoins de l'application",
           "Ce que ça change par rapport à Microsoft Entra ID en matière de contrôle et de dépendance"
         ],
         "workshop": "Brancher une application ASP.NET Core sur Keycloak en authentification OIDC."
@@ -3469,7 +3469,7 @@
         "title": "Portabilité, coûts et exploitation au quotidien",
         "durationDays": 0.25,
         "points": [
-          "Éviter l'enfermement : abstractions raisonnables, formats ouverts, infrastructure as code",
+          "Éviter l'enfermement : abstractions raisonnables, formats ouverts, infrastructure as code",
           "Migrer une charge de travail depuis ou vers Azure sans réécrire l'application",
           "Suivre les coûts et la supervision au quotidien chez un fournisseur européen"
         ],
@@ -3479,25 +3479,25 @@
     "prerequisites": "Pratique d'ASP.NET Core et de Docker.",
     "durationDays": 2,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et déploiement chronométré le dernier jour : l'application de l'atelier doit tourner sur le cloud européen choisi, base de données et stockage compris.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et déploiement chronométré le dernier jour : l'application de l'atelier doit tourner sur le cloud européen choisi, base de données et stockage compris.",
     "faq": [
       {
-        "question": "La formation remplace-t-elle une revue juridique RGPD ?",
-        "answer": "Non. Elle couvre les choix techniques d'hébergement et de localisation des données ; les questions contractuelles et juridiques restent du ressort de votre conseil."
+        "question": "La formation remplace-t-elle une revue juridique RGPD ?",
+        "answer": "Non. Elle couvre les choix techniques d'hébergement et de localisation des données ; les questions contractuelles et juridiques restent du ressort de votre conseil."
       },
       {
-        "question": "Faut-il abandonner Azure ?",
+        "question": "Faut-il abandonner Azure ?",
         "answer": "Pas nécessairement. La formation montre comment garder la possibilité de migrer, y compris pour une architecture hybride ou multi-cloud raisonnée."
       },
       {
-        "question": "Travaille-t-on avec un compte réel chez un fournisseur européen ?",
-        "answer": "Oui, un compte d'essai est utilisé pendant l'atelier ; aucun engagement commercial n'est nécessaire au-delà de la formation."
+        "question": "Travaille-t-on avec un compte réel chez un fournisseur européen ?",
+        "answer": "Oui, un compte d'essai est utilisé pendant l'atelier ; aucun engagement commercial n'est nécessaire au-delà de la formation."
       }
     ]
   },
   {
     "slug": "devcontainers-devtunnels",
-    "title": "Environnements de dev reproductibles : Dev Containers et Dev Tunnels",
+    "title": "Environnements de dev reproductibles : Dev Containers et Dev Tunnels",
     "summary": "À l'issue, vos équipes démarrent sur un projet en quelques minutes avec le même environnement pour tous, et testent webhooks et applications mobiles directement contre le poste de dev.",
     "category": "Architecture & DevOps",
     "audience": "Développeurs et techleads .NET qui veulent un environnement de développement reproductible et partageable en équipe.",
@@ -3509,11 +3509,11 @@
     ],
     "modules": [
       {
-        "title": "Dev Containers : les fondamentaux",
+        "title": "Dev Containers : les fondamentaux",
         "durationDays": 0.25,
         "points": [
-          "Le fichier devcontainer.json : image, features, extensions, ports",
-          "Features : ajouter des outils (SDK .NET, CLI Azure) sans construire une image sur mesure",
+          "Le fichier devcontainer.json : image, features, extensions, ports",
+          "Features : ajouter des outils (SDK .NET, CLI Azure) sans construire une image sur mesure",
           "Choisir entre une image du marché et une image personnalisée"
         ],
         "workshop": "Écrire un devcontainer.json pour une application .NET simple avec les extensions VS Code nécessaires."
@@ -3533,13 +3533,13 @@
         "durationDays": 0.25,
         "points": [
           "Ouvrir un Dev Container en local avec VS Code, et à distance avec GitHub Codespaces",
-          "Ce qui change entre les deux : ressources, coût, accès réseau",
+          "Ce qui change entre les deux : ressources, coût, accès réseau",
           "Réduire l'onboarding d'un nouveau développeur à l'ouverture d'un lien"
         ],
         "workshop": "Ouvrir la solution dans GitHub Codespaces et mesurer le temps entre le clonage et une application qui tourne."
       },
       {
-        "title": "Dev Tunnels : exposer et tester en local",
+        "title": "Dev Tunnels : exposer et tester en local",
         "durationDays": 0.25,
         "points": [
           "Exposer une API locale en toute sécurité avec Dev Tunnels, sans configuration réseau complexe",
@@ -3552,15 +3552,15 @@
     "prerequisites": "Notions Docker.",
     "durationDays": 1,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution en fin de journée : un nouveau développeur fictif doit pouvoir cloner le dépôt et avoir une application fonctionnelle en quelques minutes.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution en fin de journée : un nouveau développeur fictif doit pouvoir cloner le dépôt et avoir une application fonctionnelle en quelques minutes.",
     "faq": [
       {
-        "question": "Faut-il un abonnement GitHub payant pour Codespaces ?",
-        "answer": "Un compte GitHub avec le quota gratuit suffit pour l'atelier ; les quotas et coûts en usage réel sont expliqués en session."
+        "question": "Faut-il un abonnement GitHub payant pour Codespaces ?",
+        "answer": "Un compte GitHub avec le quota gratuit suffit pour l'atelier ; les quotas et coûts en usage réel sont expliqués en session."
       },
       {
-        "question": "Dev Tunnels remplace-t-il ngrok ?",
-        "answer": "Il couvre le même besoin avec une intégration native à Visual Studio et VS Code ; les deux approches sont comparées pendant l'atelier."
+        "question": "Dev Tunnels remplace-t-il ngrok ?",
+        "answer": "Il couvre le même besoin avec une intégration native à Visual Studio et VS Code ; les deux approches sont comparées pendant l'atelier."
       }
     ]
   },
@@ -3579,13 +3579,13 @@
     ],
     "modules": [
       {
-        "title": "Mesurer avant d'optimiser : BenchmarkDotNet",
+        "title": "Mesurer avant d'optimiser : BenchmarkDotNet",
         "durationDays": 0.5,
         "points": [
           "Pourquoi une intuition de performance est presque toujours fausse",
-          "Écrire un benchmark fiable avec BenchmarkDotNet : warm-up, itérations, environnement stable",
-          "Lire les résultats : temps, allocations, écart-type, et ce qu'ils cachent",
-          "Éviter les benchmarks trompeurs : JIT, mode Debug, micro-optimisations sans effet réel"
+          "Écrire un benchmark fiable avec BenchmarkDotNet : warm-up, itérations, environnement stable",
+          "Lire les résultats : temps, allocations, écart-type, et ce qu'ils cachent",
+          "Éviter les benchmarks trompeurs : JIT, mode Debug, micro-optimisations sans effet réel"
         ],
         "workshop": "Écrire un benchmark BenchmarkDotNet comparant deux implémentations d'une même méthode et interpréter les résultats."
       },
@@ -3596,7 +3596,7 @@
           "Comprendre le coût réel d'une allocation et le fonctionnement des générations du GC",
           "Réduire les allocations avec Span<T>, Memory<T> et les structures",
           "Réutiliser des buffers avec ArrayPool<T> plutôt que d'en allouer à chaque appel",
-          "Repérer les allocations cachées : closures, boxing, LINQ sur chemin chaud"
+          "Repérer les allocations cachées : closures, boxing, LINQ sur chemin chaud"
         ],
         "workshop": "Réécrire une méthode qui alloue sur le chemin chaud avec Span<T> et ArrayPool, puis mesurer la réduction d'allocations."
       },
@@ -3605,13 +3605,13 @@
         "durationDays": 0.25,
         "points": [
           "Éviter le blocage synchrone d'un appel asynchrone (.Result, .Wait())",
-          "ConfigureAwait(false) : quand il compte encore, quand il ne compte plus",
+          "ConfigureAwait(false) : quand il compte encore, quand il ne compte plus",
           "Diagnostiquer un deadlock ou une famine de threads liée à l'asynchrone"
         ],
         "workshop": "Corriger une méthode qui bloque de façon synchrone sur du code asynchrone et vérifier la disparition du risque de deadlock."
       },
       {
-        "title": "Caching : IMemoryCache et IDistributedCache",
+        "title": "Caching : IMemoryCache et IDistributedCache",
         "durationDays": 0.25,
         "points": [
           "Choisir entre cache local (IMemoryCache) et cache distribué (IDistributedCache)",
@@ -3621,7 +3621,7 @@
         "workshop": "Ajouter un cache distribué devant un appel coûteux et mesurer le gain de latence sous charge."
       },
       {
-        "title": "Profilage : dotnet-trace et PerfView",
+        "title": "Profilage : dotnet-trace et PerfView",
         "durationDays": 0.25,
         "points": [
           "Capturer une trace de production avec dotnet-trace sans redémarrer l'application",
@@ -3631,7 +3631,7 @@
         "workshop": "Capturer une trace dotnet-trace sur l'application de l'atelier et identifier la méthode qui domine le temps CPU."
       },
       {
-        "title": "Tests de charge : k6 et NBomber",
+        "title": "Tests de charge : k6 et NBomber",
         "durationDays": 0.25,
         "points": [
           "Écrire un scénario de charge réaliste avec k6 ou NBomber",
@@ -3644,26 +3644,26 @@
     "prerequisites": "ASP.NET Core, expérience d'une app en production.",
     "durationDays": 2,
     "level": "advanced",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution chiffrée le dernier jour : chaque optimisation appliquée doit être justifiée par un benchmark ou un test de charge avant/après.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution chiffrée le dernier jour : chaque optimisation appliquée doit être justifiée par un benchmark ou un test de charge avant/après.",
     "faq": [
       {
-        "question": "Faut-il déjà connaître BenchmarkDotNet ?",
+        "question": "Faut-il déjà connaître BenchmarkDotNet ?",
         "answer": "Non, le premier module l'installe et l'utilise depuis zéro. Une pratique de production d'ASP.NET Core suffit."
       },
       {
-        "question": "La formation couvre-t-elle le tuning du GC serveur ou de Kestrel ?",
-        "answer": "Les grands principes sont abordés, mais le cœur du programme porte sur le code applicatif : allocations, async, cache, profilage."
+        "question": "La formation couvre-t-elle le tuning du GC serveur ou de Kestrel ?",
+        "answer": "Les grands principes sont abordés, mais le cœur du programme porte sur le code applicatif : allocations, async, cache, profilage."
       },
       {
-        "question": "Travaille-t-on sur notre application ?",
-        "answer": "En intra, oui : on profile et on optimise l'une de vos applications. En inter-entreprise, on part d'une application d'exemple représentative."
+        "question": "Travaille-t-on sur notre application ?",
+        "answer": "En intra, oui : on profile et on optimise l'une de vos applications. En inter-entreprise, on part d'une application d'exemple représentative."
       }
     ]
   },
   {
     "slug": "techlead-leadership",
-    "title": "Techlead : décisions d'architecture et leadership d'équipe",
-    "summary": "À l'issue, vos développeurs seniors endossent le rôle de techlead : trancher les choix techniques, faire grandir l'équipe et livrer avec des indicateurs de qualité suivis.",
+    "title": "Techlead : décisions d'architecture et leadership d'équipe",
+    "summary": "À l'issue, vos développeurs seniors endossent le rôle de techlead : trancher les choix techniques, faire grandir l'équipe et livrer avec des indicateurs de qualité suivis.",
     "category": "Architecture & DevOps",
     "audience": "Développeurs seniors qui prennent ou viennent de prendre le rôle de techlead dans leur équipe.",
     "objectives": [
@@ -3675,12 +3675,12 @@
     ],
     "modules": [
       {
-        "title": "Le rôle de techlead : périmètre, attentes, pièges",
+        "title": "Le rôle de techlead : périmètre, attentes, pièges",
         "durationDays": 0.25,
         "points": [
-          "Ce qu'on attend d'un techlead, au-delà de « le développeur le plus expérimenté »",
+          "Ce qu'on attend d'un techlead, au-delà de « le développeur le plus expérimenté »",
           "Trouver l'équilibre entre coder, décider et faire grandir l'équipe",
-          "Pièges fréquents : rester le seul à savoir, décider seul, ne plus coder du tout"
+          "Pièges fréquents : rester le seul à savoir, décider seul, ne plus coder du tout"
         ],
         "workshop": "Lister, pour votre équipe, les décisions que vous prenez seul et celles qui devraient être partagées."
       },
@@ -3688,9 +3688,9 @@
         "title": "Décisions d'architecture tracées (ADR)",
         "durationDays": 0.5,
         "points": [
-          "Écrire un ADR : contexte, options considérées, décision, conséquences",
+          "Écrire un ADR : contexte, options considérées, décision, conséquences",
           "Décider quand une décision mérite un ADR et quand elle n'en a pas besoin",
-          "Faire vivre les ADR dans le temps : les réviser, les remplacer sans les effacer",
+          "Faire vivre les ADR dans le temps : les réviser, les remplacer sans les effacer",
           "Arbitrer entre plusieurs options techniques sans que la discussion s'éternise"
         ],
         "workshop": "Rédiger un ADR sur une décision d'architecture réelle de votre équipe, avec au moins deux options considérées."
@@ -3706,7 +3706,7 @@
         "workshop": "Reformuler trois commentaires de revue de code réels en retours constructifs et actionnables."
       },
       {
-        "title": "Dette technique : la rendre visible et la prioriser",
+        "title": "Dette technique : la rendre visible et la prioriser",
         "durationDays": 0.25,
         "points": [
           "Distinguer dette technique délibérée et dette subie",
@@ -3729,10 +3729,10 @@
         "title": "Indicateurs de livraison, qualité et encadrement de l'IA",
         "durationDays": 0.5,
         "points": [
-          "Les quatre indicateurs DORA : fréquence de déploiement, délai, taux d'échec, temps de restauration",
+          "Les quatre indicateurs DORA : fréquence de déploiement, délai, taux d'échec, temps de restauration",
           "Choisir des indicateurs qui changent un comportement plutôt que des vanity metrics",
-          "Encadrer l'usage d'un assistant IA de code dans l'équipe : revue, responsabilité, limites",
-          "Éviter les dérives : code généré non compris, dette invisible produite par l'IA"
+          "Encadrer l'usage d'un assistant IA de code dans l'équipe : revue, responsabilité, limites",
+          "Éviter les dérives : code généré non compris, dette invisible produite par l'IA"
         ],
         "workshop": "Définir, pour votre équipe, un indicateur DORA à suivre et une règle d'usage de l'IA de code à faire respecter."
       }
@@ -3740,26 +3740,26 @@
     "prerequisites": "Expérience de développeur confirmé en équipe.",
     "durationDays": 2,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour : chaque participant présente un ADR, une priorisation de dette et un indicateur DORA applicables à son équipe.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution le dernier jour : chaque participant présente un ADR, une priorisation de dette et un indicateur DORA applicables à son équipe.",
     "faq": [
       {
-        "question": "Cette formation prépare-t-elle à une certification de management ?",
+        "question": "Cette formation prépare-t-elle à une certification de management ?",
         "answer": "Non, elle ne prépare à aucune certification. Elle porte sur des pratiques concrètes de techlead directement applicables dans votre équipe."
       },
       {
-        "question": "Faut-il déjà encadrer une équipe pour la suivre ?",
+        "question": "Faut-il déjà encadrer une équipe pour la suivre ?",
         "answer": "Non, elle s'adresse aussi aux développeurs confirmés qui s'apprêtent à prendre ce rôle, pas seulement à ceux qui l'occupent déjà."
       },
       {
-        "question": "La formation couvre-t-elle le management hiérarchique (entretiens, évaluations) ?",
-        "answer": "Non, elle reste centrée sur le rôle technique de techlead : décisions d'architecture, revue de code, dette et indicateurs de livraison."
+        "question": "La formation couvre-t-elle le management hiérarchique (entretiens, évaluations) ?",
+        "answer": "Non, elle reste centrée sur le rôle technique de techlead : décisions d'architecture, revue de code, dette et indicateurs de livraison."
       }
     ]
   },
   {
     "slug": "cicd-github-actions",
     "title": "CI/CD avec GitHub Actions (préparation GH-200)",
-    "summary": "À l'issue, vos équipes automatisent tests et mises en production avec GitHub Actions et préparent la certification GH-200 : livrer plus souvent, en confiance, sans étape manuelle.",
+    "summary": "À l'issue, vos équipes automatisent tests et mises en production avec GitHub Actions et préparent la certification GH-200 : livrer plus souvent, en confiance, sans étape manuelle.",
     "category": "Architecture & DevOps",
     "audience": "Développeurs et ingénieurs DevOps qui exploitent des pipelines CI/CD sur GitHub Actions et souhaitent les renforcer et les faire monter en échelle, tout en préparant la certification GH-200.",
     "objectives": [
@@ -3775,7 +3775,7 @@
         "durationDays": 0.25,
         "points": [
           "Événements déclencheurs et modèle job / step / runner",
-          "Permissions : portée du GITHUB_TOKEN et moindre privilège",
+          "Permissions : portée du GITHUB_TOKEN et moindre privilège",
           "Lire les exécutions de workflow, les journaux et les artefacts"
         ],
         "workshop": "Écrire un workflow déclenché sur une pull request qui exécute un job de build et vérifie les permissions par défaut du jeton."
@@ -3784,7 +3784,7 @@
         "title": "Workflows réutilisables et actions personnalisées",
         "durationDays": 0.5,
         "points": [
-          "Workflows réutilisables : entrées, sorties, secrets, appel depuis plusieurs dépôts",
+          "Workflows réutilisables : entrées, sorties, secrets, appel depuis plusieurs dépôts",
           "Actions composites pour mutualiser une séquence d'étapes",
           "Actions JavaScript et leur boîte à outils",
           "Actions Docker pour maîtriser entièrement l'environnement d'exécution"
@@ -3807,7 +3807,7 @@
         "points": [
           "Analyse CodeQL intégrée au workflow",
           "Analyse des dépendances et des secrets comme portes du pipeline",
-          "Fédération OIDC vers Azure : en finir avec les identifiants de longue durée",
+          "Fédération OIDC vers Azure : en finir avec les identifiants de longue durée",
           "Épingler les actions et évaluer le risque des workflows tiers"
         ],
         "workshop": "Remplacer un secret de principal de service Azure stocké par une fédération OIDC, puis déployer sans identifiant stocké."
@@ -3816,7 +3816,7 @@
         "title": "Déployer sur plusieurs environnements, à l'échelle de l'entreprise",
         "durationDays": 0.25,
         "points": [
-          "Environments : règles de protection, validateurs requis, branches de déploiement",
+          "Environments : règles de protection, validateurs requis, branches de déploiement",
           "Stratégie de déploiement multi-environnements (dev, staging, prod)",
           "Runners, politiques et partage des actions au sein d'une organisation"
         ],
@@ -3836,19 +3836,19 @@
     "prerequisites": "Notions Git, pratique d'un CI quelconque.",
     "durationDays": 2,
     "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution du pipeline construit pendant la formation : il doit exécuter tests, analyses de sécurité et déploiement contrôlé de bout en bout.",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution du pipeline construit pendant la formation : il doit exécuter tests, analyses de sécurité et déploiement contrôlé de bout en bout.",
     "faq": [
       {
-        "question": "La formation garantit-elle la réussite du GH-200 ?",
-        "answer": "Non. Elle couvre le périmètre pratique de l'examen par la mise en pratique ; la réussite dépend de votre propre préparation et de l'examen officiel."
+        "question": "La formation garantit-elle la réussite du GH-200 ?",
+        "answer": "Non. Elle couvre le périmètre pratique de l'examen par la mise en pratique ; la réussite dépend de votre propre préparation et de l'examen officiel."
       },
       {
-        "question": "Travaille-t-on avec notre propre abonnement Azure ?",
-        "answer": "Les ateliers utilisent un abonnement ou bac à sable Azure jetable ; la configuration OIDC peut être adaptée au vôtre en intra."
+        "question": "Travaille-t-on avec notre propre abonnement Azure ?",
+        "answer": "Les ateliers utilisent un abonnement ou bac à sable Azure jetable ; la configuration OIDC peut être adaptée au vôtre en intra."
       },
       {
-        "question": "Faut-il déjà connaître Docker ?",
-        "answer": "Non, seulement Git et une pratique générale de CI ; les actions Docker sont introduites au moment voulu."
+        "question": "Faut-il déjà connaître Docker ?",
+        "answer": "Non, seulement Git et une pratique générale de CI ; les actions Docker sont introduites au moment voulu."
       }
     ],
     "certification": "GH-200"
@@ -3883,7 +3883,7 @@
         "points": [
           "Convertir les pipelines Azure vers GitHub Actions avec GitHub Actions Importer",
           "Distinguer ce qui se convertit automatiquement de ce qui demande une réécriture",
-          "Azure Boards : conserver, intégrer, ou migrer le backlog vers GitHub Projects"
+          "Azure Boards : conserver, intégrer, ou migrer le backlog vers GitHub Projects"
         ],
         "workshop": "Convertir un fichier YAML Azure Pipelines avec GitHub Actions Importer, puis corriger ce que l'outil signale comme non supporté."
       },
@@ -3901,8 +3901,8 @@
         "title": "Bascule et retour d'expérience d'une migration réelle",
         "durationDays": 0.25,
         "points": [
-          "Conduire la bascule : fenêtres de gel, validation, plan de retour arrière",
-          "Pièges courants : trous dans l'historique, références de pipeline cassées, permissions orphelines",
+          "Conduire la bascule : fenêtres de gel, validation, plan de retour arrière",
+          "Pièges courants : trous dans l'historique, références de pipeline cassées, permissions orphelines",
           "Ce qu'une migration réelle a mal anticipé, et ce qu'il faut vérifier avant la mise en production"
         ],
         "workshop": "Rédiger une checklist de décision go / no-go pour un week-end de bascule à partir du retour d'expérience d'une migration réelle."
@@ -3914,16 +3914,16 @@
     "evaluation": "Quiz de validation à la fin de chaque module, et relecture du plan de migration rédigé pendant la journée au regard d'une checklist de bascule réelle.",
     "faq": [
       {
-        "question": "Peut-on travailler sur notre organisation Azure DevOps réelle ?",
-        "answer": "En intra, oui : on part d'un export ou d'une copie de votre organisation. En inter-entreprise, on part d'un exemple représentatif."
+        "question": "Peut-on travailler sur notre organisation Azure DevOps réelle ?",
+        "answer": "En intra, oui : on part d'un export ou d'une copie de votre organisation. En inter-entreprise, on part d'un exemple représentatif."
       },
       {
-        "question": "GitHub Actions Importer convertit-il tout automatiquement ?",
-        "answer": "Non. Il convertit les tâches courantes et signale ce qui demande une reprise manuelle ; la formation couvre les deux cas."
+        "question": "GitHub Actions Importer convertit-il tout automatiquement ?",
+        "answer": "Non. Il convertit les tâches courantes et signale ce qui demande une reprise manuelle ; la formation couvre les deux cas."
       },
       {
-        "question": "Que devient l'historique de nos Azure Boards ?",
-        "answer": "Vous pouvez conserver Azure Boards, l'intégrer à GitHub, ou migrer le backlog vers GitHub Projects : la formation couvre les compromis de chaque option."
+        "question": "Que devient l'historique de nos Azure Boards ?",
+        "answer": "Vous pouvez conserver Azure Boards, l'intégrer à GitHub, ou migrer le backlog vers GitHub Projects : la formation couvre les compromis de chaque option."
       }
     ]
   },
@@ -3945,7 +3945,7 @@
         "title": "Panorama de GitHub Advanced Security",
         "durationDays": 0.25,
         "points": [
-          "Secret Protection et Code Security : ce que chacun couvre et comment ils s'articulent",
+          "Secret Protection et Code Security : ce que chacun couvre et comment ils s'articulent",
           "Où se situe GHAS dans le flux de développement, du push à la production",
           "Licence et activation de GHAS au niveau du dépôt et de l'organisation"
         ],
@@ -3955,8 +3955,8 @@
         "title": "Secret Protection",
         "durationDays": 0.25,
         "points": [
-          "Détection de secrets : motifs intégrés et motifs personnalisés",
-          "Push protection : bloquer un secret avant qu'il n'entre dans l'historique",
+          "Détection de secrets : motifs intégrés et motifs personnalisés",
+          "Push protection : bloquer un secret avant qu'il n'entre dans l'historique",
           "Traiter un vrai positif et un faux positif sans désactiver la vérification"
         ],
         "workshop": "Configurer un motif de secret personnalisé, puis déclencher la push protection sur un identifiant de test volontairement inséré."
@@ -3965,7 +3965,7 @@
         "title": "Sécurité de la chaîne d'approvisionnement",
         "durationDays": 0.25,
         "points": [
-          "Graphe de dépendances : ce qu'il suit et ses limites",
+          "Graphe de dépendances : ce qu'il suit et ses limites",
           "Alertes Dependabot et pull requests de mise à jour automatisées",
           "Dependency review sur une pull request avant la fusion"
         ],
@@ -3975,10 +3975,10 @@
         "title": "Code Security avec CodeQL",
         "durationDays": 0.5,
         "points": [
-          "Analyse CodeQL : configuration par défaut ou workflow avancé",
+          "Analyse CodeQL : configuration par défaut ou workflow avancé",
           "Lire et trier les alertes CodeQL, écarter sans masquer un vrai risque",
           "Écrire ou adapter une requête CodeQL pour une règle propre à votre code",
-          "Copilot Autofix : relire et valider une correction proposée, jamais la fusionner les yeux fermés"
+          "Copilot Autofix : relire et valider une correction proposée, jamais la fusionner les yeux fermés"
         ],
         "workshop": "Écrire une petite requête CodeQL personnalisée pour un motif propre à votre code, l'exécuter, puis trier les alertes obtenues."
       },
@@ -3987,9 +3987,9 @@
         "durationDays": 0.5,
         "points": [
           "Activer GHAS pour Azure DevOps et ce qui diffère de la version GitHub native",
-          "Prioriser les résultats sur de nombreux dépôts : sévérité, exploitabilité, exposition",
+          "Prioriser les résultats sur de nombreux dépôts : sévérité, exploitabilité, exposition",
           "Processus de remédiation et suivi jusqu'à la clôture",
-          "Gouvernance à l'échelle : politiques d'organisation, analyses obligatoires, reporting aux parties prenantes"
+          "Gouvernance à l'échelle : politiques d'organisation, analyses obligatoires, reporting aux parties prenantes"
         ],
         "workshop": "Trier un arriéré de résultats sur plusieurs dépôts et produire un plan de remédiation priorisé."
       },
@@ -4010,16 +4010,16 @@
     "evaluation": "Quiz de validation à la fin de chaque module, et série chronométrée de questions type GH-500 le dernier après-midi, corrigée collectivement.",
     "faq": [
       {
-        "question": "Suivre la formation garantit-il la réussite du GH-500 ?",
-        "answer": "Non. Elle couvre le périmètre de l'examen par la pratique et propose des questions d'entraînement ; la réussite dépend de votre propre préparation et de l'examen officiel."
+        "question": "Suivre la formation garantit-il la réussite du GH-500 ?",
+        "answer": "Non. Elle couvre le périmètre de l'examen par la pratique et propose des questions d'entraînement ; la réussite dépend de votre propre préparation et de l'examen officiel."
       },
       {
-        "question": "Faut-il déjà savoir écrire des requêtes CodeQL ?",
-        "answer": "Non. La formation introduit les bases des requêtes ; des notions générales de sécurité applicative suffisent au départ."
+        "question": "Faut-il déjà savoir écrire des requêtes CodeQL ?",
+        "answer": "Non. La formation introduit les bases des requêtes ; des notions générales de sécurité applicative suffisent au départ."
       },
       {
-        "question": "Est-ce pertinent si notre code est hébergé sur Azure DevOps ?",
-        "answer": "Oui : un module dédié couvre GitHub Advanced Security pour Azure DevOps et ses différences avec le produit natif GitHub."
+        "question": "Est-ce pertinent si notre code est hébergé sur Azure DevOps ?",
+        "answer": "Oui : un module dédié couvre GitHub Advanced Security pour Azure DevOps et ses différences avec le produit natif GitHub."
       }
     ],
     "certification": "GH-500"

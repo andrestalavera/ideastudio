@@ -25,13 +25,13 @@
       },
       {
         "title": "Construire votre SaaS de A à Z",
-        "description": "Du cadrage à la mise en production : architecture multi-tenant, abonnements, sécurité et hébergement, en Spec-Driven Development pour garder le cap à chaque itération."
+        "description": "Du cadrage à la mise en production : architecture multi-tenant, abonnements, sécurité et hébergement, en Spec-Driven Development pour garder le cap à chaque itération."
       }
     ],
     "faq": [
-      { "question": "Quel est votre TJM ?", "answer": "Sur demande, en fonction de la mission, de la durée et du niveau d'implication." },
-      { "question": "Travaillez-vous à distance ?", "answer": "Oui, en full-remote ou hybride. Je me déplace ponctuellement à Lyon, Paris, Genève et Fribourg." },
-      { "question": "Reprenez-vous des projets existants ?", "answer": "Oui. Auditer et moderniser une application déjà en place fait partie de mon quotidien." }
+      { "question": "Quel est votre TJM ?", "answer": "Sur demande, en fonction de la mission, de la durée et du niveau d'implication." },
+      { "question": "Travaillez-vous à distance ?", "answer": "Oui, en full-remote ou hybride. Je me déplace ponctuellement à Lyon, Paris, Genève et Fribourg." },
+      { "question": "Reprenez-vous des projets existants ?", "answer": "Oui. Auditer et moderniser une application déjà en place fait partie de mon quotidien." }
     ],
     "ctaLabel": null,
     "order": 1
@@ -55,9 +55,9 @@
       { "title": "Accompagner un nouveau responsable technique", "description": "3 à 6 mois en binôme pour transmettre les bons réflexes, les outils et la posture." }
     ],
     "faq": [
-      { "question": "Quel est votre TJM ?", "answer": "Sur demande, en fonction de la mission, de la durée et du niveau d'implication." },
-      { "question": "Quelle taille d'équipe ?", "answer": "3 à 10 personnes idéalement, au-delà on discute de la structure." },
-      { "question": "Embauchez-vous ?", "answer": "Je participe aux entretiens techniques, je ne porte pas le recrutement en direct." }
+      { "question": "Quel est votre TJM ?", "answer": "Sur demande, en fonction de la mission, de la durée et du niveau d'implication." },
+      { "question": "Quelle taille d'équipe ?", "answer": "3 à 10 personnes idéalement, au-delà on discute de la structure." },
+      { "question": "Embauchez-vous ?", "answer": "Je participe aux entretiens techniques, je ne porte pas le recrutement en direct." }
     ],
     "ctaLabel": null,
     "order": 2
@@ -81,11 +81,11 @@
     "useCases": [
       {
         "title": "Inter-entreprise · 3 jours",
-        "description": "Sessions catalogue dispensées chez ORSYS, IP-Formation ou en classe virtuelle. Inscriptions individuelles, groupe mixte d'apprenants : développement web, cloud, architecture, préparation aux certifications."
+        "description": "Sessions catalogue dispensées chez ORSYS, IP-Formation ou en classe virtuelle. Inscriptions individuelles, groupe mixte d'apprenants : développement web, cloud, architecture, préparation aux certifications."
       },
       {
         "title": "Intra sur-mesure",
-        "description": "Programme calibré avec vous : on part de vos besoins réels, on choisit les modules, on adapte la profondeur et les exemples à votre propre code."
+        "description": "Programme calibré avec vous : on part de vos besoins réels, on choisit les modules, on adapte la profondeur et les exemples à votre propre code."
       },
       {
         "title": "Programme à la carte",
@@ -93,11 +93,11 @@
       }
     ],
     "faq": [
-      { "question": "Quel est votre TJM en formation ?", "answer": "600 à 800 € par jour selon le module et le format, ou forfait inter / intra. Devis chiffré sous 24 h à partir d'un brief court." },
-      { "question": "Formez-vous à distance ?", "answer": "Oui, classe virtuelle synchrone, exercices en binôme, démos en partage d'écran, retours en direct. La même rigueur qu'en présentiel." },
-      { "question": "Êtes-vous certifié ?", "answer": "Non, je ne suis pas certifié. Je prépare les équipes aux examens de certification Microsoft et GitHub (AI-200, AZ-305, AZ-400, GH-200, GH-300, GH-500, GH-600, AB-730), en m'appuyant sur 15+ ans de pratique .NET/Azure en production et 3 750 heures de formation animées." },
-      { "question": "Comment construire un programme sur-mesure ?", "answer": "On part d'un module catalogue qui couvre le cœur de votre besoin, on identifie ce qui manque et ce qui est superflu, on emprunte des chapitres aux modules connexes, on cale la durée. Le brief tient en un appel de 30 minutes." },
-      { "question": "Quels dispositifs de financement ?", "answer": "Les centres partenaires (ORSYS, IP-Formation, NextFormation) sont Qualiopi : OPCO, CPF entreprise, plan de développement des compétences. En intra direct, je vous oriente vers le dispositif adapté." }
+      { "question": "Quel est votre TJM en formation ?", "answer": "600 à 800 € par jour selon le module et le format, ou forfait inter / intra. Devis chiffré sous 24 h à partir d'un brief court." },
+      { "question": "Formez-vous à distance ?", "answer": "Oui, classe virtuelle synchrone, exercices en binôme, démos en partage d'écran, retours en direct. La même rigueur qu'en présentiel." },
+      { "question": "Êtes-vous certifié ?", "answer": "Non, je ne suis pas certifié. Je prépare les équipes aux examens de certification Microsoft et GitHub (AI-200, AZ-305, AZ-400, GH-200, GH-300, GH-500, GH-600, AB-730), en m'appuyant sur 15+ ans de pratique .NET/Azure en production et 3 750 heures de formation animées." },
+      { "question": "Comment construire un programme sur-mesure ?", "answer": "On part d'un module catalogue qui couvre le cœur de votre besoin, on identifie ce qui manque et ce qui est superflu, on emprunte des chapitres aux modules connexes, on cale la durée. Le brief tient en un appel de 30 minutes." },
+      { "question": "Quels dispositifs de financement ?", "answer": "Les centres partenaires (ORSYS, IP-Formation, NextFormation) sont Qualiopi : OPCO, CPF entreprise, plan de développement des compétences. En intra direct, je vous oriente vers le dispositif adapté." }
     ],
     "ctaLabel": null,
     "order": 3
@@ -106,9 +106,9 @@
     "slug": "vibe-coding",
     "title": "Développer plus vite avec l'IA",
     "kicker": "L'IA DANS VOS OUTILS DE CODE",
-    "tagline": "Vos développeurs plus rapides grâce à l'IA, sans jamais la croire sur parole : chaque ligne générée est relue.",
+    "tagline": "Vos développeurs plus rapides grâce à l'IA, sans jamais la croire sur parole : chaque ligne générée est relue.",
     "iconId": "vibe",
-    "summary": "Les assistants de code par IA changent le quotidien des développeurs. Je vous aide à en tirer un vrai gain : quels outils choisir, quelles règles poser, comment mesurer les progrès, et surtout comment garder la maîtrise de la qualité de ce qui est produit.",
+    "summary": "Les assistants de code par IA changent le quotidien des développeurs. Je vous aide à en tirer un vrai gain : quels outils choisir, quelles règles poser, comment mesurer les progrès, et surtout comment garder la maîtrise de la qualité de ce qui est produit.",
     "highlights": [
       "Vos équipes adoptent les bons outils d'IA, choisis pour votre contexte",
       "Un cadre d'utilisation clair, partagé par toute l'équipe",
@@ -124,11 +124,11 @@
       { "title": "Audit de code généré par IA", "description": "Repérer les fragilités, sécuriser ce qui a déjà été généré, et remettre l'humain dans la boucle." }
     ],
     "faq": [
-      { "question": "Quel est votre TJM en vibe coding ?", "answer": "600 à 800 € par jour selon le périmètre. Il s'agit d'une mission de coaching et de transmission, dont une partie significative consiste à former l'équipe en pair-programming." },
-      { "question": "Est-ce que ça marche sur notre stack ?", "answer": "Les outils actuels fonctionnent quel que soit votre langage. On valide ensemble sur votre base de code." },
-      { "question": "Quid de la confidentialité du code ?", "answer": "On choisit un dispositif compatible avec vos contraintes : service en ligne, hébergé chez vous, ou sans conservation des données." },
-      { "question": "Vous gardez l'humain dans la boucle ?", "answer": "Oui, la promesse n'est pas « moins de devs », c'est « plus de devs efficaces, qui gardent la maîtrise ». Chaque ligne générée passe par une revue." },
-      { "question": "Combien de temps pour un pilote ?", "answer": "4 à 6 semaines, équipe de 3 à 5 devs, avec un résultat mesuré." }
+      { "question": "Quel est votre TJM en vibe coding ?", "answer": "600 à 800 € par jour selon le périmètre. Il s'agit d'une mission de coaching et de transmission, dont une partie significative consiste à former l'équipe en pair-programming." },
+      { "question": "Est-ce que ça marche sur notre stack ?", "answer": "Les outils actuels fonctionnent quel que soit votre langage. On valide ensemble sur votre base de code." },
+      { "question": "Quid de la confidentialité du code ?", "answer": "On choisit un dispositif compatible avec vos contraintes : service en ligne, hébergé chez vous, ou sans conservation des données." },
+      { "question": "Vous gardez l'humain dans la boucle ?", "answer": "Oui, la promesse n'est pas « moins de devs », c'est « plus de devs efficaces, qui gardent la maîtrise ». Chaque ligne générée passe par une revue." },
+      { "question": "Combien de temps pour un pilote ?", "answer": "4 à 6 semaines, équipe de 3 à 5 devs, avec un résultat mesuré." }
     ],
     "ctaLabel": null,
     "order": 4
@@ -137,9 +137,9 @@
     "slug": "ia-en-entreprise",
     "title": "IA en entreprise",
     "kicker": "IA PRIVÉE & MESURABLE",
-    "tagline": "L'IA chez vous, sous votre contrôle : vos données ne quittent pas la maison, et vos usages restent mesurables.",
+    "tagline": "L'IA chez vous, sous votre contrôle : vos données ne quittent pas la maison, et vos usages restent mesurables.",
     "iconId": "ai-enterprise",
-    "summary": "L'IA générative entre dans les entreprises. Je vous aide à l'adopter en gardant la main : vos données chez vous, des intégrations utiles à votre métier, et un impact que vous pouvez réellement mesurer.",
+    "summary": "L'IA générative entre dans les entreprises. Je vous aide à l'adopter en gardant la main : vos données chez vous, des intégrations utiles à votre métier, et un impact que vous pouvez réellement mesurer.",
     "highlights": [
       "Une IA hébergée chez vous, vos données ne sortent jamais",
       "Vos outils et votre savoir interne rendus accessibles à l'IA de vos équipes",
@@ -150,16 +150,16 @@
       "L'impact de l'IA suivi directement dans vos tableaux de bord existants"
     ],
     "useCases": [
-      { "title": "IA installée chez vous", "description": "Pour un besoin de confidentialité forte : choix des modèles, dimensionnement du matériel, intégration à vos outils internes." },
+      { "title": "IA installée chez vous", "description": "Pour un besoin de confidentialité forte : choix des modèles, dimensionnement du matériel, intégration à vos outils internes." },
       { "title": "Connecter l'IA à vos outils", "description": "Relier votre système d'information ou votre base de connaissances aux assistants de vos développeurs, pour décupler leur productivité." },
       { "title": "Être visible dans les réponses des IA", "description": "Rendre votre site lisible et citable par les IA, pour apparaître dans les réponses de Perplexity ou ChatGPT." }
     ],
     "faq": [
-      { "question": "Quel est votre TJM ?", "answer": "600 à 800 € par jour selon le périmètre, mission de mise en place technique et de coaching." },
-      { "question": "Pourquoi héberger l'IA chez moi plutôt qu'utiliser ChatGPT/Claude ?", "answer": "Vos données restent chez vous, vous restez conforme au RGPD et à votre secteur, et le coût reste maîtrisé sur des usages intensifs." },
-      { "question": "Quels modèles vous installez ?", "answer": "Llama, Qwen, Mistral, Gemma, le choix se fait selon votre usage (codage, recherche, résumé) et le matériel disponible." },
-      { "question": "C'est quoi un serveur MCP, concrètement ?", "answer": "Un connecteur standard entre une IA et vos outils : vos applications internes, votre documentation et vos données métier deviennent utilisables directement par l'IA." },
-      { "question": "Vous touchez à mes outils de mesure marketing existants ?", "answer": "Non, on étend l'existant. On ajoute le suivi des usages IA sans casser ce qui est déjà en place." }
+      { "question": "Quel est votre TJM ?", "answer": "600 à 800 € par jour selon le périmètre, mission de mise en place technique et de coaching." },
+      { "question": "Pourquoi héberger l'IA chez moi plutôt qu'utiliser ChatGPT/Claude ?", "answer": "Vos données restent chez vous, vous restez conforme au RGPD et à votre secteur, et le coût reste maîtrisé sur des usages intensifs." },
+      { "question": "Quels modèles vous installez ?", "answer": "Llama, Qwen, Mistral, Gemma, le choix se fait selon votre usage (codage, recherche, résumé) et le matériel disponible." },
+      { "question": "C'est quoi un serveur MCP, concrètement ?", "answer": "Un connecteur standard entre une IA et vos outils : vos applications internes, votre documentation et vos données métier deviennent utilisables directement par l'IA." },
+      { "question": "Vous touchez à mes outils de mesure marketing existants ?", "answer": "Non, on étend l'existant. On ajoute le suivi des usages IA sans casser ce qui est déjà en place." }
     ],
     "ctaLabel": null,
     "order": 5
@@ -184,8 +184,8 @@
       { "title": "Application grand public", "description": "Une première version rapide, puis des améliorations guidées par les retours de vos utilisateurs." }
     ],
     "faq": [
-      { "question": "Vous faites de l'iOS natif ?", "answer": "Oui, si le contexte le justifie. Par défaut je privilégie une seule réalisation pour les deux plateformes, plus économique." },
-      { "question": "Qui gère les comptes Apple/Google ?", "answer": "Vous, je vous accompagne sur la création et les soumissions." }
+      { "question": "Vous faites de l'iOS natif ?", "answer": "Oui, si le contexte le justifie. Par défaut je privilégie une seule réalisation pour les deux plateformes, plus économique." },
+      { "question": "Qui gère les comptes Apple/Google ?", "answer": "Vous, je vous accompagne sur la création et les soumissions." }
     ],
     "ctaLabel": null,
     "order": 6
@@ -209,8 +209,8 @@
       { "title": "Application web métier", "description": "Portail client, espace d'administration, processus complexes, connexion à vos outils internes." }
     ],
     "faq": [
-      { "question": "Faites-vous les designs ?", "answer": "Sur des petits projets oui. Sur des projets identitaires, je collabore avec des designers." },
-      { "question": "Maintenance ?", "answer": "Contrat de maintenance ou forfait à la demande, selon vos besoins." }
+      { "question": "Faites-vous les designs ?", "answer": "Sur des petits projets oui. Sur des projets identitaires, je collabore avec des designers." },
+      { "question": "Maintenance ?", "answer": "Contrat de maintenance ou forfait à la demande, selon vos besoins." }
     ],
     "ctaLabel": null,
     "order": 7

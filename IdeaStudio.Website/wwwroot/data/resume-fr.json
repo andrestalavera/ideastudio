@@ -3,7 +3,7 @@
     "name": "Andrés Talavera",
     "title": "Architecte / techlead .NET & Azure et formateur",
     "hero": "Donnons vie à l'avenir de votre entreprise ensemble.",
-    "introduction": "Architecte et développeur .NET, consultant Azure : 15+ ans d'expérience en ASP.NET Core, Blazor, Clean Architecture / DDD et plateformes cloud-native sur Azure, du cadrage au déploiement continu en production.",
+    "introduction": "Architecte et développeur .NET, consultant Azure : 15+ ans d'expérience en ASP.NET Core, Blazor, Clean Architecture / DDD et plateformes cloud-native sur Azure, du cadrage au déploiement continu en production.",
     "languages": {
       "EN": "English",
       "FR": "Français",
@@ -19,7 +19,7 @@
     {
       "title": "Votre consultant .NET",
       "paragraphs": [
-        "Architecte et développeur .NET / Azure : conception et livraison de plateformes cloud-native de bout en bout.",
+        "Architecte et développeur .NET / Azure : conception et livraison de plateformes cloud-native de bout en bout.",
         "ASP.NET Core, Blazor (Server, WebAssembly, SSR), .NET MAUI / Xamarin, Entity Framework Core et messagerie asynchrone.",
         "Clean Architecture et Domain-Driven Design, frontière DTO stricte, tests automatisés et CI/CD industrialisée.",
         "Au service des startups, PME et ESN, du cadrage à l'exploitation en production sur Azure."
@@ -46,8 +46,8 @@
     {
       "title": "Passionné",
       "paragraphs": [
-        "Veille continue sur l'écosystème Microsoft : .NET 10 et .NET 11, Blazor, Aspire et agentic coding.",
-        "R&D permanente : architectures cloud-native, serverless, observabilité et outils de développement assisté par IA.",
+        "Veille continue sur l'écosystème Microsoft : .NET 10 et .NET 11, Blazor, Aspire et agentic coding.",
+        "R&D permanente : architectures cloud-native, serverless, observabilité et outils de développement assisté par IA.",
         "Participant actif de la communauté des développeurs depuis l'époque Microsoft Student Partner.",
         "Passionné par le développement mobile, le web haute performance et l'architecture distribuée."
       ],
@@ -57,9 +57,9 @@
       "title": "Expériences diversifiées",
       "paragraphs": [
         "Projets livrés dans les secteurs santé, finance / assurance, automobile, logistique et BTP.",
-        "Domaines couverts : statistiques de santé (HDS), logiciels d'assurance, plateformes éducatives et data temps réel.",
+        "Domaines couverts : statistiques de santé (HDS), logiciels d'assurance, plateformes éducatives et data temps réel.",
         "Plus de vingt missions menées en grand compte et en PME.",
-        "Développement mobile multiplateforme : .NET MAUI, Xamarin.Forms et Xamarin natif."
+        "Développement mobile multiplateforme : .NET MAUI, Xamarin.Forms et Xamarin natif."
       ],
       "link": "#experiences"
     },
@@ -67,8 +67,8 @@
       "title": "Projets récents",
       "paragraphs": [
         "Portails de données de santé Medtech / CEESA en .NET 9, Blazor Server et hébergement certifié HDS.",
-        "Modernisation du logiciel logistique TRIGO : migration ASP.NET (MVC4) vers .NET et front Vue 3.",
-        "Direction technique chez Active Assurances : refonte complète du SI et usine logicielle Azure Pipelines.",
+        "Modernisation du logiciel logistique TRIGO : migration ASP.NET (MVC4) vers .NET et front Vue 3.",
+        "Direction technique chez Active Assurances : refonte complète du SI et usine logicielle Azure Pipelines.",
         "Plateforme SaaS PropTech / RegTech (DPE) en Clean Architecture, .NET 10 et Azure Container Apps."
       ],
       "link": "#experiences"
@@ -77,7 +77,7 @@
       "title": "Qualités personnelles",
       "paragraphs": [
         "Développeur curieux et polyvalent, fort en conception analytique et en résolution de problèmes.",
-        "Pédagogue : capable de vulgariser des concepts techniques complexes pour des publics variés.",
+        "Pédagogue : capable de vulgariser des concepts techniques complexes pour des publics variés.",
         "Tech lead collaboratif, à l'aise dans les environnements agiles (Scrum, revues de code, pairing).",
         "Consultant trilingue (FR / EN / ES) à l'aise sur les marchés français, espagnol et anglophone."
       ]
@@ -94,23 +94,23 @@
         "À distance"
       ],
       "description": [
-        "Le métier évolue : intégration au quotidien des outils d'agentic coding pour concevoir, architecturer et livrer des plateformes complètes plus vite, sans renoncer à l'exigence d'architecture et de qualité.",
+        "Le métier évolue : intégration au quotidien des outils d'agentic coding pour concevoir, architecturer et livrer des plateformes complètes plus vite, sans renoncer à l'exigence d'architecture et de qualité.",
         "Pilotage d'agents IA (Claude Code) en tant qu'unique architecte-développeur, pour accélérer le delivery sur des projets réels, du cadrage jusqu'au déploiement en production.",
         "Développement de SaaS de A à Z en Spec-Driven Development avec GitHub Spec Kit, à partir d'une déclinaison maison adaptée à .NET (constitution, templates et commandes sur-mesure).",
         "Accompagnement de clients dans le développement de leurs SaaS, du cadrage à la mise en production.",
-        "Projet phare : conception et réalisation d'une plateforme SaaS PropTech / RegTech autour du Diagnostic de Performance Énergétique (DPE), menée en ~8 mois et 2 000+ commits."
+        "Projet phare : conception et réalisation d'une plateforme SaaS PropTech / RegTech autour du Diagnostic de Performance Énergétique (DPE), menée en ~8 mois et 2 000+ commits."
       ],
       "responsibilities": [
-        "Architecture Clean Architecture stricte en 3 couches (Présentation → Application → Infrastructure) : 10 projets source, 153 use cases métier, frontière DTO en sealed records — aucune entité EF Core jamais exposée.",
-        "4 applications de présentation sur un socle unique : API REST (32 contrôleurs, 117 endpoints, jobs background), PWA Blazor WASM B2C, Dashboard Blazor Server multi-rôles B2B, site vitrine Blazor SSR orienté SEO.",
+        "Architecture Clean Architecture stricte en 3 couches (Présentation → Application → Infrastructure) : 10 projets source, 153 use cases métier, frontière DTO en sealed records — aucune entité EF Core jamais exposée.",
+        "4 applications de présentation sur un socle unique : API REST (32 contrôleurs, 117 endpoints, jobs background), PWA Blazor WASM B2C, Dashboard Blazor Server multi-rôles B2B, site vitrine Blazor SSR orienté SEO.",
         "Coordination de 5 audiences (particuliers, diagnostiqueurs, notaires, agences immobilières, pros du bâtiment) avec anonymat par défaut et révélation d'identité conditionnelle.",
-        "Intégration de 6 systèmes externes : Stripe (pré-autorisation DSP2/SCA, webhooks idempotents), import quotidien data.gouv.fr (job CRON + HttpClient/Polly retry), inférence ML embarquée YOLO/ONNX Runtime, BDNB, Twilio (masquage de numéros), Gravatar.",
-        "Conception d'un flux de paiement sécurisé de bout en bout : pré-autorisation 3DS2/SCA, hold, relances automatiques (J+2/J+5), capture ou expiration à J+7 et re-booking en 1 clic.",
-        "Conformité réglementaire : RGPD (consentements granulaires, base d'audit isolée, droit à l'effacement < 30j), CNIL, DSP2/SCA, méthode de calcul DPE 2024 (3CL), soft delete systématique (ISoftDeletable).",
-        "Industrialisation CI/CD GitHub Actions : build/test .NET 10, coverage gates Coverlet, validation IaC, déploiement via Azure Developer CLI (azd) en OIDC federated (zéro secret long-lived), smoke tests /alive et /health.",
+        "Intégration de 6 systèmes externes : Stripe (pré-autorisation DSP2/SCA, webhooks idempotents), import quotidien data.gouv.fr (job CRON + HttpClient/Polly retry), inférence ML embarquée YOLO/ONNX Runtime, BDNB, Twilio (masquage de numéros), Gravatar.",
+        "Conception d'un flux de paiement sécurisé de bout en bout : pré-autorisation 3DS2/SCA, hold, relances automatiques (J+2/J+5), capture ou expiration à J+7 et re-booking en 1 clic.",
+        "Conformité réglementaire : RGPD (consentements granulaires, base d'audit isolée, droit à l'effacement < 30j), CNIL, DSP2/SCA, méthode de calcul DPE 2024 (3CL), soft delete systématique (ISoftDeletable).",
+        "Industrialisation CI/CD GitHub Actions : build/test .NET 10, coverage gates Coverlet, validation IaC, déploiement via Azure Developer CLI (azd) en OIDC federated (zéro secret long-lived), smoke tests /alive et /health.",
         "Infrastructure as Code Bicep modulaire sur Azure Container Apps, secrets Azure Key Vault, registry ACR, orchestration locale via .NET Aspire (SQL Server, Redis, Azurite sous Docker).",
         "Stratégie de tests sur 6 niveaux (xUnit, NSubstitute, bUnit, EF InMemory, WebApplicationFactory) avec un ratio tests/code ~1:1 et validation automatique de l'injection de dépendances (ValidateOnBuild).",
-        "Observabilité de production : traces distribuées OpenTelemetry, health checks (SQL, Redis, Storage), logging structuré source-generated (LoggerMessage).",
+        "Observabilité de production : traces distribuées OpenTelemetry, health checks (SQL, Redis, Storage), logging structuré source-generated (LoggerMessage).",
         "Utilisation quotidienne de GitHub Copilot et Claude Code pour l'écriture, le refactoring et la revue de code, avec rules contextuelles et specs versionnées pour cadrer le travail des agents.",
         "Installations locales basées sur Ollama (Codex App, Hermes Agent, OpenClaw, OpenCode, etc.) pour évaluer les modèles open-source en environnement souverain.",
         "Refonte et mise à jour de ideastud.io avec une approche éditoriale moderne.",
@@ -205,13 +205,13 @@
         "Mise en œuvre de règles de sécurité strictes pour protéger les données sensibles.",
         "Intégration avec Microsoft Entra ID pour une authentification et une autorisation sécurisées.",
         "Développement de l'interface Blazor Server avec UI Bootstrap responsive et composants Razor custom, notamment pour l'authentification via Microsoft Entra ID.",
-        "Mise en conformité RGPD et hébergement HDS (Hébergement de Données de Santé) : minimisation des données, pseudonymisation, journalisation des accès et traçabilité des consentements.",
+        "Mise en conformité RGPD et hébergement HDS (Hébergement de Données de Santé) : minimisation des données, pseudonymisation, journalisation des accès et traçabilité des consentements.",
         "Sécurisation des secrets via Azure Key Vault et des accès via Managed Identities et RBAC, pour supprimer toute information sensible en clair.",
         "Migration des pipelines Azure DevOps vers GitHub Actions, avec réécriture complète des workflows de déploiement et templates réutilisables.",
-        "Industrialisation de l'infrastructure as code via Bicep : groupes de ressources, Key Vaults, identités managées, Azure SQL, App Service Plans et Azure Functions, pour des déploiements multi-environnements fiables.",
+        "Industrialisation de l'infrastructure as code via Bicep : groupes de ressources, Key Vaults, identités managées, Azure SQL, App Service Plans et Azure Functions, pour des déploiements multi-environnements fiables.",
         "Mise en place de health checks et de supervision applicative (Application Insights) pour garantir la disponibilité des portails.",
-        "Optimisation des performances : requêtes Azure SQL, profilage côté Blazor et stratégies de cache pour des temps de réponse maîtrisés.",
-        "Démarche FinOps : optimisation du temps d'exécution des Azure Functions pour réduire les coûts, et étude comparative App Service Plan vs Containers pour choisir l'hébergement le plus rentable."
+        "Optimisation des performances : requêtes Azure SQL, profilage côté Blazor et stratégies de cache pour des temps de réponse maîtrisés.",
+        "Démarche FinOps : optimisation du temps d'exécution des Azure Functions pour réduire les coûts, et étude comparative App Service Plan vs Containers pour choisir l'hébergement le plus rentable."
       ],
       "skills": [
         ".NET",
@@ -264,7 +264,7 @@
         "Analyse de l'application mobile pour cadrer sa modernisation.",
         "Développement de composants Vue 3 avec Vite et gestion d'état Pinia, dans une modernisation progressive du front-end.",
         "Cadrage des migrations MVC4 vers .NET moderne et vers Azure (Web App, Azure Functions, Azure SQL, Service Bus).",
-        "Collaboration au sein d'une équipe de 15 personnes (Key Consulting) : revues de code et partage de connaissances."
+        "Collaboration au sein d'une équipe de 15 personnes (Key Consulting) : revues de code et partage de connaissances."
       ],
       "skills": [
         "Azure DevOps",
@@ -313,14 +313,14 @@
         "Gestion de la migration des abonnements Azure et des FinOps.",
         "Amélioration de la sécurité des applications et mise à niveau de certains projets vers .NET 8.",
         "Mise en place d'un système de migration de base de données pour répliquer les données sur différents environnements.",
-        "Accompagnement multi-stacks des équipes : Razor/CSHTML (ASP.NET Framework) couplé à Bootstrap/jQuery, React, Angular et Blazor, avec corrections de styles et guidance sur Bootstrap, Material, MudBlazor et SCSS custom.",
+        "Accompagnement multi-stacks des équipes : Razor/CSHTML (ASP.NET Framework) couplé à Bootstrap/jQuery, React, Angular et Blazor, avec corrections de styles et guidance sur Bootstrap, Material, MudBlazor et SCSS custom.",
         "Création de l'usine logicielle Azure Pipelines à partir d'une seule pipeline existante (déploiements en FTP au démarrage), pour aboutir à 25 templates YAML réutilisables et 10 pipelines déployant sur 2 environnements.",
         "Migration d'applications on-premise vers Azure et séparation/réorganisation des dépôts Git, en rattrapant 5 à 6 ans de dette d'industrialisation.",
-        "FinOps Azure : suppression des ressources fantômes, optimisation des coûts des bases de données, scaling automatique de l'ensemble des ressources et fusion des App Service Plans selon les besoins réels.",
-        "Conformité RGPD : développement de scripts SQL d'anonymisation par client, déclenchables via Azure Batch et Azure Functions pour rafraîchir les environnements hors-production en toute sécurité.",
+        "FinOps Azure : suppression des ressources fantômes, optimisation des coûts des bases de données, scaling automatique de l'ensemble des ressources et fusion des App Service Plans selon les besoins réels.",
+        "Conformité RGPD : développement de scripts SQL d'anonymisation par client, déclenchables via Azure Batch et Azure Functions pour rafraîchir les environnements hors-production en toute sécurité.",
         "Mise en place d'une stratégie de disponibilité multi-région (Europe) avec fallback automatique via Azure Traffic Manager.",
         "Système de migration de base de données combinant EF Core Migrations et un outil maison embarqué dans le code applicatif pour orchestrer les bascules de schéma et de données entre environnements.",
-        "Pilotage technique de deux équipes de 5 développeurs : participation à tous les daily meetings et rituels Scrum, et animation d'un event technique bi-mensuel dédié au partage de connaissances."
+        "Pilotage technique de deux équipes de 5 développeurs : participation à tous les daily meetings et rituels Scrum, et animation d'un event technique bi-mensuel dédié au partage de connaissances."
       ],
       "skills": [
         "Blazor",
@@ -390,7 +390,7 @@
       "responsibilities": [
         "Conception et développement d'applications web (ASP.NET Core, Blazor) et mobiles (Xamarin) cloud-native sur Azure.",
         "Architecture Clean Architecture / DDD et conception d'API REST documentées (Swagger / OpenAPI).",
-        "Mise en œuvre de services Azure managés : Functions, Service Bus, Cosmos DB, Data Factory, Storage, Key Vault et Monitor.",
+        "Mise en œuvre de services Azure managés : Functions, Service Bus, Cosmos DB, Data Factory, Storage, Key Vault et Monitor.",
         "Industrialisation CI/CD via Azure DevOps et démarche FinOps de maîtrise des coûts cloud.",
         "Animation de formations .NET, C# et Azure et rédaction d'articles techniques sur le cloud et l'architecture logicielle."
       ],
@@ -454,8 +454,8 @@
         "Implémentation effective d'Azure Managed Identities et d'Azure RBAC dans les services backend, pour supprimer les secrets en clair et durcir le contrôle d'accès aux ressources Azure.",
         "Migrations .NET Core 3 vers .NET 6 sur plusieurs projets, avec parfois la réécriture complète d'applications historiques pour repartir sur des bases saines.",
         "Création de pipelines CI/CD Azure DevOps et de templates YAML partagés, en réutilisant les templates existants du périmètre pour standardiser et accélérer les déploiements.",
-        "Optimisation de la Function orchestrator de synchronisation : refonte de la gestion des accès au Service Bus et industrialisation de l'async/await, ramenant le temps d'exécution principal de 7-8 minutes à 1-2 minutes.",
-        "Strict respect du cloisonnement RGPD : développements menés uniquement sur des jeux d'utilisateurs fictifs, sans aucun accès aux données de production."
+        "Optimisation de la Function orchestrator de synchronisation : refonte de la gestion des accès au Service Bus et industrialisation de l'async/await, ramenant le temps d'exécution principal de 7-8 minutes à 1-2 minutes.",
+        "Strict respect du cloisonnement RGPD : développements menés uniquement sur des jeux d'utilisateurs fictifs, sans aucun accès aux données de production."
       ],
       "skills": [
         "Blazor",
@@ -515,7 +515,7 @@
         "Implémentation des interfaces utilisateurs en Vue.js, en cohérence avec les APIs et microservices développés côté back.",
         "Déploiement des microservices sur Azure via les pipelines CI/CD existants, en respectant les conventions et standards en place.",
         "Sécurisation des échanges via la consommation d'OpenID Connect (OIDC) et gestion centralisée des secrets pour les services backend.",
-        "Test-Driven Development imposé avec couverture minimale de 95% : tests unitaires, mocking et promotion progressive sur quatre environnements (DEV, INT, UAT, PRD)."
+        "Test-Driven Development imposé avec couverture minimale de 95% : tests unitaires, mocking et promotion progressive sur quatre environnements (DEV, INT, UAT, PRD)."
       ],
       "skills": [
         "Domain-Driven Design (DDD)",
@@ -683,7 +683,7 @@
         "Mise en place d'Azure Data Factory et Azure Event Hubs pour l'intégration de données et l'analytique temps réel.",
         "Maintien de l'existant en architecture N-Layered et proposition d'une cible en Onion Architecture, formalisée et partagée avec les équipes pour préparer l'évolution.",
         "Création de pipelines Azure Data Factory pour orchestrer des flux de données à fort volume entre les différents systèmes du périmètre.",
-        "Recherche et développement orientés FinOps : étude et mise en œuvre d'optimisations de coûts sur les ressources Azure du périmètre.",
+        "Recherche et développement orientés FinOps : étude et mise en œuvre d'optimisations de coûts sur les ressources Azure du périmètre.",
         "Conception multi-région pour absorber des volumes importants, avec optimisation via partition keys et batching côté Azure Event Hubs."
       ],
       "skills": [
@@ -740,14 +740,14 @@
         "Optimisation des performances de l'application pour une expérience utilisateur fluide.",
         "Formation et support à l'équipe sur les nouvelles technologies et les meilleures pratiques utilisées dans l'application.",
         "Migration de l'application mobile Xamarin natif de la v3 à la v4.8 (cible Windows Phone), avec téléchargement préalable de la tournée via le Wi-Fi de l'entrepôt pour un fonctionnement totalement offline sur le terrain.",
-        "Mise en place de flux Microsoft Power Automate (ex-Power Apps) pour automatiser les notifications SMS de livraison (« livraison dans X minutes ») et déclencher les synchronisations de base de données.",
+        "Mise en place de flux Microsoft Power Automate (ex-Power Apps) pour automatiser les notifications SMS de livraison (« livraison dans X minutes ») et déclencher les synchronisations de base de données.",
         "Développement d'un nouveau dashboard d'administration en Blazor, en remplacement de l'ancienne console.",
-        "Sécurisation simple et efficace : pare-feu Azure, gestion des secrets via Azure Key Vault et chiffrement des données sensibles.",
+        "Sécurisation simple et efficace : pare-feu Azure, gestion des secrets via Azure Key Vault et chiffrement des données sensibles.",
         "Création de plusieurs pipelines Azure DevOps pour fiabiliser les livraisons des différents composants (mobile, dashboard, APIs, jobs).",
-        "Optimisation FinOps de la base de données : auto-scale, auto-shutdown et rightsizing pour maîtriser les coûts.",
-        "Optimisation des performances : refonte de l'UI mobile pour plus de fluidité, amélioration du cache, batching pour l'import/export de données et indexation ciblée côté SQL Server.",
+        "Optimisation FinOps de la base de données : auto-scale, auto-shutdown et rightsizing pour maîtriser les coûts.",
+        "Optimisation des performances : refonte de l'UI mobile pour plus de fluidité, amélioration du cache, batching pour l'import/export de données et indexation ciblée côté SQL Server.",
         "Recherche et développement autour de GraphQL, finalement non retenu au profit d'une stack 100% SQL Server.",
-        "Maintenance évolutive de la solution sur la durée : seul client encore suivi en run, avec une grosse mise à jour technique récente."
+        "Maintenance évolutive de la solution sur la durée : seul client encore suivi en run, avec une grosse mise à jour technique récente."
       ],
       "skills": [
         "Blazor",
@@ -841,7 +841,7 @@
       "description": [
         "Cegid est l'un des principaux fournisseurs de solutions cloud de gestion d'entreprise pour les secteurs de la finance, des ressources humaines, de l'expertise comptable, du commerce de détail et de l'entrepreneuriat.",
         "J'ai participé à la conception de l'architecture d'une nouvelle boîte, à la réalisation de PoC et à l'analyse fonctionnelle.",
-        "J'ai travaillé sur la refonte, mis en œuvre les services Azure, dispensé des formations sur les meilleures pratiques et participé au développement de trois projets : Box, CDA et Stream."
+        "J'ai travaillé sur la refonte, mis en œuvre les services Azure, dispensé des formations sur les meilleures pratiques et participé au développement de trois projets : Box, CDA et Stream."
       ],
       "responsibilities": [
         "Concevoir l'architecture de la nouvelle boîte.",
@@ -849,13 +849,13 @@
         "Analyse fonctionnelle et analyse des développements existants.",
         "Travail sur le refactoring et le clean code.",
         "Implémentation des services Azure (Functions, Centralized configuration, App Service, etc.)",
-        "Coaching sur les bonnes pratiques : micro-services, serverless, .NET Core, design patterns (développement et cloud).",
-        "Participation au développement de 3 projets : Box, CDA, Stream.",
+        "Coaching sur les bonnes pratiques : micro-services, serverless, .NET Core, design patterns (développement et cloud).",
+        "Participation au développement de 3 projets : Box, CDA, Stream.",
         "Formation des développeurs sur React et C#, avec montée en compétences progressive sur la stack moderne front et back.",
         "Création des pipelines Azure DevOps pour les 3 projets (Box, CDA, Stream), avec mutualisation des étapes via templates YAML.",
-        "Démarche FinOps dès la conception : choix d'options serverless et de tiers Azure adaptés à la consommation réelle, pour maîtriser les coûts.",
+        "Démarche FinOps dès la conception : choix d'options serverless et de tiers Azure adaptés à la consommation réelle, pour maîtriser les coûts.",
         "Conception multi-région avec stratégie de fallback et de récupération, pour garantir la disponibilité de l'écosystème Box / CDA / Stream.",
-        "Optimisation des performances : Durable Functions, cache et configuration centralisée pour des temps de réponse maîtrisés sur l'ensemble du périmètre.",
+        "Optimisation des performances : Durable Functions, cache et configuration centralisée pour des temps de réponse maîtrisés sur l'ensemble du périmètre.",
         "Encadrement et montée en compétences d'une équipe de 6 à 7 développeurs internes (rituels, revues de code, partage de connaissances)."
       ],
       "skills": [
@@ -913,7 +913,7 @@
         "Formation des équipes afin d'améliorer leurs compétences et leurs connaissances en .NET.",
         "Contribué aux pipelines de déploiement et d'intégration continus (CD/CI), améliorant ainsi l'efficacité du processus de développement.",
         "Développer des tests unitaires pour assurer la fiabilité et la stabilité du logiciel.",
-        "Développements front sur trois stacks complémentaires : React, Microsoft Power Apps et Microsoft Dynamics, en cohérence avec l'écosystème métier du client.",
+        "Développements front sur trois stacks complémentaires : React, Microsoft Power Apps et Microsoft Dynamics, en cohérence avec l'écosystème métier du client.",
         "PoCs d'intégration entre Microsoft Dynamics et Microsoft 365 Graph, pour valider les scénarios de synchronisation et d'enrichissement de données.",
         "Création des pipelines CI/CD Azure DevOps, en remplacement des étapes manuelles existantes, pour fiabiliser et automatiser les livraisons.",
         "Amélioration des performances applicatives sur les composants critiques (requêtes, accès aux données, rendus front)."
@@ -965,10 +965,10 @@
         "Développement front en ASP.NET MVC + jQuery, aligné sur les besoins métier des opérations de capital-investissement.",
         "Stack reposant sur AspNet Boilerplate, avec mise en place des règles d'authentification, d'autorisation, de RGPD et de protection des données financières.",
         "Création de pipelines distincts pour les composants on-premise et cloud, afin de fiabiliser les livraisons sur les deux cibles d'hébergement.",
-        "Démarche FinOps sur le périmètre cloud : choix de tiers Azure adaptés et suivi des consommations pour maîtriser la facture.",
+        "Démarche FinOps sur le périmètre cloud : choix de tiers Azure adaptés et suivi des consommations pour maîtriser la facture.",
         "Mise en place d'une stratégie multi-région avec fallback automatique et plan de récupération, garantissant la continuité de service.",
-        "Optimisation des performances de bout en bout : requêtes SQL, conception des APIs et traitements asynchrones.",
-        "Coordination des fournisseurs de données : intégration, validation des contrats d'interface (Swagger / Open API) et suivi des incidents."
+        "Optimisation des performances de bout en bout : requêtes SQL, conception des APIs et traitements asynchrones.",
+        "Coordination des fournisseurs de données : intégration, validation des contrats d'interface (Swagger / Open API) et suivi des incidents."
       ],
       "skills": [
         "Azure DevOps",
@@ -1025,10 +1025,10 @@
         "Réalisation de preuves de concept sur Bing Maps, Azure Maps, les options de stockage, etc. afin d'explorer les meilleures solutions pour le projet.",
         "A encadré les développeurs pour qu'ils améliorent leurs compétences, en encourageant une culture d'apprentissage et d'amélioration continus au sein de l'équipe.",
         "Interface utilisateur responsive en Bootstrap et jQuery, avec intégration Bing Maps et Ajax pour la visualisation cartographique temps réel.",
-        "Architecture taillée pour la volumétrie : 80 000 engins de chantier émettant toutes les 30 à 600 secondes, soit plusieurs millions d'événements par jour à ingérer et restituer.",
+        "Architecture taillée pour la volumétrie : 80 000 engins de chantier émettant toutes les 30 à 600 secondes, soit plusieurs millions d'événements par jour à ingérer et restituer.",
         "Création des pipelines Visual Studio Team Services / Azure DevOps, avec mutualisation des étapes via templates pour fiabiliser et accélérer les livraisons.",
-        "Optimisation FinOps et de disponibilité face à la volumétrie : choix des services Azure adaptés (ingestion, stockage partitionné, traitements) et stratégie de scaling pour absorber les pics.",
-        "Encadrement d'une équipe de 5 développeurs au quotidien : rituels, revues de code, pairing et accompagnement technique."
+        "Optimisation FinOps et de disponibilité face à la volumétrie : choix des services Azure adaptés (ingestion, stockage partitionné, traitements) et stratégie de scaling pour absorber les pics.",
+        "Encadrement d'une équipe de 5 développeurs au quotidien : rituels, revues de code, pairing et accompagnement technique."
       ],
       "skills": [
         "Azure DevOps",
@@ -1180,16 +1180,16 @@
         "France"
       ],
       "description": [
-        "Andrés Talavera, ma marque personnelle : développement et formation .NET en freelance.",
+        "Andrés Talavera, ma marque personnelle : développement et formation .NET en freelance.",
         "Mes premières formations .NET, C# et Azure, en écoles et centres (Supinfo, NextFormation).",
-        "Applications mobiles : appli de logistique / livraison de cuisines pour Charl'Antoine (avec Novatech).",
-        "Web : appli de codes promo (R&D), site de rencontre (astro-privée), réseau social (check.fm), e-commerce SIEHR (lecoinsiehr.com), et sites pour des PME et agences immobilières (Aubade).",
-        "Technologies : Windows Phone / Windows 10 Mobile, ASP.NET, HTML."
+        "Applications mobiles : appli de logistique / livraison de cuisines pour Charl'Antoine (avec Novatech).",
+        "Web : appli de codes promo (R&D), site de rencontre (astro-privée), réseau social (check.fm), e-commerce SIEHR (lecoinsiehr.com), et sites pour des PME et agences immobilières (Aubade).",
+        "Technologies : Windows Phone / Windows 10 Mobile, ASP.NET, HTML."
       ],
       "responsibilities": [
         "Premières formations .NET, C# et Azure en écoles et centres (Supinfo, NextFormation).",
         "Développement d'applications mobiles Windows Phone / Windows 10 Mobile (UWP, Xamarin), dont une appli de logistique / livraison pour Charl'Antoine.",
-        "Développement web ASP.NET : appli de codes promo (R&D), site de rencontre, réseau social (check.fm), e-commerce SIEHR (lecoinsiehr.com).",
+        "Développement web ASP.NET : appli de codes promo (R&D), site de rencontre, réseau social (check.fm), e-commerce SIEHR (lecoinsiehr.com).",
         "Réalisation de sites web pour des PME et des agences immobilières (Aubade)."
       ],
       "skills": [

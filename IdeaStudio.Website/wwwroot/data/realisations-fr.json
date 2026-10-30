@@ -3,7 +3,7 @@
     "slug": "ardoise-it",
     "title": "Ardoise.it",
     "client": "Startup SaaS, restauration",
-    "summary": "Logiciel tout-en-un pour la restauration indépendante : commande au QR, paiement à table, réservations, livraison et un site web bien à soi, sans la moindre commission sur les ventes.",
+    "summary": "Logiciel tout-en-un pour la restauration indépendante : commande au QR, paiement à table, réservations, livraison et un site web bien à soi, sans la moindre commission sur les ventes.",
     "imageUrl": "",
     "imageAlt": "",
     "liveUrl": "",
@@ -15,11 +15,11 @@
       "sector": "SaaS · Restauration, hébergé entièrement en Europe",
       "role": "Architecte-développeur unique, épaulé par une équipe d'agents IA",
       "timeline": "Conçu et développé en quelques mois, premier restaurant en production",
-      "challenge": "Un restaurateur indépendant jongle avec une dizaine d'outils, menu, réservations, commande au QR, paiement, livraison, statistiques, et cède encore une part de chaque repas aux plateformes de livraison. Ardoise.it remplace tout ça par une seule solution : un site web par restaurant, et pas un centime de commission sur ce qu'il vend.",
-      "approach": "Une seule plateforme, trois usages : un site web public par restaurant (pensé pour remonter sur Google), une commande fluide pour les clients, et un back-office où l'équipe pilote son service. Les données de chaque restaurant sont totalement cloisonnées, et tout est hébergé en Europe. Côté technique, un seul code .NET sert les trois.",
+      "challenge": "Un restaurateur indépendant jongle avec une dizaine d'outils, menu, réservations, commande au QR, paiement, livraison, statistiques, et cède encore une part de chaque repas aux plateformes de livraison. Ardoise.it remplace tout ça par une seule solution : un site web par restaurant, et pas un centime de commission sur ce qu'il vend.",
+      "approach": "Une seule plateforme, trois usages : un site web public par restaurant (pensé pour remonter sur Google), une commande fluide pour les clients, et un back-office où l'équipe pilote son service. Les données de chaque restaurant sont totalement cloisonnées, et tout est hébergé en Europe. Côté technique, un seul code .NET sert les trois.",
       "outcome": "Le premier restaurant est en ligne. Le restaurateur dispose d'un seul outil au lieu de dix, garde chaque euro de chaque addition (un abonnement fixe remplace les commissions au repas) et possède un site qui se référence. Pensé pour la confidentialité, hébergé entièrement en Europe, et soutenu par une batterie de tests automatisés qui permet d'ajouter des fonctions sans casser l'existant.",
       "diagramImage": "images/case-ardoise-it-architecture.png",
-      "diagramAlt": "Architecture Clean Architecture de Ardoise.it : API REST + SignalR, site Showcase en Blazor SSR, Dashboard en Blazor Server, application multi-tenant, infrastructure EF Core 10 / PostgreSQL avec Row-Level Security sur Clever Cloud",
+      "diagramAlt": "Architecture Clean Architecture de Ardoise.it : API REST + SignalR, site Showcase en Blazor SSR, Dashboard en Blazor Server, application multi-tenant, infrastructure EF Core 10 / PostgreSQL avec Row-Level Security sur Clever Cloud",
       "stats": [
         { "value": "40+", "label": "Cas d'usage métier" },
         { "value": "32", "label": "Modules livrés" },
@@ -27,9 +27,9 @@
         { "value": "150", "label": "Fichiers de test" }
       ],
       "decisions": [
-        { "title": "Les données de chaque restaurant restent cloisonnées", "detail": "Tous les restaurants partagent une base, mais chacun ne voit que ses propres données, garanti à plusieurs niveaux indépendants, jusqu'au cœur de la base elle-même. Tenter d'accéder aux données d'un autre restaurant renvoie simplement « introuvable ». Chaque type de donnée est testé sur ce point avant d'être livré." },
-        { "title": "Vos données ne quittent jamais l'Europe", "detail": "Pas de géant américain : tout tourne sur un hébergeur français certifié souveraineté. Les coûts restent prévisibles pour un modèle à abonnement fixe, et les données des clients restent en Europe de bout en bout." },
-        { "title": "Zéro commission, juste un forfait", "detail": "La plateforme ne prend jamais de part sur un repas ; les frais de carte et de livraison sont répercutés tels quels. L'outil est aligné sur les recettes du restaurateur, pas sur le grignotage de marge, c'est la différence de fond avec les agrégateurs." },
+        { "title": "Les données de chaque restaurant restent cloisonnées", "detail": "Tous les restaurants partagent une base, mais chacun ne voit que ses propres données, garanti à plusieurs niveaux indépendants, jusqu'au cœur de la base elle-même. Tenter d'accéder aux données d'un autre restaurant renvoie simplement « introuvable ». Chaque type de donnée est testé sur ce point avant d'être livré." },
+        { "title": "Vos données ne quittent jamais l'Europe", "detail": "Pas de géant américain : tout tourne sur un hébergeur français certifié souveraineté. Les coûts restent prévisibles pour un modèle à abonnement fixe, et les données des clients restent en Europe de bout en bout." },
+        { "title": "Zéro commission, juste un forfait", "detail": "La plateforme ne prend jamais de part sur un repas ; les frais de carte et de livraison sont répercutés tels quels. L'outil est aligné sur les recettes du restaurateur, pas sur le grignotage de marge, c'est la différence de fond avec les agrégateurs." },
         { "title": "Les avertissements allergènes ne peuvent jamais être cachés", "detail": "Tant qu'un plat est commandable, son avertissement allergène reste à l'écran, impossible à masquer ou à effacer par le thème. Sur l'alimentaire, c'est une règle de sécurité inscrite dans le produit, pas une option." },
         { "title": "Des sites de restaurant pensés pour Google", "detail": "Le site public de chaque restaurant est rendu côté serveur, avec données structurées et balises de langue, donc visible dans la recherche et capable d'amener des couverts directement, sans dépendre d'une marketplace." },
         { "title": "Chaque restaurant est payé directement", "detail": "Chaque restaurant garde son propre compte de paiement, ses virements et la gestion de ses litiges. Les données de carte ne transitent jamais par nous, ce qui maintient la plateforme au niveau de conformité le plus léger." }
@@ -37,11 +37,11 @@
       "sections": [
         { "title": "Comment les restaurants restent séparés", "body": [
           "Tous les restaurants vivent dans une base partagée, mais chacun ne voit que ses propres données. Cette séparation est garantie à quatre niveaux indépendants, le dernier au cœur même de la base, de sorte qu'une seule erreur de code ne peut pas faire fuiter les données d'un restaurant vers un autre.",
-          "Rien n'est laissé à la confiance : chaque donnée appartenant à un restaurant possède un test automatisé prouvant qu'elle est inaccessible depuis un autre compte, exécuté sur une vraie base avant toute mise en ligne."
+          "Rien n'est laissé à la confiance : chaque donnée appartenant à un restaurant possède un test automatisé prouvant qu'elle est inaccessible depuis un autre compte, exécuté sur une vraie base avant toute mise en ligne."
         ] },
         { "title": "Paiement & confidentialité", "body": [
-          "Chaque restaurant est le marchand et encaisse directement ; les données de carte ne touchent jamais la plateforme. La TVA est appliquée correctement par canal (sur place, à emporter, livraison), et les prix peuvent s'afficher en plusieurs devises alors que l'euro reste la seule réellement débitée.",
-          "La confidentialité est intégrée : les données restent en Europe, chaque changement est consigné dans un historique séparé et infalsifiable, et les clients peuvent accéder à leurs données, les exporter ou les effacer sur demande."
+          "Chaque restaurant est le marchand et encaisse directement ; les données de carte ne touchent jamais la plateforme. La TVA est appliquée correctement par canal (sur place, à emporter, livraison), et les prix peuvent s'afficher en plusieurs devises alors que l'euro reste la seule réellement débitée.",
+          "La confidentialité est intégrée : les données restent en Europe, chaque changement est consigné dans un historique séparé et infalsifiable, et les clients peuvent accéder à leurs données, les exporter ou les effacer sur demande."
         ] },
         { "title": "Des mises à jour en temps réel pour l'équipe", "body": [
           "Le pass cuisine et les appels en salle se mettent à jour en temps réel, et l'app du personnel reçoit des notifications, salle et cuisine voient toujours la même chose.",
@@ -49,7 +49,7 @@
         ] },
         { "title": "Une qualité qui protège le lancement", "body": [
           "Le produit s'appuie sur une large batterie de tests automatisés, avec plus de code de test que de code produit, dont des vérifications sur une vraie base pour garantir la séparation des données.",
-          "Rien n'atteint la branche de production sans un build vert et des tests au vert ; la branche principale reste sous revue humaine."
+          "Rien n'atteint la branche de production sans un build vert et des tests au vert ; la branche principale reste sous revue humaine."
         ] }
       ],
       "stack": [".NET 10", "C# 14", "Blazor SSR", "Blazor Server", "EF Core 10", "PostgreSQL", "Row-Level Security", "Stripe Connect", "SignalR", ".NET Aspire", "Clever Cloud", "Tailwind v4"]
@@ -72,10 +72,10 @@
       "role": "Architecte-développeur unique, avec des agents IA pour accélérer la livraison",
       "timeline": "~18 mois de développement actif",
       "challenge": "Réunir cinq publics qui ne se font pas spontanément confiance, particuliers, diagnostiqueurs, notaires, agences immobilières et artisans, sur une seule plateforme. Avec des identités privées par défaut, un paiement sûr pour les deux parties, et tout un empilement réglementaire français à respecter dès le premier jour.",
-      "approach": "Une seule plateforme, quatre expériences sur mesure : une app mobile pour les particuliers, un tableau de bord pour les pros, une vitrine publique pensée pour le référencement, et le moteur qui les alimente. Le diagnostiqueur reste anonyme jusqu'à la confirmation du rendez-vous, le paiement du client n'est prélevé qu'une fois le créneau verrouillé, et l'annuaire public des professionnels se met à jour chaque nuit depuis les données publiques. Un seul code .NET fait tourner l'ensemble.",
-      "outcome": "Un véritable tiers de confiance : le particulier réserve et paie en sécurité, le professionnel reste anonyme jusqu'à ce qu'il accepte, et l'argent ne change de mains qu'au moment où le rendez-vous est réellement planifié, sinon il est libéré automatiquement et le client peut re-réserver en un clic. Pleinement conforme au RGPD et aux règles de paiement, et déployé sans aucun secret qui traîne.",
+      "approach": "Une seule plateforme, quatre expériences sur mesure : une app mobile pour les particuliers, un tableau de bord pour les pros, une vitrine publique pensée pour le référencement, et le moteur qui les alimente. Le diagnostiqueur reste anonyme jusqu'à la confirmation du rendez-vous, le paiement du client n'est prélevé qu'une fois le créneau verrouillé, et l'annuaire public des professionnels se met à jour chaque nuit depuis les données publiques. Un seul code .NET fait tourner l'ensemble.",
+      "outcome": "Un véritable tiers de confiance : le particulier réserve et paie en sécurité, le professionnel reste anonyme jusqu'à ce qu'il accepte, et l'argent ne change de mains qu'au moment où le rendez-vous est réellement planifié, sinon il est libéré automatiquement et le client peut re-réserver en un clic. Pleinement conforme au RGPD et aux règles de paiement, et déployé sans aucun secret qui traîne.",
       "diagramImage": "images/case-dpelib-architecture.png",
-      "diagramAlt": "Architecture Clean Architecture de DPELib : 4 applications de présentation, 153 use cases applicatifs, infrastructure EF Core 10 / SQL Server avec base d'audit séparée",
+      "diagramAlt": "Architecture Clean Architecture de DPELib : 4 applications de présentation, 153 use cases applicatifs, infrastructure EF Core 10 / SQL Server avec base d'audit séparée",
       "stats": [
         { "value": "153", "label": "Cas d'usage métier" },
         { "value": "117", "label": "Opérations" },
@@ -85,7 +85,7 @@
         { "value": "1 730+", "label": "Commits" }
       ],
       "decisions": [
-        { "title": "Anonyme jusqu'à la confirmation", "detail": "L'identité du diagnostiqueur reste masquée jusqu'à la confirmation du rendez-vous ; même les appels passent par un numéro masqué avant ça. Sur une mise en relation, la confiance se gagne étape par étape, elle ne se présume pas." },
+        { "title": "Anonyme jusqu'à la confirmation", "detail": "L'identité du diagnostiqueur reste masquée jusqu'à la confirmation du rendez-vous ; même les appels passent par un numéro masqué avant ça. Sur une mise en relation, la confiance se gagne étape par étape, elle ne se présume pas." },
         { "title": "On ne paie qu'une fois le rendez-vous verrouillé", "detail": "L'argent est réservé à la réservation mais prélevé seulement quand le professionnel confirme. S'il reste silencieux, des relances automatiques partent, et au bout d'une semaine la réservation des fonds est libérée. Personne ne paie pour un rendez-vous qui n'a pas lieu." },
         { "title": "Utile dès le premier jour", "detail": "L'annuaire officiel est importé chaque nuit, donc chaque diagnostiqueur a déjà un profil, sans compte, créé seulement quand un client le sollicite. La plateforme est utile immédiatement, sans attendre les inscriptions." },
         { "title": "La confidentialité garantie par conception", "detail": "Les consentements et l'historique vivent dans un espace séparé et inaltérable, et rien n'est jamais vraiment supprimé, seulement anonymisé. Le droit à l'effacement et la traçabilité sont garantis par l'architecture, pas par la discipline." },
@@ -117,7 +117,7 @@
     "slug": "brasageneva",
     "title": "Brasa Geneva",
     "client": "Brasa Geneva",
-    "summary": "Une plateforme complète pour un club de cigares genevois : une vitrine publique réservée aux adultes, un espace membre, et une administration sécurisée qui pilote toute l'activité, catalogue, abonnements, paiements et galerie d'art.",
+    "summary": "Une plateforme complète pour un club de cigares genevois : une vitrine publique réservée aux adultes, un espace membre, et une administration sécurisée qui pilote toute l'activité, catalogue, abonnements, paiements et galerie d'art.",
     "imageUrl": "images/brasageneva.webp",
     "imageAlt": "Logo Brasa Geneva gravé sur laiton brossé",
     "liveUrl": "https://www.brasageneva.ch",
@@ -129,22 +129,22 @@
       "sector": "Luxe · e-commerce réglementé, cigares premium, caves et galerie d'art pour un club privé genevois",
       "role": "Architecte-développeur unique pilotant une équipe de plusieurs agents IA",
       "timeline": "~4,5 mois de développement actif",
-      "challenge": "Un club privé genevois voulait une seule plateforme pour vendre cigares premium, caves artisanales et galerie d'art, vitrine publique, espace membre et back-office réunis, dans l'un des cadres légaux les plus stricts qui soient : publicité du tabac, interdiction de la vente transfrontalière, vérification d'âge obligatoire, protection des données et paiement fort.",
+      "challenge": "Un club privé genevois voulait une seule plateforme pour vendre cigares premium, caves artisanales et galerie d'art, vitrine publique, espace membre et back-office réunis, dans l'un des cadres légaux les plus stricts qui soient : publicité du tabac, interdiction de la vente transfrontalière, vérification d'âge obligatoire, protection des données et paiement fort.",
       "approach": "Une seule plateforme à trois visages, une vitrine publique avec contrôle d'âge, un espace membre, et un back-office qui pilote l'activité, avec les règles légales inscrites dans le produit plutôt qu'ajoutées après coup. Hébergement 100 % suisse, trois moyens de paiement, et une piste d'audit séparée pour la conformité. Un seul code .NET derrière tout ça.",
-      "outcome": "Une boutique de luxe conforme par conception : impossible d'acheter un cigare hors de Suisse, contrôle d'âge incontournable, et chaque changement consigné dans une piste d'audit séparée. Livrée en environ quatre mois et demi, avec plus d'efforts consacrés aux tests automatisés qu'au code produit lui-même, le club a donc lancé sur des bases solides.",
+      "outcome": "Une boutique de luxe conforme par conception : impossible d'acheter un cigare hors de Suisse, contrôle d'âge incontournable, et chaque changement consigné dans une piste d'audit séparée. Livrée en environ quatre mois et demi, avec plus d'efforts consacrés aux tests automatisés qu'au code produit lui-même, le club a donc lancé sur des bases solides.",
       "diagramImage": "images/case-brasageneva-architecture.png",
-      "diagramAlt": "Architecture Clean Architecture de Brasa Geneva : 3 applications de présentation, 99 use cases applicatifs, infrastructure EF Core 10 / PostgreSQL avec base d'audit séparée",
+      "diagramAlt": "Architecture Clean Architecture de Brasa Geneva : 3 applications de présentation, 99 use cases applicatifs, infrastructure EF Core 10 / PostgreSQL avec base d'audit séparée",
       "stats": [
         { "value": "99", "label": "Cas d'usage métier" },
         { "value": "~98", "label": "Opérations" },
         { "value": "7", "label": "Langues" },
-        { "value": "2,2 : 1", "label": "Ratio tests / code" },
+        { "value": "2,2 : 1", "label": "Ratio tests / code" },
         { "value": "687", "label": "Commits" }
       ],
       "decisions": [
         { "title": "La loi est inscrite dans le produit", "detail": "La vente de cigares hors de Suisse est bloquée et le contrôle d'âge est incontournable, tous deux codés comme des règles centrales, impossibles à contourner par une URL astucieuse. Ici, un contournement n'est pas un bug, c'est un risque juridique." },
         { "title": "Une piste d'audit séparée et infalsifiable", "detail": "Chaque changement est enregistré dans un historique en ajout seul, tenu à l'écart des données vivantes. La conformité ne repose pas sur les bonnes intentions du code, elle est structurelle." },
-        { "title": "Hébergé entièrement en Suisse", "detail": "Pas de cloud américain ou mondial : garder les données en Suisse colle au positionnement luxe genevois, et l'hébergement reste maîtrisé de bout en bout." },
+        { "title": "Hébergé entièrement en Suisse", "detail": "Pas de cloud américain ou mondial : garder les données en Suisse colle au positionnement luxe genevois, et l'hébergement reste maîtrisé de bout en bout." },
         { "title": "Une seule porte sécurisée vers les données", "detail": "Le back-office n'accède aux données qu'à travers le même service interne que tout le reste, donc une seule surface à sécuriser et à auditer, pas plusieurs." },
         { "title": "Volontairement simple", "detail": "Les tâches de fond (badges de fidélité, relances de réassort) tournent sur un planificateur léger. Une infrastructure plus lourde est prévue mais laissée éteinte tant qu'un besoin réel ne la justifie pas, pas de complexité payée d'avance." },
         { "title": "La qualité d'abord", "detail": "Chaque fonctionnalité doit avoir ses propres tests avant d'être livrée, donc impossible qu'une règle non testée se glisse dans une activité régulée. C'est la qualité qui protège le client." }
@@ -152,7 +152,7 @@
       "sections": [
         { "title": "Trois moyens de paiement", "body": [
           "Un seul tunnel, trois options, carte, virement bancaire et crypto, les paiements par carte étant pris en charge par un prestataire de confiance.",
-          "Le garde-fou légal est intégré au tunnel : on ne peut acheter un cigare qu'en Suisse ; ailleurs, le parcours bascule en devis ou en accès réservé au Club."
+          "Le garde-fou légal est intégré au tunnel : on ne peut acheter un cigare qu'en Suisse ; ailleurs, le parcours bascule en devis ou en accès réservé au Club."
         ] },
         { "title": "Hébergement & exploitation", "body": [
           "Toute la plateforme tourne sur une infrastructure suisse, entièrement décrite comme du code pour être reconstruite ou mise à l'échelle de façon fiable.",
@@ -160,9 +160,9 @@
         ] },
         { "title": "Conformité réglementaire", "body": [
           "Règles de publicité du tabac respectées, vente transfrontalière bloquée, contrôle d'âge incontournable.",
-          "Protection des données par conception : piste d'audit séparée, aucune suppression définitive, aucune donnée personnelle en clair dans les logs. La galerie d'art est protégée contre la copie facile."
+          "Protection des données par conception : piste d'audit séparée, aucune suppression définitive, aucune donnée personnelle en clair dans les logs. La galerie d'art est protégée contre la copie facile."
         ] },
-        { "title": "Langues & design « light luxury »", "body": [
+        { "title": "Langues & design « light luxury »", "body": [
           "Sept langues, chaque mot visible traduit professionnellement.",
           "Une esthétique parchemin, encre et braise, des animations lentes et retenues et une finition soignée d'un bout à l'autre."
         ] }
