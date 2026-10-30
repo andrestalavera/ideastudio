@@ -14,4 +14,45 @@
   margin-block-end: s.$s-4;
 }
 
-.ds-blogpost-body { margin-block-start: s.$s-5; }
+.ds-blogpost-body {
+  margin-block-start: s.$s-5;
+  min-width: 0;
+
+  // Code listings and benchmark tables are wider than the 68ch measure: they scroll
+  // inside their own frame instead of pushing the page sideways on a phone.
+  pre {
+    margin: 0;
+    padding: s.$s-4;
+    overflow-x: auto;
+    background: c.$bg-surface;
+    border: 1px solid c.$rule;
+    border-radius: s.$radius-md;
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    line-height: 1.6;
+    color: c.$fg;
+  }
+
+  // JetBrains Mono would draw => as an arrow: C# listings show the characters typed.
+  code { font-variant-ligatures: none; }
+
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: t.$fs-small;
+    font-variant-numeric: tabular-nums;
+  }
+
+  th, td {
+    padding: s.$s-2 s.$s-3;
+    border-block-end: 1px solid c.$rule;
+    white-space: nowrap;
+  }
+
+  // Long inline identifiers (Microsoft.Extensions.Logging.LoggerMessage) may break anywhere.
+  :not(pre) > code { overflow-wrap: anywhere; }
+
+  img { border-radius: s.$radius-md; }
+}
