@@ -298,14 +298,14 @@
                 Name: s.Title,
                 Description: string.IsNullOrWhiteSpace(s.Tagline) ? s.Summary : s.Tagline,
                 Provider: person,
-                AreaServed: fr ? "France · Suisse · Europe (remote)" : "France · Switzerland · Europe (remote)"))
+                AreaServed: SchemaOrg.ServedAreas(fr)))
             .ToList();
 
         SchemaOrg.ProfessionalService professional = new(
             Name: fr ? "Services IdeaStud.io" : "IdeaStud.io services",
             Description: seoDescription,
             Url: servicesUrl,
-            AreaServed: fr ? "France · Suisse · Europe (remote)" : "France · Switzerland · Europe (remote)",
+            AreaServed: SchemaOrg.ServedAreas(fr),
             Provider: person,
             Services: svcs,
             PriceRange: fr ? "TJM 600–800 €" : "Day rate €600–800",

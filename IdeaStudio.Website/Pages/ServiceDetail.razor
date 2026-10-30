@@ -245,7 +245,7 @@ else
                 Name: service.Title,
                 Description: string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline,
                 Provider: person,
-                AreaServed: fr ? "France · Suisse · Europe (remote)" : "France · Switzerland · Europe (remote)");
+                AreaServed: SchemaOrg.ServedAreas(fr));
             blocks.Add(SchemaOrg.ToJsonLd(svc));
 
             if (service.Faq is { Count: > 0 })

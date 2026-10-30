@@ -296,8 +296,8 @@ else
                 .Where(t => t.Category == training.Category && t.Slug != training.Slug)
                 .Take(3)
                 .ToList();
-            seoTitle = $"{training.Title} | {(fr ? "Formation" : "Training")} — Andrés Talavera | IdeaStud.io";
-            seoDescription = training.Summary;
+            seoTitle = TrainingSeo.Title(training, fr);
+            seoDescription = TrainingSeo.Description(training, fr);
             string slug = training.Slug;
             seoCanonical = $"https://ideastud.io{LocalizedRoute.For("training", fr ? "fr" : "en")}/{slug}";
             string frUrl = $"https://ideastud.io{LocalizedRoute.For("training", "fr")}/{slug}";
