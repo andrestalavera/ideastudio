@@ -93,7 +93,7 @@
       }
     ],
     "faq": [
-      { "question": "Quel est votre TJM en formation ?", "answer": "600 à 800 € par jour selon le module et le format, ou forfait inter / intra. Devis chiffré sous 24 h à partir d'un brief court." },
+      { "question": "Quel est votre TJM en formation ?", "answer": "Sur demande, selon le module et le format, ou forfait inter / intra. Devis chiffré sous 24 h à partir d'un brief court." },
       { "question": "Formez-vous à distance ?", "answer": "Oui, classe virtuelle synchrone, exercices en binôme, démos en partage d'écran, retours en direct. La même rigueur qu'en présentiel." },
       { "question": "Êtes-vous certifié ?", "answer": "Non, je ne suis pas certifié. Je prépare les équipes aux examens de certification Microsoft et GitHub (AI-200, AZ-305, AZ-400, GH-200, GH-300, GH-500, GH-600, AB-730), en m'appuyant sur 15+ ans de pratique .NET/Azure en production et 3 750 heures de formation animées." },
       { "question": "Comment construire un programme sur-mesure ?", "answer": "On part d'un module catalogue qui couvre le cœur de votre besoin, on identifie ce qui manque et ce qui est superflu, on emprunte des chapitres aux modules connexes, on cale la durée. Le brief tient en un appel de 30 minutes." },
@@ -124,7 +124,7 @@
       { "title": "Audit de code généré par IA", "description": "Repérer les fragilités, sécuriser ce qui a déjà été généré, et remettre l'humain dans la boucle." }
     ],
     "faq": [
-      { "question": "Quel est votre TJM en vibe coding ?", "answer": "600 à 800 € par jour selon le périmètre. Il s'agit d'une mission de coaching et de transmission, dont une partie significative consiste à former l'équipe en pair-programming." },
+      { "question": "Quel est votre TJM en vibe coding ?", "answer": "Sur demande, selon le périmètre. Il s'agit d'une mission de coaching et de transmission, dont une partie significative consiste à former l'équipe en pair-programming." },
       { "question": "Est-ce que ça marche sur notre stack ?", "answer": "Les outils actuels fonctionnent quel que soit votre langage. On valide ensemble sur votre base de code." },
       { "question": "Quid de la confidentialité du code ?", "answer": "On choisit un dispositif compatible avec vos contraintes : service en ligne, hébergé chez vous, ou sans conservation des données." },
       { "question": "Vous gardez l'humain dans la boucle ?", "answer": "Oui, la promesse n'est pas « moins de devs », c'est « plus de devs efficaces, qui gardent la maîtrise ». Chaque ligne générée passe par une revue." },
@@ -155,7 +155,7 @@
       { "title": "Être visible dans les réponses des IA", "description": "Rendre votre site lisible et citable par les IA, pour apparaître dans les réponses de Perplexity ou ChatGPT." }
     ],
     "faq": [
-      { "question": "Quel est votre TJM ?", "answer": "600 à 800 € par jour selon le périmètre, mission de mise en place technique et de coaching." },
+      { "question": "Quel est votre TJM ?", "answer": "Sur demande, selon le périmètre, mission de mise en place technique et de coaching." },
       { "question": "Pourquoi héberger l'IA chez moi plutôt qu'utiliser ChatGPT/Claude ?", "answer": "Vos données restent chez vous, vous restez conforme au RGPD et à votre secteur, et le coût reste maîtrisé sur des usages intensifs." },
       { "question": "Quels modèles vous installez ?", "answer": "Llama, Qwen, Mistral, Gemma, le choix se fait selon votre usage (codage, recherche, résumé) et le matériel disponible." },
       { "question": "C'est quoi un serveur MCP, concrètement ?", "answer": "Un connecteur standard entre une IA et vos outils : vos applications internes, votre documentation et vos données métier deviennent utilisables directement par l'IA." },

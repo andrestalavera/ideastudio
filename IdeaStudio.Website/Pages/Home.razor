@@ -231,12 +231,12 @@
         benefits = fr
             ? new() {
                 ("Un seul interlocuteur, senior", "15+ ans d'expérience. Vous parlez directement à l'expert qui conçoit et réalise votre logiciel, du début à la fin."),
-                ("Livré vite, conçu pour durer", "Un logiciel fiable, livré sans dérive ni mauvaise surprise. 600–800 €/jour, selon l'engagement : vous savez toujours où vous allez."),
+                ("Livré vite, conçu pour durer", "Un logiciel fiable, livré sans dérive ni mauvaise surprise. Un tarif sur demande, chiffré dès le départ : vous savez toujours où vous allez."),
                 ("Près de vous, ou à distance", "Sur site à Lyon, Paris, Genève et Fribourg, ou 100 % à distance. Vos données peuvent rester hébergées en Europe.")
             }
             : new() {
                 ("One senior point of contact", "15+ years of experience. You talk directly to the expert who designs and builds your software, start to finish."),
-                ("Delivered fast, built to last", "Reliable software, delivered without drift or nasty surprises. €600–800/day, scoped to the engagement: you always know where you stand."),
+                ("Delivered fast, built to last", "Reliable software, delivered without drift or nasty surprises. Pricing on request, quoted upfront: you always know where you stand."),
                 ("Where you are, or remote", "On-site in Lyon, Paris, Geneva and Fribourg, or fully remote. Your data can stay hosted in Europe.")
             };
 
@@ -308,7 +308,7 @@
             AreaServed: SchemaOrg.ServedAreas(fr),
             Provider: person,
             Services: svcs,
-            PriceRange: fr ? "TJM 600–800 €" : "Day rate €600–800",
+            PriceRange: fr ? "Sur demande" : "On request",
             AvailableLanguage: new[] { "fr", "en", "es" });
 
         seoStructuredData = new List<string>

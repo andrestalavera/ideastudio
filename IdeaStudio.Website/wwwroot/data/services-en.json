@@ -84,7 +84,7 @@
       }
     ],
     "faq": [
-      { "question": "What's your training day rate?", "answer": "600–800 € per day depending on module and format, or an inter / in-house package. Quoted within 24h from a short brief." },
+      { "question": "What's your training day rate?", "answer": "On request, depending on module and format, or an inter / in-house package. Quoted within 24h from a short brief." },
       { "question": "Remote training?", "answer": "Yes, synchronous virtual classroom, pair exercises, screen-share demos, live feedback. Same rigour as on-site." },
       { "question": "Certified?", "answer": "No, I'm not certified myself. I prepare teams for Microsoft and GitHub certification exams (AI-200, AZ-305, AZ-400, GH-200, GH-300, GH-500, GH-600, AB-730), drawing on 15+ years of hands-on .NET/Azure in production and 3,750 hours of training delivered." },
       { "question": "How do you build a custom program?", "answer": "We start from a catalogue module that covers the core of your need, identify what's missing and what's superfluous, borrow chapters from adjacent modules, calibrate duration. The brief takes one 30-minute call." },
@@ -115,7 +115,7 @@
       { "title": "AI-generated code audit", "description": "Spot the weak points, secure what has already been generated, and put humans back in the loop." }
     ],
     "faq": [
-      { "question": "What's your day rate for vibe-coding work?", "answer": "600–800 € per day depending on scope. These engagements are coaching and transmission, with significant time spent in pair-programming." },
+      { "question": "What's your day rate for vibe-coding work?", "answer": "On request, depending on scope. These engagements are coaching and transmission, with significant time spent in pair-programming." },
       { "question": "Does it work on our stack?", "answer": "Today's tools work whatever your language. We validate on your code base together." },
       { "question": "Code confidentiality?", "answer": "We pick a setup that fits your constraints: online service, self-hosted, or with zero data retention." },
       { "question": "Do you keep humans in the loop?", "answer": "Yes, the promise isn't 'fewer devs', it's 'more effective devs who keep ownership'. Every generated line gets reviewed." },
@@ -146,7 +146,7 @@
       { "title": "Be visible in AI answers", "description": "Make your site readable and quotable by AI, so it surfaces in Perplexity or ChatGPT answers." }
     ],
     "faq": [
-      { "question": "What's your day rate?", "answer": "600–800 € per day depending on scope, technical setup and coaching engagement." },
+      { "question": "What's your day rate?", "answer": "On request, depending on scope, technical setup and coaching engagement." },
       { "question": "Why self-host AI rather than use ChatGPT/Claude?", "answer": "Your data stays with you, you stay compliant with GDPR and your sector, and the cost stays under control on heavy usage." },
       { "question": "Which models do you install?", "answer": "Llama, Qwen, Mistral, Gemma, the choice depends on your use case (coding, search, summarization) and available hardware." },
       { "question": "What's an MCP server, exactly?", "answer": "A standard connector between an AI and your tools: your internal apps, your documentation and your business data become directly usable by the AI." },
