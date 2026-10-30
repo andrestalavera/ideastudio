@@ -63,8 +63,14 @@ export default async (req: Request, context: Context): Promise<Response> => {
     const page = await browser.newPage();
     // Puppeteer 25 dropped the networkidle* lifecycle events from setContent;
     // wait for load, then for the fonts/images to settle (500 ms idle, as before).
+    // Both waits share one 20 s budget, as the single setContent wait did before.
+    const deadline = Date.now() + 20_000;
     await page.setContent(html, { waitUntil: "load", timeout: 20_000 });
-    await page.waitForNetworkIdle({ idleTime: 500, concurrency: 0, timeout: 20_000 });
+    await page.waitForNetworkIdle({
+      idleTime: 500,
+      concurrency: 0,
+      timeout: Math.max(1, deadline - Date.now()),
+    });
     const pdf = await page.pdf({
       format: "Legal",
       printBackground: true,
