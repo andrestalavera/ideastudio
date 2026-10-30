@@ -1,0 +1,28 @@
+using Markdig;
+
+namespace IdeaStudio.Website.Tests;
+
+/// <summary>
+/// BlogArticle renders Markdown into a MarkupString, which bypasses Razor encoding.
+/// Its pipeline (UseAdvancedExtensions + DisableHtml) must keep raw HTML inert across
+/// Markdig upgrades.
+/// </summary>
+public class MarkdownSanitizationTests
+{
+    private static readonly MarkdownPipeline Pipeline =
+        new MarkdownPipelineBuilder().UseAdvancedExtensions().DisableHtml().Build();
+
+    [Theory]
+    [InlineData("<script>alert(1)</script>")]
+    [InlineData("Text <img src=x onerror=alert(1)> inline")]
+    [InlineData("<iframe src=\"https://evil.example\"></iframe>")]
+    public void ToHtml_RawHtml_IsEscaped(string markdown)
+    {
+        string html = Markdown.ToHtml(markdown, Pipeline);
+
+        Assert.DoesNotContain("<script", html, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("<img", html, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("<iframe", html, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("&lt;", html);
+    }
+}

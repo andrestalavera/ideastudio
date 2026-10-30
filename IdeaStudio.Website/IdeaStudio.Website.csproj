@@ -14,12 +14,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="markdig" Version="1.3.2" />
-        <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="3.1.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.9" PrivateAssets="all" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.9" />
-        <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.9" />
-        <PackageReference Include="Microsoft.Extensions.Localization" Version="10.0.9" />
+        <PackageReference Include="markdig" Version="1.5.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.14" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.14" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.14" />
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="10.0.14" />
     </ItemGroup>
 
     <Target Name="NpmInstall" Inputs="package.json" Outputs="node_modules/.install-stamp">
@@ -30,6 +29,12 @@
     <Target Name="NpmRunBuild" DependsOnTargets="NpmInstall" BeforeTargets="BeforeBuild" Inputs="package.json;package-lock.json;$(MSBuildProjectDirectory)/wwwroot/scss/**/*.scss;$(MSBuildProjectDirectory)/wwwroot/src/**/*.js" Outputs="$(MSBuildProjectDirectory)/wwwroot/css/styles.min.css;$(MSBuildProjectDirectory)/wwwroot/js/cinema.bundle.js">
         <Exec Command="npm run build" />
     </Target>
+
+    <!-- SCSS and cinema JS sources are build inputs, not site content: keep them out of publish. -->
+    <ItemGroup>
+        <Content Remove="wwwroot\scss\**;wwwroot\src\**" />
+        <None Include="wwwroot\scss\**;wwwroot\src\**" />
+    </ItemGroup>
 
     <ItemGroup>
         <InternalsVisibleTo Include="..\IdeaStudio.Website.Tests\IdeaStudio.Website.Tests.csproj" />
