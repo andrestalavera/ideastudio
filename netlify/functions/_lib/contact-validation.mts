@@ -39,6 +39,15 @@ const MESSAGE_MIN = 10;
 // names like "Ada Lovelace" stay intact.
 export const stripCrlf = (value: string): string => value.replace(/[\r\n]+/g, " ").trim();
 
+// Reply-To as a structured address. Interpolating "Name <email>" into a string
+// lets the address parser read a comma or semicolon in the name as a second
+// recipient ("evil@x.com, Bob" -> two addresses); a { name, address } object
+// keeps the display name opaque.
+export const replyToAddress = (name: string, email: string): { name: string; address: string } => ({
+  name: stripCrlf(name),
+  address: stripCrlf(email),
+});
+
 // Returns true when the honeypot field was filled — a bot. The caller should
 // pretend success and send nothing.
 export const isHoneypotTripped = (payload: ContactPayload): boolean =>

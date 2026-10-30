@@ -47,7 +47,7 @@
   padding: s.$s-5;
   background: c.$bg-raised;
   border: 1px solid c.$rule;
-  border-radius: 12px;
+  border-radius: s.$radius-md;
   min-inline-size: 0;
   overflow-wrap: anywhere;
 
@@ -110,7 +110,8 @@
 
   &-prereq {
     font-size: t.$fs-small;
-    color: c.$fg-faint;
+    // fg-faint is decorative only (2.75:1); this is body copy, so AA muted.
+    color: c.$fg-muted;
     margin: 0;
     padding-block-start: s.$s-3;
     border-block-start: 1px dashed c.$rule;
@@ -118,6 +119,6 @@
 
   &-prereq-label {
     font-weight: 600;
-    color: c.$fg-muted;
+    color: c.$fg;
   }
 }

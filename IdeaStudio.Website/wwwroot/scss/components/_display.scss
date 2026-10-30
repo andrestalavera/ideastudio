@@ -11,6 +11,11 @@
   letter-spacing: t.$ls-display;
   color: c.$fg;
   margin: 0;
+  // At 4rem minimum, a single long word ("Confidentialité.") is wider than a phone:
+  // hyphenate it (per <html lang>), and break as a last resort, rather than let the
+  // title run off-screen (RGAA 10.11 reflow).
+  hyphens: auto;
+  overflow-wrap: break-word;
 
   // Accent dot on the final character of the brand name. A barely-there scale
   // breathe reads as "alive" without competing with the per-char reveal — the

@@ -13,7 +13,7 @@ import type { Culture, Resume } from "./_lib/types.mjs";
 // produce a protocol mismatch.
 const CHROMIUM_PACK_URL =
   process.env.CHROMIUM_PACK_URL ??
-  "https://github.com/Sparticuz/chromium/releases/download/v148.0.0/chromium-v148.0.0-pack.x64.tar";
+  "https://github.com/Sparticuz/chromium/releases/download/v153.0.0/chromium-v153.0.0-pack.x64.tar";
 
 // The SSRF host allowlist + fetch-origin resolution lives in _lib/host.mts
 // (trustedBaseUrl), kept pure so it can be unit-tested.
@@ -30,7 +30,7 @@ function textResponse(status: number, body: string): Response {
   });
 }
 
-export default async (req: Request, _context: Context): Promise<Response> => {
+export default async (req: Request, context: Context): Promise<Response> => {
   const url = new URL(req.url);
 
   // Strict allowlist — only the literal strings "fr" and "en" ever reach the
@@ -38,7 +38,7 @@ export default async (req: Request, _context: Context): Promise<Response> => {
   const cultureParam = url.searchParams.get("culture")?.toLowerCase();
   const culture: Culture = cultureParam === "en" ? "en" : "fr";
 
-  const baseUrl = trustedBaseUrl(url);
+  const baseUrl = trustedBaseUrl(url, process.env, context.site?.name);
   if (!baseUrl) {
     return textResponse(400, "Invalid request host.");
   }
@@ -61,7 +61,16 @@ export default async (req: Request, _context: Context): Promise<Response> => {
 
   try {
     const page = await browser.newPage();
-    await page.setContent(html, { waitUntil: "networkidle0", timeout: 20_000 });
+    // Puppeteer 25 dropped the networkidle* lifecycle events from setContent;
+    // wait for load, then for the fonts/images to settle (500 ms idle, as before).
+    // Both waits share one 20 s budget, as the single setContent wait did before.
+    const deadline = Date.now() + 20_000;
+    await page.setContent(html, { waitUntil: "load", timeout: 20_000 });
+    await page.waitForNetworkIdle({
+      idleTime: 500,
+      concurrency: 0,
+      timeout: Math.max(1, deadline - Date.now()),
+    });
     const pdf = await page.pdf({
       format: "Legal",
       printBackground: true,

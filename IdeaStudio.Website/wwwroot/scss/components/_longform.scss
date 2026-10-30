@@ -1,4 +1,7 @@
-// components/_longform.scss — Legal / Privacy body typography.
+// components/_longform.scss — long-form prose: blog articles, Legal, Privacy.
+// One text colour for every run of body copy (paragraphs, list items, table
+// cells), real list markers (RGAA 9.3: a list must read as a list), underlined
+// links (RGAA 10.6: a link is not distinguished by colour alone).
 
 @use '../tokens/colors' as c;
 @use '../tokens/space' as s;
@@ -8,23 +11,57 @@
   display: flex;
   flex-direction: column;
   gap: s.$s-5;
-  max-width: 68ch;
+  max-width: t.$measure-body;
+  font-size: t.$fs-body;
+  line-height: t.$lh-body;
+  color: c.$fg;
 
-  p {
-    font-size: t.$fs-body;
-    line-height: t.$lh-body;
-    color: c.$fg-muted;
+  p,
+  li,
+  td,
+  th {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
     margin: 0;
   }
 
-  &-h2 {
+  strong { font-weight: 600; }
+
+  ul,
+  ol {
+    display: flex;
+    flex-direction: column;
+    gap: s.$s-2;
+    margin: 0;
+    padding-inline-start: 1.5em;
+  }
+
+  ul { list-style: disc; }
+  ol { list-style: decimal; }
+
+  li::marker { color: c.$ir-duck; }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: c.$ir-duck;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+
+    &:hover { text-decoration-thickness: 2px; }
+  }
+
+  &-h2,
+  h2 {
     font-family: t.$font-sans;
     font-weight: 600;
     font-size: t.$fs-subtitle;
+    line-height: 1.25;
     letter-spacing: -0.015em;
     color: c.$fg;
     margin-block-start: s.$s-4;
-    margin-block-end: s.$s-2;
+    margin-block-end: 0;
     padding-block-start: s.$s-5;
     border-block-start: 1px solid c.$rule;
 
@@ -35,7 +72,12 @@
     }
   }
 
-  a {
-    color: inherit;
+  h3 {
+    font-family: t.$font-sans;
+    font-weight: 600;
+    font-size: 1.125em;
+    line-height: 1.35;
+    color: c.$fg;
+    margin: s.$s-2 0 0;
   }
 }

@@ -19,6 +19,20 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# ...except the two entry scripts, which keep their name on every deploy. dotnet.js
+# lists the fingerprinted assets to load: pinned for a year, a returning visitor
+# requests the previous build's assets, they 404, and the app never boots (the
+# visitor is stuck on the static prerender shell). CacheHeadersTests guards this.
+[[headers]]
+  for = "/_framework/blazor.webassembly.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/_framework/dotnet.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 # styles.min.css, cinema.bundle.js and error-ui.js keep the same name on every
 # deploy, so they must revalidate (cheap 304 via ETag). Marking them immutable
 # would pin returning visitors to a stale stylesheet/bundle for a year.
@@ -63,11 +77,12 @@
     #   #3 gtag consent sha256-nhiW/ulTwWDu5HfFOa9Ly2HsbaDzsCsPHDLM9sIwWkM=
     #   #4 gtag loader  sha256-bhXkdC3LSM4yWGRebqKoCfRP6qwe5TB+6x1zxsOq3eQ=
     # style-src keeps 'unsafe-inline' (Blazor injects inline styles at runtime).
-    # Allowed third parties: Google Analytics/Tag Manager, Microsoft Clarity, Calendly.
+    # Allowed third parties: Google Analytics/Tag Manager, Microsoft Clarity (tag + scripts
+    # loader). Calendly is reached through plain links only, so no script/frame origin.
     # Meta Pixel is disabled (analytics/index.js META_PIXEL_ID = null), so its origins
     # (connect.facebook.net in script-src, www.facebook.com in connect-src) are removed
     # here — re-add them in the same change that sets META_PIXEL_ID.
-    Content-Security-Policy   = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-WiS5ra6UvDHlQV9ETVu3ahTTGZKP2CzHRxEUwB/YCi8=' 'sha256-myYqLbOoe9z9BMmIk5lkleXHh1wYTOJIhe5d82Gh7Hc=' 'sha256-nhiW/ulTwWDu5HfFOa9Ly2HsbaDzsCsPHDLM9sIwWkM=' 'sha256-bhXkdC3LSM4yWGRebqKoCfRP6qwe5TB+6x1zxsOq3eQ=' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://assets.calendly.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.clarity.ms; frame-src https://calendly.com https://assets.calendly.com; form-action 'self'; frame-ancestors 'none'"
+    Content-Security-Policy   = "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-WiS5ra6UvDHlQV9ETVu3ahTTGZKP2CzHRxEUwB/YCi8=' 'sha256-myYqLbOoe9z9BMmIk5lkleXHh1wYTOJIhe5d82Gh7Hc=' 'sha256-nhiW/ulTwWDu5HfFOa9Ly2HsbaDzsCsPHDLM9sIwWkM=' 'sha256-bhXkdC3LSM4yWGRebqKoCfRP6qwe5TB+6x1zxsOq3eQ=' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://scripts.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.clarity.ms; frame-src 'none'; form-action 'self'; frame-ancestors 'none'"
 
 # Netlify Functions (TypeScript .mts, ES modules).
 # resume-pdf renders a PDF on demand from wwwroot/data/resume-{culture}.json

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   FIELD_LIMITS,
   isHoneypotTripped,
+  replyToAddress,
   stripCrlf,
   validateContact,
 } from "./contact-validation.mjs";
@@ -53,4 +54,16 @@ test("validateContact caps oversized fields (relay-amplification guard)", () => 
     message: "long enough here",
   });
   assert.equal(longName.ok, false);
+});
+
+test("replyToAddress keeps a hostile display name as one opaque address", () => {
+  const reply = replyToAddress("attacker@evil.com, Bob; x@y.z", "real@example.com");
+  assert.deepEqual(reply, { name: "attacker@evil.com, Bob; x@y.z", address: "real@example.com" });
+});
+
+test("replyToAddress strips CR/LF from both parts", () => {
+  assert.deepEqual(replyToAddress("Ada\r\nBcc: v@y.com", " me@x.com\n"), {
+    name: "Ada Bcc: v@y.com",
+    address: "me@x.com",
+  });
 });

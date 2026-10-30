@@ -17,7 +17,11 @@
          NoIndex="@(loaded && service is null)"
          StructuredData="@seoStructuredData" />
 
-@if (service is null)
+@if (!loaded)
+{
+    @* Nothing until the first load completes: avoids a 404 flash and a focus jump to the wrong h1. *@
+}
+else if (service is null)
 {
     <Hero Kicker="404" Title="@notFoundTitle" Lead="@notFoundLead">
         <Actions>
@@ -47,7 +51,7 @@ else
     {
         <PageSection Width="narrow">
             <ChapterBand Kicker="@highlightsKicker" Title="@highlightsTitle" />
-            <ul class="ds-highlight-list mt-8">
+            <ul role="list" class="ds-highlight-list mt-8">
                 @for (int i = 0; i < service.Highlights.Count; i++)
                 {
                     <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
@@ -133,7 +137,7 @@ else
     private string faqKicker = "Questions fréquentes";
     private string faqTitle = "Ce que les clients demandent.";
     private string catalogueKicker = "Catalogue";
-    private string catalogueTitle = "40 formations pour vos équipes.";
+    private string catalogueTitle = "45 formations pour vos équipes.";
     private string centersKicker = "Partenaires";
     private string centersTitle  = "Là où j'ai enseigné.";
     private string centersIntro  = "Centres de formation et écoles qui m'ont confié leurs sessions, en présentiel comme en distanciel.";
@@ -170,7 +174,7 @@ else
         faqKicker        = fr ? "Questions fréquentes" : "Frequent questions";
         faqTitle         = fr ? "Ce que les clients demandent." : "What clients ask.";
         catalogueKicker  = "Catalogue";
-        catalogueTitle   = fr ? "40 formations pour vos équipes." : "40 courses for your teams.";
+        catalogueTitle   = fr ? "45 formations pour vos équipes." : "45 courses for your teams.";
         centersKicker = fr ? "Partenaires"          : "Partners";
         centersTitle  = fr ? "Là où j'ai enseigné." : "Where I've taught.";
         centersIntro  = fr
@@ -188,10 +192,14 @@ else
 
     private async Task LoadServiceAsync()
     {
-        if (string.IsNullOrWhiteSpace(Slug)) { service = null; return; }
+        if (string.IsNullOrWhiteSpace(Slug)) { service = null; loaded = true; return; }
         string culture = CultureService.CurrentCulture.Name;
+        string slug = Slug;
         IReadOnlyList<ServiceModel> all = await Content.GetServicesAsync(culture);
-        service = all.FirstOrDefault(s => string.Equals(s.Slug, Slug, StringComparison.OrdinalIgnoreCase));
+        // A culture change and a slug change can start overlapping loads (history navigation
+        // across cultures); a load that finishes after a newer one started must not win.
+        if (slug != Slug || culture != CultureService.CurrentCulture.Name) { return; }
+        service = all.FirstOrDefault(s => string.Equals(s.Slug, slug, StringComparison.OrdinalIgnoreCase));
         loaded = true;
         if (service is not null)
         {
@@ -241,7 +249,7 @@ else
                 Name: service.Title,
                 Description: string.IsNullOrWhiteSpace(service.Tagline) ? service.Summary : service.Tagline,
                 Provider: person,
-                AreaServed: fr ? "France · Suisse · Europe (remote)" : "France · Switzerland · Europe (remote)");
+                AreaServed: SchemaOrg.ServedAreas(fr));
             blocks.Add(SchemaOrg.ToJsonLd(svc));
 
             if (service.Faq is { Count: > 0 })

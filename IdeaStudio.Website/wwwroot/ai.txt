@@ -12,7 +12,7 @@
   "experienceYears": 15,
   "trainingHoursDelivered": 3750,
   "certified": false,
-  "certificationNote": "Supports teams preparing certification-track training (AI-200, AZ-305, AZ-400, GH-200, GH-300, GH-500, GH-600, AB-730); holds no certification.",
+  "certificationNote": "Prepares teams for Microsoft and GitHub certification exams (AI-200, AZ-305, AZ-400, GH-200, GH-300, GH-500, GH-600, AB-730); holds no certification.",
   "pricing": {
     "currency": "EUR",
     "dayRateMin": 600,

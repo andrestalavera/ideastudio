@@ -24,15 +24,15 @@
     @* Filters *@
     @if (allTechs.Count > 0)
     {
-        <div class="ds-filter-bar" role="tablist" aria-label="@filterAriaLabel">
+        <div class="ds-filter-bar" role="group" aria-label="@filterAriaLabel">
             <span class="ds-filter-bar-label">@filterLabel</span>
             <button type="button" class="ds-tag @(activeTech is null ? "ds-tag-active" : "")"
-                    role="tab" aria-pressed="@(activeTech is null)"
+                    aria-pressed="@(activeTech is null ? "true" : "false")"
                     @onclick="() => SetTech(null)">@allTechsLabel</button>
             @foreach (string tech in allTechs)
             {
                 <button type="button" class="ds-tag @(activeTech == tech ? "ds-tag-active" : "")"
-                        role="tab" aria-pressed="@(activeTech == tech)"
+                        aria-pressed="@(activeTech == tech ? "true" : "false")"
                         @onclick="() => SetTech(tech)">@tech</button>
             }
         </div>
@@ -92,7 +92,7 @@
     {
         await base.LoadLocalizedStringsAsync();
         all = await Content.GetRealisationsAsync(CultureService.CurrentCulture.Name);
-        allTechs = all.SelectMany(r => r.Technologies).Distinct().OrderBy(x => x).ToArray();
+        allTechs = RealisationFilter.AvailableTechnologies(all).ToArray();
         ApplyFilter();
         GenerateStructuredData();
         StateHasChanged();
@@ -128,7 +128,7 @@
     {
         filtered = activeTech is null
             ? all
-            : all.Where(r => r.Technologies.Contains(activeTech)).ToArray();
+            : RealisationFilter.Apply(all, [activeTech], []).ToArray();
     }
 
     private void GenerateStructuredData()

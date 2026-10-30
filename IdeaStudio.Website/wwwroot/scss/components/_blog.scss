@@ -14,4 +14,64 @@
   margin-block-end: s.$s-4;
 }
 
-.ds-blogpost-body { margin-block-start: s.$s-5; }
+.ds-blogpost-body {
+  margin-block-start: s.$s-5;
+  min-width: 0;
+  // Articles are read end to end: a step up from UI body copy, with airier leading.
+  font-size: 1.0625rem;
+  line-height: 1.7;
+
+  // Code listings and benchmark tables are wider than the 68ch measure: they scroll
+  // inside their own frame instead of pushing the page sideways on a phone.
+  pre {
+    margin: 0;
+    padding: s.$s-4;
+    overflow-x: auto;
+    background: c.$bg-surface;
+    border: 1px solid c.$rule;
+    border-radius: s.$radius-md;
+    font-family: t.$font-mono;
+    font-size: t.$fs-mono;
+    line-height: 1.6;
+    color: c.$fg;
+  }
+
+  // JetBrains Mono would draw => as an arrow: C# listings show the characters typed.
+  code { font-variant-ligatures: none; }
+
+  // The wrapper scrolls; the table keeps display: table so screen readers still
+  // announce rows and columns (display: block drops that in Safari/VoiceOver).
+  .ds-table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  table {
+    border-collapse: collapse;
+    font-size: t.$fs-small;
+    font-variant-numeric: tabular-nums;
+  }
+
+  th, td {
+    padding: s.$s-2 s.$s-3;
+    border-block-end: 1px solid c.$rule;
+    white-space: nowrap;
+  }
+
+  // Inline code: same colour as the prose, set on a faint chip so it reads as code
+  // without dropping contrast. Long identifiers (Microsoft.Extensions.Logging.LoggerMessage)
+  // may break anywhere rather than widen the page.
+  :not(pre) > code {
+    font-size: 0.875em;
+    padding: 0.1em 0.35em;
+    border-radius: 6px;
+    background: c.$glass;
+    color: c.$fg;
+    overflow-wrap: anywhere;
+  }
+
+  pre:focus-visible,
+  .ds-table-scroll:focus-visible { outline-offset: 2px; }
+
+  img { border-radius: s.$radius-md; }
+}

@@ -197,7 +197,7 @@ public class StoreTests
     public async Task CultureService_SetCultureAsync_RoundTripsThroughStore()
     {
         Store<AppState> store = NewStore();
-        CultureService service = new(Mock.Of<IJSRuntime>(), new TestNavigationManager(), store);
+        CultureService service = new(new TestNavigationManager(), store);
         int fired = 0;
         service.CultureChanged += () => fired++;
 
@@ -212,7 +212,7 @@ public class StoreTests
     public async Task CultureService_SetCultureAsync_SameCulture_DoesNotFire()
     {
         Store<AppState> store = NewStore();
-        CultureService service = new(Mock.Of<IJSRuntime>(), new TestNavigationManager(), store);
+        CultureService service = new(new TestNavigationManager(), store);
         int fired = 0;
         service.CultureChanged += () => fired++;
 
@@ -221,8 +221,47 @@ public class StoreTests
         Assert.Equal(0, fired);
     }
 
+    [Fact]
+    public async Task CultureService_LocationChangedToOtherCulturePrefix_UpdatesCurrentCulture()
+    {
+        // Browser Back from /fr/... to /en/... must not leave the app rendering French data.
+        Store<AppState> store = NewStore();
+        TestNavigationManager nav = new();
+        CultureService service = new(nav, store);
+        await service.InitializeAsync();
+        int fired = 0;
+        service.CultureChanged += () => fired++;
+
+        nav.NavigateTo("/en/training");
+
+        Assert.Equal("en", service.CurrentCulture.Name);
+        Assert.Equal(1, fired);
+    }
+
+    [Fact]
+    public async Task CultureService_LocationChangedWithinSameCulture_DoesNotFire()
+    {
+        Store<AppState> store = NewStore();
+        TestNavigationManager nav = new();
+        CultureService service = new(nav, store);
+        await service.InitializeAsync();
+        int fired = 0;
+        service.CultureChanged += () => fired++;
+
+        nav.NavigateTo("/fr/formations");
+
+        Assert.Equal("fr", service.CurrentCulture.Name);
+        Assert.Equal(0, fired);
+    }
+
     private sealed class TestNavigationManager : NavigationManager
     {
         public TestNavigationManager() => Initialize("https://localhost/", "https://localhost/fr");
+
+        protected override void NavigateToCore(string uri, NavigationOptions options)
+        {
+            Uri = ToAbsoluteUri(uri).ToString();
+            NotifyLocationChanged(isInterceptedLink: false);
+        }
     }
 }

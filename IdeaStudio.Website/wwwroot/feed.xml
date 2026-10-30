@@ -7,11 +7,11 @@
     <language>fr</language>
     <atom:link href="https://ideastud.io/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Coder avec l'IA sans créer de dette technique</title>
+      <title>Coder avec l’IA sans créer de dette technique</title>
       <link>https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique</link>
       <guid>https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique</guid>
-      <pubDate>20 Jun 2026 09:00:00 GMT</pubDate>
-      <description>Les assistants de code font gagner un temps réel, à condition de garder l'humain dans la boucle. Voici la méthode que j'applique sur mes missions.</description>
+      <pubDate>30 Oct 2026 09:00:00 GMT</pubDate>
+      <description>Les assistants de code font gagner un temps réel, à condition que chacun sache qui répond de quoi. Responsabilités, une méthode SDD allégée, des itérations plus courtes et une minute de démonstration par jour à la place du daily.</description>
     </item>
     <item>
       <title>Cloud souverain : héberger en Europe sans sacrifier l'expérience</title>
@@ -19,6 +19,13 @@
       <guid>https://ideastud.io/fr/blog/cloud-souverain-europe</guid>
       <pubDate>10 Jun 2026 09:00:00 GMT</pubDate>
       <description>Azure n'est pas la seule option. Tour d'horizon des hébergeurs européens (Clever Cloud, Infomaniak) et de quand les choisir.</description>
+    </item>
+    <item>
+      <title>Monitorer ses applications</title>
+      <link>https://ideastud.io/fr/blog/monitorer-ses-applications</link>
+      <guid>https://ideastud.io/fr/blog/monitorer-ses-applications</guid>
+      <pubDate>29 May 2023 09:00:00 GMT</pubDate>
+      <description>Le pattern LoggerMessage et l’attribut LoggerMessage pour écrire des logs performants en .NET, mesurés avec BenchmarkDotNet.</description>
     </item>
   </channel>
 </rss>

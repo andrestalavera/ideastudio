@@ -98,7 +98,7 @@
       padding-block: 2px;
       font-size: 0.7rem;
       letter-spacing: 0.04em;
-      color: c.$fg-faint;
+      color: c.$fg-muted;  // small text: faint (2.8–4:1) fails AA
       border-color: c.$rule;
     }
   }

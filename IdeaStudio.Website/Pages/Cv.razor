@@ -20,13 +20,9 @@
          SpeakableSelectors="@speakable" />
 
 @* Always-visible floating CTA so the PDF is never more than one click away. *@
-<a class="ds-btn ds-btn-primary"
+<a class="ds-btn ds-btn-primary ds-fab"
    href="@downloadUrl"
-   target="_blank" rel="noopener"
-   aria-label="@downloadText"
-   style="position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 60;
-          box-shadow: 0 12px 32px -8px rgba(0, 194, 212, 0.45),
-                      0 4px 12px rgba(2, 10, 13, 0.5);">
+   target="_blank" rel="noopener">
     @downloadText <span aria-hidden="true">↓</span>
 </a>
 

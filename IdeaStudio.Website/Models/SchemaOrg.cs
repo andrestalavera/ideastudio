@@ -95,6 +95,25 @@ public static class SchemaOrg
     }
 
     /// <summary>
+    /// A named area for <c>areaServed</c>: a Country, or a broader Place such as Europe.
+    /// </summary>
+    public record Area(string Name, [property: JsonIgnore] string Kind)
+    {
+        [JsonPropertyName("@type")]
+        public string Type => Kind;
+    }
+
+    /// <summary>
+    /// Where the owner works, as machine-readable places rather than display text.
+    /// </summary>
+    public static IReadOnlyList<Area> ServedAreas(bool fr) =>
+    [
+        new("France", "Country"),
+        new(fr ? "Suisse" : "Switzerland", "Country"),
+        new("Europe", "Place"),
+    ];
+
+    /// <summary>
     /// Schema.org WebSite for site-wide search features.
     /// </summary>
     public record WebSite(
@@ -155,60 +174,6 @@ public static class SchemaOrg
     }
 
     /// <summary>
-    /// Schema.org Product for e-commerce.
-    /// </summary>
-    public record Product(
-        string Name,
-        string? Description = null,
-        string? Image = null,
-        string? Url = null,
-        string? Sku = null,
-        string? Brand = null,
-        string? Category = null,
-        Offer? Offers = null,
-        AggregateRating? AggregateRating = null)
-    {
-        [JsonPropertyName("@context")]
-        public string Context => "https://schema.org";
-
-        [JsonPropertyName("@type")]
-        public string Type => "Product";
-
-        [JsonPropertyName("brand")]
-        public object? BrandObject => Brand is not null
-            ? new { @type = "Brand", name = Brand }
-            : null;
-    }
-
-    /// <summary>
-    /// Schema.org Offer for product pricing.
-    /// </summary>
-    public record Offer(
-        string Price,
-        string PriceCurrency = "EUR",
-        string Availability = "https://schema.org/InStock",
-        string? Url = null,
-        string? ValidFrom = null,
-        string? ValidThrough = null)
-    {
-        [JsonPropertyName("@type")]
-        public string Type => "Offer";
-    }
-
-    /// <summary>
-    /// Schema.org AggregateRating for reviews.
-    /// </summary>
-    public record AggregateRating(
-        double RatingValue,
-        int ReviewCount,
-        double BestRating = 5,
-        double WorstRating = 1)
-    {
-        [JsonPropertyName("@type")]
-        public string Type => "AggregateRating";
-    }
-
-    /// <summary>
     /// Schema.org FAQPage for AEO (Answer Engine Optimization).
     /// </summary>
     public record FAQPage(Question[] MainEntity)
@@ -261,7 +226,7 @@ public static class SchemaOrg
         string Name,
         string Description,
         Person Provider,
-        string AreaServed)
+        IReadOnlyList<Area> AreaServed)
     {
         [JsonPropertyName("@context")]
         public string Context => "https://schema.org";
@@ -277,7 +242,7 @@ public static class SchemaOrg
         string Name,
         string Description,
         string Url,
-        string AreaServed,
+        IReadOnlyList<Area> AreaServed,
         Person Provider,
         IReadOnlyList<Service> Services,
         string? PriceRange = null,
@@ -290,15 +255,14 @@ public static class SchemaOrg
         public string Type => "ProfessionalService";
 
         [JsonPropertyName("hasOfferCatalog")]
-        public object HasOfferCatalog => new
+        // Dictionaries, not anonymous objects: an anonymous member can't be named "@type".
+        public IReadOnlyDictionary<string, object> HasOfferCatalog => new Dictionary<string, object>
         {
-            type = "OfferCatalog",
-            name = Name,
-            itemListElement = Services.Select(s => new
-            {
-                type = "Offer",
-                itemOffered = s
-            })
+            ["@type"] = "OfferCatalog",
+            ["name"] = Name,
+            ["itemListElement"] = Services
+                .Select(s => new Dictionary<string, object> { ["@type"] = "Offer", ["itemOffered"] = s })
+                .ToList()
         };
     }
 

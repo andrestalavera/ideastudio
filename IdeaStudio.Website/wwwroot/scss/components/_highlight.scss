@@ -31,7 +31,7 @@
     border-radius: 50%;
     background: c.$gradient-iridescent;
     transform: translateY(0.35em);
-    box-shadow: 0 0 12px rgba(0, 194, 212, 0.4);
+    box-shadow: 0 0 12px color-mix(in srgb, c.$ir-duck 40%, transparent);
   }
 
   &:last-child {

@@ -1730,6 +1730,77 @@
     ]
   },
   {
+    "slug": "claude-code-fundamentals",
+    "title": "Claude Code fundamentals",
+    "summary": "By the end, your developers use Claude Code every day on their own projects while staying in control of every change it proposes.",
+    "category": "Vibe coding & AI",
+    "audience": "Developers who are new to Claude Code, or have tried it without a method, and want to use it on a real project.",
+    "objectives": [
+      "Install Claude Code and use it in the terminal as well as from VS Code or JetBrains",
+      "Describe a project's context in a CLAUDE.md file",
+      "Pick the right permission mode and use plan mode before a significant change",
+      "Review, accept or roll back a change proposed by the agent",
+      "Tell the tasks where Claude Code saves time from those where it wastes it"
+    ],
+    "modules": [
+      {
+        "title": "Getting started: installation, terminal and IDE",
+        "durationDays": 0.25,
+        "points": [
+          "Install Claude Code and sign in to the team account",
+          "Start a session in the terminal and from the VS Code or JetBrains extension",
+          "Understand what the agent reads, runs and changes in the repository"
+        ],
+        "workshop": "Have Claude Code explain the architecture of an unfamiliar repository, then check its claims against the code."
+      },
+      {
+        "title": "Giving context: CLAUDE.md and commands",
+        "durationDays": 0.25,
+        "points": [
+          "Generate a first CLAUDE.md with /init, then correct it by hand",
+          "Document the build and test commands and the project's conventions",
+          "Use slash commands and file references in a request"
+        ],
+        "workshop": "Write the CLAUDE.md for a supplied project and check that the agent follows its conventions on a first task."
+      },
+      {
+        "title": "Plan mode, permissions and review",
+        "durationDays": 0.25,
+        "points": [
+          "Use plan mode to get an approach approved before any change",
+          "Choose a permission mode suited to the task and the repository",
+          "Review a diff, ask for a fix or roll back"
+        ],
+        "workshop": "Have the agent plan then implement a small feature, rejecting at least one change and explaining why."
+      },
+      {
+        "title": "Good practices and limits",
+        "durationDays": 0.25,
+        "points": [
+          "Break a request into short, verifiable tasks",
+          "Have the tests written before the implementation",
+          "Recognise a made-up answer or off-topic code",
+          "Know what is sent to the model provider, and what you keep from it"
+        ],
+        "workshop": "Fix a real bug in the supplied repository, starting with a test that reproduces it."
+      }
+    ],
+    "prerequisites": "Day-to-day practice of a programming language and Git. Access to Claude Code for each participant (subscription or API key).",
+    "durationDays": 1,
+    "level": "foundation",
+    "evaluation": "A short quiz at the end of every module and a wrap-up exercise: each participant delivers a bug fix with its test, made with Claude Code and reviewed by a peer.",
+    "faq": [
+      {
+        "question": "Do we need to know how to code?",
+        "answer": "Yes. Claude Code is a developer tool: the course is for people who already write code and can review a diff."
+      },
+      {
+        "question": "How is this different from \"Claude Code for teams\"?",
+        "answer": "This course covers individual, day-to-day use. \"Claude Code for teams\" covers rolling it out across a team: skills, plugins, hooks, sub-agents and continuous integration."
+      }
+    ]
+  },
+  {
     "slug": "claude-code-team",
     "title": "Claude Code for teams",
     "summary": "By the end, your team rolls out Claude Code at scale and turns it into real productivity, with the guardrails that protect quality.",
@@ -2013,6 +2084,178 @@
     ]
   },
   {
+    "slug": "ai-dev-method",
+    "title": "Developing with AI without technical debt",
+    "summary": "By the end, your team ships with Claude Code or GitHub Copilot without piling up technical debt: clear responsibilities, executable Gherkin specifications, an SDD, BDD then TDD loop, and short iterations.",
+    "category": "Vibe coding & AI",
+    "audience": "Tech leads, experienced .NET developers and product owners who already use an AI assistant and want a tooled method to keep quality under control.",
+    "objectives": [
+      "Clearly split responsibilities between the team and the AI agents",
+      "Write executable Gherkin specifications, the source of truth for every behaviour",
+      "Chain SDD, BDD and TDD: scenario, failing Reqnroll binding, failing unit test, then code",
+      "Set up a framed agent workflow: questions, an approved plan, role sub-agents, hooks and a gate script",
+      "Run short iterations with a one-minute daily demo, and pay back the technical debt produced with AI"
+    ],
+    "modules": [
+      {
+        "title": "Responsibilities: who decides, who answers",
+        "durationDays": 0.25,
+        "points": [
+          "Split roles between product owner, developer, reviewer and agents",
+          "Set the rule: no code is merged that its author cannot explain",
+          "Define each agent's scope for the repository and the task"
+        ],
+        "workshop": "Write the team's AI usage charter: roles, the agents' scope and review rules."
+      },
+      {
+        "title": "The executable specification: Gherkin as the source of truth",
+        "durationDays": 0.5,
+        "points": [
+          "Write Gherkin features and scenarios that describe observable behaviour",
+          "Give every feature and scenario a stable identifier, and trace it to the tests",
+          "Cover the failure path as well as the happy path",
+          "Set the rule: never edit a .feature to make code pass"
+        ],
+        "workshop": "Write the scenarios for a real feature with the product owner, then review them hunting for ambiguity."
+      },
+      {
+        "title": "From scenario to code: BDD with Reqnroll, then TDD",
+        "durationDays": 0.75,
+        "points": [
+          "Bind Gherkin steps to code with Reqnroll",
+          "Make the binding fail before any implementation",
+          "Go down to a failing unit test, then the code: red, green, refactor",
+          "Keep the agent inside this loop without letting it rewrite the tests"
+        ],
+        "workshop": "Take a scenario from red to green: Reqnroll binding, unit test, then implementation by the agent."
+      },
+      {
+        "title": "The agent workflow: questions, plan, approval, loop",
+        "durationDays": 0.75,
+        "points": [
+          "One round of questions before any plan, limited to what changes the plan",
+          "One plan per iteration, versioned and approved by a human before the first line of code",
+          "Role sub-agents (review, QA, security) and hooks that block out-of-scope changes",
+          "A single gate script (build, tests, analysis) as the exit of every step"
+        ],
+        "workshop": "Set up the full workflow on a supplied repository with Claude Code or GitHub Copilot: questions, plan, approval, sub-agents, hooks and gate script."
+      },
+      {
+        "title": "Short iterations and a daily demo",
+        "durationDays": 0.25,
+        "points": [
+          "One iteration, one plan, one pull request that closes at least one scenario",
+          "Replace the stand-up with a one-minute demo per person",
+          "Have the product owner test before production"
+        ],
+        "workshop": "Run a one-minute demo of the scenario shipped the day before, then critique it as a group."
+      },
+      {
+        "title": "Measuring and paying back technical debt",
+        "durationDays": 0.5,
+        "points": [
+          "Spot the typical debt in generated code: duplicates, needless abstractions, dependencies nobody chose",
+          "Keep pull requests short and reviewable",
+          "Set aside time for deletion in every iteration",
+          "Track a few simple indicators rather than gut feeling alone"
+        ],
+        "workshop": "Audit a repository written with an agent, classify its debt and plan paying it back over two iterations."
+      }
+    ],
+    "prerequisites": "Solid C# and .NET practice, with a test framework and a coding assistant (Claude Code or GitHub Copilot). The product owner's attendance is recommended for the specification module.",
+    "durationDays": 3,
+    "level": "advanced",
+    "evaluation": "A short quiz at the end of every module, and a walkthrough of the equipped repository built during the course: Gherkin scenarios, Reqnroll bindings, iteration plan and gate script.",
+    "faq": [
+      {
+        "question": "Should we use Claude Code or GitHub Copilot?",
+        "answer": "Either. The method doesn't depend on the tool: the workshops use whichever one your team already has."
+      },
+      {
+        "question": "Do we need to know Gherkin or Reqnroll?",
+        "answer": "No. Gherkin and Reqnroll basics are covered during the course; unit-testing practice is enough."
+      },
+      {
+        "question": "Do we have to drop Scrum?",
+        "answer": "No. The method fits into your current framework: it shortens iterations and replaces the stand-up with a demo, but keeps your other rituals."
+      },
+      {
+        "question": "How is this different from the Spec Kit course?",
+        "answer": "The Spec Kit course goes deep into GitHub's tool. This one presents a complete method, applied on a product in production: roles, executable Gherkin specifications, agent workflow, rituals and debt."
+      }
+    ]
+  },
+  {
+    "slug": "copilot-fundamentals",
+    "title": "GitHub Copilot fundamentals",
+    "summary": "By the end, your developers use GitHub Copilot in their IDE to write, understand and fix code faster, reviewing every suggestion.",
+    "category": "Vibe coding & AI",
+    "audience": "Developers who are new to GitHub Copilot or only use it for autocomplete.",
+    "objectives": [
+      "Set up GitHub Copilot in VS Code, Visual Studio or JetBrains",
+      "Make the most of completions and next edit suggestions",
+      "Use Copilot Chat to understand, document and fix code",
+      "Choose between ask, edit and agent modes depending on the task",
+      "Build review and privacy reflexes before accepting a suggestion"
+    ],
+    "modules": [
+      {
+        "title": "Installation, completions and suggestions",
+        "durationDays": 0.25,
+        "points": [
+          "Enable Copilot in the IDE and check the organisation's settings",
+          "Steer completions with names, comments and examples",
+          "Accept, reject or cycle through alternative suggestions"
+        ],
+        "workshop": "Implement a function from its signature and comment, then compare the suggestions offered."
+      },
+      {
+        "title": "Copilot Chat: understanding and fixing",
+        "durationDays": 0.25,
+        "points": [
+          "Have unfamiliar code or a build error explained",
+          "Reference files, a selection or the terminal in a question",
+          "Generate documentation and commit messages"
+        ],
+        "workshop": "Have an exception thrown by a supplied project explained, then fixed."
+      },
+      {
+        "title": "Ask, edit and agent modes",
+        "durationDays": 0.25,
+        "points": [
+          "Pick the right mode: a question, a targeted edit or a multi-file task",
+          "Review the proposed plan and diff before applying them",
+          "Have the unit tests for an existing class written"
+        ],
+        "workshop": "Add a small feature in agent mode, with its tests, and review the diff line by line."
+      },
+      {
+        "title": "Good practices, limits and privacy",
+        "durationDays": 0.25,
+        "points": [
+          "Write a first custom instruction for the repository",
+          "Recognise a wrong, outdated or insecure suggestion",
+          "Know what Copilot sends and retains, and which settings control it"
+        ],
+        "workshop": "Spot and fix the flaws in a supplied batch of suggestions, including a security hole."
+      }
+    ],
+    "prerequisites": "Day-to-day practice of a programming language and Git. A GitHub Copilot licence for each participant.",
+    "durationDays": 1,
+    "level": "foundation",
+    "evaluation": "A short quiz at the end of every module and a wrap-up exercise: each participant adds a tested feature with Copilot, then explains what they accepted and rejected.",
+    "faq": [
+      {
+        "question": "How is this different from \"GitHub Copilot, advanced\"?",
+        "answer": "This one lays the foundations of everyday use. The advanced course covers customisation, the Copilot coding agent, MCP and preparation for the GH-300 exam."
+      },
+      {
+        "question": "Which IDE do we use?",
+        "answer": "VS Code by default. Visual Studio or JetBrains are possible in-house, if the whole team uses the same one."
+      }
+    ]
+  },
+  {
     "slug": "copilot-advanced",
     "title": "GitHub Copilot, advanced (GH-300 prep)",
     "summary": "By the end, your developers use GitHub Copilot far beyond autocomplete to speed up their daily work, fully compliant, and prepare for the GitHub Copilot certification (GH-300).",
@@ -2184,6 +2427,157 @@
       }
     ],
     "certification": "GH-600"
+  },
+  {
+    "slug": "ai-tests-code-review",
+    "title": "Testing and code review with Claude Code and Copilot",
+    "summary": "By the end, your developers have AI write and judge tests, and use AI-assisted code review without handing it the decision to merge.",
+    "category": "Vibe coding & AI",
+    "audience": "Developers and tech leads who want to strengthen their tests and code reviews with Claude Code or GitHub Copilot.",
+    "objectives": [
+      "Have useful tests written from a specification, not from the existing code",
+      "Spot tests that test nothing: hollow assertions, excessive mocks",
+      "Use GitHub Copilot code review and a Claude Code review on a pull request",
+      "Check a test suite's quality with coverage and mutation testing",
+      "Decide what human review keeps and what it can delegate"
+    ],
+    "modules": [
+      {
+        "title": "Writing tests before the code with the agent",
+        "durationDays": 0.25,
+        "points": [
+          "Generate tests from the acceptance criteria",
+          "Cover edge cases and error cases",
+          "Stop the agent from fitting the test to the code instead of the code to the test"
+        ],
+        "workshop": "Have the tests for a supplied business rule written, then its implementation, and check that the tests failed beforehand."
+      },
+      {
+        "title": "Judging a test suite",
+        "durationDays": 0.25,
+        "points": [
+          "Recognise a hollow assertion or a test that cannot fail",
+          "Measure coverage without turning it into a target",
+          "Use mutation testing (Stryker.NET) to check that a test really catches a regression"
+        ],
+        "workshop": "Run mutation testing on an AI-generated suite and fix the tests that let mutants survive."
+      },
+      {
+        "title": "AI-assisted code review",
+        "durationDays": 0.25,
+        "points": [
+          "Request a pull request review from Copilot and read its comments critically",
+          "Have Claude Code review a diff against a team checklist",
+          "Triage the remarks: real bug, style, false positive"
+        ],
+        "workshop": "Have a pull request with three hidden flaws reviewed, then compare what the AI and the humans found."
+      },
+      {
+        "title": "Team review rules",
+        "durationDays": 0.25,
+        "points": [
+          "Decide what stays a human call: architecture, security, merging",
+          "Write a review checklist usable by the agent and the team alike",
+          "Cap pull request size so they stay reviewable"
+        ],
+        "workshop": "Write the team's review checklist and apply it to a real pull request."
+      }
+    ],
+    "prerequisites": "Practice with Claude Code or GitHub Copilot, and with a test framework (xUnit, NUnit, MSTest or equivalent).",
+    "durationDays": 1,
+    "level": "intermediate",
+    "evaluation": "A short quiz at the end of every module and a wrap-up exercise: each participant strengthens a test suite up to the set mutation score, then reviews a pull request with the team checklist.",
+    "faq": [
+      {
+        "question": "Is the course .NET only?",
+        "answer": "The examples use C# with xUnit and Stryker.NET. In-house, the workshops can be adapted to your stack if an equivalent mutation testing tool exists."
+      },
+      {
+        "question": "Can AI review replace human review?",
+        "answer": "No. It finds things humans miss, and vice versa. The decision to merge stays human."
+      }
+    ]
+  },
+  {
+    "slug": "dotnet-modernization-ai",
+    "title": "Modernising a .NET application with Claude Code and Copilot",
+    "summary": "By the end, your team migrates a .NET Framework application, or an older .NET version, to .NET 10 with AI's help, in short, tested steps.",
+    "category": "Vibe coding & AI",
+    "audience": ".NET developers and tech leads who need to migrate an existing application to a recent version of .NET.",
+    "objectives": [
+      "Map an existing application with the agent before touching the code",
+      "Write characterisation tests that pin down current behaviour",
+      "Plan a step-by-step migration to .NET 10 with GitHub Copilot and Claude Code",
+      "Migrate project by project while keeping an application that builds and passes its tests",
+      "Replace obsolete APIs and reduce technical debt along the way"
+    ],
+    "modules": [
+      {
+        "title": "Mapping the existing application",
+        "durationDays": 0.25,
+        "points": [
+          "Have the agent describe the architecture, dependencies and coupling points",
+          "Check the map against the code before relying on it",
+          "Identify blocking dependencies: packages, Windows APIs, WCF, Web Forms"
+        ],
+        "workshop": "Produce the dependency map of a supplied .NET Framework application with Claude Code, then correct it."
+      },
+      {
+        "title": "Characterisation tests",
+        "durationDays": 0.5,
+        "points": [
+          "Pin down current behaviour before any change",
+          "Have the agent write tests from observed behaviour",
+          "Prioritise risky areas rather than aiming for full coverage"
+        ],
+        "workshop": "Write characterisation tests for an undocumented business module."
+      },
+      {
+        "title": "Planning the migration",
+        "durationDays": 0.25,
+        "points": [
+          "Choose the order in which projects migrate from the dependency graph",
+          "Produce a migration plan with GitHub Copilot's .NET modernisation tools",
+          "Split the plan into shippable, testable steps"
+        ],
+        "workshop": "Produce, then critique, the migration plan for the supplied application."
+      },
+      {
+        "title": "Migrating project by project",
+        "durationDays": 0.75,
+        "points": [
+          "Convert projects to the SDK format and move to .NET 10",
+          "Replace obsolete APIs and packages with the agent, under the control of the tests",
+          "Fix build errors in short batches rather than in one pass",
+          "Keep an application that builds and passes its tests at every step"
+        ],
+        "workshop": "Migrate a library and its test project to .NET 10, step by step."
+      },
+      {
+        "title": "Reducing debt along the way",
+        "durationDays": 0.25,
+        "points": [
+          "Spot what can be simplified once the migration is done",
+          "Keep migration commits separate from refactoring commits",
+          "Document decisions and remaining gaps"
+        ],
+        "workshop": "Simplify a migrated component and justify every change in a dedicated pull request."
+      }
+    ],
+    "prerequisites": "Solid C# and .NET practice, and experience with a coding assistant (Claude Code or GitHub Copilot).",
+    "durationDays": 2,
+    "level": "advanced",
+    "evaluation": "A short quiz at the end of every module, and a walkthrough of the migrated application: migration plan, characterisation tests and pull requests produced during the course.",
+    "faq": [
+      {
+        "question": "Can we work on our own application?",
+        "answer": "In-house, yes, on an isolated copy of your code. In an inter-company session we start from a sample .NET Framework application."
+      },
+      {
+        "question": "Do we migrate a whole application in two days?",
+        "answer": "No. We set up the method and migrate a representative part: the team leaves with a plan and the tools to finish."
+      }
+    ]
   },
   {
     "slug": "mcp-server-design",

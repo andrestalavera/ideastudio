@@ -26,9 +26,20 @@ public abstract class LocalizedComponent : ComponentBase, IDisposable
 
     // CultureChanged is raised synchronously by CultureService. Keep a synchronous
     // handler (no async void) and marshal the reload onto the renderer's sync context;
-    // the returned task is observed via discard so exceptions surface to the renderer.
+    // failures are routed to the renderer via DispatchExceptionAsync instead of being
+    // lost on the discarded task.
     private void OnCultureChanged()
-        => _ = InvokeAsync(LoadLocalizedStringsAsync);
+        => _ = InvokeAsync(async () =>
+        {
+            try
+            {
+                await LoadLocalizedStringsAsync();
+            }
+            catch (Exception ex)
+            {
+                await DispatchExceptionAsync(ex);
+            }
+        });
 
     public void Dispose()
     {

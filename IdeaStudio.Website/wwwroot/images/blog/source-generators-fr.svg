@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 656" width="640" height="656" role="img" aria-labelledby="t" lang="fr">
+<title id="t">Fonctionnement des générateurs de sources</title>
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#00c2d4"/></marker>
+</defs>
+<rect width="640" height="656" rx="20" fill="#06181c"/>
+<text x="32" y="44" fill="#00c2d4" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" letter-spacing="3">COMPILATION .NET</text>
+<text x="32" y="70" fill="#e6f1f1" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="600">Fonctionnement des générateurs de sources</text>
+<path d="M74 184H60V524H74" fill="none" stroke="#00c2d4" stroke-width="2" stroke-linecap="round"/>
+<text transform="translate(48 354.0) rotate(-90)" text-anchor="middle" fill="#00c2d4" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">Générateur de sources (Roslyn)</text>
+<rect x="96" y="92" width="512" height="64" rx="12" fill="#0a2328" stroke="#1d3c42" stroke-width="1"/>
+<circle cx="128" cy="124.0" r="15" fill="#1d3c42"/>
+<text x="128" y="129.0" text-anchor="middle" fill="#e6f1f1" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700">1</text>
+<text x="158" y="120" fill="#e6f1f1" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="600">La compilation s’exécute</text>
+<text x="158" y="141" fill="#9db5b8" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">le code est réécrit en MSIL</text>
+<path d="M352.0 159V179" stroke="#00c2d4" stroke-width="2" marker-end="url(#a)"/>
+<rect x="96" y="184" width="512" height="64" rx="12" fill="#0a2328" stroke="#00c2d4" stroke-width="1.5"/>
+<circle cx="128" cy="216.0" r="15" fill="#00c2d4"/>
+<text x="128" y="221.0" text-anchor="middle" fill="#06181c" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700">2</text>
+<text x="158" y="212" fill="#e6f1f1" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="600">Roslyn analyse le code</text>
+<text x="158" y="233" fill="#9db5b8" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">à la recherche d’éléments à générer</text>
+<path d="M352.0 251V271" stroke="#00c2d4" stroke-width="2" marker-end="url(#a)"/>
+<rect x="96" y="276" width="512" height="64" rx="12" fill="#0a2328" stroke="#00c2d4" stroke-width="1.5"/>
+<circle cx="128" cy="308.0" r="15" fill="#00c2d4"/>
+<text x="128" y="313.0" text-anchor="middle" fill="#06181c" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700">3</text>
+<text x="158" y="304" fill="#e6f1f1" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="600">Détection</text>
+<text x="158" y="325" fill="#9db5b8" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">références, classes, attributs [LoggerMessage]</text>
+<path d="M352.0 343V363" stroke="#00c2d4" stroke-width="2" marker-end="url(#a)"/>
+<rect x="96" y="368" width="512" height="64" rx="12" fill="#0a2328" stroke="#00c2d4" stroke-width="1.5"/>
+<circle cx="128" cy="400.0" r="15" fill="#00c2d4"/>
+<text x="128" y="405.0" text-anchor="middle" fill="#06181c" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700">4</text>
+<text x="158" y="396" fill="#e6f1f1" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="600">Génération des sources</text>
+<text x="158" y="417" fill="#9db5b8" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">le générateur écrit le code C#</text>
+<path d="M352.0 435V455" stroke="#00c2d4" stroke-width="2" marker-end="url(#a)"/>
+<rect x="96" y="460" width="512" height="64" rx="12" fill="#0a2328" stroke="#00c2d4" stroke-width="1.5"/>
+<circle cx="128" cy="492.0" r="15" fill="#00c2d4"/>
+<text x="128" y="497.0" text-anchor="middle" fill="#06181c" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700">5</text>
+<text x="158" y="488" fill="#e6f1f1" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="600">Ajout à la compilation</text>
+<text x="158" y="509" fill="#9db5b8" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">le code généré rejoint la compilation en cours</text>
+<path d="M352.0 527V547" stroke="#00c2d4" stroke-width="2" marker-end="url(#a)"/>
+<rect x="96" y="552" width="512" height="64" rx="12" fill="#0a2328" stroke="#1d3c42" stroke-width="1"/>
+<circle cx="128" cy="584.0" r="15" fill="#1d3c42"/>
+<text x="128" y="589.0" text-anchor="middle" fill="#e6f1f1" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700">6</text>
+<text x="158" y="580" fill="#e6f1f1" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="600">La compilation reprend</text>
+<text x="158" y="601" fill="#9db5b8" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">avec les nouveaux éléments</text>
+</svg>

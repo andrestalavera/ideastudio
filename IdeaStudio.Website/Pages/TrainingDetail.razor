@@ -16,7 +16,11 @@
          NoIndex="@(loaded && training is null)"
          StructuredData="@seoStructuredData" />
 
-@if (training is null)
+@if (!loaded)
+{
+    @* Nothing until the first load completes: avoids a 404 flash and a focus jump to the wrong h1. *@
+}
+else if (training is null)
 {
     <Hero Kicker="404" Title="@notFoundTitle" Lead="@notFoundLead">
         <Actions>
@@ -40,8 +44,10 @@ else
             @foreach ((string label, string value) in Facts())
             {
                 <Card data-reveal style="@($"--reveal-step:{step++}")">
-                    <div class="label-mono">@label</div>
-                    <div class="card-title">@value</div>
+                    <dl>
+                        <dt class="label-mono">@label</dt>
+                        <dd class="card-title">@value</dd>
+                    </dl>
                 </Card>
             }
         </div>
@@ -52,7 +58,7 @@ else
     {
         <PageSection Width="narrow">
             <ChapterBand Kicker="@objectivesKicker" Title="@objectivesTitle" />
-            <ul class="ds-highlight-list mt-8">
+            <ul role="list" class="ds-highlight-list mt-8">
                 @for (int i = 0; i < training.Objectives.Count; i++)
                 {
                     <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
@@ -76,7 +82,7 @@ else
     {
         <PageSection Width="narrow">
             <ChapterBand Kicker="@agendaKicker" Title="@agendaTitle" />
-            <ol class="ds-module-list mt-10">
+            <ol role="list" class="ds-module-list mt-10">
                 @for (int i = 0; i < training.Modules.Count; i++)
                 {
                     TrainingModule module = training.Modules[i];
@@ -89,7 +95,7 @@ else
                             }
                         </div>
                         <h3 class="ds-module-title">@module.Title</h3>
-                        <ul class="ds-module-points">
+                        <ul role="list" class="ds-module-points">
                             @foreach (string point in module.Points)
                             {
                                 <li>@point</li>
@@ -111,7 +117,7 @@ else
     @* How the course runs *@
     <PageSection Width="narrow">
         <ChapterBand Kicker="@formatKicker" Title="@formatTitle" />
-        <ul class="ds-highlight-list mt-8">
+        <ul role="list" class="ds-highlight-list mt-8">
             @for (int i = 0; i < formatPoints.Count; i++)
             {
                 <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
@@ -279,10 +285,15 @@ else
 
     private async Task LoadAsync()
     {
-        if (string.IsNullOrWhiteSpace(Slug)) { training = null; return; }
+        if (string.IsNullOrWhiteSpace(Slug)) { training = null; loaded = true; return; }
         bool fr = Fr;
-        IReadOnlyList<Training> all = await Content.GetTrainingsAsync(CultureService.CurrentCulture.Name);
-        training = all.FirstOrDefault(t => string.Equals(t.Slug, Slug, StringComparison.OrdinalIgnoreCase));
+        string culture = CultureService.CurrentCulture.Name;
+        string requestedSlug = Slug;
+        IReadOnlyList<Training> all = await Content.GetTrainingsAsync(culture);
+        // A culture change and a slug change can start overlapping loads (history navigation
+        // across cultures); a load that finishes after a newer one started must not win.
+        if (requestedSlug != Slug || culture != CultureService.CurrentCulture.Name) { return; }
+        training = all.FirstOrDefault(t => string.Equals(t.Slug, requestedSlug, StringComparison.OrdinalIgnoreCase));
         loaded = true;
         if (training is not null)
         {
@@ -290,8 +301,8 @@ else
                 .Where(t => t.Category == training.Category && t.Slug != training.Slug)
                 .Take(3)
                 .ToList();
-            seoTitle = $"{training.Title} | {(fr ? "Formation" : "Training")} — Andrés Talavera | IdeaStud.io";
-            seoDescription = training.Summary;
+            seoTitle = TrainingSeo.Title(training, fr);
+            seoDescription = TrainingSeo.Description(training, fr);
             string slug = training.Slug;
             seoCanonical = $"https://ideastud.io{LocalizedRoute.For("training", fr ? "fr" : "en")}/{slug}";
             string frUrl = $"https://ideastud.io{LocalizedRoute.For("training", "fr")}/{slug}";
@@ -303,19 +314,11 @@ else
     private IEnumerable<(string, string)> Facts()
     {
         if (training is null) { yield break; }
-        if (!string.IsNullOrWhiteSpace(training.Level)) { yield return (levelLabel, LevelLabel(training.Level!)); }
+        if (!string.IsNullOrWhiteSpace(training.Level)) { yield return (levelLabel, TrainingLevels.Label(training.Level, Fr)); }
         if (training.DurationDays is int d) { yield return (durationLabel, Fr ? $"{d} jour{(d > 1 ? "s" : "")}" : $"{d} day{(d > 1 ? "s" : "")}"); }
         if (!string.IsNullOrWhiteSpace(training.Prerequisites)) { yield return (prereqLabel, training.Prerequisites!); }
         if (!string.IsNullOrWhiteSpace(training.Certification)) { yield return (certLabel, training.Certification!); }
     }
-
-    private string LevelLabel(string level) => level.ToLowerInvariant() switch
-    {
-        "foundation" => Fr ? "Fondamentaux" : "Foundation",
-        "intermediate" => Fr ? "Intermédiaire" : "Intermediate",
-        "advanced" => Fr ? "Avancé" : "Advanced",
-        _ => level,
-    };
 
     // Modules are sized in quarters of a day; fractions read better as glyphs than as decimals.
     private string? FormatModuleDuration(double? days) => days switch
@@ -333,7 +336,7 @@ else
     {
         List<string> parts = new();
         if (t.DurationDays is int d) { parts.Add(Fr ? $"{d} j" : $"{d}d"); }
-        if (!string.IsNullOrWhiteSpace(t.Level)) { parts.Add(LevelLabel(t.Level!)); }
+        if (!string.IsNullOrWhiteSpace(t.Level)) { parts.Add(TrainingLevels.Label(t.Level, Fr)); }
         if (!string.IsNullOrWhiteSpace(t.Certification)) { parts.Add(t.Certification!); }
         return string.Join(" · ", parts);
     }

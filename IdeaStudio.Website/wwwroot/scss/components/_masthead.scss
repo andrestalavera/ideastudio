@@ -222,11 +222,26 @@ html {
 // The navigation pill stays visible at all scroll positions (always-on menu).
 // (Previously it faded in from the hero state via --hero-progress.)
 
-// Container-query compacting.
-@container masthead (max-width: 40rem) {
+// Container-query compacting. The full link row needs ~56rem in French (the longer
+// labels); below that it collapses into the menu instead of overflowing the viewport
+// (RGAA 10.11 / WCAG 1.4.10 reflow).
+@container masthead (max-width: 56rem) {
   .ds-masthead-nav { display: none; }
   .ds-masthead-theme { display: none; }   // moves into the mobile menu
   .ds-masthead-toggle { display: inline-flex; }
+}
+
+@container masthead (max-width: 30rem) {
+  .ds-masthead-pill { gap: s.$s-2; padding-inline: s.$s-3; }
+}
+
+// Smallest phones: the booking CTA moves into the menu (last item) so the pill fits.
+// Wider than that the pill keeps it, so the menu copy stays hidden (no duplicate link).
+.ds-masthead-mobile .ds-masthead-mobile-cta { display: none; color: c.$ir-duck; }
+
+@container masthead (max-width: 24rem) {
+  .ds-masthead-cta { display: none; }
+  .ds-masthead-mobile .ds-masthead-mobile-cta { display: block; }
 }
 
 // Theme row inside the mobile dropdown — styled like the mobile nav links.

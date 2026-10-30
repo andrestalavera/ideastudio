@@ -3,6 +3,18 @@
 // keyframe, which utilities can't express. Respects prefers-reduced-motion.
 
 @use '../tokens/colors' as c;
+@use '../tokens/space' as s;
+
+// One line where it fits; on a phone the sentence wraps inside the chip instead of
+// widening the page (RGAA 10.11 reflow at 320px).
+.ds-availability {
+  white-space: nowrap;
+
+  @media (max-width: s.$bp-m) {
+    white-space: normal;
+    border-radius: s.$radius-md;
+  }
+}
 
 .ds-availability-dot {
   position: relative;
