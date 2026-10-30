@@ -209,6 +209,7 @@ public class JsonContentGatewayTests
     [InlineData("IdeaStudio.Website/wwwroot/data/services-fr.json")]
     [InlineData("IdeaStudio.Website/wwwroot/data/services-en.json")]
     [InlineData("IdeaStudio.Website/wwwroot/llms.txt")]
+    [InlineData("IdeaStudio.Website/scripts/prerender-shells.mjs")]
     public void TrainingCountCopy_MatchesCatalogueSize(string relativePath)
     {
         int expected = LoadTrainings("trainings-fr.json").Length;

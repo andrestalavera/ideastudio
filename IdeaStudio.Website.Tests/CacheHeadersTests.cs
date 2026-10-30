@@ -32,7 +32,7 @@ public class CacheHeadersTests
     [Theory]
     [InlineData("/_framework/blazor.webassembly.js")]
     [InlineData("/_framework/dotnet.js")]
-    public void UnfingerprintedFrameworkEntry_Revalidates(string path)
+    public void CacheControlFor_UnfingerprintedFrameworkEntry_Revalidates(string path)
     {
         string? cacheControl = CacheControlFor(path);
 
