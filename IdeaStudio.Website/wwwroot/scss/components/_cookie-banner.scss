@@ -7,7 +7,7 @@
 
 .ds-cookie-banner {
   position: fixed;
-  inset: auto s.$s-4 s.$s-4 s.$s-4;
+  inset: auto s.$s-4 max(s.$s-4, env(safe-area-inset-bottom)) s.$s-4;
   z-index: 1000;
   display: flex;
   justify-content: center;

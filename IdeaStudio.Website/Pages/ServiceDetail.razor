@@ -17,7 +17,11 @@
          NoIndex="@(loaded && service is null)"
          StructuredData="@seoStructuredData" />
 
-@if (service is null)
+@if (!loaded)
+{
+    @* Nothing until the first load completes: avoids a 404 flash and a focus jump to the wrong h1. *@
+}
+else if (service is null)
 {
     <Hero Kicker="404" Title="@notFoundTitle" Lead="@notFoundLead">
         <Actions>
@@ -47,7 +51,7 @@ else
     {
         <PageSection Width="narrow">
             <ChapterBand Kicker="@highlightsKicker" Title="@highlightsTitle" />
-            <ul class="ds-highlight-list mt-8">
+            <ul role="list" class="ds-highlight-list mt-8">
                 @for (int i = 0; i < service.Highlights.Count; i++)
                 {
                     <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
@@ -188,7 +192,7 @@ else
 
     private async Task LoadServiceAsync()
     {
-        if (string.IsNullOrWhiteSpace(Slug)) { service = null; return; }
+        if (string.IsNullOrWhiteSpace(Slug)) { service = null; loaded = true; return; }
         string culture = CultureService.CurrentCulture.Name;
         IReadOnlyList<ServiceModel> all = await Content.GetServicesAsync(culture);
         service = all.FirstOrDefault(s => string.Equals(s.Slug, Slug, StringComparison.OrdinalIgnoreCase));

@@ -16,7 +16,11 @@
          NoIndex="@(loaded && training is null)"
          StructuredData="@seoStructuredData" />
 
-@if (training is null)
+@if (!loaded)
+{
+    @* Nothing until the first load completes: avoids a 404 flash and a focus jump to the wrong h1. *@
+}
+else if (training is null)
 {
     <Hero Kicker="404" Title="@notFoundTitle" Lead="@notFoundLead">
         <Actions>
@@ -40,8 +44,10 @@ else
             @foreach ((string label, string value) in Facts())
             {
                 <Card data-reveal style="@($"--reveal-step:{step++}")">
-                    <div class="label-mono">@label</div>
-                    <div class="card-title">@value</div>
+                    <dl>
+                        <dt class="label-mono">@label</dt>
+                        <dd class="card-title">@value</dd>
+                    </dl>
                 </Card>
             }
         </div>
@@ -52,7 +58,7 @@ else
     {
         <PageSection Width="narrow">
             <ChapterBand Kicker="@objectivesKicker" Title="@objectivesTitle" />
-            <ul class="ds-highlight-list mt-8">
+            <ul role="list" class="ds-highlight-list mt-8">
                 @for (int i = 0; i < training.Objectives.Count; i++)
                 {
                     <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
@@ -76,7 +82,7 @@ else
     {
         <PageSection Width="narrow">
             <ChapterBand Kicker="@agendaKicker" Title="@agendaTitle" />
-            <ol class="ds-module-list mt-10">
+            <ol role="list" class="ds-module-list mt-10">
                 @for (int i = 0; i < training.Modules.Count; i++)
                 {
                     TrainingModule module = training.Modules[i];
@@ -89,7 +95,7 @@ else
                             }
                         </div>
                         <h3 class="ds-module-title">@module.Title</h3>
-                        <ul class="ds-module-points">
+                        <ul role="list" class="ds-module-points">
                             @foreach (string point in module.Points)
                             {
                                 <li>@point</li>
@@ -111,7 +117,7 @@ else
     @* How the course runs *@
     <PageSection Width="narrow">
         <ChapterBand Kicker="@formatKicker" Title="@formatTitle" />
-        <ul class="ds-highlight-list mt-8">
+        <ul role="list" class="ds-highlight-list mt-8">
             @for (int i = 0; i < formatPoints.Count; i++)
             {
                 <li class="ds-highlight" data-reveal style="@($"--reveal-step:{i}")">
@@ -279,7 +285,7 @@ else
 
     private async Task LoadAsync()
     {
-        if (string.IsNullOrWhiteSpace(Slug)) { training = null; return; }
+        if (string.IsNullOrWhiteSpace(Slug)) { training = null; loaded = true; return; }
         bool fr = Fr;
         IReadOnlyList<Training> all = await Content.GetTrainingsAsync(CultureService.CurrentCulture.Name);
         training = all.FirstOrDefault(t => string.Equals(t.Slug, Slug, StringComparison.OrdinalIgnoreCase));

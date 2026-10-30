@@ -4,8 +4,8 @@
 @inject ILocalizedRoute LocalizedRoute
 @inject IThemeService ThemeService
 
-<header class="ds-masthead ds-print-hidden" aria-label="Primary" @onkeydown="OnKeyDown">
-    <nav class="ds-masthead-pill" aria-label="Main">
+<header class="ds-masthead ds-print-hidden" @onkeydown="OnKeyDown">
+    <nav class="ds-masthead-pill" aria-label="@mainNavText">
         <a class="ds-masthead-wordmark" href="@LocalizedRoute.For("home")">
             IdeaStud<span class="ds-masthead-dot">.</span>io
         </a>
@@ -50,7 +50,7 @@
     @if (isMobileOpen)
     {
         <div class="ds-masthead-backdrop" aria-hidden="true" @onclick="CloseMobileMenu"></div>
-        <nav id="ds-mobile-nav" class="ds-masthead-mobile" aria-label="Mobile">
+        <nav id="ds-mobile-nav" class="ds-masthead-mobile" aria-label="@mobileNavText">
             <a href="@LocalizedRoute.For("services.hub")" @ref="firstMobileLink" @onclick="CloseMobileMenu">@servicesText</a>
             <a href="@LocalizedRoute.For("training")" @onclick="CloseMobileMenu">@trainingText</a>
             <a href="@LocalizedRoute.For("realisations")" @onclick="CloseMobileMenu">@realisationsText</a>
@@ -84,6 +84,8 @@
     private string contactText = "Contact";
     private string meetText = "Meet";
     private string bookCallAriaText = "Book a 30-minute call on Calendly (opens in a new tab)";
+    private string mainNavText = "Main navigation";
+    private string mobileNavText = "Mobile menu";
     private string openMenuText = "Open menu";
     private string closeMenuText = "Close menu";
     private string toLightText = "Switch to light theme";
@@ -104,6 +106,10 @@
         bookCallAriaText = $"{meetText}, {LocalizationService.GetString("Nav.MeetAria")}";
         toLightText = LocalizationService.GetString("Theme.ToLight");
         toDarkText = LocalizationService.GetString("Theme.ToDark");
+        mainNavText = LocalizationService.GetString("Nav.MainLabel");
+        mobileNavText = LocalizationService.GetString("Nav.MobileLabel");
+        openMenuText = LocalizationService.GetString("Nav.OpenMenu");
+        closeMenuText = LocalizationService.GetString("Nav.CloseMenu");
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
