@@ -2086,57 +2086,69 @@
   {
     "slug": "ai-dev-method",
     "title": "Développer avec l'IA sans dette technique",
-    "summary": "À l'issue, votre équipe livre plus vite avec Claude Code ou GitHub Copilot sans accumuler de dette technique : responsabilités claires, spécification avant le code, itérations courtes.",
+    "summary": "À l'issue, votre équipe livre avec Claude Code ou GitHub Copilot sans accumuler de dette technique : responsabilités claires, spécifications Gherkin exécutables, boucle SDD, BDD puis TDD, et itérations courtes.",
     "category": "Vibe coding & IA",
-    "audience": "Équipes de développement, techleads et product owners qui utilisent déjà un assistant IA et veulent une méthode pour garder la qualité sous contrôle.",
+    "audience": "Techleads, développeurs .NET expérimentés et product owners qui utilisent déjà un assistant IA et veulent une méthode outillée pour garder la qualité sous contrôle.",
     "objectives": [
-      "Répartir clairement les responsabilités entre l'équipe et l'assistant IA",
-      "Appliquer une méthode Spec-Driven Development allégée : spécification, test rouge, implémentation, refactorisation",
-      "Cadrer l'agent avec des conventions écrites et des contrôles automatiques",
-      "Organiser des itérations courtes et une démonstration quotidienne d'une minute",
-      "Repérer, mesurer et rembourser la dette technique produite avec l'IA"
+      "Répartir clairement les responsabilités entre l'équipe et les agents IA",
+      "Écrire des spécifications Gherkin exécutables, source de vérité de chaque comportement",
+      "Enchaîner SDD, BDD et TDD : scénario, liaison Reqnroll qui échoue, test unitaire qui échoue, puis code",
+      "Mettre en place un flux agentique cadré : questions, plan validé, sub-agents par rôle, hooks et script de contrôle",
+      "Organiser des itérations courtes avec une démonstration quotidienne d'une minute, et rembourser la dette technique produite avec l'IA"
     ],
     "modules": [
       {
         "title": "Responsabilités : qui décide, qui répond",
         "durationDays": 0.25,
         "points": [
-          "Répartir les rôles entre product owner, développeur, relecteur et assistant",
+          "Répartir les rôles entre product owner, développeur, relecteur et agents",
           "Poser la règle : aucun code fusionné que son auteur ne sait pas expliquer",
-          "Définir le périmètre de permissions de l'agent selon le dépôt"
+          "Définir le périmètre de chaque agent selon le dépôt et la tâche"
         ],
-        "workshop": "Écrire la charte d'usage de l'IA de l'équipe : rôles, périmètre de l'agent et règles de relecture."
+        "workshop": "Écrire la charte d'usage de l'IA de l'équipe : rôles, périmètre des agents et règles de relecture."
       },
       {
-        "title": "Une spécification courte avant le code",
+        "title": "La spécification exécutable : Gherkin comme source de vérité",
         "durationDays": 0.5,
         "points": [
-          "Rédiger une spécification d'une page : besoin, règles, cas limites, critères d'acceptation",
-          "Traduire les critères d'acceptation en tests qui échouent avant l'implémentation",
-          "Donner la spécification à l'agent comme source de vérité, avec Claude Code ou GitHub Copilot",
-          "Adapter le cadre, Spec Kit ou version allégée, à la taille de l'équipe"
+          "Écrire des fonctionnalités et des scénarios Gherkin qui décrivent un comportement observable",
+          "Donner un identifiant stable à chaque fonctionnalité et à chaque scénario, et tracer le lien vers les tests",
+          "Couvrir le chemin d'échec autant que le chemin nominal",
+          "Poser la règle : on ne modifie jamais un .feature pour faire passer du code"
         ],
-        "workshop": "Spécifier une fonctionnalité réelle avec le product owner, écrire ses tests rouges, puis la faire implémenter par l'agent."
+        "workshop": "Rédiger avec le product owner les scénarios d'une fonctionnalité réelle, puis les relire en traquant les ambiguïtés."
       },
       {
-        "title": "Conventions et contrôles automatiques",
-        "durationDays": 0.5,
+        "title": "Du scénario au code : BDD avec Reqnroll, puis TDD",
+        "durationDays": 0.75,
         "points": [
-          "Écrire pour l'agent les conventions d'architecture, de nommage et de sécurité (CLAUDE.md, custom instructions)",
-          "Mettre en place build, tests, analyse statique et budget de performance à chaque pull request",
-          "Bloquer les actions risquées avec des hooks et des règles de branche"
+          "Lier les étapes Gherkin à du code avec Reqnroll",
+          "Faire échouer la liaison avant toute implémentation",
+          "Descendre au test unitaire qui échoue, puis au code : rouge, vert, refactorisation",
+          "Faire travailler l'agent dans cette boucle sans qu'il réécrive les tests"
         ],
-        "workshop": "Ajouter à un dépôt fourni les conventions écrites et les contrôles qui rejettent une pull request non conforme."
+        "workshop": "Faire passer un scénario du rouge au vert : liaison Reqnroll, test unitaire, puis implémentation par l'agent."
+      },
+      {
+        "title": "Le flux agentique : questions, plan, validation, boucle",
+        "durationDays": 0.75,
+        "points": [
+          "Un tour de questions avant tout plan, limité à ce qui change le plan",
+          "Un plan par itération, versionné et validé par un humain avant la première ligne de code",
+          "Des sub-agents par rôle (relecture, QA, sécurité) et des hooks qui bloquent les modifications hors périmètre",
+          "Un seul script de contrôle (build, tests, analyse) comme porte de sortie de chaque étape"
+        ],
+        "workshop": "Mettre en place le flux complet sur un dépôt fourni, avec Claude Code ou GitHub Copilot : questions, plan, validation, sub-agents, hooks et script de contrôle."
       },
       {
         "title": "Itérations courtes et démonstration quotidienne",
         "durationDays": 0.25,
         "points": [
-          "Découper le travail en itérations d'une spécification et d'une fonctionnalité",
+          "Une itération, un plan, une pull request qui ferme au moins un scénario",
           "Remplacer le daily par une démonstration d'une minute par personne",
-          "Traiter un sujet bloqué hors démonstration, avec les seules personnes concernées"
+          "Faire tester par le product owner avant la mise en production"
         ],
-        "workshop": "Mener une démonstration d'une minute sur la fonctionnalité livrée la veille, puis la critiquer en groupe."
+        "workshop": "Mener une démonstration d'une minute sur le scénario livré la veille, puis la critiquer en groupe."
       },
       {
         "title": "Mesurer et rembourser la dette technique",
@@ -2150,14 +2162,18 @@
         "workshop": "Auditer un dépôt écrit avec un agent, classer sa dette et planifier son remboursement sur deux itérations."
       }
     ],
-    "prerequisites": "Pratique d'un assistant de code (Claude Code ou GitHub Copilot) et de Git. La présence du product owner est recommandée pour le module sur la spécification.",
-    "durationDays": 2,
-    "level": "intermediate",
-    "evaluation": "Quiz de validation à la fin de chaque module, et restitution de la charte d'usage et du dépôt outillé construits pendant la formation.",
+    "prerequisites": "Bonne pratique de C# et de .NET, d'un framework de tests et d'un assistant de code (Claude Code ou GitHub Copilot). La présence du product owner est recommandée pour le module sur la spécification.",
+    "durationDays": 3,
+    "level": "advanced",
+    "evaluation": "Quiz de validation à la fin de chaque module, et restitution du dépôt outillé construit pendant la formation : scénarios Gherkin, liaisons Reqnroll, plan d'itération et script de contrôle.",
     "faq": [
       {
         "question": "Faut-il utiliser Claude Code ou GitHub Copilot ?",
         "answer": "L'un ou l'autre. La méthode ne dépend pas de l'outil : les ateliers se font avec celui que votre équipe utilise déjà."
+      },
+      {
+        "question": "Faut-il connaître Gherkin ou Reqnroll ?",
+        "answer": "Non. Les bases de Gherkin et de Reqnroll sont vues pendant la formation ; une pratique des tests unitaires suffit."
       },
       {
         "question": "Faut-il abandonner Scrum ?",
@@ -2165,7 +2181,7 @@
       },
       {
         "question": "Quelle différence avec la formation Spec Kit ?",
-        "answer": "La formation Spec Kit approfondit l'outil de GitHub. Celle-ci présente une méthode complète (rôles, spécification, rituels, dette) avec une version allégée du SDD."
+        "answer": "La formation Spec Kit approfondit l'outil de GitHub. Celle-ci présente une méthode complète, appliquée sur un produit en production : rôles, spécifications Gherkin exécutables, flux agentique, rituels et dette."
       }
     ]
   },

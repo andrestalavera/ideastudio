@@ -2086,57 +2086,69 @@
   {
     "slug": "ai-dev-method",
     "title": "Developing with AI without technical debt",
-    "summary": "By the end, your team ships faster with Claude Code or GitHub Copilot without piling up technical debt: clear responsibilities, a specification before the code, short iterations.",
+    "summary": "By the end, your team ships with Claude Code or GitHub Copilot without piling up technical debt: clear responsibilities, executable Gherkin specifications, an SDD, BDD then TDD loop, and short iterations.",
     "category": "Vibe coding & AI",
-    "audience": "Development teams, tech leads and product owners who already use an AI assistant and want a method to keep quality under control.",
+    "audience": "Tech leads, experienced .NET developers and product owners who already use an AI assistant and want a tooled method to keep quality under control.",
     "objectives": [
-      "Clearly split responsibilities between the team and the AI assistant",
-      "Apply a lightweight Spec-Driven Development method: specification, red test, implementation, refactoring",
-      "Frame the agent with written conventions and automated checks",
-      "Run short iterations and a one-minute daily demo",
-      "Spot, measure and pay back the technical debt produced with AI"
+      "Clearly split responsibilities between the team and the AI agents",
+      "Write executable Gherkin specifications, the source of truth for every behaviour",
+      "Chain SDD, BDD and TDD: scenario, failing Reqnroll binding, failing unit test, then code",
+      "Set up a framed agent workflow: questions, an approved plan, role sub-agents, hooks and a gate script",
+      "Run short iterations with a one-minute daily demo, and pay back the technical debt produced with AI"
     ],
     "modules": [
       {
         "title": "Responsibilities: who decides, who answers",
         "durationDays": 0.25,
         "points": [
-          "Split roles between product owner, developer, reviewer and assistant",
+          "Split roles between product owner, developer, reviewer and agents",
           "Set the rule: no code is merged that its author cannot explain",
-          "Define the agent's permission scope for each repository"
+          "Define each agent's scope for the repository and the task"
         ],
-        "workshop": "Write the team's AI usage charter: roles, the agent's scope and review rules."
+        "workshop": "Write the team's AI usage charter: roles, the agents' scope and review rules."
       },
       {
-        "title": "A short specification before the code",
+        "title": "The executable specification: Gherkin as the source of truth",
         "durationDays": 0.5,
         "points": [
-          "Write a one-page specification: need, rules, edge cases, acceptance criteria",
-          "Turn the acceptance criteria into tests that fail before the implementation",
-          "Give the specification to the agent as the source of truth, with Claude Code or GitHub Copilot",
-          "Size the framework, Spec Kit or a lighter version, to the team"
+          "Write Gherkin features and scenarios that describe observable behaviour",
+          "Give every feature and scenario a stable identifier, and trace it to the tests",
+          "Cover the failure path as well as the happy path",
+          "Set the rule: never edit a .feature to make code pass"
         ],
-        "workshop": "Specify a real feature with the product owner, write its red tests, then have the agent implement it."
+        "workshop": "Write the scenarios for a real feature with the product owner, then review them hunting for ambiguity."
       },
       {
-        "title": "Conventions and automated checks",
-        "durationDays": 0.5,
+        "title": "From scenario to code: BDD with Reqnroll, then TDD",
+        "durationDays": 0.75,
         "points": [
-          "Write the architecture, naming and security conventions for the agent (CLAUDE.md, custom instructions)",
-          "Set up build, tests, static analysis and a performance budget on every pull request",
-          "Block risky actions with hooks and branch rules"
+          "Bind Gherkin steps to code with Reqnroll",
+          "Make the binding fail before any implementation",
+          "Go down to a failing unit test, then the code: red, green, refactor",
+          "Keep the agent inside this loop without letting it rewrite the tests"
         ],
-        "workshop": "Add written conventions and the checks that reject a non-compliant pull request to a supplied repository."
+        "workshop": "Take a scenario from red to green: Reqnroll binding, unit test, then implementation by the agent."
+      },
+      {
+        "title": "The agent workflow: questions, plan, approval, loop",
+        "durationDays": 0.75,
+        "points": [
+          "One round of questions before any plan, limited to what changes the plan",
+          "One plan per iteration, versioned and approved by a human before the first line of code",
+          "Role sub-agents (review, QA, security) and hooks that block out-of-scope changes",
+          "A single gate script (build, tests, analysis) as the exit of every step"
+        ],
+        "workshop": "Set up the full workflow on a supplied repository with Claude Code or GitHub Copilot: questions, plan, approval, sub-agents, hooks and gate script."
       },
       {
         "title": "Short iterations and a daily demo",
         "durationDays": 0.25,
         "points": [
-          "Split the work into iterations of one specification and one feature",
+          "One iteration, one plan, one pull request that closes at least one scenario",
           "Replace the stand-up with a one-minute demo per person",
-          "Handle a blocked topic outside the demo, with only the people involved"
+          "Have the product owner test before production"
         ],
-        "workshop": "Run a one-minute demo of the feature shipped the day before, then critique it as a group."
+        "workshop": "Run a one-minute demo of the scenario shipped the day before, then critique it as a group."
       },
       {
         "title": "Measuring and paying back technical debt",
@@ -2150,14 +2162,18 @@
         "workshop": "Audit a repository written with an agent, classify its debt and plan paying it back over two iterations."
       }
     ],
-    "prerequisites": "Practice with a coding assistant (Claude Code or GitHub Copilot) and Git. The product owner's attendance is recommended for the specification module.",
-    "durationDays": 2,
-    "level": "intermediate",
-    "evaluation": "A short quiz at the end of every module, and a walkthrough of the usage charter and the equipped repository built during the course.",
+    "prerequisites": "Solid C# and .NET practice, with a test framework and a coding assistant (Claude Code or GitHub Copilot). The product owner's attendance is recommended for the specification module.",
+    "durationDays": 3,
+    "level": "advanced",
+    "evaluation": "A short quiz at the end of every module, and a walkthrough of the equipped repository built during the course: Gherkin scenarios, Reqnroll bindings, iteration plan and gate script.",
     "faq": [
       {
         "question": "Should we use Claude Code or GitHub Copilot?",
         "answer": "Either. The method doesn't depend on the tool: the workshops use whichever one your team already has."
+      },
+      {
+        "question": "Do we need to know Gherkin or Reqnroll?",
+        "answer": "No. Gherkin and Reqnroll basics are covered during the course; unit-testing practice is enough."
       },
       {
         "question": "Do we have to drop Scrum?",
@@ -2165,7 +2181,7 @@
       },
       {
         "question": "How is this different from the Spec Kit course?",
-        "answer": "The Spec Kit course goes deep into GitHub's tool. This one presents a complete method (roles, specification, rituals, debt) with a lighter take on SDD."
+        "answer": "The Spec Kit course goes deep into GitHub's tool. This one presents a complete method, applied on a product in production: roles, executable Gherkin specifications, agent workflow, rituals and debt."
       }
     ]
   },

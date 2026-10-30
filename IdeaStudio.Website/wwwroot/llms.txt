@@ -120,7 +120,7 @@
   - Claude Code for teams
   - Spec-Driven Development with GitHub Spec Kit
   - tailoring Spec Kit to a .NET stack
-  - developing with AI without technical debt (roles, lightweight SDD, short iterations, daily one-minute demo)
+  - developing with AI without technical debt (roles, Gherkin specs → Reqnroll BDD → TDD, agent workflow, daily one-minute demo)
   - GitHub Copilot fundamentals
   - advanced GitHub Copilot (`GH-300` prep)
   - agentic development with GitHub (`GH-600` prep)
