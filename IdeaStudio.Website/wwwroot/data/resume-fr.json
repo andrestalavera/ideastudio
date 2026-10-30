@@ -91,7 +91,7 @@
       "startDate": "2025-06-01",
       "locations": [
         "France",
-        "Remote"
+        "À distance"
       ],
       "description": [
         "Le métier évolue : intégration au quotidien des outils d'agentic coding pour concevoir, architecturer et livrer des plateformes complètes plus vite, sans renoncer à l'exigence d'architecture et de qualité.",
@@ -189,7 +189,7 @@
       "locations": [
         "Bruxelles, Belgique",
         "Paris, France",
-        "Remote"
+        "À distance"
       ],
       "description": [
         "Medtech et Ceesa sont des entreprises spécialisées dans les solutions technologiques pour le secteur de la santé, qui fournissent des services de gestion et d'analyse de données aux laboratoires.",
@@ -230,6 +230,7 @@
         "Azure Web App",
         "BICEP",
         "Azure SQL",
+        "SQL Server",
         "Azure Functions",
         "Azure Key Vault",
         "Application Insights",
@@ -305,6 +306,7 @@
         "Gestion d'une équipe de jusqu'à 5 développeurs.",
         "Analyse complète des projets existants pour identifier les domaines d'amélioration.",
         "Amélioration du processus de livraison et organisation des dépôts git.",
+        "Mise en place de tests unitaires pour garantir la fiabilité et la stabilité du logiciel.",
         "Amélioration des pipelines CI/CD pour une meilleure efficacité.",
         "Développement de plusieurs fonctionnalités clés pour le nouveau système.",
         "Formation des développeurs sur les nouvelles technologies et les meilleures pratiques.",
@@ -378,7 +380,7 @@
         "Luxembourg",
         "Belgique",
         "Autriche",
-        "Remote"
+        "À distance"
       ],
       "description": [
         "Chez IdeaStud.io, je développe des applications mobiles et web innovantes pour divers secteurs d'activité à l'aide des dernières technologies Microsoft, en particulier les applications basées sur le cloud.",
@@ -498,7 +500,7 @@
       "startDate": "2021-10-01",
       "endDate": "2022-02-01",
       "locations": [
-        "Remote"
+        "À distance"
       ],
       "description": [
         "Sage est une multinationale britannique spécialisée dans les logiciels d'entreprise. Elle était en train de redévelopper certaines bibliothèques internes et ses produits commerciaux.",
@@ -610,7 +612,7 @@
       "startDate": "2021-04-01",
       "endDate": "2021-06-01",
       "locations": [
-        "Remote"
+        "À distance"
       ],
       "description": [
         "Alteva est l'un des principaux fournisseurs de solutions logicielles pour la gestion immobilière, avec plus de 20 ans d'expérience dans ce domaine. Son logiciel, Mission One, est conçu pour répondre aux besoins des différents acteurs impliqués dans l'entretien des biens immobiliers.",
@@ -662,7 +664,7 @@
       "endDate": "2021-04-01",
       "locations": [
         "Audincourt, France",
-        "Remote"
+        "À distance"
       ],
       "description": [
         "Faurecia est un leader mondial dans le domaine des technologies automobiles. L'entreprise est réputée pour ses solutions innovantes qui améliorent l'expérience de conduite et contribuent à une mobilité durable.",
@@ -719,7 +721,7 @@
       "endDate": "2020-09-01",
       "locations": [
         "Strasbourg, France",
-        "Remote"
+        "À distance"
       ],
       "description": [
         "Charl'Antoine est une entreprise spécialisée dans les services de livraison. Elle est réputée pour ses solutions de livraison efficaces et fiables.",
@@ -763,6 +765,7 @@
         "Azure Key Vault",
         "Microsoft Azure",
         "Azure Monitor",
+        "Azure Storage",
         "Xamarin",
         "Xamarin Native",
         "Windows Phone",
@@ -982,6 +985,7 @@
         "Techlead",
         "Microsoft Azure",
         "Azure Monitor",
+        "Azure Storage",
         "Test-Driven Development",
         "ASP.NET",
         ".NET Core",
@@ -1005,7 +1009,7 @@
       "startDate": "2018-01-01",
       "endDate": "2018-09-01",
       "locations": [
-        "Greater Paris Metropolitan Region"
+        "Région parisienne, France"
       ],
       "description": [
         "Entreprise française, le groupe COLAS est un leader mondial de la construction de routes et de voies ferrées, connu pour ses solutions d'infrastructures durables. Il est également l'un des premiers recycleurs au monde.",
@@ -1065,7 +1069,7 @@
       "startDate": "2017-10-01",
       "endDate": "2017-12-01",
       "locations": [
-        "Greater Paris Metropolitan Region"
+        "Région parisienne, France"
       ],
       "description": [
         "FORTIA est une entreprise de technologie financière spécialisée dans les solutions innovantes pour le secteur de la gestion d'investissements.",
@@ -1099,7 +1103,8 @@
       "startDate": "2017-06-01",
       "endDate": "2017-09-01",
       "locations": [
-        "Greater Paris Metropolitan Region"
+        "Paris, France",
+        "À distance"
       ],
       "description": [
         "AFILIZA est une agence numérique spécialisée dans la création d'une présence en ligne efficace pour les entreprises.",
@@ -1141,7 +1146,8 @@
       "startDate": "2016-11-01",
       "endDate": "2017-04-01",
       "locations": [
-        "Paris Area, France"
+        "Paris Area, France",
+        "À distance"
       ],
       "description": [
         "Digit-Prime est une entreprise technologique qui propose une gamme de services allant de la formation au développement d'applications.",

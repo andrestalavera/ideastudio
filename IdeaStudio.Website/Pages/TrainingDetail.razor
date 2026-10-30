@@ -309,19 +309,11 @@ else
     private IEnumerable<(string, string)> Facts()
     {
         if (training is null) { yield break; }
-        if (!string.IsNullOrWhiteSpace(training.Level)) { yield return (levelLabel, LevelLabel(training.Level!)); }
+        if (!string.IsNullOrWhiteSpace(training.Level)) { yield return (levelLabel, TrainingLevels.Label(training.Level, Fr)); }
         if (training.DurationDays is int d) { yield return (durationLabel, Fr ? $"{d} jour{(d > 1 ? "s" : "")}" : $"{d} day{(d > 1 ? "s" : "")}"); }
         if (!string.IsNullOrWhiteSpace(training.Prerequisites)) { yield return (prereqLabel, training.Prerequisites!); }
         if (!string.IsNullOrWhiteSpace(training.Certification)) { yield return (certLabel, training.Certification!); }
     }
-
-    private string LevelLabel(string level) => level.ToLowerInvariant() switch
-    {
-        "foundation" => Fr ? "Fondamentaux" : "Foundation",
-        "intermediate" => Fr ? "Intermédiaire" : "Intermediate",
-        "advanced" => Fr ? "Avancé" : "Advanced",
-        _ => level,
-    };
 
     // Modules are sized in quarters of a day; fractions read better as glyphs than as decimals.
     private string? FormatModuleDuration(double? days) => days switch
@@ -339,7 +331,7 @@ else
     {
         List<string> parts = new();
         if (t.DurationDays is int d) { parts.Add(Fr ? $"{d} j" : $"{d}d"); }
-        if (!string.IsNullOrWhiteSpace(t.Level)) { parts.Add(LevelLabel(t.Level!)); }
+        if (!string.IsNullOrWhiteSpace(t.Level)) { parts.Add(TrainingLevels.Label(t.Level, Fr)); }
         if (!string.IsNullOrWhiteSpace(t.Certification)) { parts.Add(t.Certification!); }
         return string.Join(" · ", parts);
     }

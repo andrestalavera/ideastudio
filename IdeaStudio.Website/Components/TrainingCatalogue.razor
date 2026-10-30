@@ -29,7 +29,7 @@
                                 }
                                 @if (!string.IsNullOrWhiteSpace(t.Level))
                                 {
-                                    <span class="ds-training-card-pill">@FormatLevel(t.Level)</span>
+                                    <span class="ds-training-card-pill">@TrainingLevels.Label(t.Level, fr)</span>
                                 }
                                 @if (!string.IsNullOrWhiteSpace(t.Certification))
                                 {
@@ -71,17 +71,5 @@
         bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
         durationSuffix = fr ? "j" : "d";
         prereqLabel    = fr ? "Prérequis :" : "Prerequisites:";
-    }
-
-    private string FormatLevel(string? level)
-    {
-        bool fr = CultureService.CurrentCulture.Name.StartsWith("fr");
-        return level switch
-        {
-            "foundation"   => fr ? "Fondations" : "Foundations",
-            "intermediate" => fr ? "Intermédiaire" : "Intermediate",
-            "advanced"     => fr ? "Avancé" : "Advanced",
-            _              => level ?? string.Empty,
-        };
     }
 }

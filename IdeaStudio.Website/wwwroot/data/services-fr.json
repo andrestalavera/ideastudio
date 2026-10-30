@@ -68,7 +68,7 @@
     "kicker": "TRANSMISSION",
     "tagline": "Vos équipes qui montent vraiment en compétence sur .NET, Azure et l'IA, 3 750 heures de formation animées, par un consultant qui code au quotidien.",
     "iconId": "training",
-    "summary": "3 750 heures de formation animées à mon actif, sur deux décennies d'écosystème Microsoft. Auprès de développeurs juniors comme de techleads en quête de recul, dans des écoles (Supinfo, NextFormation) ou de grands centres (ORSYS, IP-Formation, Happly), en présentiel, classe virtuelle ou intra sur-mesure. 40 formations au catalogue ci-dessous, à prendre telles quelles, ou à recomposer ensemble pour bâtir le programme qui colle à votre équipe.",
+    "summary": "3 750 heures de formation animées à mon actif, sur plus de 15 ans d'écosystème Microsoft. Auprès de développeurs juniors comme de techleads en quête de recul, dans des écoles (Supinfo, NextFormation) ou de grands centres (ORSYS, IP-Formation, Happly), en présentiel, classe virtuelle ou intra sur-mesure. 40 formations au catalogue ci-dessous, à prendre telles quelles, ou à recomposer ensemble pour bâtir le programme qui colle à votre équipe.",
     "highlights": [
       "Vos développeurs construisent des applications web modernes, prêtes pour la production (ASP.NET Core, Blazor)",
       "Vos équipes maîtrisent le cloud Azure et se préparent sereinement aux certifications AI-200, AZ-305 et AZ-400",
@@ -95,7 +95,7 @@
     "faq": [
       { "question": "Quel est votre TJM en formation ?", "answer": "600 à 800 € par jour selon le module et le format, ou forfait inter / intra. Devis chiffré sous 24 h à partir d'un brief court." },
       { "question": "Formez-vous à distance ?", "answer": "Oui, classe virtuelle synchrone, exercices en binôme, démos en partage d'écran, retours en direct. La même rigueur qu'en présentiel." },
-      { "question": "Êtes-vous certifié ?", "answer": "Non, je ne suis pas certifié. J'accompagne les équipes dans la préparation des formations certifiantes (AI-200, AZ-305, AZ-400, GH-200, GH-300, GH-500, GH-600, AB-730), en m'appuyant sur 15+ ans de pratique .NET/Azure en production et 3 750 heures de formation animées." },
+      { "question": "Êtes-vous certifié ?", "answer": "Non, je ne suis pas certifié. Je prépare les équipes aux examens de certification Microsoft et GitHub (AI-200, AZ-305, AZ-400, GH-200, GH-300, GH-500, GH-600, AB-730), en m'appuyant sur 15+ ans de pratique .NET/Azure en production et 3 750 heures de formation animées." },
       { "question": "Comment construire un programme sur-mesure ?", "answer": "On part d'un module catalogue qui couvre le cœur de votre besoin, on identifie ce qui manque et ce qui est superflu, on emprunte des chapitres aux modules connexes, on cale la durée. Le brief tient en un appel de 30 minutes." },
       { "question": "Quels dispositifs de financement ?", "answer": "Les centres partenaires (ORSYS, IP-Formation, NextFormation) sont Qualiopi : OPCO, CPF entreprise, plan de développement des compétences. En intra direct, je vous oriente vers le dispositif adapté." }
     ],

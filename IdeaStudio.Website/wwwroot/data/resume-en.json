@@ -214,8 +214,10 @@
         "FinOps approach: optimized Azure Functions execution time to reduce billing, and ran an App Service Plan vs Containers comparison to pick the most cost-effective hosting."
       ],
       "skills": [
+        ".NET",
         "ASP.NET Core",
         ".NET 9",
+        "Azure",
         "Azure DevOps",
         "GitHub Actions",
         "Continuous Integration and Continuous Delivery (CI/CD)",
@@ -228,7 +230,7 @@
         "Azure Web Apps",
         "Bicep",
         "Azure SQL",
-        "SQL-Server",
+        "SQL Server",
         "Azure Functions",
         "Azure Key Vault",
         "Application Insights",
@@ -274,6 +276,7 @@
         "Azure Storage",
         "Test-Driven Development",
         "Vue.js",
+        "Vue",
         "Vue 3",
         "Vite",
         "Pinia",
@@ -366,7 +369,7 @@
         "SQL"
       ]
     },
-        {
+    {
       "title": "Founder - freelance .NET developer, techlead and trainer",
       "company": "IdeaStudio",
       "mode": "Self-employed",
@@ -732,6 +735,7 @@
         "Developed tests following the Test-Driven Development (TDD) approach to ensure the reliability and stability of the app.",
         "Developed APIs to facilitate communication between the app and the backend systems.",
         "Developed the mobile app, enhancing its functionality and user experience.",
+        "Developed an admin console to manage the app and monitor its performance.",
         "Ensured the app is secure and data is protected.",
         "Optimized the performance of the app for a smooth user experience.",
         "Provided training and support to the team on the new technologies and best practices used in the app.",
@@ -872,6 +876,7 @@
         "ASP.NET",
         ".NET Core",
         "C#",
+        "Microsoft Entra ID",
         "Continuous Integration and Continuous Delivery (CI/CD)",
         "Swagger",
         "Azure Cosmos DB",
@@ -969,6 +974,7 @@
         "Azure DevOps",
         "Azure Pipelines",
         ".NET",
+        "React.js",
         "ASP.NET MVC",
         "jQuery",
         "ASP.NET Boilerplate",
@@ -987,6 +993,7 @@
         "Continuous Integration and Continuous Delivery (CI/CD)",
         "Swagger",
         "API Development",
+        "Azure Service Bus",
         "Azure Functions",
         "Microservices",
         "FinOps",

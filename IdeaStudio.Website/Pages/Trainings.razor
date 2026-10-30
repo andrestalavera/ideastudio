@@ -156,17 +156,9 @@
     {
         List<string> chips = new();
         if (t.DurationDays is int d) { chips.Add(Fr ? $"{d} j" : $"{d}d"); }
-        if (!string.IsNullOrWhiteSpace(t.Level)) { chips.Add(LevelLabel(t.Level)); }
+        if (!string.IsNullOrWhiteSpace(t.Level)) { chips.Add(TrainingLevels.Label(t.Level, Fr)); }
         return chips;
     }
-
-    private string LevelLabel(string level) => level.ToLowerInvariant() switch
-    {
-        "foundation" => Fr ? "Fondamentaux" : "Foundation",
-        "intermediate" => Fr ? "Intermédiaire" : "Intermediate",
-        "advanced" => Fr ? "Avancé" : "Advanced",
-        _ => level,
-    };
 
     private void GenerateStructuredData()
     {

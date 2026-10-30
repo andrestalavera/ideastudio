@@ -10,7 +10,7 @@
   - role: trainer
   - experience: 15+ years
   - teaching: 3,750 hours delivered
-  - certified: no (supports teams preparing certification-track training)
+  - certified: no (prepares teams for vendor certification exams)
 
 ## Key pages
 
@@ -108,7 +108,7 @@
   - distributed applications with Aspire
   - moving to .NET 11 (C# 15, runtime async)
 - **Azure**
-  - `AI-200`, `AZ-305` & `AZ-400` prep (the trainer is not certified; supports teams preparing certification-track training)
+  - `AI-200`, `AZ-305` & `AZ-400` prep (the trainer is not certified; prepares teams for vendor certification exams)
   - Azure Functions & events
   - App Service & containers
   - Infrastructure as Code with Bicep & azd
