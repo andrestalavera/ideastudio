@@ -358,7 +358,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/blog/coder-avec-ia-sans-dette-technique" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique" />
@@ -367,7 +367,7 @@
   </url>
   <url>
     <loc>https://ideastud.io/en/blog/coder-avec-ia-sans-dette-technique</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/blog/coder-avec-ia-sans-dette-technique" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/blog/coder-avec-ia-sans-dette-technique" />
@@ -934,6 +934,96 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/m365-copilot-work" />
     <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/m365-copilot-work" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/m365-copilot-work" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/claude-code-fundamentals</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/claude-code-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/claude-code-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/claude-code-fundamentals" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/claude-code-fundamentals</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/claude-code-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/claude-code-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/claude-code-fundamentals" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/ai-dev-method</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ai-dev-method" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ai-dev-method" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ai-dev-method" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/ai-dev-method</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ai-dev-method" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ai-dev-method" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ai-dev-method" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/copilot-fundamentals</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/copilot-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/copilot-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/copilot-fundamentals" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/copilot-fundamentals</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/copilot-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/copilot-fundamentals" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/copilot-fundamentals" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/ai-tests-code-review</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ai-tests-code-review" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ai-tests-code-review" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ai-tests-code-review" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/ai-tests-code-review</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/ai-tests-code-review" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/ai-tests-code-review" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/ai-tests-code-review" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/fr/formations/dotnet-modernization-ai</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-modernization-ai" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-modernization-ai" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-modernization-ai" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/training/dotnet-modernization-ai</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/formations/dotnet-modernization-ai" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/training/dotnet-modernization-ai" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/formations/dotnet-modernization-ai" />
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
