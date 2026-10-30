@@ -1,4 +1,5 @@
 using IdeaStudio.Website.Models;
+using IdeaStudio.Website.Services;
 
 namespace IdeaStudio.Website.Tests;
 

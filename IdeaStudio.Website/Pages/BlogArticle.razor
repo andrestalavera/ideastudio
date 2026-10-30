@@ -50,16 +50,6 @@ else if (loaded)
 @code {
     [Parameter] public string Slug { get; set; } = "";
 
-    // Single shared pipeline. DisableHtml() drops raw inline/block HTML so
-    // stored Markdown can't smuggle <script>/<img onerror> past the
-    // (MarkupString) sink, which bypasses Razor's HTML encoding. Built once
-    // and reused across renders (building per-render is wasteful).
-    private static readonly MarkdownPipeline MarkdownPipeline =
-        new MarkdownPipelineBuilder()
-            .UseAdvancedExtensions()
-            .DisableHtml()
-            .Build();
-
     private BlogPost? post;
     private bool loaded;
     private string? loadedSlug;
@@ -116,7 +106,7 @@ else if (loaded)
         string hub = LocalizedRoute.For("blog", cultureCode);
         if (post is not null)
         {
-            bodyHtml = (MarkupString)Markdown.ToHtml(post.Body, MarkdownPipeline);
+            bodyHtml = (MarkupString)Markdown.ToHtml(post.Body, MarkdownRendering.Pipeline);
             seoTitle = $"{post.Title} | IdeaStud.io";
             seoDescription = post.Summary;
             seoCanonical = $"https://ideastud.io{hub}/{post.Slug}";

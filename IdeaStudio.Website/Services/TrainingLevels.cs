@@ -1,4 +1,4 @@
-namespace IdeaStudio.Website.Models;
+namespace IdeaStudio.Website.Services;
 
 /// <summary>
 /// Single source of truth for the display label of a training's <c>level</c> code, so the

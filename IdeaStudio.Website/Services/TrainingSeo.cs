@@ -1,4 +1,6 @@
-namespace IdeaStudio.Website.Models;
+using IdeaStudio.Website.Models;
+
+namespace IdeaStudio.Website.Services;
 
 /// <summary>
 /// Search-snippet wording for a course page. The title leads with the term buyers search

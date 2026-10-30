@@ -37,7 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <InternalsVisibleTo Include="..\IdeaStudio.Website.Tests\IdeaStudio.Website.Tests.csproj" />
+        <InternalsVisibleTo Include="IdeaStudio.Website.Tests" />
     </ItemGroup>
 
 </Project>
