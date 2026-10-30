@@ -287,8 +287,13 @@ else
     {
         if (string.IsNullOrWhiteSpace(Slug)) { training = null; loaded = true; return; }
         bool fr = Fr;
-        IReadOnlyList<Training> all = await Content.GetTrainingsAsync(CultureService.CurrentCulture.Name);
-        training = all.FirstOrDefault(t => string.Equals(t.Slug, Slug, StringComparison.OrdinalIgnoreCase));
+        string culture = CultureService.CurrentCulture.Name;
+        string requestedSlug = Slug;
+        IReadOnlyList<Training> all = await Content.GetTrainingsAsync(culture);
+        // A culture change and a slug change can start overlapping loads (history navigation
+        // across cultures); a load that finishes after a newer one started must not win.
+        if (requestedSlug != Slug || culture != CultureService.CurrentCulture.Name) { return; }
+        training = all.FirstOrDefault(t => string.Equals(t.Slug, requestedSlug, StringComparison.OrdinalIgnoreCase));
         loaded = true;
         if (training is not null)
         {

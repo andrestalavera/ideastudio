@@ -194,8 +194,12 @@ else
     {
         if (string.IsNullOrWhiteSpace(Slug)) { service = null; loaded = true; return; }
         string culture = CultureService.CurrentCulture.Name;
+        string slug = Slug;
         IReadOnlyList<ServiceModel> all = await Content.GetServicesAsync(culture);
-        service = all.FirstOrDefault(s => string.Equals(s.Slug, Slug, StringComparison.OrdinalIgnoreCase));
+        // A culture change and a slug change can start overlapping loads (history navigation
+        // across cultures); a load that finishes after a newer one started must not win.
+        if (slug != Slug || culture != CultureService.CurrentCulture.Name) { return; }
+        service = all.FirstOrDefault(s => string.Equals(s.Slug, slug, StringComparison.OrdinalIgnoreCase));
         loaded = true;
         if (service is not null)
         {
