@@ -1,7 +1,6 @@
 @page "/fr/blog/{slug}"
 @page "/en/blog/{slug}"
 @using System.Globalization
-@using Markdig
 @using IdeaStudio.Website.Components
 @using IdeaStudio.Website.Models
 @using IdeaStudio.Website.Services
@@ -106,7 +105,7 @@ else if (loaded)
         string hub = LocalizedRoute.For("blog", cultureCode);
         if (post is not null)
         {
-            bodyHtml = (MarkupString)Markdown.ToHtml(post.Body, MarkdownRendering.Pipeline);
+            bodyHtml = (MarkupString)MarkdownRendering.ToHtml(post.Body);
             seoTitle = $"{post.Title} | IdeaStud.io";
             seoDescription = post.Summary;
             seoCanonical = $"https://ideastud.io{hub}/{post.Slug}";
