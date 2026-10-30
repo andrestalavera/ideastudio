@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 import {
   type ContactPayload,
   isHoneypotTripped,
+  replyToAddress,
   stripCrlf,
   validateContact,
 } from "./_lib/contact-validation.mjs";
@@ -71,7 +72,6 @@ export default async (req: Request, _context: Context): Promise<Response> => {
   // Header-injection defence: strip CR/LF from any value that flows into an
   // address/header field before composing replyTo / subject.
   const safeName = stripCrlf(name);
-  const safeEmail = stripCrlf(email);
   const safeSubject = stripCrlf(subject || `Contact ideastud.io — ${safeName}`);
 
   const text =
@@ -85,7 +85,7 @@ export default async (req: Request, _context: Context): Promise<Response> => {
     await transporter.sendMail({
       from,
       to,
-      replyTo: `${safeName} <${safeEmail}>`,
+      replyTo: replyToAddress(name, email),
       subject: safeSubject,
       text,
     });

@@ -11,13 +11,13 @@
   "dependencies": {
     "@netlify/functions": "^5.2.0",
     "@sparticuz/chromium-min": "^148.0.0",
-    "nodemailer": "^9.0.1",
+    "nodemailer": "^10.3.1",
     "puppeteer-core": "^24.42.0",
     "tar-fs": "^3.1.2"
   },
   "devDependencies": {
-    "@types/nodemailer": "^7.0.2",
     "@types/node": "^22.10.2",
+    "@types/nodemailer": "^8.0.2",
     "@types/tar-fs": "^2.0.4",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
