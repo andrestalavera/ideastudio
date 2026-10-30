@@ -197,7 +197,7 @@ public class StoreTests
     public async Task CultureService_SetCultureAsync_RoundTripsThroughStore()
     {
         Store<AppState> store = NewStore();
-        CultureService service = new(Mock.Of<IJSRuntime>(), new TestNavigationManager(), store);
+        CultureService service = new(new TestNavigationManager(), store);
         int fired = 0;
         service.CultureChanged += () => fired++;
 
@@ -212,7 +212,7 @@ public class StoreTests
     public async Task CultureService_SetCultureAsync_SameCulture_DoesNotFire()
     {
         Store<AppState> store = NewStore();
-        CultureService service = new(Mock.Of<IJSRuntime>(), new TestNavigationManager(), store);
+        CultureService service = new(new TestNavigationManager(), store);
         int fired = 0;
         service.CultureChanged += () => fired++;
 

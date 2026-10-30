@@ -7,10 +7,9 @@ namespace IdeaStudio.Website.Services;
 public interface ILazyLoadingService
 {
     Task<T?> LoadDataAsync<T>(string url, CancellationToken cancellationToken = default);
-    Task<string?> LoadImageAsync(string imageUrl, CancellationToken cancellationToken = default);
 }
 
-public class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFactory) : ILazyLoadingService
+public sealed class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFactory) : ILazyLoadingService
 {
     private readonly ILogger<LazyLoadingService> logger = loggerFactory.CreateLogger<LazyLoadingService>();
     private readonly Dictionary<string, object> cache = [];
@@ -56,38 +55,6 @@ public class LazyLoadingService(HttpClient httpClient, ILoggerFactory loggerFact
         {
             logger.JsonError(url, ex.Message, ex);
             return default;
-        }
-    }
-
-    public async Task<string?> LoadImageAsync(string imageUrl, CancellationToken cancellationToken = default)
-    {
-        try
-        {
-            if (cache.TryGetValue(imageUrl, out object? cachedUrl))
-            {
-                if (cachedUrl is string stringCachedUrl)
-                {
-                    return stringCachedUrl;
-                }
-            }
-
-            HttpResponseMessage response = await httpClient.GetAsync(imageUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
-            if (response.IsSuccessStatusCode)
-            {
-                cache[imageUrl] = imageUrl;
-                return imageUrl;
-            }
-            return null;
-        }
-        catch (HttpRequestException ex)
-        {
-            logger.HttpError(imageUrl, ex.Message, ex);
-            return null;
-        }
-        catch (TaskCanceledException ex)
-        {
-            logger.HttpRequestCanceled(imageUrl, ex.Message, ex);
-            return null;
         }
     }
 }

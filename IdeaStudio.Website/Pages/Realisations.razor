@@ -92,7 +92,7 @@
     {
         await base.LoadLocalizedStringsAsync();
         all = await Content.GetRealisationsAsync(CultureService.CurrentCulture.Name);
-        allTechs = all.SelectMany(r => r.Technologies).Distinct().OrderBy(x => x).ToArray();
+        allTechs = RealisationFilter.AvailableTechnologies(all).ToArray();
         ApplyFilter();
         GenerateStructuredData();
         StateHasChanged();
@@ -128,7 +128,7 @@
     {
         filtered = activeTech is null
             ? all
-            : all.Where(r => r.Technologies.Contains(activeTech)).ToArray();
+            : RealisationFilter.Apply(all, [activeTech], []).ToArray();
     }
 
     private void GenerateStructuredData()
