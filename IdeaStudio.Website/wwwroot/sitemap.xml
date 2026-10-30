@@ -392,6 +392,24 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://ideastud.io/fr/blog/monitorer-ses-applications</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/blog/monitorer-ses-applications" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/blog/monitorer-ses-applications" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/blog/monitorer-ses-applications" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ideastud.io/en/blog/monitorer-ses-applications</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ideastud.io/fr/blog/monitorer-ses-applications" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ideastud.io/en/blog/monitorer-ses-applications" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ideastud.io/fr/blog/monitorer-ses-applications" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 
   <!-- Legal -->
   <url>
