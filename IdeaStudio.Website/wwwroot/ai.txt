@@ -15,8 +15,9 @@
   "certificationNote": "Prepares teams for Microsoft and GitHub certification exams (AI-200, AZ-305, AZ-400, GH-200, GH-300, GH-500, GH-600, AB-730); holds no certification.",
   "pricing": {
     "currency": "EUR",
-    "dayRateMin": 600,
-    "dayRateMax": 800,
+    "dayRate": "on request",
+    "dayRateMin": 650,
+    "dayRateMax": 1200,
     "freeScopingCall": true,
     "quoteWithinHours": 24,
     "commission": 0,

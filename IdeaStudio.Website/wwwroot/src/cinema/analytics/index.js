@@ -4,17 +4,13 @@
 //
 // Behavior:
 //   - On localhost: every call is a no-op (no scripts, no fetches).
-//   - setConsent(true)  -> updates Consent Mode v2 to granted; lazy-loads
-//                          Clarity and (if META_PIXEL_ID is set) Meta Pixel.
+//   - setConsent(true)  -> updates Consent Mode v2 to granted; lazy-loads Clarity.
 //   - setConsent(false) -> updates Consent Mode v2 to denied (idempotent).
-//   - trackPageView(url) -> always fires gtag page_view; calls clarity/fbq
-//                           page hooks if those scripts are loaded.
-//
-// To enable Meta Pixel later: replace META_PIXEL_ID = null with the actual ID.
+//   - trackPageView(url) -> always fires gtag page_view; calls the Clarity
+//                           page hook once Clarity is loaded.
 
 const GA_ID = 'G-VFWV1QDJFB';
 const CLARITY_ID = 'whf48fcfv3';
-const META_PIXEL_ID = null; // TODO: set when Meta Pixel ID is available
 
 const isLocalhost =
   typeof location !== 'undefined' &&
@@ -23,7 +19,6 @@ const isLocalhost =
    location.hostname === '[::1]');
 
 let clarityLoaded = false;
-let pixelLoaded = false;
 
 function gtag() {
   if (typeof window === 'undefined' || !window.dataLayer) return;
@@ -41,24 +36,6 @@ function loadClarity() {
   })(window, document, 'clarity', 'script', CLARITY_ID);
 }
 
-function loadMetaPixel() {
-  if (pixelLoaded || isLocalhost || !META_PIXEL_ID) return;
-  pixelLoaded = true;
-  // Standard Meta Pixel loader.
-  (function (f, b, e, v) {
-    if (f.fbq) return;
-    const n = f.fbq = function () {
-      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-    };
-    if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-    n.queue = [];
-    const t = b.createElement(e); t.async = !0; t.src = v;
-    const s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
-  })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-  window.fbq('init', META_PIXEL_ID);
-  window.fbq('track', 'PageView');
-}
-
 export function setConsent(grant) {
   if (isLocalhost) return;
   if (!!grant) {
@@ -69,7 +46,6 @@ export function setConsent(grant) {
       analytics_storage: 'granted'
     });
     loadClarity();
-    loadMetaPixel();
   } else {
     gtag('consent', 'update', {
       ad_storage: 'denied',
@@ -90,9 +66,6 @@ export function trackPageView(url) {
     });
     if (clarityLoaded && window.clarity) {
       window.clarity('set', 'page', url || location.href);
-    }
-    if (pixelLoaded && window.fbq) {
-      window.fbq('track', 'PageView');
     }
   }, 50);
 }
