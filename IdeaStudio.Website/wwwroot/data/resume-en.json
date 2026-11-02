@@ -12,8 +12,7 @@
     "email": "andres.talavera@ideastud.io",
     "github": "andrestalavera",
     "linkedin": "andres-talavera",
-    "website": "ideastud.io",
-    "twitter": "imcresus_"
+    "website": "ideastud.io"
   },
   "aboutSections": [
     {
@@ -23,11 +22,6 @@
         "ASP.NET Core, Blazor (Server, WebAssembly, SSR), .NET MAUI / Xamarin, Entity Framework Core, and asynchronous messaging.",
         "Clean Architecture and Domain-Driven Design, strict DTO boundary, automated testing, and industrialized CI/CD.",
         "Serving startups, SMEs, and digital service companies, from scoping to production operations on Azure."
-      ],
-      "images": [
-        "dotnet.svg",
-        "csharp.svg",
-        "azure.svg"
       ]
     },
     {
@@ -37,11 +31,7 @@
         "Programs covering ASP.NET Core, Blazor, cloud architecture, Azure DevOps and GitHub, generative AI, FinOps, and testing strategies.",
         "Sessions delivered across France, Belgium, and Luxembourg, from students to senior devs reskilling on cloud.",
         "Expert in .NET 10 / 11, Blazor, and cloud-native Azure solutions."
-      ],
-      "icons": [
-        "fab fa-linkedin linkedin-logo"
-      ],
-      "link": "#training"
+      ]
     },
     {
       "title": "Passionate",
@@ -50,8 +40,7 @@
         "Ongoing R&D: cloud-native architectures, serverless, observability, and AI-assisted development tooling.",
         "Active developer community participant since Microsoft Student Partner days.",
         "Passionate about mobile development, high-performance web, and distributed architecture."
-      ],
-      "link": "#contact"
+      ]
     },
     {
       "title": "Diverse experiences",
@@ -60,8 +49,7 @@
         "Domains covered: healthcare statistics (HDS), insurance software, education platforms, and real-time data.",
         "More than twenty engagements delivered for large accounts and SMEs.",
         "Cross-platform mobile developer: .NET MAUI, Xamarin.Forms, and native Xamarin."
-      ],
-      "link": "#experiences"
+      ]
     },
     {
       "title": "Recent projects",
@@ -70,8 +58,7 @@
         "TRIGO logistics software modernization: ASP.NET (MVC4) migration to .NET and a Vue 3 front-end.",
         "Technical lead at Active Assurances: full IS rebuild and an Azure Pipelines software factory.",
         "PropTech / RegTech SaaS platform (DPE) in Clean Architecture, .NET 10, and Azure Container Apps."
-      ],
-      "link": "#experiences"
+      ]
     },
     {
       "title": "Personal attributes",

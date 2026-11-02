@@ -33,7 +33,6 @@
       { "question": "Travaillez-vous à distance ?", "answer": "Oui, en full-remote ou hybride. Je me déplace ponctuellement à Lyon, Paris, Genève et Fribourg." },
       { "question": "Reprenez-vous des projets existants ?", "answer": "Oui. Auditer et moderniser une application déjà en place fait partie de mon quotidien." }
     ],
-    "ctaLabel": null,
     "order": 1
   },
   {
@@ -59,7 +58,6 @@
       { "question": "Quelle taille d'équipe ?", "answer": "3 à 10 personnes idéalement, au-delà on discute de la structure." },
       { "question": "Embauchez-vous ?", "answer": "Je participe aux entretiens techniques, je ne porte pas le recrutement en direct." }
     ],
-    "ctaLabel": null,
     "order": 2
   },
   {
@@ -99,7 +97,6 @@
       { "question": "Comment construire un programme sur-mesure ?", "answer": "On part d'un module catalogue qui couvre le cœur de votre besoin, on identifie ce qui manque et ce qui est superflu, on emprunte des chapitres aux modules connexes, on cale la durée. Le brief tient en un appel de 30 minutes." },
       { "question": "Quels dispositifs de financement ?", "answer": "Les centres partenaires (ORSYS, IP-Formation, NextFormation) sont Qualiopi : OPCO, CPF entreprise, plan de développement des compétences. En intra direct, je vous oriente vers le dispositif adapté." }
     ],
-    "ctaLabel": null,
     "order": 3
   },
   {
@@ -130,7 +127,6 @@
       { "question": "Vous gardez l'humain dans la boucle ?", "answer": "Oui, la promesse n'est pas « moins de devs », c'est « plus de devs efficaces, qui gardent la maîtrise ». Chaque ligne générée passe par une revue." },
       { "question": "Combien de temps pour un pilote ?", "answer": "4 à 6 semaines, équipe de 3 à 5 devs, avec un résultat mesuré." }
     ],
-    "ctaLabel": null,
     "order": 4
   },
   {
@@ -161,7 +157,6 @@
       { "question": "C'est quoi un serveur MCP, concrètement ?", "answer": "Un connecteur standard entre une IA et vos outils : vos applications internes, votre documentation et vos données métier deviennent utilisables directement par l'IA." },
       { "question": "Vous touchez à mes outils de mesure marketing existants ?", "answer": "Non, on étend l'existant. On ajoute le suivi des usages IA sans casser ce qui est déjà en place." }
     ],
-    "ctaLabel": null,
     "order": 5
   },
   {
@@ -187,7 +182,6 @@
       { "question": "Vous faites de l'iOS natif ?", "answer": "Oui, si le contexte le justifie. Par défaut je privilégie une seule réalisation pour les deux plateformes, plus économique." },
       { "question": "Qui gère les comptes Apple/Google ?", "answer": "Vous, je vous accompagne sur la création et les soumissions." }
     ],
-    "ctaLabel": null,
     "order": 6
   },
   {
@@ -212,7 +206,6 @@
       { "question": "Faites-vous les designs ?", "answer": "Sur des petits projets oui. Sur des projets identitaires, je collabore avec des designers." },
       { "question": "Maintenance ?", "answer": "Contrat de maintenance ou forfait à la demande, selon vos besoins." }
     ],
-    "ctaLabel": null,
     "order": 7
   }
 ]

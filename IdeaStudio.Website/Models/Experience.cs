@@ -9,7 +9,6 @@
 /// <param name="Interval">Dates of start and end</param>
 /// <param name="Location">Location (if hybrid or on-site)</param>
 /// <param name="Description">Description of job</param>
-/// <param name="Responsibilities">Key responsibilities</param>
 /// <param name="Skills">Skills</param>
 public partial record Experience
 {
@@ -21,7 +20,6 @@ public partial record Experience
     public DateTime EndDate { get; init; } = DateTime.Today;
     public IEnumerable<string?>? Locations { get; init; }
     public IEnumerable<string?>? Description { get; init; }
-    public IEnumerable<string?>? Responsibilities { get; init; }
     public IEnumerable<string?>? Skills { get; init; }
     public string? Duration => GetDurationString();
     private string GetDurationString()

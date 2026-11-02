@@ -10,7 +10,6 @@ public record Service(
     IReadOnlyList<string> Highlights,
     IReadOnlyList<UseCase> UseCases,
     IReadOnlyList<FaqEntry> Faq,
-    string? CtaLabel,
     int Order
 );
 
