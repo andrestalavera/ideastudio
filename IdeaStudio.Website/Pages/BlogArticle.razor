@@ -7,6 +7,7 @@
 @inherits LocalizedComponent
 @inject IContentGateway Content
 @inject ILocalizedRoute LocalizedRoute
+@inject ISceneTheme SceneTheme
 @layout MainLayout
 
 <SeoHead Title="@seoTitle" Description="@seoDescription"
@@ -28,7 +29,11 @@
 
     <PageSection Rhythm="section" Bordered="false" Width="narrow">
         <p class="ds-blogpost-meta" data-reveal>@FormatDate(post.Date) · @post.ReadingMinutes @minLabel</p>
-        <article class="ds-longform ds-blogpost-body" data-reveal>@bodyHtml</article>
+        <article class="ds-longform ds-blogpost-body" data-reveal @ref="body">@bodyHtml</article>
+        @if (post.AiAssisted)
+        {
+            <p class="ds-blogpost-meta mt-chapter" data-reveal>@aiNote</p>
+        }
         <TagList Tags="@post.Tags" Class="mt-chapter" />
         <p class="mt-chapter" data-reveal>
             <a class="ds-link" href="@LocalizedRoute.For("blog")">
@@ -53,6 +58,8 @@ else if (loaded)
     private bool loaded;
     private string? loadedSlug;
     private MarkupString bodyHtml;
+    private ElementReference body;
+    private bool enhancePending;
 
     private string seoTitle = "Blog — IdeaStud.io";
     private string seoDescription = "";
@@ -63,6 +70,7 @@ else if (loaded)
     private string backLabel = "Tous les articles";
     private string notFoundTitle = "Article introuvable.";
     private string notFoundLead = "";
+    private string aiNote = "";
     private Dictionary<string, string>? seoHreflang;
     private List<string>? seoStructuredData;
     private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
@@ -91,6 +99,9 @@ else if (loaded)
         backLabel = fr ? "Tous les articles" : "All articles";
         notFoundTitle = fr ? "Article introuvable." : "Article not found.";
         notFoundLead = fr ? "Cet article n'existe pas ou a été déplacé." : "This article doesn't exist or has moved.";
+        aiNote = fr
+            ? "Contenu généré par IA\u00a0: 40\u00a0%"
+            : "AI-generated content: 40%";
     }
 
     private async Task LoadAsync()
@@ -105,7 +116,9 @@ else if (loaded)
         string hub = LocalizedRoute.For("blog", cultureCode);
         if (post is not null)
         {
-            bodyHtml = (MarkupString)MarkdownRendering.ToHtml(post.Body, tableLabel: fr ? "Tableau" : "Table");
+            bodyHtml = (MarkupString)MarkdownRendering.ToHtml(post.Body,
+                tableLabel: fr ? "Tableau" : "Table", diagramLabel: fr ? "Schéma" : "Diagram");
+            enhancePending = true;
             seoTitle = $"{post.Title} | IdeaStud.io";
             seoDescription = post.Summary;
             seoCanonical = $"https://ideastud.io{hub}/{post.Slug}";
@@ -145,6 +158,18 @@ else if (loaded)
             seoCanonical = $"https://ideastud.io{hub}";
             seoStructuredData = null;
         }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (!enhancePending || post is null) return;
+        enhancePending = false;
+        // Code colours and diagrams are an enhancement: on failure the listing and the
+        // diagram source stay readable as plain text.
+        try { await SceneTheme.EnhanceProseAsync(body); }
+        catch (JSException) { }
+        catch (JSDisconnectedException) { }
     }
 
     private string FormatDate(string iso)

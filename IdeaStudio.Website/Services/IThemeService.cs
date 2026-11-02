@@ -14,9 +14,6 @@ public interface IThemeService
     /// <summary>The active theme: <c>"light"</c> or <c>"dark"</c>.</summary>
     Task<string> GetThemeAsync();
 
-    /// <summary>Persist and apply an explicit theme choice.</summary>
-    Task SetThemeAsync(string theme);
-
     /// <summary>Flip the active theme; returns the new theme.</summary>
     Task<string> ToggleAsync();
 }
@@ -33,13 +30,6 @@ public sealed class ThemeService(IJSRuntime js, Store<AppState> store) : IThemeS
         catch { theme = store.State.Theme; }
         store.Dispatch(new SetTheme(theme));
         return theme;
-    }
-
-    public async Task SetThemeAsync(string theme)
-    {
-        try { await js.InvokeVoidAsync("ideastudioTheme.set", theme); }
-        catch { /* JS not ready (e.g. prerender) — no-op */ }
-        store.Dispatch(new SetTheme(theme));
     }
 
     public async Task<string> ToggleAsync()

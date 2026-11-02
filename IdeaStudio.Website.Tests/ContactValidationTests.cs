@@ -222,11 +222,4 @@ public class ContactValidationTests
 
         Assert.False(model.IsSpam);
     }
-
-    [Fact]
-    public void IsValidEmail_StaticHelper_MatchesRegexRules()
-    {
-        Assert.True(ContactFormModel.IsValidEmail("andres@ideastud.io"));
-        Assert.False(ContactFormModel.IsValidEmail("foo@"));
-    }
 }

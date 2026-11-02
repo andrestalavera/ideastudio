@@ -8,5 +8,7 @@ public record BlogPost(
     string Date,
     int ReadingMinutes,
     IReadOnlyList<string> Tags,
-    string Body
+    string Body,
+    // Drafted with AI help: the article ends with a one-line note on the AI-generated share.
+    bool AiAssisted = false
 );

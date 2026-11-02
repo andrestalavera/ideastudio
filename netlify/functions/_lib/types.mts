@@ -8,15 +8,11 @@ export interface PersonalInformation {
   github: string;
   linkedin: string;
   website: string;
-  twitter: string;
 }
 
 export interface AboutSection {
   title: string;
   paragraphs: string[];
-  images?: string[];
-  icons?: string[];
-  link?: string;
 }
 
 export interface Experience {

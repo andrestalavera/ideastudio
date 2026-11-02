@@ -8,7 +8,7 @@ public class SlugTranslatorTests
 {
     private static Service Svc(string slug, string iconId, int order = 0) =>
         new(slug, slug, "", "", iconId, "", Array.Empty<string>(), Array.Empty<UseCase>(),
-            Array.Empty<FaqEntry>(), null, order);
+            Array.Empty<FaqEntry>(), order);
 
     private static (SlugTranslator translator, Mock<IContentGateway> gateway) MakeTranslator(
         IReadOnlyList<Service> fr, IReadOnlyList<Service> en)

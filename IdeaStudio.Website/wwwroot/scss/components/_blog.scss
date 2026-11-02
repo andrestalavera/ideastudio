@@ -37,7 +37,65 @@
   }
 
   // JetBrains Mono would draw => as an arrow: C# listings show the characters typed.
-  code { font-variant-ligatures: none; }
+  // "calt" is off too: JetBrains Mono draws its arrows as contextual alternates.
+  code {
+    font-variant-ligatures: none;
+    font-feature-settings: "calt" 0, "liga" 0;
+  }
+
+  // Token classes set by highlight.js (js/prose). Colour is never the only cue:
+  // the listing reads the same uncoloured; comments are also set in italics.
+  .hljs-keyword,
+  .hljs-built_in,
+  .hljs-literal,
+  .hljs-meta { color: c.$syn-keyword; }
+  .hljs-string,
+  .hljs-regexp,
+  .hljs-char { color: c.$syn-string; }
+  .hljs-type,
+  .hljs-title,
+  .hljs-tag,
+  .hljs-name { color: c.$syn-type; }
+  .hljs-title.function_,
+  .hljs-attr,
+  .hljs-attribute { color: c.$syn-func; }
+  .hljs-number,
+  .hljs-symbol { color: c.$syn-number; }
+  .hljs-comment,
+  .hljs-doctag { color: c.$syn-comment; font-style: italic; }
+  .hljs-subst,
+  .hljs-params,
+  .hljs-variable { color: inherit; }
+
+  // A mermaid diagram (Markdown fence, drawn to SVG by js/prose) in the same frame as
+  // a listing. Before it is drawn, or if it cannot be, its source shows as code.
+  .ds-diagram {
+    margin: 0;
+    padding: s.$s-4;
+    overflow-x: auto;
+    background: c.$bg-surface;
+    border: 1px solid c.$rule;
+    border-radius: s.$radius-md;
+
+    pre.mermaid {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: none;
+      white-space: pre;
+    }
+
+    pre.mermaid[data-processed] {
+      display: flex;
+      justify-content: center;
+      font-family: t.$font-sans;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
+  }
 
   // The wrapper scrolls; the table keeps display: table so screen readers still
   // announce rows and columns (display: block drops that in Safari/VoiceOver).
@@ -71,6 +129,7 @@
   }
 
   pre:focus-visible,
+  .ds-diagram:focus-visible,
   .ds-table-scroll:focus-visible { outline-offset: 2px; }
 
   img { border-radius: s.$radius-md; }

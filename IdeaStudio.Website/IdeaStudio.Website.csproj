@@ -26,7 +26,7 @@
         <Exec Command="npm install" Condition="'$(RestorePackagesWithLockFile)' != 'true'" />
         <Touch Files="node_modules/.install-stamp" AlwaysCreate="true" />
     </Target>
-    <Target Name="NpmRunBuild" DependsOnTargets="NpmInstall" BeforeTargets="BeforeBuild" Inputs="package.json;package-lock.json;$(MSBuildProjectDirectory)/wwwroot/scss/**/*.scss;$(MSBuildProjectDirectory)/wwwroot/src/**/*.js" Outputs="$(MSBuildProjectDirectory)/wwwroot/css/styles.min.css;$(MSBuildProjectDirectory)/wwwroot/js/cinema.bundle.js">
+    <Target Name="NpmRunBuild" DependsOnTargets="NpmInstall" BeforeTargets="BeforeBuild" Inputs="package.json;package-lock.json;$(MSBuildProjectDirectory)/wwwroot/scss/**/*.scss;$(MSBuildProjectDirectory)/wwwroot/src/**/*.js" Outputs="$(MSBuildProjectDirectory)/wwwroot/css/styles.min.css;$(MSBuildProjectDirectory)/wwwroot/js/cinema.bundle.js;$(MSBuildProjectDirectory)/wwwroot/js/prose/index.js">
         <Exec Command="npm run build" />
     </Target>
 

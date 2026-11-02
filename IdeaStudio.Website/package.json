@@ -7,10 +7,11 @@
 		"copy-fonts": "node scripts/copy-fonts.mjs",
 		"compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --no-source-map --update --color",
 		"watch-compile-styles": "sass wwwroot/scss/styles.scss:wwwroot/css/styles.min.css --style=compressed --update --watch --poll --color",
-		"compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --minify --format=esm --outfile=wwwroot/js/cinema.bundle.js --target=es2020 --legal-comments=none --alias:gsap=./node_modules/gsap/index.js --loader:.vert=text --loader:.frag=text --loader:.glsl=text",
-		"watch-compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --watch --alias:gsap=./node_modules/gsap/index.js --loader:.vert=text --loader:.frag=text --loader:.glsl=text",
+		"compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --minify --format=esm --outfile=wwwroot/js/cinema.bundle.js --target=es2020 --legal-comments=none --loader:.vert=text --loader:.frag=text --loader:.glsl=text",
+		"watch-compile-scripts": "esbuild wwwroot/src/cinema/index.js --bundle --format=esm --outfile=wwwroot/js/cinema.bundle.js --sourcemap --target=es2020 --watch --loader:.vert=text --loader:.frag=text --loader:.glsl=text",
+		"compile-prose": "node -e \"require('fs').rmSync('wwwroot/js/prose',{recursive:true,force:true})\" && esbuild wwwroot/src/prose/index.js --bundle --splitting --minify --format=esm --outdir=wwwroot/js/prose --target=es2022 --legal-comments=none --log-level=warning",
 		"prerender-shells": "node scripts/prerender-shells.mjs",
-		"build": "npm run copy-fonts && npm run compile-styles && npm run compile-scripts && npm run prerender-shells"
+		"build": "npm run copy-fonts && npm run compile-styles && npm run compile-scripts && npm run compile-prose && npm run prerender-shells"
 	},
 	"repository": {
 		"type": "git",
@@ -25,14 +26,11 @@
 	"dependencies": {
 		"@fontsource-variable/inter": "5.2.5",
 		"@fontsource/jetbrains-mono": "5.2.5",
-		"gsap": "^3.13.0",
-		"modern-normalize": "^3.0.1"
+		"highlight.js": "11.12.0",
+		"mermaid": "12.2.0"
 	},
 	"devDependencies": {
 		"esbuild": "^0.25.0",
-		"sass": "^1.92.1",
-		"stylelint": "^16.24.0",
-		"stylelint-config-recommended-scss": "^16.0.0",
-		"stylelint-scss": "^6.12.1"
+		"sass": "^1.92.1"
 	}
 }

@@ -24,7 +24,6 @@
       { "question": "Remote work?", "answer": "Yes, full-remote or hybrid. I occasionally travel to Lyon, Paris, Geneva and Fribourg." },
       { "question": "Do you take on existing projects?", "answer": "Yes. Auditing and modernizing an app that's already in place is part of my day-to-day." }
     ],
-    "ctaLabel": null,
     "order": 1
   },
   {
@@ -50,7 +49,6 @@
       { "question": "Team size?", "answer": "3 to 10 people ideally; beyond that, we discuss structure." },
       { "question": "Do you hire?", "answer": "I take part in technical interviews but don't own recruitment end-to-end." }
     ],
-    "ctaLabel": null,
     "order": 2
   },
   {
@@ -90,7 +88,6 @@
       { "question": "How do you build a custom program?", "answer": "We start from a catalogue module that covers the core of your need, identify what's missing and what's superfluous, borrow chapters from adjacent modules, calibrate duration. The brief takes one 30-minute call." },
       { "question": "What about funding mechanisms?", "answer": "Partner centres (ORSYS, IP-Formation, NextFormation) are Qualiopi-certified: OPCO, CPF entreprise, skills-development plans. For direct in-house, I point you to the right scheme." }
     ],
-    "ctaLabel": null,
     "order": 3
   },
   {
@@ -121,7 +118,6 @@
       { "question": "Do you keep humans in the loop?", "answer": "Yes, the promise isn't 'fewer devs', it's 'more effective devs who keep ownership'. Every generated line gets reviewed." },
       { "question": "How long for a pilot?", "answer": "4 to 6 weeks, team of 3 to 5 devs, with a measured result." }
     ],
-    "ctaLabel": null,
     "order": 4
   },
   {
@@ -152,7 +148,6 @@
       { "question": "What's an MCP server, exactly?", "answer": "A standard connector between an AI and your tools: your internal apps, your documentation and your business data become directly usable by the AI." },
       { "question": "Will you touch our existing marketing measurement?", "answer": "No, we extend what's there. We add AI-usage tracking without breaking anything already in place." }
     ],
-    "ctaLabel": null,
     "order": 5
   },
   {
@@ -178,7 +173,6 @@
       { "question": "Native iOS?", "answer": "Yes when justified. By default I favour a single build for both platforms, which is more cost-efficient." },
       { "question": "Who owns Apple/Google accounts?", "answer": "You. I support creation and submissions." }
     ],
-    "ctaLabel": null,
     "order": 6
   },
   {
@@ -203,7 +197,6 @@
       { "question": "Do you design too?", "answer": "On small projects yes. On identity-driven projects I collaborate with designers." },
       { "question": "Maintenance?", "answer": "Maintenance contract or ad-hoc pricing, to suit your needs." }
     ],
-    "ctaLabel": null,
     "order": 7
   }
 ]

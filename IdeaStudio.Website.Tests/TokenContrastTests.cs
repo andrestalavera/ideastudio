@@ -14,6 +14,7 @@ namespace IdeaStudio.Website.Tests;
 //   * the duck accent used for focus rings / labels          >= 3.0:1 (1.4.11)
 //   * the corrected masthead CTA rest border                 >= 3.0:1 (1.4.11)
 //   * the project-tile frosted badge over ANY thumbnail      >= 4.5:1 (1.4.3)
+//   * every syntax colour on the code-listing surface         >= 4.5:1 (1.4.3)
 //
 // Contrast maths follow WCAG: sRGB relative luminance + (L1+0.05)/(L2+0.05).
 public class TokenContrastTests
@@ -158,6 +159,28 @@ public class TokenContrastTests
         }
         Assert.True(floor >= 4.5,
             $"{theme}: tile badge fg over bg-void@65% scrim floor = {floor:0.00}:1 (<4.5)");
+    }
+
+    // --- Code listings: syntax colours on bg-surface, AA (4.5:1) --------------
+
+    [Theory]
+    [MemberData(nameof(Themes))]
+    public void SyntaxColours_OnCodeSurface_MeetAa(string theme)
+    {
+        var c = Theme(theme);
+        string[] syntax = { "syn-keyword", "syn-string", "syn-type", "syn-func", "syn-number", "syn-comment" };
+
+        var failures = new List<string>();
+        foreach (string token in syntax)
+        {
+            Assert.True(c.ContainsKey(token), $"Token '{token}' missing from '{theme}' theme.");
+            double ratio = ContrastRatio(c[token], c["bg-surface"]);
+            if (ratio < 4.5)
+                failures.Add($"{theme}: {token} on bg-surface = {ratio:0.00}:1 (<4.5)");
+        }
+
+        Assert.True(failures.Count == 0,
+            "Syntax colours below WCAG AA (4.5:1):\n" + string.Join("\n", failures));
     }
 
     private static string RepoRoot()
