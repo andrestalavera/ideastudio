@@ -13,15 +13,6 @@ public interface ISceneTheme
     Task InitializeAsync();
 
     /// <summary>
-    /// Applies a scene by setting <c>html[data-scene="&lt;scene&gt;"]</c> and,
-    /// if provided, <c>--ds-scene-accent</c> on the root.
-    /// </summary>
-    Task ApplyAsync(string scene, IReadOnlyDictionary<string, object?>? parameters = null);
-
-    /// <summary>Triggers a brief <c>html.is-pulsing</c> window so SCSS can react to a state change.</summary>
-    Task PulseAsync();
-
-    /// <summary>
     /// Notifies the runtime that a client-side navigation occurred, so it can rewire
     /// reveals and re-measure the hero (nav-morph) for the new page. No-op if the
     /// runtime has not booted yet.

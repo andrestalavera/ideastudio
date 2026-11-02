@@ -27,18 +27,6 @@ public sealed class SceneTheme : ISceneTheme, IAsyncDisposable
         await mod.InvokeVoidAsync("initialize");
     }
 
-    public async Task ApplyAsync(string scene, IReadOnlyDictionary<string, object?>? parameters = null)
-    {
-        IJSObjectReference mod = await EnsureModuleAsync();
-        await mod.InvokeVoidAsync("applyTheme", scene, parameters);
-    }
-
-    public async Task PulseAsync()
-    {
-        IJSObjectReference mod = await EnsureModuleAsync();
-        await mod.InvokeVoidAsync("pulse");
-    }
-
     public async Task NotifyRouteChangedAsync()
     {
         // Only fire if the runtime is already booted; never force-load the bundle

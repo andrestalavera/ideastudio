@@ -1,6 +1,6 @@
 // cinema/index.js — V3 orchestrator. Owns the renderer, clock, inputs, hero
-// state machine, and the mesh + thread passes. Exposes initialize /
-// applyTheme / dispose over JS interop.
+// state machine and the mesh pass. Exposes initialize / notifyRouteChanged /
+// dispose / mountSignature over JS interop (SceneTheme, SignatureName).
 
 import { Renderer } from './engine/renderer.js';
 import { Clock } from './engine/clock.js';
@@ -101,8 +101,8 @@ export function notifyRouteChanged() {
   window.dispatchEvent(new CustomEvent('ideastudio:routechanged'));
 }
 
-export function applyTheme(scene) {
-  if (typeof scene === 'string') document.documentElement.dataset.scene = scene;
+// Called by the theme toggle in index.html: resync the backdrop palette.
+function applyTheme() {
   mesh?.refreshPalette?.();
 }
 
@@ -123,7 +123,7 @@ export function dispose() {
 }
 
 if (typeof window !== 'undefined') {
-  window.ideastudioCinema = { initialize, applyTheme, dispose };
+  window.ideastudioCinema = { applyTheme };
 
   // React to runtime theme switches: pause the backdrop in light, resume +
   // resync the palette in dark. Safe before initialize() (clock/mesh null).
