@@ -30,6 +30,10 @@
     <PageSection Rhythm="section" Bordered="false" Width="narrow">
         <p class="ds-blogpost-meta" data-reveal>@FormatDate(post.Date) · @post.ReadingMinutes @minLabel</p>
         <article class="ds-longform ds-blogpost-body" data-reveal @ref="body">@bodyHtml</article>
+        @if (post.AiAssisted)
+        {
+            <p class="ds-blogpost-meta mt-chapter" data-reveal>@aiNote</p>
+        }
         <TagList Tags="@post.Tags" Class="mt-chapter" />
         <p class="mt-chapter" data-reveal>
             <a class="ds-link" href="@LocalizedRoute.For("blog")">
@@ -66,6 +70,7 @@ else if (loaded)
     private string backLabel = "Tous les articles";
     private string notFoundTitle = "Article introuvable.";
     private string notFoundLead = "";
+    private string aiNote = "";
     private Dictionary<string, string>? seoHreflang;
     private List<string>? seoStructuredData;
     private List<string> speakable = new() { ".ds-hero .ds-display", ".ds-hero .ds-lead" };
@@ -94,6 +99,9 @@ else if (loaded)
         backLabel = fr ? "Tous les articles" : "All articles";
         notFoundTitle = fr ? "Article introuvable." : "Article not found.";
         notFoundLead = fr ? "Cet article n'existe pas ou a été déplacé." : "This article doesn't exist or has moved.";
+        aiNote = fr
+            ? "Contenu généré par IA\u00a0: 40\u00a0%"
+            : "AI-generated content: 40%";
     }
 
     private async Task LoadAsync()
