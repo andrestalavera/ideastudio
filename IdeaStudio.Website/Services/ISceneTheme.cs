@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Components;
+
 namespace IdeaStudio.Website.Services;
 
 /// <summary>
@@ -25,4 +27,10 @@ public interface ISceneTheme
     /// runtime has not booted yet.
     /// </summary>
     Task NotifyRouteChangedAsync();
+
+    /// <summary>
+    /// Colours the code listings and renders the mermaid diagrams inside a rendered
+    /// article body. Loads its own module (js/prose) on first use, not the cinema bundle.
+    /// </summary>
+    Task EnhanceProseAsync(ElementReference root);
 }

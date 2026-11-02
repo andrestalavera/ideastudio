@@ -35,6 +35,13 @@ $themes: (
     ring:        rgba(0, 194, 212, 0.6),
     glass:       rgba(234, 244, 242, 0.06),
     track:       rgba(234, 244, 242, 0.08),
+    // Syntax colours for code listings, on bg-surface (AA, TokenContrastTests).
+    syn-keyword: #4fd8e6,
+    syn-string:  #ffb870,
+    syn-type:    #ff9ab8,
+    syn-func:    #a9b8ff,
+    syn-number:  #d0b0ff,
+    syn-comment: #93aca8,
     // Elevation: a top inner-light line + a deep, soft drop so raised surfaces
     // read without leaning on a border. --elev-1 for cards/chips, --elev-2 for
     // menus/popovers/dialogs that float above the page.
@@ -59,6 +66,12 @@ $themes: (
     ring:        rgba(0, 112, 125, 0.6),
     glass:       rgba(11, 26, 29, 0.05),
     track:       rgba(11, 26, 29, 0.10),
+    syn-keyword: #00707d,
+    syn-string:  #a04a00,
+    syn-type:    #b8124a,
+    syn-func:    #2b3bd6,
+    syn-number:  #7038c8,
+    syn-comment: #566c6f,
     // Light equivalents: a bright top line + a soft, low-alpha ink drop so
     // cards lift off the warm-neutral page without a heavy border.
     elev-1:      (inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 8px 24px -12px rgba(11, 26, 29, 0.18)),
@@ -87,6 +100,13 @@ $rule-bright: var(--rule-bright);
 $ring:        var(--ring);
 $glass:       var(--glass);
 $track:       var(--track);
+
+$syn-keyword: var(--syn-keyword);
+$syn-string:  var(--syn-string);
+$syn-type:    var(--syn-type);
+$syn-func:    var(--syn-func);
+$syn-number:  var(--syn-number);
+$syn-comment: var(--syn-comment);
 
 // Elevation shadows (per-theme, emitted from $themes) + a reusable duck tint.
 // $tint-duck is an 8% duck wash over transparent — for hover backgrounds,

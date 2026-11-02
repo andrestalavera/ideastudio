@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 namespace IdeaStudio.Website.Services;
@@ -7,6 +8,7 @@ public sealed class SceneTheme : ISceneTheme, IAsyncDisposable
     private readonly IJSRuntime js;
     private IJSObjectReference? module;
     private Task<IJSObjectReference>? moduleTask;
+    private Task<IJSObjectReference>? proseTask;
 
     public SceneTheme(IJSRuntime js) => this.js = js;
 
@@ -46,8 +48,21 @@ public sealed class SceneTheme : ISceneTheme, IAsyncDisposable
         catch (JSDisconnectedException) { /* runtime gone */ }
     }
 
+    public async Task EnhanceProseAsync(ElementReference root)
+    {
+        proseTask ??= js.InvokeAsync<IJSObjectReference>("import", "./js/prose/index.js").AsTask();
+        IJSObjectReference prose = await proseTask;
+        await prose.InvokeVoidAsync("enhance", root);
+    }
+
     public async ValueTask DisposeAsync()
     {
+        if (proseTask is { IsCompletedSuccessfully: true })
+        {
+            try { await proseTask.Result.DisposeAsync(); }
+            catch { /* already gone */ }
+        }
+        proseTask = null;
         if (module is not null)
         {
             try { await module.InvokeVoidAsync("dispose"); }
