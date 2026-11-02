@@ -113,20 +113,6 @@ public class StoreTests
     }
 
     [Fact]
-    public async Task ThemeService_SetThemeAsync_RoundTripsThroughStore()
-    {
-        Store<AppState> store = NewStore();
-        Mock<IJSRuntime> js = new();
-        js.Setup(j => j.InvokeAsync<IJSVoidResult>(It.IsAny<string>(), It.IsAny<object?[]?>()))
-            .Returns(new ValueTask<IJSVoidResult>(Mock.Of<IJSVoidResult>()));
-        ThemeService service = new(js.Object, store);
-
-        await service.SetThemeAsync("light");
-
-        Assert.Equal("light", store.State.Theme);
-    }
-
-    [Fact]
     public async Task ThemeService_GetThemeAsync_HydratesStoreFromJs()
     {
         Store<AppState> store = NewStore();

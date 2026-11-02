@@ -35,9 +35,6 @@ public sealed class ContactFormModel
     /// </summary>
     public bool IsSpam => !string.IsNullOrWhiteSpace(Website);
 
-    /// <summary>True when <paramref name="email"/> matches the form's email shape.</summary>
-    public static bool IsValidEmail(string email) => EmailRegex.IsMatch(email);
-
     /// <summary>
     /// Validates the field values and returns a field-name → message map of
     /// errors. An empty dictionary means the form is valid. Keys are the
