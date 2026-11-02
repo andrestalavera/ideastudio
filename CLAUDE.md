@@ -11,7 +11,8 @@ description: Editorial portfolio site (Blazor WASM) with custom SCSS design syst
 
 Blazor WebAssembly (.NET 10) editorial portfolio. AOT-compiled in Release.
 Custom SCSS design system (no Bootstrap, no component library) and a small
-JS "cinema" bundle (esbuild, GSAP) for reveals/cursor/magnetic interactions.
+JS "cinema" bundle (esbuild) for reveals/cursor/magnetic interactions, and a
+separate article module (`js/prose`: highlight.js, lazy mermaid) for blog posts.
 Multilingual: French and English are first-class (per-culture routes and JSON).
 
 ## Solution Structure
@@ -35,7 +36,6 @@ IdeaStudio.sln
 │   │   ├── Progress.razor              #   Scroll progress bar
 │   │   ├── ProjectTile.razor
 │   │   ├── QABlock.razor
-│   │   ├── ResumeBand.razor
 │   │   ├── Reveal.razor                #   Scroll-reveal wrapper
 │   │   ├── RevealChars.razor           #   Per-char text reveal
 │   │   ├── SeoHead.razor
@@ -61,8 +61,7 @@ IdeaStudio.sln
 │   │   ├── TrainingDetail.razor        #   /{culture}/formations|training/{slug}
 │   │   ├── Realisations.razor          #   /fr/realisations  /en/projects (+ /portfolio aliases)
 │   │   ├── Privacy.razor               #   /fr/confidentialite  /en/privacy
-│   │   ├── Legal.razor                 #   /fr/mentions-legales  /en/legal
-│   │   └── ProtoSignature.razor        #   /proto/signature (internal preview)
+│   │   └── Legal.razor                 #   /fr/mentions-legales  /en/legal
 │   ├── Services/                       # Interfaces + implementations live together
 │   │   ├── IContentGateway.cs          #   + JsonContentGateway (reads wwwroot/data/*.json)
 │   │   ├── ICultureService.cs          #   + CultureService
@@ -137,7 +136,7 @@ dotnet workload install wasm-tools
 - Reusable components live in `Components/`.
 - Components needing i18n inherit `LocalizedComponent` (see `Components/LocalizedComponent.cs`).
 - Scroll reveal: wrap content in `<Reveal>` (block-level fade/slide) or `<RevealChars Text="…" />` (per-character reveal).
-- The cinema runtime (cursor halo, reveals observer, magnetic, sticky-hero) is mounted once via `<GlCanvas />` in `MainLayout.razor` and driven by `ISceneTheme.InitializeAsync()`. Pages do not declare per-page scenes; they apply a scene theme by setting the `data-scene` attribute via `ISceneTheme.ApplyAsync(...)`.
+- The cinema runtime (cursor halo, reveals observer, magnetic, sticky-hero) is mounted once via `<GlCanvas />` in `MainLayout.razor` and driven by `ISceneTheme.InitializeAsync()`. Blog articles call `ISceneTheme.EnhanceProseAsync(...)` to colour code listings and draw mermaid diagrams.
 - Use `[Parameter]` for component parameters, `@inject` for DI.
 - Code-behind in `.cs` is allowed (see `LocalizedComponent.cs`). Most components use single-file Razor.
 
@@ -188,7 +187,7 @@ dotnet workload install wasm-tools
   `.ds-list`), form focus/error states, the typographic rhythm system (`.ds-rhythm` +
   `.ds-kicker`/`.ds-display`/`.ds-title`/`.ds-lead`), and JS/print hooks. **Never
   rename these hooks**: JS selects `.ds-hero`, `.ds-timeline-row`, `#gl-canvas`,
-  toggles `is-revealed`/`is-active`, and reads `[data-reveal]`/`[data-scene]`/
+  toggles `is-revealed`/`is-active`, and reads `[data-reveal]`/
   `[data-motion]`/`[data-hero-state]`; print targets `.ds-masthead`/`.ds-footer`/
   `.py-section`/`.ds-print-hidden`. The résumé-PDF subsystem (`netlify/functions/_lib/
   render.mts` + `body.resume-pdf` in `utilities/_print.scss`) is self-contained.
